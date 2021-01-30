@@ -1,0 +1,3 @@
+var eco3 = ee.FeatureCollection('users/robitalec/CFS/NA_CEC_Eco_Level3')
+
+Map.addLayer(eco3)
