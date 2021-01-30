@@ -1,3 +1,9 @@
 var eco3 = ee.FeatureCollection('users/robitalec/CFS/NA_CEC_Eco_Level3')
-
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 Map.addLayer(eco3)
+Map.addLayer(ctef)
+
+
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+
+Map.addLayer(ctef)
