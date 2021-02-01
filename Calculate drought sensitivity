@@ -45,9 +45,10 @@ lc = lc.gte(1).and(lc.lte(4));
 // --- Functions ---
 // Calculate CMI
 function calcCMI (im) {
-  return im.addBands(im.select('potential_evaporation')
-            .subtract(im.select('total_precipitation')))
-            .rename('cmi'));
+  return im.addBands(
+    im.select('potential_evaporation')
+      .subtract(im.select('total_precipitation'))
+      .rename('cmi'));
 }
 
 // Stratified sampling of features 
