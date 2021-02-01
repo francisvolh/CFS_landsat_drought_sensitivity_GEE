@@ -38,7 +38,7 @@ lc = lc
   .first().aside(print)
   .select('LC_Type5')
 
-lc = lc.gte(1).and(lc.lte(4))
+lc = lc.gte(1).and(lc.lte(4));
 Map.addLayer(lc, null, 'lc')
 
 // --- Functions ---
