@@ -9,7 +9,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
 
-var points = ee.FeatureCollection.randomPoints(ctef, 50)
+var points = ee.FeatureCollection.randomPoints(ctef, 25)
 Map.addLayer(ctef)
 Map.addLayer(points)
 
@@ -34,19 +34,35 @@ var cmi = era5monthly.map(function(im) {
 
 
 
-// var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture")
 // there are other smap layers
-var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP_soil_moisture")
+// var smap = ee.ImageCollection('NASA_USDA/HSL/SMAP10KM_soil_moisture')
 
+// GLDAS-2.1: Global Land Data Assimilation System
+var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H")
+  .filter(ee.Filter.dayOfYear(10, 20))
+  .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
+  // .filter.Filter(10)
+print(gldas.limit(1))
 // Map.addLayer(smap.select('ssma'))
 
 
 
 var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: smap,
+  imageCollection: gldas,
   regions: points,
   reducer: ee.Reducer.mean(),
-  band: 'ssma',
+  band: 'SnowDepth_inst',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'label'
+});
+print(ts)
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: gldas,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'PotEvap_tavg',
   scale: 500,
   xProperty: 'system:time_start',
   seriesProperty: 'label'
