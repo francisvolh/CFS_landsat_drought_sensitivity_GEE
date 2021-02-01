@@ -8,7 +8,16 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 // GLDAS-2.1: Global Land Data Assimilation System
 var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H");
 
+// FLDAS
 var fldas = ee.ImageCollection("NASA/FLDAS/NOAH01/C/GL/M/V001");
+
+// Land cover (MODIS)
+// LC_Type1: Annual International Geosphere-Biosphere Programme (IGBP) classification 			
+// LC_Type2: Annual University of Maryland (UMD) classification 			
+// LC_Type3: Annual Leaf Area Index (LAI) classification 			
+// LC_Type4: Annual BIOME-Biogeochemical Cycles (BGC) classification 			
+// LC_Type5: Annual Plant Functional Types classification 
+var lc = ee.ImageCollection("MODIS/006/MCD12Q1");
 
 // --- Filter ---
 // Only three ecoregions (for now)
