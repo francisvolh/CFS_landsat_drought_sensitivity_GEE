@@ -39,10 +39,20 @@ var cmi = era5monthly.map(function(im) {
 
 // FLDAS: Famine Early Warning Systems Network (FEWS NET) Land Data Assimilation System
 var fldas = ee.ImageCollection("NASA/FLDAS/NOAH01/C/GL/M/V001")
-  .filter(ee.Filter.dayOfYear(150, 250))
-  // .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
+  // .filter(ee.Filter.dayOfYear(150, 250))
+  .filter(ee.Filter.date('2010-01-01', '2012-01-01'))
 print(fldas.limit(10))
 
+
+// Calculate CMI
+function calcCMI (im) {
+  return im.addBands(
+    im.select('Evap_tavg')
+      .subtract(im.select('Rainf_f_tavg'))
+      .rename('cmi'));
+}
+
+fldas = fldas.map(calcCMI)
 
 // GLDAS-2.1: Global Land Data Assimilation System
 var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H")
@@ -63,13 +73,13 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'label'
 });
-print(ts)
+// print(ts)
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: fldas,
   regions: points,
   reducer: ee.Reducer.mean(),
-  band: 'Evap_tavg',
+  band: 'cmi',
   scale: 500,
   xProperty: 'system:time_start',
   seriesProperty: 'label'
