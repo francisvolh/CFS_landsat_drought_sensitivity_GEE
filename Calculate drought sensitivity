@@ -61,6 +61,7 @@ function stratifiedFeatureSample (ft) {
 var points = ctef.map(stratifiedFeatureSample).flatten();
 
 
+// --- Sample ---
 
 
 // --- Map ---
