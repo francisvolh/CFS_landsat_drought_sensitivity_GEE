@@ -39,7 +39,7 @@ var cmi = era5monthly.map(function(im) {
 
 // GLDAS-2.1: Global Land Data Assimilation System
 var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H")
-  .filter(ee.Filter.dayOfYear(10, 20))
+  .filter(ee.Filter.dayOfYear(190, 210))
   .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
   // .filter.Filter(10)
 print(gldas.limit(1))
@@ -51,7 +51,7 @@ var ts = ui.Chart.image.seriesByRegion({
   imageCollection: gldas,
   regions: points,
   reducer: ee.Reducer.mean(),
-  band: 'SnowDepth_inst',
+  band: 'Rainf_f_tavg',
   scale: 500,
   xProperty: 'system:time_start',
   seriesProperty: 'label'
