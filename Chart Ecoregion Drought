@@ -5,6 +5,19 @@ var conusDrought = ee.ImageCollection("GRIDMET/DROUGHT"),
 // Map.addLayer(imageCollection.limit(1))
 
 
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+
+var ctef2 = ee.Image.constant(2).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R02'))).unmask()
+var ctef3 = ee.Image.constant(3).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R03'))).unmask()
+var ctef4 = ee.Image.constant(4).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R04'))).unmask()
+var comb = ctef2.add(ctef3).add(ctef4)
+comb = comb.updateMask(comb.neq(0))
+
+var points = comb.stratifiedSample(numPoints, classBand, region, scale, projection, seed, classValues, classPoints, dropNulls, tileScale, geometries)
+
+Map.addLayer(comb)
+
 var era5monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY")
   // .filterDate('2010-06-15', '2010-07-15')
   .filter(ee.Filter.dayOfYear(152, 213))
@@ -21,6 +34,38 @@ var cmi = era5monthly.map(function(im) {
 
 // Map.addLayer(era5monthly.limit(1).select('potential_evaporation'), {'min': -0.05, 'max': 0.001})
 // Map.addLayer(era5monthly.limit(1).select('total_precipitation'), {'min': 0, 'max': 0.015})
-Map.addLayer(cmi.limit(100), {'min': -0.04, 'max': 0})
+// Map.addLayer(cmi.limit(100), {'min': -0.04, 'max': 0})
 
 
+
+
+var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture")
+// Map.addLayer(smap.select('ssma'))
+
+
+
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: temps2013,
+//   regions: westernRegions,
+//   reducer: ee.Reducer.mean(),
+//   band: 'Temp',
+//   scale: 200,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'label'
+// });
+// tempTimeSeries.setChartType('ScatterChart');
+// tempTimeSeries.setOptions({
+//   title: 'Temperature over time in regions of the American West',
+//   vAxis: {
+//     title: 'Temperature (Celsius)'
+//   },
+//   lineWidth: 1,
+//   pointSize: 4,
+//   series: {
+//     0: {color: COLOR.CITY},
+//     1: {color: COLOR.FOREST},
+//     2: {color: COLOR.DESERT}
+//   }
+// });
+
+// print(tempTimeSeries);
