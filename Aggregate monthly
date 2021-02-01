@@ -35,4 +35,4 @@ description: 'TMAXMeans_export_summer2',
 fileNamePrefix: 'TMAX_Means_summer_Goat',
 });
 
-
+Map.addLayer(Basin)
