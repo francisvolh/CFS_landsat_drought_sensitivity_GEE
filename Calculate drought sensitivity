@@ -12,17 +12,27 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 
+// --- Functions ---
+// Calculate CMI
+function calcCMI (im) {
+  return ee.Image(im.select('potential_evaporation')
+            .subtract(im.select('total_precipitation')))
+            .rename('cmi');
+}
+
+// Stratified sampling of features 
+function stratifiedFeatureSample (ft) {
+  return ee.FeatureCollection.randomPoints(ft, 25);
+}
+
+
+
 
 var points = ee.FeatureCollection.randomPoints(ctef, 25)
 Map.addLayer(ctef)
 Map.addLayer(points)
 
 
-function calcCMI (im) {
-  return ee.Image(im.select('potential_evaporation')
-            .subtract(im.select('total_precipitation')))
-            .rename('cmi');
-}
 
 
 
