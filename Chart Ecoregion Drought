@@ -9,7 +9,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
 
-var points = ee.FeatureCollection.randomPoints(ctef, 1000)
+var points = ee.FeatureCollection.randomPoints(ctef, 50)
 Map.addLayer(ctef)
 Map.addLayer(points)
 
@@ -34,20 +34,24 @@ var cmi = era5monthly.map(function(im) {
 
 
 
-var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture")
+// var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture")
+// there are other smap layers
+var smap = ee.ImageCollection("NASA_USDA/HSL/SMAP_soil_moisture")
+
 // Map.addLayer(smap.select('ssma'))
 
 
 
-// var ts = ui.Chart.image.seriesByRegion({
-//   imageCollection: temps2013,
-//   regions: westernRegions,
-//   reducer: ee.Reducer.mean(),
-//   band: 'Temp',
-//   scale: 200,
-//   xProperty: 'system:time_start',
-//   seriesProperty: 'label'
-// });
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: smap,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'ssma',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'label'
+});
+print(ts)
 // tempTimeSeries.setChartType('ScatterChart');
 // tempTimeSeries.setOptions({
 //   title: 'Temperature over time in regions of the American West',
