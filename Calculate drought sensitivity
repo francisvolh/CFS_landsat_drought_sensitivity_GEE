@@ -33,9 +33,10 @@ gldas = gldas.limit(1).aside(print)
 
 
 // Only forests, using plan functional types for now
+// Using 2015 image only for now
 lc = lc
   .filter(ee.Filter.date('2015-01-01', '2016-01-01'))
-  .first().aside(print)
+  .first()
   .select('LC_Type5');
 
 lc = lc.gte(1).and(lc.lte(4));
