@@ -21,7 +21,7 @@ Map.addLayer(points)
 function calcCMI = function(im) {
   return ee.Image(im.select('potential_evaporation')
             .subtract(im.select('total_precipitation')))
-            .rename('cmi')
+            .rename('cmi');
 }
 
 
