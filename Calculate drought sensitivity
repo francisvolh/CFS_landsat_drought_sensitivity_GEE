@@ -27,9 +27,9 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 
 // Smaller for now
-gldas = gldas.limit(1).aside(print)
-  .filter(ee.Filter.dayOfYear(190, 210))
-  .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
+gldas = gldas
+  .filter(ee.Filter.dayOfYear(182, 215))
+  .filter(ee.Filter.date('2010-01-01', '2011-01-01'));
 
 
 // Only forests, using plan functional types for now
@@ -64,7 +64,6 @@ var points = ctef.map(stratifiedFeatureSample).flatten();
 
 
 // --- Map ---
-Map.addLayer(ctef)
-Map.addLayer(points)
-Map.addLayer(fldas.limit(1))
+Map.addLayer(ctef, null, 'ctef');
+Map.addLayer(points, null, 'points');
 
