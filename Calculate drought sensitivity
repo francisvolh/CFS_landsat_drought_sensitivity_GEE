@@ -12,12 +12,14 @@ var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H");
 var fldas = ee.ImageCollection("NASA/FLDAS/NOAH01/C/GL/M/V001");
 
 // Land cover (MODIS)
-// LC_Type1: Annual International Geosphere-Biosphere Programme (IGBP) classification 			
-// LC_Type2: Annual University of Maryland (UMD) classification 			
+//  LC_Type1: Annual International Geosphere-Biosphere Programme (IGBP) classification 			
+//  LC_Type2: Annual University of Maryland (UMD) classification 			
 // LC_Type3: Annual Leaf Area Index (LAI) classification 			
 // LC_Type4: Annual BIOME-Biogeochemical Cycles (BGC) classification 			
 // LC_Type5: Annual Plant Functional Types classification 
 var lc = ee.ImageCollection("MODIS/006/MCD12Q1");
+
+
 
 // --- Filter ---
 // Only three ecoregions (for now)
@@ -25,10 +27,18 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 
 // Smaller for now
-gldas = gldas
+gldas = gldas.limit(1).aside(print)
   .filter(ee.Filter.dayOfYear(190, 210))
   .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
 
+
+// Only forests, using plan functional types for now
+lc = lc
+  .filter(ee.filterDate('2015-01-01', '2016-01-01')).aside(print)
+  .select('LC_Type5')
+  .gte(1)
+  .lte(4);
+Map.addLayer(lc)
 
 // --- Functions ---
 // Calculate CMI
