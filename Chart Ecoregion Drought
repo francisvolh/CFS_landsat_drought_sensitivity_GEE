@@ -12,11 +12,16 @@ var ctef2 = ee.Image.constant(2).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R0
 var ctef3 = ee.Image.constant(3).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R03'))).unmask()
 var ctef4 = ee.Image.constant(4).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R04'))).unmask()
 var comb = ctef2.add(ctef3).add(ctef4)
-comb = comb.updateMask(comb.neq(0))
+comb = comb.updateMask(comb.neq(0))//.rename('ctef')
 
-var points = comb.stratifiedSample(numPoints, classBand, region, scale, projection, seed, classValues, classPoints, dropNulls, tileScale, geometries)
+var points = comb.stratifiedSample({
+  'numPoints': 10, 
+  'classBand': 'constant',
+  scale: 250
+  })
 
 Map.addLayer(comb)
+Map.addLayer(points)
 
 var era5monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY")
   // .filterDate('2010-06-15', '2010-07-15')
