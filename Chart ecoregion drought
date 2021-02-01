@@ -37,18 +37,25 @@ var cmi = era5monthly.map(function(im) {
 // there are other smap layers
 // var smap = ee.ImageCollection('NASA_USDA/HSL/SMAP10KM_soil_moisture')
 
+// FLDAS: Famine Early Warning Systems Network (FEWS NET) Land Data Assimilation System
+var fldas = ee.ImageCollection("NASA/FLDAS/NOAH01/C/GL/M/V001")
+  .filter(ee.Filter.dayOfYear(150, 250))
+  // .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
+print(fldas.limit(10))
+
+
 // GLDAS-2.1: Global Land Data Assimilation System
 var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H")
   .filter(ee.Filter.dayOfYear(190, 210))
   .filter(ee.Filter.date('2010-01-01', '2011-01-01'))
   // .filter.Filter(10)
-print(gldas.limit(1))
+
 // Map.addLayer(smap.select('ssma'))
 
 
 
 var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: gldas,
+  imageCollection: fldas,
   regions: points,
   reducer: ee.Reducer.mean(),
   band: 'Rainf_f_tavg',
@@ -59,10 +66,10 @@ var ts = ui.Chart.image.seriesByRegion({
 print(ts)
 
 var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: gldas,
+  imageCollection: fldas,
   regions: points,
   reducer: ee.Reducer.mean(),
-  band: 'PotEvap_tavg',
+  band: 'Evap_tavg',
   scale: 500,
   xProperty: 'system:time_start',
   seriesProperty: 'label'
