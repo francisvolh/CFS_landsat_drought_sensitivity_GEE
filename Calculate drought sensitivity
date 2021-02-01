@@ -66,6 +66,5 @@ var points = ctef.map(stratifiedFeatureSample).flatten();
 // --- Map ---
 Map.addLayer(ctef)
 Map.addLayer(points)
-
 Map.addLayer(fldas.limit(1))
 
