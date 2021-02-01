@@ -34,11 +34,12 @@ gldas = gldas.limit(1).aside(print)
 
 // Only forests, using plan functional types for now
 lc = lc
-  .filter(ee.filterDate('2015-01-01', '2016-01-01')).aside(print)
+  .filter(ee.Filter.date('2015-01-01', '2016-01-01'))
+  .first().aside(print)
   .select('LC_Type5')
-  .gte(1)
-  .lte(4);
-Map.addLayer(lc)
+
+lc = lc.gte(1).and(lc.lte(4))
+Map.addLayer(lc, null, 'lc')
 
 // --- Functions ---
 // Calculate CMI
