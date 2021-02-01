@@ -21,7 +21,7 @@ var lc = ee.ImageCollection("MODIS/006/MCD12Q1");
 
 
 
-// --- Filter ---
+// --- Process ---
 // Only three ecoregions (for now)
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
@@ -36,10 +36,10 @@ gldas = gldas.limit(1).aside(print)
 lc = lc
   .filter(ee.Filter.date('2015-01-01', '2016-01-01'))
   .first().aside(print)
-  .select('LC_Type5')
+  .select('LC_Type5');
 
 lc = lc.gte(1).and(lc.lte(4));
-Map.addLayer(lc, null, 'lc')
+
 
 // --- Functions ---
 // Calculate CMI
