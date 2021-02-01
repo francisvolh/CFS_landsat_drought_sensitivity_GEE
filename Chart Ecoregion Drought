@@ -8,19 +8,9 @@ var conusDrought = ee.ImageCollection("GRIDMET/DROUGHT"),
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
-var ctef2 = ee.Image.constant(2).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R02'))).unmask()
-var ctef3 = ee.Image.constant(3).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R03'))).unmask()
-var ctef4 = ee.Image.constant(4).clip(ctef.filter(ee.Filter.eq('REG_ID', 'CL13R04'))).unmask()
-var comb = ctef2.add(ctef3).add(ctef4)
-comb = comb.updateMask(comb.neq(0))//.rename('ctef')
 
-var points = comb.stratifiedSample({
-  'numPoints': 10, 
-  'classBand': 'constant',
-  scale: 250
-  })
-
-Map.addLayer(comb)
+var points = ee.FeatureCollection.randomPoints(ctef, 1000)
+Map.addLayer(ctef)
 Map.addLayer(points)
 
 var era5monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY")
