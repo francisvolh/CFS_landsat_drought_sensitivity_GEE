@@ -2,9 +2,6 @@
 var conusDrought = ee.ImageCollection("GRIDMET/DROUGHT"),
     imageCollection = ee.ImageCollection("UTOKYO/WTLAB/KBDI/v1");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-// Map.addLayer(imageCollection.limit(1))
-
-Map.addLayer(image)
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
