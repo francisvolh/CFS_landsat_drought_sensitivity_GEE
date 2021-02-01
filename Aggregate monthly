@@ -1,0 +1,38 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Basin = ee.FeatureCollection("users/dianewhited/WS_Goat");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+var dataset = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
+                  .filter(ee.Filter.date('2010-04-01', '2015-10-31'))
+                  .filter(ee.Filter.calendarRange(8,8,'month'))
+                  .filter(ee.Filter.calendarRange(1,31,'day_of_month'))
+                  .select('tmax');
+
+var years = ee.List.sequence(2010,2015);
+ 
+//Calculate yearly means for image collection for
+var byYear = ee.ImageCollection.fromImages(
+      years.map(function (m) {
+        return dataset.filter(ee.Filter.calendarRange(m, m, 'year'))
+                    .select('tmax').mean()
+                    .set('years', m);
+}));
+print(byYear);
+
+
+//Code to caluclate the mean annual TMAX for Goat
+var mean_function = function(img) {
+  var avg_tmax = img.reduceRegions(Basin, ee.Reducer.mean(),1000);
+  return avg_tmax;
+};
+
+var tmax_means =  byYear.map(mean_function);
+
+print(tmax_means);
+
+Export.table.toDrive({
+collection: tmax_means.flatten(),
+description: 'TMAXMeans_export_summer2',
+fileNamePrefix: 'TMAX_Means_summer_Goat',
+});
+
+
