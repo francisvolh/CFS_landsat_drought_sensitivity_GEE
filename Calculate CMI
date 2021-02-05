@@ -17,9 +17,26 @@ function calcETMAX (img) {
       'tmax': img.select('tmax')}).rename('ETMAX'));
 }
 
+function calcETMIN (img) {
+  return img.addBands(
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
+      'tmin': img.select('tmin')}).rename('ETMIN'));
+}
 
-daymet = daymet.limit(1).map(calcETMAX)
+function calcETDEW (img) {
+  return img.addBands(
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
+      'tmin': img.select('tmin')}).rename('ETDEW'));
+}
+
+
+daymet = daymet.limit(1)
+  .map(calcETMAX)
+  .map(calcETMIN)
 
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
+Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
 
