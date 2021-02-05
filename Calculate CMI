@@ -20,6 +20,6 @@ function calcETMAX (img) {
 
 daymet = daymet.limit(1).map(calcETMAX)
 
-Map.addLayer(daymet.select('tmax'))
-Map.addLayer(daymet.select('ETMAX'))
+Map.addLayer(daymet.select('tmax'), null, 'tmax')
+Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
 
