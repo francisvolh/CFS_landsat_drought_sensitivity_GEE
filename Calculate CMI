@@ -10,10 +10,13 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 // tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
 // vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa 
 
-function calcCMI (img) {
+function calcETMAX (img) {
   img.addBands(
-    img.select('prcp'))
-}
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
+      'tmax': image.select('tmax')
+}).rename('ETMAX');
+
 
 # CMI and CMD calculations, Ted Hogg's modified Penman-Monteith
 etmax<-etmin<-etdew<-VPD<-ktrf<-PETm<-CMIm<-CMDm<-data.frame(matrix(ncol=12,nrow=nrow(tavg)))
