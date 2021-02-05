@@ -1,10 +1,29 @@
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
 
-// "dayl"
-// "prcp"
-// "srad"
-// "swe"
-// "tmax"
-// "tmin"
-// "vp"
+// Name 	Description 	Min* 	Max* 	Units
+// dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
+// prcp 	Daily total precipitation, sum of all forms converted to water-equivalent. 	0 	200 	mm
+// srad 	Incident shortwave radiation flux density, taken as an average over the daylight period of the day. 	0 	800 	W/m^2
+// swe 	Snow water equivalent, the amount of water contained within the snowpack. 	0 	1000 	kg/m^2
+// tmax 	Daily maximum 2-meter air temperature. 	-50 	50 	°C
+// tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
+// vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa 
+
+function calcCMI (img) {
+  img.addBands(
+    img.select('prcp'))
+}
+
+# CMI and CMD calculations, Ted Hogg's modified Penman-Monteith
+etmax<-etmin<-etdew<-VPD<-ktrf<-PETm<-CMIm<-CMDm<-data.frame(matrix(ncol=12,nrow=nrow(tavg)))
+for (k in 1:12){
+       etmax[,k] <- 0.61078*exp(17.269*tmax[,k]/(237.3+tmax[,k]))
+       etmin[,k] <- 0.61078*exp(17.269*tmin[,k]/(237.3+tmin[,k]))
+       etdew[,k] <- 0.61078*exp(17.269*(tmin[,k]-2.5)/(237.3+tmin[,k]-2.5))
+       VPD[,k]   <- 0.5*(etmax[,k] + etmin[,k])- etdew[,k]
+       ktrf[,k]  <- ifelse(((tavg[,k]+5)/15)<0,0,ifelse(((tavg[,k]+5)/15)>1,1,(tavg[,k]+5)/15))
+       PETm[,k]   <- 93*VPD[,k]*ktrf[,k]*exp(elev/9300)
+       CMIm[,k]  <- (prec[,k]-PETm[,k])/10
+       CMDm[,k]  <- ifelse(PETm[,k]<=prec[,k],0,PETm[,k]-prec[,k])
+}
