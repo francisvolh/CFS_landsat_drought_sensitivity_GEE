@@ -11,10 +11,15 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 // vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa 
 
 function calcETMAX (img) {
-  img.addBands(
+  return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
       'tmax': img.select('tmax')}).rename('ETMAX'));
 }
 
+
+daymet = daymet.limit(1).map(calcETMAX)
+
+Map.addLayer(daymet.select('tmax'))
+Map.addLayer(daymet.select('ETMAX'))
 
