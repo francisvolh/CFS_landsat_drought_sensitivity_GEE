@@ -40,4 +40,4 @@ daymet = daymet.limit(1)
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
 Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
-
+Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
