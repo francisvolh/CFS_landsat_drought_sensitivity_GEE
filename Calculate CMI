@@ -45,6 +45,15 @@ function calcVPD (img) {
     }).rename('VPD'));
 }
 
+// function calcKTRF (img) {
+//   return img.addBands(
+//     img.expression(
+//     '', {
+//       'tmin': img.select('tmin')}).rename('KTRF'));
+// }
+// ifelse(((tavg[, k] + 5) / 15) < 0, 0, ifelse(((tavg[, k] + 5) / 15) > 1, 1, (tavg[, k] +
+																																								 	// 5) / 15))
+
 
 daymet = daymet.limit(1)
   .map(calcETMAX)
