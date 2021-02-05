@@ -1,3 +1,10 @@
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
-print(daymet.first())
+
+// "dayl"
+// "prcp"
+// "srad"
+// "swe"
+// "tmax"
+// "tmin"
+// "vp"
