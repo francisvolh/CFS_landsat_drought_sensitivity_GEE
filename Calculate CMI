@@ -35,6 +35,7 @@ function calcETDEW (img) {
 daymet = daymet.limit(1)
   .map(calcETMAX)
   .map(calcETMIN)
+  .map(calcETDEW)
 
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
