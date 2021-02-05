@@ -1,0 +1,2 @@
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
+
