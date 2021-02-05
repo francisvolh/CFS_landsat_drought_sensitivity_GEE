@@ -38,7 +38,7 @@ function calcETDEW (img) {
 function calcVPD (img) {
   return img.addBands(
     img.expression(
-    '0.5 * (ETMAX + ETMIN) - ETDEW)', {
+    '0.5 * (ETMAX + ETMIN) - ETDEW', {
       'ETMAX': img.select('ETMAX'),
       'ETMIN': img.select('ETMIN'),
       'ETDEW': img.select('ETDEW')
@@ -46,16 +46,14 @@ function calcVPD (img) {
 }
 
 
-	VPD[, k]   <- 0.5 * (ETMAX + ETMIN) - ETDEW
-
-
-
 daymet = daymet.limit(1)
   .map(calcETMAX)
   .map(calcETMIN)
   .map(calcETDEW)
+  .map(calcVPD)
 
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
 Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
 Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
+Map.addLayer(daymet.select('VPD'), null, 'VPD')
