@@ -23,7 +23,8 @@ var byYrMnth = ee.ImageCollection.fromImages(
         return months.map(function(mnth) {
           return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                        .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
-                       .select('tmax').mean()
+                      // TODO: sum for precip and mean max min max
+                       .mean()
                        .set('year', yr)
                        .set('month', mnth);
         });
