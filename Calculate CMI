@@ -110,6 +110,9 @@ daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
   .map(calcPET)
   .map(calcCMI)
 
+
+
+
 // Map.addLayer(daymet.select('tmin'), null, 'tmin')
 // Map.addLayer(daymet.select('tmax'), null, 'tmax')
 // Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
