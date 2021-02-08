@@ -1,22 +1,26 @@
+// DAYMET
 var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
 
 
+// Filter
 daymet = daymet
+  .filter(ee.Filter.calendarRange(2000, 2015, 'year'))
   .filter(ee.Filter.calendarRange(6, 8, 'month'));
 
-var years = ee.List.sequence(2010,2015);
- 
-//Calculate yearly means for image collection for
+
+// Map over list of years
+var years = ee.List.sequence(2000, 2015);
+
 var byYear = ee.ImageCollection.fromImages(
-      years.map(function (m) {
-        return dataset.filter(ee.Filter.calendarRange(m, m, 'year'))
+      years.map(function (yr) {
+        return dataset.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                     .select('tmax').mean()
-                    .set('years', m);
+                    .set('years', yr);
 }));
-print(byYear);
 
 
-//Code to caluclate the mean annual TMAX for Goat
+
+
 var mean_function = function(img) {
   var avg_tmax = img.reduceRegions(Basin, ee.Reducer.mean(),1000);
   return avg_tmax;
