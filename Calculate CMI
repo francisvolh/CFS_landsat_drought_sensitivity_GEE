@@ -1,5 +1,5 @@
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
-var dem = ee.ImageCollection("NRCan/CDEM")
+var dem = ee.ImageCollection("NRCan/CDEM");
 
 // Name 	Description 	Min* 	Max* 	Units
 // dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
