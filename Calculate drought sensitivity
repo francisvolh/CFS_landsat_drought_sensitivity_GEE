@@ -28,7 +28,7 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 // Smaller for now
 gldas = gldas
-  .filter(ee.Filter.dayOfYear(182, 215))
+  // .filter(ee.Filter.dayOfYear(182, 215))
   .filter(ee.Filter.date('2010-01-01', '2011-01-01'));
 
 
