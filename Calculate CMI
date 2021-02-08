@@ -63,6 +63,16 @@ function calcKTRF (img) {
        .rename('KTRF'));
 }
 
+function calcPET (img) {
+  return img.addBands(
+    img.expression(
+    '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
+      'VPD': img.select('VPD'),
+      'KTRF': img.select('KTRF'),
+      'ELEV': img.select('ELEV')
+    }).rename('PET'));
+}
+
 
 daymet = daymet.limit(1)
   .map(calcETMAX)
@@ -71,6 +81,7 @@ daymet = daymet.limit(1)
   .map(calcVPD)
   .map(calcTAVG515)
   .map(calcKTRF)
+  .map(calcPET)
 
 // Map.addLayer(daymet.select('tmin'), null, 'tmin')
 // Map.addLayer(daymet.select('tmax'), null, 'tmax')
