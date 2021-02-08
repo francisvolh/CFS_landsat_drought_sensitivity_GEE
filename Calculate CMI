@@ -91,6 +91,15 @@ function calcPET (img) {
     }).rename('PET'));
 }
 
+function calcCMI (img) {
+  return img.addBands(
+    img.expression(
+    '(prec - PET) / 10', {
+      'VPD': img.select('VPD'),
+      'PET': img.select('PET'),
+      'ELEV': dem.select('elevation')
+    }).rename('CMI'));
+}
 
 daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
   .map(calcETMAX)
