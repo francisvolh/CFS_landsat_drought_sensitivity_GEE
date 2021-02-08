@@ -1,5 +1,21 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.64429004382453, 66.78390825999355],
+          [-140.64429004382453, 60.44720654719036],
+          [-131.76733691882453, 60.44720654719036],
+          [-131.76733691882453, 66.78390825999355]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
-var dem = ee.ImageCollection("NRCan/CDEM");
+var dem = ee.ImageCollection("NRCan/CDEM")
+
+dem = dem.filterBounds(geometry)
 
 // Name 	Description 	Min* 	Max* 	Units
 // dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
@@ -45,7 +61,7 @@ function calcVPD (img) {
     }).rename('VPD'));
 }
 
-// TODO: modify this later
+// TODO: modify this later so handle monthly mean (of min/max or ...)
 function calcTAVG515 (img) {
   return img.addBands(
     img.expression(
@@ -69,7 +85,7 @@ function calcPET (img) {
     '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
       'VPD': img.select('VPD'),
       'KTRF': img.select('KTRF'),
-      'ELEV': img.select('ELEV')
+      'ELEV': dem.select('ELEV')
     }).rename('PET'));
 }
 
