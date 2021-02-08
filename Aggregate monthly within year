@@ -29,19 +29,11 @@ var byYear = ee.ImageCollection.fromImages(
 
 
 
-var mean_function = function(img) {
-  var avg_tmax = img.reduceRegions(Basin, ee.Reducer.mean(),1000);
-  return avg_tmax;
-};
+// Reduce
 
-var tmax_means =  byYear.map(mean_function);
+// var mean_function = function(img) {
+//   var avg_tmax = img.reduceRegions(region, ee.Reducer.mean(), 1000);
+//   return avg_tmax;
+// };
 
-print(tmax_means);
-
-Export.table.toDrive({
-  collection: tmax_means.flatten(),
-  description: 'TMAXMeans_export_summer2',
-  fileNamePrefix: 'TMAX_Means_summer_Goat',
-});
-
-Map.addLayer(Basin)
+// var tmax_means =  byYear.map(mean_function);
