@@ -8,7 +8,7 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 // swe 	Snow water equivalent, the amount of water contained within the snowpack. 	0 	1000 	kg/m^2
 // tmax 	Daily maximum 2-meter air temperature. 	-50 	50 	°C
 // tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
-// vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa 
+// vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa
 
 function calcETMAX (img) {
   return img.addBands(
@@ -45,11 +45,25 @@ function calcVPD (img) {
     }).rename('VPD'));
 }
 
-function calcKTRF (img) {
+// TODO: modify this later
+function(calcTAVG515) {
   return img.addBands(
     img.expression(
-    '((tavg[, k] + 5) / 15) < 0 ? 0 : ((tavg[, k] + 5) / 15) > 1 ? 1 : ((tavg[, k] + 5) / 15)', {
-      'tmin': img.select('tmin')}).rename('KTRF'));
+    '(((tmin + tmax) / 2) + 5) / 15', {
+      'tmin': img.select('tmin'),
+      'tmax': img.select('tmax')
+    }).rename('TAVG515'));
+}
+
+function calcKTRF (img) {
+  return img.addBands(
+    img.remap(
+      [], [], 'tavg'
+      )
+
+    // expression(
+    // '((tavg[, k] + 5) / 15) < 0 ? 0 : 1', {//((tavg[, k] + 5) / 15) > 1 ? 1 : ((tavg[, k] + 5) / 15)', {
+    //   'tavg': img.select('tavg')}).rename('KTRF'));
 }
 
 
