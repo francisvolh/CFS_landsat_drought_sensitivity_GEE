@@ -13,12 +13,7 @@ var geometry =
           [-131.76733691882453, 60.44720654719036],
           [-131.76733691882453, 66.78390825999355]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
-var dem = ee.ImageCollection("NRCan/CDEM");
-
-dem = dem.filterBounds(geometry)
-         .mosaic();
-
+// DAYMET
 // Name 	Description 	Min* 	Max* 	Units
 // dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
 // prcp 	Daily total precipitation, sum of all forms converted to water-equivalent. 	0 	200 	mm
@@ -28,6 +23,15 @@ dem = dem.filterBounds(geometry)
 // tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
 // vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa
 
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
+
+// DEM
+var dem = ee.ImageCollection("NRCan/CDEM");
+
+dem = dem.filterBounds(geometry)
+         .mosaic();
+
+// Functions
 function calcETMAX (img) {
   return img.addBands(
     img.expression(
@@ -100,6 +104,8 @@ function calcCMI (img) {
     }).rename('CMI'));
 }
 
+
+// Calculate CMI
 daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
   .map(calcETMAX)
   .map(calcETMIN)
