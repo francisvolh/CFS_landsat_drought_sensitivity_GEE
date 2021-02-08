@@ -94,10 +94,9 @@ function calcPET (img) {
 function calcCMI (img) {
   return img.addBands(
     img.expression(
-    '(prec - PET) / 10', {
-      'VPD': img.select('VPD'),
-      'PET': img.select('PET'),
-      'ELEV': dem.select('elevation')
+    '(PREC - PET) / 10', {
+      'PREC': img.select('prcp'),
+      'PET': img.select('PET')
     }).rename('CMI'));
 }
 
@@ -109,6 +108,7 @@ daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
   .map(calcTAVG515)
   .map(calcKTRF)
   .map(calcPET)
+  .map(calcCMI)
 
 // Map.addLayer(daymet.select('tmin'), null, 'tmin')
 // Map.addLayer(daymet.select('tmax'), null, 'tmax')
@@ -120,3 +120,4 @@ Map.addLayer(daymet.select('VPD'), null, 'VPD')
 Map.addLayer(daymet.select('KTRF'), null, 'KTRF')
 Map.addLayer(dem.select('elevation'), null, 'ELEV')
 Map.addLayer(daymet.select('PET'), null, 'PET')
+Map.addLayer(daymet.select('CMI'), null, 'CMI')
