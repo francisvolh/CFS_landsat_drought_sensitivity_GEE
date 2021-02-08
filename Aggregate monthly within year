@@ -13,17 +13,22 @@ daymet = daymet
   .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 
-// Map over list of years
+// List of years and months
 var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 
-
-var byYear = ee.ImageCollection.fromImages(
-      years.map(function (yr) {
-        return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
-                    .select('tmax').mean()
-                    .set('years', yr);
+// Map over lists
+var byYrMnth = ee.ImageCollection.fromImages(
+      years.map(function (yr) { 
+        return months.map(function (mnth) {
+          return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                       .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
+                       .select('tmax').mean()
+                       .set('year', yr),
+                       .set('month', mnth);
+        })
+        
 }));
 
 
