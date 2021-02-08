@@ -58,7 +58,7 @@ function(calcTAVG515) {
 function calcKTRF (img) {
   return img.addBands(
     img.remap(
-      [], [], 'tavg'
+      [-9999, 0], [0, 10], 'TAVG515'
       )
 
     // expression(
@@ -72,7 +72,7 @@ daymet = daymet.limit(1)
   .map(calcETMIN)
   .map(calcETDEW)
   .map(calcVPD)
-  .map(calcKTRF)
+  .map(calcTAVG515)
 
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
