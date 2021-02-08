@@ -3,14 +3,19 @@ var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
 
 
 // Filter
-var minyear = 2000
+var minyear = 2000;
+var maxyear = 2015;
+var minmonth = 6;
+var maxmonth = 8;
+
 daymet = daymet
-  .filter(ee.Filter.calendarRange(2000, 2015, 'year'))
-  .filter(ee.Filter.calendarRange(6, 8, 'month'));
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
+  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 
 // Map over list of years
-var years = ee.List.sequence(2000, 2015);
+var years = ee.List.sequence(minyear, maxyear);
+var months = ee.List.sequence(minmonth, maxmonth);
 
 
 
