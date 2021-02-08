@@ -59,11 +59,7 @@ function calcKTRF (img) {
   return img.addBands(
     img.remap(
       [-9999, 0], [0, 10], 'TAVG515'
-      )
-
-    // expression(
-    // '((tavg[, k] + 5) / 15) < 0 ? 0 : 1', {//((tavg[, k] + 5) / 15) > 1 ? 1 : ((tavg[, k] + 5) / 15)', {
-    //   'tavg': img.select('tavg')}).rename('KTRF'));
+      )).rename('KTRF');
 }
 
 
