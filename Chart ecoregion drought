@@ -120,14 +120,23 @@ daymet = daymet
 
 
 
-
-var ts = ui.Chart.image.seriesByRegion({
+// ui.Chart.image.doySeriesByYear(imageCollection, bandName, region, regionReducer, scale, sameDayReducer, startDay, endDay)
+var ts = ui.Chart.image.doySeriesByYear({
   imageCollection: daymet,
-  regions: points,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'label'
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
 });
 print(ts)
+
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: daymet,
+//   regions: points,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI',
+//   scale: 500,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'label'
+// });
+// print(ts)
