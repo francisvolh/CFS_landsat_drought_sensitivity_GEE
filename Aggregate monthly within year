@@ -10,8 +10,7 @@ var maxmonth = 8;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
-  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
-
+  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'))
 
 // List of years and months
 var years = ee.List.sequence(minyear, maxyear);
@@ -20,17 +19,18 @@ var months = ee.List.sequence(minmonth, maxmonth);
 
 // Map over lists
 var byYrMnth = ee.ImageCollection.fromImages(
-      years.map(function (yr) { 
-        return months.map(function (mnth) {
+      years.map(function(yr) { 
+        return months.map(function(mnth) {
           return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                        .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
                        .select('tmax').mean()
                        .set('year', yr)
                        .set('month', mnth);
-        })
-        
-}));
+        });
+  }).flatten()
+);
 
+Map.addLayer(byYrMnth.limit(1))
 
 
 
