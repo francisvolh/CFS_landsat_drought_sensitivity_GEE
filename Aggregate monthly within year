@@ -25,7 +25,7 @@ var byYrMnth = ee.ImageCollection.fromImages(
           return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                        .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
                        .select('tmax').mean()
-                       .set('year', yr),
+                       .set('year', yr)
                        .set('month', mnth);
         })
         
