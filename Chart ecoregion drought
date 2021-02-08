@@ -26,7 +26,7 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 // DEM
 var dem = ee.ImageCollection("NRCan/CDEM");
 
-dem = dem.filterBounds(geometry)
+dem = dem.filterBounds(ctef)
          .mosaic();
 
 // Functions
