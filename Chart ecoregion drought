@@ -105,7 +105,8 @@ function calcCMI (img) {
 
 // Calculate CMI
 // Subset for
-daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
+daymet = daymet.filter(ee.Filter.dayOfYear(150, 200))
+               .filter(ee.Filter.calendarRange(2010, 2012, 'year'))
 
 daymet = daymet
   .map(calcETMAX)
@@ -129,4 +130,4 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'label'
 });
-// print(ts)
+print(ts)
