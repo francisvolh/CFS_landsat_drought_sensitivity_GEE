@@ -39,9 +39,9 @@ var tmax_means =  byYear.map(mean_function);
 print(tmax_means);
 
 Export.table.toDrive({
-collection: tmax_means.flatten(),
-description: 'TMAXMeans_export_summer2',
-fileNamePrefix: 'TMAX_Means_summer_Goat',
+  collection: tmax_means.flatten(),
+  description: 'TMAXMeans_export_summer2',
+  fileNamePrefix: 'TMAX_Means_summer_Goat',
 });
 
 Map.addLayer(Basin)
