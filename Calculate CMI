@@ -92,7 +92,7 @@ function calcPET (img) {
 }
 
 
-daymet = daymet.limit(1)
+daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
   .map(calcETMAX)
   .map(calcETMIN)
   .map(calcETDEW)
@@ -106,6 +106,8 @@ daymet = daymet.limit(1)
 // Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
 // Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
 // Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
-// Map.addLayer(daymet.select('VPD'), null, 'VPD')
-Map.addLayer(daymet.select('TAVG515'), null, 'TAVG515')
+Map.addLayer(daymet.select('VPD'), null, 'VPD')
+// Map.addLayer(daymet.select('TAVG515'), null, 'TAVG515')
 Map.addLayer(daymet.select('KTRF'), null, 'KTRF')
+Map.addLayer(dem.select('elevation'), null, 'ELEV')
+Map.addLayer(daymet.select('PET'), null, 'PET')
