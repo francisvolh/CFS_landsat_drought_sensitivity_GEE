@@ -2,7 +2,6 @@ var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
 
 
 daymet = daymet
-  .filter(ee.Filter.date('2010-04-01', '2015-10-31'))
   .filter(ee.Filter.calendarRange(6, 8, 'month'));
 
 var years = ee.List.sequence(2010,2015);
