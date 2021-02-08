@@ -48,10 +48,9 @@ function calcVPD (img) {
 function calcKTRF (img) {
   return img.addBands(
     img.expression(
-    '((tavg[, k] + 5) / 15) < 0) ? 0 : (tavg[, k] + 5) / 15) > 1) ? 1 : (tavg[, k] + 5) / 15)', {
+    '(tavg[, k] + 5) / 15) < 0 ? 0 : ((tavg[, k] + 5) / 15) > 1 ? 1 : (tavg[, k] + 5) / 15)', {
       'tmin': img.select('tmin')}).rename('KTRF'));
 }
-// ifelse(((tavg[, k] + 5) / 15) < 0, 0, ifelse(((tavg[, k] + 5) / 15) > 1, 1, (tavg[, k] +  5) / 15))
 
 
 daymet = daymet.limit(1)
@@ -59,9 +58,11 @@ daymet = daymet.limit(1)
   .map(calcETMIN)
   .map(calcETDEW)
   .map(calcVPD)
+  .map(calcKTRF)
 
 Map.addLayer(daymet.select('tmax'), null, 'tmax')
 Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
 Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
 Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
 Map.addLayer(daymet.select('VPD'), null, 'VPD')
+Map.addLayer(daymet.select('KTRF'), null, 'KTRF')
