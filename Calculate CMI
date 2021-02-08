@@ -106,7 +106,10 @@ function calcCMI (img) {
 
 
 // Calculate CMI
-daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1)
+// Subset for
+daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
+
+daymet = daymet
   .map(calcETMAX)
   .map(calcETMIN)
   .map(calcETDEW)
