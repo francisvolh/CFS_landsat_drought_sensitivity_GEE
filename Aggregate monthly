@@ -13,7 +13,7 @@ var years = ee.List.sequence(2000, 2015);
 
 var byYear = ee.ImageCollection.fromImages(
       years.map(function (yr) {
-        return dataset.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+        return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                     .select('tmax').mean()
                     .set('years', yr);
 }));
