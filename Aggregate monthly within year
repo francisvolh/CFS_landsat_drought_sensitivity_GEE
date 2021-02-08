@@ -3,6 +3,7 @@ var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
 
 
 // Filter
+var minyear = 2000
 daymet = daymet
   .filter(ee.Filter.calendarRange(2000, 2015, 'year'))
   .filter(ee.Filter.calendarRange(6, 8, 'month'));
@@ -10,6 +11,8 @@ daymet = daymet
 
 // Map over list of years
 var years = ee.List.sequence(2000, 2015);
+
+
 
 var byYear = ee.ImageCollection.fromImages(
       years.map(function (yr) {
