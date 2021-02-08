@@ -117,7 +117,7 @@ daymet = daymet
   .map(calcTAVG515)
   .map(calcKTRF)
   .map(calcPET)
-  .map(calcCMI)
+  .map(calcCMI);
 
 
 
