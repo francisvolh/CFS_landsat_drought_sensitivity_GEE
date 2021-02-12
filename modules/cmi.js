@@ -1,63 +1,32 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-140.64429004382453, 66.78390825999355],
-          [-140.64429004382453, 60.44720654719036],
-          [-131.76733691882453, 60.44720654719036],
-          [-131.76733691882453, 66.78390825999355]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
-// DAYMET
-// Name 	Description 	Min* 	Max* 	Units
-// dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
-// prcp 	Daily total precipitation, sum of all forms converted to water-equivalent. 	0 	200 	mm
-// srad 	Incident shortwave radiation flux density, taken as an average over the daylight period of the day. 	0 	800 	W/m^2
-// swe 	Snow water equivalent, the amount of water contained within the snowpack. 	0 	1000 	kg/m^2
-// tmax 	Daily maximum 2-meter air temperature. 	-50 	50 	°C
-// tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
-// vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa
- 
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
-
-// DEM
-var dem = ee.ImageCollection("NRCan/CDEM");
-
-dem = dem.filterBounds(geometry)
-         .mosaic();
+// DAYMET (+DEM) based CMI
 
 // Functions
-function calcETMAX (img) {
+exports.calcETMAX = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
       'tmax': img.select('tmax')
     }).rename('ETMAX'));
-}
+};
 
-function calcETMIN (img) {
+exports.calcETMIN = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
       'tmin': img.select('tmin')
     }).rename('ETMIN'));
-}
+};
 
-function calcETDEW (img) {
+exports.calcETDEW = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
       'tmin': img.select('tmin')
     }).rename('ETDEW'));
-}
+};
 
 
-function calcVPD (img) {
+exports.calcVPD = function(img) {
   return img.addBands(
     img.expression(
     '0.5 * (ETMAX + ETMIN) - ETDEW', {
@@ -65,27 +34,26 @@ function calcVPD (img) {
       'ETMIN': img.select('ETMIN'),
       'ETDEW': img.select('ETDEW')
     }).rename('VPD'));
-}
+};
 
-// TODO: modify this later so handle monthly mean (of min/max or ...)
-function calcTAVG515 (img) {
+exports.calcTAVG515 = function(img) {
   return img.addBands(
     img.expression(
     '(((tmin + tmax) / 2) + 5) / 15', {
       'tmin': img.select('tmin'),
       'tmax': img.select('tmax')
     }).rename('TAVG515'));
-}
+};
 
-function calcKTRF (img) {
+exports.calcKTRF = function(img) {
   return img.addBands(
     img.select('TAVG515')
        .where(img.select('TAVG515').lt(0), 0)
        .where(img.select('TAVG515').gt(1), 1)
        .rename('KTRF'));
-}
+};
 
-function calcPET (img) {
+exports.calcPET = function(img, dem) {
   return img.addBands(
     img.expression(
     '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
@@ -93,16 +61,16 @@ function calcPET (img) {
       'KTRF': img.select('KTRF'),
       'ELEV': dem.select('elevation')
     }).rename('PET'));
-}
+};
 
-function calcCMI (img) {
+exports.calcCMI = function(img) {
   return img.addBands(
     img.expression(
     '(PREC - PET) / 10', {
       'PREC': img.select('prcp'),
       'PET': img.select('PET')
     }).rename('CMI'));
-}
+};
 
 
 // Calculate CMI
