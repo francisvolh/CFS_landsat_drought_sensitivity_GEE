@@ -1,5 +1,8 @@
+// Modules
+var modules = require('users/robitalec/CFS:modules.js');
+
 // DAYMET
-var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3')
+var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3');
 
 
 // Filter
@@ -10,41 +13,15 @@ var maxmonth = 8;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
-  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'))
+  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 // List of years and months
 var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 
-var modules = require('users/robitalec/CFS:modules.js');
-
 // var byYr = modules.aggregateYears(years, daymet, ee.Reducer.mean())
 var byMnthYr = modules.aggregateMonthsYears(years, months, daymet, ee.Reducer.mean());
+
+// Map
 Map.addLayer(byMnthYr.limit(5).select('tmax_mean'));
-// Map over lists
-// var byYrMnth = ee.ImageCollection.fromImages(
-//       years.map(function(yr) { 
-//         return months.map(function(mnth) {
-//           return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
-//                       .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
-//                       // TODO: sum for precip and mean max min max
-//                       .mean()
-//                       .set('year', yr)
-//                       .set('month', mnth);
-//         });
-//   }).flatten()
-// );
-
-// Map.addLayer(byYrMnth.limit(1))
-
-
-
-// Reduce
-
-// var mean_function = function(img) {
-//   var avg_tmax = img.reduceRegions(region, ee.Reducer.mean(), 1000);
-//   return avg_tmax;
-// };
-
-// var tmax_means =  byYear.map(mean_function);
