@@ -102,4 +102,18 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'label'
 });
+print(ts);
+
+// Bin CMI, drought/not drought
+// Mean in each CTEF region
+var binned = aggDaymet.map(function(img) {return img.select('CMI').lt(0)});
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: binned,
+  regions: ctef,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'label'
+});
 print(ts)
