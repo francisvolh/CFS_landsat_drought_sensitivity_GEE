@@ -1,0 +1,135 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.64429004382453, 66.78390825999355],
+          [-140.64429004382453, 60.44720654719036],
+          [-131.76733691882453, 60.44720654719036],
+          [-131.76733691882453, 66.78390825999355]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+// DAYMET
+// Name 	Description 	Min* 	Max* 	Units
+// dayl 	Duration of the daylight period. Based on the period of the day during which the sun is above a hypothetical flat horizon. 	0 	86400 	seconds
+// prcp 	Daily total precipitation, sum of all forms converted to water-equivalent. 	0 	200 	mm
+// srad 	Incident shortwave radiation flux density, taken as an average over the daylight period of the day. 	0 	800 	W/m^2
+// swe 	Snow water equivalent, the amount of water contained within the snowpack. 	0 	1000 	kg/m^2
+// tmax 	Daily maximum 2-meter air temperature. 	-50 	50 	°C
+// tmin 	Daily minimum 2-meter air temperature. 	-50 	50 	°C
+// vp 	Daily average partial pressure of water vapor. 	0 	10000 	Pa
+ 
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
+
+// DEM
+var dem = ee.ImageCollection("NRCan/CDEM");
+
+dem = dem.filterBounds(geometry)
+         .mosaic();
+
+// Functions
+function calcETMAX (img) {
+  return img.addBands(
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
+      'tmax': img.select('tmax')
+    }).rename('ETMAX'));
+}
+
+function calcETMIN (img) {
+  return img.addBands(
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
+      'tmin': img.select('tmin')
+    }).rename('ETMIN'));
+}
+
+function calcETDEW (img) {
+  return img.addBands(
+    img.expression(
+    '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
+      'tmin': img.select('tmin')
+    }).rename('ETDEW'));
+}
+
+
+function calcVPD (img) {
+  return img.addBands(
+    img.expression(
+    '0.5 * (ETMAX + ETMIN) - ETDEW', {
+      'ETMAX': img.select('ETMAX'),
+      'ETMIN': img.select('ETMIN'),
+      'ETDEW': img.select('ETDEW')
+    }).rename('VPD'));
+}
+
+// TODO: modify this later so handle monthly mean (of min/max or ...)
+function calcTAVG515 (img) {
+  return img.addBands(
+    img.expression(
+    '(((tmin + tmax) / 2) + 5) / 15', {
+      'tmin': img.select('tmin'),
+      'tmax': img.select('tmax')
+    }).rename('TAVG515'));
+}
+
+function calcKTRF (img) {
+  return img.addBands(
+    img.select('TAVG515')
+       .where(img.select('TAVG515').lt(0), 0)
+       .where(img.select('TAVG515').gt(1), 1)
+       .rename('KTRF'));
+}
+
+function calcPET (img) {
+  return img.addBands(
+    img.expression(
+    '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
+      'VPD': img.select('VPD'),
+      'KTRF': img.select('KTRF'),
+      'ELEV': dem.select('elevation')
+    }).rename('PET'));
+}
+
+function calcCMI (img) {
+  return img.addBands(
+    img.expression(
+    '(PREC - PET) / 10', {
+      'PREC': img.select('prcp'),
+      'PET': img.select('PET')
+    }).rename('CMI'));
+}
+
+
+// Calculate CMI
+// Subset for
+daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
+
+daymet = daymet
+  .map(calcETMAX)
+  .map(calcETMIN)
+  .map(calcETDEW)
+  .map(calcVPD)
+  .map(calcTAVG515)
+  .map(calcKTRF)
+  .map(calcPET)
+  .map(calcCMI);
+
+
+
+
+// Map.addLayer(daymet.select('tmin'), null, 'tmin')
+// Map.addLayer(daymet.select('tmax'), null, 'tmax')
+// Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
+// Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
+// Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
+Map.addLayer(daymet.select('VPD'), null, 'VPD')
+// Map.addLayer(daymet.select('TAVG515'), null, 'TAVG515')
+Map.addLayer(daymet.select('KTRF'), null, 'KTRF')
+Map.addLayer(dem.select('elevation'), null, 'ELEV')
+Map.addLayer(daymet.select('PET'), null, 'PET')
+Map.addLayer(daymet.select('CMI'), null, 'CMI')
