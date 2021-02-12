@@ -68,5 +68,21 @@ aggDaymet = aggDaymet
   .map(cmi.calcCMI);
 
 
+// Map -------------------------------------------------------------
 Map.addLayer(aggDaymet.select('CMI'), null, 'CMI')
 Map.addLayer(dem, null, 'dem')
+
+
+// Chart -----------------------------------------------------------
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+var points = ee.FeatureCollection.randomPoints(ctef, 25)
+
+var ts = ui.Chart.image.doySeriesByYear({
+  imageCollection: aggDaymet,
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
+});
+print(ts);
