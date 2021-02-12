@@ -104,12 +104,6 @@ var ts = ui.Chart.image.seriesByRegion({
 });
 print(ts);
 
-// Bin CMI, drought/not drought
-// Mean in each CTEF region
-aggDaymet = aggDaymet.map(function(img) {
-  return img.addBands(img.select('CMI').lt(0).rename('binnedCMI'));
-});
-
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
   regions: ctef,
@@ -120,6 +114,12 @@ var ts = ui.Chart.image.seriesByRegion({
   seriesProperty: 'REG_ID'
 });
 print(ts)
+
+// Bin CMI, drought/not drought
+// Mean in each CTEF region
+aggDaymet = aggDaymet.map(function(img) {
+  return img.addBands(img.select('CMI').lt(0).rename('binnedCMI'));
+});
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
