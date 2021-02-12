@@ -77,6 +77,7 @@ Map.addLayer(dem, null, 'dem');
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 var points = ee.FeatureCollection.randomPoints(ctef, 10);
+
 // Add pseudo middle of the month date, for chart
 aggDaymet = aggDaymet.map(function(img) {
   return img.set('system:time_start',
@@ -99,7 +100,7 @@ var ts = ui.Chart.image.seriesByRegion({
   band: 'CMI',
   scale: 500,
   xProperty: 'system:time_start',
-  seriesProperty: 'id'
+  seriesProperty: 'system:index'
 });
 print(ts);
 
@@ -114,6 +115,17 @@ var ts = ui.Chart.image.seriesByRegion({
   regions: ctef,
   reducer: ee.Reducer.mean(),
   band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'REG_ID'
+});
+print(ts)
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: aggDaymet,
+  regions: ctef,
+  reducer: ee.Reducer.mean(),
+  band: 'binnedCMI',
   scale: 500,
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
