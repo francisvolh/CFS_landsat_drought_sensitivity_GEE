@@ -17,21 +17,26 @@ var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 
-// Map over lists
-var byYrMnth = ee.ImageCollection.fromImages(
-      years.map(function(yr) { 
-        return months.map(function(mnth) {
-          return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
-                       .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
-                      // TODO: sum for precip and mean max min max
-                       .mean()
-                       .set('year', yr)
-                       .set('month', mnth);
-        });
-  }).flatten()
-);
+var modules = require('users/robitalec/CFS:modules/aggregate_years.js');
 
-Map.addLayer(byYrMnth.limit(1))
+var byYr = modules.aggregateYears(years, daymet, ee.Reducer.mean())
+
+print(byYr)
+// Map over lists
+// var byYrMnth = ee.ImageCollection.fromImages(
+//       years.map(function(yr) { 
+//         return months.map(function(mnth) {
+//           return daymet.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+//                       .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
+//                       // TODO: sum for precip and mean max min max
+//                       .mean()
+//                       .set('year', yr)
+//                       .set('month', mnth);
+//         });
+//   }).flatten()
+// );
+
+// Map.addLayer(byYrMnth.limit(1))
 
 
 
