@@ -45,15 +45,15 @@ var months = ee.List.sequence(minmonth, maxmonth);
 
 // Reducer
 var reducer = ee.Reducer.mean()
-    .combine(ee.Reducer.sum(), 'sum_', true);
-
+  .combine(ee.Reducer.sum(), 'sum_', true);
 
 // Aggregate monthly for each year
 var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 
-// Calculate CMI
-// Subset for now
+// Calculate CMI ----------------------------------------------------
+
+// Subset for now *****
 daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
 
 daymet = daymet
