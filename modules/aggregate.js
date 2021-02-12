@@ -1,4 +1,4 @@
-exports.aggregateMonthsYears = function(years, months, images, reducer) {
+exports.aggMonthYear = function(years, months, images, reducer) {
   return ee.ImageCollection.fromImages(
     years.map(function(yr) {
       return months.map(function(mnth) {
@@ -12,7 +12,7 @@ exports.aggregateMonthsYears = function(years, months, images, reducer) {
   );
 };
 
-exports.aggregateYears = function(years, images, reducer) {
+exports.aggYear = function(years, images, reducer) {
   return ee.ImageCollection.fromImages(
     years.map(function(yr) {
       return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
