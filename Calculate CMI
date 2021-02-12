@@ -78,13 +78,11 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 var points = ee.FeatureCollection.randomPoints(ctef, 25);
 
-
+// Add pseudo middle of the month date, for chart
 aggDaymet = aggDaymet.map(function(img) {
   return img.set('system:time_start',
                  ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
 });
-print(aggDaymet)
-
 
 var ts = ui.Chart.image.doySeriesByYear({
   imageCollection: aggDaymet,
