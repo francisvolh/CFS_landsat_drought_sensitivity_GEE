@@ -77,14 +77,18 @@ Map.addLayer(dem, null, 'dem')
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 var points = ee.FeatureCollection.randomPoints(ctef, 25)
-// ui.Chart.image.seriesByRegion(imageCollection, regions, reducer, band, scale, xProperty, seriesProperty)
-var ts = ui.Chart.image.seriesByRegion({
+
+
+aggDaymet = aggDaymet.map(function(img) {
+  return img.set(ee.Date.fromYMD(img.get('year'), img.get('month'), 1))
+})
+
+
+var ts = ui.Chart.image.doySeriesByYear({
   imageCollection: aggDaymet,
-  regions: points,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'month',
-  seriesProperty: 'year'
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
 });
 print(ts);
