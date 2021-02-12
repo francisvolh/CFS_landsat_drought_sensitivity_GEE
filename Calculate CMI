@@ -69,19 +69,21 @@ aggDaymet = aggDaymet
 
 
 // Map -------------------------------------------------------------
-Map.addLayer(aggDaymet.select('CMI'), null, 'CMI')
-Map.addLayer(dem, null, 'dem')
+Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
+Map.addLayer(dem, null, 'dem');
 
 
 // Chart -----------------------------------------------------------
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
-var points = ee.FeatureCollection.randomPoints(ctef, 25)
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+var points = ee.FeatureCollection.randomPoints(ctef, 25);
 
 
 aggDaymet = aggDaymet.map(function(img) {
-  return img.set(ee.Date.fromYMD(img.get('year'), img.get('month'), 1))
-})
+  return img.set('system:time_start',
+                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
+});
+print(aggDaymet)
 
 
 var ts = ui.Chart.image.doySeriesByYear({
