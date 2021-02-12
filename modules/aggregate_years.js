@@ -4,6 +4,6 @@ exports.aggregateYears = function(years, images, reducer) {
       return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                    .reduce(reducer)
                    .set('year', yr);
-    });
-  )
+    })
+  );
 };
