@@ -59,7 +59,7 @@ exports.calcPET = function(img, dem) {
     '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
       'VPD': img.select('VPD'),
       'KTRF': img.select('KTRF'),
-      'ELEV': dem.select('elevation')
+      'ELEV': ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
     }).rename('PET'));
 };
 
