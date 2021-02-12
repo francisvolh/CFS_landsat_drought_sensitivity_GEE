@@ -30,7 +30,7 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2000;
+var minyear = 2010;
 var maxyear = 2015;
 var minmonth = 6;
 var maxmonth = 8;
@@ -55,7 +55,7 @@ aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                               ['tmin', 'tmax', 'prcp']);
 
 // Subset for now *****
-aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
+// aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
 
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
@@ -77,12 +77,14 @@ Map.addLayer(dem, null, 'dem')
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 var points = ee.FeatureCollection.randomPoints(ctef, 25)
-
-var ts = ui.Chart.image.doySeriesByYear({
+// ui.Chart.image.seriesByRegion(imageCollection, regions, reducer, band, scale, xProperty, seriesProperty)
+var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
-  region: points,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'month',
+  seriesProperty: 'year'
 });
 print(ts);
