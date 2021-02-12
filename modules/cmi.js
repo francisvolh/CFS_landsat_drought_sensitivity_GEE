@@ -71,33 +71,3 @@ exports.calcCMI = function(img) {
       'PET': img.select('PET')
     }).rename('CMI'));
 };
-
-
-// Calculate CMI
-// Subset for
-daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
-
-daymet = daymet
-  .map(calcETMAX)
-  .map(calcETMIN)
-  .map(calcETDEW)
-  .map(calcVPD)
-  .map(calcTAVG515)
-  .map(calcKTRF)
-  .map(calcPET)
-  .map(calcCMI);
-
-
-
-
-// Map.addLayer(daymet.select('tmin'), null, 'tmin')
-// Map.addLayer(daymet.select('tmax'), null, 'tmax')
-// Map.addLayer(daymet.select('ETMAX'), null, 'ETMAX')
-// Map.addLayer(daymet.select('ETMIN'), null, 'ETMIN')
-// Map.addLayer(daymet.select('ETDEW'), null, 'ETDEW')
-Map.addLayer(daymet.select('VPD'), null, 'VPD')
-// Map.addLayer(daymet.select('TAVG515'), null, 'TAVG515')
-Map.addLayer(daymet.select('KTRF'), null, 'KTRF')
-Map.addLayer(dem.select('elevation'), null, 'ELEV')
-Map.addLayer(daymet.select('PET'), null, 'PET')
-Map.addLayer(daymet.select('CMI'), null, 'CMI')
