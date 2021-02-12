@@ -1,5 +1,5 @@
 // Modules
-var modules = require('users/robitalec/CFS:modules.js');
+var agg = require('users/robitalec/CFS:modules/aggregate.js');
 
 // DAYMET
 var daymet = ee.ImageCollection('NASA/ORNL/DAYMET_V3');
@@ -20,8 +20,8 @@ var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 
-// var byYr = modules.aggregateYears(years, daymet, ee.Reducer.mean())
-var byMnthYr = modules.aggregateMonthsYears(years, months, daymet, ee.Reducer.mean());
+// var byYr = agg.aggregateY(years, daymet, ee.Reducer.mean())
+var byMnthYr = agg.aggregateMY(years, months, daymet, ee.Reducer.mean());
 
 // Map
 Map.addLayer(byMnthYr.limit(5).select('tmax_mean'));
