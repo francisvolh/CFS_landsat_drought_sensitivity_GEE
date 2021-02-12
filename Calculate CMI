@@ -30,10 +30,10 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2010;
+var minyear = 2013;
 var maxyear = 2015;
-var minmonth = 6;
-var maxmonth = 8;
+var minmonth = 1;
+var maxmonth = 12;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
