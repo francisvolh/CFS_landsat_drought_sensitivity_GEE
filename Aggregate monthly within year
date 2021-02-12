@@ -17,11 +17,11 @@ var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 
-var modules = require('users/robitalec/CFS:modules/aggregate_years.js');
+var modules = require('users/robitalec/CFS:modules.js');
 
-var byYr = modules.aggregateYears(years, daymet, ee.Reducer.mean())
-
-print(byYr)
+// var byYr = modules.aggregateYears(years, daymet, ee.Reducer.mean())
+var byMnthYr = modules.aggregateMonthsYears(years, months, daymet, ee.Reducer.mean());
+Map.addLayer(byMnthYr.limit(5).select('tmax_mean'));
 // Map over lists
 // var byYrMnth = ee.ImageCollection.fromImages(
 //       years.map(function(yr) { 
