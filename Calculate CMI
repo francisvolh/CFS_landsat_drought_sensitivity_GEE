@@ -92,3 +92,14 @@ var ts = ui.Chart.image.doySeriesByYear({
   scale: 500
 });
 print(ts);
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: aggDaymet,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'label'
+});
+print(ts)
