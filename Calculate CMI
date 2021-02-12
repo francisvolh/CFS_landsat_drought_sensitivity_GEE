@@ -49,8 +49,7 @@ var reducer = ee.Reducer.mean()
 
 
 // Aggregate monthly for each year
-
-var byMnthYr = agg.aggregateMY(years, months, daymet, ee.Reducer.mean());
+var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 
 // Calculate CMI
