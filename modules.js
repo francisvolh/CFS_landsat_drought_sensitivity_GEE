@@ -1,4 +1,4 @@
-exports.aggregateMonthlyYears = function(years, images, reducer) {
+exports.aggregateMonthsYears = function(years, images, reducer) {
   return ee.ImageCollection.fromImages(
     years.map(function(yr) {
       return months.map(function(mnth) {
