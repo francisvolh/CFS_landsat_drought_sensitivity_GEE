@@ -73,6 +73,23 @@ var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
 
 var only = aggDaymet.select('CMI').first().clip(truth.geometry());
 
+
+function calcCMITerra (img) {
+  return img.expression(
+    '(PREC - PET) / 10', {
+      'PREC': img.select('pr'),
+      'PET': img.select('pet')
+    }).rename('CMI');
+}
+
+var terra = calcCMITerra(
+  ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
+    .filter(ee.Filter.calendarRange(6, 6, 'month'))
+    .filter(ee.Filter.calendarRange(2012, 2012, 'year'))
+    .first()
+    .clip(truth.geometry())
+  )
+
 var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
 // Map -------------------------------------------------------------
@@ -81,3 +98,5 @@ Map.addLayer(only, vis, 'CMI');
 Map.addLayer(truth, vis, 'truth')
 
 Map.addLayer(dif, {'min':-1, 'max':1}, 'dif')
+
+Map.addLayer(terra, null, 'terra')
