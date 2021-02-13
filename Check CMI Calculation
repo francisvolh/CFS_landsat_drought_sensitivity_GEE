@@ -69,10 +69,9 @@ aggDaymet = aggDaymet
 
 
 // Compare ---------------------------------------------------------
-var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth')
+var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
 
-var only = aggDaymet.select('CMI').first().clip(truth.geometry())
-
+var only = aggDaymet.select('CMI').first().clip(truth.geometry());
 
 var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
