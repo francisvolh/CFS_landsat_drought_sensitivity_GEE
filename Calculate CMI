@@ -30,10 +30,10 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 1985;
-var maxyear = 2015;
-var minmonth = 1;
-var maxmonth = 12;
+var minyear = 2012;
+var maxyear = 2012;
+var minmonth = 6;
+var maxmonth = 6;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
@@ -131,3 +131,10 @@ var ts = ui.Chart.image.seriesByRegion({
   seriesProperty: 'REG_ID'
 });
 print(ts)
+
+Export.image.toDrive({
+  'image': aggDaymet.first(), 
+  'description': 'cmi-12-06', 
+  'region': ctef, 
+  'scale': 500
+})
