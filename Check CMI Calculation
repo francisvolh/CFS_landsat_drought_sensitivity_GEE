@@ -73,9 +73,6 @@ var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
 
 var only = aggDaymet.select('CMI').first().clip(truth.geometry());
 
-var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
-
-
 // TERRA
 var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
 var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
@@ -94,15 +91,24 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .select('CMI')
     .clip(truth.geometry())
 
+// Difs
 var difTerra = truth.subtract(terra).divide(truth.add(terra)).rename('difTerra')
+var difFalse = only.subtract(terra).divide(only.add(terra)).rename('difTerra')
+var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
 
 // Map -------------------------------------------------------------
 var vis = {'min': -10, 'max': 15}
 Map.addLayer(only, vis, 'CMI');
 Map.addLayer(truth, vis, 'truth')
-
-Map.addLayer(dif, {'min':-1, 'max':1}, 'dif')
-Map.addLayer(difTerra, {'min':-1, 'max':1}, 'difTerra')
-
 Map.addLayer(terra, vis, 'terra')
+
+// var difvis = {'min':-1, 'max':1}
+// Map.addLayer(dif, difvis, 'dif')
+// Map.addLayer(difTerra, difvis, 'difTerra')
+// Map.addLayer(difFalse, difvis, 'difFalse')
+
+
+// Chart -----------------------------------------------------------
+var col = ee.ImageCollection([only, truth, terra]);
+
