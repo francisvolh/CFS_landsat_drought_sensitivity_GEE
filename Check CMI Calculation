@@ -73,22 +73,27 @@ var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
 
 var only = aggDaymet.select('CMI').first().clip(truth.geometry());
 
+var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
-function calcCMITerra (img) {
-  return img.expression(
-    '(PREC - PET) / 10', {
-      'PREC': img.select('pr'),
-      'PET': img.select('pet')
-    }).rename('CMI');
-}
 
+// TERRA
+var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
 var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .filter(ee.Filter.calendarRange(6, 6, 'month'))
     .filter(ee.Filter.calendarRange(2012, 2012, 'year'))
+
+    .map(cmiTer.calcETMAX)
+    .map(cmiTer.calcETMIN)
+    .map(cmiTer.calcETDEW)
+    .map(cmiTer.calcVPD)
+    .map(cmiTer.calcTAVG515)
+    .map(cmiTer.calcKTRF)
+    .map(cmiTer.calcPET)
+    .map(cmiTer.calcCMI)
+    
     .first()
     .clip(truth.geometry())
 
-var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
 // Map -------------------------------------------------------------
 var vis = {'min': -10, 'max': 15}
