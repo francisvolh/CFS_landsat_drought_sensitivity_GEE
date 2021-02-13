@@ -69,12 +69,17 @@ aggDaymet = aggDaymet
 
 
 // Compare ---------------------------------------------------------
-var truth = ee.ImageCollection('users/robitalec/CFS/')
+var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth')
 
+var only = aggDaymet.select('CMI').first().clip(truth.geometry())
+
+
+var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
 // Map -------------------------------------------------------------
-Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
-Map.addLayer(dem, null, 'dem');
+var vis = {'min': -10, 'max': 15}
+Map.addLayer(only, vis, 'CMI');
+Map.addLayer(truth, vis, 'truth')
 
 
-
+Map.addLayer(dif, {'min':-1, 'max':1}, 'dif')
