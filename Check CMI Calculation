@@ -71,7 +71,7 @@ aggDaymet = aggDaymet
 // Compare ---------------------------------------------------------
 var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
 
-var only = aggDaymet.select('CMI').first().clip(truth.geometry());
+var only = aggDaymet.select('CMI').first().rename('daymetCMI').clip(truth.geometry());
 
 // TERRA
 var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
@@ -88,7 +88,7 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .map(cmiTer.calcCMI)
     
     .first()
-    .select('CMI')
+    .select('CMI').rename('terraCMI')
     .clip(truth.geometry())
 
 // Difs
@@ -110,9 +110,9 @@ Map.addLayer(terra, vis, 'terra')
 
 
 // Chart -----------------------------------------------------------
-var col = ee.ImageCollection([only, truth, terra]);
+var col = ee.Image([only, truth]);
 
-var points = ee.FeatureCollection.randomPoints(col.geometry(), 10)
-
-var chart = ui.Chart.image.series(col, points, ee.Reducer.mean(), 500, 'system:index')
+var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
+print(col)
+var chart = ui.Chart.feature.byFeature(col.reduceRegions(points, ee.Reducer.mean()))
 print(chart)
