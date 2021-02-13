@@ -133,7 +133,7 @@ var ts = ui.Chart.image.seriesByRegion({
 print(ts)
 
 Export.image.toDrive({
-  'image': aggDaymet.first(), 
+  'image': aggDaymet.first().float(), 
   'description': 'cmi-12-06', 
   'region': ctef, 
   'scale': 500
