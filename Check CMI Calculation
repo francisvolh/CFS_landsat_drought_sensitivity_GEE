@@ -112,3 +112,7 @@ Map.addLayer(terra, vis, 'terra')
 // Chart -----------------------------------------------------------
 var col = ee.ImageCollection([only, truth, terra]);
 
+var points = ee.FeatureCollection.randomPoints(col.geometry(), 10)
+
+var chart = ui.Chart.image.series(col, points, ee.Reducer.mean(), 500, 'system:index')
+print(chart)
