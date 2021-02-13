@@ -82,13 +82,11 @@ function calcCMITerra (img) {
     }).rename('CMI');
 }
 
-var terra = calcCMITerra(
-  ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
+var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .filter(ee.Filter.calendarRange(6, 6, 'month'))
     .filter(ee.Filter.calendarRange(2012, 2012, 'year'))
     .first()
     .clip(truth.geometry())
-  )
 
 var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
 
