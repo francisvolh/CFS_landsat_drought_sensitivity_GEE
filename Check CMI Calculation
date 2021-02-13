@@ -68,7 +68,13 @@ aggDaymet = aggDaymet
   .map(cmi.calcCMI);
 
 
+// Compare ---------------------------------------------------------
+var truth = ee.ImageCollection('users/robitalec/CFS/')
+
+
 // Map -------------------------------------------------------------
 Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 Map.addLayer(dem, null, 'dem');
+
+
 
