@@ -92,6 +92,7 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .map(cmiTer.calcCMI)
     
     .first()
+    .select('CMI')
     .clip(truth.geometry())
 
 
