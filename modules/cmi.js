@@ -60,6 +60,7 @@ exports.calcPET = function(img, dem) {
       'VPD': img.select('VPD'),
       'KTRF': img.select('KTRF'),
       'ELEV': ee.Image("NASA/NASADEM_HGT/001")
+      // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
     }).rename('PET'));
 };
 
