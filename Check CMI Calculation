@@ -95,6 +95,8 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .select('CMI')
     .clip(truth.geometry())
 
+var difTerra = truth.subtract(terra).divide(truth.add(terra)).rename('difTerra')
+
 
 // Map -------------------------------------------------------------
 var vis = {'min': -10, 'max': 15}
@@ -102,5 +104,6 @@ Map.addLayer(only, vis, 'CMI');
 Map.addLayer(truth, vis, 'truth')
 
 Map.addLayer(dif, {'min':-1, 'max':1}, 'dif')
+Map.addLayer(difTerra, {'min':-1, 'max':1}, 'difTerra')
 
-Map.addLayer(terra, null, 'terra')
+Map.addLayer(terra, vis, 'terra')
