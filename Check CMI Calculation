@@ -1,16 +1,17 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-118.84741504382451, 59.1655245395827],
-          [-118.84741504382451, 51.00098107439307],
-          [-109.97046191882451, 51.00098107439307],
-          [-109.97046191882451, 59.1655245395827]]], null, false);
+        [[[-123.37378223132451, 59.03010974273001],
+          [-123.37378223132451, 49.93815589702714],
+          [-110.54175098132451, 49.93815589702714],
+          [-110.54175098132451, 59.03010974273001]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -69,8 +70,9 @@ aggDaymet = aggDaymet
 
 // Compare ---------------------------------------------------------
 var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
-var only = aggDaymet.select('CMI').first().rename('daymetCMI').clip(truth.geometry());
-
+var only = aggDaymet.select('CMI').first().rename('daymetCMI')
+  // .clip(truth.geometry());
+  .clip(geometry)
 
 // TERRA
 var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
@@ -88,8 +90,9 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     
     .first()
     .select('CMI').rename('terraCMI')
-    .clip(truth.geometry())
-
+    // .clip(truth.geometry())
+    .clip(geometry)
+    
 // Difs
 var difTerra = truth.subtract(terra).abs().rename('difTerra')
 var difFalse = only.subtract(terra).divide(only.add(terra)).rename('difTerra')
