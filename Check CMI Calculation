@@ -94,17 +94,18 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
 // Difs
 var difTerra = truth.subtract(terra).divide(truth.add(terra)).rename('difTerra')
 var difFalse = only.subtract(terra).divide(only.add(terra)).rename('difTerra')
-var dif = truth.subtract(only).divide(truth.add(only)).rename('dif')
+var dif = truth.subtract(only).abs().rename('dif')
 
 
 // Map -------------------------------------------------------------
 var vis = {'min': -10, 'max': 15}
-// Map.addLayer(only, vis, 'CMI');
-// Map.addLayer(truth, vis, 'truth')
-// Map.addLayer(terra, vis, 'terra')
+Map.addLayer(only, vis, 'CMI');
+Map.addLayer(truth, vis, 'truth')
+Map.addLayer(terra, vis, 'terra')
 
-// var difvis = {'min':-1, 'max':1}
-// Map.addLayer(dif, difvis, 'dif')
+var difvis = {'min':-1, 'max':1}
+Map.addLayer(dif, difvis, 'dif')
+Map.addLayer(aggDaymet.select('tmax'), null, 'tmax')
 // Map.addLayer(difTerra, difvis, 'difTerra')
 // Map.addLayer(difFalse, difvis, 'difFalse')
 
@@ -141,4 +142,4 @@ var outcalc = out.addBands(
       // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
     }).rename('PETagain'))
     
-Map.addLayer(outcalc)
+// Map.addLayer(outcalc)
