@@ -19,7 +19,7 @@
 exports.calcETMAX = function(img) {
   return img.addBands(
     img.expression(
-    '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
+    '0.61078 * (2.71828182846 ** (17.269 * (tmax / 10.0) / (237.3 + (tmax / 10.0))))', {
       'tmax': img.select('tmmx')
     }).rename('ETMAX'));
 };
@@ -27,7 +27,7 @@ exports.calcETMAX = function(img) {
 exports.calcETMIN = function(img) {
   return img.addBands(
     img.expression(
-    '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
+    '0.61078 * (2.71828182846 ** (17.269 * (tmin / 10.0) / (237.3 + (tmin / 10.0))))', {
       'tmin': img.select('tmmn')
     }).rename('ETMIN'));
 };
@@ -35,7 +35,7 @@ exports.calcETMIN = function(img) {
 exports.calcETDEW = function(img) {
   return img.addBands(
     img.expression(
-    '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
+    '0.61078 * (2.71828182846 ** (17.269 * ((tmin / 10.0) - 2.5) / (237.3 + (tmin / 10.0) - 2.5)))', {
       'tmin': img.select('tmmn')
     }).rename('ETDEW'));
 };
@@ -54,7 +54,7 @@ exports.calcVPD = function(img) {
 exports.calcTAVG515 = function(img) {
   return img.addBands(
     img.expression(
-    '(((tmin + tmax) / 2) + 5) / 15', {
+    '((((tmin / 10.0) + (tmax / 10.0)) / 2) + 5) / 15', {
       'tmin': img.select('tmmn'),
       'tmax': img.select('tmmx')
     }).rename('TAVG515'));
