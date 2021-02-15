@@ -70,8 +70,8 @@ aggDaymet = aggDaymet
 
 // Compare ---------------------------------------------------------
 var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
-
 var only = aggDaymet.select('CMI').first().rename('daymetCMI').clip(truth.geometry());
+
 
 // TERRA
 var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
@@ -113,6 +113,18 @@ Map.addLayer(terra, vis, 'terra')
 var col = ee.Image([only, truth]);
 
 var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
-print(col)
+// print(col)
 var chart = ui.Chart.feature.byFeature(col.reduceRegions(points, ee.Reducer.mean()))
-print(chart)
+// print(chart)
+
+
+// Export ----------------------------------------------------------
+var out = aggDaymet.first().addBands(truth)
+print(out)
+var outred = out.reduceRegions({
+  'collection': points, 
+  'reducer': ee.Reducer.mean(), 
+  'scale': 500
+})
+print(outred.first())
+Export.table.toDrive(outred)
