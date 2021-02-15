@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.64429004382453, 66.78390825999355],
-          [-140.64429004382453, 60.44720654719036],
-          [-131.76733691882453, 60.44720654719036],
-          [-131.76733691882453, 66.78390825999355]]], null, false);
+        [[[-118.84741504382451, 59.1655245395827],
+          [-118.84741504382451, 51.00098107439307],
+          [-109.97046191882451, 51.00098107439307],
+          [-109.97046191882451, 59.1655245395827]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -92,7 +91,7 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .clip(truth.geometry())
 
 // Difs
-var difTerra = truth.subtract(terra).divide(truth.add(terra)).rename('difTerra')
+var difTerra = truth.subtract(terra).abs().rename('difTerra')
 var difFalse = only.subtract(terra).divide(only.add(terra)).rename('difTerra')
 var dif = truth.subtract(only).abs().rename('dif')
 
@@ -104,9 +103,9 @@ Map.addLayer(truth, vis, 'truth')
 Map.addLayer(terra, vis, 'terra')
 
 var difvis = {'min':-1, 'max':1}
-Map.addLayer(dif, difvis, 'dif')
+Map.addLayer(dif, null, 'dif')
 Map.addLayer(aggDaymet.select('tmax'), null, 'tmax')
-// Map.addLayer(difTerra, difvis, 'difTerra')
+Map.addLayer(difTerra, null, 'difTerra')
 // Map.addLayer(difFalse, difvis, 'difFalse')
 
 
