@@ -110,7 +110,7 @@ Map.addLayer(terra, vis, 'terra')
 
 
 // Chart -----------------------------------------------------------
-var col = ee.Image([only, truth, dem]);
+var col = ee.Image([only, truth]);
 
 var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
 // print(col)
@@ -119,7 +119,7 @@ var chart = ui.Chart.feature.byFeature(col.reduceRegions(points, ee.Reducer.mean
 
 
 // Export ----------------------------------------------------------
-var out = aggDaymet.first().addBands(truth)
+var out = aggDaymet.first().addBands([truth, dem])
 print(out)
 var outred = out.reduceRegions({
   'collection': points, 
