@@ -110,7 +110,7 @@ Map.addLayer(terra, vis, 'terra')
 
 
 // Chart -----------------------------------------------------------
-var col = ee.Image([only, truth]);
+var col = ee.Image([only, truth, dem]);
 
 var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
 // print(col)
