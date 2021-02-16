@@ -79,5 +79,5 @@ const compose = (...all) =>
 
 const exports.calcAllCMI = 
  compose(calcETMAX, calcETMIN, calcETDEW,
-         calcVPD, calcTAVG514, calcKTRF
+         calcVPD, calcTAVG514, calcKTRF,
          calcPET, cmi.calcCMI)
