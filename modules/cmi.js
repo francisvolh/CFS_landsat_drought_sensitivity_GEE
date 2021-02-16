@@ -77,7 +77,7 @@ exports.calcCMI = function(img) {
 const compose = (...all) =>
   all.reduce(comp);
 
-const exports.calcAllCMI = 
+const exports.calcAllCMI =>
  compose(calcETMAX, calcETMIN, calcETDEW,
          calcVPD, calcTAVG514, calcKTRF,
          calcPET, cmi.calcCMI)
