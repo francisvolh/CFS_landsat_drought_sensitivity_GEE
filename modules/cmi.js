@@ -74,10 +74,6 @@ exports.calcCMI = function(img) {
 };
 
 
-function compose (...all) {
-  all.reduce(comp);
-}
-
 exports.calcAllCMI = function(img) {
   calcCMI(calcPET(calcKTRF(calcTAVG515(calcVPD(calcETDEW(calcETMIN(calcETMAX(img))))))));
 };
