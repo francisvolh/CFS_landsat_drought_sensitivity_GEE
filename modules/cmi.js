@@ -75,5 +75,5 @@ exports.calcCMI = function(img) {
 
 
 exports.calcAllCMI = function(img) {
-  calcCMI(calcPET(calcKTRF(calcTAVG515(calcVPD(calcETDEW(calcETMIN(calcETMAX(img))))))));
+  cmi.calcCMI(calcPET(calcKTRF(calcTAVG515(calcVPD(calcETDEW(calcETMIN(calcETMAX(img))))))));
 };
