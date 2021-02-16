@@ -58,14 +58,14 @@ aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
 // aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
 
 aggDaymet = aggDaymet
-  // .map(cmi.calcETMAX)
-  // .map(cmi.calcETMIN)
-  // .map(cmi.calcETDEW)
-  // .map(cmi.calcVPD)
-  // .map(cmi.calcTAVG515)
-  // .map(cmi.calcKTRF)
-  // .map(cmi.calcPET)
-  // .map(cmi.calcCMI);
+  .map(cmi.calcETMAX)
+  .map(cmi.calcETMIN)
+  .map(cmi.calcETDEW)
+  .map(cmi.calcVPD)
+  .map(cmi.calcTAVG515)
+  .map(cmi.calcKTRF)
+  .map(cmi.calcPET)
+  .map(cmi.calcCMI);
 
 
 // Map -------------------------------------------------------------
