@@ -72,8 +72,3 @@ exports.calcCMI = function(img) {
       'PET': img.select('PET')
     }).rename('CMI'));
 };
-
-
-exports.calcAllCMI = function(img) {
-  cmi.calcCMI(calcPET(calcKTRF(calcTAVG515(calcVPD(calcETDEW(calcETMIN(calcETMAX(img))))))));
-};
