@@ -53,7 +53,7 @@ exports.calcKTRF = function(img) {
        .rename('KTRF'));
 };
 
-exports.calcPET = function(img, dem) {
+exports.calcPET = function(img) {
   return img.addBands(
     img.expression(
     '93 * VPD * KTRF * (2.71828182846 ** (1.0 * ELEV / 9300))', {
@@ -71,4 +71,16 @@ exports.calcCMI = function(img) {
       'PREC': img.select('prcp'),
       'PET': img.select('PET')
     }).rename('CMI'));
+};
+
+
+exports.calcAllCMI = function(img) {
+  return calcETMAX(img)
+  .map(cmi.calcETMIN)
+  .map(cmi.calcETDEW)
+  .map(cmi.calcVPD)
+  .map(cmi.calcTAVG515)
+  .map(cmi.calcKTRF)
+  .map(cmi.calcPET)
+  .map(cmi.calcCMI);
 };
