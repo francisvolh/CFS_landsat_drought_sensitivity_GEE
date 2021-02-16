@@ -74,11 +74,10 @@ exports.calcCMI = function(img) {
 };
 
 
-function compose = (...all) {
+function compose (...all) {
   all.reduce(comp);
 }
 
-exports.calcAllCMI =>
- compose(calcETMAX, calcETMIN, calcETDEW,
-         calcVPD, calcTAVG514, calcKTRF,
-         calcPET, cmi.calcCMI)
+exports.calcAllCMI = function(img) {
+  calcCMI(calcPET(calcKTRF(calcTAVG515(calcVPD(calcETDEW(calcETMIN(calcETMAX(img))))))));
+};
