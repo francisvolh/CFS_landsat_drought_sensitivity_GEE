@@ -100,10 +100,10 @@ terra = terra
 // Compare ---------------------------------------------------------
 // DAYMET
 var filterDay6 = aggDaymet
-  .filter(ee.Filter.calendarRange(6, 6, 'month'));
+  .filter(ee.Filter.eq('month', 6));
 
 var filterDay10 = aggDaymet
-  .filter(ee.Filter.calendarRange(10, 10, 'month'));
+  .filter(ee.Filter.eq('month', 10));
 
 var calcDay6 = filterDay6
   .select('CMI')
