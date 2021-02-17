@@ -100,10 +100,12 @@ terra = terra
 // Compare ---------------------------------------------------------
 // DAYMET
 var filterDay6 = aggDaymet
-  .filter(ee.Filter.eq('month', 6));
+  .filter(ee.Filter.eq('month', 6))
+  .first();
 
 var filterDay10 = aggDaymet
-  .filter(ee.Filter.eq('month', 10));
+  .filter(ee.Filter.eq('month', 10))
+  .first();
 
 var calcDay6 = filterDay6
   .select('CMI')
@@ -113,26 +115,24 @@ var calcDay6 = filterDay6
 
 var calcDay10 = filterDay10
   .select('CMI')
-  .first()
   .rename('cmi10')
   .clip(geometry);
 
 
 // TERRA
 var filterTerra6 = terra
-  .filter(ee.Filter.calendarRange(6, 6, 'month'));
-
+  .filter(ee.Filter.calendarRange(6, 6, 'month'))
+  .first();
+  
 var filterTerra10 = terra
-  .filter(ee.Filter.calendarRange(10, 10, 'month'));
+  .filter(ee.Filter.calendarRange(10, 10, 'month'))
+  .first();
 
 var calcTerra6 = filterTerra6
-    .filter(ee.Filter.calendarRange(6, 6, 'month'))
-    .first()
     .select('CMI').rename('cmi6Terra')
     .clip(geometry);
 
 var calcTerra10 = filterTerra10
-    .filter(ee.Filter.calendarRange(10, 10, 'month'))
     .first()
     .select('CMI').rename('cmi6Terra')
     .clip(geometry);
