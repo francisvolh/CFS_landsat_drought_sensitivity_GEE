@@ -16,16 +16,33 @@ var geometry =
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
 
 // Data -------------------------------------------------------------
 // DAYMET
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
-// DEM
-var dem = ee.ImageCollection("NRCan/CDEM");
+var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE");
 
-dem = dem.filterBounds(geometry)
-        .mosaic();
+// DEM
+// var dem = ee.ImageCollection("NRCan/CDEM")
+//                    .filterBounds(geometry)
+//                    .mosaic();
+var dem = ee.Image("MERIT/DEM/v1_0_3");
+
+var ref6 = ee.Image([
+  ee.Image('users/robitalec/CFS/maxt60_06_2012').rename('maxt'),
+  ee.Image('users/robitalec/CFS/cmi60_06_2012').rename('cmi'),
+  ee.Image('users/robitalec/CFS/pcp60_06_2012').rename('pcp'),
+  ee.Image('users/robitalec/CFS/mint60_06_2012').rename('mint')
+]);
+
+var ref10 = ee.Image([
+  ee.Image('users/robitalec/CFS/maxt60_10_2012').rename('maxt'),
+  ee.Image('users/robitalec/CFS/cmi60_10_2012').rename('cmi'),
+  ee.Image('users/robitalec/CFS/pcp60_10_2012').rename('pcp'),
+  ee.Image('users/robitalec/CFS/mint60_10_2012').rename('mint')
+]);
 
 
 // Aggregate --------------------------------------------------------
@@ -33,11 +50,15 @@ dem = dem.filterBounds(geometry)
 var minyear = 2012;
 var maxyear = 2012;
 var minmonth = 6;
-var maxmonth = 6;
+var maxmonth = 10;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
+
+terra = terra
+  .filter(ee.Filter.calendarRange(6, 10, 'month'))
+  .filter(ee.Filter.calendarRange(2012, 2012, 'year'));
 
 // List of years and months
 var years = ee.List.sequence(minyear, maxyear);
@@ -51,11 +72,9 @@ var reducer = ee.Reducer.mean()
 var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 // Calculate CMI ----------------------------------------------------
+// DAYMET
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                               ['tmin', 'tmax', 'prcp']);
-
-// Subset for now *****
-// aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
 
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
@@ -67,18 +86,8 @@ aggDaymet = aggDaymet
   .map(cmi.calcPET)
   .map(cmi.calcCMI);
 
-
-// Compare ---------------------------------------------------------
-var truth = ee.Image('users/robitalec/CFS/cmi60_06').rename('CMItruth');
-var only = aggDaymet.select('CMI').first().rename('daymetCMI')
-  // .clip(truth.geometry());
-  .clip(geometry)
-
 // TERRA
-var cmiTer = require('users/robitalec/CFS:modules/cmi-terraclimate.js');
-var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
-    .filter(ee.Filter.calendarRange(6, 6, 'month'))
-    .filter(ee.Filter.calendarRange(2012, 2012, 'year'))
+terra = terra
     .map(cmiTer.calcETMAX)
     .map(cmiTer.calcETMIN)
     .map(cmiTer.calcETDEW)
@@ -86,62 +95,93 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
     .map(cmiTer.calcTAVG515)
     .map(cmiTer.calcKTRF)
     .map(cmiTer.calcPET)
-    .map(cmiTer.calcCMI)
-    
+    .map(cmiTer.calcCMI);
+
+
+// Compare ---------------------------------------------------------
+// DAYMET
+var filterDay6 = aggDaymet
+  .filter(ee.Filter.calendarRange(6, 6, 'month'));
+
+var filterDay10 = aggDaymet
+  .filter(ee.Filter.calendarRange(10, 10, 'month'));
+
+var calcDay6 = filterDay6
+  .select('CMI')
+  .first()
+  .rename('cmi6')
+  .clip(geometry);
+
+var calcDay10 = filterDay10
+  .select('CMI')
+  .first()
+  .rename('cmi10')
+  .clip(geometry);
+
+
+// TERRA
+var filterTerra6 = terra
+  .filter(ee.Filter.calendarRange(6, 6, 'month'));
+
+var filterTerra10 = terra
+  .filter(ee.Filter.calendarRange(10, 10, 'month'));
+
+var calcTerra6 = filterTerra6
+    .filter(ee.Filter.calendarRange(6, 6, 'month'))
     .first()
-    .select('CMI').rename('terraCMI')
-    // .clip(truth.geometry())
-    .clip(geometry)
-    
-// Difs
-var difTerra = truth.subtract(terra).abs().rename('difTerra')
-var difFalse = only.subtract(terra).divide(only.add(terra)).rename('difTerra')
-var dif = truth.subtract(only).abs().rename('dif')
+    .select('CMI').rename('cmi6Terra')
+    .clip(geometry);
+
+var calcTerra10 = filterTerra10
+    .filter(ee.Filter.calendarRange(10, 10, 'month'))
+    .first()
+    .select('CMI').rename('cmi6Terra')
+    .clip(geometry);
+
+
+// CMI diffs
+var difTerra6 = ref6.select('cmi').subtract(calcTerra6).rename('dif-Terra-CMI-6');
+var difTerra6 = ref10.select('cmi').subtract(calcTerra10).rename('dif-Terra-CMI-10');
+
+var difDay6 = ref6.select('cmi').subtract(calcDay6).rename('dif-Day-CMI-6');
+var difDay10 = ref10.select('cmi').subtract(calcDay10).rename('dif-Day-CMI-10');
+
+// Other variable diffs
+var difTerraTmax6 = ref6.select('tmax').subtract(filterTerra6.select('tmax').first()).rename('dif-Terra-Tmax-6');
+var difTerraTmax10 = ref10.select('tmax').subtract(filterTerra10.select('tmax').first()).rename('dif-Terra-Tmax-10');
+
+var difTerraTmin10 = ref6.select('tmin').subtract(filterTerra6.select('tmin').first()).rename('dif-Terra-Tmin-6');
+var difTerraTmin10 = ref10.select('tmin').subtract(filterTerra10.select('tmin').first()).rename('dif-Terra-Tmin-10');
+
+var difTerraPcp10 = ref6.select('pcp').subtract(filterTerra6.select('pcp').first()).rename('dif-Terra-Pcp-6');
+var difTerraPcp10 = ref10.select('pcp').subtract(filterTerra10.select('pcp').first()).rename('dif-Terra-Pcp-10');
+
+
+var difDayTmax6 = ref6.select('tmax').subtract(filterDay6.select('tmax').first()).rename('dif-Day-Tmax-6');
+var difDayTmax10 = ref10.select('tmax').subtract(filterDay10.select('tmax').first()).rename('dif-Day-Tmax-10');
+
+var difDayTmin10 = ref6.select('tmin').subtract(filterDay6.select('tmin').first()).rename('dif-Day-Tmin-6');
+var difDayTmin10 = ref10.select('tmin').subtract(filterDay10.select('tmin').first()).rename('dif-Day-Tmin-10');
+
+var difDayPcp10 = ref6.select('pcp').subtract(filterDay6.select('pcp').first()).rename('dif-Day-Pcp-6');
+var difDayPcp10 = ref10.select('pcp').subtract(filterDay10.select('pcp').first()).rename('dif-Day-Pcp-10');
+
+// Combine diffs
+var combTerra6 = ee.Image([difTerra6, difTerraTmax6, difTerraTmin6, difTerraPcp6])
+var combDay6 = ee.Image([difDay6, difDayTmax6, difDayTmin6, difDayPcp6])
+
+var combTerra10 = ee.Image([difTerra10, difTerraTmax10, difTerraTmin10, difTerraPcp10])
+var combDay10 = ee.Image([difDay10, difDayTmax10, difDayTmin10, difDayPcp10])
 
 
 // Map -------------------------------------------------------------
-var vis = {'min': -10, 'max': 15}
-Map.addLayer(only, vis, 'CMI');
-Map.addLayer(truth, vis, 'truth')
-Map.addLayer(terra, vis, 'terra')
+// var difvis = {'min':-1, 'max':1}
 
-var difvis = {'min':-1, 'max':1}
-Map.addLayer(dif, null, 'dif')
-Map.addLayer(aggDaymet.select('tmax'), null, 'tmax')
-Map.addLayer(difTerra, null, 'difTerra')
-// Map.addLayer(difFalse, difvis, 'difFalse')
 
 
 // Chart -----------------------------------------------------------
-var col = ee.Image([only, truth]);
+var col = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
+                    combTerra6, combDay6, combTerra10, combDay10]);
 
 var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
-// print(col)
 var chart = ui.Chart.feature.byFeature(col.reduceRegions(points, ee.Reducer.mean()))
-// print(chart)
-
-
-// Export ----------------------------------------------------------
-var out = aggDaymet.first().addBands([truth, dem])
-// print(out)
-var outred = out.reduceRegions({
-  'collection': points, 
-  'reducer': ee.Reducer.mean(), 
-  'scale': 500
-})
-// print(outred.first())
-Export.table.toDrive(outred)
-
-
-
-var outcalc = out.addBands(
-  out.expression(
-    // '93 * VPD * KTRF * (2.71828182846 ** 
-    '2.71828182846 ** (1.0 * ELEV / 9300)', {
-      'VPD': out.select('VPD'),
-      'KTRF': out.select('KTRF'),
-      'ELEV': ee.Image("MERIT/DEM/v1_0_3")
-      // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
-    }).rename('PETagain'))
-    
-// Map.addLayer(outcalc)
