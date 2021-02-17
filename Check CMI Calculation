@@ -163,15 +163,15 @@ var difDayPcp10 = ref10.select('pcp').subtract(filterDay10.select('prcp')).renam
 
 // Combine diffs
 var combTerra6 = ee.Image([difTerra6, difTerraTmax6, difTerraTmin6, difTerraPcp6]);
-var combDay6 = ee.Image([difDay6, difDayTmax6, difDayTmin6, difDayPcp6]);
-
 var combTerra10 = ee.Image([difTerra10, difTerraTmax10, difTerraTmin10, difTerraPcp10]);
+
+var combDay6 = ee.Image([difDay6, difDayTmax6, difDayTmin6, difDayPcp6]);
 var combDay10 = ee.Image([difDay10, difDayTmax10, difDayTmin10, difDayPcp10]);
 
 
 // Map -------------------------------------------------------------
 var cmivis = {'min':-18, 'max':30, 'gamma':1.1};
-var difcmivis = {'min':-45, 'max':20, 'gamma':1.1};
+var difcmivis = {'min':0, 'max':40, 'gamma':1.1};
 // *** KEY: difference is reference - daymet/terra
 //   therefore if positive, reference is higher than daymet/terra
 //             if negative, reference is less than daymet/terra
@@ -179,16 +179,16 @@ var difcmivis = {'min':-45, 'max':20, 'gamma':1.1};
 // TERRA CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
 // Map.addLayer(calcTerra6, cmivis, 'terra CMI 6');
-Map.addLayer(combTerra6.select('dif-Terra-CMI-6'), {'min': -20, 'max':15}, 'difference terra CMI 6');
-Map.addLayer(combTerra10.select('dif-Terra-CMI-10'), {'min': -20, 'max':15}, 'difference terra CMI 10');
+Map.addLayer(combTerra6.select('dif-Terra-CMI-6').abs(), difcmivis, 'difference terra CMI 6');
+Map.addLayer(combTerra10.select('dif-Terra-CMI-10').abs(), difcmivis, 'difference terra CMI 10');
 
 
 // DAYMET
 // CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
 // Map.addLayer(calcDay6, cmivis, 'day CMI 6');
-Map.addLayer(combDay6.select('dif-Day-CMI-6'), {'min': -10, 'max':55}, 'difference daymet CMI 6');
-Map.addLayer(combDay10.select('dif-Day-CMI-10'), {'min': -10, 'max':55}, 'difference daymet CMI 10');
+Map.addLayer(combDay6.select('dif-Day-CMI-6').abs(), difcmivis, 'difference daymet CMI 6');
+Map.addLayer(combDay10.select('dif-Day-CMI-10').abs(), difcmivis, 'difference daymet CMI 10');
 
 // TEMP
 var tempvis = {'min':-10, 'max':20, 'gamma':1.5};
@@ -221,7 +221,7 @@ var difprecvis = {'min':-500, 'max': 150, 'gamma':1.5};
 var all = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
                     combTerra6, combDay6, combTerra10, combDay10]);
 
-var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
+var points = ee.FeatureCollection.randomPoints(all.geometry(), 100)
 // var chart = ui.Chart.feature.byFeature(all.reduceRegions(points, ee.Reducer.mean()))
 
 print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-CMI-6')))
