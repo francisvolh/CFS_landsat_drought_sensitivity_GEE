@@ -170,10 +170,18 @@ var combDay10 = ee.Image([difDay10, difDayTmax10, difDayTmin10, difDayPcp10])
 
 
 // Map -------------------------------------------------------------
-// var difvis = {'min':-1, 'max':1}
-Map.addLayer(ref6.select('cmi'))
-Map.addLayer(combTerra6)
-Map.addLayer(calcTerra6)
+var cmivis = {'min':-18, 'max':30, 'gamma':1.1}
+
+// TERRA CMI
+// Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
+// Map.addLayer(calcTerra6, cmivis, 'terra CMI 6');
+// Map.addLayer(combTerra6.select('dif-Terra-CMI-6'), cmivis, 'difference terra CMI 6');
+
+
+// DAYMET CMI
+Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6')
+Map.addLayer(calcDay6, cmivis, 'day CMI 6')
+Map.addLayer(combDay6.select('dif-Day-CMI-6'), cmivis, 'difference daymet CMI 6')
 
 
 // Chart -----------------------------------------------------------
