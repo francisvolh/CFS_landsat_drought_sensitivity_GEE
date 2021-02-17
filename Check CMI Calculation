@@ -152,8 +152,8 @@ var difTerraTmax10 = ref10.select('maxt').subtract(filterTerra10.select('tmax').
 var difTerraTmin6 = ref6.select('mint').subtract(filterTerra6.select('tmin').first()).rename('dif-Terra-Tmin-6');
 var difTerraTmin10 = ref10.select('mint').subtract(filterTerra10.select('tmin').first()).rename('dif-Terra-Tmin-10');
 
-var difTerraPcp6 = ref6.select('pcp').subtract(filterTerra6.select('pcp').first()).rename('dif-Terra-Pcp-6');
-var difTerraPcp10 = ref10.select('pcp').subtract(filterTerra10.select('pcp').first()).rename('dif-Terra-Pcp-10');
+var difTerraPcp6 = ref6.select('pcp').subtract(filterTerra6.select('prcp').first()).rename('dif-Terra-Pcp-6');
+var difTerraPcp10 = ref10.select('pcp').subtract(filterTerra10.select('prcp').first()).rename('dif-Terra-Pcp-10');
 
 var difDayTmax6 = ref6.select('maxt').subtract(filterDay6.select('tmax').first()).rename('dif-Day-Tmax-6');
 var difDayTmax10 = ref10.select('maxt').subtract(filterDay10.select('tmax').first()).rename('dif-Day-Tmax-10');
@@ -161,8 +161,8 @@ var difDayTmax10 = ref10.select('maxt').subtract(filterDay10.select('tmax').firs
 var difDayTmin6 = ref6.select('mint').subtract(filterDay6.select('tmin').first()).rename('dif-Day-Tmin-6');
 var difDayTmin10 = ref10.select('mint').subtract(filterDay10.select('tmin').first()).rename('dif-Day-Tmin-10');
 
-var difDayPcp6 = ref6.select('pcp').subtract(filterDay6.select('pcp').first()).rename('dif-Day-Pcp-6');
-var difDayPcp10 = ref10.select('pcp').subtract(filterDay10.select('pcp').first()).rename('dif-Day-Pcp-10');
+var difDayPcp6 = ref6.select('pcp').subtract(filterDay6.select('prcp').first()).rename('dif-Day-Pcp-6');
+var difDayPcp10 = ref10.select('pcp').subtract(filterDay10.select('prcp').first()).rename('dif-Day-Pcp-10');
 
 // Combine diffs
 var combTerra6 = ee.Image([difTerra6, difTerraTmax6, difTerraTmin6, difTerraPcp6])
