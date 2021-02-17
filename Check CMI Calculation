@@ -203,8 +203,10 @@ var precvis = {'min':-10, 'max':20, 'gamma':1.5};
 var difprecvis = {'min':-500, 'max': 150, 'gamma':1.5};
 
 // Map.addLayer(ref6.select('pcp'), precvis, 'reference tmax 6');
-Map.addLayer(combDay6.select('dif-Day-Pcp-6'), difprecvis, 'difference precip Tmax 6');
+Map.addLayer(combDay6.select('dif-Day-Pcp-6'), difprecvis, 'difference precip Day 6');
 
+// Terra (-200 - 50)
+Map.addLayer(combTerra6.select('dif-Terra-Pcp-6'), difprecvis, 'difference precip Terra 6');
 
 // Chart -----------------------------------------------------------
 var col = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
