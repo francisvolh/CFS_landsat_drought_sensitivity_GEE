@@ -175,21 +175,23 @@ var cmivis = {'min':-18, 'max':30, 'gamma':1.1}
 // TERRA CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
 // Map.addLayer(calcTerra6, cmivis, 'terra CMI 6');
-// Map.addLayer(combTerra6.select('dif-Terra-CMI-6'), cmivis, 'difference terra CMI 6');
+// Map.addLayer(combTerra6.select('dif-Terra-CMI-6'), {'min': -20, 'max':15}, 'difference terra CMI 6');
 
 
 // DAYMET
 // CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
 // Map.addLayer(calcDay6, cmivis, 'day CMI 6');
-// Map.addLayer(combDay6.select('dif-Day-CMI-6'), cmivis, 'difference daymet CMI 6');
+// Map.addLayer(combDay6.select('dif-Day-CMI-6'), {'min': -10, 'max':55}, 'difference daymet CMI 6');
 
 // TEMP
-var tempvis = {'min':-18, 'max':30, 'gamma':1.1}
-Map.addLayer(ref6.select('maxt'), tempvis, 'reference tmax 6');
-Map.addLayer(combDay6.select('dif-Day-Tmax-6'), tempvis, 'difference daymet Tmax 6');
-Map.addLayer(ref6.select('mint'), tempvis, 'reference tmin 6');
-Map.addLayer(combDay6.select('dif-Day-Tmin-6'), tempvis, 'difference daymet Tmin 6');
+var tempvis = {'min':-10, 'max':20, 'gamma':1.5}
+var diftempvis = {'min':-10, 'max':25, 'gamma':1.5}
+
+// Map.addLayer(ref6.select('maxt'), tempvis, 'reference tmax 6');
+Map.addLayer(combDay6.select('dif-Day-Tmax-6'), diftempvis, 'difference daymet Tmax 6');
+// Map.addLayer(ref6.select('mint'), tempvis, 'reference tmin 6');
+Map.addLayer(combDay6.select('dif-Day-Tmin-6'), diftempvis, 'difference daymet Tmin 6');
 
 
 
