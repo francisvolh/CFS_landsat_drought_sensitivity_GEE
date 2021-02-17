@@ -137,7 +137,6 @@ var calcTerra10 = filterTerra10
     .select('CMI').rename('cmi6Terra')
     .clip(geometry);
 
-
 // // CMI diffs
 // var difTerra6 = ref6.select('cmi').subtract(calcTerra6).rename('dif-Terra-CMI-6');
 // var difTerra10 = ref10.select('cmi').subtract(calcTerra10).rename('dif-Terra-CMI-10');
