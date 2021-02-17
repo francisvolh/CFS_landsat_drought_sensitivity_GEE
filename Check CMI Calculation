@@ -178,10 +178,18 @@ var cmivis = {'min':-18, 'max':30, 'gamma':1.1}
 // Map.addLayer(combTerra6.select('dif-Terra-CMI-6'), cmivis, 'difference terra CMI 6');
 
 
-// DAYMET CMI
-Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6')
-Map.addLayer(calcDay6, cmivis, 'day CMI 6')
-Map.addLayer(combDay6.select('dif-Day-CMI-6'), cmivis, 'difference daymet CMI 6')
+// DAYMET
+// CMI
+Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
+Map.addLayer(calcDay6, cmivis, 'day CMI 6');
+Map.addLayer(combDay6.select('dif-Day-CMI-6'), cmivis, 'difference daymet CMI 6');
+
+// TEMP
+Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
+Map.addLayer(calcDay6, cmivis, 'day CMI 6');
+Map.addLayer(combDay6.select('dif-Day-CMI-6'), cmivis, 'difference daymet CMI 6');
+
+
 
 
 // Chart -----------------------------------------------------------
