@@ -225,7 +225,22 @@ var points = ee.FeatureCollection.randomPoints(col.geometry(), 100)
 // var chart = ui.Chart.feature.byFeature(col.reduceRegions(points, ee.Reducer.mean()))
 
 print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-CMI-6')))
-print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-CMI-6')))
 print(ui.Chart.image.histogram(combTerra10.select('dif-Terra-CMI-10')))
 print(ui.Chart.image.histogram(combDay6.select('dif-Day-CMI-6')))
 print(ui.Chart.image.histogram(combDay10.select('dif-Day-CMI-10')))
+
+print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-Pcp-6')))
+print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-Tmin-6')))
+print(ui.Chart.image.histogram(combTerra6.select('dif-Terra-Tmax-6')))
+print(ui.Chart.image.histogram(combTerra10.select('dif-Terra-Pcp-10')))
+print(ui.Chart.image.histogram(combTerra10.select('dif-Terra-Tmin-10')))
+print(ui.Chart.image.histogram(combTerra10.select('dif-Terra-Tmax-10')))
+
+
+print(ui.Chart.image.histogram(combDay6.select('dif-Day-Pcp-6')))
+print(ui.Chart.image.histogram(combDay6.select('dif-Day-Tmin-6')))
+print(ui.Chart.image.histogram(combDay6.select('dif-Day-Tmax-6')))
+print(ui.Chart.image.histogram(combDay10.select('dif-Day-Pcp-10')))
+print(ui.Chart.image.histogram(combDay10.select('dif-Day-Tmin-10')))
+print(ui.Chart.image.histogram(combDay10.select('dif-Day-Tmax-10')))
+
