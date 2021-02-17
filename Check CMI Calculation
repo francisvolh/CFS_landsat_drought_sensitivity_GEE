@@ -143,14 +143,14 @@ var difDay6 = ref6.select('cmi').subtract(calcDay6).rename('dif-Day-CMI-6');
 var difDay10 = ref10.select('cmi').subtract(calcDay10).rename('dif-Day-CMI-10');
 
 // Other variable diffs
-var difTerraTmax6 = ref6.select('maxt').subtract(filterTerra6.select('tmax')).rename('dif-Terra-Tmax-6');
-var difTerraTmax10 = ref10.select('maxt').subtract(filterTerra10.select('tmax')).rename('dif-Terra-Tmax-10');
+var difTerraTmax6 = ref6.select('maxt').subtract(filterTerra6.select('tmmx')).rename('dif-Terra-Tmax-6');
+var difTerraTmax10 = ref10.select('maxt').subtract(filterTerra10.select('tmmx')).rename('dif-Terra-Tmax-10');
 
-var difTerraTmin6 = ref6.select('mint').subtract(filterTerra6.select('tmin')).rename('dif-Terra-Tmin-6');
-var difTerraTmin10 = ref10.select('mint').subtract(filterTerra10.select('tmin')).rename('dif-Terra-Tmin-10');
+var difTerraTmin6 = ref6.select('mint').subtract(filterTerra6.select('tmmn')).rename('dif-Terra-Tmin-6');
+var difTerraTmin10 = ref10.select('mint').subtract(filterTerra10.select('tmmn')).rename('dif-Terra-Tmin-10');
 
-var difTerraPcp6 = ref6.select('pcp').subtract(filterTerra6.select('prcp')).rename('dif-Terra-Pcp-6');
-var difTerraPcp10 = ref10.select('pcp').subtract(filterTerra10.select('prcp')).rename('dif-Terra-Pcp-10');
+var difTerraPcp6 = ref6.select('pcp').subtract(filterTerra6.select('pr')).rename('dif-Terra-Pcp-6');
+var difTerraPcp10 = ref10.select('pcp').subtract(filterTerra10.select('pr')).rename('dif-Terra-Pcp-10');
 
 var difDayTmax6 = ref6.select('maxt').subtract(filterDay6.select('tmax')).rename('dif-Day-Tmax-6');
 var difDayTmax10 = ref10.select('maxt').subtract(filterDay10.select('tmax')).rename('dif-Day-Tmax-10');
