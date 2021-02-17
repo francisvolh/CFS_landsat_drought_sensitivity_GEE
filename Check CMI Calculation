@@ -172,6 +172,10 @@ var combDay10 = ee.Image([difDay10, difDayTmax10, difDayTmin10, difDayPcp10])
 // Map -------------------------------------------------------------
 var cmivis = {'min':-18, 'max':30, 'gamma':1.1}
 
+// *** KEY: difference is reference - daymet/terra
+//   therefore if positive, reference is higher than daymet/terra
+//             if negative, reference is less than daymet/terra
+
 // TERRA CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
 // Map.addLayer(calcTerra6, cmivis, 'terra CMI 6');
@@ -185,8 +189,8 @@ var cmivis = {'min':-18, 'max':30, 'gamma':1.1}
 // Map.addLayer(combDay6.select('dif-Day-CMI-6'), {'min': -10, 'max':55}, 'difference daymet CMI 6');
 
 // TEMP
-var tempvis = {'min':-10, 'max':20, 'gamma':1.5}
-var diftempvis = {'min':-10, 'max':25, 'gamma':1.5}
+var tempvis = {'min':-10, 'max':20, 'gamma':1.5};
+var diftempvis = {'min':-10, 'max':25, 'gamma':1.5};
 
 // Map.addLayer(ref6.select('maxt'), tempvis, 'reference tmax 6');
 Map.addLayer(combDay6.select('dif-Day-Tmax-6'), diftempvis, 'difference daymet Tmax 6');
@@ -194,6 +198,12 @@ Map.addLayer(combDay6.select('dif-Day-Tmax-6'), diftempvis, 'difference daymet T
 Map.addLayer(combDay6.select('dif-Day-Tmin-6'), diftempvis, 'difference daymet Tmin 6');
 
 
+// PRECIP
+var precvis = {'min':-10, 'max':20, 'gamma':1.5};
+var difprecvis = {'min':-500, 'max': 150, 'gamma':1.5};
+
+// Map.addLayer(ref6.select('pcp'), precvis, 'reference tmax 6');
+Map.addLayer(combDay6.select('dif-Day-Pcp-6'), difprecvis, 'difference precip Tmax 6');
 
 
 // Chart -----------------------------------------------------------
