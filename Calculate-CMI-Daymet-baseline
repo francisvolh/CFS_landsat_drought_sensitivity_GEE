@@ -97,7 +97,7 @@ var redpercent = percent.reduceRegions({
   });
 
 print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
-  ['CMI_max', 'CMI_min', 'CMI_10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
+  ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
   
   
 // Export ----------------------------------------------------------
