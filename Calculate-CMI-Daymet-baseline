@@ -45,8 +45,11 @@ var months = ee.List.sequence(minmonth, maxmonth);
 var reducer = ee.Reducer.mean()
   .combine(ee.Reducer.sum(), null, true);
 
-// Aggregate monthly for each year
+// Aggregate monthly for each month and year
 var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+
+// Aggregate monthly for each year
+// var aggDaymet = agg.aggregateY(years, daymet, reducer);
 
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
