@@ -66,8 +66,23 @@ aggDaymet = aggDaymet
 
 
 // Reduce ----------------------------------------------------------
+var reduced = aggDaymet.map(function(img) {
+  img.reduceRegions({
+    'collection': ctef, 
+    'reducer': ee.Reducer.mean(), 
+    'scale': 1000
+  });
+});
 
 
+
+
+
+// Export ----------------------------------------------------------
+
+
+// Map -------------------------------------------------------------
+Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 
 
 
@@ -85,7 +100,7 @@ var ts = ui.Chart.image.doySeriesByYear({
   bandName: 'CMI',
   scale: 500
 });
-print(ts);
+// print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -96,11 +111,4 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
-
-// Export ----------------------------------------------------------
-
-
-// Map -------------------------------------------------------------
-Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
-
+// print(ts);
