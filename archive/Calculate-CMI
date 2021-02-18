@@ -21,13 +21,19 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 // DAYMET
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
+// DEM
+var dem = ee.ImageCollection("NRCan/CDEM");
+
+dem = dem.filterBounds(geometry)
+        .mosaic();
+
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 1980;
-var maxyear = 1991;
+var minyear = 2012;
+var maxyear = 2012;
 var minmonth = 6;
-var maxmonth = 8;
+var maxmonth = 6;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
@@ -64,6 +70,7 @@ aggDaymet = aggDaymet
 
 // Map -------------------------------------------------------------
 Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
+Map.addLayer(dem, null, 'dem');
 
 
 // Chart -----------------------------------------------------------
@@ -126,8 +133,8 @@ var ts = ui.Chart.image.seriesByRegion({
 print(ts)
 
 Export.image.toDrive({
-  'image': aggDaymet.first().float(), 
-  'description': 'cmi-12-06', 
-  'region': ctef, 
+  'image': aggDaymet.first().float(),
+  'description': 'cmi-12-06',
+  'region': ctef,
   'scale': 500
 })
