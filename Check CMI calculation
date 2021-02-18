@@ -172,9 +172,6 @@ var combDay10 = ee.Image([difDay10, difDayTmax10, difDayTmin10, difDayPcp10]);
 // Map -------------------------------------------------------------
 var cmivis = {'min':-18, 'max':30, 'gamma':1.1};
 var difcmivis = {'min':0, 'max':40, 'gamma':1.1};
-// *** KEY: difference is reference - daymet/terra
-//   therefore if positive, reference is higher than daymet/terra
-//             if negative, reference is less than daymet/terra
 
 // TERRA CMI
 // Map.addLayer(ref6.select('cmi'), cmivis, 'reference CMI 6');
