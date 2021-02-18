@@ -88,7 +88,6 @@ var percent = aggDaymet
                   ee.Reducer.max(), null, true),
                   null, true)
               );
-Map.addLayer(percent);
 
 
 // Export ----------------------------------------------------------
