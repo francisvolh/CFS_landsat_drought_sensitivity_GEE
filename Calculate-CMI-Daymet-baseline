@@ -77,8 +77,7 @@ var reduced = aggDaymet.map(function(img) {
   });
 }).flatten();
 
-print(reduced)
-print(ui.Chart.feature.histogram(reduced, 'CMI', 10))
+
 
 var percent = aggDaymet
   .select('CMI')
@@ -118,6 +117,9 @@ aggDaymet = aggDaymet.map(function(img) {
                  ee.Date.fromYMD(img.get('year'), 6, 15));
 });
 
+// CMI histogram
+print(ui.Chart.feature.histogram(reduced, 'CMI', 10))
+
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
   regions: ctef,
@@ -128,3 +130,5 @@ var ts = ui.Chart.image.seriesByRegion({
   seriesProperty: 'REG_ID'
 });
 print(ts);
+
+
