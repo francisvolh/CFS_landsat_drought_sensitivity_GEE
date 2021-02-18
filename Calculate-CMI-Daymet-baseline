@@ -90,26 +90,28 @@ Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 
 
 // Chart -----------------------------------------------------------
+// If monthly + yearly ===
 // Add pseudo middle of the month date, for chart
 // aggDaymet = aggDaymet.map(function(img) {
 //   return img.set('system:time_start',
 //                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
 // });
 
+// var ts = ui.Chart.image.doySeriesByYear({
+//   imageCollection: aggDaymet,
+//   region: ctef,
+//   regionReducer: ee.Reducer.mean(),
+//   bandName: 'CMI',
+//   scale: 500
+// });
+// print(ts);
+
+
+// If yearly ===
 aggDaymet = aggDaymet.map(function(img) {
   return img.set('system:time_start',
                  ee.Date.fromYMD(img.get('year'), 6, 15));
 });
-
-
-var ts = ui.Chart.image.doySeriesByYear({
-  imageCollection: aggDaymet,
-  region: ctef,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
-});
-print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
