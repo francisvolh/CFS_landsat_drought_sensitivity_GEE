@@ -96,8 +96,10 @@ var redpercent = percent.reduceRegions({
     'scale': 1000
   });
 
-print(redpercent)
-
+print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
+  ['CMI_max', 'CMI_min', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
+  
+  
 // Export ----------------------------------------------------------
 
 
