@@ -65,6 +65,12 @@ aggDaymet = aggDaymet
 
 
 
+// Reduce ----------------------------------------------------------
+
+
+
+
+
 // Chart -----------------------------------------------------------
 
 // Add pseudo middle of the month date, for chart
@@ -73,25 +79,6 @@ aggDaymet = aggDaymet.map(function(img) {
                  ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
 });
 
-var ts = ui.Chart.image.doySeriesByYear({
-  imageCollection: aggDaymet,
-  region: points,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
-});
-// print(ts);
-
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: aggDaymet,
-  regions: points,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'system:index'
-});
-// print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -102,7 +89,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-// print(ts)
+print(ts)
 
 // Bin CMI, drought/not drought
 // Mean in each CTEF region
