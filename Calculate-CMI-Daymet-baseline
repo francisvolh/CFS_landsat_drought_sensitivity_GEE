@@ -78,10 +78,12 @@ var reduced = aggDaymet.map(function(img) {
 }).flatten();
 
 print(reduced)
-// print(reduced.reduce(ee.Reducer.percentile([90])))
-print(ui.Chart.feature.histogram(reduced, 'CMI', 10))
 print(ui.Chart.feature.histogram(reduced, 'CMI', 10))
 
+var percent = aggDaymet
+  .select('CMI')
+  .reduce(ee.Reducer.percentile([90]))
+Map.addLayer(percent)
 
 
 // Export ----------------------------------------------------------
