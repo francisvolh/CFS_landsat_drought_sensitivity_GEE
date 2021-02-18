@@ -46,10 +46,10 @@ var reducer = ee.Reducer.mean()
   .combine(ee.Reducer.sum(), null, true);
 
 // Aggregate monthly for each month and year
-var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+// var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 // Aggregate monthly for each year
-// var aggDaymet = agg.aggregateY(years, daymet, reducer);
+var aggDaymet = agg.aggregateY(years, daymet, reducer);
 
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
@@ -70,7 +70,7 @@ aggDaymet = aggDaymet
 
 // Reduce ----------------------------------------------------------
 var reduced = aggDaymet.map(function(img) {
-  img.reduceRegions({
+  return img.reduceRegions({
     'collection': ctef, 
     'reducer': ee.Reducer.mean(), 
     'scale': 1000
@@ -91,10 +91,16 @@ Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 
 // Chart -----------------------------------------------------------
 // Add pseudo middle of the month date, for chart
+// aggDaymet = aggDaymet.map(function(img) {
+//   return img.set('system:time_start',
+//                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
+// });
+
 aggDaymet = aggDaymet.map(function(img) {
   return img.set('system:time_start',
-                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
+                 ee.Date.fromYMD(img.get('year'), 6, 15));
 });
+
 
 var ts = ui.Chart.image.doySeriesByYear({
   imageCollection: aggDaymet,
@@ -103,7 +109,7 @@ var ts = ui.Chart.image.doySeriesByYear({
   bandName: 'CMI',
   scale: 500
 });
-// print(ts);
+print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -114,4 +120,4 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-// print(ts);
+print(ts);
