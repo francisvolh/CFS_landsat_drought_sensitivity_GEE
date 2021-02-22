@@ -82,7 +82,7 @@ exports.calcPET = function(img, dem) {
 exports.calcCMI = function(img) {
   return img.addBands(
     img.expression(
-    '(PREC - PET) / 10', {
+    '(PREC - PET) / 10.0', {
       'PREC': img.select('pr'),
       'PET': img.select('PET')
     }).rename('CMI'));
