@@ -28,8 +28,8 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 1980;
-var maxyear = 1991;
+var minyear = 2001;
+var maxyear = 2019;
 var minmonth = 6;
 var maxmonth = 8;
 
@@ -96,15 +96,15 @@ var redpercent = percent.reduceRegions({
     'scale': 1000
   });
 
-print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
-  ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
+// print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
+//   ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
   
   
 // Export ----------------------------------------------------------
 
 
 // Map -------------------------------------------------------------
-// Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
+Map.addLayer(percent, null, 'percentile');
 
 
 
