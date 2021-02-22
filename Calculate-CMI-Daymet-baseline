@@ -11,7 +11,16 @@ var geometry =
         [[[-140.64429004382453, 66.78390825999355],
           [-140.64429004382453, 60.44720654719036],
           [-131.76733691882453, 60.44720654719036],
-          [-131.76733691882453, 66.78390825999355]]], null, false);
+          [-131.76733691882453, 66.78390825999355]]], null, false),
+    points = /* color: #d63000 */ee.Geometry.MultiPoint(
+        [[-113.48063194392775, 56.90198668190897],
+         [-118.05094444392775, 57.09347251437182],
+         [-114.62321006892775, 58.03620289861265],
+         [-140.11149131892773, 65.22371790972659],
+         [-135.36539756892773, 64.96462771914855],
+         [-138.35367881892773, 65.77047141676313],
+         [-138.52946006892773, 63.97996380883197],
+         [-136.68375694392773, 63.864055374784634]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -119,22 +128,25 @@ var sub = aggDaymet
 
 Map.addLayer(sub, {'min':0, 'max':1}, 'CMI greater than percentile')
 
+print(ui.Chart.image.byRegion(sub, 'REG_ID', 
+  ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
+  
 // Chart -----------------------------------------------------------
 // If monthly + yearly ===
 // Add pseudo middle of the month date, for chart
-// aggDaymet = aggDaymet.map(function(img) {
-//   return img.set('system:time_start',
-//                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
-// });
+sub = sub.map(function(img) {
+  return img.set('system:time_start',
+                ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
+});
 
-// var ts = ui.Chart.image.doySeriesByYear({
-//   imageCollection: aggDaymet,
-//   region: ctef,
-//   regionReducer: ee.Reducer.mean(),
-//   bandName: 'CMI',
-//   scale: 500
-// });
-// print(ts);
+var ts = ui.Chart.image.doySeriesByYear({
+  imageCollection: sub,
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
+});
+print(ts);
 
 
 // If yearly ===
