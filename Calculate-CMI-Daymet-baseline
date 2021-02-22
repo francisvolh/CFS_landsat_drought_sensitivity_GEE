@@ -117,7 +117,7 @@ var sub = aggDaymet
   })
   
 
-Map.addLayer(sub, null, 'CMI greater than percentile')
+Map.addLayer(sub, {'min':0, 'max':1}, 'CMI greater than percentile')
 
 // Chart -----------------------------------------------------------
 // If monthly + yearly ===
