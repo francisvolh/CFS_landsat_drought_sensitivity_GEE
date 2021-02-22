@@ -28,7 +28,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2001;
+var minyear = 1981;
 var maxyear = 2019;
 var minmonth = 6;
 var maxmonth = 8;
@@ -69,19 +69,20 @@ aggDaymet = aggDaymet
 
 
 // Reduce ----------------------------------------------------------
-var reduced = aggDaymet.map(function(img) {
-  return img.reduceRegions({
-    'collection': ctef, 
-    'reducer': ee.Reducer.mean(), 
-    'scale': 1000
-  });
-}).flatten();
+// var reduced = aggDaymet.map(function(img) {
+//   return img.reduceRegions({
+//     'collection': ctef, 
+//     'reducer': ee.Reducer.mean(), 
+//     'scale': 1000
+//   });
+// }).flatten();
 
 
+var baseline = aggDaymet.filter(ee.Filter.rangeContains('year', 1981, 2000))
 
-var percent = aggDaymet
+var percent = baseline
   .select('CMI')
-  .reduce(ee.Reducer.percentile([10, 70, 80, 90])
+  .reduce(ee.Reducer.percentile([5, 10, 70, 80, 90])
             .combine(
               ee.Reducer.min()
                 .combine(
@@ -90,11 +91,11 @@ var percent = aggDaymet
               );
               
 
-var redpercent = percent.reduceRegions({
-    'collection': ctef, 
-    'reducer': ee.Reducer.mean(), 
-    'scale': 1000
-  });
+// var redpercent = percent.reduceRegions({
+//     'collection': ctef, 
+//     'reducer': ee.Reducer.mean(), 
+//     'scale': 1000
+//   });
 
 // print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
 //   ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
@@ -104,9 +105,19 @@ var redpercent = percent.reduceRegions({
 
 
 // Map -------------------------------------------------------------
-Map.addLayer(percent, {'min': -40, 'max':40, "palette":["ff0000","ffffff","0008ff"]}, 'percentile');
+Map.addLayer(percent.select('CMI_p5'), {'min': -40, 'max':40, "palette":["ff0000","ffffff","0008ff"]}, 'percentile');
 
 
+
+var sub = aggDaymet
+  .filter(ee.Filter.rangeContains('year', 2001, 2020))
+  .select('CMI')
+  .map(function(img) {
+    return img.addBands(img.gt(percent.select('CMI_p5')).rename('CMI-greater-than-percentile'))
+  })
+  
+
+Map.addLayer(sub, null, 'CMI greater than percentile')
 
 // Chart -----------------------------------------------------------
 // If monthly + yearly ===
