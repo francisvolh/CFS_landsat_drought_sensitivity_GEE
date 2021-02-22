@@ -71,7 +71,7 @@ exports.calcKTRF = function(img) {
 exports.calcPET = function(img, dem) {
   return img.addBands(
     img.expression(
-    '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300))', {
+    '93 * VPD * KTRF * (2.71828182846 ** (ELEV / 9300.0))', {
       'VPD': img.select('VPD'),
       'KTRF': img.select('KTRF'),
       'ELEV': ee.Image("MERIT/DEM/v1_0_3")
