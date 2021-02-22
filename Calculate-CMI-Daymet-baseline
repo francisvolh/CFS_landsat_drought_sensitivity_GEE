@@ -104,7 +104,7 @@ var redpercent = percent.reduceRegions({
 
 
 // Map -------------------------------------------------------------
-Map.addLayer(percent, null, 'percentile');
+Map.addLayer(percent, {'min': -40, 'max':40, "palette":["ff0000","ffffff","0008ff"]}, 'percentile');
 
 
 
