@@ -39,7 +39,7 @@ exports.calcVPD = function(img) {
 exports.calcTAVG515 = function(img) {
   return img.addBands(
     img.expression(
-    '(((tmin + tmax) / 2) + 5) / 15', {
+    '(1.0 * ((tmin + tmax) / 2) + 5) / 15', {
       'tmin': img.select('tmin'),
       'tmax': img.select('tmax')
     }).rename('TAVG515'));
