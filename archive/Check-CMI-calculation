@@ -11,8 +11,7 @@ var geometry =
         [[[-140.77612598132453, 66.81853033523947],
           [-140.77612598132453, 52.843604464807456],
           [-110.36596973132451, 52.843604464807456],
-          [-110.36596973132451, 66.81853033523947]]], null, false),
-    imageVisParam = {"opacity":1,"bands":["dif-Terra-CMI-6"],"min":-40,"max":40,"palette":["ff0000","ffffff","0008ff"]};
+          [-110.36596973132451, 66.81853033523947]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
