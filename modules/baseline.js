@@ -1,5 +1,5 @@
 // Calculate baselines
-exports.calcBaseline = function(img, cmiBand, percentileBand) {
+exports.gtPercentile = function(img, cmiBand, percentileBand) {
   var outname = cmiBand + '-gt-' + percentileBand;
 
   return img.addBands(
