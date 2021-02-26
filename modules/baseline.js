@@ -20,7 +20,7 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
         var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
                                 .select(cmiBand);
         
-        return (filtImgs.map(function(cmiImg) {
+        return ee.Image.cat(filtImgs.map(function(cmiImg) {
           return ee.Image(cmiImg.addBands(
             cmiImg.expression(
               'cmi > percentile', {
