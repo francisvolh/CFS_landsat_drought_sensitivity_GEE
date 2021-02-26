@@ -55,7 +55,7 @@ exports.gtPercentileBands3 = function(percentileImages, cmiImages, cmiBand) {
                    .addBands(cmiImg.select(cmiBand)
                                    .gt(percentImg));
     })
-  }).flatten();
+  })
 };
 
 
