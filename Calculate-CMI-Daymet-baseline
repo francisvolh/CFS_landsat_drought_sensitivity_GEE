@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.64429004382453, 66.78390825999355],
-          [-140.64429004382453, 60.44720654719036],
-          [-131.76733691882453, 60.44720654719036],
-          [-131.76733691882453, 66.78390825999355]]], null, false),
+        [[[-140.9168618223318, 66.91364880060213],
+          [-140.9168618223318, 54.39456198168257],
+          [-111.20983057233182, 54.39456198168257],
+          [-111.20983057233182, 66.91364880060213]]], null, false),
     points = /* color: #d63000 */ee.Geometry.MultiPoint(
         [[-113.48063194392775, 56.90198668190897],
          [-118.05094444392775, 57.09347251437182],
@@ -76,6 +75,20 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 
+
+Export.video.toDrive({
+  'collection': base.select('CMI_ante3_p10'),
+  'description': 'baseline-gif',
+  'region': geometry,
+  'scale': 2000
+})
+// var imageList = images.toList(20, 0).getInfo();
+// print(imageList);
+
+// for (var i = 0; i < imageList.length; i++) {
+//   var img = imageList[i];
+//   Map.addLayer(ee.Image(img.id), visParamsSnow, img.id, false);
+// }
 
 
 // Map --------------------------------------------------------------
