@@ -80,38 +80,33 @@ aggDaymet = aggDaymet
 var percentiles = [10];
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
 
-var binned = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
+var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 
 
 // Map --------------------------------------------------------------
-// Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
-// Map.addLayer(dem, null, 'dem');
+Map.addLayer(drought, null, 'drought/not drought');
 
 
 // // Chart -----------------------------------------------------------
-// var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
-// var points = ee.FeatureCollection.randomPoints(ctef, 10);
+var ts = ui.Chart.image.doySeriesByYear({
+  imageCollection: drought.select(['CMI_ante3_p10', 'CMI_ante6_p10', 'CMI_ante12_p10']),
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
+});
+print(ts);
 
-// var ts = ui.Chart.image.doySeriesByYear({
-//   imageCollection: aggDaymet,
-//   region: points,
-//   regionReducer: ee.Reducer.mean(),
-//   bandName: 'CMI',
-//   scale: 500
-// });
-// // print(ts);
-
-// var ts = ui.Chart.image.seriesByRegion({
-//   imageCollection: aggDaymet,
-//   regions: points,
-//   reducer: ee.Reducer.mean(),
-//   band: 'CMI',
-//   scale: 500,
-//   xProperty: 'system:time_start',
-//   seriesProperty: 'system:index'
-// });
-// // print(ts);
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: drought.select(['CMI_ante3_p10', 'CMI_ante6_p10', 'CMI_ante12_p10']),
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'system:index'
+});
+print(ts);
 
 // var ts = ui.Chart.image.seriesByRegion({
 //   imageCollection: aggDaymet,
