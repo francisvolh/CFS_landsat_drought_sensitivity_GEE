@@ -11,18 +11,25 @@ exports.gtPercentile = function(img, cmiBand, percentileBand) {
 };
 
 exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
-  var bands = percentileImages.first().bandNames();
   return ee.ImageCollection.fromImages(
-    bands.map(function(band) {
-      var outname = 'gt-' + band;
-      return cmiImages.addBands(
-        cmiImages.expression(
-        'cmi > percentile', {
-          'cmi': cmiImages.select(cmiBand),
-          'percentile': percentileImages.select(band)
-        }).rename(outname));
-      })
-    );
+    percentileImages.map(function(percentImg) {
+      var bands = percentImg.bandNames();
+      var yr = percentImg.get('year');
+      
+      bands.map(function(band) {
+        var outname = 'gt-' + band;
+        var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
+                                .select(cmiBand);
+        
+        return filtImgs.addBands(
+          filtImgs.expression(
+          'cmi > percentile', {
+            'cmi': filtImgs.select(cmiBand),
+            'percentile': percentImg.select(band)
+          }).rename(outname));
+      });
+    })
+  );
 };
 
 
