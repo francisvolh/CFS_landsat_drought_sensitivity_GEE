@@ -22,7 +22,7 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
                                 .select(cmiBand);
         
         return filtImgs.map(function(cmiImg) {
-          cmiImg.addBands(
+          return cmiImg.addBands(
             cmiImg.expression(
               'cmi > percentile', {
                 'cmi': cmiImg.select(cmiBand),
