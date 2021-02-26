@@ -42,6 +42,23 @@ exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImage
                           cmiImg.select(cmiBand).gt(filterPerc))}).toBands();
   }));
 };
+
+
+exports.gtPercentileBands2 = function(percentileImages, cmiImages, cmiBand) {
+  return percentileImages.map(function(percentImg) {
+    var yr = percentImg.get('year')
+    
+    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr));
+
+    return filtCMI.map(function(cmiImg) {
+      ee.Image([cmiImg.select(cmiBand),
+                cmiImg.select(cmiBand)
+                      .gt(percentImg)])
+    })
+  });
+};
+
+
   // return ee.ImageCollection(percentileImages.map(function(percentImg) {
   //     var bands = percentImg.bandNames();
   //     var yr = percentImg.get('year');
