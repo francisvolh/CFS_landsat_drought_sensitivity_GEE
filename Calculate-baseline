@@ -104,3 +104,14 @@ Export.video.toDrive({
   'region': geometry,
   'scale': 2000
 })
+
+var bandname = 'CMI'
+Export.video.toDrive({
+  'collection': aggDaymet.select([bandname, bandname, bandname], 
+                            ['1', '2', '3'])
+                    .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
+                          ['1', '2', '3']),
+  'description': 'daymet-gif-' + bandname,
+  'region': geometry,
+  'scale': 2000
+})
