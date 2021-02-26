@@ -38,8 +38,8 @@ terra = terra
   .first();
 
 // Combine ---------------------------------------------------------
-var max = ee.Image([terra.select('tmmx'), tmax]);
-var min = ee.Image([terra.select('tmmn'), tmin]);
+var max = ee.Image([terra.select('tmmx').divide(10), tmax]);
+var min = ee.Image([terra.select('tmmn').divide(10), tmin]);
 
 
 // Chart -----------------------------------------------------------
