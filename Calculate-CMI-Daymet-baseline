@@ -75,9 +75,6 @@ var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                               ['tmin', 'tmax', 'prcp']);
 
-// Subset for now *****
-// aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
-
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
   .map(cmi.calcETMIN)
@@ -86,26 +83,25 @@ aggDaymet = aggDaymet
   .map(cmi.calcTAVG515)
   .map(cmi.calcKTRF)
   .map(cmi.calcPET)
-  .map(cmi.calcCMI)
-
-//
+  .map(cmi.calcCMI);
 
 
 var antemax = 6;
 var ante3min = 3;
 var ante6min = 1;
 
+
 var zzz = ee.ImageCollection.fromImages(
   years.map(function(yr) {
     return ee.Image([
       // Antecedent: 3
-      aggDaymet.filter(ee.Filter.rangeContains('year', yr, yr))
+      aggDaymet.filter(ee.Filter.eq('year', yr))
                .filter(ee.Filter.rangeContains('month', ante3min, antemax))
                .select(['CMI'], ['CMI_ante3'])
                .reduce(ee.Reducer.percentile([5, 10, 15])),
                
       // Antecedent: 6
-      aggDaymet.filter(ee.Filter.rangeContains('year', yr, yr))
+      aggDaymet.filter(ee.Filter.eq('year', yr))
                .filter(ee.Filter.rangeContains('month', ante6min, antemax))
                .select(['CMI'], ['CMI_ante6'])
                .reduce(ee.Reducer.percentile([5, 10, 15])),
@@ -119,7 +115,6 @@ var zzz = ee.ImageCollection.fromImages(
   })
 );
 
-print(zzz)
 
 
 // Map -------------------------------------------------------------
@@ -127,57 +122,57 @@ print(zzz)
 // Map.addLayer(dem, null, 'dem');
 
 
-// Chart -----------------------------------------------------------
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
-var points = ee.FeatureCollection.randomPoints(ctef, 10);
+// // Chart -----------------------------------------------------------
+// var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+// var points = ee.FeatureCollection.randomPoints(ctef, 10);
 
-var ts = ui.Chart.image.doySeriesByYear({
-  imageCollection: aggDaymet,
-  region: points,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
-});
-// print(ts);
+// var ts = ui.Chart.image.doySeriesByYear({
+//   imageCollection: aggDaymet,
+//   region: points,
+//   regionReducer: ee.Reducer.mean(),
+//   bandName: 'CMI',
+//   scale: 500
+// });
+// // print(ts);
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: aggDaymet,
-  regions: points,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'system:index'
-});
-// print(ts);
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: aggDaymet,
+//   regions: points,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI',
+//   scale: 500,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'system:index'
+// });
+// // print(ts);
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: aggDaymet,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
-// print(ts)
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: aggDaymet,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI',
+//   scale: 500,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
+// // print(ts)
 
-// Bin CMI, drought/not drought
-// Mean in each CTEF region
-aggDaymet = aggDaymet.map(function(img) {
-  return img.addBands(img.select('CMI').lt(0).rename('binnedCMI'));
-});
+// // Bin CMI, drought/not drought
+// // Mean in each CTEF region
+// aggDaymet = aggDaymet.map(function(img) {
+//   return img.addBands(img.select('CMI').lt(0).rename('binnedCMI'));
+// });
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: aggDaymet,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'binnedCMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: aggDaymet,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'binnedCMI',
+//   scale: 500,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
 // print(ts)
 
 // Export.image.toDrive({
