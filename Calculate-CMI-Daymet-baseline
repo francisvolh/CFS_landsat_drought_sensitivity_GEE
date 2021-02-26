@@ -111,8 +111,8 @@ var zzz = ee.ImageCollection.fromImages(
                .reduce(ee.Reducer.percentile([5, 10, 15])),
                
       // Antecedent: 12
-      aggDaymet.filter(ee.Filter.date(ee.Date.fromYMD(yr - 1, antexmax, 1),
-                                      ee.Date.fromYMD(yr, antexmax, 1)))
+      aggDaymet.filter(ee.Filter.date(ee.Date.fromYMD(yr - 1, antemax, 1),
+                                      ee.Date.fromYMD(yr, antemax, 1)))
                .select(['CMI'], ['CMI_ante12'])
                .reduce(ee.Reducer.percentile([5, 10, 15]))
       ]).set('year', yr);
