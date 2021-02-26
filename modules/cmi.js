@@ -6,7 +6,8 @@ exports.calcETMAX = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
       'tmax': img.select('tmax')
-    }).rename('ETMAX'));
+    }).rename('ETMAX'))
+      .copyProperties(img);
 };
 
 exports.calcETMIN = function(img) {
