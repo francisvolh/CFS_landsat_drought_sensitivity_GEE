@@ -5,13 +5,14 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE");
 
 
-// Filter ---------------------------------------------------------
+// Filter ----------------------------------------------------------
 // DAYMET
 daymet = daymet
   .filter(ee.Filter.calendarRange(6, 6, 'month'))
-  .filter(ee.Filter.calendarRange(2011, 2011, 'year'))
-  .toBands();
+  .filter(ee.Filter.calendarRange(2011, 2011, 'year'));
 
+var tmax = daymet.select('tmax').toBands();
+var tmin = daymet.select('tmin').toBands();
 
 // TERRA
 terra = terra
@@ -19,6 +20,8 @@ terra = terra
   .filter(ee.Filter.calendarRange(2011, 2011, 'year'))
   .first();
 
+
+// Combine ---------------------------------------------------------
 
 // Chart -----------------------------------------------------------
 // var all = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
