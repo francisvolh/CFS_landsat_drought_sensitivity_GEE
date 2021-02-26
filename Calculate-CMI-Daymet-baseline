@@ -25,6 +25,7 @@ var geometry =
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var baseline = require('users/robitalec/CFS:modules/baseline.js');
 
 // Data -------------------------------------------------------------
 // DAYMET
@@ -42,23 +43,8 @@ dem = dem.filterBounds(geometry)
 var minyear = 2010;
 var maxyear = 2019;
 
-
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
-
-
-// Three periods
-// - [ ]  loop through each combination july 1 and year
-// - [ ]  make three variables
-// - [ ]  3 month = july 1 - 3 months
-// - [ ]  6 month = july - 6 months
-// - [ ]  12 month = july 1 - 1 year, minus the year
-// - [ ]  calculate percentiles
-// - [ ]  output a 3, 6, 12 for each as a image bands and each of the percentiles
-var period3min = 4
-var period3min = 4
-
-// .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 // List of years and months
 var months = ee.List.sequence(1, 12);
@@ -70,6 +56,7 @@ var reducer = ee.Reducer.mean()
 
 // Aggregate monthly for each year
 var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+
 
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
@@ -86,43 +73,12 @@ aggDaymet = aggDaymet
   .map(cmi.calcCMI);
 
 
-var antemax = 6;
-var ante3min = 3;
-var ante6min = 1;
-
-var zzz = ee.ImageCollection.fromImages(
-  years.map(function(yr) {
-    var ante12max = ee.Date.fromYMD(yr, antemax, 1);
-    
-    return ee.Image([
-      // Antecedent: 3
-      aggDaymet.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', ante3min, antemax))
-              .select(['CMI'], ['CMI_ante3'])
-              .reduce(ee.Reducer.percentile([5, 10, 15])),
-               
-      // Antecedent: 6
-      aggDaymet.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', ante6min, antemax))
-              .select(['CMI'], ['CMI_ante6'])
-              .reduce(ee.Reducer.percentile([5, 10, 15])),
-               
-      // Antecedent: 12
-      aggDaymet.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
-                                      ante12max))
-              .select(['CMI'], ['CMI_ante12'])
-              .reduce(ee.Reducer.percentile([5, 10, 15]))
-      ]).set('year', yr);
-  })
-);
-
-var baseline = require('users/robitalec/CFS:modules/baseline.js');
+// Calculate baseline -----------------------------------------------
+var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 
 
-print(zzz)
 
-print(baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]))
-// Map -------------------------------------------------------------
+// Map --------------------------------------------------------------
 // Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 // Map.addLayer(dem, null, 'dem');
 
