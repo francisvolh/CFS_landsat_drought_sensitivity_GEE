@@ -40,7 +40,7 @@ dem = dem.filterBounds(geometry)
 // Aggregate --------------------------------------------------------
 // Filter
 var minyear = 2010;
-var maxyear = 2020;
+var maxyear = 2019;
 
 
 daymet = daymet
@@ -86,8 +86,7 @@ aggDaymet = aggDaymet
   .map(cmi.calcTAVG515)
   .map(cmi.calcKTRF)
   .map(cmi.calcPET)
-  .map(cmi.calcCMI);
-
+  .map(cmi.calcCMI)
 
 
 //
@@ -96,7 +95,7 @@ aggDaymet = aggDaymet
 var periodmax = 6
 var period3min = 3
 var period6min = 1
-    
+print(aggDaymet)
 var zzz = ee.ImageCollection.fromImages(
   years.map(function(yr) {
     // flex p names
@@ -123,12 +122,6 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 var points = ee.FeatureCollection.randomPoints(ctef, 10);
 
-// Add pseudo middle of the month date, for chart
-aggDaymet = aggDaymet.map(function(img) {
-  return img.set('system:time_start',
-                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
-});
-
 var ts = ui.Chart.image.doySeriesByYear({
   imageCollection: aggDaymet,
   region: points,
@@ -136,7 +129,7 @@ var ts = ui.Chart.image.doySeriesByYear({
   bandName: 'CMI',
   scale: 500
 });
-print(ts);
+// print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -177,9 +170,9 @@ var ts = ui.Chart.image.seriesByRegion({
 });
 // print(ts)
 
-Export.image.toDrive({
-  'image': aggDaymet.first().float(),
-  'description': 'cmi-12-06',
-  'region': ctef,
-  'scale': 500
-})
+// Export.image.toDrive({
+//   'image': aggDaymet.first().float(),
+//   'description': 'cmi-12-06',
+//   'region': ctef,
+//   'scale': 500
+// })
