@@ -26,7 +26,7 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
             cmiImg.expression(
               'cmi > percentile', {
                 'cmi': cmiImg.select(cmiBand),
-                'percentile': percentImg.select(band)
+                'percentile': percentImg.select([band])
                 }).rename(outname)));
         })).flatten();
       }));
