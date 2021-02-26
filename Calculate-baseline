@@ -43,7 +43,7 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2010;
+var minyear = 1989;
 var maxyear = 2019;
 
 daymet = daymet
