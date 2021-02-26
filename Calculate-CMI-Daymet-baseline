@@ -79,8 +79,8 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 var z = baseline.gtPercentileBands3(base, aggDaymet, 'CMI')
-print(z)
-// Map.addLayer(z.first())
+print(z.first())
+Map.addLayer(z.flatten().limit(1))
 // var imageList = images.toList(20, 0).getInfo();
 // print(imageList);
 
