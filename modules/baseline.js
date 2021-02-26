@@ -33,6 +33,39 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
   );
 };
 
+exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImages) {
+  return years.map(function(yr) {
+    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr));
+    var filterPerc = percentileImages.filter(ee.Filter.eq('year', yr));
+    
+    return filterPerc.bandNames().map(function(band) {
+      filterPerc.select(band)
+    })
+  })
+  
+  
+  // return ee.ImageCollection(percentileImages.map(function(percentImg) {
+  //     var bands = percentImg.bandNames();
+  //     var yr = percentImg.get('year');
+      
+  //     return ee.Image.cat(bands.map(function(band) {
+  //       var outname = 'gt-' + band;
+  //       var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
+  //                               .select(cmiBand);
+        
+  //       return ee.Image.cat(filtImgs.map(function(cmiImg) {
+  //         return ee.Image(cmiImg.addBands(
+  //           cmiImg.expression(
+  //             'cmi > percentile', {
+  //               'cmi': cmiImg.select(cmiBand),
+  //               'percentile': percentImg.select([band])
+  //               }).rename(outname))).aside(print);
+  //       }))
+  //     }))
+  //   })
+  // );
+};
+
 
 exports.antecedentPercentile = function(years, images, band, percentiles) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
