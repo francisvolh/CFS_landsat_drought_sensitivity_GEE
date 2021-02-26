@@ -15,7 +15,8 @@ exports.calcETMIN = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
       'tmin': img.select('tmin')
-    }).rename('ETMIN'));
+    }).rename('ETMIN'))
+      .copyProperties(img);
 };
 
 exports.calcETDEW = function(img) {
@@ -23,7 +24,8 @@ exports.calcETDEW = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
       'tmin': img.select('tmin')
-    }).rename('ETDEW'));
+    }).rename('ETDEW'))
+      .copyProperties(img);
 };
 
 
@@ -34,7 +36,8 @@ exports.calcVPD = function(img) {
       'ETMAX': img.select('ETMAX'),
       'ETMIN': img.select('ETMIN'),
       'ETDEW': img.select('ETDEW')
-    }).rename('VPD'));
+    }).rename('VPD'))
+      .copyProperties(img);
 };
 
 exports.calcTAVG515 = function(img) {
@@ -43,7 +46,8 @@ exports.calcTAVG515 = function(img) {
     '(1.0 * ((tmin + tmax) / 2) + 5) / 15', {
       'tmin': img.select('tmin'),
       'tmax': img.select('tmax')
-    }).rename('TAVG515'));
+    }).rename('TAVG515'))
+      .copyProperties(img);    
 };
 
 exports.calcKTRF = function(img) {
@@ -51,7 +55,8 @@ exports.calcKTRF = function(img) {
     img.select('TAVG515')
        .where(img.select('TAVG515').lt(0), 0)
        .where(img.select('TAVG515').gt(1), 1)
-       .rename('KTRF'));
+       .rename('KTRF'))
+      .copyProperties(img);       
 };
 
 exports.calcPET = function(img) {
@@ -63,7 +68,8 @@ exports.calcPET = function(img) {
       'ELEV': ee.Image("MERIT/DEM/v1_0_3")
       // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
       // or maybe use the daymet dem?
-    }).rename('PET'));
+    }).rename('PET'))
+      .copyProperties(img);
 };
 
 exports.calcCMI = function(img) {
@@ -72,5 +78,6 @@ exports.calcCMI = function(img) {
     '1.0 * (PREC - PET) / 10', {
       'PREC': img.select('prcp'),
       'PET': img.select('PET')
-    }).rename('CMI'));
+    }).rename('CMI'))
+      .copyProperties(img);
 };
