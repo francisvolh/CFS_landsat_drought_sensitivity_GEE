@@ -81,6 +81,7 @@ var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 print(base)
 print(aggDaymet)
 
+print(years)
 print(baseline.gtPercentileBands2(years, aggDaymet, 'CMI', base))
 // var imageList = images.toList(20, 0).getInfo();
 // print(imageList);
