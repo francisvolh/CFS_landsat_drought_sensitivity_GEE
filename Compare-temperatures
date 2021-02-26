@@ -37,10 +37,9 @@ terra = terra
   .filter(ee.Filter.calendarRange(2011, 2011, 'year'))
   .first();
 
-print(terra)
 // Combine ---------------------------------------------------------
-var max = ee.Image([terra.select('tmmx'), tmax])
-
+var max = ee.Image([terra.select('tmmx'), tmax]);
+var min = ee.Image([terra.select('tmmn'), tmin]);
 
 
 // Chart -----------------------------------------------------------
@@ -48,5 +47,6 @@ var max = ee.Image([terra.select('tmmx'), tmax])
 //                     combTerra6, combDay6, combTerra10, combDay10]);
 
 
-print(ui.Chart.image.byRegion(tmax, geometry));
+print(ui.Chart.image.byRegion(max, geometry));
+print(ui.Chart.image.byRegion(min, geometry));
   
