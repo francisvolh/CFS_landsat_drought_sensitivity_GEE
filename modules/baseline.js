@@ -19,7 +19,8 @@ exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
     return filtCMI.map(function(cmiImg) {
       return cmiImg.select(cmiBand)
                    .addBands(cmiImg.select(cmiBand)
-                                   .gt(percentImg));
+                                   .gt(percentImg))
+                   .addBands(percentImg);
     });
   }).flatten());
 };
