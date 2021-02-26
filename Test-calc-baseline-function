@@ -1,6 +1,6 @@
 // Calculate baselines
 var calcBaseline = function(img, cmiBand, percentileBand) {
-  var outname = 'CMI-gt-' + percentileBand;
+  var outname = cmiBand + '-gt-' + percentileBand;
 
   return img.addBands(
     img.expression(
