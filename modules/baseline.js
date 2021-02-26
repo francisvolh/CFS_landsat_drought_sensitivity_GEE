@@ -43,7 +43,7 @@ exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImage
   //     return cmiImg.select(cmiBand) 
   //                 .gt(filterPerc);
   //   })
-  // }))
+  }))
 };
   // return ee.ImageCollection(percentileImages.map(function(percentImg) {
   //     var bands = percentImg.bandNames();
