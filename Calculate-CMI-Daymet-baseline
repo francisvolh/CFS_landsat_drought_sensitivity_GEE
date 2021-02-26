@@ -82,14 +82,6 @@ var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
 
 var binned = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 
-// var imageList = images.toList(20, 0).getInfo();
-// print(imageList);
-
-// for (var i = 0; i < imageList.length; i++) {
-//   var img = imageList[i];
-//   Map.addLayer(ee.Image(img.id), visParamsSnow, img.id, false);
-// }
-
 
 // Map --------------------------------------------------------------
 // Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
