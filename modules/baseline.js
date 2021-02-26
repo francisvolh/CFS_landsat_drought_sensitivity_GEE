@@ -22,13 +22,13 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
                                 .select(cmiBand);
         
         return filtImgs.map(function(cmiImg) {
-          return cmiImg.addBands(
+          return ee.Image(cmiImg.addBands(
             cmiImg.expression(
               'cmi > percentile', {
                 'cmi': cmiImg.select(cmiBand),
                 'percentile': percentImg.select(band)
                 }).rename(outname));
-        });
+        }));
       });
     })
   );
