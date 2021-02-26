@@ -39,7 +39,7 @@ exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImage
     var filterPerc = percentileImages.filter(ee.Filter.eq('year', yr));
     
     return filterPerc.first().bandNames().map(function(band) {
-      filterPerc.select(band)
+      return filterPerc.select(band)
     })
   })
   
