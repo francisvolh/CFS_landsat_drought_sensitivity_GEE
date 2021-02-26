@@ -6,8 +6,7 @@ exports.calcETMAX = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
       'tmax': img.select('tmax')
-    }).rename('ETMAX'))
-      .copyProperties(img);
+    }).rename('ETMAX'));
 };
 
 exports.calcETMIN = function(img) {
@@ -15,8 +14,7 @@ exports.calcETMIN = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
       'tmin': img.select('tmin')
-    }).rename('ETMIN'))
-      .copyProperties(img);
+    }).rename('ETMIN'));
 };
 
 exports.calcETDEW = function(img) {
@@ -24,8 +22,7 @@ exports.calcETDEW = function(img) {
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
       'tmin': img.select('tmin')
-    }).rename('ETDEW'))
-      .copyProperties(img);
+    }).rename('ETDEW'));
 };
 
 
@@ -36,8 +33,7 @@ exports.calcVPD = function(img) {
       'ETMAX': img.select('ETMAX'),
       'ETMIN': img.select('ETMIN'),
       'ETDEW': img.select('ETDEW')
-    }).rename('VPD'))
-      .copyProperties(img);
+    }).rename('VPD'));
 };
 
 exports.calcTAVG515 = function(img) {
@@ -46,8 +42,7 @@ exports.calcTAVG515 = function(img) {
     '(1.0 * ((tmin + tmax) / 2) + 5) / 15', {
       'tmin': img.select('tmin'),
       'tmax': img.select('tmax')
-    }).rename('TAVG515'))
-      .copyProperties(img);    
+    }).rename('TAVG515'));
 };
 
 exports.calcKTRF = function(img) {
@@ -55,8 +50,7 @@ exports.calcKTRF = function(img) {
     img.select('TAVG515')
        .where(img.select('TAVG515').lt(0), 0)
        .where(img.select('TAVG515').gt(1), 1)
-       .rename('KTRF'))
-      .copyProperties(img);       
+       .rename('KTRF'));
 };
 
 exports.calcPET = function(img) {
@@ -67,9 +61,7 @@ exports.calcPET = function(img) {
       'KTRF': img.select('KTRF'),
       'ELEV': ee.Image("MERIT/DEM/v1_0_3")
       // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
-      // or maybe use the daymet dem?
-    }).rename('PET'))
-      .copyProperties(img);
+    }).rename('PET'));
 };
 
 exports.calcCMI = function(img) {
@@ -78,6 +70,5 @@ exports.calcCMI = function(img) {
     '1.0 * (PREC - PET) / 10', {
       'PREC': img.select('prcp'),
       'PET': img.select('PET')
-    }).rename('CMI'))
-      .copyProperties(img);
+    }).rename('CMI'));
 };
