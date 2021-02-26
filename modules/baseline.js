@@ -34,15 +34,13 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
 };
 
 exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImages) {
-  years.map(function(yr) {
+  ee.ImageCollection.fromImages(years.map(function(yr) {
     var filtCMI = ee.Image(cmiImages.filter(ee.Filter.eq('year', yr)));
     var filterPerc = ee.Image(percentileImages.filter(ee.Filter.eq('year', yr)));
     
-    var out = filtCMI.select(cmiBand) 
+    return filtCMI.select(cmiBand) 
                      .gt(filterPerc);
-    
-    return out
-  })
+  }))
   // return ee.ImageCollection(percentileImages.map(function(percentImg) {
   //     var bands = percentImg.bandNames();
   //     var yr = percentImg.get('year');
