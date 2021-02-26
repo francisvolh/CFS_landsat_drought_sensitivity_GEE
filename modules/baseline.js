@@ -10,41 +10,7 @@ exports.gtPercentile = function(img, cmiBand, percentileBand) {
     }).rename(outname));
 };
 
-exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
-  return ee.ImageCollection(percentileImages.map(function(percentImg) {
-      var bands = percentImg.bandNames();
-      var yr = percentImg.get('year');
-      
-      return ee.Image.cat(bands.map(function(band) {
-        var outname = 'gt-' + band;
-        var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
-                                .select(cmiBand);
-        
-        return ee.Image.cat(filtImgs.map(function(cmiImg) {
-          return ee.Image(cmiImg.addBands(
-            cmiImg.expression(
-              'cmi > percentile', {
-                'cmi': cmiImg.select(cmiBand),
-                'percentile': percentImg.select([band])
-                }).rename(outname))).aside(print);
-        }))
-      }))
-    })
-  );
-};
-
-exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImages) {
-  return ee.ImageCollection.fromImages(years.map(function(yr) {
-    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr));
-    var filterPerc = ee.Image(percentileImages.filter(ee.Filter.eq('year', yr)).first());
-    return filtCMI.map(function(cmiImg) {
-      return ee.Image.cat(cmiImg.select(cmiBand),
-                          cmiImg.select(cmiBand).gt(filterPerc))}).toBands();
-  }));
-};
-
-
-exports.gtPercentileBands3 = function(percentileImages, cmiImages, cmiBand) {
+exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
   return ee.ImageCollection(percentileImages.map(function(percentImg) {
     var yr = percentImg.get('year');
     
@@ -57,28 +23,6 @@ exports.gtPercentileBands3 = function(percentileImages, cmiImages, cmiBand) {
     });
   }).flatten());
 };
-
-
-  // return ee.ImageCollection(percentileImages.map(function(percentImg) {
-  //     var bands = percentImg.bandNames();
-  //     var yr = percentImg.get('year');
-      
-  //     return ee.Image.cat(bands.map(function(band) {
-  //       var outname = 'gt-' + band;
-  //       var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
-  //                               .select(cmiBand);
-        
-  //       return ee.Image.cat(filtImgs.map(function(cmiImg) {
-  //         return ee.Image(cmiImg.addBands(
-  //           cmiImg.expression(
-  //             'cmi > percentile', {
-  //               'cmi': cmiImg.select(cmiBand),
-  //               'percentile': percentImg.select([band])
-  //               }).rename(outname))).aside(print);
-  //       }))
-  //     }))
-  //   })
-  // );
 
 
 exports.antecedentPercentile = function(years, images, band, percentiles) {
