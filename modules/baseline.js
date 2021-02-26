@@ -10,6 +10,20 @@ exports.gtPercentile = function(img, cmiBand, percentileBand) {
     }).rename(outname));
 };
 
+exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
+  return ee.ImageCollection.fromImages(
+    percentileImages.bandNames().map(function(band) {
+      var outname = 'gt-' + band;
+      return img.addBands(
+        img.expression(
+        'cmi > percentile', {
+          'cmi': cmiImages.select(cmiBand),
+          'percentile': percentileImages.select(band)
+        }).rename(outname));
+      })
+    );
+};
+
 
 exports.antecedentPercentile = function(years, images, band, percentiles) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
@@ -21,11 +35,12 @@ exports.antecedentPercentile = function(years, images, band, percentiles) {
     var band12 = band + '_ante12';
     
     return ee.Image([
+      
       // Antecedent: 3 (months 3-6)
       images.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', 3, 6))
-              .select([band], [band3])
-              .reduce(ee.Reducer.percentile(percentiles)),
+            .filter(ee.Filter.rangeContains('month', 3, 6))
+            .select([band], [band3])
+            .reduce(ee.Reducer.percentile(percentiles)),
                
       // Antecedent: 6 (months 1-6)
       images.filter(ee.Filter.eq('year', yr))
