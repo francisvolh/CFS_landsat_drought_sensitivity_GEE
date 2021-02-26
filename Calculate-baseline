@@ -96,7 +96,8 @@ Map.addLayer(drought, null, 'drought/not drought');
 // })
 var bandname = 'CMI_ante3_p10'
 Export.video.toDrive({
-  'collection': base.select([bandname, bandname, bandname], [1, 2, 3]),
+  'collection': base.select([bandname, bandname, bandname], 
+                            ['1', '2', '3']),
   'description': 'baseline-gif-' + bandname,
   'region': geometry,
   'scale': 2000
