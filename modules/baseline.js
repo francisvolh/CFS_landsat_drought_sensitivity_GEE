@@ -15,8 +15,8 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
   return ee.ImageCollection.fromImages(
     bands.map(function(band) {
       var outname = 'gt-' + band;
-      return img.addBands(
-        img.expression(
+      return cmiImages.addBands(
+        cmiImages.expression(
         'cmi > percentile', {
           'cmi': cmiImages.select(cmiBand),
           'percentile': percentileImages.select(band)
