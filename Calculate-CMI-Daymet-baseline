@@ -116,7 +116,12 @@ var zzz = ee.ImageCollection.fromImages(
   })
 );
 
+var baseline = require('users/robitalec/CFS:modules/baseline.js');
+
+
 print(zzz)
+
+print(baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]))
 // Map -------------------------------------------------------------
 // Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
 // Map.addLayer(dem, null, 'dem');
