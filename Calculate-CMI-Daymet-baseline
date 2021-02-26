@@ -58,46 +58,7 @@ daymet = daymet
 var period3min = 4
 var period3min = 4
 
-//
-
-exports.aggregateY = function(years, images, reducer) {
-  return ee.ImageCollection.fromImages(
-    years.map(function(yr) {
-      return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
-                   .reduce(reducer)
-                   .set('year', yr);
-    })
-  );
-};
-
-var years = ee.List.sequence(minyear, maxyear);
-
-
-var zzz = ee.ImageCollection.fromImages(
-  years.map(function(yr) {
-    // June
-    var periodmax = 6
-    var period3min = 3
-    var period6min = 1
-    
-    // flex p names
-    
-    return ee.Image([
-      images.select('CMI')
-            .filter(ee.Filter.calendarRange(period3min, periodmax))
-            .reduce(ee.Reducer.percentile([5, 10, 15]))
-            .set('year', yr)
-            .rename(['period3_p5', 'period3_p10', 'period3_p15')
-      ])
-  })
-)
-
-
-
-
-
-
-  // .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
+// .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 // List of years and months
 var months = ee.List.sequence(minmonth, maxmonth);
@@ -125,6 +86,32 @@ aggDaymet = aggDaymet
   .map(cmi.calcKTRF)
   .map(cmi.calcPET)
   .map(cmi.calcCMI);
+
+
+
+//
+
+var years = ee.List.sequence(minyear, maxyear);
+
+
+var zzz = ee.ImageCollection.fromImages(
+  years.map(function(yr) {
+    // June
+    var periodmax = 6
+    var period3min = 3
+    var period6min = 1
+    
+    // flex p names
+    
+    return ee.Image([
+      images.select('CMI')
+            .filter(ee.Filter.calendarRange(period3min, periodmax))
+            .reduce(ee.Reducer.percentile([5, 10, 15]))
+            .set('year', yr)
+            .rename(['period3_p5', 'period3_p10', 'period3_p15')
+      ])
+  })
+)
 
 
 // Map -------------------------------------------------------------
