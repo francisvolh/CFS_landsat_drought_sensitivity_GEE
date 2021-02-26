@@ -9,7 +9,8 @@ var terra = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE");
 // DAYMET
 daymet = daymet
   .filter(ee.Filter.calendarRange(6, 6, 'month'))
-  .filter(ee.Filter.calendarRange(2011, 2011, 'year'));
+  .filter(ee.Filter.calendarRange(2011, 2011, 'year'))
+  .toBands();
 
 
 // TERRA
@@ -18,11 +19,12 @@ terra = terra
   .filter(ee.Filter.calendarRange(2011, 2011, 'year'))
   .first();
 
+
 // Chart -----------------------------------------------------------
-var all = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
-                    combTerra6, combDay6, combTerra10, combDay10]);
+// var all = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
+//                     combTerra6, combDay6, combTerra10, combDay10]);
 
 
-print(ui.Chart.image.byRegion(sub, 'REG_ID', 
-  ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
+// print(ui.Chart.image.byRegion(sub, 'REG_ID', 
+//   ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
   
