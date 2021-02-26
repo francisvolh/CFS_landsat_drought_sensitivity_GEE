@@ -75,13 +75,7 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 
-
-Export.video.toDrive({
-  'collection': base.select('CMI_ante3_p10'),
-  'description': 'baseline-gif',
-  'region': geometry,
-  'scale': 2000
-})
+print(base)
 // var imageList = images.toList(20, 0).getInfo();
 // print(imageList);
 
