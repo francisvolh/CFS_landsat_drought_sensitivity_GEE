@@ -94,12 +94,11 @@ aggDaymet = aggDaymet
 var periodmax = 6
 var period3min = 3
 var period6min = 1
-print(aggDaymet)
 var zzz = ee.ImageCollection.fromImages(
   years.map(function(yr) {
     // flex p names
     return ee.Image([
-      aggDaymet.filter(ee.Filter.calendarRange(period3min, periodmax))
+      aggDaymet.filter(ee.Filter.rangeContains('month', period3min, periodmax))
                .reduce(ee.Reducer.percentile([5, 10, 15]))
                .select('CMI')
                .set('year', yr)
