@@ -44,7 +44,7 @@ exports.gtPercentileBands2 = function(years, cmiImages, cmiBand, percentileImage
 };
 
 
-exports.gtPercentileBands2 = function(percentileImages, cmiImages, cmiBand) {
+exports.gtPercentileBands3 = function(percentileImages, cmiImages, cmiBand) {
   return percentileImages.map(function(percentImg) {
     var yr = percentImg.get('year')
     
