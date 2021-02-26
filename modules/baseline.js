@@ -28,7 +28,7 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
                 'cmi': cmiImg.select(cmiBand),
                 'percentile': percentImg.select(band)
                 }).rename(outname)));
-        }));
+        })).flatten();
       }));
     })
   );
