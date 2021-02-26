@@ -43,10 +43,8 @@ var min = ee.Image([terra.select('tmmn').divide(10), tmin]);
 
 
 // Chart -----------------------------------------------------------
-// var all = ee.Image([ref6, ref10, calcTerra6, calcTerra10, calcDay6, calcDay10,
-//                     combTerra6, combDay6, combTerra10, combDay10]);
-
-
-print(ui.Chart.image.byRegion(max, geometry));
-print(ui.Chart.image.byRegion(min, geometry));
-  
+print(ui.Chart.image.regions(max, geometry)
+        .setChartType('ScatterChart'));
+        
+print(ui.Chart.image.regions(min, geometry)
+        .setChartType('ScatterChart'));  
