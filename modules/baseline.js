@@ -11,8 +11,7 @@ exports.gtPercentile = function(img, cmiBand, percentileBand) {
 };
 
 exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
-  return ee.ImageCollection(
-    percentileImages.map(function(percentImg) {
+  return ee.ImageCollection(percentileImages.map(function(percentImg) {
       var bands = percentImg.bandNames();
       var yr = percentImg.get('year');
       
