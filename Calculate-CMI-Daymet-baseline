@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -11,7 +12,10 @@ var geometry =
           [-140.9168618223318, 54.39456198168257],
           [-111.20983057233182, 54.39456198168257],
           [-111.20983057233182, 66.91364880060213]]], null, false),
-    points = /* color: #d63000 */ee.Geometry.MultiPoint(
+    points = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPoint(
         [[-113.48063194392775, 56.90198668190897],
          [-118.05094444392775, 57.09347251437182],
          [-114.62321006892775, 58.03620289861265],
@@ -76,7 +80,10 @@ aggDaymet = aggDaymet
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', [5, 10, 15]);
 print(base)
 print(aggDaymet)
-print(baseline.gtPercentileBands(aggDaymet, 'CMI', base))
+
+var a = aggDaymet.select('CMI').first().gt(base.first())
+
+print(baseline.gtPercentileBands2(years, aggDaymet, 'CMI', base))
 // var imageList = images.toList(20, 0).getInfo();
 // print(imageList);
 
