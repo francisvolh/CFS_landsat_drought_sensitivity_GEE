@@ -116,32 +116,6 @@ var zzz = ee.ImageCollection.fromImages(
   })
 );
 
-exports.antecedentPercentile = function(years, images, band, percentiles) {
-  return ee.ImageCollection.fromImages(years.map(function(yr) {
-    var ante12max = ee.Date.fromYMD(yr, antemax, 1);
-    
-    return ee.Image([
-      // Antecedent: 3
-      aggDaymet.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', ante3min, antemax))
-              .select(['CMI'], ['CMI_ante3'])
-              .reduce(ee.Reducer.percentile([5, 10, 15])),
-               
-      // Antecedent: 6
-      aggDaymet.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', ante6min, antemax))
-              .select(['CMI'], ['CMI_ante6'])
-              .reduce(ee.Reducer.percentile([5, 10, 15])),
-               
-      // Antecedent: 12
-      aggDaymet.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
-                                      ante12max))
-              .select(['CMI'], ['CMI_ante12'])
-              .reduce(ee.Reducer.percentile([5, 10, 15]))
-      ]).set('year', yr);
-  }))
-};
-
 print(zzz)
 // Map -------------------------------------------------------------
 // Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
