@@ -88,7 +88,6 @@ aggDaymet = aggDaymet
   .map(cmi.calcPET)
   .map(cmi.calcCMI)
 
-
 //
 
 
@@ -100,9 +99,9 @@ var zzz = ee.ImageCollection.fromImages(
   years.map(function(yr) {
     // flex p names
     return ee.Image([
-      aggDaymet.select('CMI')
-               .filter(ee.Filter.calendarRange(period3min, periodmax))
+      aggDaymet.filter(ee.Filter.calendarRange(period3min, periodmax))
                .reduce(ee.Reducer.percentile([5, 10, 15]))
+               .select('CMI')
                .set('year', yr)
                .rename(['period3_p5', 'period3_p10', 'period3_p15'])
       ])
