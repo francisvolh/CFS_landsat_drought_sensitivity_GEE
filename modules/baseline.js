@@ -21,14 +21,14 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
         var filtImgs = cmiImages.filter(ee.Filter.eq('year', yr))
                                 .select(cmiBand);
         
-        return filtImgs.addBands(
-          filtImgs.gt(percentImg.select(band))
-          // expression(
-          // 'cmi > percentile', {
-          //   'cmi': filtImgs.select(cmiBand),
-          //   'percentile': percentImg.select(band)
-          // })
-          .rename(outname));
+        return filtImgs.map(function(cmiImg) {
+          cmiImg.addBands(
+            cmiImg.expression(
+              'cmi > percentile', {
+                'cmi': cmiImg.select(cmiBand),
+                'percentile': percentImg.select(band)
+                }).rename(outname));
+        });
       });
     })
   );
