@@ -87,27 +87,6 @@ var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 Map.addLayer(drought, null, 'drought/not drought');
 
 
-// Chart -----------------------------------------------------------
-var ts = ui.Chart.image.doySeriesByYear({
-  imageCollection: drought.select(['CMI_ante3_p10', 'CMI_ante6_p10', 'CMI_ante12_p10']),
-  region: points,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
-});
-print(ts);
-
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: drought.select(['CMI_ante3_p10', 'CMI_ante6_p10', 'CMI_ante12_p10']),
-  regions: points,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 500,
-  xProperty: 'system:time_start',
-  seriesProperty: 'system:index'
-});
-print(ts);
-
 // Export ----------------------------------------------------------------
 // Export.image.toDrive({
 //   'image': aggDaymet.first().float(),
@@ -115,3 +94,10 @@ print(ts);
 //   'region': ctef,
 //   'scale': 500
 // })
+
+Export.video.toDrive({
+  'collection': base.select(['CMI_ante6_p10', 'CMI_ante6_p10', 'CMI_ante6_p10']),
+  'description': 'baseline-gif',
+  'region': geometry,
+  'scale': 2000
+})
