@@ -61,6 +61,7 @@ exports.calcPET = function(img) {
       'KTRF': img.select('KTRF'),
       'ELEV': ee.Image("MERIT/DEM/v1_0_3")
       // ee.ImageCollection("NRCan/CDEM").select('elevation').mosaic()
+      // or maybe use the daymet dem?
     }).rename('PET'));
 };
 
