@@ -91,21 +91,32 @@ aggDaymet = aggDaymet
 //
 
 
-var periodmax = 6
-var period3min = 3
-var period6min = 1
+var antemax = 6;
+var ante3min = 3;
+var ante6min = 1;
+
 var zzz = ee.ImageCollection.fromImages(
   years.map(function(yr) {
-    // flex p names
     return ee.Image([
-      aggDaymet.filter(ee.Filter.rangeContains('month', period3min, periodmax))
+      aggDaymet.filter(ee.Filter.rangeContains('month', ante3min, antemax))
+               .select(['CMI'], ['CMI_ante3'])
+               .reduce(ee.Reducer.percentile([5, 10, 15])),
+      aggDaymet.filter(ee.Filter.rangeContains('month', ante6min, antemax))
+               .select(['CMI'], ['CMI_ante6'])
+               .reduce(ee.Reducer.percentile([5, 10, 15])),
+               
+              // go back to add date so you can use dates specifically
+              // and combine dates from ymd
+              // there must be another filter function fpor dates?
+            
+      aggDaymet.filter(ee.Filter.rangeContains('year', ante6min, antemax))
+               .filter(ee.Filter.rangeContains('month', ante6min, antemax))
+               .select(['CMI'], ['CMI_ante6'])
                .reduce(ee.Reducer.percentile([5, 10, 15]))
-               .select('CMI')
-               .set('year', yr)
-               .rename(['period3_p5', 'period3_p10', 'period3_p15'])
-      ])
+               
+      ]).set('year', yr);
   })
-)
+);
 
 print(zzz)
 
