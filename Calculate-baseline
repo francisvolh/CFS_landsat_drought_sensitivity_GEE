@@ -97,7 +97,8 @@ Map.addLayer(drought, null, 'drought/not drought');
 var bandname = 'CMI_ante12_p10'
 Export.video.toDrive({
   'collection': base.select([bandname, bandname, bandname], 
-                            ['1', '2', '3']),
+                            ['1', '2', '3'])
+                     .cast({'1':'uint8', '2':'uint8', '3':'uint8'}),
   'description': 'baseline-gif-' + bandname,
   'region': geometry,
   'scale': 2000
