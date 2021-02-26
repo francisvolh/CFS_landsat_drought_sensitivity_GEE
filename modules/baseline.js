@@ -29,7 +29,7 @@ exports.gtPercentileBands = function(cmiImages, cmiBand, percentileImages) {
                 }).rename(outname)));
         }))
       }))
-    }).flatten()
+    })
   );
 };
 
