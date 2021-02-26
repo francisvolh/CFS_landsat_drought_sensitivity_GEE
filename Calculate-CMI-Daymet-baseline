@@ -30,20 +30,37 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 // DAYMET
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
-// CTEF
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-  .filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+// DEM
+var dem = ee.ImageCollection("NRCan/CDEM");
+
+dem = dem.filterBounds(geometry)
+        .mosaic();
 
 
 // Aggregate --------------------------------------------------------
 // Filter
 var minyear = 1981;
 var maxyear = 2019;
-var minmonth = 6;
-var maxmonth = 8;
+
 
 daymet = daymet
-  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
+
+
+// Three periods
+// - [ ]  loop through each combination july 1 and year
+// - [ ]  make three variables
+// - [ ]  3 month = july 1 - 3 months
+// - [ ]  6 month = july - 6 months
+// - [ ]  12 month = july 1 - 1 year, minus the year
+// - [ ]  calculate percentiles
+// - [ ]  output a 3, 6, 12 for each as a image bands and each of the percentiles
+var period3min = 4
+var period3min = 4
+
+//
+
+
   .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 // List of years and months
@@ -54,16 +71,15 @@ var months = ee.List.sequence(minmonth, maxmonth);
 var reducer = ee.Reducer.mean()
   .combine(ee.Reducer.sum(), null, true);
 
-// Aggregate monthly for each month and year
-// var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
-
 // Aggregate monthly for each year
-var aggDaymet = agg.aggregateY(years, daymet, reducer);
+var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                               ['tmin', 'tmax', 'prcp']);
 
+// Subset for now *****
+// aggDaymet = aggDaymet.filter(ee.Filter.eq('month', 6)).limit(3);
 
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
@@ -76,87 +92,41 @@ aggDaymet = aggDaymet
   .map(cmi.calcCMI);
 
 
-
-// Reduce ----------------------------------------------------------
-// var reduced = aggDaymet.map(function(img) {
-//   return img.reduceRegions({
-//     'collection': ctef, 
-//     'reducer': ee.Reducer.mean(), 
-//     'scale': 1000
-//   });
-// }).flatten();
-
-
-var baseline = aggDaymet.filter(ee.Filter.rangeContains('year', 1981, 2000))
-
-var percent = baseline
-  .select('CMI')
-  .reduce(ee.Reducer.percentile([5, 10, 70, 80, 90])
-            .combine(
-              ee.Reducer.min()
-                .combine(
-                  ee.Reducer.max(), null, true),
-                  null, true)
-              );
-              
-
-// var redpercent = percent.reduceRegions({
-//     'collection': ctef, 
-//     'reducer': ee.Reducer.mean(), 
-//     'scale': 1000
-//   });
-
-// print(ui.Chart.feature.byFeature(redpercent, 'REG_ID', 
-//   ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
-  
-  
-// Export ----------------------------------------------------------
-
-
 // Map -------------------------------------------------------------
-Map.addLayer(percent.select('CMI_p5'), {'min': -40, 'max':40, "palette":["ff0000","ffffff","0008ff"]}, 'percentile');
+Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
+Map.addLayer(dem, null, 'dem');
 
 
-
-var sub = aggDaymet
-  .filter(ee.Filter.rangeContains('year', 2001, 2020))
-  .select('CMI')
-  .map(function(img) {
-    return img.addBands(img.gt(percent.select('CMI_p5')).rename('CMI-greater-than-percentile'))
-  })
-
-
-Map.addLayer(sub, {'min':0, 'max':1}, 'CMI greater than percentile')
-
-print(ui.Chart.image.byRegion(sub, 'REG_ID', 
-  ['CMI_max', 'CMI_min', 'CMI_p10', 'CMI_p70', 'CMI_p80', 'CMI_p90']));
-  
 // Chart -----------------------------------------------------------
-// If monthly + yearly ===
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+var points = ee.FeatureCollection.randomPoints(ctef, 10);
+
 // Add pseudo middle of the month date, for chart
-// sub = sub.map(function(img) {
-//   return img.set('system:time_start',
-//                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
-// });
-
-// var ts = ui.Chart.image.doySeriesByYear({
-//   imageCollection: sub,
-//   region: points,
-//   regionReducer: ee.Reducer.mean(),
-//   bandName: 'CMI',
-//   scale: 500
-// });
-// print(ts);
-
-
-// If yearly ===
 aggDaymet = aggDaymet.map(function(img) {
   return img.set('system:time_start',
-                 ee.Date.fromYMD(img.get('year'), 6, 15));
+                 ee.Date.fromYMD(img.get('year'), img.get('month'), 15));
 });
 
-// CMI histogram
-// print(ui.Chart.feature.histogram(reduced, 'CMI', 10));
+var ts = ui.Chart.image.doySeriesByYear({
+  imageCollection: aggDaymet,
+  region: points,
+  regionReducer: ee.Reducer.mean(),
+  bandName: 'CMI',
+  scale: 500
+});
+print(ts);
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: aggDaymet,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'system:index'
+});
+print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -167,6 +137,28 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-// print(ts);
+print(ts)
 
+// Bin CMI, drought/not drought
+// Mean in each CTEF region
+aggDaymet = aggDaymet.map(function(img) {
+  return img.addBands(img.select('CMI').lt(0).rename('binnedCMI'));
+});
 
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: aggDaymet,
+  regions: ctef,
+  reducer: ee.Reducer.mean(),
+  band: 'binnedCMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'REG_ID'
+});
+print(ts)
+
+Export.image.toDrive({
+  'image': aggDaymet.first().float(),
+  'description': 'cmi-12-06',
+  'region': ctef,
+  'scale': 500
+})
