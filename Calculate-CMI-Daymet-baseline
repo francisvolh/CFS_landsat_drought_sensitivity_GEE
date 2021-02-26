@@ -39,8 +39,8 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 1981;
-var maxyear = 2019;
+var minyear = 2010;
+var maxyear = 2020;
 
 
 daymet = daymet
@@ -60,11 +60,46 @@ var period3min = 4
 
 //
 
+exports.aggregateY = function(years, images, reducer) {
+  return ee.ImageCollection.fromImages(
+    years.map(function(yr) {
+      return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                   .reduce(reducer)
+                   .set('year', yr);
+    })
+  );
+};
 
-  .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
+var years = ee.List.sequence(minyear, maxyear);
+
+
+var zzz = ee.ImageCollection.fromImages(
+  years.map(function(yr) {
+    // June
+    var periodmax = 6
+    var period3min = 3
+    var period6min = 1
+    
+    // flex p names
+    
+    return ee.Image([
+      images.select('CMI')
+            .filter(ee.Filter.calendarRange(period3min, periodmax))
+            .reduce(ee.Reducer.percentile([5, 10, 15]))
+            .set('year', yr)
+            .rename(['period3_p5', 'period3_p10', 'period3_p15')
+      ])
+  })
+)
+
+
+
+
+
+
+  // .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'));
 
 // List of years and months
-var years = ee.List.sequence(minyear, maxyear);
 var months = ee.List.sequence(minmonth, maxmonth);
 
 // Reducer
@@ -93,8 +128,8 @@ aggDaymet = aggDaymet
 
 
 // Map -------------------------------------------------------------
-Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
-Map.addLayer(dem, null, 'dem');
+// Map.addLayer(aggDaymet.select('CMI'), null, 'CMI');
+// Map.addLayer(dem, null, 'dem');
 
 
 // Chart -----------------------------------------------------------
@@ -126,7 +161,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'system:index'
 });
-print(ts);
+// print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: aggDaymet,
@@ -137,7 +172,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+// print(ts)
 
 // Bin CMI, drought/not drought
 // Mean in each CTEF region
@@ -154,7 +189,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+// print(ts)
 
 Export.image.toDrive({
   'image': aggDaymet.first().float(),
