@@ -20,7 +20,8 @@ exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
       return cmiImg.select(cmiBand)
                    .addBands(cmiImg.select(cmiBand)
                                    .gt(percentImg))
-                   .addBands(percentImg);
+                  // Toggle on the percent values to check
+                  // .addBands(percentImg);
     });
   }).flatten());
 };
