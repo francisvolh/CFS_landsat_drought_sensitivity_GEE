@@ -107,7 +107,7 @@ aggDaymet = aggDaymet
 var percentiles = [10];
 var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
 
-var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
+var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
 
 
 // Map --------------------------------------------------------------
