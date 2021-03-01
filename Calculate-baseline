@@ -67,6 +67,7 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
+
 // Aggregate --------------------------------------------------------
 // Filter
 var minyear = 1989;
@@ -132,12 +133,11 @@ var args = {
 };
 
 var thumb = ui.Thumbnail({
-  image: drought.select('CMI_ante6_p10'),
+  image: drought.select('CMI'),
   params: args,
   style: {
     position: 'bottom-right',
-    width: '320px',
-    label: 'year'
+    width: '320px'
   }});
 Map.add(thumb);
 
@@ -145,7 +145,7 @@ Map.add(thumb);
 // Export ----------------------------------------------------------------
 var bandname = 'CMI_ante6_p10'
 // Export.video.toDrive({
-//   'collection': drought.select([bandname, bandname, bandname], 
+//   'collection': drought.select([bandname, bandname, bandname],
 //                             ['1', '2', '3'])
 //                       .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
 //                             ['1', '2', '3']),
@@ -156,7 +156,7 @@ var bandname = 'CMI_ante6_p10'
 
 var bandname = 'CMI'
 // Export.video.toDrive({
-//   'collection': aggDaymet.select([bandname, bandname, bandname], 
+//   'collection': aggDaymet.select([bandname, bandname, bandname],
 //                             ['1', '2', '3'])
 //                     .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
 //                           ['1', '2', '3']),
@@ -169,6 +169,9 @@ var bandname = 'CMI'
 
 
 // Chart -------------------------------------------------------------------------
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
   regions: ctef,
