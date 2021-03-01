@@ -63,12 +63,9 @@ var baseline = require('users/robitalec/CFS:modules/baseline.js');
 // DAYMET
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
-// DEM
-var dem = ee.ImageCollection("NRCan/CDEM");
-
-dem = dem.filterBounds(geometry)
-        .mosaic();
-
+// CTEF regions
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
 // Aggregate --------------------------------------------------------
 // Filter
@@ -135,11 +132,12 @@ var args = {
 };
 
 var thumb = ui.Thumbnail({
-  image: drought.select('CMI'),
+  image: drought.select('CMI_ante6_p10'),
   params: args,
   style: {
     position: 'bottom-right',
-    width: '320px'
+    width: '320px',
+    label: 'year'
   }});
 Map.add(thumb);
 
@@ -171,9 +169,6 @@ var bandname = 'CMI'
 
 
 // Chart -------------------------------------------------------------------------
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
-
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
   regions: ctef,
