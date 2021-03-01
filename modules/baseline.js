@@ -14,7 +14,8 @@ exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
   return ee.ImageCollection(percentileImages.map(function(percentImg) {
     var yr = percentImg.get('year');
     
-    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr));
+    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
+                           .filter(ee.Filter.eq('month', 7));
 
     return filtCMI.map(function(cmiImg) {
       return cmiImg.select(cmiBand)
