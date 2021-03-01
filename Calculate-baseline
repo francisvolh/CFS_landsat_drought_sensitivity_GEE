@@ -159,6 +159,10 @@ var thumb = ui.Thumbnail({
 // Map.add(thumb);
 
 
+var animation = require('users/gena/packages:animation')
+animation.animate(drought.select('CMI'), {label: 'year', maxFrames: 50})  
+
+
 // Export ----------------------------------------------------------------
 var bandname = 'CMI_ante6_p10';
 // Export.video.toDrive({
