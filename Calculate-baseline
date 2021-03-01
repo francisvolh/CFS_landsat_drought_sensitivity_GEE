@@ -131,11 +131,11 @@ var args = {
   region: geometry,
   min: 0,
   max: 1,
-  framesPerSecond: 12,
+  framesPerSecond: 3,
 };
 
 var thumb = ui.Thumbnail({
-  image: drought.select('CMI_ante12_p10'),
+  image: drought.select('CMI'),
   params: args,
   style: {
     position: 'bottom-right',
@@ -146,26 +146,26 @@ Map.add(thumb);
 
 // Export ----------------------------------------------------------------
 var bandname = 'CMI_ante6_p10'
-Export.video.toDrive({
-  'collection': drought.select([bandname, bandname, bandname], 
-                            ['1', '2', '3'])
-                       .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
-                             ['1', '2', '3']),
-  'description': 'baseline-gif-' + bandname,
-  'region': geometry,
-  'scale': 2000
-})
+// Export.video.toDrive({
+//   'collection': drought.select([bandname, bandname, bandname], 
+//                             ['1', '2', '3'])
+//                       .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
+//                             ['1', '2', '3']),
+//   'description': 'baseline-gif-' + bandname,
+//   'region': geometry,
+//   'scale': 2000
+// })
 
 var bandname = 'CMI'
-Export.video.toDrive({
-  'collection': aggDaymet.select([bandname, bandname, bandname], 
-                            ['1', '2', '3'])
-                    .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
-                          ['1', '2', '3']),
-  'description': 'daymet-gif-' + bandname,
-  'region': geometry,
-  'scale': 2000
-})
+// Export.video.toDrive({
+//   'collection': aggDaymet.select([bandname, bandname, bandname], 
+//                             ['1', '2', '3'])
+//                     .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
+//                           ['1', '2', '3']),
+//   'description': 'daymet-gif-' + bandname,
+//   'region': geometry,
+//   'scale': 2000
+// })
 
 
 
