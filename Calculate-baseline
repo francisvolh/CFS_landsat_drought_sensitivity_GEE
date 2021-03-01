@@ -133,6 +133,25 @@ var args = {
 };
 
 var thumb = ui.Thumbnail({
+  image: drought.select('CMI_ante6_p10'),
+  params: args,
+  style: {
+    position: 'bottom-right',
+    width: '320px'
+  }});
+Map.add(thumb);
+
+
+var args = {
+  dimensions: '300',
+  region: geometry,
+  min: -40,
+  max: 40,
+  framesPerSecond: 1,
+  palette: ["ff0000","ffffff","0008ff"]
+};
+
+var thumb = ui.Thumbnail({
   image: drought.select('CMI'),
   params: args,
   style: {
