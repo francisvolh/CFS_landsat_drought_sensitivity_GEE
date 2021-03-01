@@ -125,6 +125,25 @@ Map.addLayer(drought.filter(ee.Filter.eq('year', 2010)).filter(ee.Filter.eq('mon
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2019)).filter(ee.Filter.eq('month', 6))
                     .select('CMI_ante3_p10'), null, '2019');
 
+
+var args = {
+  dimensions: '300',
+  region: geometry,
+  min: 0,
+  max: 1,
+  framesPerSecond: 12,
+};
+
+var thumb = ui.Thumbnail({
+  image: drought.select('CMI_ante12_p10'),
+  params: args,
+  style: {
+    position: 'bottom-right',
+    width: '320px'
+  }});
+Map.add(thumb);
+
+
 // Export ----------------------------------------------------------------
 var bandname = 'CMI_ante6_p10'
 Export.video.toDrive({
@@ -147,6 +166,9 @@ Export.video.toDrive({
   'region': geometry,
   'scale': 2000
 })
+
+
+
 
 // Chart -------------------------------------------------------------------------
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
