@@ -155,7 +155,7 @@ var thumb = ui.Thumbnail({
   image: drought.select('CMI'),
   params: args,
   style: {
-    position: 'bottom-right',
+    position: 'bottom-left',
     width: '320px'
   }});
 Map.add(thumb);
