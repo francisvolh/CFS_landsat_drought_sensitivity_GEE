@@ -131,7 +131,7 @@ var args = {
   region: geometry,
   min: 0,
   max: 1,
-  framesPerSecond: 3,
+  framesPerSecond: 1,
 };
 
 var thumb = ui.Thumbnail({
