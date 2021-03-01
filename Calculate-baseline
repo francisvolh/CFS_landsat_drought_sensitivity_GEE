@@ -64,8 +64,8 @@ var baseline = require('users/robitalec/CFS:modules/baseline.js');
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
 // CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 
 // Aggregate --------------------------------------------------------
@@ -161,7 +161,7 @@ Map.add(thumb);
 
 
 // Export ----------------------------------------------------------------
-var bandname = 'CMI_ante6_p10'
+var bandname = 'CMI_ante6_p10';
 // Export.video.toDrive({
 //   'collection': drought.select([bandname, bandname, bandname],
 //                             ['1', '2', '3'])
@@ -172,7 +172,7 @@ var bandname = 'CMI_ante6_p10'
 //   'scale': 2000
 // })
 
-var bandname = 'CMI'
+var bandname = 'CMI';
 // Export.video.toDrive({
 //   'collection': aggDaymet.select([bandname, bandname, bandname],
 //                             ['1', '2', '3'])
@@ -187,9 +187,6 @@ var bandname = 'CMI'
 
 
 // Chart -------------------------------------------------------------------------
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
-
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
   regions: ctef,
@@ -199,7 +196,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+print(ts);
 
 
 var ts = ui.Chart.image.seriesByRegion({
@@ -211,7 +208,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
@@ -222,7 +219,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+print(ts);
 
 
 var ts = ui.Chart.image.seriesByRegion({
@@ -234,6 +231,6 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts)
+print(ts);
 
 
