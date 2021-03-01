@@ -161,8 +161,8 @@ var thumb = ui.Thumbnail({
 
 var animation = require('users/gena/packages:animation');
 var thumbdrought = drought.map(function(img) {
-  return img.select('CMI')
-            .set('yearstring', ee.String(img.get('year')))
+  return img.set('yearstring', ee.String(img.get('year')))
+            .select('CMI')
             .visualize({
                 min: -40,
                 max: 40,
