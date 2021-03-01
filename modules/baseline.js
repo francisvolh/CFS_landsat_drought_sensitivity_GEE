@@ -11,13 +11,13 @@ exports.antecedentPercentile = function(years, images, band, percentiles) {
 
       // Antecedent: 3 (months 3-6)
       images.filter(ee.Filter.eq('year', yr))
-            .filter(ee.Filter.rangeContains('month', 3, 7))
+            .filter(ee.Filter.rangeContains('month', 3, 6))
             .select([band], [band3])
             .reduce(ee.Reducer.percentile(percentiles)),
 
       // Antecedent: 6 (months 1-6)
       images.filter(ee.Filter.eq('year', yr))
-              .filter(ee.Filter.rangeContains('month', 1, 7))
+              .filter(ee.Filter.rangeContains('month', 1, 6))
               .select([band], [band6])
               .reduce(ee.Reducer.percentile(percentiles)),
 
