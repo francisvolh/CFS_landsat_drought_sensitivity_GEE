@@ -159,10 +159,9 @@ var thumb = ui.Thumbnail({
 // Map.add(thumb);
 
 
-var animation = require('users/gena/packages:animation')
-print(drought)
-drought = drought.map(function(img) {img.set('yearstring', ee.String(year))})
-animation.animate(drought.select('CMI'), {label: 'yearstring', maxFrames: 50})  
+var animation = require('users/gena/packages:animation');
+drought = drought.map(function(img) {return img.set('yearstring', ee.String(img.get('year')))});
+animation.animate(drought.select('CMI'), {label: 'yearstring', maxFrames: 50});
 
 
 // Export ----------------------------------------------------------------
