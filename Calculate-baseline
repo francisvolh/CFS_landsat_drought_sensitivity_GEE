@@ -84,9 +84,9 @@ var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 
 
 // Map --------------------------------------------------------------
-Map.addLayer(drought, null, 'drought/not drought');
+// Map.addLayer(drought, null, 'drought/not drought');
 
-
+Map.addLayer(ee.Image.rgb(drought.first().select('CMI_ante12_p10'),drought.first().select('CMI_ante12_p10'),drought.first().select('CMI_ante12_p10')))
 // Export ----------------------------------------------------------------
 // Export.image.toDrive({
 //   'image': aggDaymet.first().float(),
@@ -118,4 +118,4 @@ Export.video.toDrive({
 
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
-Map.addLayer(ctef)
+// Map.addLayer(ctef)
