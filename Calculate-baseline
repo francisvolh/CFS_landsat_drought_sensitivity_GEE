@@ -121,7 +121,7 @@ Map.addLayer(drought.filter(ee.Filter.eq('year', 2010))
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2019))
                     .select('CMI_ante3_p10'), null, '2019');
 
-
+// Animate ----------------------------------------------------------
 var args = {
   dimensions: '500',
   region: geometry,
@@ -137,7 +137,7 @@ var thumb = ui.Thumbnail({
     position: 'bottom-right',
     width: '320px'
   }});
-Map.add(thumb);
+// Map.add(thumb);
 
 
 var args = {
