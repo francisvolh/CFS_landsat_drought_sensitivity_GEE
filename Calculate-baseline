@@ -195,7 +195,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts);
+// print(ts);
 
 
 var ts = ui.Chart.image.seriesByRegion({
@@ -207,7 +207,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts);
+// print(ts);
 
 var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
@@ -218,7 +218,7 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts);
+// print(ts);
 
 
 var ts = ui.Chart.image.seriesByRegion({
@@ -230,6 +230,6 @@ var ts = ui.Chart.image.seriesByRegion({
   xProperty: 'system:time_start',
   seriesProperty: 'REG_ID'
 });
-print(ts);
+// print(ts);
 
 
