@@ -156,7 +156,7 @@ var thumb = ui.Thumbnail({
     position: 'bottom-left',
     width: '320px'
   }});
-Map.add(thumb);
+// Map.add(thumb);
 
 
 // Export ----------------------------------------------------------------
