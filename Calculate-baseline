@@ -162,3 +162,14 @@ var ts = ui.Chart.image.seriesByRegion({
   seriesProperty: 'REG_ID'
 });
 print(ts)
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: drought,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI_ante12_p10',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'system:index'
+});
+print(ts);
