@@ -14,6 +14,7 @@ exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
   return ee.ImageCollection(percentileImages.map(function(percentImg) {
     var yr = percentImg.get('year');
     
+    // Compare percentile images to July of each year
     var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
                            .filter(ee.Filter.eq('month', 7));
 
