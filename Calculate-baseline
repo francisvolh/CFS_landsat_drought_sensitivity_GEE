@@ -169,7 +169,7 @@ var thumbdrought = drought.map(function(img) {
             })
             .set('yearstring', ee.String(img.get('year')));
 });
-animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 2500});
+animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Export ----------------------------------------------------------------
