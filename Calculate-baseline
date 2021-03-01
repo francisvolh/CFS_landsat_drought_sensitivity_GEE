@@ -161,14 +161,14 @@ var thumb = ui.Thumbnail({
 
 var animation = require('users/gena/packages:animation');
 var thumbdrought = drought.map(function(img) {
-  return img.set('yearstring', ee.String(img.get('year')))
-            .select('CMI')
-            .visualize({
+  return img.select('CMI')
+            .set('yearstring', ee.String(img.get('year')))
+            ;
+}).visualize({
                 min: -40,
                 max: 40,
                 palette: ["ff0000","ffffff","0008ff"]
             });
-});
 animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timestep: 2});
 
 
