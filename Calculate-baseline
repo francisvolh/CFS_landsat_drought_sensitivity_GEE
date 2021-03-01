@@ -111,7 +111,7 @@ var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
 
 var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 
-print(drought)
+
 // Map --------------------------------------------------------------
 Map.addLayer(drought.filter(ee.Filter.eq('year', 1990)).filter(ee.Filter.eq('month', 6))
                     .select('CMI_ante3_p10'), null, '1990');
@@ -160,7 +160,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
 var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: aggDaymet,
+  imageCollection: drought,
   regions: ctef,
   reducer: ee.Reducer.mean(),
   band: 'CMI_ante12_p10',
