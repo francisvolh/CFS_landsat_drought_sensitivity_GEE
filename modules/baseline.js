@@ -1,15 +1,3 @@
-// Calculate baselines
-exports.gtPercentile = function(img, cmiBand, percentileBand) {
-  var outname = cmiBand + '-gt-' + percentileBand;
-
-  return img.addBands(
-    img.expression(
-    'cmi > percentile', {
-      'cmi': img.select(cmiBand),
-      'percentile': img.select(percentileBand)
-    }).rename(outname));
-};
-
 exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
   return ee.ImageCollection(percentileImages.map(function(percentImg) {
     var yr = percentImg.get('year');
