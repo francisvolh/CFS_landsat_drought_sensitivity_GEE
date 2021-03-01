@@ -8,10 +8,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.9168618223318, 66.91364880060213],
-          [-140.9168618223318, 54.39456198168257],
-          [-111.20983057233182, 54.39456198168257],
-          [-111.20983057233182, 66.91364880060213]]], null, false),
+        [[[-142.1473305723318, 65.07300584830517],
+          [-142.1473305723318, 60.19718852129611],
+          [-133.00670557233178, 60.19718852129611],
+          [-133.00670557233178, 65.07300584830517]]], null, false),
     points = 
     /* color: #d63000 */
     /* shown: false */
@@ -115,3 +115,7 @@ Export.video.toDrive({
   'region': geometry,
   'scale': 2000
 })
+
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
+Map.addLayer(ctef)
