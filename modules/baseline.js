@@ -1,22 +1,3 @@
-exports.gtPercentileBands = function(percentileImages, cmiImages, cmiBand) {
-  return ee.ImageCollection(percentileImages.map(function(percentImg) {
-    var yr = percentImg.get('year');
-    
-    // Compare percentile images to July of each year
-    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
-                           .filter(ee.Filter.eq('month', 7));
-
-    return filtCMI.map(function(cmiImg) {
-      return cmiImg.select(cmiBand)
-                   .addBands(cmiImg.select(cmiBand)
-                                   .gt(percentImg))
-                  // Toggle on the percent values to check
-                  // .addBands(percentImg);
-    });
-  }).flatten());
-};
-
-
 exports.antecedentPercentile = function(years, images, band, percentiles) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     // antemax - July 1
@@ -48,3 +29,24 @@ exports.antecedentPercentile = function(years, images, band, percentiles) {
       ]).set('year', yr);
   }));
 };
+
+exports.gtPercentiles = function(percentileImages, cmiImages, cmiBand) {
+  return ee.ImageCollection(percentileImages.map(function(percentImg) {
+    var yr = percentImg.get('year');
+    
+    // Compare percentile images to July of each year
+    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
+                           .filter(ee.Filter.eq('month', 7));
+
+    return filtCMI.map(function(cmiImg) {
+      return cmiImg.select(cmiBand)
+                   .addBands(cmiImg.select(cmiBand)
+                                   .gt(percentImg))
+                  // Toggle on the percent values to check
+                  // .addBands(percentImg);
+    });
+  }).flatten());
+};
+
+
+
