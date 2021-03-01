@@ -12,18 +12,47 @@ var geometry =
           [-142.1473305723318, 60.19718852129611],
           [-133.00670557233178, 60.19718852129611],
           [-133.00670557233178, 65.07300584830517]]], null, false),
-    points = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.MultiPoint(
-        [[-113.48063194392775, 56.90198668190897],
-         [-118.05094444392775, 57.09347251437182],
-         [-114.62321006892775, 58.03620289861265],
-         [-140.11149131892773, 65.22371790972659],
-         [-135.36539756892773, 64.96462771914855],
-         [-138.35367881892773, 65.77047141676313],
-         [-138.52946006892773, 63.97996380883197],
-         [-136.68375694392773, 63.864055374784634]]);
+    points = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Point([-113.48063194392775, 56.90198668190897]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-118.05094444392775, 57.09347251437182]),
+            {
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-114.62321006892775, 58.03620289861265]),
+            {
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-140.11149131892773, 65.22371790972659]),
+            {
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-135.36539756892773, 64.96462771914855]),
+            {
+              "system:index": "4"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-138.35367881892773, 65.77047141676313]),
+            {
+              "system:index": "5"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-138.52946006892773, 63.97996380883197]),
+            {
+              "system:index": "6"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([-136.68375694392773, 63.864055374784634]),
+            {
+              "system:index": "7"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -82,11 +111,27 @@ var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
 
 var drought = baseline.gtPercentileBands(base, aggDaymet, 'CMI');
 
-
+print(drought)
 // Map --------------------------------------------------------------
-// Map.addLayer(drought, null, 'drought/not drought');
+Map.addLayer(drought.filter(ee.Filter.eq('year', 1990)).filter(ee.Filter.eq('month', 6))
+                    .select('CMI_ante3_p10'), null, '1990');
 
-Map.addLayer(ee.Image.rgb(drought.first().select('CMI_ante12_p10'),drought.first().select('CMI_ante12_p10'),drought.first().select('CMI_ante12_p10')))
+Map.addLayer(drought.filter(ee.Filter.eq('year', 2000)).filter(ee.Filter.eq('month', 6))
+                    .select('CMI_ante3_p10'), null, '2000');
+
+Map.addLayer(drought.filter(ee.Filter.eq('year', 2010)).filter(ee.Filter.eq('month', 6))
+                    .select('CMI_ante3_p10'), null, '2010');
+
+Map.addLayer(drought.filter(ee.Filter.eq('year', 2019)).filter(ee.Filter.eq('month', 6))
+                    .select('CMI_ante3_p10'), null, '2019');
+
+
+// Map.addLayer(drought.first().visualize({
+//   'bands':'CMI_ante12_p10', 
+//   'min':0,
+//   'max':1
+  
+// }))
 // Export ----------------------------------------------------------------
 // Export.image.toDrive({
 //   'image': aggDaymet.first().float(),
@@ -96,10 +141,10 @@ Map.addLayer(ee.Image.rgb(drought.first().select('CMI_ante12_p10'),drought.first
 // })
 var bandname = 'CMI_ante12_p10'
 Export.video.toDrive({
-  'collection': base.select([bandname, bandname, bandname], 
+  'collection': drought.select([bandname, bandname, bandname], 
                             ['1', '2', '3'])
-                    .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
-                          ['1', '2', '3']),
+                       .cast({'1':'uint8', '2':'uint8', '3':'uint8'},
+                             ['1', '2', '3']),
   'description': 'baseline-gif-' + bandname,
   'region': geometry,
   'scale': 2000
@@ -116,6 +161,17 @@ Export.video.toDrive({
   'scale': 2000
 })
 
+// Chart -------------------------------------------------------------------------
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
-// Map.addLayer(ctef)
+
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: aggDaymet,
+  regions: ctef,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI_ante12_p10',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'REG_ID'
+});
+print(ts)
