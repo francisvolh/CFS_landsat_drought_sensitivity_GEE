@@ -139,7 +139,7 @@ Map.addLayer(drought.filter(ee.Filter.eq('year', 2019)).filter(ee.Filter.eq('mon
 //   'region': ctef,
 //   'scale': 500
 // })
-var bandname = 'CMI_ante12_p10'
+var bandname = 'CMI_ante6_p10'
 Export.video.toDrive({
   'collection': drought.select([bandname, bandname, bandname], 
                             ['1', '2', '3'])
