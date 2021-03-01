@@ -160,6 +160,7 @@ var thumb = ui.Thumbnail({
 
 
 var animation = require('users/gena/packages:animation')
+print(drought)
 drought = drought.map(function(img) {img.set('yearstring', ee.String(year))})
 animation.animate(drought.select('CMI'), {label: 'yearstring', maxFrames: 50})  
 
