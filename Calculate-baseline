@@ -106,7 +106,7 @@ aggDaymet = aggDaymet
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 // var percentileImgs = meanImgs.reduce(ee.Reducer.percentile([5]));
 print(means)
-print(baseline.gtPercentile(means, [5, 10]))
+Map.addLayer(baseline.gtPercentile(means, [5, 10]).limit(2))
 // print(percentileImgs)
 // print(baseline.gtPercentile(meanImgs, percentileImgs))
 // var drought = baseline.gtPercentiles(means, bands, percentiles))
