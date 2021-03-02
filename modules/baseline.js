@@ -30,19 +30,21 @@ exports.antecedentMeans = function(images, band, years) {
   }));
 };
 
-exports.gtPercentile = function(meanImgs, percentileImgs) {
+exports.gtPercentile = function(means, percentiles) {
   var band3 = 'gt_ante3_CMI';
   var band6 = 'gt_ante6_CMI';
   var band12 = 'gt_ante12_CMI';
+  
+  var percentileImgs = meanImgs.reduce(ee.Reducer.percentile(percentiles));
 
   return ee.Image([
-      img.select('CMI')
+      means.select('CMI_ante3_mean')
          .gt(means.select(['CMI_ante3_mean'], [band3])),
         // .rename(band3),
-      img.select('CMI')
+      means.select('CMI_ante6_mean')
          .gt(means.select('CMI_ante6_mean'))
          .rename(band6),
-      img.select('CMI')
+      means.select('CMI_ante12_mean')
          .gt(means.select('CMI_ante12_mean'))
          .rename(band12)]);
 };
