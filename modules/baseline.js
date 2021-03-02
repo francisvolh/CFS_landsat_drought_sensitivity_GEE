@@ -52,7 +52,7 @@ exports.gtPercentile = function(means, percentiles) {
       img.select('CMI')
          .gt(means.select('CMI_ante12_mean'))
          .rename(band12)
-      ]).set('year', yr);
+      ])
   });
 };
 
