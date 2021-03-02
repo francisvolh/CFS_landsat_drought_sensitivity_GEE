@@ -32,7 +32,7 @@ exports.antecedentMeans = function(images, band, years) {
 
 
 // Percentiles across years
-exports.gtPercentiles = function(images, percentiles) {
+exports.gtPercentiles = function(means, percentiles) {
   return //ee.ImageCollection.fromImages(
     percentiles.map(function(percent) {
     var base = means.reduce(ee.Reducer.percentile(percent));
