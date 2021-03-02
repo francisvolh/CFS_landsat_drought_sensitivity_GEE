@@ -107,11 +107,13 @@ aggDaymet = aggDaymet
 var percentiles = [5, 10, 25];
 
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years)
-var percentiles = baseline.antecedentPercentile(means, aggDaymet, 'CMI', percentiles)
-var base = ;
+print(means)
+var p = means.reduce(ee.Reducer.percentile(percentiles))
+print(p)
+// var base = 
 var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
-Map.addLayer(base.limit(2))
-Map.addLayer(.limit(2))
+// Map.addLayer(base.limit(2))
+// Map.addLayer(.limit(2))
 // Map --------------------------------------------------------------
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 1990))
 //                     .select('CMI_ante3_p10'), null, '1990');
