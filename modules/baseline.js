@@ -35,18 +35,20 @@ exports.gtPercentile = function(means, percentiles) {
   var band6 = 'gt_ante6_CMI';
   var band12 = 'gt_ante12_CMI';
   
-  var percentileImgs = meanImgs.reduce(ee.Reducer.percentile(percentiles));
+  var percent3 = means.select('CMI_ante3_mean').reduce(ee.Reducer.percentile(percentiles));
+  var percent6 = means.select('CMI_ante6_mean').reduce(ee.Reducer.percentile(percentiles));
+  var percent12 = means.select('CMI_ante12_mean').reduce(ee.Reducer.percentile(percentiles));
 
   return ee.Image([
       means.select('CMI_ante3_mean')
-         .gt(means.select(['CMI_ante3_mean'], [band3])),
+         .gt(percent3)])
         // .rename(band3),
-      means.select('CMI_ante6_mean')
-         .gt(means.select('CMI_ante6_mean'))
-         .rename(band6),
-      means.select('CMI_ante12_mean')
-         .gt(means.select('CMI_ante12_mean'))
-         .rename(band12)]);
+      // means.select('CMI_ante6_mean')
+      //   .gt(means.select('CMI_ante6_mean'))
+      //   .rename(band6),
+      // means.select('CMI_ante12_mean')
+      //   .gt(means.select('CMI_ante12_mean'))
+      //   .rename(band12)]);
 };
 
 
