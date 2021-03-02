@@ -31,10 +31,6 @@ exports.antecedentMeans = function(images, band, years) {
 };
 
 exports.gtPercentile = function(means, percentiles) {
-  var band3 = 'gt_ante3_CMI';
-  var band6 = 'gt_ante6_CMI';
-  var band12 = 'gt_ante12_CMI';
-  
   var percent3 = means.select(['CMI_ante3_mean'], ['CMI_gt_ante3']).reduce(ee.Reducer.percentile(percentiles));
   var percent6 = means.select(['CMI_ante6_mean'], ['CMI_gt_ante6']).reduce(ee.Reducer.percentile(percentiles));
   var percent12 = means.select(['CMI_ante12_mean'], ['CMI_gt_ante12']).reduce(ee.Reducer.percentile(percentiles));
