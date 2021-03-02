@@ -3,9 +3,9 @@ exports.antecedentMeans = function(years, images, band) {
     // antemax - July 1
     var ante12max = ee.Date.fromYMD(yr, 7, 1);
 
-    var band3 = band + '_ante3_mean';
-    var band6 = band + '_ante6_mean';
-    var band12 = band + '_ante12_mean';
+    var band3 = band + '_ante3';
+    var band6 = band + '_ante6';
+    var band12 = band + '_ante12';
 
     return ee.Image([
       // Antecedent: 3 (months 3-6)
