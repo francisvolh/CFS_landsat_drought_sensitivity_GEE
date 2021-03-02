@@ -104,7 +104,6 @@ aggDaymet = aggDaymet
 
 // Calculate baseline -----------------------------------------------
 var percentiles = ee.List([5, 10, 25]);
-
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 // var base = means.reduce(ee.Reducer.percentile(percentiles));
 print(means)
