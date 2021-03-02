@@ -198,8 +198,6 @@ var bandname = 'CMI';
 
 
 // Chart -------------------------------------------------------------------------
-
-
 // var ts = ui.Chart.image.seriesByRegion({
 //   imageCollection: drought,
 //   regions: ctef,
