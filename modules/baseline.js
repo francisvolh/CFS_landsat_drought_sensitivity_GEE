@@ -39,9 +39,11 @@ exports.gtPercentile = function(means, percentiles) {
   var percent6 = means.select('CMI_ante6_mean').reduce(ee.Reducer.percentile(percentiles));
   var percent12 = means.select('CMI_ante12_mean').reduce(ee.Reducer.percentile(percentiles));
 
-  return ee.Image([
+  return means.map(function(img){
+    return ee.Image([
       means.select('CMI_ante3_mean')
          .gt(percent3)])
+  })
         // .rename(band3),
       // means.select('CMI_ante6_mean')
       //   .gt(means.select('CMI_ante6_mean'))
