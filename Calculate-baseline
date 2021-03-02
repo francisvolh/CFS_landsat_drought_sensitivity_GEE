@@ -87,7 +87,6 @@ var reducer = ee.Reducer.mean()
 // Aggregate monthly for each year
 var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
-
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                               ['tmin', 'tmax', 'prcp']);
@@ -106,12 +105,10 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var percentiles = [5, 10, 25];
 
-var means = baseline.antecedentMeans(aggDaymet, 'CMI', years)
-print(means)
-var p = means.reduce(ee.Reducer.percentile(percentiles))
-print(p)
-// var base = 
+var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
+var base = means.reduce(ee.Reducer.percentile(percentiles));
 var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
+print(base)
 // Map.addLayer(base.limit(2))
 // Map.addLayer(.limit(2))
 // Map --------------------------------------------------------------
