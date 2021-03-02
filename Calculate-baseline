@@ -109,7 +109,7 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var bands = ['CMI_ante3_mean', 'CMI_ante6_mean', 'CMI_ante12_mean']
 
 // approach from the bands loop
-var drought = baseline.gtPercentiles(means, percentiles)
+var drought = baseline.gtPercentiles(means, bands, percentiles)
 // print(drought)
 
 
