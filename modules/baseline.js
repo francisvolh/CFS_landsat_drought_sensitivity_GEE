@@ -56,23 +56,23 @@ exports.gtPercentile = function(images, means, percentile) {
   });
 };
 
-exports.gtPercentiles = function(cmiImages, cmiBand, percentileImages) {
-  return ee.ImageCollection(percentileImages.map(function(percentImg) {
-    var yr = percentImg.get('year');
+// exports.gtPercentiles = function(cmiImages, cmiBand, percentileImages) {
+//   return ee.ImageCollection(percentileImages.map(function(percentImg) {
+//     var yr = percentImg.get('year');
     
-    // Compare percentile images to July of each year
-    var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
-                           .filter(ee.Filter.eq('month', 7));
+//     // Compare percentile images to July of each year
+//     var filtCMI = cmiImages.filter(ee.Filter.eq('year', yr))
+//                           .filter(ee.Filter.eq('month', 7));
 
-    return filtCMI.map(function(cmiImg) {
-      return cmiImg.select(cmiBand)
-                   .addBands(cmiImg.select(cmiBand)
-                                   .gt(percentImg))
-                  // Toggle on the percent values to check
-                  // .addBands(percentImg);
-    });
-  }).flatten());
-};
+//     return filtCMI.map(function(cmiImg) {
+//       return cmiImg.select(cmiBand)
+//                   .addBands(cmiImg.select(cmiBand)
+//                                   .gt(percentImg))
+//                   // Toggle on the percent values to check
+//                   // .addBands(percentImg);
+//     });
+//   }).flatten());
+// };
 
 
 
