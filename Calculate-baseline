@@ -89,7 +89,7 @@ var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
 // Calculate CMI ----------------------------------------------------
 aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
-                              ['tmin', 'tmax', 'prcp']);
+                             ['tmin', 'tmax', 'prcp']);
 
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
@@ -107,9 +107,10 @@ var percentiles = [5, 10, 25];
 
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 // var base = means.reduce(ee.Reducer.percentile(percentiles));
+print(means)
+
 print(baseline.gtPercentiles(means, percentiles))
 
-print(means)
 
 // var drought = means.map(function(img) {return img.subtract(base)})
 // print(drought)
@@ -140,13 +141,13 @@ var args = {
   framesPerSecond: 1,
 };
 
-var thumb = ui.Thumbnail({
-  image: drought.select('CMI_ante6_p10'),
-  params: args,
-  style: {
-    position: 'bottom-right',
-    width: '320px'
-  }});
+// var thumb = ui.Thumbnail({
+//   image: drought.select('CMI_ante6_p10'),
+//   params: args,
+//   style: {
+//     position: 'bottom-right',
+//     width: '320px'
+//   }});
 // Map.add(thumb);
 
 
@@ -159,13 +160,13 @@ var args = {
   palette: ["ff0000","ffffff","0008ff"]
 };
 
-var thumb = ui.Thumbnail({
-  image: drought.select('CMI'),
-  params: args,
-  style: {
-    position: 'bottom-left',
-    width: '320px'
-  }});
+// var thumb = ui.Thumbnail({
+//   image: drought.select('CMI'),
+//   params: args,
+//   style: {
+//     position: 'bottom-left',
+//     width: '320px'
+//   }});
 // Map.add(thumb);
 
 
