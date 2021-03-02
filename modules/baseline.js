@@ -41,11 +41,11 @@ exports.gtPercentile = function(means, percentiles) {
 
   return means.map(function(img){
     return ee.Image([
-      img.select('CMI_ante3_mean')
+      img.select(['CMI_ante3_mean'], ['CMI_gt_ante3'])
          .gt(percent3),
-      img.select('CMI_ante6_mean')
+      img.select(['CMI_ante6_mean'], ['CMI_gt_ante6'])
          .gt(percent6),
-      img.select('CMI_ante12_mean')
+      img.select(['CMI_ante12_mean'], ['CMI_gt_ante12'])
          .gt(percent12)]);
   });
         // .rename(band3),
