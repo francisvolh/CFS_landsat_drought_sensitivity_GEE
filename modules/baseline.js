@@ -32,7 +32,7 @@ exports.antecedentMeans = function(images, band, years) {
 
 
 // Percentile across years
-exports.gtPercentile = function(images, means, percentile) {
+exports.gtPercentile = function(means, percentiles) {
   return means.map(function(img) {
     var band3 = 'gt_CMI_ante3';
     var band6 = 'gt_CMI_ante6';
