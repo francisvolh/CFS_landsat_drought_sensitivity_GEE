@@ -105,20 +105,20 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, [5, 10]);
-print(drought)
+
 // s2Sr_Total = s2Sr_Total.select(['^B[0-9A]+', '^QA[0-9]+']) 
 // Map --------------------------------------------------------------
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 1990))
-//                     .select('CMI_ante3_p10'), null, '1990');
+//                     .select('CMI_gt_ante3_p5'), null, '1990');
 
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 2000))
-//                     .select('CMI_ante3_p10'), null, '2000');
+//                     .select('CMI_gt_ante3_p5'), null, '2000');
 
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 2010))
-//                     .select('CMI_ante3_p10'), null, '2010');
+//                     .select('CMI_gt_ante3_p5'), null, '2010');
 
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 2019))
-//                     .select('CMI_ante3_p10'), null, '2019');
+//                     .select('CMI_gt_ante3_p5'), null, '2019');
 
 // Animate ----------------------------------------------------------
 var args = {
@@ -130,7 +130,7 @@ var args = {
 };
 
 // var thumb = ui.Thumbnail({
-//   image: drought.select('CMI_ante6_p10'),
+//   image: drought.select('CMI_gt_ante6_p10'),
 //   params: args,
 //   style: {
 //     position: 'bottom-right',
@@ -172,7 +172,7 @@ var args = {
 
 
 // Export ----------------------------------------------------------------
-var bandname = 'CMI_ante6_p10';
+var bandname = 'CMI_gt_ante6_p10';
 // Export.video.toDrive({
 //   'collection': drought.select([bandname, bandname, bandname],
 //                             ['1', '2', '3'])
@@ -198,23 +198,13 @@ var bandname = 'CMI';
 
 
 // Chart -------------------------------------------------------------------------
-// var ts = ui.Chart.image.seriesByRegion({
-//   imageCollection: drought,
-//   regions: ctef,
-//   reducer: ee.Reducer.mean(),
-//   band: 'CMI',
-//   scale: 1000,
-//   xProperty: 'system:time_start',
-//   seriesProperty: 'REG_ID'
-// });
-// print(ts);
 
 
 // var ts = ui.Chart.image.seriesByRegion({
 //   imageCollection: drought,
 //   regions: ctef,
 //   reducer: ee.Reducer.mean(),
-//   band: 'CMI_ante3_p10',
+//   band: 'CMI_gt_ante3_p5',
 //   scale: 1000,
 //   xProperty: 'system:time_start',
 //   seriesProperty: 'REG_ID'
@@ -225,7 +215,7 @@ var bandname = 'CMI';
 //   imageCollection: drought,
 //   regions: ctef,
 //   reducer: ee.Reducer.mean(),
-//   band: 'CMI_ante6_p10',
+//   band: 'CMI_gt_ante6_p10',
 //   scale: 1000,
 //   xProperty: 'system:time_start',
 //   seriesProperty: 'REG_ID'
