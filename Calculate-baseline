@@ -106,7 +106,7 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var percentiles = [5, 10, 25];
 
-var means = baseline.antecedentMeans(years, aggDaymet, 'CMI')
+var means = baseline.antecedentMeans(aggDaymet, 'CMI', years)
 var percentiles = baseline.antecedentPercentile(means, aggDaymet, 'CMI', percentiles)
 var base = ;
 var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
