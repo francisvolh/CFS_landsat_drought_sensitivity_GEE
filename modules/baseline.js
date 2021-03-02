@@ -1,3 +1,42 @@
+exports.antecedentMeans = function(years, images, band) {
+  return ee.ImageCollection.fromImages(years.map(function(yr) {
+    // antemax - July 1
+    var ante12max = ee.Date.fromYMD(yr, 7, 1);
+
+    var band3 = band + '_ante3_mean';
+    var band6 = band + '_ante6_mean';
+    var band12 = band + '_ante12_mean';
+
+    return ee.Image([
+      // Antecedent: 3 (months 3-6)
+      images.filter(ee.Filter.eq('year', yr))
+            .filter(ee.Filter.rangeContains('month', 3, 6))
+            .select([band], [band3])
+            .reduce(ee.Reducer.mean()),
+
+      // Antecedent: 6 (months 1-6)
+      images.filter(ee.Filter.eq('year', yr))
+            .filter(ee.Filter.rangeContains('month', 1, 6))
+            .select([band], [band6])
+            .reduce(ee.Reducer.mean()),
+
+      // Antecedent: 12 (months 6-6 year previous)
+      images.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
+                                   ante12max))
+              .select([band], [band12])
+              .reduce(ee.Reducer.mean())
+      ]).set('year', yr);
+  }));
+};
+
+// exports across year percentiles
+
+// compare
+
+// so use the logic from below
+
+
+
 exports.antecedentPercentile = function(years, images, band, percentiles) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     // antemax - July 1
