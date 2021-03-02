@@ -40,14 +40,12 @@ exports.gtPercentile = function(meanImgs, percentileImgs) {
       img.select('CMI')
          .gt(means.select('CMI_ante3_mean'))
          .rename(band3),
-         img.select('CMI')
+      img.select('CMI')
          .gt(means.select('CMI_ante6_mean'))
          .rename(band6),
-         img.select('CMI')
+      img.select('CMI')
          .gt(means.select('CMI_ante12_mean'))
-         .rename(band12)
-         ])
-
-}
+         .rename(band12)]);
+};
 
 
