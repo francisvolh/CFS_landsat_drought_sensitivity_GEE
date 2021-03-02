@@ -27,7 +27,7 @@ exports.antecedentMeans = function(images, band, years) {
               .select([band], [band12])
               .reduce(ee.Reducer.mean())
       ]).set('year', yr);
-  }));
+  })); 
 };
 
 
