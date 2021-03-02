@@ -48,13 +48,6 @@ exports.gtPercentile = function(means, percentiles) {
       img.select(['CMI_ante12_mean'], ['CMI_gt_ante12'])
          .gt(percent12)]);
   });
-        // .rename(band3),
-      // means.select('CMI_ante6_mean')
-      //   .gt(means.select('CMI_ante6_mean'))
-      //   .rename(band6),
-      // means.select('CMI_ante12_mean')
-      //   .gt(means.select('CMI_ante12_mean'))
-      //   .rename(band12)]);
 };
 
 
