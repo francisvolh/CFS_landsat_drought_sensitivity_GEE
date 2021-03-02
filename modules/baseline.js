@@ -1,4 +1,4 @@
-// Means within years
+// Means of antecedent periods within years
 exports.antecedentMeans = function(years, images, band) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     // antemax - July 1
