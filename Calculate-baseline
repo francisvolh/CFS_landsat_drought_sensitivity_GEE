@@ -144,7 +144,7 @@ var ts = ui.Chart.image.seriesByRegion({
   imageCollection: drought,
   regions: ctef,
   reducer: ee.Reducer.mean(),
-  band: 'CMI_gt_ante3_p5',
+  band: 'CMI_gt_ante3_p10',
   scale: 1000,
   xProperty: 'year',
   seriesProperty: 'REG_ID'
