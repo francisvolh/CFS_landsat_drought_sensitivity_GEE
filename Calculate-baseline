@@ -169,16 +169,16 @@ var thumb = ui.Thumbnail({
 // Map.add(thumb);
 
 
-var animation = require('users/gena/packages:animation');
-var thumbdrought = drought.map(function(img) {
-  return img.select('CMI')
-            .visualize({
-                min: -40,
-                max: 40,
-                palette: ["ff0000","ffffff","0008ff"]
-            })
-            .set('yearstring', ee.String(img.get('year')));
-});
+// var animation = require('users/gena/packages:animation');
+// var thumbdrought = drought.map(function(img) {
+//   return img.select('CMI')
+//             .visualize({
+//                 min: -40,
+//                 max: 40,
+//                 palette: ["ff0000","ffffff","0008ff"]
+//             })
+//             .set('yearstring', ee.String(img.get('year')));
+// });
 // animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
@@ -209,50 +209,50 @@ var bandname = 'CMI';
 
 
 // Chart -------------------------------------------------------------------------
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: drought,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI',
-  scale: 1000,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: drought,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI',
+//   scale: 1000,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
 // print(ts);
 
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: drought,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI_ante3_p10',
-  scale: 1000,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: drought,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI_ante3_p10',
+//   scale: 1000,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
 // print(ts);
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: drought,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI_ante6_p10',
-  scale: 1000,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: drought,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI_ante6_p10',
+//   scale: 1000,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
 // print(ts);
 
 
-var ts = ui.Chart.image.seriesByRegion({
-  imageCollection: drought,
-  regions: ctef,
-  reducer: ee.Reducer.mean(),
-  band: 'CMI_ante12_p10',
-  scale: 1000,
-  xProperty: 'system:time_start',
-  seriesProperty: 'REG_ID'
-});
+// var ts = ui.Chart.image.seriesByRegion({
+//   imageCollection: drought,
+//   regions: ctef,
+//   reducer: ee.Reducer.mean(),
+//   band: 'CMI_ante12_p10',
+//   scale: 1000,
+//   xProperty: 'system:time_start',
+//   seriesProperty: 'REG_ID'
+// });
 // print(ts);
 
 
