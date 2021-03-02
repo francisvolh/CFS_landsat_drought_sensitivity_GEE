@@ -32,7 +32,7 @@ exports.antecedentMeans = function(years, images, band) {
 
 
 // Percentiles across years
-exports.antecedentPercentile = function(years, images, band, percentiles) {
+exports.antecedentPercentile = function(images, percentiles, images, band, percentiles) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     // antemax - July 1
     var ante12max = ee.Date.fromYMD(yr, 7, 1);
