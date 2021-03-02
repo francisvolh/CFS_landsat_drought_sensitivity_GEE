@@ -112,16 +112,16 @@ print(drought)
 
 // Map --------------------------------------------------------------
 Map.addLayer(drought.filter(ee.Filter.eq('year', 1990))
-                    .select('CMI_gt_ante3_p5'), null, '1990');
+                    .select('CMI_gt_ante3_p10'), null, '1990');
 
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2000))
-                    .select('CMI_gt_ante3_p5'), null, '2000');
+                    .select('CMI_gt_ante3_p10'), null, '2000');
 
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2010))
-                    .select('CMI_gt_ante3_p5'), null, '2010');
+                    .select('CMI_gt_ante3_p10'), null, '2010');
 
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2019))
-                    .select('CMI_gt_ante3_p5'), null, '2019');
+                    .select('CMI_gt_ante3_p10'), null, '2019');
 
 // Animate ----------------------------------------------------------
 // TODO: fix for CMI of which month
