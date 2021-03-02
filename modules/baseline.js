@@ -42,7 +42,7 @@ exports.gtPercentile = function(means, percentiles) {
       img.select('CMI_ante6_mean')
          .gt(percent6),
       img.select('CMI_ante12_mean')
-         .gt(percent12)]);
+         .gt(percent12)]).copyProperties(img);
   });
 };
 
