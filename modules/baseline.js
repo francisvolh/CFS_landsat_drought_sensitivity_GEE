@@ -37,8 +37,9 @@ exports.gtPercentiles = function(means, percentiles) {
   return bands.map(function(band) {
     var base = means.select(band).reduce(ee.Reducer.percentile([percent]));
     return means.map(function(img) {
-      return img.select(subtract(base)});
-  })
+      return img.select(band)
+                .subtract(base);
+    });
   });
 };
 
