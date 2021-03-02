@@ -111,6 +111,8 @@ var bands = ['CMI_ante3_mean', 'CMI_ante6_mean', 'CMI_ante12_mean']
 // approach from the bands loop
 var drought = baseline.gtPercentiles(means, bands, percentiles)
 print(drought)
+print(eedrought.get(1).merge(drought.get(2)).merge(drought.get(3)))
+
 
 
 // var drought = means.map(function(img) {return img.subtract(base)})
