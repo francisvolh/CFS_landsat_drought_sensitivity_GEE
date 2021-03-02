@@ -36,7 +36,6 @@ exports.gtPercentile = function(meanImgs, percentileImgs) {
   var band12 = 'gt_ante12_CMI';
 
   return ee.Image([
-      img.select('CMI'),
       img.select('CMI')
          .gt(means.select(['CMI_ante3_mean'], [band3])),
         // .rename(band3),
