@@ -105,9 +105,13 @@ aggDaymet = aggDaymet
 
 // Calculate baseline -----------------------------------------------
 var percentiles = [5, 10, 25];
-var base = baseline.antecedentPercentile(years, aggDaymet, 'CMI', percentiles);
-var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
 
+var means = baseline.antecedentMeans(years, aggDaymet, 'CMI')
+var percentiles = baseline.antecedentPercentile(means, aggDaymet, 'CMI', percentiles)
+var base = ;
+var drought = baseline.gtPercentiles(base, aggDaymet, 'CMI');
+Map.addLayer(base.limit(2))
+Map.addLayer(.limit(2))
 // Map --------------------------------------------------------------
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 1990))
 //                     .select('CMI_ante3_p10'), null, '1990');
@@ -169,7 +173,7 @@ var thumbdrought = drought.map(function(img) {
             })
             .set('yearstring', ee.String(img.get('year')));
 });
-animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
+// animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Export ----------------------------------------------------------------
