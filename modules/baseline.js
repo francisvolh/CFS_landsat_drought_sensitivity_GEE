@@ -31,11 +31,29 @@ exports.antecedentMeans = function(images, band, years) {
 };
 
 
-// Percentiles across years
+// Percentile across years
 exports.gtPercentile = function(images, means, percentile) {
-  return ee.ImageCollection.fromImages(percentiles.map(function(percent) {
-    
-  }));
+  return means.map(function(img) {
+    var band3 = 'gt_CMI_ante3';
+    var band6 = 'gt_CMI_ante6';
+    var band12 = 'gt_CMI_ante12';
+
+    return ee.Image([
+      img.select('CMI'),
+
+      img.select(['CMI'], [band3])
+         .gt(means.select('CMI_ante3_mean')),
+        // .rename(band3),
+
+      img.select('CMI')
+         .gt(means.select('CMI_ante6_mean'))
+         .rename(band6),
+         
+      img.select('CMI')
+         .gt(means.select('CMI_ante12_mean'))
+         .rename(band12)
+      ]).set('year', yr);
+  });
 };
 
 exports.gtPercentiles = function(cmiImages, cmiBand, percentileImages) {
