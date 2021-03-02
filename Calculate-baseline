@@ -105,7 +105,10 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, [5, 10]);
-print(drought)
+
+drought = drought.filter(ee.Filter.neq('year', 1980));
+
+print(drought);
 // s2Sr_Total = s2Sr_Total.select(['^B[0-9A]+', '^QA[0-9]+']) 
 
 
