@@ -158,8 +158,7 @@ var cmi567 = ee.ImageCollection.fromImages(
                       .set('yearstring', yr);
   })
 );
-print(cmi567)
-// animation.animate(cmi567, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
+animation.animate(cmi567, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Chart -------------------------------------------------------------------------
