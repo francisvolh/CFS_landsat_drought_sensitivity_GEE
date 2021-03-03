@@ -12,7 +12,10 @@ var geometry =
           [-142.1473305723318, 60.19718852129611],
           [-133.00670557233178, 60.19718852129611],
           [-133.00670557233178, 65.07300584830517]]], null, false),
-    points = /* color: #d63000 */ee.FeatureCollection(
+    points = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Point([-113.48063194392775, 56.90198668190897]),
             {
@@ -139,7 +142,7 @@ var thumbdrought = drought.map(function(img) {
             })
             .set('yearstring', ee.String(img.get('year')));
 });
-// animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
+animation.animate(thumbdrought, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Chart -------------------------------------------------------------------------
