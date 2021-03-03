@@ -155,7 +155,7 @@ var cmi567 = ee.ImageCollection.fromImages(
                       .select('CMI')
                       .reduce(ee.Reducer.mean())
                       .visualize({min: -40, max: 40, palette: ["ff0000","ffffff","0008ff"]})
-                      .set('yearstring', yr);
+                      .set('yearstring', ee.String(yr));
   })
 );
 animation.animate(cmi567, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
