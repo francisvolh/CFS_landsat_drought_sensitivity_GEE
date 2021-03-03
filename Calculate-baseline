@@ -149,10 +149,9 @@ var animated = drought.map(function(img) {
             .set('yearstring', ee.String(img.get('year')));
 });
 
-exports.aggregateMY = function(years, months, images, reducer) {
+function aggregateMY(years, months, images, reducer) {
   return ee.ImageCollection.fromImages(
     years.map(function(yr) {
-      return months.map(function(mnth) {
         return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                      .filter(ee.Filter.calendarRange(mnth, mnth, 'month'))
                      .reduce(reducer)
@@ -160,10 +159,12 @@ exports.aggregateMY = function(years, months, images, reducer) {
                      .set('month', mnth)
                      .set('system:time_start',
                           ee.Date.fromYMD(yr, mnth, 1));
-        });
   }).flatten()
   );
-};
+}
+var aggDaymet = agg.aggregateMY(years, months, daymet, ee.Reducer.mean());
+
+
 
 var animated = drought.map(function(img) {
   return img.select('CMI')
