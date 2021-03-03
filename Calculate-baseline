@@ -108,12 +108,8 @@ aggDaymet = aggDaymet
 // Calculate baseline -----------------------------------------------
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, [5, 10]);
-print(means)
 drought = drought.filter(ee.Filter.neq('year', 1980));
-
-print(drought);
 // s2Sr_Total = s2Sr_Total.select(['^B[0-9A]+', '^QA[0-9]+']) 
-
 
 
 // Map --------------------------------------------------------------
@@ -132,21 +128,21 @@ Map.addLayer(drought.filter(ee.Filter.eq('year', 2019))
 // Animate ----------------------------------------------------------
 var animation = require('users/gena/packages:animation');
 
-var animated = drought.map(function(img) {
-  return img.select('CMI_gt_ante3_p10')
-            .visualize({min: 0, max: 1})
-            .set('yearstring', ee.String(img.get('year')));
-});
-var animated = drought.map(function(img) {
-  return img.select('CMI_gt_ante6_p10')
-            .visualize({min: 0, max: 1})
-            .set('yearstring', ee.String(img.get('year')));
-});
-var animated = drought.map(function(img) {
-  return img.select('CMI_gt_ante12_p10')
-            .visualize({min: 0, max: 1})
-            .set('yearstring', ee.String(img.get('year')));
-});
+// var animated = drought.map(function(img) {
+//   return img.select('CMI_gt_ante3_p10')
+//             .visualize({min: 0, max: 1})
+//             .set('yearstring', ee.String(img.get('year')));
+// });
+// var animated = drought.map(function(img) {
+//   return img.select('CMI_gt_ante6_p10')
+//             .visualize({min: 0, max: 1})
+//             .set('yearstring', ee.String(img.get('year')));
+// });
+// var animated = drought.map(function(img) {
+//   return img.select('CMI_gt_ante12_p10')
+//             .visualize({min: 0, max: 1})
+//             .set('yearstring', ee.String(img.get('year')));
+// });
 
 var cmi567 = ee.ImageCollection.fromImages(
   years.map(function(yr) {
