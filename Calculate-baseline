@@ -138,23 +138,23 @@ var animation = require('users/gena/packages:animation');
 //             .visualize({min: 0, max: 1})
 //             .set('yearstring', ee.String(img.get('year')));
 // });
-// var animated = drought.map(function(img) {
-//   return img.select('CMI_gt_ante12_p10')
-//             .visualize({min: 0, max: 1})
-//             .set('yearstring', ee.String(img.get('year')));
-// });
+var animated = drought.map(function(img) {
+  return img.select('CMI_gt_ante12_p10')
+            .visualize({min: 0, max: 1})
+            .set('yearstring', ee.String(img.get('year')));
+});
 
-var cmi567 = ee.ImageCollection.fromImages(
-  years.map(function(yr) {
-      return aggDaymet.filter(ee.Filter.eq('year', yr))
-                      .filter(ee.Filter.rangeContains('month', 5, 7))
-                      .select('CMI')
-                      .reduce(ee.Reducer.mean())
-                      .visualize({min: -40, max: 40, palette: ["ff0000","ffffff","0008ff"]})
-                      .set('yearstring', ee.String(yr));
-  })
-);
-animation.animate(cmi567, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
+// var cmi567 = ee.ImageCollection.fromImages(
+//   years.map(function(yr) {
+//       return aggDaymet.filter(ee.Filter.eq('year', yr))
+//                       .filter(ee.Filter.rangeContains('month', 5, 7))
+//                       .select('CMI')
+//                       .reduce(ee.Reducer.mean())
+//                       .visualize({min: -40, max: 40, palette: ["ff0000","ffffff","0008ff"]})
+//                       .set('yearstring', ee.String(yr));
+//   })
+// );
+animation.animate(animated, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Chart -------------------------------------------------------------------------
