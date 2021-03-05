@@ -371,6 +371,7 @@ var ts = ui.Chart.image.seriesByRegion({
 
 
 //  ---------------------------------------
+print(drought.size())
 var red = drought.select(['CMI_gt_ante3_p10', 'CMI_gt_ante6_p10', 'CMI_gt_ante12_p10'])
                  .reduce(ee.Reducer.sum());
 var ts = ui.Chart.image.byRegion({
