@@ -113,6 +113,7 @@ drought = drought.filter(ee.Filter.neq('year', 1980));
 
 
 // Map --------------------------------------------------------------
+Map.addLayer(drought.reduce(ee.Reducer.sum()))
 // Map.addLayer(drought.filter(ee.Filter.eq('year', 1990))
 //                     .select('CMI_gt_ante3_p10'), null, '1990');
 
@@ -154,7 +155,7 @@ var animated = drought.map(function(img) {
 //                       .set('yearstring', ee.String(yr));
 //   })
 // );
-animation.animate(animated, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
+// animation.animate(animated, {label: 'yearstring', maxFrames: 50, timeStep: 1500});
 
 
 // Chart -------------------------------------------------------------------------
