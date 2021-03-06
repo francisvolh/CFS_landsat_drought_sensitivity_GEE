@@ -1,26 +1,18 @@
-var fires = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
-//  switch to fire 2 
-print(fires.size())
-print(fires.filter(ee.Filter.rangeContains('YEAR', 2011, 2012)).size())
+var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 
 var minyear = 1980;
 var maxyear = 2019;
 
 var listyear = ee.List.sequence(minyear, maxyear);
 
-var firemask =   fires.filter(ee.Filter.rangeContains('YEAR', 2011 - 5, 2011))
-      .reduceToImage(['YEAR'], ee.Reducer.anyNonZero()).eq(0)
-Map.addLayer(firemask)
-print(firemask)
+// Modules ----------------------------------------------------------
+var fire = require('users/robitalec/CFS:modules/fire.js');
 
-// exports.fireMasks = function(fires, years) {
-//   return ee.ImageCollection.fromImages(years.map(function(yr) {
-//     return ee.Image([
-//       fires.filter(ee.Filter.rangeContains('YEAR', yr, yr - 5))
-//           .
-//       ]).set('year', yr);
-//   }));
-// };
+var firemask = fire.fireMasks(firepol, years)
+      
+Map.addLayer(firemask)
+
+
 
 // var yearcol = 'YEAR'
 // var minyear = fire.select(yearcol).min()
