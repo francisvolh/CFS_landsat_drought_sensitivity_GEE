@@ -1,15 +1,15 @@
 var fires = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 
 //  switch to fire 2 
-print(fires)
-print(fires.filter(ee.Filter.eq('YEAR', 2011)))
+print(fires.size())
+print(fires.filterMetadata('YEAR', 2011, 'greater_than').size())
 
 var minyear = 1980;
 var maxyear = 2019;
 
 var listyear = ee.List.sequence(minyear, maxyear);
 
-var firemask =2 ee.Image
+var firemask = //ee.Image
 (
   fires.filterMetadata('YEAR', 2011, 'not_greater_than')
        .filterMetadata('YEAR', 2011 - 5, 'not_less_than')
