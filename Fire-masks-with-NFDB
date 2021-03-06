@@ -1,18 +1,17 @@
 var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 // TODO: fire pol 2
-var minyear = 1980;
-var maxyear = 2019;
+var minyear = ee.Number(1980);
+var maxyear = ee.Number(2019);
 
 var years = ee.List.sequence(minyear, maxyear);
 
 // Modules ----------------------------------------------------------
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
-var firemask = firepol.filter(ee.Filter.rangeContains('YEAR', 2011 - 5, 2011))
-      .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
-      .eq(0)
+// var firemask = firepol.filter(ee.Filter.rangeContains('YEAR', 2011 - 5, 2011))
+//       .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
       
-// var firemask = fire.fireMasks(firepol, years)
+var firemask = fire.fireMasks(firepol, years)
 print(firemask)   
 Map.addLayer(firemask)
 
