@@ -10,4 +10,4 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 var firemask = fire.fireMasks(firepol, years);
 print(firemask);   
-Map.addLayer(firemask.limit(1));
+Map.addLayer(firemask.filter(ee.Filter.eq('year', 2019)));
