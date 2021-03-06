@@ -8,9 +8,9 @@ var maxyear = 2019;
 
 var listyear = ee.List.sequence(minyear, maxyear);
 
-var firemask =   fires.filter(ee.Filter.rangeContains('YEAR', 2011, 2011 - 5))
-      // .reduce(ee.Reducer.sum())
-
+var firemask =   fires.filter(ee.Filter.rangeContains('YEAR', 2011 - 5, 2011))
+      .reduceToImage(['YEAR'], ee.Reducer.anyNonZero()).eq(0)
+Map.addLayer(firemask)
 print(firemask)
 
 // exports.fireMasks = function(fires, years) {
