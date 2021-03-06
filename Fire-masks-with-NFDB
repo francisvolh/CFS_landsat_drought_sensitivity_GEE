@@ -8,7 +8,10 @@ var years = ee.List.sequence(minyear, maxyear);
 // Modules ----------------------------------------------------------
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
-var firemask = fire.fireMasks(firepol, years)
+var firemask =   fires.filter(ee.Filter.rangeContains('YEAR', 2011 - 5, 2011))
+      .reduceToImage(['YEAR'], ee.Reducer.anyNonZero()).eq(0)
+      
+// var firemask = fire.fireMasks(firepol, years)
 print(firemask)   
 // Map.addLayer(firemask)
 
