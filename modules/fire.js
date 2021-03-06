@@ -1,7 +1,7 @@
 exports.fireMasks = function(fires, years) {
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     var yrMin5 = yr - 5
-    return yrMin5
+    return ee.Image(yrMin5)
     // return ee.Image([
     //   fires.filter(ee.Filter.rangeContains('YEAR', yrMin5, yr))
     //       .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
