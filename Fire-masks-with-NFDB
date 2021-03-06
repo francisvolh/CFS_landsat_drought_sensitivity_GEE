@@ -1,6 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var imageVisParam = {"opacity":0.6,"bands":["fire-in-last-5-years"],"palette":["82a77f","d24d00"]};
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 
 var minyear = 1980;
@@ -13,4 +10,5 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 var firemask = fire.fireMasks(firepol, years);
 print(firemask);   
-Map.addLayer(firemask.filter(ee.Filter.eq('year', 2019)));
+var vis = {"opacity":0.6,"bands":["fire-in-last-5-years"],"palette":["82a77f","d24d00"]};
+Map.addLayer(firemask.filter(ee.Filter.eq('year', 2019)), vis, 'fire-last-5');
