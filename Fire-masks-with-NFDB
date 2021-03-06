@@ -1,0 +1,8 @@
+var fire = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
+
+YEAR
+
+// loop over years
+// filter year + -5 years
+// get extent, convert to 1/0 mask
+// return imagecollection
