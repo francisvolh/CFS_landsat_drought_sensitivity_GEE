@@ -1,21 +1,28 @@
-var fire = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
+var fires = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 
-print(fire)
-print(fire.filter(ee.Filter.eq('YEAR', 2011)))
+print(fires)
+print(fires.filter(ee.Filter.eq('YEAR', 2011)))
 
 var minyear = 1980;
 var maxyear = 2019;
 
 var listyear = ee.List.sequence(minyear, maxyear);
 
-exports.fireMasks = function(fires, years) {
-  return ee.ImageCollection.fromImages(years.map(function(yr) {
-    return ee.Image([
-      fires.filter(ee.Filter.rangeContains('YEAR', yr, yr - 5))
-           .
-      ]).set('year', yr);
-  }));
-};
+var firemask = ee.Image(
+  fires.filterMetadata('YEAR', 2011, 2011 - 5))
+       .reduce(ee.Reducer.sum())
+)
+
+print(firemask)
+
+// exports.fireMasks = function(fires, years) {
+//   return ee.ImageCollection.fromImages(years.map(function(yr) {
+//     return ee.Image([
+//       fires.filter(ee.Filter.rangeContains('YEAR', yr, yr - 5))
+//           .
+//       ]).set('year', yr);
+//   }));
+// };
 
 // var yearcol = 'YEAR'
 // var minyear = fire.select(yearcol).min()
