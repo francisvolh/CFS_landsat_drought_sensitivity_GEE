@@ -3,7 +3,7 @@ var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 var minyear = 1980;
 var maxyear = 2019;
 
-var listyear = ee.List.sequence(minyear, maxyear);
+var years = ee.List.sequence(minyear, maxyear);
 
 // Modules ----------------------------------------------------------
 var fire = require('users/robitalec/CFS:modules/fire.js');
