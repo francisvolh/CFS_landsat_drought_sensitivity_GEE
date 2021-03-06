@@ -1,5 +1,6 @@
 var fires = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 
+//  switch to fire 2 
 print(fires)
 print(fires.filter(ee.Filter.eq('YEAR', 2011)))
 
@@ -8,9 +9,11 @@ var maxyear = 2019;
 
 var listyear = ee.List.sequence(minyear, maxyear);
 
-var firemask = ee.Image(
-  fires.filterMetadata('YEAR', 2011, 2011 - 5))
-       .reduce(ee.Reducer.sum())
+var firemask =2 ee.Image
+(
+  fires.filterMetadata('YEAR', 2011, 'not_greater_than')
+       .filterMetadata('YEAR', 2011 - 5, 'not_less_than')
+      // .reduce(ee.Reducer.sum())
 )
 
 print(firemask)
