@@ -62,7 +62,7 @@ var firemask = fire.fireMasks(firepol, years);
 
 // EVI/NDVI ---------------------------------------------------------
 // TODO: filter veg to July
-var veg = ee.ImageCollection("MODIS/006/MOD13Q1");
+var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filterDate('2010-07-01', '2010-07-31');
   // .first()
   // .select('NDVI')
