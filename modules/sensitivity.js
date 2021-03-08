@@ -14,8 +14,8 @@ exports.maskBaseline = function(veg, droughts, fires, percentiles) {
         var ante3band = 'CMI_gt_ante3_p' + percent;
         var ante6band = 'CMI_gt_ante6_p' + percent;
         var ante12band = 'CMI_gt_ante12_p' + percent;
-        var ndviband = 'NDVI_p' + percent;
-        var eviband = 'EVI_p' + percent;
+        var ndviband = 'NDVI_base_p' + percent;
+        var eviband = 'EVI_base_p' + percent;
         
         var sumante = base.expression('ante3 + ante6 + ante12', {
           'ante3': base.select(ante3band),
