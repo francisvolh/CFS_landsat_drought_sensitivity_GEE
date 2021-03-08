@@ -66,8 +66,8 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   //                                 .set('year', img.date().get('year'))
   // })
   // .filter(ee.Filter.eq('month', 7));
-  .filter(ee.Filter.calendarRange(7, 7, 'month'));
-  .filter(ee.Filter.calendarRange(7, 7, 'month'));
+  .filter(ee.Filter.calendarRange(7, 7, 'month'))
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
 print(veg.first())
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
 print(maskveg)
