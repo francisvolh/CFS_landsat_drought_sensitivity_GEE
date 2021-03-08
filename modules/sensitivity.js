@@ -35,9 +35,9 @@ exports.maskDrought = function(veg, droughts, fires) {
     var drought6 = base.select('CMI_gt_ante6_p10').eq(0);
     var drought12 = base.select('CMI_gt_ante12_p10').eq(0);
 
-    var veg3 = veg.updateMask(drought3).select(['NDVI', 'EVI'], ['NDVI_3', 'EVI_3']);
-    var veg6 = veg.updateMask(drought6).select(['NDVI', 'EVI'], ['NDVI_6', 'EVI_6']);
-    var veg12 = veg.updateMask(drought12).select(['NDVI', 'EVI'], ['NDVI_12', 'EVI_12']);
+    var veg3 = v.updateMask(drought3).select(['NDVI', 'EVI'], ['NDVI_3', 'EVI_3']);
+    var veg6 = v.updateMask(drought6).select(['NDVI', 'EVI'], ['NDVI_6', 'EVI_6']);
+    var veg12 = v.updateMask(drought12).select(['NDVI', 'EVI'], ['NDVI_12', 'EVI_12']);
     
     return ee.Image([veg3, veg6, veg12]).copyProperties(v);
   });
