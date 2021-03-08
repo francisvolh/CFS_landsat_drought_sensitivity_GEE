@@ -76,7 +76,7 @@ var maskdrought = sensitivity.maskDrought(veg, drought, firemask);
 
 
 var visdrought = {"opacity":0.53,"palette":["da7852"]};
-var visbase = {"opacity":0.5800000000000001,"palette":["4e50ae"]};
+var visbase = {"opacity":0.58,"palette":["4e50ae"]};
 Map.addLayer(maskbase, visbase, 'mask baseline');
 Map.addLayer(maskdrought.select('NDVI_3'), visdrought, 'mask drought 3');
 Map.addLayer(maskdrought.select('NDVI_6'), visdrought, 'mask drought 6');
