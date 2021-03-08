@@ -27,12 +27,14 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
         var ante6evi = 'EVI_ante6_p' + percent;
         var ante12evi = 'EVI_ante12_p' + percent;
         
+        var vegbands = ['NDVI', 'EVI']
+        
         var veg3 = v.updateMask(drought3)
-                    .select(['NDVI', 'EVI'], [ante3ndvi, ante3evi]);
+                    .select(vegbands, [ante3ndvi, ante3evi]);
         var veg6 = v.updateMask(drought6)
-                    .select(['NDVI', 'EVI'], [ante6ndvi, ante6evi]);
+                    .select(vegbands, [ante6ndvi, ante6evi]);
         var veg12 = v.updateMask(drought12)
-                     .select(['NDVI', 'EVI'], [ante12ndvi, ante12evi]);
+                     .select(vegbands, [ante12ndvi, ante12evi]);
         
         var basemask = base.expression('ante3 + ante6 + ante12', {
           'ante3': base.select(ante3band),
