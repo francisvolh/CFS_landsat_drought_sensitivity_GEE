@@ -91,12 +91,13 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 
 // UPDATE MASK: update the mask of an image, to anything zero
 
-var maskbase = sensitivity.maskBaseline(veg, drought, firemask)
-Map.addLayer(maskbase, null, 'mask baseline')
+var maskbase = sensitivity.maskBaseline(veg, drought, firemask);
+Map.addLayer(maskbase, null, 'mask baseline');
 
-var maskdrought = sensitivity.maskDrought(veg, drought, firemask)
-Map.addLayer(maskdrought, null, 'mask drought')
-
+var maskdrought = sensitivity.maskDrought(veg, drought, firemask);
+Map.addLayer(maskdrought.select('NDVI_3'), null, 'mask drought 3');
+Map.addLayer(maskdrought.select('NDVI_6'), null, 'mask drought 6');
+Map.addLayer(maskdrought.select('NDVI_12'), null, 'mask drought 12');
 
 
 // If pixel P had ≥ 3 such baseline-associated EVI observations
