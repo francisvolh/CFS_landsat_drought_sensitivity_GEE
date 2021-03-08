@@ -91,7 +91,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 
 // UPDATE MASK: update the mask of an image, to anything zero
 
-var maskveg = sensitivity.maskVeg(veg, drought, firemask)
+var maskbase = sensitivity.maskBaseline(veg, drought, firemask)
 
 Map.addLayer(maskveg)
 
