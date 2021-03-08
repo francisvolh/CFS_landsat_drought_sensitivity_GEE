@@ -35,7 +35,6 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
         var veg12 = v.updateMask(drought12)
                      .select(['NDVI', 'EVI'], [ante12ndvi, ante12evi]);
         
-
         var basemask = base.expression('ante3 + ante6 + ante12', {
           'ante3': base.select(ante3band),
           'ante6': base.select(ante6band),
