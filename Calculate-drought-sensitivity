@@ -107,7 +107,7 @@ exports.maskEVI = function(veg, droughts, fires) {
                                     'ante12': base.select('CMI_gt_ante12_p10')})
                       .eq(3);
     
-    return v.updateMask(fire).updateMask(fire);
+    return v.updateMask(fire).updateMask(sumante);
   });
 };
 
