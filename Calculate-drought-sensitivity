@@ -72,7 +72,6 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 
 var maskeveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
 
-
 var visdrought = {"opacity":0.53,"palette":["da7852"]};
 var visbase = {"opacity":0.58,"palette":["4e50ae"]};
 // Map.addLayer(maskbase, visbase, 'mask baseline');
