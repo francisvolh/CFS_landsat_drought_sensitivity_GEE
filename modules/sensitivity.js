@@ -1,4 +1,4 @@
-exports.maskBaseline = function(veg, droughts, fires) {
+exports.maskBaseline = function(veg, droughts, fires, percentiles) {
   return veg.map(function(v) {
     var yr = v.date().get('year');
     
