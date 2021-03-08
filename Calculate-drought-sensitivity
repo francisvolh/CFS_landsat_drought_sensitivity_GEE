@@ -3,6 +3,7 @@ var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var baseline = require('users/robitalec/CFS:modules/baseline.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
+var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 
 // Data -------------------------------------------------------------
@@ -84,32 +85,15 @@ var firemask = fire.fireMasks(firepol, years);
 var img1 = ee.Image.constant(1)
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filterDate('2010-07-01', '2010-07-31')
-  .first()
+  // .first()
   .select('NDVI')
   .multiply(0.0001);
 
 // UPDATE MASK: update the mask of an image, to anything zero
 
-exports.maskEVI = function(veg, droughts, fires) {
-  return veg.map(function(v) {
-    var yr = v.date().get('year');
-    
-    var base = droughts.filter(ee.Filter.eq('year', yr))
-                       .first();
-                         
-    var fire = fires.filter(ee.Filter.eq('year', yr))
-                    .first()
-                    .eq(0);
-    
-    var sumante = base.expression('ante3 + ante6 + ante12', {
-                                    'ante3': base.select('CMI_gt_ante3_p10'),
-                                    'ante6': base.select('CMI_gt_ante6_p10'),
-                                    'ante12': base.select('CMI_gt_ante12_p10')})
-                      .eq(3);
-    
-    return v.updateMask(fire).updateMask(sumante);
-  });
-};
+var maskveg = sensitivity.MaskEVI(veg, drought, firemask)
+
+Map.addLayer(maskveg)
 
 // - [ ]  Loop years
 // - [ ]  Sum all three time periods
