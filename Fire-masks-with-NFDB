@@ -11,4 +11,6 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 var firemask = fire.fireMasks(firepol, years);
 print(firemask);   
 var vis = {"opacity":0.6,"bands":["fire-in-last-5-years"],"palette":["82a77f","d24d00"]};
+Map.addLayer(firepol)
+Map.addLayer(firemask)
 Map.addLayer(firemask.filter(ee.Filter.eq('year', 2019)), vis, 'fire-last-5');
