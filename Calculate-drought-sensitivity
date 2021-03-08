@@ -92,11 +92,11 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 // UPDATE MASK: update the mask of an image, to anything zero
 
 var maskbase = sensitivity.maskBaseline(veg, drought, firemask)
-
 Map.addLayer(maskbase)
 
-// - [ ]  Loop years
-// - [ ]  Sum all three time periods
-// - [ ]  Update mask of EVI with eq(3)
-// - [ ]  Update mask of EVI with fire
-// - [ ]  Reduce collection of images, sample mean EVI/NDVI
+var maskdrought = sensitivity.maskDrought(veg, drought, firemask)
+Map.addLayer(maskdrought)
+
+
+
+// If pixel P had ≥ 3 such baseline-associated EVI observations
