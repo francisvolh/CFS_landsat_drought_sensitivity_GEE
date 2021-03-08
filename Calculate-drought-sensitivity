@@ -88,31 +88,15 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .select('NDVI')
   .multiply(0.0001);
 
-// updateMask = 
-// Map.addLayer(img1.updateMask(img1.neq(1)))
-// Map.addLayer(img1.neq(1))
-var onedrought = drought.filter(ee.Filter.eq('year', 2010)).first()
-Map.addLayer(onedrought, null, 'raw drought')
 // UPDATE MASK: update the mask of an image, to anything zero
-onedrought = onedrought.expression('ante3 + ante6 + ante12', {
-                                  'ante3': onedrought.select('CMI_gt_ante3_p10'),
-                                  'ante6': onedrought.select('CMI_gt_ante6_p10'),
-                                  'ante12': onedrought.select('CMI_gt_ante12_p10')})
-Map.addLayer(onedrought, null, 'sum drought')
-onedrought = onedrought.eq(3)
-var maskfire = firemask.filter(ee.Filter.eq('year', 2010)).first()
-var maskveg = veg
-  .updateMask(firemask.filter(ee.Filter.eq('year', 2010))
-                      .first()
-                      .eq(0))
-  .updateMask(onedrought)
-Map.addLayer(onedrought, null, 'mask drought')
-Map.addLayer(maskfire, null, 'mask fire')
-Map.addLayer(maskveg, null, 'mask fire + drought')
+
 exports.baselineEVI = function(veg, drought, fire, years) {
   return years.map(function(yr) {
-    var yrbase = baseline.filter(ee.Filter.eq('year', yr));
-    var yrfire = fire.filter(ee.Filter.eq('year', yr));
+    var yrbase = baseline.filter(ee.Filter.eq('year', yr))
+                         .first();
+    var yrfire = fire.filter(ee.Filter.eq('year', yr))
+                     .first()
+                     .eq(0);
     
     var sumante = yrbase.expression('ante3 + ante6 + ante12', {
                                     'ante3': sumante.select('CMI_gt_ante3_p10'),
