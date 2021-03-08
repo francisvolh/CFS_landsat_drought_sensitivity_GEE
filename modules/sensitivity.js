@@ -31,10 +31,9 @@ exports.maskDrought = function(veg, droughts, fires) {
                     .first()
                     .eq(0);
                     
-                    
-    var drought3 = base.select('CMI_gt_ante3_p10').eq(0)
-    var drought6 = base.select('CMI_gt_ante6_p10').eq(0)
-    var drought12 = base.select('CMI_gt_ante12_p10').eq(0)
+    var drought3 = base.select('CMI_gt_ante3_p10').eq(0);
+    var drought6 = base.select('CMI_gt_ante6_p10').eq(0);
+    var drought12 = base.select('CMI_gt_ante12_p10').eq(0);
 
     var veg3 = veg.updateMask(drought3).select(['NDVI', 'EVI'], ['NDVI_3', 'EVI_3']);
     var veg6 = veg.updateMask(drought6).select(['NDVI', 'EVI'], ['NDVI_6', 'EVI_6']);
