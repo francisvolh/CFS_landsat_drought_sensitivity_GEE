@@ -1,71 +1,57 @@
-// === Calculate drought sensitivity === 
-// Alec Robitaille
+// Modules ----------------------------------------------------------
+var agg = require('users/robitalec/CFS:modules/aggregate.js');
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var baseline = require('users/robitalec/CFS:modules/baseline.js');
+var fire = require('users/robitalec/CFS:modules/fire.js');
 
 
-// --- Data ---
+// Data -------------------------------------------------------------
+// DAYMET
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
+
+// CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-
-// GLDAS-2.1: Global Land Data Assimilation System
-var gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H");
-
-// FLDAS
-var fldas = ee.ImageCollection("NASA/FLDAS/NOAH01/C/GL/M/V001");
-
-// Land cover (MODIS)
-// LC_Type1: Annual International Geosphere-Biosphere Programme (IGBP) classification
-// LC_Type2: Annual University of Maryland (UMD) classification
-// LC_Type3: Annual Leaf Area Index (LAI) classification
-// LC_Type4: Annual BIOME-Biogeochemical Cycles (BGC) classification
-// LC_Type5: Annual Plant Functional Types classification
-var lc = ee.ImageCollection("MODIS/006/MCD12Q1");
-
-
-
-// --- Filters and masks ---
-// Only three ecoregions (for now)
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 
-// Smaller for now
-gldas = gldas
-  // .filter(ee.Filter.dayOfYear(182, 215))
-  .filter(ee.Filter.date('2010-01-01', '2011-01-01'));
+// Aggregate --------------------------------------------------------
+// Filter
+var minyear = 1980;
+var maxyear = 2019;
+
+daymet = daymet
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
+
+// List of years and months
+var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(minyear, maxyear);
+
+// Reducer
+var reducer = ee.Reducer.mean()
+  .combine(ee.Reducer.sum(), null, true);
+
+// Aggregate monthly for each year
+var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+
+// Calculate CMI ----------------------------------------------------
+aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
+                             ['tmin', 'tmax', 'prcp']);
+
+aggDaymet = aggDaymet
+  .map(cmi.calcETMAX)
+  .map(cmi.calcETMIN)
+  .map(cmi.calcETDEW)
+  .map(cmi.calcVPD)
+  .map(cmi.calcTAVG515)
+  .map(cmi.calcKTRF)
+  .map(cmi.calcPET)
+  .map(cmi.calcCMI);
 
 
-// Only forests, using plan functional types for now
-// Using 2015 image only for now
-lc = lc
-  .filter(ee.Filter.date('2015-01-01', '2016-01-01'))
-  .first()
-  .select('LC_Type5');
-
-lc = lc.gte(1).and(lc.lte(4));
+// Calculate baseline -----------------------------------------------
+var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
+var drought = baseline.gtPercentile(means, [5, 10]);
+drought = drought.filter(ee.Filter.neq('year', 1980));
 
 
-// --- Functions ---
-// Calculate CMI
-function calcCMI (im) {
-  return im.addBands(
-    im.select('potential_evaporation')
-      .subtract(im.select('total_precipitation'))
-      .rename('cmi'));
-}
-
-// Stratified sampling of features 
-function stratifiedFeatureSample (ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 25);
-}
-
-
-// --- Sampling points ---
-// Stratified sample of each ecoregion
-var points = ctef.map(stratifiedFeatureSample).flatten();
-
-
-// --- Sample ---
-
-
-// --- Map ---
-Map.addLayer(ctef, null, 'ctef');
-Map.addLayer(points, null, 'points');
-
+// EVI/NDVI ---------------------------------------------------------
