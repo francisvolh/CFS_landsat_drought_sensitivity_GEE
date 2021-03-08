@@ -50,7 +50,7 @@ aggDaymet = aggDaymet
 
 
 // Calculate baseline -----------------------------------------------
-var percentiles = [5, 10]
+var percentiles = [5, 10];
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.neq('year', 1980));
@@ -61,28 +61,7 @@ var firemask = fire.fireMasks(firepol, years);
 
 
 // EVI/NDVI ---------------------------------------------------------
-// for each pixel (P) we identified the EVI observations associated 
-// with baseline climate conditions across all time-scales (T); i.e., 
-// EVI observations for which SPEI03, SPEI06, and SPEI12 all indicated 
-// non-drought, non-pluvial conditions. 
-
-// If pixel P had ≥ 3 such baseline-associated EVI observations, 
-// we calculated baseline EVIP as the mean across these EVI observations. 
-
-// Similarly, we calculated drought EVIP for each combination of T and L 
-// as the mean across drought-associated EVI observations for pixel P.
-
-// For each pixel, calculate mean EVI [and NDVI] for non-drought years 
-// (i.e., all 3 time periods indicate non-drought conditions)
-
-// Update masks
-// Reduce to mean
-
-// Drought EVI = for each time period
-// Baseline EVI = if all 3 time periods indicate non-drought
-
 // TODO: filter veg to July
-
 var img1 = ee.Image.constant(1)
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filterDate('2010-07-01', '2010-07-31')
