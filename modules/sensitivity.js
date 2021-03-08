@@ -37,7 +37,6 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
         var veg6 = v.updateMask(drought6).select(['NDVI', 'EVI'], [ante6ndvi, ante6evi]);
         var veg12 = v.updateMask(drought12).select(['NDVI', 'EVI'], [ante12ndvi, ante12evi]);
         
-        return ee.Image([veg3, veg6, veg12]).copyProperties(v);
     
         
         var sumante = base.expression('ante3 + ante6 + ante12', {
@@ -45,11 +44,13 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
           'ante6': base.select(ante6band),
           'ante12': base.select(ante12band)
         }).eq(3);
-    
-       return v.updateMask(fire)
+        
+        var base = v.updateMask(fire)
                .updateMask(sumante)
                .select(['NDVI', 'EVI'], [ndviband, eviband]);
-      })
+               
+       return ee.Image([base, veg3, veg6, veg12]).copyProperties(v);
+
     );
   });
 };
