@@ -93,7 +93,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 
 var maskbase = sensitivity.maskBaseline(veg, drought, firemask)
 
-Map.addLayer(maskveg)
+Map.addLayer(maskbase)
 
 // - [ ]  Loop years
 // - [ ]  Sum all three time periods
