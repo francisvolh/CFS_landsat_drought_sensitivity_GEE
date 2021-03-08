@@ -99,9 +99,9 @@ exports.baselineEVI = function(veg, drought, fire, years) {
                      .eq(0);
     
     var sumante = yrbase.expression('ante3 + ante6 + ante12', {
-                                    'ante3': sumante.select('CMI_gt_ante3_p10'),
-                                    'ante6': sumante.select('CMI_gt_ante6_p10'),
-                                    'ante12': sumante.select('CMI_gt_ante12_p10')})
+                                    'ante3': yrbase.select('CMI_gt_ante3_p10'),
+                                    'ante6': yrbase.select('CMI_gt_ante6_p10'),
+                                    'ante12': yrbase.select('CMI_gt_ante12_p10')})
                         .eq(3);
 
     veg.map(function(img) {
