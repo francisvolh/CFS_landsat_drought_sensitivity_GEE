@@ -53,27 +53,3 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
     );
   });
 };
-
-
-exports.maskDrought = function(veg, droughts, fires) {
-  return veg.map(function(v) {
-    var yr = v.date().get('year');
-    
-    var base = droughts.filter(ee.Filter.eq('year', yr))
-                       .first();
-                         
-    var fire = fires.filter(ee.Filter.eq('year', yr))
-                    .first()
-                    .eq(0);
-                    
-    var drought3 = base.select('CMI_gt_ante3_p10').eq(0);
-    var drought6 = base.select('CMI_gt_ante6_p10').eq(0);
-    var drought12 = base.select('CMI_gt_ante12_p10').eq(0);
-
-    var veg3 = v.updateMask(drought3).select(['NDVI', 'EVI'], ['NDVI_3', 'EVI_3']);
-    var veg6 = v.updateMask(drought6).select(['NDVI', 'EVI'], ['NDVI_6', 'EVI_6']);
-    var veg12 = v.updateMask(drought12).select(['NDVI', 'EVI'], ['NDVI_12', 'EVI_12']);
-    
-    return ee.Image([veg3, veg6, veg12]).copyProperties(v);
-  });
-};
