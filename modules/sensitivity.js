@@ -9,12 +9,13 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
                     .first()
                     .eq(0);
                     
-    return ee.Image.cat(
+    return ee.Image(
       percentiles.map(function(percent) {
         
         var ante3band = 'CMI_gt_ante3_p' + percent;
         var ante6band = 'CMI_gt_ante6_p' + percent;
         var ante12band = 'CMI_gt_ante12_p' + percent;
+        
         var ndviband = 'NDVI_base_p' + percent;
         var eviband = 'EVI_base_p' + percent;
         
