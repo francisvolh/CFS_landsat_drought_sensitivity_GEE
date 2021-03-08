@@ -77,11 +77,18 @@ drought = drought.filter(ee.Filter.neq('year', 1980));
 
 // TODO: filter veg to July
 
+var img1 = ee.Image.constant(1)
+var veg = ee.Image(
+  ee.ImageCollection("MODIS/006/MOD13Q1").first())
+  .multiply(0.0001);
 
-var sumante = ee.Image(drought.first())
-sumante = sumante
-  
-Map.addLayer(sumante)
+// 0.0001 scale
+
+// updateMask = 
+// Map.addLayer(img1.updateMask(img1.neq(1)))
+// Map.addLayer(img1.neq(1))
+Map.addLayer(veg)
+Map.addLayer(veg)
 
 exports.baselineEVI = function(veg, drought, fire, years) {
   return years.map(function(yr) {
