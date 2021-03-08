@@ -9,6 +9,8 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
                     .first()
                     .eq(0);
                     
+    v = v.updateMask(fire);
+                    
     return ee.Image(
       percentiles.map(function(percent) {
         
