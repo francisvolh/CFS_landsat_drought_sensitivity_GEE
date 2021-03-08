@@ -48,7 +48,9 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
                        .updateMask(basemask)
                        .select(['NDVI', 'EVI'], [ndviband, eviband]);
                
-       return ee.Image([base, veg3, veg6, veg12]).copyProperties(v);
+       return ee.Image([base
+      // , veg3, veg6, veg12
+       ]).copyProperties(v);
       })
     );
   });
