@@ -8,7 +8,7 @@ exports.maskBaseline = function(veg, droughts, fires, percentiles) {
     var fire = fires.filter(ee.Filter.eq('year', yr))
                     .first()
                     .eq(0);
-    
+                    
     var sumante = base.expression('ante3 + ante6 + ante12', {
                                     'ante3': base.select('CMI_gt_ante3_p10'),
                                     'ante6': base.select('CMI_gt_ante6_p10'),
