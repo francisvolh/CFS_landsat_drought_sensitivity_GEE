@@ -2,9 +2,12 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
   return veg.map(function(v) {
     var yr = v.date().get('year');
     
-    var base = ee.Image(droughts.filter(ee.Filter.eq('year', yr)));
-    
-    var fire = ee.Image(fires.filter(ee.Filter.eq('year', yr))).eq(0);
+    var base = droughts.filter(ee.Filter.eq('year', yr))
+                       .first();
+    // SWITCH var base = ee.Image(droughts.filter(ee.Filter.eq('year', yr)))
+    var fire = fires.filter(ee.Filter.eq('year', yr))
+                    .first()
+                    .eq(0);
                     
     v = v.updateMask(fire);
                     
