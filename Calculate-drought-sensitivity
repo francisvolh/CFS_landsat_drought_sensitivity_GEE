@@ -63,7 +63,7 @@ var firemask = fire.fireMasks(firepol, years);
 // EVI/NDVI ---------------------------------------------------------
 // TODO: filter veg to July
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
-  .filterDate('2010-07-01', '2010-07-31');
+  .filterDate('2010-07-01', '2015-07-31');
   // .first()
   // .select('NDVI')
   // .multiply(0.0001);
@@ -71,7 +71,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 // UPDATE MASK: update the mask of an image, to anything zero
 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
-Map.addLayer(maskveg)
+Map.addLayer(maskveg);
 var visdrought = {"opacity":0.53,"palette":["da7852"]};
 var visbase = {"opacity":0.58,"palette":["4e50ae"]};
 // Map.addLayer(maskbase, visbase, 'mask baseline');
