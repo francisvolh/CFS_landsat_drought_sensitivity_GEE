@@ -71,7 +71,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 // UPDATE MASK: update the mask of an image, to anything zero
 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
-Map.addLayer(maskveg.first().select('NDVI_base_p5'));
+Map.addLayer(maskveg.first().select('NDVI_ante6_p5'));
 Map.addLayer(maskveg.first().select('NDVI_ante3_p5'));
 var visdrought = {"opacity":0.53,"palette":["da7852"]};
 var visbase = {"opacity":0.58,"palette":["4e50ae"]};
