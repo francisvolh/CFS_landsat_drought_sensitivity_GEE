@@ -53,6 +53,10 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, [5, 10]);
 drought = drought.filter(ee.Filter.neq('year', 1980));
 
+// Fire -------------------------------------------------------------
+var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
+var firemask = fire.fireMasks(firepol, years);
+
 
 // EVI/NDVI ---------------------------------------------------------
 // for each pixel (P) we identified the EVI observations associated 
@@ -78,18 +82,24 @@ drought = drought.filter(ee.Filter.neq('year', 1980));
 // TODO: filter veg to July
 
 var img1 = ee.Image.constant(1)
-var veg = ee.Image(
-  ee.ImageCollection("MODIS/006/MOD13Q1").first())
+var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
+  .filterDate('2010-07-01', '2010-07-31')
+  .first()
+  .select('NDVI')
   .multiply(0.0001);
-
-// 0.0001 scale
 
 // updateMask = 
 // Map.addLayer(img1.updateMask(img1.neq(1)))
 // Map.addLayer(img1.neq(1))
 Map.addLayer(veg)
-Map.addLayer(veg)
+var maskfire = firemask.filter(ee.Filter.eq('year', 2010)).first()
+var maskveg = veg
+  .updateMask(firemask.filter(ee.Filter.eq('year', 2010))
+                      .first()
+                      .eq(0))
 
+Map.addLayer(maskfire)
+Map.addLayer(maskveg)
 exports.baselineEVI = function(veg, drought, fire, years) {
   return years.map(function(yr) {
     var yrbase = baseline.filter(ee.Filter.eq('year', yr));
