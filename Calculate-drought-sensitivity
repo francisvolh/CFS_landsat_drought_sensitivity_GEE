@@ -63,21 +63,9 @@ var firemask = fire.fireMasks(firepol, years);
 // EVI/NDVI ---------------------------------------------------------
 // TODO: filter veg to July
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
-  .filterDate('2010-07-01', '2015-07-31');
-  // .first()
-  // .select('NDVI')
-  // .multiply(0.0001);
-
-// UPDATE MASK: update the mask of an image, to anything zero
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
-Map.addLayer(maskveg.first());
-var visdrought = {"opacity":0.53,"palette":["da7852"]};
-var visbase = {"opacity":0.58,"palette":["4e50ae"]};
-// Map.addLayer(maskbase, visbase, 'mask baseline');
-// Map.addLayer(maskdrought.select('NDVI_3'), visdrought, 'mask drought 3');
-// Map.addLayer(maskdrought.select('NDVI_6'), visdrought, 'mask drought 6');
-// Map.addLayer(maskdrought.select('NDVI_12'), visdrought, 'mask drought 12');
 
 
 // If pixel P had ≥ 3 such baseline-associated EVI observations
