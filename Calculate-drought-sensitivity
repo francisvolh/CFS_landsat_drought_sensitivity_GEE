@@ -102,7 +102,7 @@ var maskveg = veg
                                   'ante3': onedrought.select('CMI_gt_ante3_p10'),
                                   'ante6': onedrought.select('CMI_gt_ante6_p10'),
                                   'ante12': onedrought.select('CMI_gt_ante12_p10')})
-                        .eq(3);
+                        .eq(3))
 
 Map.addLayer(maskfire)
 Map.addLayer(maskveg)
