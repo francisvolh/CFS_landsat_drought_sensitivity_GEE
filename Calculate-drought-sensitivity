@@ -62,9 +62,11 @@ var firemask = fire.fireMasks(firepol, years);
 
 // EVI/NDVI ---------------------------------------------------------
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
-  .map(function(img) {return img.set('month', img.date().get('month'))})
-  .filter(ee.Filter.eq('month', 7));
+  // .map(function(img) {return img.set('month', img.date().get('month'))})
+  // .filter(ee.Filter.eq('month', 7));
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
   // .filterDate('2010-07-01', '2016-07-01')
+print(veg.first().date().get('year'))
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
 print(maskveg)
 Map.addLayer(maskveg)
