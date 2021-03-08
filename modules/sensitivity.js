@@ -4,7 +4,7 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
     
     var base = droughts.filter(ee.Filter.eq('year', yr))
                        .first();
-                         
+    // SWITCH var base = ee.Image(droughts.filter(ee.Filter.eq('year', yr)))
     var fire = fires.filter(ee.Filter.eq('year', yr))
                     .first()
                     .eq(0);
@@ -50,7 +50,7 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
                .select(['NDVI', 'EVI'], [ndviband, eviband]);
                
        return ee.Image([base, veg3, veg6, veg12]).copyProperties(v);
-
+      })
     );
   });
 };
