@@ -74,19 +74,13 @@ drought = drought.filter(ee.Filter.neq('year', 1980));
 
 // Drought EVI = for each time period
 // Baseline EVI = if all 3 time periods indicate non-drought
-print(drought.limit(1))
 
 // TODO: filter veg to July
 
 
 var sumante = ee.Image(drought.first())
 sumante = sumante
-  .expression(
-    'ante3 + ante6 + ante12', {
-      'ante3': sumante.select('CMI_gt_ante3_p10'),
-      'ante6': sumante.select('CMI_gt_ante6_p10'),
-      'ante12': sumante.select('CMI_gt_ante12_p10')
-})
+  
 Map.addLayer(sumante)
 
 exports.baselineEVI = function(veg, drought, fire, years) {
@@ -94,11 +88,11 @@ exports.baselineEVI = function(veg, drought, fire, years) {
     var yrbase = baseline.filter(ee.Filter.eq('year', yr));
     var yrfire = fire.filter(ee.Filter.eq('year', yr));
     
-    var sumante = yrbase.select(['CMI_gt_ante3_p10',
-                                 'CMI_gt_ante6_p10',
-                                 'CMI_gt_ante12_p10'])
-                         .reduceToImage(ee.Reducer.sum())
-                         .eq(3)
+    var sumante = yrbase.expression('ante3 + ante6 + ante12', {
+                                    'ante3': sumante.select('CMI_gt_ante3_p10'),
+                                    'ante6': sumante.select('CMI_gt_ante6_p10'),
+                                    'ante12': sumante.select('CMI_gt_ante12_p10')})
+                        .eq(3);
 
     veg.map(function(img) {
       return img.updateMask()
