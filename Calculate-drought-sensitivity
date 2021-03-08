@@ -63,7 +63,7 @@ var firemask = fire.fireMasks(firepol, years);
 // EVI/NDVI ---------------------------------------------------------
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
-
+print(veg)
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
 
 Map.addLayer(maskveg)
