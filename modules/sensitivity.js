@@ -4,7 +4,6 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
     
     var base = droughts.filter(ee.Filter.eq('year', yr))
                        .first();
-    // SWITCH var base = ee.Image(droughts.filter(ee.Filter.eq('year', yr)))
     var fire = fires.filter(ee.Filter.eq('year', yr))
                     .first()
                     .eq(0);
