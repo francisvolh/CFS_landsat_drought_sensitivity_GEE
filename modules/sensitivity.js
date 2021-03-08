@@ -39,15 +39,15 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
         
     
         
-        var sumante = base.expression('ante3 + ante6 + ante12', {
+        var basemask = base.expression('ante3 + ante6 + ante12', {
           'ante3': base.select(ante3band),
           'ante6': base.select(ante6band),
           'ante12': base.select(ante12band)
         }).eq(3);
         
-        var base = v.updateMask(fire)
-               .updateMask(sumante)
-               .select(['NDVI', 'EVI'], [ndviband, eviband]);
+        var baseveg = v.updateMask(fire)
+                       .updateMask(sumante)
+                       .select(['NDVI', 'EVI'], [ndviband, eviband]);
                
        return ee.Image([base, veg3, veg6, veg12]).copyProperties(v);
       })
