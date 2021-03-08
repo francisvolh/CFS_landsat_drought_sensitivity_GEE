@@ -23,7 +23,7 @@ exports.maskBaseline = function(veg, droughts, fires, percentiles) {
     
        return v.updateMask(fire).updateMask(sumante);
       })
-    )
+    );
   });
 };
 
