@@ -50,8 +50,9 @@ aggDaymet = aggDaymet
 
 
 // Calculate baseline -----------------------------------------------
+var percentiles = [5, 10]
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
-var drought = baseline.gtPercentile(means, [5, 10]);
+var drought = baseline.gtPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.neq('year', 1980));
 
 // Fire -------------------------------------------------------------
