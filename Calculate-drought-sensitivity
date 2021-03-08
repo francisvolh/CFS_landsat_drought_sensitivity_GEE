@@ -69,10 +69,31 @@ drought = drought.filter(ee.Filter.neq('year', 1980));
 // For each pixel, calculate mean EVI [and NDVI] for non-drought years 
 // (i.e., all 3 time periods indicate non-drought conditions)
 
-
 // Update masks
 // Reduce to mean
 
 // Drought EVI = for each time period
 // Baseline EVI = if all 3 time periods indicate non-drought
+print(drought.limit(1))
 
+// TODO: filter veg to July
+
+exports.baselineEVI = function(veg, drought, fire, years) {
+  return years.map(function(yr) {
+    var yrbase = baseline.filter(ee.Filter.eq('year', yr));
+    var yrfire = fire.filter(ee.Filter.eq('year', yr));
+    
+    var sumante = yrbase.select([''])
+
+    veg.map(function(img) {
+      return img.updateMask()
+    })
+    updateMask
+  })
+};
+
+// - [ ]  Loop years
+// - [ ]  Sum all three time periods
+// - [ ]  Update mask of EVI with eq(3)
+// - [ ]  Update mask of EVI with fire
+// - [ ]  Reduce collection of images, sample mean EVI/NDVI
