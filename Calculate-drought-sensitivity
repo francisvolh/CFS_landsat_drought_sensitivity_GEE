@@ -78,10 +78,10 @@ var maskdrought = sensitivity.maskDrought(veg, drought, firemask);
 
 var visdrought = {"opacity":0.53,"palette":["da7852"]};
 var visbase = {"opacity":0.58,"palette":["4e50ae"]};
-Map.addLayer(maskbase, visbase, 'mask baseline');
-Map.addLayer(maskdrought.select('NDVI_3'), visdrought, 'mask drought 3');
-Map.addLayer(maskdrought.select('NDVI_6'), visdrought, 'mask drought 6');
-Map.addLayer(maskdrought.select('NDVI_12'), visdrought, 'mask drought 12');
+// Map.addLayer(maskbase, visbase, 'mask baseline');
+// Map.addLayer(maskdrought.select('NDVI_3'), visdrought, 'mask drought 3');
+// Map.addLayer(maskdrought.select('NDVI_6'), visdrought, 'mask drought 6');
+// Map.addLayer(maskdrought.select('NDVI_12'), visdrought, 'mask drought 12');
 
 
 // If pixel P had ≥ 3 such baseline-associated EVI observations
