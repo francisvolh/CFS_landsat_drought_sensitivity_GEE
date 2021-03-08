@@ -108,7 +108,7 @@ exports.maskEVI = function(veg, droughts, fires) {
                       .eq(3);
     
     return v.updateMask(fire).updateMask(fire);
-  })
+  });
 };
 
 // - [ ]  Loop years
