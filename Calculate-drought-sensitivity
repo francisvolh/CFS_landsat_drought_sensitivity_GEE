@@ -60,16 +60,13 @@ var firemask = fire.fireMasks(firepol, years);
 
 
 // Land Cover ------------------------------------------------------
-// 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
 var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
-Map.addLayer(lc.select('landcover'))
 
+// 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
 lc = lc.updateMask(lc.neq(210).and(
                    lc.neq(220)).and(
                    lc.neq(200)).and(
-                   lc.neq(190)))
-// TODO add this to the mask veg function
-Map.addLayer(lc.select('landcover'))
+                   lc.neq(190)));
 
 // EVI/NDVI ---------------------------------------------------------
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
