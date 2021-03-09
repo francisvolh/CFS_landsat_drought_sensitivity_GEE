@@ -60,9 +60,8 @@ var firemask = fire.fireMasks(firepol, years);
 
 
 // Land Cover ------------------------------------------------------
-210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
+// 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
 var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
-
 lc = lc.updateMask(lc.eq(210).or(
                    lc.eq(220)).or(
                    lc.eq(200)).or(
