@@ -73,7 +73,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
-var maskveg = sensitivity.maskVeg(veg, drought, firemask, percentiles);
+var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 
 
