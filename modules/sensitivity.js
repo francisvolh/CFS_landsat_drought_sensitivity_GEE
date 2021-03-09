@@ -7,9 +7,13 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
     var fire = fires.filter(ee.Filter.eq('year', yr))
                     .first()
                     .eq(0);
-                    
+
+    var vegbands = ['NDVI', 'EVI'];
+
     v = v.updateMask(fire)
-         .updateMask(lc);
+         .updateMask(lc)
+         .select(vegbands)
+         .multiply(0.0001);
                     
     return ee.Image(
       percentiles.map(function(percent) {
@@ -28,7 +32,6 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         var ante6evi = 'EVI_ante6_p' + percent;
         var ante12evi = 'EVI_ante12_p' + percent;
         
-        var vegbands = ['NDVI', 'EVI'];
         
         var veg3 = v.updateMask(drought3)
                     .select(vegbands, [ante3ndvi, ante3evi])
