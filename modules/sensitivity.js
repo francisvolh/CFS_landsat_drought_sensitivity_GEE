@@ -1,4 +1,4 @@
-exports.maskVeg = function(veg, droughts, fires, percentiles) {
+exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
   return veg.map(function(v) {
     var yr = v.date().get('year');
     
@@ -8,7 +8,8 @@ exports.maskVeg = function(veg, droughts, fires, percentiles) {
                     .first()
                     .eq(0);
                     
-    v = v.updateMask(fire);
+    v = v.updateMask(fire)
+         .updateMask(lc);
                     
     return ee.Image(
       percentiles.map(function(percent) {
