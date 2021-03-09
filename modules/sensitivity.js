@@ -47,7 +47,8 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         var eviband = 'EVI_base_p' + percent;
         
         var baseveg = v.updateMask(basemask)
-                       .select(['NDVI', 'EVI'], [ndviband, eviband]);
+                       .select(['NDVI', 'EVI'], [ndviband, eviband])
+                       .multiply(0.0001);
                
        return ee.Image([baseveg, veg3, veg6, veg12]).copyProperties(v);
       })
