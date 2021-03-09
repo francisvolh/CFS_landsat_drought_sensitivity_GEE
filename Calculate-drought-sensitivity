@@ -68,7 +68,7 @@ lc = lc.updateMask(lc.neq(210).and(
                    lc.neq(220)).and(
                    lc.neq(200)).and(
                    lc.neq(190)))
-                   
+// TODO add this to the mask veg function
 Map.addLayer(lc.select('landcover'))
 
 // EVI/NDVI ---------------------------------------------------------
