@@ -79,5 +79,5 @@ var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 
 print(maskveg);
-Map.addLayer(maskveg);
+Map.addLayer(maskveg.first());
 // If pixel P had ≥ 3 such baseline-associated EVI observations
