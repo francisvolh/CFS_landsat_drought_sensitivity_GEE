@@ -83,13 +83,12 @@ var maskcount = sensitivity.maskCount(maskveg);
 
 // Reduce to means
 var means = maskcount.reduce(ee.Reducer.mean());
-print(means)
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
-print(droughtSens)
-Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), {min:-100, max:100})
 
-// Sample CTEF
+Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), {min:-100, max:100});
+
+// Sample CTEF --------------------------------------------------
