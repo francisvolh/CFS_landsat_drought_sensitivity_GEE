@@ -72,44 +72,44 @@ exports.droughtSensitivtiy = function(vegmeans, percentiles) {
     var baseNDVI = 'NDVI_base_p' + percent + '_mean';
     var baseEVI = 'EVI_base_p' + percent + '_mean';
     
-    var ante3ndvi = 'NDVI_ante3_p' + percent + '_mean';
-    var ante6ndvi = 'NDVI_ante6_p' + percent + '_mean';
-    var ante12ndvi = 'NDVI_ante12_p' + percent + '_mean';
+    var ante3NDVI = 'NDVI_ante3_p' + percent + '_mean';
+    var ante6NDVI = 'NDVI_ante6_p' + percent + '_mean';
+    var ante12NDVI = 'NDVI_ante12_p' + percent + '_mean';
     var ante3evi = 'EVI_ante3_p' + percent + '_mean';
     var ante6evi = 'EVI_ante6_p' + percent + '_mean';
     var ante12evi = 'EVI_ante12_p' + percent + '_mean';
     
-    var sens3ndvi = 'Sensitivity_NDVI_ante3_p' + percent;
-    var sens6ndvi = 'Sensitivity_NDVI_ante6_p' + percent;
-    var sens12ndvi = 'Sensitivity_NDVI_ante12_p' + percent;
+    var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
+    var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
+    var sens12NDVI = 'Sensitivity_NDVI_ante12_p' + percent;
     var sens3EVI = 'Sensitivity_EVI_ante3_p' + percent;
     var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
     var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
     
     return vegmeans.addBands([vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
-                                                    drought: ante3ndvi
-                                                  }).rename(sens3ndvi),
+                                                    drought: ante3NDVI
+                                                  }).rename(sens3NDVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
-                                                    drought: ante6ndvi
-                                                  }).rename(sens3ndvi),
+                                                    drought: ante6NDVI
+                                                  }).rename(sens6NDVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
-                                                    drought: ante12ndvi
-                                                  }).rename(sens3ndvi),
+                                                    drought: ante12NDVI
+                                                  }).rename(sens12NDVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
                                                     drought: ante3evi
-                                                  }).rename(sens3ndvi),
+                                                  }).rename(sens3EVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
                                                     drought: ante6evi
-                                                  }).rename(sens3ndvi),
+                                                  }).rename(sens5EVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
                                                     drought: ante12evi
-                                                  }).rename(sens3ndvi)]);
+                                                  }).rename(sens3NDVI)]);
   });
 };
 
