@@ -67,11 +67,38 @@ exports.maskCount = function(veg) {
 };
 
 
-exports.droughtSensitivtiy = function(vegmeans) {
-  var counts = veg.reduce(ee.Reducer.count())
-                  .gte(3);
-  return veg.map(function(img) {
-    return img.updateMask(counts);
+exports.droughtSensitivtiy = function(vegmeans, percentiles) {
+  percentiles.map(function(percent) {
+    var ante3band = 'CMI_gt_ante3_p' + percent + '_mean';
+    var ante6band = 'CMI_gt_ante6_p' + percent + '_mean';
+    var ante12band = 'CMI_gt_ante12_p' + percent + '_mean';
+    
+    var ante3ndvi = 'NDVI_ante3_p' + percent + '_mean';
+    var ante6ndvi = 'NDVI_ante6_p' + percent + '_mean';
+    var ante12ndvi = 'NDVI_ante12_p' + percent + '_mean';
+    var ante3evi = 'EVI_ante3_p' + percent + '_mean';
+    var ante6evi = 'EVI_ante6_p' + percent + '_mean';
+    var ante12evi = 'EVI_ante12_p' + percent + '_mean';
+    
+    return vegmeans.addBands([vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    }),vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    }),vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    }),vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    }),vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    }),vegmeans.expression('2+2', {
+      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+
+    })]);
   });
 };
 
