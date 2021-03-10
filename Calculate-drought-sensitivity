@@ -40,7 +40,6 @@ aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
   .map(cmi.calcETMIN)
-  .map(cmi.calcETDEW)
   .map(cmi.calcVPD)
   .map(cmi.calcTAVG515)
   .map(cmi.calcKTRF)
@@ -86,7 +85,9 @@ var means = maskcount.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-print(means)
-// var sensivitity 
+var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
+
+Map.addLayer(droughtSens)
+print(droughtSens)
 
 // Sample CTEF
