@@ -78,13 +78,15 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
-// Mask where number of observations is <3
+// Count where number of observations is <3
 var counts = maskveg.reduce(ee.Reducer.count())
                     .gte(3);
-maskveg = maskveg.map(function(img) {return img.updateMask(counts)});
 
 // Reduce to means
 var means = maskveg.reduce(ee.Reducer.mean());
+
+// Mask means where counts <3
+means = means.updateMask(counts);
 
 
 
