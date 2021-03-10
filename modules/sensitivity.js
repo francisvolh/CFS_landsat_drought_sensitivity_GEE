@@ -51,8 +51,8 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         
         var baseveg = v.updateMask(basemask)
                        .rename([ndviband, eviband]);
-               
-       return ee.Image([baseveg, veg3, veg6, veg12]).copyProperties(v);
+        
+        return ee.Image([baseveg, veg3, veg6, veg12]).copyProperties(v);
       })
     );
   });
