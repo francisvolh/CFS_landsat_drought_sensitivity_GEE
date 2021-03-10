@@ -77,7 +77,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 
-
+Map.addLayer(ctef)
 print(maskveg);
 Map.addLayer(maskveg.first());
 // If pixel P had ≥ 3 such baseline-associated EVI observations
