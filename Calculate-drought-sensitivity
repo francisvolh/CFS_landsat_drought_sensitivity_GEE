@@ -79,10 +79,17 @@ var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 
 // Reduce to mean img -----------------------------------------------
-var meanveg = maskveg.reduce(ee.Reducer.count());
-Map.addLayer(maskveg)
-print(maskveg)
-print(meanveg)
-Map.addLayer(meanveg)
+var counts = maskveg.reduce(ee.Reducer.count())
+                    .gte(3);
+                    
+var means = maskveg.reduce(ee.Reducer.mean());
+          
+
+Map.addLayer(means.select('NDVI_ante6_p5_mean'), {palette:["ff9999"]})
+means = means.updateMask(counts);
+Map.addLayer(means.select('NDVI_ante6_p5_mean'), {min: -1, max: 1})
+
+
+
 
 // Sample CTEF
