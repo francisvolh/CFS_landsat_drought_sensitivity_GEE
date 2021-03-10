@@ -92,23 +92,23 @@ exports.droughtSensitivtiy = function(vegmeans, percentiles) {
                                                   }).rename(sens3ndvi),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
-                                                    drought: ante3ndvi
+                                                    drought: ante6ndvi
                                                   }).rename(sens3ndvi),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
-                                                    drought: ante3ndvi
+                                                    drought: ante12ndvi
                                                   }).rename(sens3ndvi),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante3ndvi
+                                                    drought: ante3evi
                                                   }).rename(sens3ndvi),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante3ndvi
+                                                    drought: ante6evi
                                                   }).rename(sens3ndvi),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante3ndvi
+                                                    drought: ante12evi
                                                   }).rename(sens3ndvi)]);
   });
 };
