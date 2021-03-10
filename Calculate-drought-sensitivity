@@ -81,13 +81,11 @@ var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 // Mask where number of observations is <3
 var counts = maskveg.reduce(ee.Reducer.count())
                     .gte(3);
-Map.addLayer(counts)
 maskveg = maskveg.map(function(img) {return img.updateMask(counts)});
 
 // Reduce to means
 var means = maskveg.reduce(ee.Reducer.mean());
 
-Map.addLayer(means)
 
 
 // Sample CTEF
