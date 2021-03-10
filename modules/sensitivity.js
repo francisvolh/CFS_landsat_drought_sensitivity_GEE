@@ -57,3 +57,21 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
     );
   });
 };
+
+exports.maskCount = function(veg) {
+  var counts = veg.reduce(ee.Reducer.count())
+                  .gte(3);
+  return veg.map(function(img) {
+    return img.updateMask(counts);
+  });
+};
+
+
+exports.droughtSensitivtiy = function(vegmeans) {
+  var counts = veg.reduce(ee.Reducer.count())
+                  .gte(3);
+  return veg.map(function(img) {
+    return img.updateMask(counts);
+  });
+};
+
