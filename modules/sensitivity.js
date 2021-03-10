@@ -109,7 +109,7 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
                                                     drought: ante12EVI
-                                                  }).rename(sens12NDVI)]);
+                                                  }).rename(sens12EVI)]);
   });
 };
 
