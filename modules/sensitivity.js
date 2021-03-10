@@ -67,7 +67,7 @@ exports.maskCount = function(veg) {
 };
 
 
-exports.droughtSensitivtiy = function(vegmeans, percentiles) {
+exports.droughtSensitivity = function(vegmeans, percentiles) {
   percentiles.map(function(percent) {
     var baseNDVI = 'NDVI_base_p' + percent + '_mean';
     var baseEVI = 'EVI_base_p' + percent + '_mean';
