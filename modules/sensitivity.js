@@ -75,9 +75,9 @@ exports.droughtSensitivtiy = function(vegmeans, percentiles) {
     var ante3NDVI = 'NDVI_ante3_p' + percent + '_mean';
     var ante6NDVI = 'NDVI_ante6_p' + percent + '_mean';
     var ante12NDVI = 'NDVI_ante12_p' + percent + '_mean';
-    var ante3evi = 'EVI_ante3_p' + percent + '_mean';
-    var ante6evi = 'EVI_ante6_p' + percent + '_mean';
-    var ante12evi = 'EVI_ante12_p' + percent + '_mean';
+    var ante3EVI = 'EVI_ante3_p' + percent + '_mean';
+    var ante6EVI = 'EVI_ante6_p' + percent + '_mean';
+    var ante12EVI = 'EVI_ante12_p' + percent + '_mean';
     
     var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
     var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
@@ -100,15 +100,15 @@ exports.droughtSensitivtiy = function(vegmeans, percentiles) {
                                                   }).rename(sens12NDVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante3evi
+                                                    drought: ante3EVI
                                                   }).rename(sens3EVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante6evi
+                                                    drought: ante6EVI
                                                   }).rename(sens5EVI),
                               vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseEVI,
-                                                    drought: ante12evi
+                                                    drought: ante12EVI
                                                   }).rename(sens3NDVI)]);
   });
 };
