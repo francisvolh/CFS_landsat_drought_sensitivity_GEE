@@ -86,7 +86,7 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
     var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
     var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
     
-    return vegmeans.addBands([vegmeans.expression('((baseline - drought) / baseline) * 100', {
+    return ee.Image([vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                                     baseline: baseNDVI,
                                                     drought: ante3NDVI
                                                   }).rename(sens3NDVI),
