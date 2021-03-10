@@ -76,3 +76,13 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
+
+
+// Reduce to mean img -----------------------------------------------
+var meanveg = maskveg.reduce(ee.Reducer.count());
+Map.addLayer(maskveg)
+print(maskveg)
+print(meanveg)
+Map.addLayer(meanveg)
+
+// Sample CTEF
