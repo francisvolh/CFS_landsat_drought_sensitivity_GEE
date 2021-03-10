@@ -89,5 +89,7 @@ var means = maskveg.reduce(ee.Reducer.mean());
 means = means.updateMask(counts);
 
 
+// Drought sensitivity -------------------------------------------
+// SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 
 // Sample CTEF
