@@ -68,7 +68,7 @@ exports.maskCount = function(veg) {
 
 
 exports.droughtSensitivity = function(vegmeans, percentiles) {
-  return percentiles.map(function(percent) {
+  return ee.Image(percentiles.map(function(percent) {
     var baseNDVI = 'NDVI_base_p' + percent + '_mean';
     var baseEVI = 'EVI_base_p' + percent + '_mean';
     
@@ -110,6 +110,6 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
                                           baseline: baseEVI,
                                           drought: ante12EVI
                                         }).rename(sens12EVI)]);
-  });
+  }));
 };
 
