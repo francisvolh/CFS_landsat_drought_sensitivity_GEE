@@ -88,24 +88,29 @@ exports.droughtSensitivtiy = function(vegmeans, percentiles) {
     var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
     
     return vegmeans.addBands([vegmeans.expression('((baseline - drought) / baseline) * 100', {
-      baseline: ante3band,
-      drought: ante3ndvi
-    }).rename(sens3ndvi),vegmeans.expression('2+2', {
-      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-    }),vegmeans.expression('2+2', {
-      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-    }),vegmeans.expression('2+2', {
-      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-    }),vegmeans.expression('2+2', {
-      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-    }),vegmeans.expression('2+2', {
-      // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-    })]);
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi),
+                              vegmeans.expression('((baseline - drought) / baseline) * 100', {
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi),
+                              vegmeans.expression('((baseline - drought) / baseline) * 100', {
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi),
+                              vegmeans.expression('((baseline - drought) / baseline) * 100', {
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi),
+                              vegmeans.expression('((baseline - drought) / baseline) * 100', {
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi),
+                              vegmeans.expression('((baseline - drought) / baseline) * 100', {
+                                                    baseline: ante3band,
+                                                    drought: ante3ndvi
+                                                  }).rename(sens3ndvi)]);
   });
 };
 
