@@ -84,7 +84,7 @@ var counts = maskveg.reduce(ee.Reducer.count())
                     
 var means = maskveg.reduce(ee.Reducer.mean());
           
-
+Map.addLayer(maskveg.select('NDVI_ante6_p5'))
 Map.addLayer(means.select('NDVI_ante6_p5_mean'), {palette:["ff9999"]})
 means = means.updateMask(counts);
 Map.addLayer(means.select('NDVI_ante6_p5_mean'), {min: -1, max: 1})
