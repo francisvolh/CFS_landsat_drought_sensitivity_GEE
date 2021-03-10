@@ -86,7 +86,7 @@ var means = maskcount.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-
-var sensivitity 
+print(means)
+// var sensivitity 
 
 // Sample CTEF
