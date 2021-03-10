@@ -70,24 +70,21 @@ lc = lc.updateMask(lc.neq(210).and(
        .select('landcover');
 
 // EVI/NDVI ---------------------------------------------------------
+// Filter MODIS EVI/NDVI
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
+// Mask fire and land cover, return baseline and drought percentiles EVI/NDVI 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
-
-
-// Reduce to mean img -----------------------------------------------
+// Mask where number of observations is <3
 var counts = maskveg.reduce(ee.Reducer.count())
                     .gte(3);
-                    
+maskveg = maskveg.updateMask(counts);
+
+// Reduce to means
 var means = maskveg.reduce(ee.Reducer.mean());
-          
-Map.addLayer(maskveg.select('NDVI_ante6_p5'))
-Map.addLayer(means.select('NDVI_ante6_p5_mean'), {palette:["ff9999"]})
-means = means.updateMask(counts);
-Map.addLayer(means.select('NDVI_ante6_p5_mean'), {min: -1, max: 1})
 
 
 
