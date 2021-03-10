@@ -82,11 +82,11 @@ var maskcount = sensitivity.maskCount(maskveg);
 
 // Reduce to means
 var means = maskcount.reduce(ee.Reducer.mean());
+print(maskveg)
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
-
 print(droughtSens)
 Map.addLayer(droughtSens)
 
