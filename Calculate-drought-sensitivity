@@ -104,7 +104,6 @@ var means = maskcount.reduce(ee.Reducer.mean());
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), {min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']});
-print(ee.ImageCollection.fromImages([droughtSens]))
 var args = {
   dimensions: '300',
   region: geometry,
@@ -113,9 +112,10 @@ var args = {
   framesPerSecond: 1,
 };
 
-var ascol = ee.ImageCollection.fromImages(image.bandNames().map(function(name) { 
-  return image.select(name) 
+var ascol = ee.ImageCollection.fromImages(droughtSens.bandNames().map(function(name) { 
+  return droughtSens.select([name])
 }))
+print(ascol)
 
 // var thumb = ui.Thumbnail({
 //   image: ee.ImageCollection.fromImages([droughtSens]),
