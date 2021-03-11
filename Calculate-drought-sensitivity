@@ -104,12 +104,7 @@ var means = maskcount.reduce(ee.Reducer.mean());
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), {min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']});
-var ascol = ee.ImageCollection.fromImages(
-  droughtSens.bandNames().map(function(name) {
-    return droughtSens.select([name])
-                      .visualize({min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']});
-  })
-);
+
 var args = {
   dimensions: '500',
   region: geometry,
@@ -127,5 +122,19 @@ var thumb = ui.Thumbnail({
     height: '500px'
   }});
 Map.add(thumb);
-// go back to animate
+
+
+var animation = require('users/gena/packages:animation');
+var animated = ee.ImageCollection.fromImages(
+  droughtSens.bandNames().map(function(name) {
+    return droughtSens.select([name])
+                      .visualize({min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']})
+                      .set('bandname', name);
+  })
+);
+animation.animate(animated, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+
+
+
+
 // Sample CTEF --------------------------------------------------
