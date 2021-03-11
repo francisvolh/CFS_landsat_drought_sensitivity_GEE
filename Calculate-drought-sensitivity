@@ -99,6 +99,7 @@ var animated = ee.ImageCollection.fromImages(
                       .set('bandname', ee.String(name));
   })
 );
+// ["ff0000","ffffff","0008ff"]
 animation.animate(animated, {label: 'bandname', maxFrames: 50, timeStep: 1500});
 
 
