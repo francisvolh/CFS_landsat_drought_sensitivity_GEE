@@ -68,11 +68,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         var baseveg = v.updateMask(basemask)
                        .rename([ndviband, eviband]);
         
-        // Mask where counts < 3 for baseline only
-        var counts = baseveg.reduce(ee.Reducer.count())
-                            .gte(3);
-        baseveg = baseveg.updateMask(counts);
-        
+
         // Return baseline and drought period NDVI/EVI measures
         return ee.Image([baseveg, veg3, veg6, veg12]).copyProperties(v);
       })
