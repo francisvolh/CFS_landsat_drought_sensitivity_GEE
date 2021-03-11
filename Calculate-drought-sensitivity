@@ -119,13 +119,13 @@ var ascol = ee.ImageCollection.fromImages(
 );
 print(ascol)
 
-// var thumb = ui.Thumbnail({
-//   image: ee.ImageCollection.fromImages([droughtSens]),
-//   params: args,
-//   style: {
-//     position: 'bottom-right',
-//     width: '320px'
-//   }});
-// Map.add(thumb);
+var thumb = ui.Thumbnail({
+  image: ascol,
+  params: args,
+  style: {
+    position: 'bottom-right',
+    width: '320px'
+  }});
+Map.add(thumb);
 
 // Sample CTEF --------------------------------------------------
