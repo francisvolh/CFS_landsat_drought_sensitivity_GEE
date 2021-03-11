@@ -103,6 +103,12 @@ var means = maskcount.reduce(ee.Reducer.mean());
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
+
+
+// Sample CTEF --------------------------------------------------
+
+
+// Animate --------------------------------------------------------
 var pal = ['1facff','e7e7e7','ff3f3f'];
 // EVIante3, 1-6-12
 var animation = require('users/gena/packages:animation');
@@ -114,28 +120,3 @@ var visualized = ee.ImageCollection.fromImages(
   })
 );
 animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
-
-
-var text = require('users/gena/packages:text');
-
-var annotations = [{
-  position: 'left', offset: '50%', margin: '5%', 
-  property: 'bandname', 
-  scale: Map.getScale()* 0.8,
-  fontSize: 32, fontType: 'Consolas'
-}];
-var annotated = visualized.map(function(img) {
-  return text.annotateImage(img, {forceRgbOutput: true}, geometry.bounds(), annotations);
-});
-
-var args = {
-  dimensions: 1100,
-  region: geometry,
-  framesPerSecond: 1,
-  crs: 'EPSG:3338'
-};
-print(annotated.getVideoThumbURL(args));
-
-
-
-// Sample CTEF --------------------------------------------------
