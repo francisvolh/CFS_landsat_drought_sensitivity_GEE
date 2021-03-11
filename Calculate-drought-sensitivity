@@ -105,25 +105,6 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), {min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']});
 
-var args = {
-  dimensions: '500',
-  region: geometry,
-  min: 0,
-  max: 1,
-  framesPerSecond: 1,
-};
-print(ascol.getVideoThumbURL(args))
-var thumb = ui.Thumbnail({
-  image: ascol,
-  params: args,
-  style: {
-    position: 'bottom-right',
-    width: '500px',
-    height: '500px'
-  }});
-Map.add(thumb);
-
-
 var animation = require('users/gena/packages:animation');
 var animated = ee.ImageCollection.fromImages(
   droughtSens.bandNames().map(function(name) {
