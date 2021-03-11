@@ -112,9 +112,11 @@ var args = {
   framesPerSecond: 1,
 };
 
-var ascol = ee.ImageCollection.fromImages(droughtSens.bandNames().map(function(name) { 
-  return droughtSens.select([name])
-}))
+var ascol = ee.ImageCollection.fromImages(
+  droughtSens.bandNames().map(function(name) {
+    return droughtSens.select([name]);
+  })
+);
 print(ascol)
 
 // var thumb = ui.Thumbnail({
