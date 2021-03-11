@@ -131,7 +131,7 @@ var args = {
   dimensions: 1100,
   region: geometry,
   framesPerSecond: 1,
-  crs: 'EPSG:9822'
+  crs: 'EPSG:102008'
 };
 print(annotated.getVideoThumbURL(args));
 // var thumb = ui.Thumbnail({
