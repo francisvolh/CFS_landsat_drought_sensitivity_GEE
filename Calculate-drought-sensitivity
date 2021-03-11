@@ -89,7 +89,9 @@ var means = maskcount.reduce(ee.Reducer.mean());
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 var pal = ['1facff','e7e7e7','ff3f3f'];
-Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'), {min:-20, max:20, palette:pal});
+Map.addLayer(droughtSens.select('Sensitivity_EVI_ante3_p1'), {min:-20, max:20, palette:pal});
+Map.addLayer(droughtSens.select('Sensitivity_EVI_ante6_p1'), {min:-20, max:20, palette:pal});
+Map.addLayer(droughtSens.select('Sensitivity_EVI_ante12_p1'), {min:-20, max:20, palette:pal});
 // EVIante3, 1-6-12
 var animation = require('users/gena/packages:animation');
 var animated = ee.ImageCollection.fromImages(
