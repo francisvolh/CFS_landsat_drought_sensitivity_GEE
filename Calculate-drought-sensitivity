@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-147.975101618042, 69.79015410633616],
+          [-147.975101618042, 44.98773092585065],
+          [-94.449710993042, 44.98773092585065],
+          [-94.449710993042, 69.79015410633616]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
@@ -91,15 +105,35 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 var pal = ['1facff','e7e7e7','ff3f3f'];
 // EVIante3, 1-6-12
 var animation = require('users/gena/packages:animation');
-var animated = ee.ImageCollection.fromImages(
+var visualized = ee.ImageCollection.fromImages(
   droughtSens.bandNames().map(function(name) {
     return droughtSens.select([name])
                       .visualize({min:-20, max:20, palette:pal})
                       .set('bandname', ee.String(name));
   })
 );
-animation.animate(animated, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+// animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
 
+
+var text = require('users/gena/packages:text');
+var annotations = [{position: 'left', offset: '1%', margin: '1%', property: 'bandname', scale: Map.getScale()* 0.8}];
+var annotated = visualized.map(function(img) {return text.annotateImage(img, {}, geometry.bounds(), annotations)});
+
+var args = {
+  dimensions: 500,
+  region: geometry,
+  framesPerSecond: 1,
+};
+print(annotated.getVideoThumbURL(args))
+// var thumb = ui.Thumbnail({
+//   image: ascol,
+//   params: args,
+//   style: {
+//     position: 'bottom-right',
+//     width: '500px',
+//     height: '500px'
+//   }});
+// Map.add(thumb);
 
 
 
