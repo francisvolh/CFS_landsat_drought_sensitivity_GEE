@@ -127,5 +127,5 @@ var thumb = ui.Thumbnail({
     height: '500px'
   }});
 Map.add(thumb);
-
+// go back to animate
 // Sample CTEF --------------------------------------------------
