@@ -113,13 +113,17 @@ var args = {
   framesPerSecond: 1,
 };
 
-var thumb = ui.Thumbnail({
-  image: ee.ImageCollection.fromImages([droughtSens]),
-  params: args,
-  style: {
-    position: 'bottom-right',
-    width: '320px'
-  }});
-Map.add(thumb);
+var ascol = ee.ImageCollection.fromImages(image.bandNames().map(function(name) { 
+  return image.select(name) 
+}))
+
+// var thumb = ui.Thumbnail({
+//   image: ee.ImageCollection.fromImages([droughtSens]),
+//   params: args,
+//   style: {
+//     position: 'bottom-right',
+//     width: '320px'
+//   }});
+// Map.add(thumb);
 
 // Sample CTEF --------------------------------------------------
