@@ -63,7 +63,7 @@ aggDaymet = aggDaymet
 
 
 // Calculate baseline -----------------------------------------------
-var percentiles = [1, 5, 10, 20];
+var percentiles = [5, 10, 20];
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.neq('year', 1980));
@@ -123,8 +123,9 @@ var args = {
   dimensions: 500,
   region: geometry,
   framesPerSecond: 1,
+  crs: 'EPSG:4326'
 };
-print(annotated.getVideoThumbURL(args))
+print(annotated.getVideoThumbURL(args));
 // var thumb = ui.Thumbnail({
 //   image: ascol,
 //   params: args,
