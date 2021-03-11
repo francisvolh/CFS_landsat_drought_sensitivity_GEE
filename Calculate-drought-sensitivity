@@ -64,7 +64,7 @@ aggDaymet = aggDaymet
 
 
 // Calculate baseline -----------------------------------------------
-var percentiles = [5, 10, 20];
+var percentiles = [1, 5, 10, 20];
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.neq('year', 1980));
@@ -103,8 +103,10 @@ var means = maskcount.reduce(ee.Reducer.mean());
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
-
-
+// print(droughtSens.bandNames())
+Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p1').mask())
+Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p1').mask())
+Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p1').mask())
 // Sample CTEF --------------------------------------------------
 
 
