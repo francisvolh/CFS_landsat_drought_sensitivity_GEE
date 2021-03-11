@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -112,7 +113,7 @@ var visualized = ee.ImageCollection.fromImages(
                       .set('bandname', ee.String(name));
   })
 );
-// animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
 
 
 var text = require('users/gena/packages:text');
