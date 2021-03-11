@@ -102,6 +102,9 @@ var means = maskveg.reduce(ee.Reducer.mean());
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
+print(droughtSens.select('[base]'))
+print(droughtSens.select('.*base.*'))
+
 // Sample CTEF --------------------------------------------------
 
 
@@ -117,4 +120,4 @@ var visualized = ee.ImageCollection.fromImages(
                       .set('bandname', ee.String(name));
   })
 );
-animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+// animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
