@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-142.55166732429137, 67.3791170318866],
-          [-142.55166732429137, 63.04142646140402],
-          [-129.89541732429137, 63.04142646140402],
-          [-129.89541732429137, 67.3791170318866]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
@@ -110,7 +96,7 @@ var animated = ee.ImageCollection.fromImages(
   droughtSens.bandNames().map(function(name) {
     return droughtSens.select([name])
                       .visualize({min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']})
-                      .set('bandname', name);
+                      .set('bandname', ee.String(name)));
   })
 );
 animation.animate(animated, {label: 'bandname', maxFrames: 50, timeStep: 1500});
