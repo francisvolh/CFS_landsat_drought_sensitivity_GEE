@@ -111,18 +111,20 @@ var ascol = ee.ImageCollection.fromImages(
   })
 );
 var args = {
-  dimensions: '300',
+  dimensions: '500',
   region: geometry,
   min: 0,
   max: 1,
   framesPerSecond: 1,
 };
+print(ascol.getVideoThumbURL(args))
 var thumb = ui.Thumbnail({
   image: ascol,
   params: args,
   style: {
     position: 'bottom-right',
-    width: '320px'
+    width: '500px',
+    height: '500px'
   }});
 Map.add(thumb);
 
