@@ -96,7 +96,7 @@ var animated = ee.ImageCollection.fromImages(
   droughtSens.bandNames().map(function(name) {
     return droughtSens.select([name])
                       .visualize({min:-20, max:20, palette:['1facff','7e7e7e','ff3f3f']})
-                      .set('bandname', ee.String(name)));
+                      .set('bandname', ee.String(name));
   })
 );
 animation.animate(animated, {label: 'bandname', maxFrames: 50, timeStep: 1500});
