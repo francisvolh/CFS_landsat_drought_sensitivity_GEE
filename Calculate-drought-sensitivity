@@ -117,5 +117,4 @@ var visualized = ee.ImageCollection.fromImages(
                       .set('bandname', ee.String(name));
   })
 );
-print(visualized)
-// animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
