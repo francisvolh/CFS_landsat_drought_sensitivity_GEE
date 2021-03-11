@@ -116,11 +116,15 @@ var visualized = ee.ImageCollection.fromImages(
 
 
 var text = require('users/gena/packages:text');
-var annotations = [{position: 'left', offset: '1%', margin: '1%', property: 'bandname', scale: Map.getScale()* 0.8}];
-var annotated = visualized.map(function(img) {return text.annotateImage(img, {}, geometry.bounds(), annotations)});
+var annotations = [{position: 'left', offset: '50%', margin: '5%', property: 'bandname', scale: Map.getScale()* 0.8,
+   fontSize: 42, fontType: 'Consolas'
+}];
+var annotated = visualized.map(function(img) {
+  return text.annotateImage(img, {forceRgbOutput: true}, geometry.bounds(), annotations)
+});
 
 var args = {
-  dimensions: 500,
+  dimensions: 2500,
   region: geometry,
   framesPerSecond: 1,
   crs: 'EPSG:4326'
