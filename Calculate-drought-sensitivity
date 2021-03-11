@@ -107,11 +107,12 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 // Animate --------------------------------------------------------
 var pal = ['1facff','e7e7e7','ff3f3f'];
+var viz = {min:-20, max:20, palette:pal, gamma:0.25};
 var animation = require('users/gena/packages:animation');
 var visualized = ee.ImageCollection.fromImages(
   droughtSens.bandNames().map(function(name) {
     return droughtSens.select([name])
-                      .visualize({min:-20, max:20, palette:pal})
+                      .visualize(viz)
                       .set('bandname', ee.String(name));
   })
 );
