@@ -94,31 +94,30 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 // Mask where baseline number of images < 3
-var maskcount = sensitivity.maskCount(veg);
+// var maskcount = sensitivity.maskCount(veg);
 
 // Reduce to means
-var means = maskcount.reduce(ee.Reducer.mean());
+// var means = maskcount.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
-var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
-print(maskveg.first().bandNames())
+// var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 print(maskveg.first().select(['.*_base_p1']))
-
+print(maskveg.first().select(['[^b]']))
 // Sample CTEF --------------------------------------------------
 
 
 // Animate --------------------------------------------------------
-var pal = ['1facff','e7e7e7','ff3f3f'];
-var viz = {min:-20, max:20, palette:pal};
-var animation = require('users/gena/packages:animation');
-var visualized = ee.ImageCollection.fromImages(
-  droughtSens.bandNames().map(function(name) {
-    return droughtSens.select([name])
-                      .visualize(viz)
-                      .visualize({gamma:0.25})
-                      .set('bandname', ee.String(name));
-  })
-);
+// var pal = ['1facff','e7e7e7','ff3f3f'];
+// var viz = {min:-20, max:20, palette:pal};
+// var animation = require('users/gena/packages:animation');
+// var visualized = ee.ImageCollection.fromImages(
+//   droughtSens.bandNames().map(function(name) {
+//     return droughtSens.select([name])
+//                       .visualize(viz)
+//                       .visualize({gamma:0.25})
+//                       .set('bandname', ee.String(name));
+//   })
+// );
 // animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
