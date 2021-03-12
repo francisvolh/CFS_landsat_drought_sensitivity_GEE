@@ -104,8 +104,7 @@ var means = maskcount.reduce(ee.Reducer.mean());
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 
-// drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
-// TODO: drought sensitivity prime
+// Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
 
@@ -113,10 +112,10 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 // TODO: sample ctef
 
 // Map ------------------------------------------------------------
-Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'));
-Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
-Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
-Map.addLayer(droughtSensPrime.select('Sens_Prime_NDVI_p5'));
+// Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'));
+// Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
+// Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
+// Map.addLayer(droughtSensPrime.select('Sens_Prime_NDVI_p5'));
 
 // Animate --------------------------------------------------------
 // var pal = ['1facff','e7e7e7','ff3f3f'];
