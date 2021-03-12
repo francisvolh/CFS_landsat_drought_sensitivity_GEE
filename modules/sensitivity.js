@@ -101,7 +101,8 @@ exports.maskCount = function(veg, percentiles) {
         v.select([ante3NDVI, ante6NDVI, ante12NDVI, 
                   ante3EVI, ante6EVI, ante12EVI])
         ]));
-    })
+    }));
+  });
 };
 
 
