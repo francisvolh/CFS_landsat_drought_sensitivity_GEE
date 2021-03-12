@@ -152,3 +152,26 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
   }));
 };
 
+
+
+exports.droughtSensivitityPrime = function(sens, percentiles) {
+  return ee.Image(percentiles.map(function(percent) {
+    var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
+    var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
+    var sens12NDVI = 'Sensitivity_NDVI_ante12_p' + percent;
+    
+    var sens3EVI = 'Sensitivity_EVI_ante3_p' + percent;
+    var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
+    var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
+    
+    var sensPrimeEVI = 'Sens_Prime_EVI_p' + percent;
+    var sensPrimeNDVI = 'Sens_Prime_NDVI_p' + percent;
+    
+    return ee.Image([
+      sens.select(sens3NDVI).max(sens.select(sens6NDVI)).max(sens.select(sens12NDVI)),
+      sens.select(sens3EVI).max(sens.select(sens6EVI)).max(sens.select(sens12EVI))
+      ])
+  };
+
+};
+
