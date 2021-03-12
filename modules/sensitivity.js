@@ -68,13 +68,24 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         var baseveg = v.updateMask(basemask)
                        .rename([ndviband, eviband]);
         
-
         // Return baseline and drought period NDVI/EVI measures
         return ee.Image([baseveg, veg3, veg6, veg12]).copyProperties(v);
       })
     );
   });
 };
+
+exports.maskCount = function(veg, percentiles) {  
+  var regex = '.*_base_p' + p;
+  
+  var counts = veg.reduce(ee.Reducer.count())
+                  .gte(3);
+  
+  return veg.map(function(img) {
+    return img.updateMask(counts);
+  });
+};
+
 
 exports.droughtSensitivity = function(vegmeans, percentiles) {
   return ee.Image(percentiles.map(function(percent) {
