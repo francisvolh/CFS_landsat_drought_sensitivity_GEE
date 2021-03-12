@@ -89,21 +89,22 @@ lc = lc.updateMask(lc.neq(210).and(
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
-
+  
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI 
-//   and mask where baseline number of images < 3
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
+// Mask where baseline number of images < 3
+var maskcount = sensitivity.maskCount(veg);
+
 // Reduce to means
-var means = maskveg.reduce(ee.Reducer.mean());
+var means = maskcount.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 // drought sensitivity (S’) = percent decrease in EVI under drought relative to baseline conditions
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
-
-print(droughtSens.select('[base]'))
-print(droughtSens.select('.*base.*'))
+print(maskveg.first().bandNames())
+print(maskveg.first().select(['.*_base_p1']))
 
 // Sample CTEF --------------------------------------------------
 
