@@ -81,15 +81,15 @@ exports.maskCount = function(veg, percentiles) {
                   
   return veg.map(function(v) {
     return ee.Image(percentiles.map(function(percent) {
-      var baseNDVI = 'NDVI_base_p' + percent + '_mean';
-      var baseEVI = 'EVI_base_p' + percent + '_mean';
+      var baseNDVI = 'NDVI_base_p' + percent;
+      var baseEVI = 'EVI_base_p' + percent;
       
-      var ante3NDVI = 'NDVI_ante3_p' + percent + '_mean';
-      var ante6NDVI = 'NDVI_ante6_p' + percent + '_mean';
-      var ante12NDVI = 'NDVI_ante12_p' + percent + '_mean';
-      var ante3EVI = 'EVI_ante3_p' + percent + '_mean';
-      var ante6EVI = 'EVI_ante6_p' + percent + '_mean';
-      var ante12EVI = 'EVI_ante12_p' + percent + '_mean';
+      var ante3NDVI = 'NDVI_ante3_p' + percent;
+      var ante6NDVI = 'NDVI_ante6_p' + percent;
+      var ante12NDVI = 'NDVI_ante12_p' + percent;
+      var ante3EVI = 'EVI_ante3_p' + percent;
+      var ante6EVI = 'EVI_ante6_p' + percent;
+      var ante12EVI = 'EVI_ante12_p' + percent;
       
       var maskBaseNDVI = v.select(baseNDVI)
                           .updateMask(counts.select('NDVI_base_p' + percent + '_count'));
