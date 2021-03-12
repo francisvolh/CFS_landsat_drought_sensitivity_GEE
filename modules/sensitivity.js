@@ -164,14 +164,19 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
     var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
     var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
     
-    var sensPrimeEVI = 'Sens_Prime_EVI_p' + percent;
     var sensPrimeNDVI = 'Sens_Prime_NDVI_p' + percent;
+    var sensPrimeEVI = 'Sens_Prime_EVI_p' + percent;
     
     return ee.Image([
-      sens.select(sens3NDVI).max(sens.select(sens6NDVI)).max(sens.select(sens12NDVI)),
-      sens.select(sens3EVI).max(sens.select(sens6EVI)).max(sens.select(sens12EVI))
-      ])
-  };
-
+      sens.select(sens3NDVI)
+          .max(sens.select(sens6NDVI))
+          .max(sens.select(sens12NDVI))
+          .rename(sensPrimeNDVI),
+      sens.select(sens3EVI)
+          .max(sens.select(sens6EVI))
+          .max(sens.select(sens12EVI))
+          .rename(sensPrimeEVI)
+      ]);
+  }));
 };
 
