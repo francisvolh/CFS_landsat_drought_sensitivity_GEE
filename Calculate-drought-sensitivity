@@ -109,7 +109,6 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
 
-
 // Sample CTEF ----------------------------------------------------
 // TODO: sample ctef
 
@@ -117,7 +116,7 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'));
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
-Map.addLayer(droughtSens.select('Sens_Prime_NDVI_p5'));
+Map.addLayer(droughtSensPrime.select('Sens_Prime_EVI_p5'));
 
 // Animate --------------------------------------------------------
 // var pal = ['1facff','e7e7e7','ff3f3f'];
