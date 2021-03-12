@@ -110,6 +110,8 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 // Sample CTEF --------------------------------------------------
 // TODO: sample ctef
 
+
+
 // Animate --------------------------------------------------------
 // var pal = ['1facff','e7e7e7','ff3f3f'];
 // var viz = {min:-20, max:20, palette:pal};
