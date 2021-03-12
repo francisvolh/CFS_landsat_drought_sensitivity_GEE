@@ -130,3 +130,15 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 //   })
 // );
 // animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+
+
+var animation = require('users/gena/packages:animation');
+var visualized = ee.ImageCollection.fromImages(
+  droughtSensPrime.bandNames().map(function(name) {
+    return droughtSens.select([name])
+                      .visualize(viz)
+                      .visualize({gamma:0.25})
+                      .set('bandname', ee.String(name));
+  })
+);
+animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
