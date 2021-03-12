@@ -94,7 +94,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 // Mask where baseline number of images < 3
-var maskcount = sensitivity.maskCount(maskveg);
+var maskcount = sensitivity.maskCount(maskveg, percentiles);
 print(maskcount)
 Map.addLayer(maskcount)
 // Reduce to means
