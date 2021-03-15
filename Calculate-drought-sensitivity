@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -92,12 +93,18 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
-Map.addLayer(maskveg.first())
+
 // Mask where baseline number of images < 3
-var maskcount = sensitivity.maskCount(maskveg, percentiles);
+// var maskcount = sensitivity.maskCount(maskveg, percentiles);
 
 // Reduce to means
-var means = maskcount.reduce(ee.Reducer.mean());
+var means = maskveg.reduce(ee.Reducer.mean());
+Map.addLayer(drought.select('CMI_gt_ante3_p1'))
+Map.addLayer(firemask.filter(ee.Filter.eq('year', 2005)))
+Map.addLayer(veg.select('NDVI'))
+// Map.addLayer(maskcount.select('NDVI_ante3_p1'))
+// Map.addLayer(lc)
+Map.addLayer(means)
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
