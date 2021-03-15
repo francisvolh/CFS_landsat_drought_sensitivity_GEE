@@ -118,19 +118,19 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NDVI_p5'));
 
 // Animate --------------------------------------------------------
-var pal = ['1facff','e7e7e7','ff3f3f'];
-var viz = {min:-20, max:20, palette:pal};
+// var pal = ['1facff','e7e7e7','ff3f3f'];
+// var viz = {min:-20, max:20, palette:pal};
 
-var animation = require('users/gena/packages:animation');
+// var animation = require('users/gena/packages:animation');
 
-var visualized = ee.ImageCollection.fromImages(
-  droughtSens.bandNames().map(function(name) {
-    return droughtSens.select([name])
-                      .visualize(viz)
-                      .visualize({gamma:0.25})
-                      .set('bandname', ee.String(name));
-  })
-);
+// var visualized = ee.ImageCollection.fromImages(
+//   droughtSens.bandNames().map(function(name) {
+//     return droughtSens.select([name])
+//                       .visualize(viz)
+//                       .visualize({gamma:0.25})
+//                       .set('bandname', ee.String(name));
+//   })
+// );
 
 
 // var visualized = ee.ImageCollection.fromImages(
@@ -141,4 +141,4 @@ var visualized = ee.ImageCollection.fromImages(
 //                           .set('bandname', ee.String(name));
 //   })
 // );
-animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+// animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
