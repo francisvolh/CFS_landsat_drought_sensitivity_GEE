@@ -92,7 +92,7 @@ var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI 
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
-
+Map.addLayer(maskveg.first())
 // Mask where baseline number of images < 3
 var maskcount = sensitivity.maskCount(maskveg, percentiles);
 
