@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-147.975101618042, 69.79015410633616],
-          [-147.975101618042, 44.98773092585065],
-          [-94.449710993042, 44.98773092585065],
-          [-94.449710993042, 69.79015410633616]]], null, false);
+        [[[-152.369632868042, 67.04580922688494],
+          [-152.369632868042, 63.796804345154925],
+          [-145.338382868042, 63.796804345154925],
+          [-145.338382868042, 67.04580922688494]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -77,6 +76,7 @@ var firemask = fire.fireMasks(firepol, years);
 // Land Cover ------------------------------------------------------
 var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
 
+
 // 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
 lc = lc.updateMask(lc.neq(210).and(
                    lc.neq(220)).and(
@@ -116,6 +116,10 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NDVI_p5'));
+
+
+// Chart ---------------------------------------------------------
+print(ui.Chart.image.histogram(droughtSens, geometry, 1000))
 
 // Animate --------------------------------------------------------
 // var pal = ['1facff','e7e7e7','ff3f3f'];
