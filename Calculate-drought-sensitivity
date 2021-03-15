@@ -31,7 +31,7 @@ ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 1980;
+var minyear = 2001;
 var maxyear = 2019;
 
 daymet = daymet
@@ -99,9 +99,9 @@ var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 // Reduce to means
 var means = maskveg.reduce(ee.Reducer.mean());
-Map.addLayer(drought.select('CMI_gt_ante3_p1'))
-Map.addLayer(firemask.filter(ee.Filter.eq('year', 2005)))
-Map.addLayer(veg.select('NDVI'))
+// Map.addLayer(drought.select('CMI_gt_ante3_p1'))
+// Map.addLayer(firemask.filter(ee.Filter.eq('year', 2005)))
+// Map.addLayer(veg.select('NDVI'))
 // Map.addLayer(maskcount.select('NDVI_ante3_p1'))
 // Map.addLayer(lc)
 Map.addLayer(means)
@@ -119,7 +119,10 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 // TODO: sample ctef
 
 // Map ------------------------------------------------------------
-// Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'));
+var pal = ['1facff','e7e7e7','ff3f3f'];
+var viz = {min:-20, max:20, palette:pal};
+
+Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NDVI_p5'));
