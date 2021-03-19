@@ -75,6 +75,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
   });
 };
 
+// Never mind
 exports.maskCount = function(veg, percentiles) {
   var counts = veg.reduce(ee.Reducer.count())
                   .gte(3);
