@@ -31,7 +31,7 @@ ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2001;
+var minyear = 1980;
 var maxyear = 2019;
 
 daymet = daymet
