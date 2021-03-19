@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-152.369632868042, 67.04580922688494],
-          [-152.369632868042, 63.796804345154925],
-          [-145.338382868042, 63.796804345154925],
-          [-145.338382868042, 67.04580922688494]]], null, false);
+        [[[-169.947757868042, 74.19688274436743],
+          [-169.947757868042, 24.716404693071457],
+          [-49.71338286804201, 24.716404693071457],
+          [-49.71338286804201, 74.19688274436743]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
@@ -103,7 +102,7 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 // Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
-
+print(droughtSens)
 
 // Map ------------------------------------------------------------
 var pal = ['1facff','e7e7e7','ff3f3f'];
@@ -116,7 +115,7 @@ Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 
 
 // Chart ---------------------------------------------------------
-print(ui.Chart.image.histogram(droughtSens, geometry, 1000))
+// print(ui.Chart.image.histogram(droughtSens, geometry, 1000))
 
 // Animate --------------------------------------------------------
 // var pal = ['1facff','e7e7e7','ff3f3f'];
@@ -143,3 +142,15 @@ print(ui.Chart.image.histogram(droughtSens, geometry, 1000))
 //   })
 // );
 // animation.animate(visualized, {label: 'bandname', maxFrames: 50, timeStep: 1500});
+
+
+// Export -------------------------------------------------------
+var exp = {
+  image: droughtSens, 
+  description: "drought-sensitivity",
+  assetId: 'CFS/drought-sensitivity',
+  region: geometry,
+  scale: 1000
+};
+
+Export.image.toAsset(exp);
