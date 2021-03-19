@@ -75,36 +75,6 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
   });
 };
 
-// Never mind
-exports.maskCount = function(veg, percentiles) {
-  var counts = veg.reduce(ee.Reducer.count())
-                  .gte(3);
-                  
-  return veg.map(function(v) {
-    return ee.Image(percentiles.map(function(percent) {
-      var baseNDVI = 'NDVI_base_p' + percent;
-      var baseEVI = 'EVI_base_p' + percent;
-      
-      var ante3NDVI = 'NDVI_ante3_p' + percent;
-      var ante6NDVI = 'NDVI_ante6_p' + percent;
-      var ante12NDVI = 'NDVI_ante12_p' + percent;
-      var ante3EVI = 'EVI_ante3_p' + percent;
-      var ante6EVI = 'EVI_ante6_p' + percent;
-      var ante12EVI = 'EVI_ante12_p' + percent;
-      
-      var maskBaseNDVI = v.select(baseNDVI)
-                          .updateMask(counts.select('NDVI_base_p' + percent + '_count'));
-      var maskBaseEVI = v.select(baseEVI)
-                          .updateMask(counts.select('EVI_base_p' + percent + '_count'));
-      
-      return(ee.Image([
-        maskBaseNDVI, maskBaseEVI,
-        v.select([ante3NDVI, ante6NDVI, ante12NDVI, 
-                  ante3EVI, ante6EVI, ante12EVI])
-        ]));
-    }));
-  });
-};
 
 
 exports.droughtSensitivity = function(vegmeans, percentiles) {
