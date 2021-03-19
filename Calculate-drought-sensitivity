@@ -101,13 +101,9 @@ var means = maskveg.reduce(ee.Reducer.mean());
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
-
 // Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
-
-// Sample CTEF ----------------------------------------------------
-// TODO: sample ctef
 
 // Map ------------------------------------------------------------
 var pal = ['1facff','e7e7e7','ff3f3f'];
