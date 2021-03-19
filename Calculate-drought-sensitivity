@@ -96,12 +96,6 @@ var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
 // Reduce to means
 var means = maskveg.reduce(ee.Reducer.mean());
-// Map.addLayer(drought.select('CMI_gt_ante3_p1'))
-// Map.addLayer(firemask.filter(ee.Filter.eq('year', 2005)))
-// Map.addLayer(veg.select('NDVI'))
-// Map.addLayer(maskcount.select('NDVI_ante3_p1'))
-// Map.addLayer(lc)
-Map.addLayer(means)
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
