@@ -78,9 +78,11 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
 };
 
 
-
+// Calculate drought sensitivity
 exports.droughtSensitivity = function(vegmeans, percentiles) {
+  // Map over percentiles
   return ee.Image(percentiles.map(function(percent) {
+    // Set up input and output band names, combining with percentile
     var baseNDVI = 'NDVI_base_p' + percent + '_mean';
     var baseEVI = 'EVI_base_p' + percent + '_mean';
     
@@ -98,6 +100,9 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
     var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
     var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
     
+    // Calculate drought sensitivity (
+    // (baseline - drought) / baseline) * 100
+    // for each antecedent period and NDVI+EVI
     return ee.Image([vegmeans.expression('((baseline - drought) / baseline) * 100', {
                                           baseline: vegmeans.select(baseNDVI),
                                           drought: vegmeans.select(ante3NDVI)
@@ -126,9 +131,12 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
 };
 
 
-
+// Calculate drought sensitivity prime
+// Maximum of three antecedent periods
 exports.droughtSensivitityPrime = function(sens, percentiles) {
+  // Map over percentiles
   return ee.Image(percentiles.map(function(percent) {
+    // Setup input and output band names
     var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
     var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
     var sens12NDVI = 'Sensitivity_NDVI_ante12_p' + percent;
@@ -140,6 +148,8 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
     var sensPrimeNDVI = 'Sens_Prime_NDVI_p' + percent;
     var sensPrimeEVI = 'Sens_Prime_EVI_p' + percent;
     
+    // For EVI and NDVI
+    // Select antecedent 3, 6, 12 and return the max 
     return ee.Image([
       sens.select(sens3NDVI)
           .max(sens.select(sens6NDVI))
