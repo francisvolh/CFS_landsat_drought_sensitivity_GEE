@@ -1,6 +1,6 @@
 // DAYMET (+DEM) based CMI
 
-// Functions
+// Calculate ETMAX using tmax
 exports.calcETMAX = function(img) {
   return img.addBands(
     img.expression(
@@ -9,6 +9,7 @@ exports.calcETMAX = function(img) {
     }).rename('ETMAX'));
 };
 
+// Calculate ETMIN using tmin
 exports.calcETMIN = function(img) {
   return img.addBands(
     img.expression(
@@ -17,6 +18,7 @@ exports.calcETMIN = function(img) {
     }).rename('ETMIN'));
 };
 
+// Calculate ETDEW using tmin
 exports.calcETDEW = function(img) {
   return img.addBands(
     img.expression(
@@ -25,7 +27,7 @@ exports.calcETDEW = function(img) {
     }).rename('ETDEW'));
 };
 
-
+// Calculate VPD using ETMAX, ETMIN, ETDEW
 exports.calcVPD = function(img) {
   return img.addBands(
     img.expression(
@@ -36,6 +38,7 @@ exports.calcVPD = function(img) {
     }).rename('VPD'));
 };
 
+// Calculate Tavg 5, 15 using tmin, tmax
 exports.calcTAVG515 = function(img) {
   return img.addBands(
     img.expression(
@@ -45,6 +48,8 @@ exports.calcTAVG515 = function(img) {
     }).rename('TAVG515'));
 };
 
+// Calculate KTRF, returning TAVG515 or if lt 0 returning 0, or if gt 1 returning 1
+// (just capping within 0-1 range)
 exports.calcKTRF = function(img) {
   return img.addBands(
     img.select('TAVG515')
@@ -53,6 +58,7 @@ exports.calcKTRF = function(img) {
        .rename('KTRF'));
 };
 
+// Calculate PET using VPD, KTRF, and DEM
 exports.calcPET = function(img) {
   return img.addBands(
     img.expression(
@@ -64,6 +70,7 @@ exports.calcPET = function(img) {
     }).rename('PET'));
 };
 
+// Calculate CMI using prcp and PET
 exports.calcCMI = function(img) {
   return img.addBands(
     img.expression(
