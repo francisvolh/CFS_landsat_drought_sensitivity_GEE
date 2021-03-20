@@ -133,7 +133,7 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 
 // Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
-print(droughtSens)
+
 
 // Map ------------------------------------------------------------
 var pal = ['1facff','e7e7e7','ff3f3f'];
