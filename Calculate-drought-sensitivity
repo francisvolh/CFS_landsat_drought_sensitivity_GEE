@@ -68,7 +68,7 @@ aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                              ['tmin', 'tmax', 'prcp']);
 
 // Calculate CMI ----------------------------------------------------
-// Calculate CMI from ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET
+// Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
 aggDaymet = aggDaymet
   .map(cmi.calcETMAX)
   .map(cmi.calcETMIN)
