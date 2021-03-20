@@ -38,6 +38,7 @@ exports.antecedentMeans = function(images, band, years) {
   }));
 };
 
+// Compare percentile images for each antecedent period to each image's antecedent means
 exports.gtPercentile = function(means, percentiles) {
   var percent3 = means.select(['CMI_ante3_mean'], ['CMI_gt_ante3']).reduce(ee.Reducer.percentile(percentiles));
   var percent6 = means.select(['CMI_ante6_mean'], ['CMI_gt_ante6']).reduce(ee.Reducer.percentile(percentiles));
