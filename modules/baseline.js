@@ -11,18 +11,24 @@ exports.antecedentMeans = function(images, band, years) {
 
     return ee.Image([
       // Antecedent: 3 (months 3-6)
+      // Filter to year, and within antecedent period
+      // Reduce with mean reducer
       images.filter(ee.Filter.eq('year', yr))
             .filter(ee.Filter.rangeContains('month', 3, 6))
             .select([band], [band3])
             .reduce(ee.Reducer.mean()),
 
-      // Antecedent: 6 (months 1-6)
+      // Antecedent: 6 (months 1-6)      
+      // Filter to year, and within antecedent period
+      // Reduce with mean reducer
       images.filter(ee.Filter.eq('year', yr))
             .filter(ee.Filter.rangeContains('month', 1, 6))
             .select([band], [band6])
             .reduce(ee.Reducer.mean()),
 
       // Antecedent: 12 (months 6-6 year previous)
+      // Filter to year, and within antecedent period
+      // Reduce with mean reducer
       images.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
                                    ante12max))
               .select([band], [band12])
