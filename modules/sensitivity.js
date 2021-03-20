@@ -1,4 +1,6 @@
+// Mask vegetation using fire and land cover, then split into drought/non-drought pixels
 exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
+  // Map across images
   return veg.map(function(v) {
     // Get year
     var yr = v.date().get('year');
