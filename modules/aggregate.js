@@ -1,19 +1,3 @@
-exports.aggregateMRange = function(years, minmonth, maxmonth, images, reducer) {
-  return ee.ImageCollection.fromImages(
-    years.map(function(yr) {
-      return months.map(function(mnth) {
-        return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
-                     .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'))
-                     .reduce(reducer)
-                     .set('year', yr)
-                     .set('month', mnth)
-                     .set('system:time_start',
-                          ee.Date.fromYMD(yr, mnth, 1));
-        });
-  }).flatten()
-  );
-};
-
 exports.aggregateMY = function(years, months, images, reducer) {
   return ee.ImageCollection.fromImages(
     years.map(function(yr) {
@@ -30,14 +14,38 @@ exports.aggregateMY = function(years, months, images, reducer) {
   );
 };
 
+// (Not used at the moment) Aggregate years
 exports.aggregateY = function(years, images, reducer) {
+  // Combine images returned for each year
   return ee.ImageCollection.fromImages(
+    // Map over years
     years.map(function(yr) {
+      // Filter images to year
+      // Reduce with reducer provided
+      // Set year and pseudo date properties
+      // Return an image for each year
       return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                    .reduce(reducer)
                    .set('year', yr)
-                   .set('system:time_start',
-                        ee.Date.fromYMD(yr, 1, 1));
+                   .set('system:time_start', ee.Date.fromYMD(yr, 1, 1));
     })
+  );
+};
+
+
+// (Not used at the moment) Aggregate monthly ranges
+exports.aggregateMRange = function(years, minmonth, maxmonth, images, reducer) {
+  return ee.ImageCollection.fromImages(
+    years.map(function(yr) {
+      return months.map(function(mnth) {
+        return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                     .filter(ee.Filter.calendarRange(minmonth, maxmonth, 'month'))
+                     .reduce(reducer)
+                     .set('year', yr)
+                     .set('month', mnth)
+                     .set('system:time_start',
+                          ee.Date.fromYMD(yr, mnth, 1));
+        });
+  }).flatten()
   );
 };
