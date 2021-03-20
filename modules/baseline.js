@@ -1,5 +1,6 @@
 // Means of antecedent periods within years
 exports.antecedentMeans = function(images, band, years) {
+  // Combine yearly images into a collection
   return ee.ImageCollection.fromImages(years.map(function(yr) {
     // antemax - July 1
     var ante12max = ee.Date.fromYMD(yr, 7, 1);
