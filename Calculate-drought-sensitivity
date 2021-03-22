@@ -11,7 +11,19 @@ var geometry =
         [[[-169.947757868042, 74.19688274436743],
           [-169.947757868042, 24.716404693071457],
           [-49.71338286804201, 24.716404693071457],
-          [-49.71338286804201, 74.19688274436743]]], null, false);
+          [-49.71338286804201, 74.19688274436743]]], null, false),
+    geometry2 = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-147.8210336191388, 70.07926665876009],
+          [-147.8210336191388, 47.928518609971924],
+          [-93.5925179941388, 47.928518609971924],
+          [-93.5925179941388, 70.07926665876009]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 // Load modules of functions
@@ -198,7 +210,8 @@ var exp = {
   // assetId: 'CFS/drought-sensitivity',
   folder: 'CFS/drought-sensitivity',
   region: geometry,
-  scale: 1000
+  scale: 1000 
 };
 
 Export.image.toDrive(exp);
+Map.addLayer(ctef)
