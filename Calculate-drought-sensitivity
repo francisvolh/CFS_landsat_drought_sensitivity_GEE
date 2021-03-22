@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -29,6 +30,9 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 // Sensitivity
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
+
+// Gena's palette functions
+var palettes = require('users/gena/packages:palettes');
 
 
 // Data -------------------------------------------------------------
@@ -136,27 +140,18 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 
 
 // Map ------------------------------------------------------------
-var pal = ['1facff','e7e7e7','ff3f3f'];
-var viz = {min:-20, max:20, palette:pal};
+var pal = palettes.colorbrewer.RdBu[5];
+var viz = {min:-20, max:20, palette: pal};
 
 function showPalette(name, palette) {
   var image = ee.Image.pixelLonLat().select(0)
     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
-    .visualize({ min: 0, max: 100, palette: palette })
+    .visualize({ min: 0, max: 100, palette: palette });
 
-  print(name)
-  print(ui.Thumbnail(image))
+  print(name);
+  print(ui.Thumbnail(image));
 }
-
-var palettes = require('users/gena/packages:palettes')  
-
-// See http://colorbrewer2.org for a full list of palettes
-showPalette('Spectral', palettes.colorbrewer.RdBu[5])
-
-showPalette('11');
-
-// See http://colorbrewer2.org for a full list of palettes
-showPalette('[-20*/, 0, 20]', palettes.colorbrewer.RdBu[5])
+showPalette('[-20                 0                 20]', palettes.colorbrewer.RdBu[5]);
 
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
