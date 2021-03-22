@@ -180,6 +180,7 @@ var exp = {
   image: droughtSens, 
   description: 'drought-sensitivity-2000-2019',
   // assetId: 'CFS/drought-sensitivity',
+  folder: 'CFS/drought-sensitivity',
   region: geometry,
   scale: 1000
 };
