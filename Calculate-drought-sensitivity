@@ -140,9 +140,9 @@ var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percenti
 
 
 // Map ------------------------------------------------------------
-var pal = palettes.colorbrewer.RdBu[5];
+var pal = palettes.colorbrewer.RdBu[9];
 var min = -20; var max = 20;
-var viz = {min:min, max:max, palette: pal};
+var viz = {min: min, max: max, palette: pal};
 
 function showPalette(name, palette) {
   var image = ee.Image.pixelLonLat().select(0)
@@ -152,7 +152,7 @@ function showPalette(name, palette) {
   print(name);
   print(ui.Thumbnail(image));
 }
-showPalette(min + '           0           ', max, palettes.colorbrewer.RdBu[5]);
+showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
 
 
 Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
