@@ -63,8 +63,6 @@ var sens12EVI = 'Sens_EVI_ante12_p' + percent;
 
 // Chart mean for CTEF regions
 
-Map.setZoom(4)
-
 // Chart histogram for all regions
 for (var i = 0; i < bandList.length; i++) {
   print(ui.Chart.image.histogram({
@@ -73,8 +71,3 @@ for (var i = 0; i < bandList.length; i++) {
   scale: 1e4
 }));
 }
-// print(ui.Chart.image.histogram({
-//   image: toview, 
-//   region: ctef,
-//   scale: 1e6
-// }));
