@@ -212,6 +212,4 @@ var exp = {
   region: geometry,
   scale: 250 
 };
-
 Export.image.toDrive(exp);
-Map.addLayer(ctef)
