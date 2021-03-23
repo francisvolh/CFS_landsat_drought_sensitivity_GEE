@@ -68,6 +68,6 @@ for (var i = 0; i < bandList.length; i++) {
   print(ui.Chart.image.byRegion({
   image: toview.select(bandList[i]), 
   regions: ctef,
-  scale: 1e4
+  scale: 1e7
 }));
 }
