@@ -14,3 +14,6 @@ var vis = {"opacity":0.6,"bands":["fire-in-last-5-years"],"palette":["82a77f","d
 Map.addLayer(firepol)
 Map.addLayer(firemask)
 Map.addLayer(firemask.filter(ee.Filter.eq('year', 2019)), vis, 'fire-last-5');
+
+
+Export.image.toAsset(firemask, 'firemask', '5year-fire-masks-NFDB')
