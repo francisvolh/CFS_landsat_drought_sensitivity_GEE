@@ -51,6 +51,17 @@ for (var i = 0; i < bandList.length; i++) {
 
 // Chart -------------------------------------------------------------------------
 // Select a percentile to chart the set of sensitivity bands
-var p = 10;
+var percent = 10;
 
+// Band names
+var sens3NDVI = 'Sens_NDVI_ante3_p' + percent;
+var sens6NDVI = 'Sens_NDVI_ante6_p' + percent;
+var sens12NDVI = 'Sens_NDVI_ante12_p' + percent;
+var sens3EVI = 'Sens_EVI_ante3_p' + percent;
+var sens6EVI = 'Sens_EVI_ante6_p' + percent;
+var sens12EVI = 'Sens_EVI_ante12_p' + percent;
 
+// Chart mean for CTEF regions
+
+// Chart histogram for all regions
+print(ui.Chart.image.histogram(droughtSens, ctef, 1000))
