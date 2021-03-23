@@ -7,8 +7,10 @@ var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
 var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 
-// Etc
+// Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+
+// Drop Arctic
 ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Palette ----------------------------------------------------------------------
