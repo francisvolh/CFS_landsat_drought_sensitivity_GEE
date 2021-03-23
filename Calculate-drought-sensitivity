@@ -210,7 +210,7 @@ var exp = {
   // assetId: 'CFS/drought-sensitivity',
   folder: 'CFS/drought-sensitivity',
   region: geometry,
-  scale: 1000 
+  scale: 250 
 };
 
 Export.image.toDrive(exp);
