@@ -1,3 +1,6 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.MultiPoint();
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
 var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
@@ -6,6 +9,7 @@ var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 // Etc
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Palette ----------------------------------------------------------------------
 // Gena's palette functions
@@ -41,3 +45,10 @@ var bandList = toview.bandNames().getInfo();
 for (var i = 0; i < bandList.length; i++) {
   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 }
+
+
+// Chart -------------------------------------------------------------------------
+// Select a percentile to chart the set of sensitivity bands
+var p = 10;
+
+
