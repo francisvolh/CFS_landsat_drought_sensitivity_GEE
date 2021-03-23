@@ -6,7 +6,6 @@ var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 // Etc
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-var fire = ee.FeatureCollection('users/robitalec/CFS/5year-fire-masks-NFDB');
 
 // Palette ----------------------------------------------------------------------
 // Gena's palette functions
@@ -29,7 +28,6 @@ showPalette(min + '           0           ' + max, pal);
 
 // Map --------------------------------------------------------------------------
 Map.addLayer(ctef);
-Map.addLayer(fire);
 
 // Note, there's a bit of server side logic here so the browser might hang briefly
 
