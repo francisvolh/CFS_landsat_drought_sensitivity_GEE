@@ -66,8 +66,15 @@ var sens12EVI = 'Sens_EVI_ante12_p' + percent;
 Map.setZoom(4)
 
 // Chart histogram for all regions
-print(ui.Chart.image.histogram({
-  image: toview, 
+for (var i = 0; i < bandList.length; i++) {
+  print(ui.Chart.image.histogram({
+  image: toview.select(bandList[i]), 
   region: ctef,
-  scale: 1e6
+  scale: 1e4
 }));
+}
+// print(ui.Chart.image.histogram({
+//   image: toview, 
+//   region: ctef,
+//   scale: 1e6
+// }));
