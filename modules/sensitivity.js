@@ -93,12 +93,12 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
     var ante6EVI = 'EVI_ante6_p' + percent + '_mean';
     var ante12EVI = 'EVI_ante12_p' + percent + '_mean';
     
-    var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
-    var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
-    var sens12NDVI = 'Sensitivity_NDVI_ante12_p' + percent;
-    var sens3EVI = 'Sensitivity_EVI_ante3_p' + percent;
-    var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
-    var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
+    var sens3NDVI = 'Sens_NDVI_ante3_p' + percent;
+    var sens6NDVI = 'Sens_NDVI_ante6_p' + percent;
+    var sens12NDVI = 'Sens_NDVI_ante12_p' + percent;
+    var sens3EVI = 'Sens_EVI_ante3_p' + percent;
+    var sens6EVI = 'Sens_EVI_ante6_p' + percent;
+    var sens12EVI = 'Sens_EVI_ante12_p' + percent;
     
     // Calculate drought sensitivity (
     // (baseline - drought) / baseline) * 100
@@ -137,13 +137,13 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
   // Map over percentiles
   return ee.Image(percentiles.map(function(percent) {
     // Setup input and output band names
-    var sens3NDVI = 'Sensitivity_NDVI_ante3_p' + percent;
-    var sens6NDVI = 'Sensitivity_NDVI_ante6_p' + percent;
-    var sens12NDVI = 'Sensitivity_NDVI_ante12_p' + percent;
+    var sens3NDVI = 'Sens_NDVI_ante3_p' + percent;
+    var sens6NDVI = 'Sens_NDVI_ante6_p' + percent;
+    var sens12NDVI = 'Sens_NDVI_ante12_p' + percent;
     
-    var sens3EVI = 'Sensitivity_EVI_ante3_p' + percent;
-    var sens6EVI = 'Sensitivity_EVI_ante6_p' + percent;
-    var sens12EVI = 'Sensitivity_EVI_ante12_p' + percent;
+    var sens3EVI = 'Sens_EVI_ante3_p' + percent;
+    var sens6EVI = 'Sens_EVI_ante6_p' + percent;
+    var sens12EVI = 'Sens_EVI_ante12_p' + percent;
     
     var sensPrimeNDVI = 'Sens_Prime_NDVI_p' + percent;
     var sensPrimeEVI = 'Sens_Prime_EVI_p' + percent;
