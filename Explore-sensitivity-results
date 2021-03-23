@@ -64,4 +64,4 @@ var sens12EVI = 'Sens_EVI_ante12_p' + percent;
 // Chart mean for CTEF regions
 
 // Chart histogram for all regions
-print(ui.Chart.image.histogram(toview, ctef, 1000))
+print(ui.Chart.image.histogram(toview, ctef))
