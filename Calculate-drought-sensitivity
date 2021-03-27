@@ -188,6 +188,7 @@ var exp = {
   description: 'drought-sensitivity-' + minyear + '-' + maxyear,
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   region: geometry,
-  scale: 250
+  scale: 250,
+  maxPixels: 1e9
 };
 Export.image.toAsset(exp);
