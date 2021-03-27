@@ -59,7 +59,7 @@ ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
 // Set min max year for daymet
-var minyear = 1980;
+var minyear = 2000;
 var maxyear = 2019;
 
 // Filter daymet within years
@@ -175,7 +175,7 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens, 
-  description: 'drought-sensitivity-1980-2019',
+  description: 'drought-sensitivity-2000-2019',
   // assetId: 'CFS/drought-sensitivity',
   folder: 'CFS/drought-sensitivity',
   region: geometry,
