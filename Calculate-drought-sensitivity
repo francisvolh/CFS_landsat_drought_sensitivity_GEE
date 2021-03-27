@@ -179,7 +179,7 @@ var exp = {
   folder: 'CFS-drought-sensitivity',
   region: geometry,
   scale: 250,
-  maxPixels: 1e9
+  maxPixels: 2e9
 };
 // Export.image.toDrive(exp);
 
@@ -189,6 +189,6 @@ var exp = {
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   region: geometry,
   scale: 250,
-  maxPixels: 1e9
+  maxPixels: 2e9
 };
 Export.image.toAsset(exp);
