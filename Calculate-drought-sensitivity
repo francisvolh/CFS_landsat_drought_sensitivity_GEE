@@ -206,7 +206,7 @@ Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens, 
-  description: 'drought-sensitivity-2000-2019',
+  description: 'drought-sensitivity-1980-2019',
   // assetId: 'CFS/drought-sensitivity',
   folder: 'CFS/drought-sensitivity',
   region: geometry,
