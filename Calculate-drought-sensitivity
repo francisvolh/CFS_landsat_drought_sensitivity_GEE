@@ -175,7 +175,7 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens, 
-  description: 'drought-sensitivity-2000-2019',
+  description: 'drought-sensitivity-' + minyear + '-' + maxyear,
   // assetId: 'CFS/drought-sensitivity',
   folder: 'CFS/drought-sensitivity',
   region: geometry,
