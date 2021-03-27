@@ -176,9 +176,9 @@ var viz = {min: min, max: max, palette: pal};
 var exp = {
   image: droughtSens, 
   description: 'drought-sensitivity-' + minyear + '-' + maxyear,
-  // assetId: 'CFS/drought-sensitivity',
+  assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   folder: 'CFS/drought-sensitivity',
   region: geometry,
-  scale: 250 
+  scale: 250
 };
-Export.image.toDrive(exp);
+Export.image.toAsset(exp);
