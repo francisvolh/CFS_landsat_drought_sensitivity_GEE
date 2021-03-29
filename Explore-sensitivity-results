@@ -78,7 +78,7 @@ for (var i = 0; i < bandList.length; i++) {
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
-var band = 'Sens_NDVI_ante12_p10';
+var band = 'Sens_EVI_ante3_p10';
 
 // print(ui.Chart.image.histogram({
 //   image: toview.select(band), 
@@ -87,7 +87,7 @@ var band = 'Sens_NDVI_ante12_p10';
 //   maxBuckets: 7
 // }));
 
-
+// Export ------------------------------------------------------------------------ 
 var exp = {
   image: toview.select(band).visualize(viz), 
   description: band,
