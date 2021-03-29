@@ -45,8 +45,8 @@ var p = 5;
 // Filter the band names before map. Comment any of these out to just map all bands
 var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringContains('item', 'p' + p))
-                        .filter(ee.Filter.stringContains('item', 'NDVI'))
-                        .filter(ee.Filter.stringContains('item', 'ante3'))
+                        // .filter(ee.Filter.stringContains('item', 'NDVI'))
+                        // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 
 // Note, there's a bit of server side logic here so the browser might hang briefly
@@ -58,7 +58,6 @@ var bandList = selectBands.getInfo();
 for (var i = 0; i < bandList.length; i++) {
   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 }
-
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
