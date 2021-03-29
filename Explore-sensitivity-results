@@ -54,6 +54,8 @@ Map.addLayer(ctef);
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_80_19;
+print(toview);
+
 
 // Set the percentile to view
 // either 5, 10, or 20
