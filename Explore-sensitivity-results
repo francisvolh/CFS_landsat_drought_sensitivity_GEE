@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry2 = 
     /* color: #98ff00 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -87,3 +88,12 @@ var band = 'Sens_NDVI_ante3_p10';
 // }));
 
 
+var exp = {
+  image: toview.select(band).visualize(viz), 
+  description: band,
+  folder: 'Visuals',
+  region: geometry2,
+  scale: 5000,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
