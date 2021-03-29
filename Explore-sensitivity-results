@@ -1,17 +1,21 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(),
-    geometry2 = 
+var geometry2 = 
     /* color: #98ff00 */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
-    ee.Geometry.Polygon(
-        [[[-147.8210336191388, 70.07926665876009],
-          [-147.8210336191388, 47.928518609971924],
-          [-93.5925179941388, 47.928518609971924],
-          [-93.5925179941388, 70.07926665876009]]], null, false);
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-147.8210336191388, 70.07926665876009],
+                  [-147.8210336191388, 47.928518609971924],
+                  [-93.5925179941388, 47.928518609971924],
+                  [-93.5925179941388, 70.07926665876009]]], null, false),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
