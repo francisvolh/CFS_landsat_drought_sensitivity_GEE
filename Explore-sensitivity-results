@@ -62,10 +62,10 @@ var sens6EVI = 'Sens_EVI_ante6_p' + percent;
 var sens12EVI = 'Sens_EVI_ante12_p' + percent;
 
 // Chart histogram for all regions
-for (var i = 0; i < bandList.length; i++) {
-  print(ui.Chart.image.byRegion({
-  image: toview.select(bandList[i]), 
-  regions: ctef,
-  scale: 1e7
-  }));
-}
+// for (var i = 0; i < bandList.length; i++) {
+//   print(ui.Chart.image.byRegion({
+//   image: toview.select(bandList[i]), 
+//   regions: ctef,
+//   scale: 1e7
+//   }));
+// }
