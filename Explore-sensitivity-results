@@ -1,5 +1,17 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint();
+var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(),
+    geometry2 = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-147.8210336191388, 70.07926665876009],
+          [-147.8210336191388, 47.928518609971924],
+          [-93.5925179941388, 47.928518609971924],
+          [-93.5925179941388, 70.07926665876009]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
@@ -40,7 +52,7 @@ var toview = sens_80_19;
 
 // Set the percentile to view
 // either 5, 10, or 20
-var p = 5;
+var p = 10;
 
 // Filter the band names before map. Comment any of these out to just map all bands
 var selectBands = toview.bandNames()
@@ -63,23 +75,11 @@ for (var i = 0; i < bandList.length; i++) {
 // Select an image to print a histogram
 var band = 'Sens_NDVI_ante3_p10';
 
-print(ui.Chart.image.histogram({
-  image: toview.select(band), 
-  region: ctef,
-  scale: 1e12,
-  maxBuckets: 7
-}));
+// print(ui.Chart.image.histogram({
+//   image: toview.select(band), 
+//   region: ctef,
+//   scale: 1e12,
+//   maxBuckets: 7
+// }));
 
 
-geometry2 =  
-    /* color: #98ff00 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-147.8210336191388, 70.07926665876009],
-          [-147.8210336191388, 47.928518609971924],
-          [-93.5925179941388, 47.928518609971924],
-          [-93.5925179941388, 70.07926665876009]]], null, false);
