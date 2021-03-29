@@ -96,4 +96,4 @@ var exp = {
   scale: 5000,
   maxPixels: 2e9
 };
-Export.image.toDrive(exp);
+// Export.image.toDrive(exp);
