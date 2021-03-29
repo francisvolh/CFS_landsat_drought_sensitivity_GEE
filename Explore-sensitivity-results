@@ -67,5 +67,5 @@ for (var i = 0; i < bandList.length; i++) {
   image: toview.select(bandList[i]), 
   regions: ctef,
   scale: 1e7
-}));
+  }));
 }
