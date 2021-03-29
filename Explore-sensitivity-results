@@ -94,7 +94,6 @@ var exp = {
   folder: 'Visuals',
   region: geometry2,
   scale: 5000,
-  maxPixels: 2e9,
-  crs: 'EPSG:9822'
+  maxPixels: 2e9
 };
 Export.image.toDrive(exp);
