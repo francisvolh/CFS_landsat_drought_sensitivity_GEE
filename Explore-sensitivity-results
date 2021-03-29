@@ -46,7 +46,7 @@ function showPalette(name, palette) {
   print(name);
   print(ui.Thumbnail(image));
 }
-showPalette(min + '           0           ' + max, pal);
+// showPalette(min + '           0           ' + max, pal);
 
 
 // Map --------------------------------------------------------------------------
