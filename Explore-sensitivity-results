@@ -89,7 +89,7 @@ var band = 'Sens_NDVI_ante3_p10';
 
 
 var exp = {
-  image: toview.select(band).visualize(viz), 
+  image: toview.select(band).visualize(viz).reproject('EPSG:9822'), 
   description: band,
   folder: 'Visuals',
   region: geometry2,
