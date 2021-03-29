@@ -95,6 +95,6 @@ var exp = {
   region: geometry2,
   scale: 5000,
   maxPixels: 2e9,
-  crs: 'ESRI:102001'
+  crs: 'EPSG:9822'
 };
 Export.image.toDrive(exp);
