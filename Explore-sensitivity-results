@@ -54,7 +54,6 @@ for (var i = 0; i < bandList.length; i++) {
 var img = 10;
 
 print(ui.Chart.image.byRegion({
-image: toview.select(bandList[i]), 
-regions: ctef,
-scale: 1e7
+  image: toview.select('Sens'), 
+  regions: ctef
 }))
