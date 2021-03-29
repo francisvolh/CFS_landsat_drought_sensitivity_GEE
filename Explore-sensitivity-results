@@ -71,7 +71,7 @@ print(ui.Chart.image.histogram({
 }));
 
 
-geometry2 = 
+geometry2 =  
     /* color: #98ff00 */
     /* displayProperties: [
       {
