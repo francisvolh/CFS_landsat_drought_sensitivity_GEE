@@ -94,6 +94,7 @@ var exp = {
   folder: 'Visuals',
   region: geometry2,
   scale: 5000,
-  maxPixels: 2e9
+  maxPixels: 2e9,
+  crs: 'ESRI:102001'
 };
 Export.image.toDrive(exp);
