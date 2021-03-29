@@ -63,8 +63,23 @@ for (var i = 0; i < bandList.length; i++) {
 // Select an image to print a histogram
 var band = 'Sens_NDVI_ante3_p10';
 
-print(ui.Chart.image.byRegion({
+print(ui.Chart.image.histogram({
   image: toview.select(band), 
-  regions: ctef,
-  scale: 1e9
+  region: ctef,
+  scale: 1e12,
+  maxBuckets: 7
 }));
+
+
+geometry2 = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-147.8210336191388, 70.07926665876009],
+          [-147.8210336191388, 47.928518609971924],
+          [-93.5925179941388, 47.928518609971924],
+          [-93.5925179941388, 70.07926665876009]]], null, false);
