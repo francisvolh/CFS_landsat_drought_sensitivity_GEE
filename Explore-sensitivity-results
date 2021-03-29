@@ -65,5 +65,6 @@ var band = 'Sens_NDVI_ante3_p10';
 
 print(ui.Chart.image.byRegion({
   image: toview.select(band), 
-  regions: ctef
+  regions: ctef,
+  scale: 1e9
 }));
