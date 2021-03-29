@@ -38,6 +38,17 @@ Map.addLayer(ctef);
 // Set either sens_80_19 or sens_00_19
 var toview = sens_80_19;
 
+// Set the percentile to view
+// either 5, 10, or 20
+var p = 5;
+
+// Filter the band names before map. Comment any of these out to just map all bands
+var selectBands = toview.bandNames()
+                        .filter(ee.Filter.stringContains('item', 'p' + p))
+                        .filter(ee.Filter.stringContains('item', 'NDVI'))
+                        .filter(ee.Filter.stringContains('item', 'ante3'))
+
+
 // Note, there's a bit of server side logic here so the browser might hang briefly
 
 // Get the list of band names and add them all separately to the map
