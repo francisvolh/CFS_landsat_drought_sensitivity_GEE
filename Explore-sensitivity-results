@@ -61,9 +61,9 @@ for (var i = 0; i < bandList.length; i++) {
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
-var img = 10;
+var band = 'Sens_NDVI_ante3_p10';
 
 print(ui.Chart.image.byRegion({
-  image: toview.select('Sens'), 
+  image: toview.select(band), 
   regions: ctef
-}))
+}));
