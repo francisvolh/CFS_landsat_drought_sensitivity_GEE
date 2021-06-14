@@ -5,7 +5,7 @@
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 
 // CMI functions
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
 // Indices functions
 var indices = require('users/robitalec/CFS:modules/indices.js');
@@ -27,30 +27,29 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data -------------------------------------------------------------
-// Load data
-
-// DAYMET
-
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
-var aggDaymet = cmi.prepDaymet()
+// Set min max year for daymet
+var minyear = 1980;
+var maxyear = 2019;
 
+var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
 
 // Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
 aggDaymet = aggDaymet
-  .map(cmi.calcETMAX)
-  .map(cmi.calcETMIN)
-  .map(cmi.calcETDEW)
-  .map(cmi.calcVPD)
-  .map(cmi.calcTAVG515)
-  .map(cmi.calcKTRF)
-  .map(cmi.calcPET)
-  .map(cmi.calcCMI);
+  .map(cmiDaymet.calcETMAX)
+  .map(cmiDaymet.calcETMIN)
+  .map(cmiDaymet.calcETDEW)
+  .map(cmiDaymet.calcVPD)
+  .map(cmiDaymet.calcTAVG515)
+  .map(cmiDaymet.calcKTRF)
+  .map(cmiDaymet.calcPET)
+  .map(cmiDaymet.calcCMI);
 
 
 // Calculate baseline -----------------------------------------------
