@@ -29,6 +29,7 @@ var palettes = require('users/gena/packages:palettes');
 // Data -------------------------------------------------------------
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Aggregate --------------------------------------------------------
@@ -81,6 +82,7 @@ var lc = lcmask.lcMask();
 // Load MODIS EVI/NDVI
 // Filter within min/max year and for July
 var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
+  .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
   .map(indices.calcIndices);
