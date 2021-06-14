@@ -30,14 +30,13 @@ var palettes = require('users/gena/packages:palettes');
 // Load data
 
 // DAYMET
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
-
+var aggDaymet = cmi.prepDaymet()
 
 
 
