@@ -79,3 +79,37 @@ exports.calcCMI = function(img) {
       'PET': img.select('PET')
     }).rename('CMI'));
 };
+
+
+
+// Load Aggregate functions
+var agg = require('users/robitalec/CFS:modules/aggregate.js');
+
+// Prep Daymet for CMI
+exports.prepDaymet = function(daymet) {
+  // Set min max year for daymet
+  var minyear = 1980;
+  var maxyear = 2019;
+
+  // Set list of years and months
+  var months = ee.List.sequence(1, 12);
+  var years = ee.List.sequence(minyear, maxyear);
+
+  // Reducer
+  // Combine both mean and sum reducers
+  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
+  // Filter daymet within years
+  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3")
+    .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
+
+  // Aggregate monthly for each year
+  // Using reducer
+  var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+
+  // Only keep tmin tmax mean and prcp sum
+  aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
+                               ['tmin', 'tmax', 'prcp']);
+
+  return aggDaymet
+}
