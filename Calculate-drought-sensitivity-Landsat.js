@@ -29,7 +29,7 @@ var palettes = require('users/gena/packages:palettes');
 // Data -------------------------------------------------------------
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Aggregate --------------------------------------------------------
 // Set min max year for daymet
