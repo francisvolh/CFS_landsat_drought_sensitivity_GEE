@@ -1,17 +1,6 @@
 // Land Cover ------------------------------------------------------
-// Load GlobCover land cover
-var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
+var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
-
-// Set land cover mask, only retaining if not one of:
-// 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
-lc = lc.updateMask(lc.neq(11).and(
-                   lc.neq(14).and(
-                   lc.neq(140).and(
-                   lc.neq(190).and(
-                   lc.neq(200).and(
-                   lc.neq(210).and(
-                   lc.neq(220))))))))
-       .select('landcover');
-
+var lc = lcmask.lcMask();
+Map.addLayer(ee.Image(1))
 Map.addLayer(lc)
