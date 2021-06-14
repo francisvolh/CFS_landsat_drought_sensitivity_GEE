@@ -37,6 +37,9 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 // Baseline functions
 var baseline = require('users/robitalec/CFS:modules/baseline.js');
 
+// Land cover mask function
+var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
@@ -118,17 +121,9 @@ var firemask = fire.fireMasks(firepol, years);
 
 
 // Land Cover ------------------------------------------------------
-// Load GlobCover land cover
-var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
+// Load GlobCover and mask
+var lc = lcmask.lcMask();
 
-
-// Set land cover mask, only retaining if not one of:
-// 210 water, 220 permanent snow and ice, 200 bare areas, 190 urban
-lc = lc.updateMask(lc.neq(210).and(
-                   lc.neq(220)).and(
-                   lc.neq(200)).and(
-                   lc.neq(190)))
-       .select('landcover');
 
 // EVI/NDVI ---------------------------------------------------------
 // Load MODIS EVI/NDVI
