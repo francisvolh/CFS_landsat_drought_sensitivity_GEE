@@ -37,30 +37,9 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 
 // Aggregate --------------------------------------------------------
-// Set min max year for daymet
-var minyear = 1980;
-var maxyear = 2019;
 
-// Filter daymet within years
-daymet = daymet
-  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
 
-// Set list of years and months
-var months = ee.List.sequence(1, 12);
-var years = ee.List.sequence(minyear, maxyear);
 
-// Reducer
-// Combine both mean and sum reducers
-var reducer = ee.Reducer.mean()
-  .combine(ee.Reducer.sum(), null, true);
-
-// Aggregate monthly for each year
-// Using reducer
-var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
-
-// Only keep tmin tmax mean and prcp sum
-aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
-                             ['tmin', 'tmax', 'prcp']);
 
 // Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
