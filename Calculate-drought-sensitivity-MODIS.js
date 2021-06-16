@@ -61,6 +61,11 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 var minyear = 1980;
 var maxyear = 2019;
 
+// Set list of years and months
+var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(minyear, maxyear);
+
+
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
 
