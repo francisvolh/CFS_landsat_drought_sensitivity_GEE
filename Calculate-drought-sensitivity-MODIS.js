@@ -32,7 +32,7 @@ var geometry =
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 
 // CMI functions
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
 // Baseline functions
 var baseline = require('users/robitalec/CFS:modules/baseline.js');
@@ -51,59 +51,37 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data -------------------------------------------------------------
-// Load data
-
-// DAYMET
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
-
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Aggregate --------------------------------------------------------
 // Set min max year for daymet
 var minyear = 1980;
 var maxyear = 2019;
 
-// Filter daymet within years
-daymet = daymet
-  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
+var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
-// Set list of years and months
-var months = ee.List.sequence(1, 12);
-var years = ee.List.sequence(minyear, maxyear);
-
-// Reducer
-// Combine both mean and sum reducers
-var reducer = ee.Reducer.mean()
-  .combine(ee.Reducer.sum(), null, true);
-
-// Aggregate monthly for each year
-// Using reducer 
-var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
-
-// Only keep tmin tmax mean and prcp sum
-aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
-                             ['tmin', 'tmax', 'prcp']);
 
 // Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
 aggDaymet = aggDaymet
-  .map(cmi.calcETMAX)
-  .map(cmi.calcETMIN)
-  .map(cmi.calcETDEW)
-  .map(cmi.calcVPD)
-  .map(cmi.calcTAVG515)
-  .map(cmi.calcKTRF)
-  .map(cmi.calcPET)
-  .map(cmi.calcCMI);
+  .map(cmiDaymet.calcETMAX)
+  .map(cmiDaymet.calcETMIN)
+  .map(cmiDaymet.calcETDEW)
+  .map(cmiDaymet.calcVPD)
+  .map(cmiDaymet.calcTAVG515)
+  .map(cmiDaymet.calcKTRF)
+  .map(cmiDaymet.calcPET)
+  .map(cmiDaymet.calcCMI);
 
 
 // Calculate baseline -----------------------------------------------
-// Set percentiles to use. Javascript list. 
+// Set percentiles to use. Javascript list.
 var percentiles = [1, 5, 10, 20];
 
-// Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years 
+// Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 
 // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
@@ -131,7 +109,7 @@ var lc = lcmask.lcMask();
 var veg = ee.ImageCollection("MODIS/006/MOD13Q1")
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
-  
+
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
@@ -169,7 +147,7 @@ var viz = {min: min, max: max, palette: pal};
 
 // Export -------------------------------------------------------
 var exp = {
-  image: droughtSens, 
+  image: droughtSens,
   description: 'drought-sensitivity-' + minyear + '-' + maxyear,
   folder: 'CFS-drought-sensitivity',
   region: geometry,
@@ -179,7 +157,7 @@ var exp = {
 Export.image.toDrive(exp);
 
 var exp = {
-  image: droughtSens, 
+  image: droughtSens,
   description: 'drought-sensitivity-' + minyear + '-' + maxyear,
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   region: geometry,
