@@ -34,7 +34,7 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 // Aggregate --------------------------------------------------------
 // Set min max year for daymet
-var minyear = 1988;
+var minyear = 1983;
 var maxyear = 2014;
 
 // Set list of years and months
