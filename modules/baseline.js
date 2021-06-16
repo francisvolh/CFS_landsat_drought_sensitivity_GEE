@@ -10,6 +10,7 @@ exports.antecedentMeans = function(images, band, years) {
     var band6mo = band + '_ante6mo';
     var band12mo = band + '_ante12mo';
     var band5yr = band + '_ante5yr';
+    var band5yrmean = band + '_ante5yr' + '_mean';
 
     return ee.Image([
       // Antecedent: 3 (months 3-6)
@@ -39,17 +40,21 @@ exports.antecedentMeans = function(images, band, years) {
       // Antecedent: 5 (driest in previous 5 years)
       ee.ImageCollection([
         images.filter(ee.Filter.date(ante12max.advance(-1, 'year'), ante12max))
+              .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
         images.filter(ee.Filter.date(ante12max.advance(-2, 'year'), ante12max))
+              .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
         images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ante12max))
+              .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
         images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ante12max))
+              .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
         images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max))
+              .select([band], [band5yr])
               .reduce(ee.Reducer.mean())
-        ]).select([band], [band5yr])
-          .reduce(ee.Reducer.min())
+        ]).reduce(ee.Reducer.min())
       ]);
   }));
 };
