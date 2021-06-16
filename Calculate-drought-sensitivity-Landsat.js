@@ -34,7 +34,7 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 // Aggregate --------------------------------------------------------
 // Set min max year for daymet
-var minyear = 1983;
+var minyear = 1988;
 var maxyear = 2014;
 
 // Set list of years and months
@@ -67,7 +67,7 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 
 // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
 var drought = baseline.gtPercentile(means, percentiles);
-
+Map.addLayer(means)
 // Drop 1980 since there's no complete antecedent 12 period
 drought = drought.filter(ee.Filter.neq('year', 1980));
 
