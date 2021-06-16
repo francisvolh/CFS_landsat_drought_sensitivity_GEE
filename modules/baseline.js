@@ -64,7 +64,7 @@ exports.gtPercentile = function(means, percentiles) {
   var percent3 = means.select(['CMI_ante3mo_mean'], ['CMI_gt_ante3mo']).reduce(ee.Reducer.percentile(percentiles));
   var percent6 = means.select(['CMI_ante6mo_mean'], ['CMI_gt_ante6mo']).reduce(ee.Reducer.percentile(percentiles));
   var percent12 = means.select(['CMI_ante12mo_mean'], ['CMI_gt_ante12mo']).reduce(ee.Reducer.percentile(percentiles));
-  var percent5 = means.select(['CMI_ante5yr_min_mean'], ['CMI_gt_ante5yr']).reduce(ee.Reducer.percentile(percentiles));
+  var percent5 = means.select(['CMI_ante5yr_mean_min'], ['CMI_gt_ante5yr']).reduce(ee.Reducer.percentile(percentiles));
 
   return means.map(function(img){
     return ee.Image([
