@@ -56,14 +56,13 @@ aggDaymet = aggDaymet
   .map(cmiDaymet.calcPET)
   .map(cmiDaymet.calcCMI);
 
-
 // Calculate baseline -----------------------------------------------
 // Set percentiles to use. Javascript list.
 var percentiles = [1, 5, 10, 20];
 
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
-
+print(means)
 // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
 var drought = baseline.gtPercentile(means, percentiles);
 
