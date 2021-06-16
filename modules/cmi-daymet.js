@@ -86,11 +86,7 @@ exports.calcCMI = function(img) {
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 
 // Prep Daymet for CMI
-exports.prepDaymet = function() {
-  // Set min max year for daymet
-  var minyear = 1980;
-  var maxyear = 2019;
-
+exports.prepDaymet = function(minyear, maxyear) {
   // Set list of years and months
   var months = ee.List.sequence(1, 12);
   var years = ee.List.sequence(minyear, maxyear);
