@@ -65,8 +65,8 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 
 // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
 var drought = baseline.gtPercentile(means, percentiles);
-
-// Drop 1980 since there's no complete antecedent 12 period
+print(drought)
+// Drop before 1985 since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
 drought = drought.filter(ee.Filter.neq('year', 1980));
 
 // Fire -------------------------------------------------------------
