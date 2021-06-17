@@ -22,5 +22,5 @@ exports.calcIndices = function(img) {
                     red: img.select('B3'),
                     nir: img.select('B4')})
        .rename('EVI'),
-  ]).copyProperties(img).set({'system:time_start': img.get('system:time_start'}));
+  ]).copyProperties(img).set({'system:time_start': img.get('system:time_start'});
 };
