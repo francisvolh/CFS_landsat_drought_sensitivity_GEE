@@ -94,7 +94,7 @@ exports.droughtSensitivity = function(vegmeans, percentiles) {
     // Set up input and output band names, combining with percentile
     var baseNDVI = 'NDVI_base_p' + percent + '_mean';
     var baseEVI = 'EVI_base_p' + percent + '_mean';
-    var baseEVI = 'NBR_base_p' + percent + '_mean';
+    var baseNBR = 'NBR_base_p' + percent + '_mean';
 
     var ante3NDVI = 'NDVI_ante3mo_p' + percent + '_mean';
     var ante6NDVI = 'NDVI_ante6mo_p' + percent + '_mean';
