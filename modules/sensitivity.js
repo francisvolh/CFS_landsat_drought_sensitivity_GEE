@@ -74,6 +74,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         // Output baseline bands for each percent
         var ndviband = 'NDVI_base_p' + percent;
         var eviband = 'EVI_base_p' + percent;
+        var nbrand = 'NBR_base_p' + percent;
 
         // Update vegetation with baseline mask
         var baseveg = v.updateMask(basemask)
