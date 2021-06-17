@@ -55,7 +55,7 @@ exports.antecedentMeans = function(images, band, years) {
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean())
         ]).reduce(ee.Reducer.min())
-      ]);
+      ]).set({'year': yr});
   }));
 };
 
