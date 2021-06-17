@@ -64,12 +64,12 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
 
         // Combine antecedent drought masks, to generate baseline mask
         //  where all three periods are non-drought (1+1+1 = 3 non drought)
-        var basemask = base.expression('ante3 + ante6 + ante12 + ante5', {
+        var basemask = base.expression('ante3 + ante6 + ante12', {
           'ante3': base.select(ante3band),
           'ante6': base.select(ante6band),
-          'ante12': base.select(ante12band),
-          'ante5': base.select(ante5band)
-        }).eq(4);
+          'ante12': base.select(ante12band)//,
+          // 'ante5': base.select(ante5band)
+        }).eq(3);
 
         // Output baseline bands for each percent
         var ndviband = 'NDVI_base_p' + percent;
@@ -212,17 +212,17 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
       sens.select(sens3NDVI)
           .max(sens.select(sens6NDVI))
           .max(sens.select(sens12NDVI))
-          .max(sens.select(sens5NDVI))
+          // .max(sens.select(sens5NDVI))
           .rename(sensPrimeNDVI),
       sens.select(sens3EVI)
           .max(sens.select(sens6EVI))
           .max(sens.select(sens12EVI))
-          .max(sens.select(sens5EVI))
+          // .max(sens.select(sens5EVI))
           .rename(sensPrimeEVI),
       sens.select(sens3NBR)
           .max(sens.select(sens6NBR))
           .max(sens.select(sens12NBR))
-          .max(sens.select(sens5NBR))
+          // .max(sens.select(sens5NBR))
           .rename(sensPrimeNBR)
       ]);
   }));
