@@ -125,7 +125,7 @@ var viz = {min: min, max: max, palette: pal};
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
 // Map.addLayer(droughtSens.select('Sensitivity_NBR_ante12_p5'));
-Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p5'));
+Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
 
 // Export -------------------------------------------------------
 var exp = {
