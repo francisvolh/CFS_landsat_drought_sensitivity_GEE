@@ -82,11 +82,15 @@ var firemask = fire.fireMasks(firepol, years);
 var lc = lcmask.lcMask();
 
 // EVI/NDVI ---------------------------------------------------------
-// Load MODIS EVI/NDVI
+// Min/max years
+var minyearl5 = 1985;
+var maxyearl5 = 2012;
+
+// Load L5
 // Filter within min/max year and for July
 var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
-  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
   .map(indices.calcIndices);
 
@@ -128,7 +132,7 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-' + minyear + '-' + maxyear,
+  description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
   folder: 'CFS-drought-sensitivity',
   region: ctef,
   scale: 250,
@@ -138,7 +142,7 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-' + minyear + '-' + maxyear,
+  description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   region: ctef,
   scale: 250,
