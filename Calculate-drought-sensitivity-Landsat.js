@@ -67,7 +67,7 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, percentiles);
 
 // Drop before 1985 since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
-drought = drought.filter(ee.Filter.gt('year', 1985));
+drought = drought.filter(ee.Filter.gte('year', 1985));
 
 // Fire -------------------------------------------------------------
 // Load NFDB fire polygons
@@ -106,7 +106,6 @@ var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
 // Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
-
 // Map ------------------------------------------------------------
 var pal = palettes.colorbrewer.RdBu[9];
 var min = -20; var max = 20;
@@ -121,15 +120,12 @@ var viz = {min: min, max: max, palette: pal};
 //   print(ui.Thumbnail(image));
 // }
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
-print(drought.first())
-print(veg.first())
-print(maskveg.first())
 
 // Map.addLayer(maskveg, null, 'test')
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
 // Map.addLayer(droughtSens.select('Sensitivity_NBR_ante12_p5'));
-// Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p5'));
+Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p5'));
 
 // Export -------------------------------------------------------
 var exp = {
