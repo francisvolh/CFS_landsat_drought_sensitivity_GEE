@@ -64,7 +64,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
 
         // Combine antecedent drought masks, to generate baseline mask
         //  where all three periods are non-drought (1+1+1 = 3 non drought)
-        var basemask = base.expression('ante3 + ante6 + ante12', {
+        var basemask = base.expression('ante3 + ante6 + ante12 + ante5', {
           'ante3': base.select(ante3band),
           'ante6': base.select(ante6band),
           'ante12': base.select(ante12band),
