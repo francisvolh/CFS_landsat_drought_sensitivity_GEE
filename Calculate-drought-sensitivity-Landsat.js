@@ -76,7 +76,6 @@ var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 // Generate fire masks. Each year has a mask which represents fires in the last year
 var firemask = fire.fireMasks(firepol, years);
 
-
 // Land Cover ------------------------------------------------------
 // Load GlobCover and mask
 var lc = lcmask.lcMask();
