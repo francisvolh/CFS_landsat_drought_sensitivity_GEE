@@ -17,7 +17,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
     // Mask fire and land cover, rescale NDVI and EVI
     v = v.updateMask(fire)
          .updateMask(lc)
-         .select(vegbands)
+         .select(['NDVI', 'EVI', 'NBR'])
          // TODO: move this to MODIS
          // .multiply(0.0001);
 
