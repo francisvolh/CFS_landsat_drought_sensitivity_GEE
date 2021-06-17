@@ -124,9 +124,10 @@ var viz = {min: min, max: max, palette: pal};
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
 
 
+// Map.addLayer(maskveg, null, 'test')
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante3_p5'), viz);
 // Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante6_p5'));
-// Map.addLayer(droughtSens.select('Sensitivity_NDVI_ante12_p5'));
+// Map.addLayer(droughtSens.select('Sensitivity_NBR_ante12_p5'));
 Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p5'));
 
 // Export -------------------------------------------------------
@@ -148,4 +149,4 @@ var exp = {
   scale: 250,
   maxPixels: 1e9
 };
-Export.image.toAsset(exp);
+// Export.image.toAsset(exp);
