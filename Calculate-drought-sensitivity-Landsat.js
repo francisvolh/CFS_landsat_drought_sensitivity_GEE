@@ -122,7 +122,8 @@ var viz = {min: min, max: max, palette: pal};
 //   print(ui.Thumbnail(image));
 // }
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
-
+print(drought.first())
+print(veg.first())
 print(maskveg.first())
 
 // Map.addLayer(maskveg, null, 'test')
