@@ -36,7 +36,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
         var drought3 = base.select(ante3band).eq(0);
         var drought6 = base.select(ante6band).eq(0);
         var drought12 = base.select(ante12band).eq(0);
-        // var drought5 = base.select(ante5band).eq(0);
+        var drought5 = base.select(ante5band).eq(0);
 
         // Output veg band names
         var ante3ndvi = 'NDVI_ante3mo_p' + percent;
