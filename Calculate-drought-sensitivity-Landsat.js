@@ -143,7 +143,7 @@ var exp = {
   description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
   region: ctef,
-  scale: 250,
+  scale: 30,
   maxPixels: 1e9
 };
-// Export.image.toAsset(exp);
+Export.image.toAsset(exp);
