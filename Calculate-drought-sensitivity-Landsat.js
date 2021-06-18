@@ -131,7 +131,7 @@ var viz = {min: min, max: max, palette: pal};
 var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
-  folder: 'CFS-drought-sensitivity',
+  folder: 'CFS-drought-sensitivity-Landsat-',
   region: ctef,
   scale: 250,
   maxPixels: 1e9
@@ -141,7 +141,7 @@ var exp = {
 var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
-  assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
+  assetId: 'CFS/drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
   region: ctef,
   scale: 30,
   maxPixels: 1e9
