@@ -82,10 +82,14 @@ var ante = 3
 Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
 Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), {min: max, max: min, palette: pal}, 'L5')
 
-var index = 'NDVI'
+var index = 'EVI'
 var ante = 3
-Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
-Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
+// Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
+// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
+
+var index = 'NBR'
+var ante = 3
+// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
 
 
 // Chart -------------------------------------------------------------------------
