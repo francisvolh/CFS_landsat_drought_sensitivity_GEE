@@ -58,7 +58,6 @@ Map.addLayer(ee.Image(1))
 var toview = sens_l5;
 print(toview);
 
-
 // Set the percentile to view
 // either 5, 10, or 20
 var p = 10;
