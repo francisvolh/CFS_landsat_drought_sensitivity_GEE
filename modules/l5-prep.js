@@ -38,3 +38,23 @@ exports.cloudMaskL5 = function(image) {
   var mask2 = image.mask().reduce(ee.Reducer.min());
   return image.updateMask(cloud.not()).updateMask(mask2);
 };
+
+
+
+// Aggregate years
+exports.aggregateY = function(years, images) {
+  // Combine images returned for each year
+  return ee.ImageCollection.fromImages(
+    // Map over years
+    years.map(function(yr) {
+      // Filter images to year
+      // Reduce with reducer provided
+      // Set year and pseudo date properties
+      // Return an image for each year
+      return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                   .reduce(ee.Reducer.mean())
+                   .set('year', yr)
+                   .set('system:time_start', ee.Date.fromYMD(yr, 7, 1));
+    })
+  );
+};
