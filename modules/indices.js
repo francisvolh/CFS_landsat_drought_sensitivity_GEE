@@ -10,8 +10,8 @@
 exports.calcIndices = function(img) {
   return ee.Image([
     img.expression('(nir - red) / (nir + red)',
-                   {red: img.select('B4'),
-                    nir: img.select('B3')})
+                   {red: img.select('B3'),
+                    nir: img.select('B4')})
        .rename('NDVI'),
      img.expression('(nir - swir) / (nir + swir)',
                    {nir: img.select('B4'),
