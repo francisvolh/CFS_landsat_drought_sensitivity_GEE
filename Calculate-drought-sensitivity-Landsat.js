@@ -93,7 +93,7 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices);
 veg = l5prep.aggregateY(ee.List.sequence(minyearl5, maxyearl5), veg);
-veg = veg.select(['NDVI', 'EVI', 'NBR'])
+veg = veg.select(['NDVI', 'EVI', 'NBR']);
 
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
