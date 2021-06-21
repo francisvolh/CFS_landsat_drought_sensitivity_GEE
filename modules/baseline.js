@@ -45,13 +45,13 @@ exports.antecedentMeans = function(images, band, years) {
         images.filter(ee.Filter.date(ante12max.advance(-2, 'year'), ee.Filter.date(ante12max.advance(-1, 'year'))))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ee.Filter.date(ante12max.advance(-1, 'year'))))
+        images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ee.Filter.date(ante12max.advance(-2, 'year'))))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ee.Filter.date(ante12max.advance(-1, 'year'))))
+        images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ee.Filter.date(ante12max.advance(-3, 'year'))))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ee.Filter.date(ante12max.advance(-1, 'year'))))
+        images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ee.Filter.date(ante12max.advance(-4, 'year'))))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean())
         ]).reduce(ee.Reducer.min())
