@@ -43,7 +43,6 @@ var years = ee.List.sequence(minyear, maxyear);
 
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
-
 // Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
 aggDaymet = aggDaymet
@@ -91,8 +90,8 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
-  .map(indices.filterClouds)
-  .map(indices.calcIndices);
+  .map(l5prep.filterClouds)
+  .map(l5prep.calcIndices);
 Map.addLayer(veg)
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
