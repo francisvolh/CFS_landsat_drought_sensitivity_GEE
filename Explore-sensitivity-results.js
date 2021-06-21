@@ -55,7 +55,6 @@ Map.addLayer(ctef);
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_l5;
-print(toview);
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -78,8 +77,10 @@ for (var i = 0; i < bandList.length; i++) {
   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 }
 
-Map.addLayer(sens_l5.select(''))
-
+var index = 'NDVI'
+var ante = 3
+Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
+Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
