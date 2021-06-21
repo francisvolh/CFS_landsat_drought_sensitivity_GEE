@@ -7,8 +7,8 @@ var agg = require('users/robitalec/CFS:modules/aggregate.js');
 // CMI functions
 var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
-// Indices functions
-var indices = require('users/robitalec/CFS:modules/indices.js');
+// L5 prep functions
+var l5prep = require('users/robitalec/CFS:modules/l5-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
