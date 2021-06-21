@@ -90,7 +90,7 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
-  .map(l5prep.filterClouds)
+  .map(l5prep.maskClouds)
   .map(l5prep.calcIndices);
 Map.addLayer(veg)
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
