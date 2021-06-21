@@ -23,6 +23,8 @@ var geometry2 =
 var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
 var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
+// L5
+var sens_l5 = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-1980-2019');
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
@@ -53,7 +55,7 @@ function showPalette(name, palette) {
 Map.addLayer(ctef);
 
 // Set either sens_80_19 or sens_00_19
-var toview = sens_80_19;
+var toview = sens_L5;
 print(toview);
 
 
