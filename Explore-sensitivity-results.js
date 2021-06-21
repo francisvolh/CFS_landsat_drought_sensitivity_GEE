@@ -52,7 +52,6 @@ function showPalette(name, palette) {
 
 // Map --------------------------------------------------------------------------
 Map.addLayer(ctef);
-Map.addLayer(ee.Image(1))
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_l5;
@@ -74,12 +73,12 @@ var selectBands = toview.bandNames()
 // Get the list of band names and add them all separately to the map
 // By default all are added, but not shown - so you'll need to select the one to view
 // After you view one, make sure to set it off so you are only seeing one later at a time
-// var bandList = selectBands.getInfo();
-// for (var i = 0; i < bandList.length; i++) {
-//   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
-// }
+var bandList = selectBands.getInfo();
+for (var i = 0; i < bandList.length; i++) {
+  Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
+}
 
-
+Map.addLayer(sens_l5.select(''))
 
 
 // Chart -------------------------------------------------------------------------
@@ -103,3 +102,5 @@ var exp = {
   maxPixels: 2e9
 };
 // Export.image.toDrive(exp);
+
+Map.setOptions('SATELLITE')
