@@ -54,7 +54,7 @@ exports.aggregateY = function(years, images) {
       return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                    .reduce(ee.Reducer.mean())
                    .set('year', yr)
-                   .set('system:time_start', ee.Date.fromYMD(yr, 7, 1));
+                   .set('system:time_start', ee.Date.fromYMD(yr, 7, 1).millis());
     })
   )
 };
