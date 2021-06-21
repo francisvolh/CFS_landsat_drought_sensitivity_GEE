@@ -78,5 +78,3 @@ exports.gtPercentile = function(means, percentiles) {
          .gt(percent5)]).copyProperties(img);
   });
 };
-
-
