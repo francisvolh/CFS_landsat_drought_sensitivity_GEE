@@ -7,7 +7,7 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
 
     // Filter drought masks matching year
     var base = droughts.filter(ee.Filter.eq('year', yr))
-                       .mean();
+                       .first();
 
     // Filter fire masks matching year (selecting where there was no fire in last 5 years)
     var fire = fires.filter(ee.Filter.eq('year', yr))
