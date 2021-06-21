@@ -83,6 +83,7 @@ var lc = lcmask.lcMask();
 // Min/max years
 var minyearl5 = 1985;
 var maxyearl5 = 2012;
+var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
 
 // Load L5
 // Filter within min/max year and for July
@@ -93,7 +94,7 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices);
 Map.addLayer(veg)
-veg = l5prep.aggregateY(ee.List.sequence(minyearl5, maxyearl5), veg);
+veg = l5prep.aggregateY(yearsl5, veg);
 Map.addLayer(veg)
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
