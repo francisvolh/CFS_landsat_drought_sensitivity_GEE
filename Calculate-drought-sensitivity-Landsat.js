@@ -7,8 +7,8 @@ var agg = require('users/robitalec/CFS:modules/aggregate.js');
 // CMI functions
 var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
-// Indices functions
-var indices = require('users/robitalec/CFS:modules/indices.js');
+// L5 prep functions
+var l5prep = require('users/robitalec/CFS:modules/l5-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
@@ -42,7 +42,6 @@ var months = ee.List.sequence(1, 12);
 var years = ee.List.sequence(minyear, maxyear);
 
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
-
 
 // Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
@@ -91,9 +90,9 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
-  .map(indices.maskClouds)
-  .map(indices.calcIndices);
-
+  .map(l5prep.filterClouds)
+  .map(l5prep.calcIndices);
+Map.addLayer(veg)
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
