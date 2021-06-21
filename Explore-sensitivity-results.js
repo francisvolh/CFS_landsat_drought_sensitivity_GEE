@@ -31,6 +31,10 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
+// Land cover mask function
+var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+
+
 // Palette ----------------------------------------------------------------------
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
@@ -51,6 +55,7 @@ function showPalette(name, palette) {
 
 
 // Map --------------------------------------------------------------------------
+Map.addLayer(lcmask.lcMask(), null, 'lc', false);
 Map.addLayer(ctef, null, 'ctef', false);
 
 // Set either sens_80_19 or sens_00_19
