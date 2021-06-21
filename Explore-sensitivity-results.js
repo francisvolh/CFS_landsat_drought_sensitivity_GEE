@@ -72,10 +72,10 @@ var selectBands = toview.bandNames()
 // Get the list of band names and add them all separately to the map
 // By default all are added, but not shown - so you'll need to select the one to view
 // After you view one, make sure to set it off so you are only seeing one later at a time
-var bandList = selectBands.getInfo();
-for (var i = 0; i < bandList.length; i++) {
-  Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
-}
+// var bandList = selectBands.getInfo();
+// for (var i = 0; i < bandList.length; i++) {
+//   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
+// }
 
 var index = 'NDVI'
 var ante = 3
