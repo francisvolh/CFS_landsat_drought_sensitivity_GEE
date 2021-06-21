@@ -51,7 +51,7 @@ function showPalette(name, palette) {
 
 
 // Map --------------------------------------------------------------------------
-Map.addLayer(ctef);
+Map.addLayer(ctef, null, 'ctef', false);
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_l5;
