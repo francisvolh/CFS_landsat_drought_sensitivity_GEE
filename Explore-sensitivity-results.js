@@ -28,9 +28,8 @@ var sens_l5 = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-1980-201
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-
-// Drop Arctic
-ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Palette ----------------------------------------------------------------------
 // Gena's palette functions
@@ -55,7 +54,7 @@ function showPalette(name, palette) {
 Map.addLayer(ctef);
 
 // Set either sens_80_19 or sens_00_19
-var toview = sens_L5;
+var toview = sens_l5;
 print(toview);
 
 
