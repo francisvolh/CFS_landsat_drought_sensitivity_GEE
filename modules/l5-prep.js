@@ -56,5 +56,5 @@ exports.aggregateY = function(years, images) {
                    .set('year', yr)
                    .set('system:time_start', ee.Date.fromYMD(yr, 7, 1));
     })
-  );
+  )
 };
