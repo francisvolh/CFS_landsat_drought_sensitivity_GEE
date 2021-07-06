@@ -22,7 +22,7 @@ exports.aggregateMY = function(years, months, images, reducer) {
   );
 };
 
-// (Not used at the moment) Aggregate years
+// Aggregate years
 exports.aggregateY = function(years, images, reducer) {
   // Combine images returned for each year
   return ee.ImageCollection.fromImages(
