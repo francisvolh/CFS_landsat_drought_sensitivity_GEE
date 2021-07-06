@@ -13,9 +13,9 @@ exports.calcIndices = function(img) {
                    {red: img.select('B3'),
                     nir: img.select('B4')})
        .rename('NDVI'),
-     img.expression('(nir - swir) / (nir + swir)',
+     img.expression('(nir - swir2) / (nir + swir2)',
                    {nir: img.select('B4'),
-                    swir: img.select('B7')})
+                    swir2: img.select('B7')})
        .rename('NBR'),
      img.expression('2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))',
                    {blue: img.select('B1'),
@@ -23,7 +23,7 @@ exports.calcIndices = function(img) {
                     nir: img.select('B4')})
        .rename('EVI'),
   ]).copyProperties(img).set({'system:time_start': img.date().millis()});
-}
+};
 
 
 // from l5 ee docs
@@ -40,6 +40,10 @@ exports.cloudMaskL5 = function(image) {
 };
 
 
+// Set year
+exports.setYear = function(img) {
+  return img.set('year', img.date().get('year'));
+};
 
 // Aggregate years
 exports.aggregateY = function(years, images) {
