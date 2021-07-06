@@ -1,13 +1,13 @@
 // Generate fire masks from fire polygons
 var generateFireMasks = function(firepols, yr) {
   var date = ee.Date.fromYMD(yr, 1, 1);
-  
+
   // Present year
   var y = date.get('year');
-  
+
   // 5 years previous
   var ymin5 = date.advance(-4, 'year').get('year');
-  
+
   // Filter fires within last 5 years
   // Reduce to any non zero = anywhere there is a fire
   // Result is 0 = no fire, 1 = fire
@@ -25,9 +25,9 @@ var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 // Mask fires
 exports.maskFires = function(img) {
   var yr = img.date().get('year');
-  
+
   var fire = generateFireMasks(firepol, yr).eq(0) //.first()?
-  return(img.updateMask(fire));
+  return(img.updateMask(fire).copyProperties(img););
 }
 
 
