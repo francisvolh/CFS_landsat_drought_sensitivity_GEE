@@ -9,13 +9,13 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
     var base = drought.filter(ee.Filter.eq('year', yr))
                       .first();
 
-    return //ee.Image([
+    return ee.Image([
       // Loop over antes
       antes.map(function(ante) {
         // Loop over percentiles
-        return percentiles.map(function(p) {
+        percentiles.map(function(p) {
           // Loop over indices
-          return indices.map(function(index) {
+          indices.map(function(index) {
             // Set up band names
             var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p;
             var antepindexband = index + '_ante' + ante + 'mo_p' + p;
@@ -34,13 +34,13 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
             var droughtveg = v.select(index)
                               .updateMask(droughtmask)
                               .rename([antepindexband]);
-            return droughtmaskband
+            return basemask
             // return [baseveg, droughtveg]//ee.Image(
                //.copyProperties(v);
           });
         });
       })
-    // ]);
+    ]);
   });
 };
 
