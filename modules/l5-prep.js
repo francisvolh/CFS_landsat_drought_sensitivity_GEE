@@ -22,8 +22,8 @@ exports.calcIndices = function(img) {
                     red: img.select('B3'),
                     nir: img.select('B4')})
        .rename('EVI'),
-  ]).copyProperties(img).set({'system:time_start': img.date().millis()});
-};
+  ]).copyProperties(img).set({'system:time_start': img.date().millis(), 'system:index': img.get('system:index')});
+}
 
 
 // from l5 ee docs
