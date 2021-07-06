@@ -1,13 +1,13 @@
 // Split vegetation indices into drought/non-drought pixels
-exports.splitDrought = function(veg, droughts, antes, percentiles, indices) {
+exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
   // Map across images
   return veg.map(function(v) {
     // Get year
     var yr = v.date().get('year');
 
     // Filter drought masks matching year
-    var base = droughts.filter(ee.Filter.eq('year', yr))
-                       .first();
+    var base = drought.filter(ee.Filter.eq('year', yr))
+                      .first();
 
     return ee.Image.cat([
       // Loop over antes
