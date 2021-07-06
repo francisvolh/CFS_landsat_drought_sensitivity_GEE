@@ -34,8 +34,8 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
             var droughtveg = v.select(index)
                               .updateMask(droughtmask)
                               .rename([antepindexband]);
-
-            return [baseveg, droughtveg]//ee.Image(
+            return droughtmask
+            // return [baseveg, droughtveg]//ee.Image(
                //.copyProperties(v);
           });
         });
