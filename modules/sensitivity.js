@@ -11,11 +11,11 @@ exports.splitDrought = function(veg, droughts, antes, percentiles, indices) {
 
     return ee.Image.cat([
       // Loop over antes
-      antes.map(function(ante)) {
+      antes.map(function(ante) {
         // Loop over percentiles
-        percentiles.map(function(p)) {
+        percentiles.map(function(p) {
           // Loop over indices
-          indices.map(function(index)) {
+          indices.map(function(index) {
             // Set up band names
             var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p
             var antepindexband = index + '_ante' + ante + 'mo_p' + p
@@ -36,9 +36,9 @@ exports.splitDrought = function(veg, droughts, antes, percentiles, indices) {
                               .rename([antepindexband])
 
             return ee.Image([baseveg, droughtveg]).copyProperties(v)
-          }
-        }
-      }
+          })
+        })
+      })
     ])
   }
 }
