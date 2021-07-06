@@ -82,12 +82,19 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
+  .map(l5prep.setYear)
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices)
   .map(fire.maskFires)
   .map(lcmask.maskLc)
+print(veg)
 
-veg = l5prep.aggregateY(yearsl5, veg);
+print(veg.aggregate_array('year').distinct() )
+veg = l5prep.aggregateY(veg);
+
+print(veg)
+
+
 var indices = ['NDVI', 'NBR', 'EVI'];
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
@@ -97,7 +104,7 @@ var antes = [3, 6, 12];
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
-var means = maskveg.reduce(ee.Reducer.mean());
+var means = kveg.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
