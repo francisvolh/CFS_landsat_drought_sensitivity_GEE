@@ -9,7 +9,7 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
     var base = drought.filter(ee.Filter.eq('year', yr))
                       .first();
 
-    return ee.Image([
+    return //ee.Image([
       // Loop over antes
       antes.map(function(ante) {
         // Loop over percentiles
@@ -40,7 +40,7 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
           });
         });
       })
-    ]);
+    // ]);
   });
 };
 
