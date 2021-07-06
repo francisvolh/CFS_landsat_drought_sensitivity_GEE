@@ -27,8 +27,7 @@ exports.maskFires = function(img) {
   var yr = img.date().get('year');
   
   var fire = generateFireMasks(firepol, yr).eq(0) //.first()?
-  return fire
-  // return(img.updateMask(fire));
+  return(img.updateMask(fire));
 }
 
 
