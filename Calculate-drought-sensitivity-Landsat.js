@@ -66,18 +66,8 @@ var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 var drought = baseline.gtPercentile(means, percentiles);
 
 // Drop before 1985 since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
-drought = drought.filter(ee.Filter.gte('year', 1985));
+drought = drought.filter(ee.Filter.gt('year', 1980));
 
-// Fire -------------------------------------------------------------
-// Load NFDB fire polygons
-var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
-
-// Generate fire masks. Each year has a mask which represents fires in the last year
-var firemask = fire.fireMasks(firepol, years);
-
-// Land Cover ------------------------------------------------------
-// Load GlobCover and mask
-var lc = lcmask.lcMask();
 
 // EVI/NDVI ---------------------------------------------------------
 // Min/max years
@@ -87,12 +77,16 @@ var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
 
 // Load L5
 // Filter within min/max year and for July
+// Mask clouds, fires, land cover and calculate indices
 var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
   .map(l5prep.cloudMaskL5)
-  .map(l5prep.calcIndices);
+  .map(l5prep.calcIndices)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc)
+
 veg = l5prep.aggregateY(yearsl5, veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
