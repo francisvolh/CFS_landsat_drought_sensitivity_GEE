@@ -38,5 +38,5 @@ var lcmask = lc.updateMask(
 
 
 exports.maskLc = function(img) {
-  return img.updateMask(lcmask).copyProperties(img);
-}
+  return img.updateMask(lcmask);
+};
