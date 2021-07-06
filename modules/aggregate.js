@@ -34,8 +34,8 @@ exports.aggregateY = function(years, images, reducer) {
       // Return an image for each year
       return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
                    .reduce(reducer)
-                   .set('year', yr)
-                   .set('system:time_start', ee.Date.fromYMD(yr, 1, 1));
+                  // .set('year', yr)
+                  // .set('system:time_start', ee.Date.fromYMD(yr, 1, 1));
     })
   );
 };
