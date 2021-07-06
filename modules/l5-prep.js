@@ -47,7 +47,7 @@ exports.setYear = function(img) {
 
 // Aggregate years
 exports.aggregateY = function(images) {
-  var year = images.aggregate_array('year').distinct()
+  var year = images.aggregate_array('year').distinct();
   // Combine images returned for each year
   return ee.ImageCollection.fromImages(
     // Map over years
@@ -61,5 +61,5 @@ exports.aggregateY = function(images) {
                    .set('year', yr)
                    .set('system:time_start', ee.Date.fromYMD(yr, 7, 1).millis());
     })
-  )
+  );
 };
