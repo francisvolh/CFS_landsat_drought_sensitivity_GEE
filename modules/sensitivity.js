@@ -26,12 +26,12 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
             var basemask = base.select(droughtmaskband).eq(0);
 
             // Baseline vegetation index
-            var baseveg = v.select(indices)
+            var baseveg = v.select(index)
                            .updateMask(basemask)
                            .rename([baseband]);
 
             // Drought vegetation index
-            var droughtveg = v.select(indices)
+            var droughtveg = v.select(index)
                               .updateMask(droughtmask)
                               .rename([antepindexband]);
 
