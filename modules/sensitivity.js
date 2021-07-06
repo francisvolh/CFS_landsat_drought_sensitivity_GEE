@@ -40,7 +40,7 @@ exports.splitDrought = function(veg, droughts, antes, percentiles, indices) {
         })
       })
     ])
-  }
+  })
 }
 
 
