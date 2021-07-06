@@ -27,11 +27,9 @@ export.maskFires = function(img) {
   var yr = img.date().get('year');
   
   var fire = generateFireMasks(firepol, yr)
-  // Filter fire masks matching year (selecting where there was no fire in last 5 years)
-  var fire = fires.filter(ee.Filter.eq('year', yr))
-                  .first()
-                  .eq(0);
-
+                .eq(0) //.first()?
+                
+  return(img.updateMask(fire));
 }
 
 
