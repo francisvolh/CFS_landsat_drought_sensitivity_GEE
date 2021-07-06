@@ -1,5 +1,5 @@
 // Generate fire masks from fire polygons
-exports.generateFireMasks = function(firepols, yr) {
+var generateFireMasks = function(firepols, yr) {
   var date = ee.Date.fromYMD(yr, 1, 1);
   
   // Present year
