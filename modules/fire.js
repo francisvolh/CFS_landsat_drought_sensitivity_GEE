@@ -26,9 +26,7 @@ var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
 export.maskFires = function(img) {
   var yr = img.date().get('year');
   
-  var fire = generateFireMasks(firepol, yr)
-                .eq(0) //.first()?
-                
+  var fire = generateFireMasks(firepol, yr).eq(0) //.first()?
   return(img.updateMask(fire));
 }
 
