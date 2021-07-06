@@ -86,15 +86,9 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices)
   .map(fire.maskFires)
-  .map(lcmask.maskLc)
-print(veg)
-
-print(veg.aggregate_array('year').distinct() )
+  .map(lcmask.maskLc);
+  
 veg = l5prep.aggregateY(veg);
-
-print(veg)
-
-
 var indices = ['NDVI', 'NBR', 'EVI'];
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
@@ -102,7 +96,7 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 // var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 var antes = [3, 6, 12];
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
-
+print(splits)
 // Reduce yearly measures to means of all years
 var means = kveg.reduce(ee.Reducer.mean());
 
