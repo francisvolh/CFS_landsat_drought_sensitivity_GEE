@@ -1,5 +1,5 @@
-// Mask vegetation using fire and land cover, then split into drought/non-drought pixels
-exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
+// Split vegetation indices into drought/non-drought pixels
+exports.splitDrought = function(veg, droughts, antes, percentiles, indices) {
   // Map across images
   return veg.map(function(v) {
     // Get year
@@ -9,83 +9,39 @@ exports.maskVeg = function(veg, droughts, fires, lc, percentiles) {
     var base = droughts.filter(ee.Filter.eq('year', yr))
                        .first();
 
-    // Filter fire masks matching year (selecting where there was no fire in last 5 years)
-    var fire = fires.filter(ee.Filter.eq('year', yr))
-                    .first()
-                    .eq(0);
+    return ee.Image.cat([
+      // Loop over antes
+      antes.map(function(ante)) {
+        // Loop over percentiles
+        percentiles.map(function(p)) {
+          // Loop over indices
+          indices.map(function(index)) {
+            // Set up band names
+            var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p
+            var antepindexband = index + '_ante' + ante + 'mo_p' + p
+            var baseband = index + '_base_p' + p
 
-    // Mask fire and land cover, rescale NDVI and EVI
-    v = v.updateMask(fire)
-         .updateMask(lc)
-         .select(['NDVI', 'EVI', 'NBR'])
-         // TODO: move this to MODIS
-         // .multiply(0.0001);
+            // Set up drought and base mask
+            var droughtmask = base.select(droughtmaskband)
+            var basemask = base.select(droughtmaskband).eq(0)
 
-    return ee.Image(
-      // Loop over percentiles
-      percentiles.map(function(percent) {
-        // Select drought masks for percent
-        // These are CMI greater than, therefore 0: drought, 1:non drought
-        var ante3band = 'CMI_gt_ante3mo_p' + percent;
-        var ante6band = 'CMI_gt_ante6mo_p' + percent;
-        var ante12band = 'CMI_gt_ante12mo_p' + percent;
-        var ante5band = 'CMI_gt_ante5yr_p' + percent;
+            // Baseline vegetation index
+            var baseveg = v.select(indices)
+                           .updateMask(basemask)
+                           .rename([baseband]);
 
-        // Baseline regions for each antecedent period
-        // Flipping mask to 1: drought, 0: non drought
-        var drought3 = base.select(ante3band).eq(0);
-        var drought6 = base.select(ante6band).eq(0);
-        var drought12 = base.select(ante12band).eq(0);
-        var drought5 = base.select(ante5band).eq(0);
+            // Drought vegetation index
+            var droughtveg = v.select(indices)
+                              .updateMask(droughtmask)
+                              .rename([antepindexband])
 
-        // Output veg band names
-        var ante3ndvi = 'NDVI_ante3mo_p' + percent;
-        var ante6ndvi = 'NDVI_ante6mo_p' + percent;
-        var ante12ndvi = 'NDVI_ante12mo_p' + percent;
-        var ante5ndvi = 'NDVI_ante5yr_p' + percent;
-        var ante3evi = 'EVI_ante3mo_p' + percent;
-        var ante6evi = 'EVI_ante6mo_p' + percent;
-        var ante12evi = 'EVI_ante12mo_p' + percent;
-        var ante5evi = 'EVI_ante5yr_p' + percent;
-        var ante3nbr = 'NBR_ante3mo_p' + percent;
-        var ante6nbr = 'NBR_ante6mo_p' + percent;
-        var ante12nbr = 'NBR_ante12mo_p' + percent;
-        var ante5nbr = 'NBR_ante5yr_p' + percent;
+            return ee.Image([baseveg, droughtveg]).copyProperties(v)
+          }
+        }
+      }
+  }
+}
 
-        // Antecedent drought NDVI measures
-        var veg3 = v.updateMask(drought3)
-                    .rename([ante3ndvi, ante3evi, ante3nbr]);
-        var veg6 = v.updateMask(drought6)
-                    .rename([ante6ndvi, ante6evi, ante6nbr]);
-        var veg12 = v.updateMask(drought12)
-                     .rename([ante12ndvi, ante12evi, ante12nbr]);
-        var veg5 = v.updateMask(drought5)
-                    .rename([ante5ndvi, ante5evi, ante5nbr]);
-
-        // Combine antecedent drought masks, to generate baseline mask
-        //  where all three periods are non-drought (1+1+1 = 3 non drought)
-        var basemask = base.expression('ante3 + ante6 + ante12', {
-          'ante3': base.select(ante3band),
-          'ante6': base.select(ante6band),
-          'ante12': base.select(ante12band)//,
-          // 'ante5': base.select(ante5band)
-        }).eq(3);
-
-        // Output baseline bands for each percent
-        var ndviband = 'NDVI_base_p' + percent;
-        var eviband = 'EVI_base_p' + percent;
-        var nbrband = 'NBR_base_p' + percent;
-
-        // Update vegetation with baseline mask
-        var baseveg = v.updateMask(basemask)
-                       .rename([ndviband, eviband, nbrband]);
-
-        // Return baseline and drought period NDVI/EVI measures
-        return ee.Image([baseveg, veg3, veg6, veg12, veg5]).copyProperties(v);
-      })
-    );
-  });
-};
 
 
 // Calculate drought sensitivity
