@@ -98,7 +98,7 @@ var antes = [3, 6, 12];
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 print(splits)
 // Reduce yearly measures to means of all years
-var means = kveg.reduce(ee.Reducer.mean());
+var means = veg.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
