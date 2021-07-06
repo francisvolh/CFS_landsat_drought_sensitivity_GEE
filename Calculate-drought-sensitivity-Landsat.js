@@ -88,11 +88,14 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(lcmask.maskLc)
 
 veg = l5prep.aggregateY(yearsl5, veg);
+var indices = ['NDVI', 'NBR', 'EVI'];
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
-var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
-
+// var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
+var antes = [3, 6, 12];
+var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
+print(splits)
 // Reduce yearly measures to means of all years
 var means = maskveg.reduce(ee.Reducer.mean());
 
