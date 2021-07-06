@@ -47,7 +47,7 @@ exports.setYear = function(img) {
 
 // Aggregate years
 exports.aggregateY = function(images) {
-  var year = images.aggregate_array('year').distinct();
+  var years = images.aggregate_array('year').distinct();
   // Combine images returned for each year
   return ee.ImageCollection.fromImages(
     // Map over years
