@@ -15,7 +15,7 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
         // Loop over percentiles
         return percentiles.map(function(p) {
           // Loop over indices
-          indices.map(function(index) {
+          return indices.map(function(index) {
             // Set up band names
             var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p;
             var antepindexband = index + '_ante' + ante + 'mo_p' + p;
