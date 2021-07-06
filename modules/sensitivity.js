@@ -13,7 +13,7 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
       // Loop over antes
       antes.map(function(ante) {
         // Loop over percentiles
-        percentiles.map(function(p) {
+        return percentiles.map(function(p) {
           // Loop over indices
           indices.map(function(index) {
             // Set up band names
