@@ -24,7 +24,7 @@ var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
 var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 // L5
-var sens_l5 = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-1980-2019');
+// var sens_l5 = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-1980-2019');
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
@@ -55,11 +55,21 @@ function showPalette(name, palette) {
 
 
 // Map --------------------------------------------------------------------------
-Map.addLayer(lcmask.lcMask(), null, 'lc', false);
+// Load GlobCover land cover
+var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
+
+// Set land cover mask, only retaining if not one of
+var lcmask = lc.updateMask(
+    lc.expression('lc == 11 || lc == 14 || lc == 20 || lc == 30 || ' +
+                  'lc == 120 || lc == 140 || lc == 150 || lc == 190 || ' +
+                  'lc == 200 || lc == 210 || lc == 220 || lc == 230',
+                  {lc: lc.select('landcover')}))
+      .select('landcover');
+
 Map.addLayer(ctef, null, 'ctef', false);
 
 // Set either sens_80_19 or sens_00_19
-var toview = sens_l5;
+var toview = sens_80_19;
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -77,29 +87,30 @@ var selectBands = toview.bandNames()
 // Get the list of band names and add them all separately to the map
 // By default all are added, but not shown - so you'll need to select the one to view
 // After you view one, make sure to set it off so you are only seeing one later at a time
-// var bandList = selectBands.getInfo();
-// for (var i = 0; i < bandList.length; i++) {
-//   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
-// }
+var bandList = selectBands.getInfo();
+for (var i = 0; i < bandList.length; i++) {
+  Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
+}
+Map.addLayer(lcmask, null, 'lc', false);
 
-var index = 'NDVI'
-var ante = 3
-Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
-Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), {min: max, max: min, palette: pal}, 'L5')
+// var index = 'NDVI'
+// var ante = 3
+// Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
+// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), {min: max, max: min, palette: pal}, 'L5')
 
-var index = 'EVI'
-var ante = 3
+// var index = 'EVI'
+// var ante = 3
 // Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
 // Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
 
-var index = 'NBR'
-var ante = 3
+// var index = 'NBR'
+// var ante = 3
 // Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
 
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
-var band = 'Sens_EVI_ante3_p10';
+// var band = 'Sens_EVI_ante3_p10';
 
 // print(ui.Chart.image.histogram({
 //   image: toview.select(band), 
@@ -109,14 +120,14 @@ var band = 'Sens_EVI_ante3_p10';
 // }));
 
 // Export ------------------------------------------------------------------------ 
-var exp = {
-  image: toview.select(band).visualize(viz), 
-  description: band,
-  folder: 'Visuals',
-  region: geometry2,
-  scale: 5000,
-  maxPixels: 2e9
-};
+// var exp = {
+//   image: toview.select(band).visualize(viz), 
+//   description: band,
+//   folder: 'Visuals',
+//   region: geometry2,
+//   scale: 5000,
+//   maxPixels: 2e9
+// };
 // Export.image.toDrive(exp);
 
 Map.setOptions('SATELLITE')
