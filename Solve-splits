@@ -126,7 +126,7 @@ var splits = splitDrought(veg, drought, antes, percentiles, indices);
 print(splits)
 
 
-Map.addLayer(splits.limit(10).select(1))
+Map.addLayer(splits.limit(10).select('NDVI.*'))
 
 
 
