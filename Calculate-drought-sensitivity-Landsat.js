@@ -95,9 +95,55 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 // var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 var antes = [3, 6, 12];
+// var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
+// print(veg)
+// print(splits)
+
+var splitDrought = function(veg, drought, antes, percentiles, indices) {
+  // Map across images
+  return veg.map(function(v) {
+    // Get year
+    var yr = v.date().get('year');
+
+    // Filter drought masks matching year
+    var base = drought.filter(ee.Filter.eq('year', yr))
+                      .first();
+
+    return ee.ImageCollection(antes.map(function(ante) {
+        // Loop over percentiles
+        return percentiles.map(function(p) {
+          // Loop over indices
+          return indices.map(function(index) {
+            // Set up band names
+            var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p;
+            var antepindexband = index + '_ante' + ante + 'mo_p' + p;
+            var baseband = index + '_base_p' + p;
+
+            // Set up drought and base mask
+            var droughtmask = base.select(droughtmaskband);
+            var basemask = base.select(droughtmaskband).eq(0);
+
+            // // Baseline vegetation index
+            // var baseveg = v.select(index)
+            //               .updateMask(basemask)
+            //               .rename([baseband]);
+
+            // // Drought vegetation index
+            // var droughtveg = v.select(index)
+            //                   .updateMask(droughtmask)
+            //                   .rename([antepindexband]);
+            return basemask
+            // return [baseveg, droughtveg]//ee.Image(
+               //.copyProperties(v);
+          });
+        });
+      }))
+    // ]);
+  });
+};
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
-print(veg)
-print(splits)
+
+
 
 // Reduce yearly measures to means of all years
 var means = veg.reduce(ee.Reducer.mean());
