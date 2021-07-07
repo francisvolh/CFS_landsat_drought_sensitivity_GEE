@@ -89,6 +89,7 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(lcmask.maskLc);
   
 veg = l5prep.aggregateY(veg);
+drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
 var indices = ['NDVI', 'NBR', 'EVI'];
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
