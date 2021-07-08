@@ -52,8 +52,8 @@ exports.droughtSensitivity = function(means, antes, percentiles, indices) {
         return indices.map(function(index) {
           // Set up band names
           var id = index + '_ante' + ante + 'mo_p' + p;
-          var baseband = id + '_base';
-          var droughtband = id + '_drought';
+          var baseband = id + '_base' + '_mean';
+          var droughtband = id + '_drought' + '_mean';
           var sensband = 'Sens_' + id;
 
           return means.expression('((baseline - drought) / baseline) * 100', {
