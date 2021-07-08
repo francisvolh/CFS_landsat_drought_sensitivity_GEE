@@ -99,8 +99,7 @@ var antes = [3, 6, 12];
 // var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 // print(veg)
 // print(splits)
-print(veg)
-print(drought)
+
 var splitDrought = function(veg, drought, antes, percentiles, indices) {
   return veg.map(function(v) {
     var yr = v.date().get('year');
@@ -138,12 +137,12 @@ var splits = splitDrought(veg, drought, antes, percentiles, indices);
 var means = splits.reduce(ee.Reducer.mean());
 // print(means)
 // Map.addLayer(splits.limit(10).select('NDVI.*'))
-Map.addLayer(means.select('NDVI_ante3mo_p10_base_mean'), null, 'base')
-Map.addLayer(means.select('NDVI_ante3mo_p10_drought_mean'), null, 'drought')
+// Map.addLayer(means.select('NDVI_ante3mo_p10_base_mean'), null, 'base')
+// Map.addLayer(means.select('NDVI_ante3mo_p10_drought_mean'), null, 'drought')
 
 var sens = sensitivity.droughtSensitivity(means, antes, percentiles, indices)
 
-print(sens)
+// print(sens)
 var palettes = require('users/gena/packages:palettes');
 
 var pal = palettes.colorbrewer.RdBu[9].reverse();
@@ -152,11 +151,9 @@ var viz = {min: min, max: max, palette: pal};
 
 
 // Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
-Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
+// Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
 
-
-Map.addLayer(lcmask.returnLc().mask().eq(0), null, 'lc');
-
+Map.addLayer(lcmask.reverseMask())
 
 
 
