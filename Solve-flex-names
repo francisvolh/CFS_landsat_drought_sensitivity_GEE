@@ -134,6 +134,7 @@ var splitDrought = function(veg, drought, antes, percentiles, indices) {
   });
 };
 var splits = splitDrought(veg, drought, antes, percentiles, indices);
+Map.addLayer(splits, null, 'splits')
 var means = splits.reduce(ee.Reducer.mean());
 print(means)
 // Map.addLayer(splits.limit(10).select('NDVI.*'))
