@@ -36,7 +36,7 @@ var lcmask = lc.updateMask(
                   {lc: lc.select('landcover')}))
       .select('landcover');
 
-exports.returnMask = function() {
+exports.returnLc = function() {
 	return lcmask;
 };
 
