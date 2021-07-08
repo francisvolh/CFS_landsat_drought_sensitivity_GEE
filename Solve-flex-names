@@ -137,14 +137,14 @@ var splits = splitDrought(veg, drought, antes, percentiles, indices);
 var means = splits.reduce(ee.Reducer.mean());
 print(means)
 // Map.addLayer(splits.limit(10).select('NDVI.*'))
-Map.addLayer(means.select('NDVI_ante3mo_p1_base'), null, 'base')
-Map.addLayer(means.select('NDVI_ante3mo_p1_drought'), null, 'drought')
+Map.addLayer(means.select('NDVI_ante3mo_p10_base_mean'), null, 'base')
+Map.addLayer(means.select('NDVI_ante3mo_p10_drought_mean'), null, 'drought')
 
 var sens = sensitivity.droughtSensitivity(means, antes, percentiles, indices)
 
 print(sens)
 // Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
-Map.addLayer(sens.select('Sens_NDVI_ante3mo_p1'), null, 'sens')
+Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), null, 'sens')
 
 
 
