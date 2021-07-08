@@ -41,6 +41,11 @@ exports.returnLc = function() {
 };
 
 
+exports.reverseMask = function() {
+  return lcmask.not().selfMask();
+};
+
+
 
 
 exports.maskLc = function(img) {
