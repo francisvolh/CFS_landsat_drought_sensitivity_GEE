@@ -135,11 +135,10 @@ var splitDrought = function(veg, drought, antes, percentiles, indices) {
 };
 var splits = splitDrought(veg, drought, antes, percentiles, indices);
 
-print(splits)
+// print(splits)
+// Map.addLayer(splits.limit(10).select('NDVI.*'))
 
-
-Map.addLayer(splits.limit(10).select('NDVI.*'))
-
+var sens = sensitivity.droughtSensitivity(splits, antes, percentiles, indices)
 
 
 
