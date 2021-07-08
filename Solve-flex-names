@@ -152,7 +152,8 @@ var viz = {min: min, max: max, palette: pal};
 
 // Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
 Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
-
+var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
+Map.addLayer(sens_80_19.select('Sens_NDVI_ante3_p10'), viz, 'modis');
 Map.addLayer(lcmask.reverseMask())
 
 
