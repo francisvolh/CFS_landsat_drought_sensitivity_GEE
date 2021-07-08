@@ -42,7 +42,7 @@ exports.returnLc = function() {
 
 
 exports.reverseMask = function() {
-  return lcmask.not().selfMask();
+  return lcmask.mask().not().selfMask();
 };
 
 
