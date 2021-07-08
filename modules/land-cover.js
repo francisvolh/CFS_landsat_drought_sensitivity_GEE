@@ -24,6 +24,7 @@
 // 220	Permanent snow and ice
 // 230	Unclassified
 
+
 // Load GlobCover land cover
 var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
 
@@ -35,8 +36,13 @@ var lcmask = lc.updateMask(
                   {lc: lc.select('landcover')}))
       .select('landcover');
 
+exports.returnMask = function() {
+	return lcmask
+}
+
+
 
 
 exports.maskLc = function(img) {
-  return img.updateMask(lcmask);
+  return img.updateMask(lcmask)
 };
