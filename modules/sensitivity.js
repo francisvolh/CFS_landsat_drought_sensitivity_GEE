@@ -44,30 +44,26 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
 
 
 exports.droughtSensitivity = function(means, antes, percentiles, indices) {
-  // Map across images
-  return means.map(function(img) {
+  // Loop over antes
+  return ee.Image(antes.map(function(ante) {
+      // Loop over percentiles
+      return percentiles.map(function(p) {
+        // Loop over indices
+        return indices.map(function(index) {
+          // Set up band names
+          var id = index + '_ante' + ante + 'mo_p' + p;
+          var baseband = id + '_base';
+          var droughtband = id + '_drought';
+          var sensband = 'Sens_' + id;
 
-    // Loop over antes
-    return ee.Image(antes.map(function(ante) {
-        // Loop over percentiles
-        return percentiles.map(function(p) {
-          // Loop over indices
-          return indices.map(function(index) {
-            // Set up band names
-            var id = index + '_ante' + ante + 'mo_p' + p;
-            var baseband = id + '_base';
-            var droughtband = id + '_drought';
-            var sensband = 'Sens_' + id;
-
-            return img.expression('((baseline - drought) / baseline) * 100', {
-                                  baseline: img.select(baseband),
-                                  drought: img.select(droughtband)
-                                  }).rename(sensband);
-          });
+          return means.expression('((baseline - drought) / baseline) * 100', {
+                                baseline: means.select(baseband),
+                                drought: means.select(droughtband)
+                                }).rename(sensband);
         });
-      })
-    );
-  });
+      });
+    })
+  );
 };
 
 // Calculate drought sensitivity
