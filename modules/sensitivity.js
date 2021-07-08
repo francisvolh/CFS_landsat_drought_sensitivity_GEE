@@ -43,9 +43,9 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
 
 
 
-exports.droughtSensitivity = function(split, antes, percentiles, indices) {
+exports.droughtSensitivity = function(means, antes, percentiles, indices) {
   // Map across images
-  return split.map(function(img) {
+  return means.map(function(img) {
 
     // Loop over antes
     return ee.Image(antes.map(function(ante) {
