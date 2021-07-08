@@ -37,12 +37,12 @@ var lcmask = lc.updateMask(
       .select('landcover');
 
 exports.returnMask = function() {
-	return lcmask
-}
+	return lcmask;
+};
 
 
 
 
 exports.maskLc = function(img) {
-  return img.updateMask(lcmask)
+  return img.updateMask(lcmask);
 };
