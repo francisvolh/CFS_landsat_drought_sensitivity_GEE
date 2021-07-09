@@ -167,14 +167,59 @@ var viz = {min: min, max: max, palette: pal};
 // Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
 Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
 var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
-print(sens_80_19.bandNames())
-'Sens_NDVI_ante3_p10'
-'Sens_NDVI_ante12_p10'
-'Sens_EVI_ante3_p10'
-'Sens_EVI_ante12_p10'
-Map.addLayer(sens_80_19.select('Sens_NDVI_ante3_p10'), viz, 'modis');
-Map.addLayer(lcmask.reverseMask())
 
-Map.addLayer(ctef)
 
+var exp = {
+  image: lcmask.reverseMask(),
+  description: 'lc-mask',
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 300,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var a = 'Sens_NDVI_ante3_p10'
+var exp = {
+  image: sens_80_19.select(a),
+  description: a,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var b = 'Sens_NDVI_ante12_p10'
+var exp = {
+  image: sens_80_19.select(b),
+  description: b,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var c = 'Sens_EVI_ante3_p10'
+var exp = {
+  image: sens_80_19.select(c),
+  description: c,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var d = 'Sens_EVI_ante12_p10'
+var exp = {
+  image: sens_80_19.select(d),
+  description: d,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
 
