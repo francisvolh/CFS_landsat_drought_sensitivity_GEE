@@ -83,9 +83,12 @@ var selectBands = toview.bandNames()
 
 Map.addLayer(ctef, null, 'ctef', false);
 
-// var band = 
-Map.addLayer(sens_modis)
-Map.addLayer(sens_land)
+print(sens_modis);
+print(sens_land);
+
+var band = 'Sens_NDVI_ante3mo_p10'
+Map.addLayer(sens_modis.select(band), viz, 'MODIS')
+Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 
 Map.addLayer(lcmask, null, 'lc', false);
