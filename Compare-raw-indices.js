@@ -1,95 +1,110 @@
-// Data -------------------------------------------------------------------------
-// Drought sensitivity
-var sens_modis = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
-// var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
+// Compare raw indices
 
-// Landsat
-var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
 
-// Load CTEF regions
+// Data -------------------------------------------------------------
+// CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+
+var modis = ee.ImageCollection("MODIS/006/MOD13Q1");
+
+var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
+var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
+
+
+// Variables --------------------------------------------------------
+// Set min max year for daymet
+var minyear = 1980;
+var maxyear = 2019;
+
+// Set list of years and months
+var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(minyear, maxyear);
+
+// Min/max years Landsat 5
+var minyearl5 = 1985;
+var maxyearl5 = 2012;
+var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
+
+// Min/max years Landsat 7
+var minyearl7 = 1999;
+var maxyearl7 = 2003;
+var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
+
+// Set percentiles to use
+var percentiles = [1, 5, 10, 20];
+
+// Set antecedent periods
+var antes = [3, 6, 12];
+
+// Set indices
+var indices = ['NDVI', 'EVI'];
+// TODO: add NBR
+
+
+
+// Modules ----------------------------------------------------------
+// Load modules of functions
+
+// Aggregate functions
+var agg = require('users/robitalec/CFS:modules/aggregate.js');
+
+// CMI functions
+var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
+// Landsat prep functions
+var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
-// Palette ----------------------------------------------------------------------
+// Baseline functions
+var baseline = require('users/robitalec/CFS:modules/baseline.js');
+
+// Fire functions
+var fire = require('users/robitalec/CFS:modules/fire.js');
+
+// Sensitivity
+var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
+
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
-var pal = palettes.colorbrewer.RdBu[9].reverse();
-var min = -20; var max = 20;
-var viz = {min: min, max: max, palette: pal};
-
-function showPalette(name, palette) {
-  var image = ee.Image.pixelLonLat().select(0)
-    .clip(ee.Geometry.Rectangle({coords: [[min, 0], [max, 10]], geodesic: false}))
-    .visualize(viz);
-
-  print(name);
-  print(ui.Thumbnail(image));
-}
-// showPalette(min + '           0           ' + max, pal);
 
 
-// Map --------------------------------------------------------------------------
-var lcmask = lcmask.reverseMask();
+// Filter -----------------------------------------------------------
+// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
-// Set either sens_80_19 or sens_00_19
-var toview = sens_modis;
-
-// Set the percentile to view
-// either 5, 10, or 20
-var p = 10;
-
-// Filter the band names before map. Comment any of these out to just map all bands
-var selectBands = toview.bandNames()
-                        .filter(ee.Filter.stringContains('item', 'p' + p))
-                        // .filter(ee.Filter.stringContains('item', 'NDVI'))
-                        // .filter(ee.Filter.stringContains('item', 'ante3'))
+// MODIS
+modis = modis
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 
-// Note, there's a bit of server side logic here so the browser might hang briefly
 
-// Get the list of band names and add them all separately to the map
-// By default all are added, but not shown - so you'll need to select the one to view
-// After you view one, make sure to set it off so you are only seeing one later at a time
-// var bandList = selectBands.getInfo();
-// for (var i = 0; i < bandList.length; i++) {
-//   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
-// }
+// Compare ---------------------------------------------------------
+// MODIS
+// Filter within min/max year and for July
+// Mask clouds, fires, land cover and calculate indices
+modis = modis
+  // TODO: set year
+  // TODO: calc indices
+  // TODO: mask clouds
+  .map(fire.maskFires)
+  .map(lcmask.maskLc);
 
-Map.addLayer(ctef, null, 'ctef', false);
+// Landsat
+// Merge L5 and L7
+var landsat = l5.merge(l7);
 
-// var band =
-Map.addLayer(sens_modis)
-Map.addLayer(sens_land)
+// Filter within min/max year and for July
+// Mask clouds, fires, land cover and calculate indices
+landsat = landsat
+  .map(landsatprep.setYear)
+  .map(landsatprep.calcIndices)
+  .map(landsatprep.maskClouds)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc);
 
 
-Map.addLayer(lcmask, null, 'lc', false);
 
-// Chart -------------------------------------------------------------------------
-// Select an image to print a histogram
-// var band = 'Sens_EVI_ante3_p10';
-
-// print(ui.Chart.image.histogram({
-//   image: toview.select(band),
-//   region: ctef,
-//   scale: 1e12,
-//   maxBuckets: 7
-// }));
-
-// Export ------------------------------------------------------------------------
-// var exp = {
-//   image: toview.select(band).visualize(viz),
-//   description: band,
-//   folder: 'Visuals',
-//   region: geometry2,
-//   scale: 5000,
-//   maxPixels: 2e9
-// };
-// Export.image.toDrive(exp);
-
-// Map.setOptions('SATELLITE')
