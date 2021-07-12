@@ -28,8 +28,8 @@ exports.calcIndices = function(img) {
 };
 
 
-// from l5 ee docs
-exports.cloudMaskL5 = function(image) {
+// from l7 ee docs
+exports.cloudMaskL7 = function(image) {
   var qa = image.select('pixel_qa');
   // If the cloud bit (5) is set and the cloud confidence (7) is high
   // or the cloud shadow bit is set (3), then it's a bad pixel.
