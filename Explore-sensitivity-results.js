@@ -106,7 +106,6 @@ print(ui.Chart.image.histogram({
 print(ui.Chart.image.histogram({
   image: sens_land.select(band), 
   region: ctef,
-  // scale: 1e12,
   bestEffort: true,
   maxBuckets: 7
 }));
