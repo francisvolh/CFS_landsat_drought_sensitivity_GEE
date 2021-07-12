@@ -98,7 +98,7 @@ var drought = baseline.ltPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
-// EVI/NDVI ---------------------------------------------------------
+// Landsat ----------------------------------------------------------
 // TODO: var veg = Merge L5 L7
 
 
