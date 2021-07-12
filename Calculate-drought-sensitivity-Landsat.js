@@ -72,11 +72,10 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
   // .filter(ee.Filter.calendarRange(7, 7, 'month'))
 
 
-
-// Aggregate --------------------------------------------------------
+// Daymet -----------------------------------------------------------
+// Aggregate
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
-// Calculate CMI ----------------------------------------------------
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
 aggDaymet = aggDaymet
   .map(cmiDaymet.calcETMAX)
@@ -88,8 +87,7 @@ aggDaymet = aggDaymet
   .map(cmiDaymet.calcPET)
   .map(cmiDaymet.calcCMI);
 
-// Calculate baseline -----------------------------------------------
-
+// Calculate baseline
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
 
