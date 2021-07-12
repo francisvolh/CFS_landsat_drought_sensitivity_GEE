@@ -99,8 +99,9 @@ Map.addLayer(lcmask, null, 'lc', false);
 // Summary stats -----------------------------------------------------------------
 var summary = function(img) {
   img.reduceRegion(
-    reducer = ee.Reducer.min().combine(ee.Reducer.max())
-))
+    ee.Reducer.min().combine(
+      ee.Reducer.max()).combine(
+        ee.Reducer.mean())
 }
 print(sens_land.mage
 
