@@ -55,7 +55,7 @@ function showPalette(name, palette) {
 
 
 // Map --------------------------------------------------------------------------
-var lcmask = lcmask.returnMask();
+var lcmask = lcmask.reverseMask();
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_80_19;
