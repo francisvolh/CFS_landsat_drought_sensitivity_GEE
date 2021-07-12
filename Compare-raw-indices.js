@@ -118,7 +118,4 @@ landsat = landsat
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
-print(landsat.select('NDVI'))
-print(modis)
-
 Map.addLayer(modis.merge(landsat).select('NDVI'))
