@@ -81,6 +81,7 @@ var selectBands = toview.bandNames()
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
 
+Map.addLayer(ee.Image(1), {palette:["727272"]})
 Map.addLayer(ctef, null, 'ctef', false);
 
 print(sens_modis);
