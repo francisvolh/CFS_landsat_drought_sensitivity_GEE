@@ -9,7 +9,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 
 
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
-
+var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
 
 
 // Variables --------------------------------------------------------
@@ -73,10 +73,10 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 
 
 // Landsat 5
-// TODO: filter Landsat 5
-  // .filterBounds(ctef)
-  // .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
-  // .filter(ee.Filter.calendarRange(7, 7, 'month'))
+l5 = l5
+  .filterBounds(ctef)
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 // TODO: filter Landsat 7
