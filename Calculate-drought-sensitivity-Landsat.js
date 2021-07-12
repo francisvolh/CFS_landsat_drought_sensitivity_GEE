@@ -124,10 +124,11 @@ var veg = l5.merge(l7);
 veg = veg
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
-  .map(landsatprep.maskClouds)
+  // .map(landsatprep.maskClouds)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
-
+print(veg)
+Map.addLayer(veg.limit(1))
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
