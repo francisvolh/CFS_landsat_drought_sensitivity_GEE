@@ -58,7 +58,7 @@ function showPalette(name, palette) {
 var lcmask = lcmask.reverseMask();
 
 // Set either sens_80_19 or sens_00_19
-var toview = sens_80_19;
+// var toview = sens_80_19;
 
 // Set the percentile to view
 // either 5, 10, or 20
