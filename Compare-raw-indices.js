@@ -104,7 +104,6 @@ modis = modis
   // TODO: mask clouds
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .select();
 
 // Landsat
 // Merge L5 and L7
@@ -119,5 +118,7 @@ landsat = landsat
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
+print(landsat.select('NDVI'))
+print(modis)
 
-Map.addLayer(modis.merge(landsat))
+Map.addLayer(modis.merge(landsat).select('NDVI'))
