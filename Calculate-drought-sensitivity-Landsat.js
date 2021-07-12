@@ -21,11 +21,15 @@ var maxyear = 2019;
 var months = ee.List.sequence(1, 12);
 var years = ee.List.sequence(minyear, maxyear);
 
-
 // Min/max years Landsat 5
 var minyearl5 = 1985;
 var maxyearl5 = 2012;
 var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
+
+// Min/max years Landsat 7
+var minyearl7 = 1999;
+var maxyearl7 = 2003;
+var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
 var percentiles = [1, 5, 10, 20];
@@ -81,7 +85,7 @@ l5 = l5
 // Landsat 7
 l7 = l7
   .filterBounds(ctef)
-  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 
