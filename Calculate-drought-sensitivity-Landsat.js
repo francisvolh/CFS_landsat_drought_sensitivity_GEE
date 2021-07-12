@@ -65,6 +65,14 @@ var palettes = require('users/gena/packages:palettes');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 
+// Landsat 5
+// TODO: filter Landsat 5
+  // .filterBounds(ctef)
+  // .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  // .filter(ee.Filter.calendarRange(7, 7, 'month'))
+
+
+
 // Aggregate --------------------------------------------------------
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
@@ -99,9 +107,7 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
-  .filterBounds(ctef)
-  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
-  .filter(ee.Filter.calendarRange(7, 7, 'month'))
+
   .map(l5prep.setYear)
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices)
