@@ -132,15 +132,11 @@ veg = veg
 veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
-// Drop years in drought that aren't in veg
-drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
-
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
 var means = veg.reduce(ee.Reducer.mean());
-
 
 
 // Drought sensitivity -------------------------------------------
