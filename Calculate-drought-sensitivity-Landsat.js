@@ -75,7 +75,6 @@ var palettes = require('users/gena/packages:palettes');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
-
 // Landsat 5
 l5 = l5
   .filterBounds(ctef)
