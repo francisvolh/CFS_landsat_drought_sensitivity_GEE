@@ -13,6 +13,7 @@ var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
 // L5 prep functions
 var l5prep = require('users/robitalec/CFS:modules/l5-prep.js');
+var l7prep = require('users/robitalec/CFS:modules/l5-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
