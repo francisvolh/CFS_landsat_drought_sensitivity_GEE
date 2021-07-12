@@ -123,8 +123,8 @@ print(veg)
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
   .map(landsatprep.setYear)
-  .map(landsatprep.cloudMask)
   .map(landsatprep.calcIndices)
+  .map(landsatprep.maskClouds)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
