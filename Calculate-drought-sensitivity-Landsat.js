@@ -79,10 +79,10 @@ l5 = l5
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
-// TODO: filter Landsat 7
-  // .filterBounds(ctef)
-  // .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
-  // .filter(ee.Filter.calendarRange(7, 7, 'month'))
+l7 = l7
+  .filterBounds(ctef)
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 
 
