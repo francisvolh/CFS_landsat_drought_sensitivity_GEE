@@ -120,5 +120,4 @@ landsat = landsat
   .map(lcmask.maskLc);
 
 
-print(modis)
-print(landsat)
+Map.addLayer(modis.merge(landsat))
