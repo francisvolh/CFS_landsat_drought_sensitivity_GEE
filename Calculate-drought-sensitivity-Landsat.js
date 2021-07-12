@@ -27,11 +27,14 @@ var minyearl5 = 1985;
 var maxyearl5 = 2012;
 var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
 
-// Set percentiles to use. Javascript list.
+// Set percentiles to use
 var percentiles = [1, 5, 10, 20];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
+
+// Set indices
+var indices = ['NDVI', 'NBR', 'EVI'];
 
 
 // Modules ----------------------------------------------------------
@@ -132,20 +135,14 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 // var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
 
-// var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
-// print(veg)
-// print(splits)
-
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
-
-
 
 // Reduce yearly measures to means of all years
 var means = veg.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-var droughtSens = sensitivity.droughtSensitivity(means, percentiles);
+var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
 
 // Drought sensitivity prime (S’) = max across three antecedent periods
 var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
