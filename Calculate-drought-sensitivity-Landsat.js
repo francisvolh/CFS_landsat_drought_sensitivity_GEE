@@ -123,7 +123,6 @@ var veg = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
-
   .map(l5prep.setYear)
   .map(l5prep.cloudMaskL5)
   .map(l5prep.calcIndices)
