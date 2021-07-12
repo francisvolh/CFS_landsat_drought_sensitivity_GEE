@@ -102,8 +102,10 @@ var summary = function(img) {
     ee.Reducer.min().combine(
       ee.Reducer.max()).combine(
         ee.Reducer.mean())
-}
-print(sens_land.mage
+  );
+};
+print(summary(sens_modis.select(band)))
+print(summary(sens_land.select(band)))
 
 
 // Chart -------------------------------------------------------------------------
