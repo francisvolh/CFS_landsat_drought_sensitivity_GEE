@@ -150,7 +150,7 @@ var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear,
   folder: 'CFS-drought-sensitivity',
-  region: geometry,
+  region: ctef,
   scale: 250,
   maxPixels: 2e9
 };
@@ -160,7 +160,7 @@ var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear,
   assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
-  region: geometry,
+  region: ctef,
   scale: 250,
   maxPixels: 2e9
 };
