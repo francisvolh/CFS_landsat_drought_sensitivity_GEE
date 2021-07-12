@@ -126,26 +126,30 @@ veg = veg
   .map(l5prep.calcIndices)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
-  
+
+// Aggregate Landsat yearly, rename _mean bands
 veg = l5prep.aggregateY(veg);
-drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
-var indices = ['NDVI', 'NBR', 'EVI'];
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
-// Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
-// var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
+// Drop years in drought that aren't in veg
+drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
 
+// Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
 var means = veg.reduce(ee.Reducer.mean());
+
+
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
 
 // Drought sensitivity prime (S’) = max across three antecedent periods
-var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
+// var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
+
+
 
 // Map ------------------------------------------------------------
 var pal = palettes.colorbrewer.RdBu[9];
