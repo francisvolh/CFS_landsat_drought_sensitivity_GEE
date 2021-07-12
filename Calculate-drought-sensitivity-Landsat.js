@@ -51,8 +51,7 @@ var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
 // Landsat prep functions
-var l5prep = require('users/robitalec/CFS:modules/l5-prep.js');
-var l7prep = require('users/robitalec/CFS:modules/l5-prep.js');
+var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
@@ -123,14 +122,14 @@ var veg = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
-  .map(l5prep.setYear)
-  .map(l5prep.cloudMaskL5)
-  .map(l5prep.calcIndices)
+  .map(landsatprep.setYear)
+  .map(landsatprep.cloudMaskL5)
+  .map(landsatprep.calcIndices)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
 // Aggregate Landsat yearly, rename _mean bands
-veg = l5prep.aggregateY(veg);
+veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Drop years in drought that aren't in veg
