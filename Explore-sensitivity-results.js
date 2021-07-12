@@ -55,18 +55,7 @@ function showPalette(name, palette) {
 
 
 // Map --------------------------------------------------------------------------
-// Load GlobCover land cover
-var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3");
-
-// Set land cover mask, only retaining if not one of
-var lcmask = lc.updateMask(
-    lc.expression('lc == 11 || lc == 14 || lc == 20 || lc == 30 || ' +
-                  'lc == 120 || lc == 140 || lc == 150 || lc == 190 || ' +
-                  'lc == 200 || lc == 210 || lc == 220 || lc == 230',
-                  {lc: lc.select('landcover')}))
-      .select('landcover');
-
-Map.addLayer(ctef, null, 'ctef', false);
+var lcmask = lcmask.returnMask();
 
 // Set either sens_80_19 or sens_00_19
 var toview = sens_80_19;
@@ -91,7 +80,9 @@ var bandList = selectBands.getInfo();
 for (var i = 0; i < bandList.length; i++) {
   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 }
+
 Map.addLayer(lcmask, null, 'lc', false);
+Map.addLayer(ctef, null, 'ctef', false);
 
 // var index = 'NDVI'
 // var ante = 3
