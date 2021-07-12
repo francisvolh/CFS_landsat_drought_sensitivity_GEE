@@ -23,8 +23,8 @@ var geometry2 =
 var sens_modis = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
 // var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
-// L5
-var sens_l5 = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
+// Landsat
+var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
@@ -81,10 +81,14 @@ var selectBands = toview.bandNames()
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
 
-Map.addLayer(lcmask, null, 'lc', false);
 Map.addLayer(ctef, null, 'ctef', false);
 
+// var band = 
+Map.addLayer(sens_modis)
+Map.addLayer(sens_land)
 
+
+Map.addLayer(lcmask, null, 'lc', false);
 
 // Chart -------------------------------------------------------------------------
 // Select an image to print a histogram
