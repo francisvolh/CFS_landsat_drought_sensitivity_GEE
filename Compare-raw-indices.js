@@ -119,4 +119,5 @@ landsat = landsat
   .map(lcmask.maskLc);
 
 
-
+print(modis)
+print(landsat)
