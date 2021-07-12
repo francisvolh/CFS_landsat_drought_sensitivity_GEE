@@ -117,8 +117,8 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
 // Landsat ----------------------------------------------------------
-// TODO: var veg = Merge L5 L7
-
+// Merge L5 and L7
+var veg = l5.merge(l7);
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
