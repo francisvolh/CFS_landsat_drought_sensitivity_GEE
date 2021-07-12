@@ -103,7 +103,8 @@ modis = modis
   // TODO: calc indices
   // TODO: mask clouds
   .map(fire.maskFires)
-  .map(lcmask.maskLc);
+  .map(lcmask.maskLc)
+  .select();
 
 // Landsat
 // Merge L5 and L7
