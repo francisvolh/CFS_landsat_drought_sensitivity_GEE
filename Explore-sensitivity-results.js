@@ -20,11 +20,11 @@ var geometry2 =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
-var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
-var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
+var sens_mod = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
+// var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 // L5
-// var sens_l5 = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-1980-2019');
+var sens_l5 = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
@@ -121,4 +121,4 @@ Map.addLayer(ctef, null, 'ctef', false);
 // };
 // Export.image.toDrive(exp);
 
-Map.setOptions('SATELLITE')
+// Map.setOptions('SATELLITE')
