@@ -30,7 +30,8 @@ var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
 // Set percentiles to use. Javascript list.
 var percentiles = [1, 5, 10, 20];
 
-
+// Set antecedent periods
+var antes = [3, 6, 12];
 
 
 // Modules ----------------------------------------------------------
@@ -62,6 +63,7 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 var palettes = require('users/gena/packages:palettes');
 
 
+
 // Filter -----------------------------------------------------------
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
@@ -72,6 +74,13 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
   // .filterBounds(ctef)
   // .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   // .filter(ee.Filter.calendarRange(7, 7, 'month'))
+
+// Landsat 7
+// TODO: filter Landsat 7
+  // .filterBounds(ctef)
+  // .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  // .filter(ee.Filter.calendarRange(7, 7, 'month'))
+
 
 
 // Daymet -----------------------------------------------------------
@@ -100,6 +109,7 @@ var drought = baseline.ltPercentile(means, percentiles);
 drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
+
 // Landsat ----------------------------------------------------------
 // TODO: var veg = Merge L5 L7
 
@@ -121,53 +131,11 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
 // var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
-var antes = [3, 6, 12];
+
 // var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 // print(veg)
 // print(splits)
 
-var splitDrought = function(veg, drought, antes, percentiles, indices) {
-  // Map across images
-  return veg.map(function(v) {
-    // Get year
-    var yr = v.date().get('year');
-
-    // Filter drought masks matching year
-    var base = drought.filter(ee.Filter.eq('year', yr))
-                      .first();
-
-    return ee.ImageCollection(antes.map(function(ante) {
-        // Loop over percentiles
-        return percentiles.map(function(p) {
-          // Loop over indices
-          return indices.map(function(index) {
-            // Set up band names
-            var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p;
-            var antepindexband = index + '_ante' + ante + 'mo_p' + p;
-            var baseband = index + '_base_p' + p;
-
-            // Set up drought and base mask
-            var droughtmask = base.select(droughtmaskband);
-            var basemask = base.select(droughtmaskband).eq(0);
-
-            // // Baseline vegetation index
-            // var baseveg = v.select(index)
-            //               .updateMask(basemask)
-            //               .rename([baseband]);
-
-            // // Drought vegetation index
-            // var droughtveg = v.select(index)
-            //                   .updateMask(droughtmask)
-            //                   .rename([antepindexband]);
-            return basemask
-            // return [baseveg, droughtveg]//ee.Image(
-               //.copyProperties(v);
-          });
-        });
-      }))
-    // ]);
-  });
-};
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 
