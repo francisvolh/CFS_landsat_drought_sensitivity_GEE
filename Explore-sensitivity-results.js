@@ -95,20 +95,28 @@ Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), null, 'di
 
 Map.addLayer(lcmask, null, 'lc', false);
 
-// Chart -------------------------------------------------------------------------
-print(ui.Chart.image.histogram({
-  image: sens_modis.select(band), 
-  region: ctef,
-  scale: 1000
-  // maxBuckets: 7
-}));
 
-print(ui.Chart.image.histogram({
-  image: sens_land.select(band), 
-  region: ctef,
-  scale: 1000
-  // maxBuckets: 7
-}));
+// Summary stats -----------------------------------------------------------------
+var summary = function(img) {
+  img.reduceRegion(
+    reducer = ee.Reducer.min().combine(ee.Reducer.max())
+))
+}
+print(sens_land.mage
+
+
+// Chart -------------------------------------------------------------------------
+// print(ui.Chart.image.histogram({
+//   image: sens_modis.select(band), 
+//   region: ctef,
+//   scale: 1000
+// }));
+
+// print(ui.Chart.image.histogram({
+//   image: sens_land.select(band), 
+//   region: ctef,
+//   scale: 1000
+// }));
 
 // Export ------------------------------------------------------------------------ 
 // var exp = {
