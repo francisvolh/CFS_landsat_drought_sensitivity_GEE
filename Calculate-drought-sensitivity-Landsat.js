@@ -2,6 +2,35 @@
 // --- Landsat ---
 // Alec L. Robitaille
 
+
+// Data -------------------------------------------------------------
+// CTEF regions
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+
+
+var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
+
+
+
+// Variables --------------------------------------------------------
+// Set min max year for daymet
+var minyear = 1980;
+var maxyear = 2019;
+
+// Set list of years and months
+var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(minyear, maxyear);
+
+
+// Min/max years Landsat 5
+var minyearl5 = 1985;
+var maxyearl5 = 2012;
+var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
+
+// Set percentiles to use. Javascript list.
+var percentiles = [1, 5, 10, 20];
+
+
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
@@ -31,21 +60,12 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 var palettes = require('users/gena/packages:palettes');
 
 
-// Data -------------------------------------------------------------
-// CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+// Filter -----------------------------------------------------------
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
+
 // Aggregate --------------------------------------------------------
-// Set min max year for daymet
-var minyear = 1980;
-var maxyear = 2019;
-
-// Set list of years and months
-var months = ee.List.sequence(1, 12);
-var years = ee.List.sequence(minyear, maxyear);
-
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
 // Calculate CMI ----------------------------------------------------
@@ -61,8 +81,6 @@ aggDaymet = aggDaymet
   .map(cmiDaymet.calcCMI);
 
 // Calculate baseline -----------------------------------------------
-// Set percentiles to use. Javascript list.
-var percentiles = [1, 5, 10, 20];
 
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
@@ -75,15 +93,12 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
 // EVI/NDVI ---------------------------------------------------------
-// Min/max years
-var minyearl5 = 1985;
-var maxyearl5 = 2012;
-var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
+// TODO: var veg = Merge L5 L7
 
-// Load L5
+
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
-var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
+veg = veg
   .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'))
