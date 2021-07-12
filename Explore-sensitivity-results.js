@@ -99,15 +99,15 @@ Map.addLayer(lcmask, null, 'lc', false);
 print(ui.Chart.image.histogram({
   image: sens_modis.select(band), 
   region: ctef,
-  bestEffort: true,
-  maxBuckets: 7
+  scale: 1000
+  // maxBuckets: 7
 }));
 
 print(ui.Chart.image.histogram({
   image: sens_land.select(band), 
   region: ctef,
-  bestEffort: true,
-  maxBuckets: 7
+  scale: 1000
+  // maxBuckets: 7
 }));
 
 // Export ------------------------------------------------------------------------ 
