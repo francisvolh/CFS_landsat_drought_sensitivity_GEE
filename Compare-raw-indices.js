@@ -80,6 +80,18 @@ modis = modis
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
+// Landsat 5
+l5 = l5
+  .filterBounds(ctef)
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
+
+// Landsat 7
+l7 = l7
+  .filterBounds(ctef)
+  .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
+
 
 
 // Compare ---------------------------------------------------------
