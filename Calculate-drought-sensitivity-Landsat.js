@@ -136,7 +136,7 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
-var means = veg.reduce(ee.Reducer.mean());
+var means = splits.reduce(ee.Reducer.mean());
 
 
 // Drought sensitivity -------------------------------------------
