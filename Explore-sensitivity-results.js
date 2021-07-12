@@ -20,7 +20,7 @@ var geometry2 =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
-var sens_mod = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
+var sens_modis = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
 // var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
 
 // L5
@@ -84,19 +84,6 @@ var selectBands = toview.bandNames()
 Map.addLayer(lcmask, null, 'lc', false);
 Map.addLayer(ctef, null, 'ctef', false);
 
-// var index = 'NDVI'
-// var ante = 3
-// Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
-// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), {min: max, max: min, palette: pal}, 'L5')
-
-// var index = 'EVI'
-// var ante = 3
-// Map.addLayer(sens_00_19.select('Sens_' + index + '_ante' + ante + '_p1'), viz, 'MODIS')
-// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
-
-// var index = 'NBR'
-// var ante = 3
-// Map.addLayer(sens_l5.select('Sens_' + index + '_ante' + ante + 'mo_p1'), viz, 'L5')
 
 
 // Chart -------------------------------------------------------------------------
