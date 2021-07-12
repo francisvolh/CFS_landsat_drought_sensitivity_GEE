@@ -96,15 +96,19 @@ Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), null, 'di
 Map.addLayer(lcmask, null, 'lc', false);
 
 // Chart -------------------------------------------------------------------------
-// Select an image to print a histogram
-// var band = 'Sens_EVI_ante3_p10';
+print(ui.Chart.image.histogram({
+  image: sens_modis.select(band), 
+  region: ctef,
+  scale: 1e12,
+  maxBuckets: 7
+}));
 
-// print(ui.Chart.image.histogram({
-//   image: toview.select(band), 
-//   region: ctef,
-//   scale: 1e12,
-//   maxBuckets: 7
-// }));
+print(ui.Chart.image.histogram({
+  image: sens_land.select(band), 
+  region: ctef,
+  scale: 1e12,
+  maxBuckets: 7
+}));
 
 // Export ------------------------------------------------------------------------ 
 // var exp = {
