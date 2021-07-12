@@ -97,13 +97,15 @@ Map.addLayer(lcmask, null, 'lc', false);
 
 
 // Summary stats -----------------------------------------------------------------
-var summary = function(img) {
+function summary(img) {
   img.reduceRegion(
-    ee.Reducer.min().combine(
-      ee.Reducer.max()).combine(
-        ee.Reducer.mean())
+    ee.Reducer.min(),
+    // ee.Reducer.min().combine(
+      // ee.Reducer.max()).combine(
+      //   ee.Reducer.mean()),
+    ctef
   );
-};
+}
 print(summary(sens_modis.select(band)))
 print(summary(sens_land.select(band)))
 
