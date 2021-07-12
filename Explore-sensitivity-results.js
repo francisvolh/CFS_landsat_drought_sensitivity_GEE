@@ -98,13 +98,14 @@ Map.addLayer(lcmask, null, 'lc', false);
 
 // Summary stats -----------------------------------------------------------------
 function summary(img) {
-  img.reduceRegion(
-    ee.Reducer.min(),
-    // ee.Reducer.min().combine(
+  return img.reduceRegion({
+    reducer: ee.Reducer.mean(),
+      // ee.Reducer.min().combine(
       // ee.Reducer.max()).combine(
       //   ee.Reducer.mean()),
-    ctef
-  );
+    geometry: ctef,
+    bestEffort: true
+  });
 }
 print(summary(sens_modis.select(band)))
 print(summary(sens_land.select(band)))
