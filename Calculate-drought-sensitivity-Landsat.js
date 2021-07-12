@@ -1,3 +1,7 @@
+// === Calculate Drought Sensitivity ===
+// --- Landsat ---
+// Alec L. Robitaille
+
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
