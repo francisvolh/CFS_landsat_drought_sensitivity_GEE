@@ -120,7 +120,8 @@ modis = modis
   .select(indices).map(function(img) {
     return img.multiply(0.0001)
               .float()
-              .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10).millis())
+              .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10))
+              .reproject(ee.Projection('EPSG:32608'))
 })
 
 // Landsat
@@ -138,13 +139,12 @@ landsat = landsat
   .map(function(img) {
     return img.set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 20).millis())
 });
-
 var m = modis.merge(landsat)
 print(m)
 var chart = ui.Chart.image.doySeriesByYear({
-  imageCollection: landsat,
-  bandName: 'EVI',
-  region: ee.FeatureCollection(geometry),
+  imageCollection: m ,
+  bandName: 'NDVI',
+  region: ctef,
   regionReducer: ee.Reducer.mean(),
   scale: 1e3,
   startDay: 100
