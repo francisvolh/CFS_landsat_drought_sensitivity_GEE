@@ -1,7 +1,7 @@
 // MODIS prep
 
 
-var rescale = function(img) {
+exports.rescale = function(img) {
   return img.multiply(0.0001).copyProperties(img);
 };
 
