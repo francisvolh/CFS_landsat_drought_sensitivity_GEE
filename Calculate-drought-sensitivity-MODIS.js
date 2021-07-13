@@ -112,7 +112,6 @@ veg = veg
   .map(lcmask.maskLc)
   .map(modisprep.rescale)
   .select(indices);
-print(veg.first())
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
