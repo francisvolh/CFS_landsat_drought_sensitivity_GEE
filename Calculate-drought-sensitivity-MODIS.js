@@ -108,6 +108,7 @@ veg = veg
   // TODO: set year
   // TODO: calc indices
   // TODO: mask clouds
+  .map(modisprep.rescale)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
