@@ -140,12 +140,13 @@ var l = landsat.filter(ee.Filter.date(mindate, maxdate))
                .select(b)
                .mean()
                
-var palette = palettes.crameri.broc[5];
+var palette = palettes.cmocean.Balance[7];
 
 print(palette)
+Map.addLayer(ee.Image(1), {palette:"747474"})
 Map.addLayer(m, null, 'modis', false)
 Map.addLayer(l, null, 'landsat', false)
-Map.addLayer(m.subtract(l), {min: -2, max: 2, palette: palette}, 'diff')
+Map.addLayer(m.subtract(l), {min: -0.5, max: 0.5, palette: palette}, 'diff')
 
 
 
