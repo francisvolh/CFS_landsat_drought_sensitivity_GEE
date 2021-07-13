@@ -113,7 +113,6 @@ veg = veg
   .select(indices)
   .map(modisprep.rescale);
 
-
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
