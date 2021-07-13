@@ -104,6 +104,9 @@ modis = modis
   // TODO: mask clouds
   .map(fire.maskFires)
   .map(lcmask.maskLc)
+  .map(function(img) {
+    return img.updateMask(img.select('SummaryQA').eq(0))
+  })
   .select(indices).map(function(img) {
     return img.multiply(0.0001)
               .float()
@@ -127,10 +130,9 @@ landsat = landsat
 });
 
 
-var yr = 2000;
+var yr = 2008;
 var mindate = yr + '-07-01';
-var maxdate = (yr+1) + '-07-15';
-print(yr, mindate, maxdate)
+var maxdate = (yr+1) + '-07-13';
 var b = 'NDVI'
 
 var m = modis.filter(ee.Filter.date(mindate, maxdate))
@@ -147,7 +149,6 @@ Map.addLayer(ee.Image(1), {palette:"747474"})
 Map.addLayer(m, null, 'modis', false)
 Map.addLayer(l, null, 'landsat', false)
 Map.addLayer(m.subtract(l), {min: -0.5, max: 0.5, palette: palette}, 'diff')
-
 
 
 // var chart = ui.Chart.image.doySeriesByYear({
