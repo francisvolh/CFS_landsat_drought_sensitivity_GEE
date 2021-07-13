@@ -142,10 +142,10 @@ var l = landsat.filter(ee.Filter.date(mindate, maxdate))
                
 var palette = palettes.crameri.broc[5];
 
-
+print(palette)
 Map.addLayer(m, null, 'modis', false)
 Map.addLayer(l, null, 'landsat', false)
-Map.addLayer(m.subtract(l), {min: -2, max: 2, palette:palette}, 'diff')
+Map.addLayer(m.subtract(l), {min: -2, max: 2, palette: palette}, 'diff')
 
 
 
