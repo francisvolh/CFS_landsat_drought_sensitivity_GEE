@@ -120,7 +120,7 @@ modis = modis
   .select(indices).map(function(img) {
     return img.multiply(0.0001)
               .float()
-              .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10))
+              .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10).millis())
 })
 
 // Landsat
@@ -134,7 +134,10 @@ landsat = landsat
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
   .map(fire.maskFires)
-  .map(lcmask.maskLc);
+  .map(lcmask.maskLc)
+  .map(function(img) {
+    return img.set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 20).millis())
+});
 
 var m = modis.merge(landsat)
 print(m)
