@@ -88,7 +88,6 @@ print(sens_land);
 
 var band = 'Sens_NDVI_ante3mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
-Map.addLayer(sens_modis_rescale.select(band), viz, 'MODIS rescale')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
