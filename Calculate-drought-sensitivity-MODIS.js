@@ -108,9 +108,11 @@ veg = veg
   // TODO: set year
   // TODO: calc indices
   // TODO: mask clouds/summaryqa
-  .map(modisprep.rescale)
   .map(fire.maskFires)
-  .map(lcmask.maskLc);
+  .map(lcmask.maskLc)
+  .select(indices)
+  .map(modisprep.rescale);
+
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
