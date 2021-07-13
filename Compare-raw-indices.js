@@ -104,7 +104,7 @@ modis = modis
   // TODO: mask clouds
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .select('NDVI').map(function(img) {return img.multiply(0.0001).float()})
+  .select(indices).map(function(img) {return img.multiply(0.0001).float()})
 
 // Landsat
 // Merge L5 and L7
