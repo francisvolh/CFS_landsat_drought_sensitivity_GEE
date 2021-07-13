@@ -20,8 +20,7 @@ var geometry2 =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
-var sens_modis = ee.Image('users/robitalec/CFS/dr-sens-modis-test-july-12');
-// var sens_00_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-2000-2019');
+var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019_v2');
 
 // Landsat
 var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
@@ -89,6 +88,7 @@ print(sens_land);
 
 var band = 'Sens_NDVI_ante3mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
+Map.addLayer(sens_modis_rescale.select(band), viz, 'MODIS rescale')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
