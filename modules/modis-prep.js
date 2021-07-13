@@ -2,6 +2,6 @@
 
 
 var rescale = function(img) {
-  return img.multiply(0.0001)//.float();
+  return img.multiply(0.0001).float();
 };
 
