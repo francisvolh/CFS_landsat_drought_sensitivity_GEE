@@ -110,7 +110,7 @@ veg = veg
   // TODO: mask clouds/summaryqa
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .select(indices)
+  .select(indices)//.map(function(img) {return img.multiply(0.0001).float().copyProperties(img)})
   .map(modisprep.rescale);
 
 // Split vegetation indices into drought/non-drought pixels
