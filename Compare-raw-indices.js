@@ -1,16 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
-        [[-137.79382204940853, 61.70640943974733],
-         [-134.04433135464208, 61.362438237106865],
-         [-138.07631377651708, 60.60037682923554],
-         [-135.90102080776708, 60.356770556562736],
-         [-137.90053252651708, 60.215185035664184],
-         [-136.7081257649044, 61.762470780897694],
-         [-139.2569538899044, 61.85070894149016],
-         [-137.7628132649044, 62.185759364493904],
-         [-140.2896687336544, 60.978172846788816],
-         [-137.4002644367794, 61.25412379490356]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Compare raw indices
 
 
@@ -121,7 +108,6 @@ modis = modis
     return img.multiply(0.0001)
               .float()
               .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10))
-              .reproject(ee.Projection('EPSG:32608'))
 })
 
 // Landsat
@@ -139,15 +125,25 @@ landsat = landsat
   .map(function(img) {
     return img.set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 20).millis())
 });
-var m = modis.merge(landsat)
-print(m)
-var chart = ui.Chart.image.doySeriesByYear({
-  imageCollection: m ,
-  bandName: 'NDVI',
-  region: ctef,
-  regionReducer: ee.Reducer.mean(),
-  scale: 1e3,
-  startDay: 100
-})//.setChartType('ScatterChart');
-print(chart)
+
+
+var yr = 2000;
+var mindate = yr + '-01-01';
+var maxdate = (yr+1) + '-01-01';
+print(yr, mindate, maxdate)
+var b = 'NDVI'
+Map.addLayer(modis.filter(ee.Filter.date(mindate, maxdate)).select(b))
+Map.addLayer(landsat.filter(ee.Filter.date(mindate, maxdate)).select(b))
+
+
+
+// var chart = ui.Chart.image.doySeriesByYear({
+//   imageCollection: m ,
+//   bandName: 'NDVI',
+//   region: ctef,
+//   regionReducer: ee.Reducer.mean(),
+//   scale: 1e3,
+//   startDay: 100
+// })//.setChartType('ScatterChart');
+// print(chart)
 // Map.addLayer(m.select('NDVI'))
