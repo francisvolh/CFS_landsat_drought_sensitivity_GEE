@@ -110,8 +110,9 @@ veg = veg
   // TODO: mask clouds/summaryqa
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .select(indices)
-  .map(modisprep.rescale);
+  .map(modisprep.rescale)
+  .select(indices);
+print(veg.first())
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
