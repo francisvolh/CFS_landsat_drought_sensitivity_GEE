@@ -1,3 +1,16 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
+        [[-137.79382204940853, 61.70640943974733],
+         [-134.04433135464208, 61.362438237106865],
+         [-138.07631377651708, 60.60037682923554],
+         [-135.90102080776708, 60.356770556562736],
+         [-137.90053252651708, 60.215185035664184],
+         [-136.7081257649044, 61.762470780897694],
+         [-139.2569538899044, 61.85070894149016],
+         [-137.7628132649044, 62.185759364493904],
+         [-140.2896687336544, 60.978172846788816],
+         [-137.4002644367794, 61.25412379490356]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Compare raw indices
 
 
@@ -104,7 +117,11 @@ modis = modis
   // TODO: mask clouds
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .select(indices).map(function(img) {return img.multiply(0.0001).float()})
+  .select(indices).map(function(img) {
+    return img.multiply(0.0001)
+              .float()
+              .set('system:time_start', ee.Date.fromYMD(img.date().get('year'), 7, 10))
+})
 
 // Landsat
 // Merge L5 and L7
@@ -119,4 +136,13 @@ landsat = landsat
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
-Map.addLayer(modis.merge(landsat).select('NDVI'))
+var m = modis.merge(landsat)
+print(m)
+var chart = ui.Chart.image.series({
+  imageCollection: m.select('NDVI'),
+  region: geometry,
+  reducer: ee.Reducer.mean(),
+  scale: 1e3
+});
+print(chart)
+// Map.addLayer(m.select('NDVI'))
