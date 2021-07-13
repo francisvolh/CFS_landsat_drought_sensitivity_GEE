@@ -128,14 +128,14 @@ landsat = landsat
 
 
 var yr = 2000;
-var mindate = yr + '-01-01';
-var maxdate = (yr+1) + '-01-01';
+var mindate = yr + '-07-01';
+var maxdate = (yr+1) + '-07-15';
 print(yr, mindate, maxdate)
 var b = 'NDVI'
 
 var m = modis.filter(ee.Filter.date(mindate, maxdate))
              .select(b)
-             .mean()
+              .mean()
 var l = landsat.filter(ee.Filter.date(mindate, maxdate))
                .select(b)
                .mean()
