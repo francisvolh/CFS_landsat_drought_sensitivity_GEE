@@ -141,10 +141,11 @@ landsat = landsat
 
 var m = modis.merge(landsat)
 print(m)
-var chart = ui.Chart.image.series({
-  imageCollection: m.select('NDVI'),
+var chart = ui.Chart.image.doySeriesByYear({
+  imageCollection: m,
+  bandName: 'NDVI',
   region: geometry,
-  reducer: ee.Reducer.mean(),
+  regionReducer: ee.Reducer.mean(),
   scale: 1e3
 }).setChartType('ScatterChart');
 print(chart)
