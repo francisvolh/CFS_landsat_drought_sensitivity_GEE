@@ -132,8 +132,20 @@ var mindate = yr + '-01-01';
 var maxdate = (yr+1) + '-01-01';
 print(yr, mindate, maxdate)
 var b = 'NDVI'
-Map.addLayer(modis.filter(ee.Filter.date(mindate, maxdate)).select(b))
-Map.addLayer(landsat.filter(ee.Filter.date(mindate, maxdate)).select(b))
+
+var m = modis.filter(ee.Filter.date(mindate, maxdate))
+             .select(b)
+             .mean()
+var l = landsat.filter(ee.Filter.date(mindate, maxdate))
+               .select(b)
+               .mean()
+               
+var palette = palettes.crameri.broc[5];
+
+
+Map.addLayer(m, null, 'modis', false)
+Map.addLayer(l, null, 'landsat', false)
+Map.addLayer(m.subtract(l), {min: -2, max: 2, palette:palette}, 'diff')
 
 
 
