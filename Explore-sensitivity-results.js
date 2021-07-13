@@ -28,7 +28,7 @@ var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
@@ -86,24 +86,18 @@ Map.addLayer(ctef, null, 'ctef', false);
 print(sens_modis);
 print(sens_land);
 
-var band = 'Sens_NDVI_ante3mo_p10'
-var landforms = dataset.select('constant');
-var landformsVis = {
-  min: 11.0,
-  max: 42.0,
-  palette: [
-    '141414', '383838', '808080', 'EBEB8F', 'F7D311', 'AA0000', 'D89382',
-    'DDC9C9', 'DCCDCE', '1C6330', '68AA63', 'B5C98E', 'E1F0E5', 'a975ba',
-    '6f198c'
-  ],
-};
-Map.addLayer(landforms, landformsVis, 'Landforms');
+var band = 'Sens_NDVI_ante3mo_p5'
+var dataset = ee.Image('CSP/ERGo/1_0/Global/ALOS_landforms');
+var chili = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI")
+Map.addLayer((ee.ImageCollection("NRCan/CDEM").median()))
+Map.addLayer(chili, { palette: ["0014ff","ffffff","ff0000"]}, 'CHILI', false);
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
+
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
              {min: -50, max: 50, palette: ["ff0000","ffffff","0014ff"]}, 
-             'dif');
+             'dif', false);
 
 Map.addLayer(lcmask, null, 'lc', false);
 
