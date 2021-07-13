@@ -146,6 +146,6 @@ var chart = ui.Chart.image.series({
   region: geometry,
   reducer: ee.Reducer.mean(),
   scale: 1e3
-});
+}).setChartType('ScatterChart');
 print(chart)
 // Map.addLayer(m.select('NDVI'))
