@@ -41,6 +41,9 @@ var agg = require('users/robitalec/CFS:modules/aggregate.js');
 // CMI functions
 var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
 
+// MODIS prep functions
+var modisprep = require('users/robitalec/CFS:modules/modis-prep.js');
+
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
