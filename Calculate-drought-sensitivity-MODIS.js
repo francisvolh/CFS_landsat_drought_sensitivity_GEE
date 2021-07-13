@@ -107,7 +107,7 @@ var veg = modis;
 veg = veg
   // TODO: set year
   // TODO: calc indices
-  // TODO: mask clouds
+  // TODO: mask clouds/summaryqa
   .map(modisprep.rescale)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
