@@ -87,11 +87,22 @@ print(sens_modis);
 print(sens_land);
 
 var band = 'Sens_NDVI_ante3mo_p10'
+var landforms = dataset.select('constant');
+var landformsVis = {
+  min: 11.0,
+  max: 42.0,
+  palette: [
+    '141414', '383838', '808080', 'EBEB8F', 'F7D311', 'AA0000', 'D89382',
+    'DDC9C9', 'DCCDCE', '1C6330', '68AA63', 'B5C98E', 'E1F0E5', 'a975ba',
+    '6f198c'
+  ],
+};
+Map.addLayer(landforms, landformsVis, 'Landforms');
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
-             {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
+             {min: -50, max: 50, palette: ["ff0000","ffffff","0014ff"]}, 
              'dif');
 
 Map.addLayer(lcmask, null, 'lc', false);
