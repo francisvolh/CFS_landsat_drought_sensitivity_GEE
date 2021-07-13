@@ -162,8 +162,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear,
-  assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear,
+  description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear + '_v2',
+  assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear + '_v2',
   region: ctef,
   scale: 250,
   maxPixels: 2e9
