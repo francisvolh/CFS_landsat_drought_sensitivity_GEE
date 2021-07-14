@@ -136,6 +136,7 @@ var veg = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
+  .map(landsatprep.rescale)
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
