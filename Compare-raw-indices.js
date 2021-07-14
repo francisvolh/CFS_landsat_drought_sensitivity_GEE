@@ -150,7 +150,7 @@ Map.addLayer(m, null, 'modis', false)
 Map.addLayer(l, null, 'landsat', false)
 Map.addLayer(m.subtract(l), {min: -0.5, max: 0.5, palette: palette}, 'diff')
 
-
+Map.addLayer(ee.ImageCollection("COPERNICUS/CORINE/V20/100m").first().eq(410))
 // var chart = ui.Chart.image.doySeriesByYear({
 //   imageCollection: m ,
 //   bandName: 'NDVI',
