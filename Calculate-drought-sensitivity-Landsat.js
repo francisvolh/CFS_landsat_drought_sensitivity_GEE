@@ -195,9 +195,9 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
-  assetId: 'CFS/drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
-  region: ctef,
+  description: 'drought-sensitivity-Landsat-Alberta',
+  assetId: 'CFS/drought-sensitivity-Landsat-Alberta',
+  region: geometry,
   scale: 30,
   maxPixels: 1e9
 };
