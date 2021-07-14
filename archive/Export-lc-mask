@@ -20,7 +20,7 @@ var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 var exp = {
   image: lcmask.reverseMask(),
   description: 'land-cover-mask',
-  assetId: 'land-cover-mask',
+  assetId: 'CFS/land-cover-mask',
   region: geometry,
   scale: 300
 };
