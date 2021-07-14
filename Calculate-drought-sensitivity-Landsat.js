@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-122.01990439247565, 59.3939710536243],
+          [-122.01990439247565, 53.909883123620126],
+          [-109.93494345497565, 53.909883123620126],
+          [-109.93494345497565, 59.3939710536243]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
 // Alec L. Robitaille
