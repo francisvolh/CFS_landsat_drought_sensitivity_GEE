@@ -32,7 +32,7 @@ exports.calcIndices = function(img) {
 // from l5, l7 ee docs
 exports.maskClouds = function(image) {
   var qa = image.select('pixel_qa');
-  // If the cloud bit (5) is set and the cloud confidence (7) is high
+  // If the cloud bit (5) is set and the cloud confidence (6) is high
   // or the cloud shadow bit is set (3), then it's a bad pixel.
   var cloud = qa.bitwiseAnd(1 << 5)
                   .and(qa.bitwiseAnd(1 << 6))
