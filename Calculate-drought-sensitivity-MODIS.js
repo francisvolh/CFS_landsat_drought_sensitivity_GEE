@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-121.33701085970853, 59.225203284768],
+          [-121.33701085970853, 53.584414644169875],
+          [-109.97714757845853, 53.584414644169875],
+          [-109.97714757845853, 59.225203284768]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- MODIS ---
 // Alec L. Robitaille
@@ -163,9 +177,9 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear + '_v2',
-  assetId: 'CFS/drought-sensitivity-' + minyear + '-' + maxyear + '_v2',
-  region: ctef,
+  description: 'drought-sensitivity-MODIS-Alberta_v2',
+  assetId: 'CFS/drought-sensitivity-MODIS-Alberta_v2',
+  region: geometry,
   scale: 250,
   maxPixels: 2e9
 };
