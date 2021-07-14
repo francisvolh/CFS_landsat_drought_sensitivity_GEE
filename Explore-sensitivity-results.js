@@ -128,7 +128,7 @@ Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)),
              {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
              'dif', false);
 
-Map.addLayer(lcmask, null, 'lc', false);
+Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
 
 
 // Summary stats -----------------------------------------------------------------
