@@ -120,6 +120,9 @@ var band = 'Sens_NDVI_ante6mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
+Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
+Map.addLayer(sens_land.select('Sens_NBR_ante12mo_p10'), viz, 'Landsat NBR')
+
 
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
              {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
