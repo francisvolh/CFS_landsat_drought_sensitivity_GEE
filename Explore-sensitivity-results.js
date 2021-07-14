@@ -116,7 +116,7 @@ Map.addLayer(ctef, null, 'ctef', false);
 
 
 
-var band = 'Sens_NDVI_ante12mo_p10'
+var band = 'Sens_NDVI_ante6mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
