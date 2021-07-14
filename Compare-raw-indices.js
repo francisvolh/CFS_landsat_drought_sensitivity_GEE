@@ -120,7 +120,7 @@ var landsat = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 landsat = landsat
-  .map(landsatprep.setYear)
+  .map(landsatprep.setYear).aside(print)
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
   .map(fire.maskFires)
@@ -133,7 +133,7 @@ landsat = landsat
 var yr = 2008;
 var mindate = yr + '-07-01';
 var maxdate = (yr+1) + '-07-13';
-var b = 'NDVI'
+var b = 'EVI'
 
 var m = modis.filter(ee.Filter.date(mindate, maxdate))
              .select(b)
