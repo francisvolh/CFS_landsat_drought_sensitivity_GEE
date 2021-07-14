@@ -40,7 +40,7 @@ var palettes = require('users/gena/packages:palettes');
 
 var pal = palettes.colorbrewer.RdBu[9].reverse();
 var min = -20; var max = 20;
-var viz = {min: min, max: max, palette: pal};
+var viz = {min: min, max: max, palette: pal, opacity:0.7};
 
 function showPalette(name, palette) {
   var image = ee.Image.pixelLonLat().select(0)
@@ -111,12 +111,12 @@ var selectBands = toview.bandNames()
 // azimuth, zenith
 var az = 120
 var ze = 60
-Map.addLayer(hillshade(az, ze, slope, aspect), {}, az + ' deg')
+Map.addLayer(hillshade(az, ze, slope, aspect), {opacity:0.7}, az + ' deg')
 Map.addLayer(ctef, null, 'ctef', false);
 
 
 
-var band = 'Sens_NDVI_ante3mo_p10'
+var band = 'Sens_NDVI_ante12mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
