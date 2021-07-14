@@ -28,13 +28,13 @@ var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
 
-// Palette ----------------------------------------------------------------------
+// Functions ---------------------------------------------------------------------
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
@@ -53,7 +53,35 @@ function showPalette(name, palette) {
 // showPalette(min + '           0           ' + max, pal);
 
 
+// Define a function to convert from degrees to radians.
+function radians(img) {
+  return img.toFloat().multiply(Math.PI).divide(180);
+}
+
+// Define a function to compute a hillshade from terrain data
+// for the given sun azimuth and elevation.
+function hillshade(az, ze, slope, aspect) {
+  // Convert angles to radians.
+  var azimuth = radians(ee.Image(az));
+  var zenith = radians(ee.Image(ze));
+  // Note that methods on images are needed to do the computation.
+  // i.e. JavaScript operators (e.g. +, -, /, *) do not work on images.
+  // The following implements:
+  // Hillshade = cos(Azimuth - Aspect) * sin(Slope) * sin(Zenith) +
+  //     cos(Zenith) * cos(Slope)
+  return azimuth.subtract(aspect).cos()
+    .multiply(slope.sin())
+    .multiply(zenith.sin())
+    .add(
+      zenith.cos().multiply(slope.cos()));
+}
+
 // Map --------------------------------------------------------------------------
+// Compute terrain meaasures from the SRTM DEM.
+var terrain = ee.Algorithms.Terrain(ee.Image("USGS/GMTED2010"));
+var slope = radians(terrain.select('slope'));
+var aspect = radians(terrain.select('aspect'));
+
 var lcmask = lcmask.reverseMask();
 
 // Set either sens_80_19 or sens_00_19
@@ -80,23 +108,21 @@ var selectBands = toview.bandNames()
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
 
-Map.addLayer(ee.Image(1), {palette:["727272"]})
+// azimuth, zenith
+var az = 120
+var ze = 60
+Map.addLayer(hillshade(az, ze, slope, aspect), {}, az + ' deg')
 Map.addLayer(ctef, null, 'ctef', false);
 
-print(sens_modis);
-print(sens_land);
 
-var band = 'Sens_NDVI_ante3mo_p5'
-var dataset = ee.Image('CSP/ERGo/1_0/Global/ALOS_landforms');
-var chili = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI")
-Map.addLayer((ee.ImageCollection("NRCan/CDEM").median()))
-Map.addLayer(chili, { palette: ["0014ff","ffffff","ff0000"]}, 'CHILI', false);
+
+var band = 'Sens_NDVI_ante3mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
 Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 
 Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
-             {min: -50, max: 50, palette: ["ff0000","ffffff","0014ff"]}, 
+             {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
              'dif', false);
 
 Map.addLayer(lcmask, null, 'lc', false);
