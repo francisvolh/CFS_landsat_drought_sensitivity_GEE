@@ -124,7 +124,7 @@ var hill = hillshade(az, ze, slope, aspect);
 var dif = sens_modis.select(band).subtract(sens_land.select(band));
 
 // Filter -----------------------------------------------------------------------
-var toview = sens_landsat;
+var toview = sens_land;
 
 // Set the percentile to view
 // either 5, 10, or 20
