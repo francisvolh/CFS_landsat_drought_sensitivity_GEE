@@ -88,5 +88,5 @@ exports.rescale = function(img) {
     img.select('sr_cloud_qa'),
     img.select('pixel_qa'),
     img.select('radsat_qa')
-  ]).copyProperties(img);
+  ]).copyProperties(img).set({'system:time_start': img.date().millis()});
 };
