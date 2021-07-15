@@ -16,6 +16,10 @@ var geometry =
 // --- MODIS ---
 // Alec L. Robitaille
 
+var region = 'Yukon';
+print('Region set: ' + region);
+
+
 
 // Data -------------------------------------------------------------
 // CTEF regions
@@ -78,6 +82,12 @@ var palettes = require('users/gena/packages:palettes');
 // Filter -----------------------------------------------------------
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+
+if (region == 'Yukon') {
+  var geo = ctef;
+} else if (region == 'Alberta') {
+  var geo = alberta;
+}
 
 // MODIS
 modis = modis
@@ -167,9 +177,9 @@ Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-' + minyear + '-' + maxyear,
-  folder: 'CFS-drought-sensitivity',
-  region: ctef,
+  description: 'drought-sensitivity-MODIS-' + region,
+  folder: 'CFS-drought-sensitivity-MODIS-' + region,
+  region: geo,
   scale: 250,
   maxPixels: 2e9
 };
@@ -177,9 +187,9 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-Alberta_v2',
-  assetId: 'CFS/drought-sensitivity-MODIS-Alberta_v2',
-  region: geometry,
+  description: 'drought-sensitivity-MODIS-' + region,
+  assetId: 'CFS/drought-sensitivity-MODIS-' + region,
+  region: geo,
   scale: 250,
   maxPixels: 2e9
 };
