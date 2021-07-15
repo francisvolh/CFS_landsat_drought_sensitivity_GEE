@@ -51,9 +51,12 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
 
+
 // Functions ---------------------------------------------------------------------
-// Gena's palette functions
+// Gena's functions
 var palettes = require('users/gena/packages:palettes');
+var text = require('users/gena/packages:text');
+var gallery = require('users/gena/packages:gallery');
 
 var pal = palettes.colorbrewer.RdBu[9].reverse();
 var min = -20; var max = 20;
@@ -93,15 +96,34 @@ function hillshade(az, ze, slope, aspect) {
       zenith.cos().multiply(slope.cos()));
 }
 
-// Map --------------------------------------------------------------------------
+function summary(img) {
+  return img.reduceRegion({
+    reducer: ee.Reducer.mean(),
+      // ee.Reducer.min().combine(
+      // ee.Reducer.max()).combine(
+      //   ee.Reducer.mean()),
+    geometry: ctef,
+    bestEffort: true
+  });
+}
+
+
+
+// Process ----------------------------------------------------------------------
 // Compute terrain meaasures from the SRTM DEM.
 var terrain = ee.Algorithms.Terrain(ee.Image("USGS/GMTED2010"));
 var slope = radians(terrain.select('slope'));
 var aspect = radians(terrain.select('aspect'));
 
-var lcmask = lcmask.reverseMask();
+// azimuth, zenith
+var az = 120
+var ze = 60
+var hill = hillshade(az, ze, slope, aspect);
 
-// Set either sens_80_19 or sens_00_19
+// diff
+var dif = sens_modis.select(band).subtract(sens_land.select(band));
+
+// Filter -----------------------------------------------------------------------
 var toview = sens_modis;
 
 // Set the percentile to view
@@ -114,7 +136,48 @@ var selectBands = toview.bandNames()
                         // .filter(ee.Filter.stringContains('item', 'NDVI'))
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
+// Or select band
+var band = 'Sens_NDVI_ante6mo_p10';
 
+// As a collection
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) { 
+  return sens_modis.select([name]).set({"name": ee.String(name)
+  });
+}));
+
+
+// Viz --------------------------------------------------------------------------
+var vizgallery = {min: min, max: max, palette: pal, opacity:1};
+
+
+// Map --------------------------------------------------------------------------
+Map.addLayer(ee.Image(1), {palette:'747474'}, 'blank', false);
+
+Map.addLayer(hill, {opacity:0.7}, az + ' deg', false);
+Map.addLayer(ctef, null, 'ctef', false);
+
+Map.addLayer(sens_modis.select(band), viz, 'MODIS ' + band, false);
+Map.addLayer(sens_land.select(band), viz, 'Landsat ' + band, false);
+
+// Map.addLayer(dif, {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 'dif', false);
+
+Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
+
+// render monthly images + label
+var imagesRGB = ascol.map(function(img) {
+  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+      fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6});
+
+  return img.visualize(vizgallery).blend(label);
+});
+
+// generate a single filmstrip image (rows x columns)
+var rows = 6;
+var columns = 4;
+var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(imageFilmstrip);
+
+// Add all bands separately
 // Note, there's a bit of server side logic here so the browser might hang briefly
 
 // Get the list of band names and add them all separately to the map
@@ -124,97 +187,3 @@ var selectBands = toview.bandNames()
 // for (var i = 0; i < bandList.length; i++) {
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
-
-// azimuth, zenith
-var az = 120
-var ze = 60
-var hill = hillshade(az, ze, slope, aspect);
-// Map.addLayer(hill, {opacity:0.7}, az + ' deg')
-// Map.addLayer(ctef, null, 'ctef', false);
-
-
-
-var band = 'Sens_NDVI_ante6mo_p10'
-// Map.addLayer(sens_modis.select(band), viz, 'MODIS')
-// Map.addLayer(sens_land.select(band), viz, 'Landsat')
-
-// Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
-// Map.addLayer(sens_land.select('Sens_NBR_ante12mo_p10'), viz, 'Landsat NBR')
-
-
-// Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
-//             {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
-//             'dif', false);
-
-// Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
-
-
-// Summary stats -----------------------------------------------------------------
-function summary(img) {
-  return img.reduceRegion({
-    reducer: ee.Reducer.mean(),
-      // ee.Reducer.min().combine(
-      // ee.Reducer.max()).combine(
-      //   ee.Reducer.mean()),
-    geometry: ctef,
-    bestEffort: true
-  });
-}
-// print(summary(sens_modis.select(band)))
-// print(summary(sens_land.select(band)))
-
-
-// Chart -------------------------------------------------------------------------
-// print(ui.Chart.image.histogram({
-//   image: sens_modis.select(band), 
-//   region: ctef,
-//   scale: 1000
-// }));
-
-// print(ui.Chart.image.histogram({
-//   image: sens_land.select(band), 
-//   region: ctef,
-//   scale: 1000
-// }));
-
-// Export ------------------------------------------------------------------------ 
-// var exp = {
-//   image: toview.select(band).visualize(viz), 
-//   description: band,
-//   folder: 'Visuals',
-//   region: geometry2,
-//   scale: 5000,
-//   maxPixels: 2e9
-// };
-// Export.image.toDrive(exp);
-
-// Map.setOptions('SATELLITE')
-
-
-
-
-var text = require('users/gena/packages:text')
-var gallery = require('users/gena/packages:gallery')
-
-
-var ascol = ee.ImageCollection.fromImages(sens_modis.bandNames().map(function(name) { 
-  return sens_modis.select([name]).set({"name": ee.String(name)
-  })  
-}))
-print(ascol)
-var viz = {min: min, max: max, palette: pal, opacity:1};
-
-// render monthly images + label
-var imagesRGB = ascol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6})
-
-  return img.visualize(viz).blend(label)
-})
-
-// generate a single filmstrip image (rows x columns)
-var rows = 6
-var columns = 4
-var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns)
-Map.addLayer(ee.Image(1), {palette:'747474'})
-Map.addLayer(imageFilmstrip)
