@@ -1,12 +1,12 @@
 // Landsat 5 and 7 prep
 
-// B1 	Band 1 (blue) surface reflectance
-// B2 	Band 2 (green) surface reflectance
-// B3 	Band 3 (red) surface reflectance
-// B4 	Band 4 (near infrared) surface reflectance
-// B5 	Band 5 (shortwave infrared 1) surface reflectance
-// B6 	Band 6 brightness temperature.
-// B7 	Band 7 (shortwave infrared 2) surface reflectance
+// B1 Band 1 (blue) surface reflectance
+// B2 Band 2 (green) surface reflectance
+// B3 Band 3 (red) surface reflectance
+// B4 Band 4 (near infrared) surface reflectance
+// B5 Band 5 (shortwave infrared 1) surface reflectance
+// B6 Band 6 brightness temperature.
+// B7 Band 7 (shortwave infrared 2) surface reflectance
 
 // Normalized difference indices
 exports.calcIndices = function(img) {
