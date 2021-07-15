@@ -166,7 +166,7 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 // render monthly images + label
 var imagesRGB = ascol.map(function(img) {
   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6});
+      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
 
   return img.visualize(vizgallery).blend(label);
 });
