@@ -181,7 +181,7 @@ var viz = {min: min, max: max, palette: pal};
 // }
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
 
-Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
+Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
 
 
