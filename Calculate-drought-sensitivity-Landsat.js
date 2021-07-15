@@ -19,7 +19,6 @@ var alberta =
 
 
 var region = 'Yukon'; 
-print('Region set: ' + region);
 
 
 
@@ -100,6 +99,7 @@ if (region == 'Yukon') {
 } else if (region == 'Alberta') {
   var geo = alberta;
 }
+print('Region set: ' + region);
 
 // Landsat 5
 l5 = l5
