@@ -47,7 +47,7 @@ var water = ee.Image("JRC/GSW1_3/GlobalSurfaceWater")
                     .select('occurrence')
                     .gt(0.7);
 exports.maskWater = function(image) {
-  return image.updateMask(water.not());
+  return image.updateMask(water.unmask().not());
 };
 
 // Set year
