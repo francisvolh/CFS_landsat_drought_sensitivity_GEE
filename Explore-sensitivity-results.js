@@ -175,7 +175,7 @@ var imagesRGB = ascol.map(function(img) {
 var rows = 6;
 var columns = 4;
 var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(imageFilmstrip);
+Map.addLayer(imageFilmstrip, null, 'gallery', false);
 
 // Add all bands separately
 // Note, there's a bit of server side logic here so the browser might hang briefly
