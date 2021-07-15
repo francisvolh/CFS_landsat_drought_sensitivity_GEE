@@ -151,35 +151,60 @@ var vizgallery = {min: min, max: max, palette: pal, opacity:1};
 
 
 // Map --------------------------------------------------------------------------
-Map.addLayer(ee.Image(1), {palette:'747474'}, 'blank', false);
+// Base layers:
+// Constant image
+Map.addLayer(ee.Image(1), {palette:'747474'}, 'constant', false);
 
+// Hillshade
 Map.addLayer(hill, {opacity:0.7}, az + ' deg', false);
+
+// CTEF regions
 Map.addLayer(ctef, null, 'ctef', false);
 
+// MODIS and Landsat, selected band
 Map.addLayer(sens_modis.select(band), viz, 'MODIS ' + band, false);
 Map.addLayer(sens_land.select(band), viz, 'Landsat ' + band, false);
 
+// Processed layers:
+// MODIS/Landsat dif
 // Map.addLayer(dif, {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 'dif', false);
 
+// Land cover reverse mask
 Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
 
-// render monthly images + label
+// Within sensor gallery strip
 var imagesRGB = ascol.map(function(img) {
   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-
   return img.visualize(vizgallery).blend(label);
 });
 
-// generate a single filmstrip image (rows x columns)
 var rows = 6;
 var columns = 4;
-var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(imageFilmstrip, null, 'gallery', false);
+var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(wisensor, null, 'gallery', false);
+
+// Across sensor gallery strip
+var comb = ee.Image([sens_modis.select(band),
+                     sens_land.select(band)])
+                .rename([band + ' - MODIS', band + ' - Landsat'])
+var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
+  return comb.select([name]).set({"name": ee.String(name)})
+}));
+var imagesRGB = combcol.map(function(img) {
+  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+  return img.visualize(vizgallery).blend(label);
+});
+
+var rows = 6;
+var columns = 4;
+var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(acrosssensors, null, 'gallery comb', false);
+
 
 // Add all bands separately
 // Note, there's a bit of server side logic here so the browser might hang briefly
-
 // Get the list of band names and add them all separately to the map
 // By default all are added, but not shown - so you'll need to select the one to view
 // After you view one, make sure to set it off so you are only seeing one later at a time
@@ -187,24 +212,3 @@ Map.addLayer(imageFilmstrip, null, 'gallery', false);
 // for (var i = 0; i < bandList.length; i++) {
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
-
-var comb = ee.Image([sens_modis.select(band),
-                     sens_land.select(band)])
-                .rename([band + ' - MODIS', band + ' - Landsat'])
-// As a collection
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
-  return comb.select([name]).set({"name": ee.String(name)})
-}));
-// render monthly images + label
-var imagesRGB = combcol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-
-  return img.visualize(vizgallery).blend(label);
-});
-
-// generate a single filmstrip image (rows x columns)
-var rows = 6;
-var columns = 4;
-var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(imageFilmstrip, null, 'gallery comb', false);
