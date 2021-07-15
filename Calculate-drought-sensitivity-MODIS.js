@@ -128,15 +128,13 @@ var veg = modis;
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
-var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
-
 veg = veg
   // TODO: set year
   // TODO: calc indices
   // TODO: mask clouds/summaryqa
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .map(landsatprep.maskWater)
+  .map(modisprep.maskWater)
   .map(modisprep.rescale)
   .select(indices);
 
