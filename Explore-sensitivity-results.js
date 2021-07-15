@@ -182,7 +182,7 @@ var imagesRGB = ascol.map(function(img) {
 var rows = 6;
 var columns = 4;
 var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(wisensor, null, 'gallery', false);
+Map.addLayer(wisensor, null, 'gallery: within sensor', false);
 
 // Across sensor gallery strip
 var comb = ee.Image([sens_modis.select(band),
@@ -200,7 +200,7 @@ var imagesRGB = combcol.map(function(img) {
 var rows = 6;
 var columns = 4;
 var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrosssensors, null, 'gallery comb', false);
+Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
 
 // Add all bands separately
