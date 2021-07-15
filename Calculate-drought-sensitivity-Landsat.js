@@ -18,8 +18,10 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Yukon';
-print('Region set: ' + region)
+var region = 'Yukon'; 
+print('Region set: ' + region);
+
+
 
 // Data -------------------------------------------------------------
 // CTEF regions
