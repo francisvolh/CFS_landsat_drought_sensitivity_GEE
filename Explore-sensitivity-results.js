@@ -19,6 +19,7 @@ var geometry2 =
             })]),
     geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -29,7 +30,10 @@ var geometry2 =
           [-139.81294114818172, 62.62540107176204],
           [-136.27534349193172, 62.62540107176204],
           [-136.27534349193172, 64.21279741069971]]], null, false),
-    geolabel = /* color: #98ff00 */ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
+    geolabel = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
