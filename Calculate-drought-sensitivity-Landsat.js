@@ -140,6 +140,7 @@ veg = veg
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
+  .map(landsatprep.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
