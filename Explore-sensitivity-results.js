@@ -19,7 +19,6 @@ var geometry2 =
             })]),
     geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -29,7 +28,8 @@ var geometry2 =
         [[[-139.81294114818172, 64.21279741069971],
           [-139.81294114818172, 62.62540107176204],
           [-136.27534349193172, 62.62540107176204],
-          [-136.27534349193172, 64.21279741069971]]], null, false);
+          [-136.27534349193172, 64.21279741069971]]], null, false),
+    label = /* color: #98ff00 */ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
@@ -131,7 +131,8 @@ var hill = hillshade(az, ze, slope, aspect);
 
 
 var band = 'Sens_NDVI_ante6mo_p10'
-// Map.addLayer(sens_modis.select(band), viz, 'MODIS')
+Map.addLayer(sens_modis.select(band), viz, 'MODIS')
+Map.addLayer(sens_modis.select(band).visualize(viz), null, 'MODIS')
 // Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 // Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
@@ -195,10 +196,10 @@ var gallery = require('users/gena/packages:gallery')
 
 // render monthly images + label
 var imagesRGB = sens_modis.bandNames().map(function(b) {
-  // var label = text.draw(i.get(), geometryLabel, Map.getScale(), {
-  //     fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6})
+  var label = text.draw(b, label, Map.getScale(), {
+      fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6})
 
-  return hill.blend(sens_modis.select([b]).visualize(viz))//.blend(label)
+  return sens_modis.select([b]).visualize(viz).blend(label)
 })
 
 // generate a single filmstrip image (rows x columns)
