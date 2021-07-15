@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -158,7 +159,7 @@ var means = splits.reduce(ee.Reducer.mean());
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
-
+print(droughtSens)
 // Drought sensitivity prime (S’) = max across three antecedent periods
 // var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
