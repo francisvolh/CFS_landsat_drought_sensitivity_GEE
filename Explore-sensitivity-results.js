@@ -124,7 +124,7 @@ var hill = hillshade(az, ze, slope, aspect);
 var dif = sens_modis.select(band).subtract(sens_land.select(band));
 
 // Filter -----------------------------------------------------------------------
-var toview = sens_modis;
+var toview = sens_landsat;
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -132,8 +132,8 @@ var p = 10;
 
 // Filter the band names before map. Comment any of these out to just map all bands
 var selectBands = toview.bandNames()
-                        .filter(ee.Filter.stringContains('item', 'p' + p))
-                        // .filter(ee.Filter.stringContains('item', 'NDVI'))
+                        // .filter(ee.Filter.stringContains('item', 'p' + p))
+                        .filter(ee.Filter.stringContains('item', 'NDVI'))
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 // Or select band
