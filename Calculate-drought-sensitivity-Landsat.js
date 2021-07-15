@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
+var alberta = 
     /* color: #d63000 */
     /* shown: false */
     /* displayProperties: [
@@ -16,6 +16,9 @@ var geometry =
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
 // Alec L. Robitaille
+
+
+var region = 'yukon'
 
 
 // Data -------------------------------------------------------------
@@ -56,6 +59,7 @@ var antes = [3, 6, 12];
 var indices = ['NDVI', 'NBR', 'EVI'];
 
 
+
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
@@ -89,15 +93,21 @@ var palettes = require('users/gena/packages:palettes');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
+if (region == 'Yukon') {
+  var geo = ctef;
+} else if (region == 'Alberta') {
+  var geo = alberta;
+}
+
 // Landsat 5
 l5 = l5
-  .filterBounds(ctef)
+  .filterBounds(geo)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 l7 = l7
-  .filterBounds(ctef)
+  .filterBounds(geo)
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
@@ -189,9 +199,9 @@ Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + minyear + '-' + maxyear,
-  folder: 'CFS-drought-sensitivity-Landsat-',
-  region: ctef,
+  description: 'drought-sensitivity-Landsat-' + region,
+  folder: 'CFS-drought-sensitivity-Landsat-' + region,
+  region: geo,
   scale: 250,
   maxPixels: 1e9
 };
@@ -199,9 +209,9 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-Alberta',
-  assetId: 'CFS/drought-sensitivity-Landsat-Alberta',
-  region: geometry,
+  description: 'drought-sensitivity-Landsat-' + region,
+  assetId: 'CFS/drought-sensitivity-Landsat-' + region,
+  region: geo,
   scale: 30,
   maxPixels: 1e9
 };
