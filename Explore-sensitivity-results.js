@@ -16,7 +16,20 @@ var geometry2 =
                   [-93.5925179941388, 70.07926665876009]]], null, false),
             {
               "system:index": "0"
-            })]);
+            })]),
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-139.81294114818172, 64.21279741069971],
+          [-139.81294114818172, 62.62540107176204],
+          [-136.27534349193172, 62.62540107176204],
+          [-136.27534349193172, 64.21279741069971]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
@@ -111,24 +124,25 @@ var selectBands = toview.bandNames()
 // azimuth, zenith
 var az = 120
 var ze = 60
-Map.addLayer(hillshade(az, ze, slope, aspect), {opacity:0.7}, az + ' deg')
-Map.addLayer(ctef, null, 'ctef', false);
+var hill = hillshade(az, ze, slope, aspect);
+// Map.addLayer(hill, {opacity:0.7}, az + ' deg')
+// Map.addLayer(ctef, null, 'ctef', false);
 
 
 
 var band = 'Sens_NDVI_ante6mo_p10'
-Map.addLayer(sens_modis.select(band), viz, 'MODIS')
-Map.addLayer(sens_land.select(band), viz, 'Landsat')
+// Map.addLayer(sens_modis.select(band), viz, 'MODIS')
+// Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
-Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
-Map.addLayer(sens_land.select('Sens_NBR_ante12mo_p10'), viz, 'Landsat NBR')
+// Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
+// Map.addLayer(sens_land.select('Sens_NBR_ante12mo_p10'), viz, 'Landsat NBR')
 
 
-Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
-             {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
-             'dif', false);
+// Map.addLayer(sens_modis.select(band).subtract(sens_land.select(band)), 
+//             {min: -30, max: 30, palette: ["ff0000","ffffff","0014ff"]}, 
+//             'dif', false);
 
-Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
+// Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
 
 
 // Summary stats -----------------------------------------------------------------
@@ -142,8 +156,8 @@ function summary(img) {
     bestEffort: true
   });
 }
-print(summary(sens_modis.select(band)))
-print(summary(sens_land.select(band)))
+// print(summary(sens_modis.select(band)))
+// print(summary(sens_land.select(band)))
 
 
 // Chart -------------------------------------------------------------------------
@@ -171,3 +185,24 @@ print(summary(sens_land.select(band)))
 // Export.image.toDrive(exp);
 
 // Map.setOptions('SATELLITE')
+
+
+
+
+var text = require('users/gena/packages:text')
+var gallery = require('users/gena/packages:gallery')
+
+
+// render monthly images + label
+var imagesRGB = sens_modis.bandNames().map(function(b) {
+  // var label = text.draw(i.get(), geometryLabel, Map.getScale(), {
+  //     fontSize:32, textColor: 'ffffff', outlineColor: '000000', outlineWidth: 3, outlineOpacity: 0.6})
+
+  return hill.blend(sens_modis.select([b]).visualize(viz))//.blend(label)
+})
+
+// generate a single filmstrip image (rows x columns)
+var rows = 6
+var columns = 4
+var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns)
+Map.addLayer(imageFilmstrip)
