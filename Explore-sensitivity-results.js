@@ -187,3 +187,24 @@ Map.addLayer(imageFilmstrip, null, 'gallery', false);
 // for (var i = 0; i < bandList.length; i++) {
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
+
+var comb = ee.Image([sens_modis.select(band),
+                     sens_land.select(band)])
+                .rename([band + ' - MODIS', band + ' - Landsat'])
+// As a collection
+var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
+  return comb.select([name]).set({"name": ee.String(name)})
+}));
+// render monthly images + label
+var imagesRGB = combcol.map(function(img) {
+  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+
+  return img.visualize(vizgallery).blend(label);
+});
+
+// generate a single filmstrip image (rows x columns)
+var rows = 6;
+var columns = 4;
+var imageFilmstrip = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(imageFilmstrip, null, 'gallery comb', false);
