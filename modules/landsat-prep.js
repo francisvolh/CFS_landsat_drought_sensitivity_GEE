@@ -43,6 +43,13 @@ exports.maskClouds = function(image) {
 };
 
 
+var water = ee.Image("JRC/GSW1_3/GlobalSurfaceWater")
+                    .select('occurrence')
+                    .gt(0.7);
+exports.maskWater = function(image) {
+  return image.updateMask(water.not());
+};
+
 // Set year
 exports.setYear = function(img) {
   return img.set('year', img.date().get('year'));
