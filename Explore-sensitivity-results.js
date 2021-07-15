@@ -132,7 +132,6 @@ var hill = hillshade(az, ze, slope, aspect);
 
 var band = 'Sens_NDVI_ante6mo_p10'
 Map.addLayer(sens_modis.select(band), viz, 'MODIS')
-Map.addLayer(sens_modis.select(band).visualize(viz), null, 'MODIS')
 // Map.addLayer(sens_land.select(band), viz, 'Landsat')
 
 // Map.addLayer(sens_land.select('Sens_NDVI_ante12mo_p10'), viz, 'Landsat NDVI')
@@ -192,6 +191,8 @@ function summary(img) {
 
 var text = require('users/gena/packages:text')
 var gallery = require('users/gena/packages:gallery')
+
+print(sens_modis.select('Sens_NDVI_ante6mo_p10'))
 
 
 // render monthly images + label
