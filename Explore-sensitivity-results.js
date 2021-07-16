@@ -212,3 +212,5 @@ Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 // for (var i = 0; i < bandList.length; i++) {
 //   Map.addLayer(toview.select(bandList[i]), viz, bandList[i], false);
 // }
+
+// Charts -----------------------------------------------------------------------
