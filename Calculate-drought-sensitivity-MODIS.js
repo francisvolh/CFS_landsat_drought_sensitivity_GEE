@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
+var alberta = 
     /* color: #98ff00 */
     /* displayProperties: [
       {
