@@ -156,5 +156,5 @@ var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3
 print(values)
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({ pointSize: 2, pointColor: 'red', width: 300, height: 300, titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y})
 print(chart)
