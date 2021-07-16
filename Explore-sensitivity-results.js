@@ -214,3 +214,12 @@ Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 // }
 
 // Charts -----------------------------------------------------------------------
+var x = band + '-MODIS'
+var y = band + '-Landsat'
+var img = ee.Image([ee.ImageCollection(sens_modis.select(band)).median().rename(x),
+                   ee.ImageCollection(sens_land.select(band)).median().rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y})
+print(chart)
