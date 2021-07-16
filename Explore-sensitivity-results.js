@@ -35,12 +35,14 @@ var geometry2 =
     /* shown: false */
     ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
+var region = 'Yukon';
+
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
-var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019_v2');
+var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
 
 // Landsat
-var sens_land = ee.Image('users/robitalec/CFS/dr-sen-land-test-july-12');
+var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-Yukon' + region);
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
