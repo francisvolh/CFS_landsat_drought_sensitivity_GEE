@@ -4,6 +4,7 @@ var water = ee.Image("JRC/GSW1_3/GlobalSurfaceWater")
                     .gt(0.7)
                     .unmask()
                     .not();
+                    
 exports.maskWater = function(img) {
-  return img.updateMask(water.not());
+  return img.updateMask(water);
 }; 
