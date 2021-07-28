@@ -134,7 +134,7 @@ veg = veg
   // TODO: mask clouds/summaryqa
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .map(modisprep.maskWater)
+  .map(water.maskWater)
   .map(modisprep.rescale)
   .select(indices);
 
