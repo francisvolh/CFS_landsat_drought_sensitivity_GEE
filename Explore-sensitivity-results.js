@@ -36,13 +36,14 @@ var geometry2 =
     ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var region = 'Yukon';
+print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
 // Drought sensitivity 
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
 
 // Landsat
-var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-Yukon' + region);
+var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + region);
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
