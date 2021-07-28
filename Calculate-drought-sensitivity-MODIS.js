@@ -71,6 +71,9 @@ var baseline = require('users/robitalec/CFS:modules/baseline.js');
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
+// Water functions
+var water = require('users/robitalec/CFS:modules/water.js');
+
 // Sensitivity
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
