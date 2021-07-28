@@ -17,7 +17,8 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Alberta'; 
+var region = 'Yukon';
+print('Region set: ' + region);
 
 
 
@@ -81,6 +82,9 @@ var baseline = require('users/robitalec/CFS:modules/baseline.js');
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
+// Water functions
+var water = require('users/robitalec/CFS:modules/water.js');
+
 // Sensitivity
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
@@ -98,7 +102,6 @@ if (region == 'Yukon') {
 } else if (region == 'Alberta') {
   var geo = alberta;
 }
-print('Region set: ' + region);
 
 // Landsat 5
 l5 = l5
@@ -152,7 +155,7 @@ veg = veg
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
-  .map(landsatprep.maskWater)
+  .map(water.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
