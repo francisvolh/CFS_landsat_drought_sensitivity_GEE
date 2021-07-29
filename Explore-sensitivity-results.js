@@ -17,9 +17,8 @@ var geometry2 =
             {
               "system:index": "0"
             })]),
-    geometry = 
+    geometryYukon = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -30,7 +29,7 @@ var geometry2 =
           [-139.81294114818172, 62.62540107176204],
           [-136.27534349193172, 62.62540107176204],
           [-136.27534349193172, 64.21279741069971]]], null, false),
-    geolabel = 
+    geolabelYukon = 
     /* color: #98ff00 */
     /* shown: false */
     ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
@@ -53,7 +52,14 @@ ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04'])
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
-
+// Geometry for strips
+if (region == 'Alberta') {
+  var geometry = geometryAlberta;
+  var geolabel = geolabelAlberta;
+} else if (region == 'Yukon') {
+  var geometry = geometryYukon;
+  var geolabel = geolabelYukon;
+}
 
 // Functions ---------------------------------------------------------------------
 // Gena's functions
@@ -177,14 +183,14 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Within sensor gallery strip
 var imagesRGB = ascol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+  var label = text.draw(img.get('name'), geolabelYukon, Map.getScale(), {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
   return img.visualize(vizgallery).blend(label);
 });
 
 var rows = 6;
 var columns = 4;
-var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometryYukon.bounds(), rows, columns);
 Map.addLayer(wisensor, null, 'gallery: within sensor', false);
 
 // Across sensor gallery strip
@@ -195,14 +201,14 @@ var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) 
   return comb.select([name]).set({"name": ee.String(name)})
 }));
 var imagesRGB = combcol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+  var label = text.draw(img.get('name'), geolabelYukon, Map.getScale(), {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
   return img.visualize(vizgallery).blend(label);
 });
 
 var rows = 6;
 var columns = 4;
-var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometryYukon.bounds(), rows, columns);
 Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
 
@@ -221,7 +227,7 @@ var x = band + '-MODIS'
 var y = band + '-Landsat'
 var img = ee.Image([ee.ImageCollection(sens_modis.select(band)).median().rename(x),
                    ee.ImageCollection(sens_land.select(band)).median().rename(y)])
-var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometryYukon, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y})
