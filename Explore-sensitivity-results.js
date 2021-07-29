@@ -36,6 +36,7 @@ var geometry2 =
     ee.Geometry.Point([-139.78858419621028, 64.19840500914535]),
     geometryAlberta = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -46,7 +47,10 @@ var geometry2 =
           [-119.9213387294983, 53.998563512094734],
           [-113.5822274013733, 53.998563512094734],
           [-113.5822274013733, 57.103879623207106]]], null, false),
-    geolabelAlberta = /* color: #98ff00 */ee.Geometry.Point([-119.9213387294983, 57.09791227473051]);
+    geolabelAlberta = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Point([-119.9213387294983, 57.09791227473051]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var region = 'Alberta';
 print('Region selected: ' + region)
