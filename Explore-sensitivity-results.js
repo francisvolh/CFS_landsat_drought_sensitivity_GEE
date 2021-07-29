@@ -35,7 +35,7 @@ var geometry2 =
     /* shown: false */
     ee.Geometry.Point([-139.78858419621028, 64.19840500914535]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var region = 'Yukon';
+var region = 'Alberta';
 print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
