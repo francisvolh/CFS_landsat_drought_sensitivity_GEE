@@ -166,9 +166,9 @@ var viz = {min: min, max: max, palette: pal};
 
 // Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
 // Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
-var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-Alberta');
+var sens = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-Alberta');
 
-
+print()
 var exp = {
   image: lcmask.reverseMask(),
   description: 'lc-mask',
@@ -181,7 +181,7 @@ Export.image.toDrive(exp);
 
 var a = 'Sens_NDVI_ante3_p10'
 var exp = {
-  image: sens_80_19.select(a),
+  image: sens.select(a),
   description: a,
   folder: 'CFS-drought-sensitivity',
   region: geometry,
@@ -192,7 +192,7 @@ Export.image.toDrive(exp);
 
 var b = 'Sens_NDVI_ante12_p10'
 var exp = {
-  image: sens_80_19.select(b),
+  image: sens.select(b),
   description: b,
   folder: 'CFS-drought-sensitivity',
   region: geometry,
@@ -203,7 +203,7 @@ Export.image.toDrive(exp);
 
 var c = 'Sens_EVI_ante3_p10'
 var exp = {
-  image: sens_80_19.select(c),
+  image: sens.select(c),
   description: c,
   folder: 'CFS-drought-sensitivity',
   region: geometry,
@@ -214,7 +214,7 @@ Export.image.toDrive(exp);
 
 var d = 'Sens_EVI_ante12_p10'
 var exp = {
-  image: sens_80_19.select(d),
+  image: sens.select(d),
   description: d,
   folder: 'CFS-drought-sensitivity',
   region: geometry,
