@@ -19,7 +19,7 @@ var sens = ee.Image('users/robitalec/CFS/drought-sensitivity-' +  which + '-Yuko
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
 Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'))
-
+// need to change res
 var folder = 'aug-4-2021'
 
 var exp = {
