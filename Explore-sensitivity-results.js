@@ -167,7 +167,7 @@ var selectBands = toview.bandNames()
 var band = 'Sens_NDVI_ante6mo_p10';
 
 // Or select period and percentile (to flex index)
-var forindex = 'ante6mo_p10';
+var forindex = '*', 'ante6mo_p10';
 
 
 // As a collection
