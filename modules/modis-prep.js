@@ -20,14 +20,14 @@ exports.rescale = function(img) {
 };
 
 // For MOD09A1
-// Name 	        Description 	                  Min 	Max 	    Wavelength  Scale 
-// sur_refl_b01 	Surface reflectance for band 1 	-100 	16000 		620-670nm 	0.0001
-// sur_refl_b02 	Surface reflectance for band 2 	-100 	16000 		841-876nm 	0.0001
-// sur_refl_b03 	Surface reflectance for band 3 	-100 	16000 		459-479nm 	0.0001
-// sur_refl_b04 	Surface reflectance for band 4 	-100 	16000 		545-565nm 	0.0001
-// sur_refl_b05 	Surface reflectance for band 5 	-100 	16000 		1230-1250nm 	0.0001
-// sur_refl_b06 	Surface reflectance for band 6 	-100 	16000 		1628-1652nm 	0.0001
-// sur_refl_b07 	Surface reflectance for band 7 	-100 	16000 		2105-2155nm 	0.0001
+// Name 	        Description 	                  (band) 	Wavelength    Scale 
+// sur_refl_b01 	Surface reflectance for band 1  Red 		620-670nm   	0.0001
+// sur_refl_b02 	Surface reflectance for band 2 	NIR 		841-876nm   	0.0001
+// sur_refl_b03 	Surface reflectance for band 3 	Blue 		459-479nm   	0.0001
+// sur_refl_b04 	Surface reflectance for band 4 	Green 	545-565nm   	0.0001
+// sur_refl_b05 	Surface reflectance for band 5 	NIR  		1230-1250nm 	0.0001
+// sur_refl_b06 	Surface reflectance for band 6 	SWIR 		1628-1652nm 	0.0001
+// sur_refl_b07 	Surface reflectance for band 7 	SWIR 		2105-2155nm 	0.0001
 // QA 	Surface reflectance 500m band quality control flags 				
 exports.calcIndices = function(img) {
   return ee.Image([
