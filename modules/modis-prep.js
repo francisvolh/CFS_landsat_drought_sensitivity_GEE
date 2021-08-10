@@ -8,6 +8,17 @@ exports.rescale = function(img) {
             .set('system:time_start', img.get('system:time_start'));
 };
 
+// var water = ee.Image("MODIS/MOD44W/MOD44W_005_2000_02_24").select('water_mask');
+var water = ee.Image("JRC/GSW1_3/GlobalSurfaceWater")
+                    .select('occurrence')
+                    .gt(0.7)
+                    .unmask()
+                    .not();
+exports.maskWater = function(img) {
+  return img.updateMask(water.not());
+};
+
+
 // For MOD09A1
 // Name 	        Description 	                  (band) 	Wavelength    Scale 
 // sur_refl_b01 	Surface reflectance for band 1  Red 		620-670nm   	0.0001
