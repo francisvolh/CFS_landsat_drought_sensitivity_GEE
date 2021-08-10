@@ -167,8 +167,9 @@ var selectBands = toview.bandNames()
 var band = 'Sens_NDVI_ante6mo_p10';
 
 // Or select period and percentile (to flex index)
-var forindex = '*', 'ante6mo_p10';
-
+var forindex = toview.bandNames()
+                     .filter(ee.Filter.stringContains('item', 'p' + p))
+                     .filter(ee.Filter.stringContains('item', 'ante6mo'))
 
 // As a collection
 var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) { 
