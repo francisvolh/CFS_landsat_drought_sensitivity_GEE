@@ -245,8 +245,8 @@ var imagesRGB = combcol.map(function(img) {
   return img.visualize(vizgallery).blend(label);
 });
 
-var rows = 3;
-var columns = 1;
+var rows = 1;
+var columns = 3;
 var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(acrossindex, null, 'gallery: MODIS across index', false);
 
@@ -260,8 +260,8 @@ var imagesRGB = combcol.map(function(img) {
   return img.visualize(vizgallery).blend(label);
 });
 
-var rows = 3;
-var columns = 1;
+var rows = 1;
+var columns = 3;
 var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 
