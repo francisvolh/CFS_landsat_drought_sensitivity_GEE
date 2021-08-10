@@ -166,6 +166,10 @@ var selectBands = toview.bandNames()
 // Or select band
 var band = 'Sens_NDVI_ante6mo_p10';
 
+// Or select period and percentile (to flex index)
+var forindex = 'ante6mo_p10';
+
+
 // As a collection
 var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) { 
   return sens_modis.select([name]).set({"name": ee.String(name)
@@ -228,6 +232,7 @@ var rows = 6;
 var columns = 4;
 var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
+
 
 
 // Add all bands separately
