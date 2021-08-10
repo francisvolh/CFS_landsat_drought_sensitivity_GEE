@@ -32,35 +32,17 @@ exports.rescale = function(img) {
 exports.calcIndices = function(img) {
   return ee.Image([
     img.expression('(nir - red) / (nir + red)',
-                   {red: img.select('B3'),
-                    nir: img.select('B4')})
+                   {red: img.select('sur_refl_b01'),
+                    nir: img.select('sur_refl_b02')})
        .rename('NDVI'),
      img.expression('(nir - swir2) / (nir + swir2)',
-                   {nir: img.select('B4'),
-                    swir2: img.select('B7')})
+                   {nir: img.select('sur_refl_b01'),
+                    swir2: img.select('sur_refl_b07')})
        .rename('NBR'),
      img.expression('2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))',
-                   {blue: img.select('B1'),
-                    red: img.select('B3'),
-                    nir: img.select('B4')})
-       .rename('EVI'),
-     img.select('pixel_qa')
-  ]).copyProperties(img).set({'system:time_start': img.date().millis()});
-};
-exports.calcIndices = function(img) {
-  return ee.Image([
-    img.expression('(nir - red) / (nir + red)',
-                   {red: img.select('B3'),
-                    nir: img.select('B4')})
-       .rename('NDVI'),
-     img.expression('(nir - swir2) / (nir + swir2)',
-                   {nir: img.select('B4'),
-                    swir2: img.select('B7')})
-       .rename('NBR'),
-     img.expression('2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))',
-                   {blue: img.select('B1'),
-                    red: img.select('B3'),
-                    nir: img.select('B4')})
+                   {blue: img.select('sur_refl_b03'),
+                    red: img.select('sur_refl_b01'),
+                    nir: img.select('sur_refl_b02')})
        .rename('EVI'),
      img.select('pixel_qa')
   ]).copyProperties(img).set({'system:time_start': img.date().millis()});
