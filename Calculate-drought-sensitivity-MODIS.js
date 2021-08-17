@@ -25,7 +25,7 @@ print('Region set: ' + region);
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 
-var modis = ee.ImageCollection("MODIS/006/MOD13Q1");
+var modis = ee.ImageCollection("MODIS/006/MOD09A1");
 
 
 
@@ -45,8 +45,7 @@ var percentiles = [1, 5, 10, 20];
 var antes = [3, 6, 12];
 
 // Set indices
-var indices = ['NDVI', 'EVI'];
-// TODO: add NBR
+var indices = ['NDVI', 'EVI', 'NBR'];
 
 
 
@@ -96,7 +95,7 @@ if (region == 'Yukon') {
 modis = modis
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
-
+// TODO: aggregate month
 
 
 // Daymet -----------------------------------------------------------
@@ -132,13 +131,12 @@ var veg = modis;
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
 veg = veg
-  // TODO: set year
-  // TODO: calc indices
-  // TODO: mask clouds/summaryqa
   .map(fire.maskFires)
   .map(lcmask.maskLc)
   .map(water.maskWater)
+  .map(modisprep.maskClouds)
   .map(modisprep.rescale)
+  .map(modisprep.calcIndices)
   .select(indices);
 
 // Split vegetation indices into drought/non-drought pixels
@@ -181,8 +179,8 @@ Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-' + region,
-  folder: 'CFS-drought-sensitivity-MODIS-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + region,
+  folder: 'CFS-drought-sensitivity-MOD09Q1-' + region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
@@ -191,8 +189,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MODIS-' + region,
-  assetId: 'CFS/drought-sensitivity-MODIS-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + region,
+  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
