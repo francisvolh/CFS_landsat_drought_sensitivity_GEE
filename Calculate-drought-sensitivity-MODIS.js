@@ -130,12 +130,12 @@ var veg = modis;
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
 veg = veg
   .map(modisprep.maskClouds)
-  // .map(modisprep.rescale)
-  // .map(modisprep.calcIndices)
-  // .map(fire.maskFires)
-  // .map(lcmask.maskLc)
-  // .map(water.maskWater)
-  // .select(indices);
+  .map(modisprep.rescale)
+  .map(modisprep.calcIndices)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc)
+  .map(water.maskWater)
+  .select(indices);
 
 // Split vegetation indices into drought/non-drought pixels
 veg = modisprep.aggregateY(veg);
