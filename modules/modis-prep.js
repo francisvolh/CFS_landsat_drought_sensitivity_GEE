@@ -26,7 +26,7 @@ exports.calcIndices = function(img) {
                     red: img.select('sur_refl_b01'),
                     nir: img.select('sur_refl_b02')})
        .rename('EVI'),
-     img.select('pixel_qa')
+     img.select('StateQA')
   ]).copyProperties(img).set({'system:time_start': img.date().millis()});
 };
 
