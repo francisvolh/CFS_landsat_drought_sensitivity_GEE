@@ -56,8 +56,9 @@ var region = 'Alberta';
 print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
-// Drought sensitivity 
+// Drought sensitivity
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
+var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
 var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + region);
@@ -172,7 +173,7 @@ var forindex = toview.bandNames()
                      .filter(ee.Filter.stringContains('item', 'ante6mo'));
 
 // As a collection
-var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) { 
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
   return sens_modis.select([name]).set({"name": ee.String(name)
   });
 }));
@@ -220,7 +221,7 @@ Map.addLayer(wisensor, null, 'gallery: within sensor', false);
 var comb = ee.Image([sens_modis.select(band),
                      sens_land.select(band)])
                 .rename([band + ' - MODIS', band + ' - Landsat'])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
+var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
 var imagesRGB = combcol.map(function(img) {
@@ -236,7 +237,7 @@ Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
 // Across index, within sensor gallery strip
 var comb = ee.Image([sens_modis.select(forindex)])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
+var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
 var imagesRGB = combcol.map(function(img) {
@@ -251,7 +252,7 @@ var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(),
 Map.addLayer(acrossindex, null, 'gallery: MODIS across index', false);
 
 var comb = ee.Image([sens_land.select(forindex)])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) { 
+var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
 var imagesRGB = combcol.map(function(img) {
