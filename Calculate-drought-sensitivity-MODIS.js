@@ -137,11 +137,9 @@ veg = veg
   .map(lcmask.maskLc)
   .map(water.maskWater)
   .select(indices);
-print(veg)
 
 // Split vegetation indices into drought/non-drought pixels
 veg = modisprep.aggregateY(veg);
-print(veg)
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
