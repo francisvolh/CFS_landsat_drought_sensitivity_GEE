@@ -49,7 +49,7 @@ exports.rescale = function(img) {
 
 
 // from ee docs
-var maskClouds = function(image) {
+exports.maskClouds = function(image) {
   // Select the QA band.
   var QA = image.select('StateQA')
   // Make a mask to get bit 10, the internal_cloud_algorithm_flag bit.
@@ -57,3 +57,23 @@ var maskClouds = function(image) {
   // Return an image masking out cloudy areas.
   return image.updateMask(QA.bitwiseAnd(bitMask).eq(0))
 }
+
+
+// Aggregate years
+exports.aggregateY = function(images) {
+  var years = images.aggregate_array('year').distinct();
+  // Combine images returned for each year
+  return ee.ImageCollection.fromImages(
+    // Map over years
+    years.map(function(yr) {
+      // Filter images to year
+      // Reduce with reducer provided
+      // Set year and pseudo date properties
+      // Return an image for each year
+      return images.filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                   .reduce(ee.Reducer.mean())
+                   .set('year', yr)
+                   .set('system:time_start', ee.Date.fromYMD(yr, 7, 1).millis());
+    })
+  );
+};
