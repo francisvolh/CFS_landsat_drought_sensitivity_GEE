@@ -140,6 +140,8 @@ veg = veg
 
 // Split vegetation indices into drought/non-drought pixels
 veg = modisprep.aggregateY(veg);
+veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
