@@ -131,15 +131,16 @@ var veg = modis;
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
 veg = veg
-  .map(fire.maskFires)
-  .map(lcmask.maskLc)
-  .map(water.maskWater)
   .map(modisprep.maskClouds)
   .map(modisprep.rescale)
   .map(modisprep.calcIndices)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc)
+  .map(water.maskWater)
   .select(indices);
 
 // Split vegetation indices into drought/non-drought pixels
+veg = modisprep.aggregateY(veg);
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
