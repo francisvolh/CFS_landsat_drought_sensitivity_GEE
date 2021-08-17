@@ -95,8 +95,6 @@ if (region == 'Yukon') {
 modis = modis
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
-// TODO: aggregate month
-
 
 // Daymet -----------------------------------------------------------
 // Aggregate
@@ -132,12 +130,12 @@ var veg = modis;
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
 veg = veg
   .map(modisprep.maskClouds)
-  .map(modisprep.rescale)
-  .map(modisprep.calcIndices)
-  .map(fire.maskFires)
-  .map(lcmask.maskLc)
-  .map(water.maskWater)
-  .select(indices);
+  // .map(modisprep.rescale)
+  // .map(modisprep.calcIndices)
+  // .map(fire.maskFires)
+  // .map(lcmask.maskLc)
+  // .map(water.maskWater)
+  // .select(indices);
 
 // Split vegetation indices into drought/non-drought pixels
 veg = modisprep.aggregateY(veg);
