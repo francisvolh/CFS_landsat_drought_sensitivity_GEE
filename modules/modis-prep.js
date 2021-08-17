@@ -43,9 +43,9 @@ exports.rescale = function(img) {
     img.select('QA'),
     img.select('StateQA')
   ]).copyProperties(img)
-    .set({'system:time_start': img.get('system:time_start')});
+    .set({'system:time_start': img.get('system:time_start')})
+    .set('year', img.date().get('year'));
 };
-
 
 
 // from ee docs
