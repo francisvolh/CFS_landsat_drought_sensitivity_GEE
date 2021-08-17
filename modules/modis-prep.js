@@ -1,24 +1,6 @@
 // MODIS prep
 
 
-exports.rescale = function(img) {
-  return img.multiply(0.0001)
-            .float()
-            .copyProperties(img)
-            .set('system:time_start', img.get('system:time_start'));
-};
-
-// var water = ee.Image("MODIS/MOD44W/MOD44W_005_2000_02_24").select('water_mask');
-var water = ee.Image("JRC/GSW1_3/GlobalSurfaceWater")
-                    .select('occurrence')
-                    .gt(0.7)
-                    .unmask()
-                    .not();
-exports.maskWater = function(img) {
-  return img.updateMask(water.not());
-};
-
-
 // For MOD09A1
 // Name 	        Description 	                  (band) 	Wavelength    Scale
 // sur_refl_b01 	Surface reflectance for band 1  Red 		620-670nm   	0.0001
@@ -63,3 +45,15 @@ exports.rescale = function(img) {
   ]).copyProperties(img)
     .set({'system:time_start': img.get('system:time_start')});
 };
+
+
+
+// from ee docs
+var maskClouds = function(image) {
+  // Select the QA band.
+  var QA = image.select('StateQA')
+  // Make a mask to get bit 10, the internal_cloud_algorithm_flag bit.
+  var bitMask = 1 << 10;
+  // Return an image masking out cloudy areas.
+  return image.updateMask(QA.bitwiseAnd(bitMask).eq(0))
+}
