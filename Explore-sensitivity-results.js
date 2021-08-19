@@ -165,7 +165,7 @@ var selectBands = toview.bandNames()
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 // Or select band
-var band = 'Sens_NDVI_ante6mo_p10';
+var band = 'Sens_NBR_ante12mo_p10';
 
 // Or select period and percentile (to flex index)
 var forindex = toview.bandNames()
