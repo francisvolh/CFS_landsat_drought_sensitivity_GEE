@@ -57,7 +57,7 @@ print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
 // Drought sensitivity
-// var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
+var sens_modis_old = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
@@ -278,6 +278,7 @@ Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 // }
 
 // Charts -----------------------------------------------------------------------
+print('Compare Landsat and MODIS')
 var index = 'NBR'
 var p = 10
 var band3 = 'Sens_' + index + '_ante3mo_p' + 10
@@ -307,6 +308,22 @@ var x = band12 + '-MOD09Q1'
 var y = band12 + '-Landsat'
 var img = ee.Image([ee.ImageCollection(sens_modis.select(band12)).median().rename(x),
                    ee.ImageCollection(sens_land.select(band12)).median().rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y})
+print(chart)
+
+
+// delete me
+print('Compare MOD09Q1 with old MOD13Q1')
+print(sens_modis_old.bandNames())
+var index = 'NDVI'
+var band12 = 'Sens_' + index + '_ante12mo_p' + 10
+var x = band12 + '-MOD09Q1'
+var y = band12 + '-MODIS_old'
+var img = ee.Image([ee.ImageCollection(sens_modis.select(band12)).median().rename(x),
+                   ee.ImageCollection(sens_modis_old.select(band12)).median().rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
