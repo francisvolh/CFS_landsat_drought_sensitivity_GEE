@@ -316,9 +316,8 @@ print(chart)
 
 
 // delete me
-print('Compare MOD09Q1 with old MOD13Q1')
-print(sens_modis_old.bandNames())
 var index = 'NDVI'
+print('Compare MOD09Q1 with old MOD13Q1: ' + index)
 var band12 = 'Sens_' + index + '_ante12mo_p' + 10
 var x = band12 + '-MOD09Q1'
 var y = band12 + '-MODIS_old'
