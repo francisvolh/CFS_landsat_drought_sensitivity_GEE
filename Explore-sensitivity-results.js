@@ -281,9 +281,9 @@ Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 var index = 'NBR'
 print('Compare Landsat and MODIS: ' + index)
 var p = 10
-var band3 = 'Sens_' + index + '_ante3mo_p' + 10
-var band6 = 'Sens_' + index + '_ante6mo_p' + 10
-var band12 = 'Sens_' + index + '_ante12mo_p' + 10
+var band3 = 'Sens_' + index + '_ante3mo_p' + p
+var band6 = 'Sens_' + index + '_ante6mo_p' + p
+var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
 var img = ee.Image([ee.ImageCollection(sens_modis.select(band3)).median().rename(x),
