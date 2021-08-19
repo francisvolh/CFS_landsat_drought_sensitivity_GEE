@@ -278,8 +278,8 @@ Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 // }
 
 // Charts -----------------------------------------------------------------------
-print('Compare Landsat and MODIS')
 var index = 'NBR'
+print('Compare Landsat and MODIS: ' + index)
 var p = 10
 var band3 = 'Sens_' + index + '_ante3mo_p' + 10
 var band6 = 'Sens_' + index + '_ante6mo_p' + 10
