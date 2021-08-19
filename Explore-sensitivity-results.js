@@ -220,7 +220,7 @@ Map.addLayer(wisensor, null, 'gallery: within sensor', false);
 // Across sensor gallery strip
 var comb = ee.Image([sens_modis.select(band),
                      sens_land.select(band)])
-                .rename([band + ' - MODIS', band + ' - Landsat'])
+                .rename([band + ' - MOD09Q1', band + ' - Landsat'])
 var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
@@ -249,7 +249,7 @@ var imagesRGB = combcol.map(function(img) {
 var rows = 1;
 var columns = 3;
 var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrossindex, null, 'gallery: MODIS across index', false);
+Map.addLayer(acrossindex, null, 'gallery: MOD09Q1 across index', false);
 
 var comb = ee.Image([sens_land.select(forindex)])
 var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
