@@ -57,7 +57,7 @@ print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
 // Drought sensitivity
-var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
+// var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
@@ -278,7 +278,7 @@ Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 // }
 
 // Charts -----------------------------------------------------------------------
-var x = band + '-MODIS'
+var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
 var img = ee.Image([ee.ImageCollection(sens_modis.select(band)).median().rename(x),
                    ee.ImageCollection(sens_land.select(band)).median().rename(y)])
