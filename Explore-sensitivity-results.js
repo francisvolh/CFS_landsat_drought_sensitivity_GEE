@@ -52,7 +52,7 @@ var geometry2 =
     /* shown: false */
     ee.Geometry.Point([-119.9213387294983, 57.09791227473051]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var region = 'Yukon';
+var region = 'Alberta';
 print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
@@ -163,7 +163,7 @@ var selectBands = toview.bandNames()
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 // Or select band
-var band = 'Sens_NBR_ante12mo_p10';
+var band = 'Sens_NDVI_ante12mo_p10';
 
 // Or select period and percentile (to flex index)
 var forindex = toview.bandNames()
