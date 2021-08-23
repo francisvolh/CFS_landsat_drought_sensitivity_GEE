@@ -150,7 +150,7 @@ var hill = hillshade(az, ze, slope, aspect);
 
 
 // Filter -----------------------------------------------------------------------
-var toview = sens_modis;
+var toview = sens_land;
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -232,8 +232,8 @@ var imagesRGB = combcol.map(function(img) {
   return img.visualize(vizgallery).blend(label);
 });
 
-var rows = 6;
-var columns = 4;
+var rows = 1;
+var columns = 2;
 var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
