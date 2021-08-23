@@ -148,8 +148,6 @@ var az = 120
 var ze = 60
 var hill = hillshade(az, ze, slope, aspect);
 
-// diff
-var dif = sens_modis.select(band).subtract(sens_land.select(band));
 
 // Filter -----------------------------------------------------------------------
 var toview = sens_land;
@@ -178,6 +176,10 @@ var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames()
   });
 }));
 
+// Dif --------------------------------------------------------------------------
+var b = 'Sens_NDVI_ante12mo_p10'
+var dif = sens_modis.select(b).subtract(sens_modis_old.select(b));
+// print(ui.Chart.image.histogram({image: dif, region: geometry, maxBuckets: 100}))
 
 // Viz --------------------------------------------------------------------------
 var vizgallery = {min: min, max: max, palette: pal, opacity:1};
