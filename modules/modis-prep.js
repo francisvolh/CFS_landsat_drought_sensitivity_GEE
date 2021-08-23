@@ -18,7 +18,7 @@ exports.calcIndices = function(img) {
                     nir: img.select('sur_refl_b02')})
        .rename('NDVI'),
      img.expression('(nir - swir2) / (nir + swir2)',
-                   {nir: img.select('sur_refl_b01'),
+                   {nir: img.select('sur_refl_b02'),
                     swir2: img.select('sur_refl_b07')})
        .rename('NBR'),
      img.expression('2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))',
