@@ -30,7 +30,10 @@ var geometry2 =
           [-140.97749192943172, 63.06662186618014],
           [-137.43989427318172, 63.06662186618014],
           [-137.43989427318172, 64.6302003963719]]], null, false),
-    geolabelYukon = /* color: #98ff00 */ee.Geometry.Point([-140.94764181339778, 64.61367045208839]),
+    geolabelYukon = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Point([-140.94764181339778, 64.61367045208839]),
     geometryAlberta = 
     /* color: #d63000 */
     /* shown: false */
@@ -147,7 +150,7 @@ var hill = hillshade(az, ze, slope, aspect);
 
 
 // Filter -----------------------------------------------------------------------
-var toview = sens_land;
+var toview = sens_modis;
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -156,7 +159,7 @@ var p = 10;
 // Filter the band names before map. Comment any of these out to just map all bands
 var selectBands = toview.bandNames()
                         // .filter(ee.Filter.stringContains('item', 'p' + p))
-                        .filter(ee.Filter.stringContains('item', 'NDVI'))
+                        .filter(ee.Filter.stringContains('item', 'NBR'))
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 // Or select band
