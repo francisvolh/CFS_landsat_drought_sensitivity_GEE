@@ -66,7 +66,7 @@ var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + re
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
