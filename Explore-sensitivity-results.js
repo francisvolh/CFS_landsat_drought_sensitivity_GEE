@@ -165,7 +165,7 @@ var band = 'Sens_NBR_ante12mo_p10';
 // Or select period and percentile (to flex index)
 var forindex = toview.bandNames()
                      .filter(ee.Filter.stringContains('item', 'p' + p))
-                     .filter(ee.Filter.stringContains('item', 'ante6mo'));
+                     .filter(ee.Filter.stringContains('item', 'ante12mo'));
 
 // As a collection
 var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
