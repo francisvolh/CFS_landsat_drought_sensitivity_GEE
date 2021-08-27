@@ -50,11 +50,12 @@ exports.antecedentMeans = function(images, band, years) {
               .reduce(ee.Reducer.mean()),
         images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ante12max.advance(-3, 'year')))
               .select([band], [band5yr])
-              .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max.advance(-4, 'year')))
-              .select([band], [band5yr])
-              .reduce(ee.Reducer.mean())
-        ]).reduce(ee.Reducer.min())
+              .reduce(ee.Reducer.mean())//,
+        // images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max.advance(-4, 'year')))
+        //       .select([band], [band5yr])
+        //       .reduce(ee.Reducer.mean())
+              // .reduce(ee.Reducer.min())
+        ])
       ]).set({'year': yr});
   }));
 };
@@ -64,7 +65,7 @@ exports.ltPercentile = function(means, percentiles) {
   var percent3 = means.select(['CMI_ante3mo_mean'], ['CMI_lt_ante3mo']).reduce(ee.Reducer.percentile(percentiles));
   var percent6 = means.select(['CMI_ante6mo_mean'], ['CMI_lt_ante6mo']).reduce(ee.Reducer.percentile(percentiles));
   var percent12 = means.select(['CMI_ante12mo_mean'], ['CMI_lt_ante12mo']).reduce(ee.Reducer.percentile(percentiles));
-  var percent5 = means.select(['CMI_ante5yr_mean_min'], ['CMI_lt_ante5yr']).reduce(ee.Reducer.percentile(percentiles));
+  // var percent5 = means.select(['CMI_ante5yr_mean_min'], ['CMI_lt_ante5yr']).reduce(ee.Reducer.percentile(percentiles));
 
   return means.map(function(img){
     return ee.Image([
@@ -73,9 +74,10 @@ exports.ltPercentile = function(means, percentiles) {
       img.select('CMI_ante6mo_mean')
          .lt(percent6),
       img.select('CMI_ante12mo_mean')
-         .lt(percent12),
-      img.select('CMI_ante5yr_mean_min')
-         .lt(percent5)]).copyProperties(img);
+         .lt(percent12)//,
+      // img.select('CMI_ante5yr_mean_min')
+      //   .lt(percent5)
+      ]).copyProperties(img);
   });
 };
 
