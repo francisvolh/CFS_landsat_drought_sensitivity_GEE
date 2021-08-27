@@ -125,7 +125,9 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
 // MODIS -----------------------------------------------------------
-var veg = modis;
+var veg = modis
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices, rescale by 0.0001
