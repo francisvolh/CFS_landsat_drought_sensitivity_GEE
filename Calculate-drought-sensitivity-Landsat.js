@@ -17,7 +17,7 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Alberta';
+var region = 'Yukon';
 print('Region set: ' + region);
 
 
