@@ -75,7 +75,8 @@ exports.ltPercentile = function(means, percentiles) {
       img.select('CMI_ante12mo_mean')
          .lt(percent12)//,
       // img.select('CMI_ante5yr_mean_min')
-      //   .lt(percent5)]).copyProperties(img);
+      //   .lt(percent5)
+      ]).copyProperties(img);
   });
 };
 
