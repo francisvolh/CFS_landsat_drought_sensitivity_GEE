@@ -126,6 +126,7 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 
 // MODIS -----------------------------------------------------------
 var veg = modis
+  // *** CHECKING LANDSAT v MODIS ***
   .filter(ee.Filter.calendarRange(2000, 2012, 'year'))
 
 
