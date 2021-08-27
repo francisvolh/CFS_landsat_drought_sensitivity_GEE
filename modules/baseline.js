@@ -35,27 +35,26 @@ exports.antecedentMeans = function(images, band, years) {
       images.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
                                    ante12max))
             .select([band], [band12mo])
-            .reduce(ee.Reducer.mean()),
+            .reduce(ee.Reducer.mean())//,
 
       // Antecedent: 5 (driest in previous 5 years)
-      ee.ImageCollection([
-        images.filter(ee.Filter.date(ante12max.advance(-1, 'year'), ante12max))
-              .select([band], [band5yr])
-              .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-2, 'year'), ante12max.advance(-1, 'year')))
-              .select([band], [band5yr])
-              .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ante12max.advance(-2, 'year')))
-              .select([band], [band5yr])
-              .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ante12max.advance(-3, 'year')))
-              .select([band], [band5yr])
-              .reduce(ee.Reducer.mean())//,
-        // images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max.advance(-4, 'year')))
-        //       .select([band], [band5yr])
-        //       .reduce(ee.Reducer.mean())
-              // .reduce(ee.Reducer.min())
-        ])
+      // ee.ImageCollection([
+      //   images.filter(ee.Filter.date(ante12max.advance(-1, 'year'), ante12max))
+      //         .select([band], [band5yr])
+      //         .reduce(ee.Reducer.mean()),
+      //   images.filter(ee.Filter.date(ante12max.advance(-2, 'year'), ante12max.advance(-1, 'year')))
+      //         .select([band], [band5yr])
+      //         .reduce(ee.Reducer.mean()),
+      //   images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ante12max.advance(-2, 'year')))
+      //         .select([band], [band5yr])
+      //         .reduce(ee.Reducer.mean()),
+      //   images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ante12max.advance(-3, 'year')))
+      //         .select([band], [band5yr])
+      //         .reduce(ee.Reducer.mean()),
+      //   images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max.advance(-4, 'year')))
+      //         .select([band], [band5yr])
+      //         .reduce(ee.Reducer.mean())
+      //   ]).reduce(ee.Reducer.min())
       ]).set({'year': yr});
   }));
 };
@@ -76,8 +75,7 @@ exports.ltPercentile = function(means, percentiles) {
       img.select('CMI_ante12mo_mean')
          .lt(percent12)//,
       // img.select('CMI_ante5yr_mean_min')
-      //   .lt(percent5)
-      ]).copyProperties(img);
+      //   .lt(percent5)]).copyProperties(img);
   });
 };
 
