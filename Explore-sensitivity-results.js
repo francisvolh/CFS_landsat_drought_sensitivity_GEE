@@ -59,9 +59,11 @@ print('Region selected: ' + region)
 // Drought sensitivity
 var sens_modis_old = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region);
+var sens_modis_full = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
 var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + '2000_2012-' + region);
+var sens_land_full = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + region);
 
 // Load CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
@@ -325,6 +327,31 @@ var x = band12 + '-MOD09Q1'
 var y = band12 + '-MODIS_old'
 var img = ee.Image([sens_modis.select(band12).rename(x),
                     sens_modis_old.select(band12).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y})
+print(chart)
+
+// delete me
+var index = 'NDVI'
+var band12 = 'Sens_' + index + '_ante12mo_p' + 10
+var x = band12 + '-Landsat-2000_2012'
+var y = band12 + '-Landsat-full'
+var img = ee.Image([sens_land_full.select(band12).rename(x),
+                    sens_land_full.select(band12).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y})
+print(chart)
+
+var index = 'NDVI'
+var band12 = 'Sens_' + index + '_ante12mo_p' + 10
+var x = band12 + '-MODIS-2000_2012'
+var y = band12 + '-MODIS-full'
+var img = ee.Image([sens_modis_full.select(band12).rename(x),
+                    sens_modis_full.select(band12).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
