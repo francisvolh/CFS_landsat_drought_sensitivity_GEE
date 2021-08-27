@@ -288,7 +288,6 @@ var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
-print(ee.ImageCollection(sens_modis.select(band3)))
 var img = ee.Image([sens_modis.select(band3).rename(x), 
                     sens_land.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
