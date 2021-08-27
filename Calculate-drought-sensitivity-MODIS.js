@@ -194,8 +194,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-fixbase-' + region,
+  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-fixbase-' + region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
