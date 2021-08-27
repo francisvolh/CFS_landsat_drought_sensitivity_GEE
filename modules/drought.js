@@ -1,4 +1,7 @@
 // Variables --------------------------------------------------------
+// Set percentiles to use
+var percentiles = [1, 5, 10, 20];
+
 // Set min max year for daymet
 var minyear = 1980;
 var maxyear = 2019;
