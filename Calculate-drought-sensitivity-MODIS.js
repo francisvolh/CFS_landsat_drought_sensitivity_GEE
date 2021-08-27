@@ -17,7 +17,7 @@ var alberta =
 // --- MODIS ---
 // Alec L. Robitaille
 
-var region = 'Alberta';
+var region = 'Yukon';
 print('Region set: ' + region);
 
 
@@ -53,20 +53,11 @@ var indices = ['NDVI', 'EVI', 'NBR'];
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
-// Aggregate functions
-var agg = require('users/robitalec/CFS:modules/aggregate.js');
-
-// CMI functions
-var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
-
 // MODIS prep functions
 var modisprep = require('users/robitalec/CFS:modules/modis-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
-
-// Baseline functions
-var baseline = require('users/robitalec/CFS:modules/baseline.js');
 
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
@@ -79,6 +70,9 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
+
+// Drought module
+var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 
@@ -98,30 +92,7 @@ modis = modis
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Daymet -----------------------------------------------------------
-// Aggregate
-var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
-
-// Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
-aggDaymet = aggDaymet
-  .map(cmiDaymet.calcETMAX)
-  .map(cmiDaymet.calcETMIN)
-  .map(cmiDaymet.calcETDEW)
-  .map(cmiDaymet.calcVPD)
-  .map(cmiDaymet.calcTAVG515)
-  .map(cmiDaymet.calcKTRF)
-  .map(cmiDaymet.calcPET)
-  .map(cmiDaymet.calcCMI);
-
-// Calculate baseline
-// Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
-var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
-
-// Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
-var drought = baseline.ltPercentile(means, percentiles);
-
-// Drop since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
-drought = drought.filter(ee.Filter.gt('year', 1980));
-
+var drought = droughtModule.baselineCMI();
 
 
 // MODIS -----------------------------------------------------------
@@ -194,8 +165,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-fixbase-' + region,
-  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-fixbase-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
+  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
