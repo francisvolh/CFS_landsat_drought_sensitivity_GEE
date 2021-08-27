@@ -34,8 +34,8 @@ exports.antecedentMeans = function(images, band, years) {
       // Reduce with mean reducer
       images.filter(ee.Filter.date(ante12max.advance(-1, 'year'),
                                    ante12max))
-              .select([band], [band12mo])
-              .reduce(ee.Reducer.mean()),
+            .select([band], [band12mo])
+            .reduce(ee.Reducer.mean()),
 
       // Antecedent: 5 (driest in previous 5 years)
       ee.ImageCollection([
