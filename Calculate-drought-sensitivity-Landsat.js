@@ -206,8 +206,8 @@ Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + region,
-  folder: 'CFS-drought-sensitivity-Landsat-' + region,
+  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region,
+  folder: 'CFS-drought-sensitivity-Landsat-' + '2000_2012-' + region,
   region: geo,
   scale: 250,
   maxPixels: 1e9
@@ -216,8 +216,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-' + region,
+  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region,
+  assetId: 'CFS/drought-sensitivity-Landsat-' + '2000_2012-' + region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
