@@ -57,8 +57,8 @@ print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
 // Drought sensitivity
-var sens_modis_old = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + '2000_2012-' + region);
-var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
+var sens_modis_old = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
+var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region);
 
 // Landsat
 var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + '2000_2012-' + region);
