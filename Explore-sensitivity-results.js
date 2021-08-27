@@ -289,8 +289,8 @@ var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
 print(ee.ImageCollection(sens_modis.select(band3)))
-var img = ee.Image([ee.ImageCollection(sens_modis.select(band3)).first().rename(x),
-                   ee.ImageCollection(sens_land.select(band3)).first().rename(y)])
+var img = ee.Image([sens_modis.select(band3).rename(x), 
+                    sens_land.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
@@ -299,8 +299,8 @@ print(chart)
 
 var x = band6 + '-MOD09Q1'
 var y = band6 + '-Landsat'
-var img = ee.Image([ee.ImageCollection(sens_modis.select(band6)).first().rename(x),
-                   ee.ImageCollection(sens_land.select(band6)).first().rename(y)])
+var img = ee.Image([sens_modis.select(band6).rename(x),
+                    sens_land.select(band6).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
@@ -309,8 +309,8 @@ print(chart)
 
 var x = band12 + '-MOD09Q1'
 var y = band12 + '-Landsat'
-var img = ee.Image([ee.ImageCollection(sens_modis.select(band12)).first().rename(x),
-                   ee.ImageCollection(sens_land.select(band12)).first().rename(y)])
+var img = ee.Image([sens_modis.select(band12).rename(x),
+                    sens_land.select(band12).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
@@ -324,8 +324,8 @@ print('Compare MOD09Q1 with old MOD13Q1: ' + index)
 var band12 = 'Sens_' + index + '_ante12mo_p' + 10
 var x = band12 + '-MOD09Q1'
 var y = band12 + '-MODIS_old'
-var img = ee.Image([ee.ImageCollection(sens_modis.select(band12)).first().rename(x),
-                   ee.ImageCollection(sens_modis_old.select(band12)).first().rename(y)])
+var img = ee.Image([ee.ImageCollection(sens_modis.select(band12)).rename(x),
+                   ee.ImageCollection(sens_modis_old.select(band12)).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
