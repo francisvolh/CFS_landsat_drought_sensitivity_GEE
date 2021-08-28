@@ -159,6 +159,7 @@ vegM = vegM.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']
 
 // Compare ---------------------------------------------------------
 var yr = 2010;
+var n = 1e5;
 
 var index = 'NDVI';
 var x = index + ' MODIS ' + yr;
@@ -169,7 +170,7 @@ var modis_filt = vegM.filter(ee.Filter.eq('year', yr))
 var landsat_filt = vegL.filter(ee.Filter.eq('year', yr))
                        .select([index], [y]).first();
 var img = ee.Image([modis_filt, landsat_filt]);
-var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, 1e3, 42).geometry(), scale: 30});
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, n, 42).geometry(), scale: 30});
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y});
@@ -185,7 +186,7 @@ var modis_filt = vegM.filter(ee.Filter.eq('year', yr))
 var landsat_filt = vegL.filter(ee.Filter.eq('year', yr))
                        .select([index], [y]).first();
 var img = ee.Image([modis_filt, landsat_filt]);
-var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, 1e3, 42).geometry(), scale: 30});
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, n, 42).geometry(), scale: 30});
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y});
@@ -200,7 +201,7 @@ var modis_filt = vegM.filter(ee.Filter.eq('year', yr))
 var landsat_filt = vegL.filter(ee.Filter.eq('year', yr))
                        .select([index], [y]).first();
 var img = ee.Image([modis_filt, landsat_filt]);
-var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, 1e3, 42).geometry(), scale: 30});
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, n, 42).geometry(), scale: 30});
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y});
