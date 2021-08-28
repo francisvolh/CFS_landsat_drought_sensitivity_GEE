@@ -153,7 +153,7 @@ vegM = vegM
   .select(indices);
 
 // Split vegetation indices into drought/non-drought pixels
-vegM = modisprep.aggregateY(veg);
+vegM = modisprep.aggregateY(vegM);
 vegM = vegM.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 
