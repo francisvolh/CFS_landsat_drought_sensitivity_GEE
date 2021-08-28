@@ -36,7 +36,7 @@ var cmi = aggDaymet
   .map(cmiDaymet.calcKTRF)
   .map(cmiDaymet.calcPET)
   .map(cmiDaymet.calcCMI);
-Map.addLayer(cmi.select('CMI'))
+
 // Calculate baseline
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(cmi, 'CMI', years);
