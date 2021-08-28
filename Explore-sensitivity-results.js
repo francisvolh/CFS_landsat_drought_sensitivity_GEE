@@ -58,7 +58,7 @@ print('Region selected: ' + region)
 // Data -------------------------------------------------------------------------
 // Drought sensitivity
 var sens_modis_old = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
-var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region);
+var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region);
 var sens_modis_full = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
@@ -339,7 +339,7 @@ var band12 = 'Sens_' + index + '_ante12mo_p' + 10
 var x = band12 + '-Landsat-2000_2012'
 var y = band12 + '-Landsat-full'
 var img = ee.Image([sens_land_full.select(band12).rename(x),
-                    sens_land_full.select(band12).rename(y)])
+                    sens_land.select(band12).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
@@ -351,7 +351,7 @@ var band12 = 'Sens_' + index + '_ante12mo_p' + 10
 var x = band12 + '-MODIS-2000_2012'
 var y = band12 + '-MODIS-full'
 var img = ee.Image([sens_modis_full.select(band12).rename(x),
-                    sens_modis_full.select(band12).rename(y)])
+                    sens_modis.select(band12).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
