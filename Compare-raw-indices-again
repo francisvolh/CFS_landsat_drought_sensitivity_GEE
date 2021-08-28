@@ -164,9 +164,9 @@ var index = 'NDVI'
 var x = index + ' MODIS ' + yr
 var y = index + ' Landsat ' + yr
 
-var modis_filt = vegM.filter(ee.Filter.eq(yr, 'year'))
+var modis_filt = vegM.filter(ee.Filter.eq('year', yr))
                      .select(index, x)
-var landsat_filt = vegL.filter(ee.Filter.eq(yr, 'year'))
+var landsat_filt = vegL.filter(ee.Filter.eq('year', yr))
                        .select(index, y)
 var img = ee.Image([modis_filt, landsat_filt])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, 1e3, 42).geometry(), scale: 30})
