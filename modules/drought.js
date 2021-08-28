@@ -49,5 +49,5 @@ drought = drought.filter(ee.Filter.gt('year', 1980));
 
 
 exports.baselineCMI = function() {
-  return drought
-}
+  return drought;
+};
