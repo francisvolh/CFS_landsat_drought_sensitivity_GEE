@@ -17,7 +17,7 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Yukon';
+var region = 'Alberta';
 print('Region set: ' + region);
 
 
@@ -51,7 +51,7 @@ var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
-var percentiles = [1, 5, 10, 20];
+var percentiles = [5, 10, 20];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
@@ -64,20 +64,11 @@ var indices = ['NDVI', 'NBR', 'EVI'];
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
-// Aggregate functions
-var agg = require('users/robitalec/CFS:modules/aggregate.js');
-
-// CMI functions
-var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
-
 // Landsat prep functions
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
-
-// Baseline functions
-var baseline = require('users/robitalec/CFS:modules/baseline.js');
 
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
@@ -90,6 +81,9 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
+
+// Drought module
+var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 
@@ -118,29 +112,7 @@ l7 = l7
 
 
 // Daymet -----------------------------------------------------------
-// Aggregate
-var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
-
-// Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
-aggDaymet = aggDaymet
-  .map(cmiDaymet.calcETMAX)
-  .map(cmiDaymet.calcETMIN)
-  .map(cmiDaymet.calcETDEW)
-  .map(cmiDaymet.calcVPD)
-  .map(cmiDaymet.calcTAVG515)
-  .map(cmiDaymet.calcKTRF)
-  .map(cmiDaymet.calcPET)
-  .map(cmiDaymet.calcCMI);
-
-// Calculate baseline
-// Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
-var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
-
-// Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
-var drought = baseline.ltPercentile(means, percentiles);
-
-// Drop before 1985 since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
-drought = drought.filter(ee.Filter.gt('year', 1980));
+var drought = droughtModule.baselineCMI();
 
 
 
@@ -198,7 +170,7 @@ var viz = {min: min, max: max, palette: pal};
 // }
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
 
-Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
+// Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
 
 
