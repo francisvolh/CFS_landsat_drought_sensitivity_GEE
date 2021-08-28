@@ -206,14 +206,3 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}});
 print(chart);
-
-
-// var linearFit = img.reduceRegion({
-//   reducer: ee.Reducer.linearFit(),
-//   geometry: geo,
-//   scale: 30,
-//   bestEffort: true
-// });
-// print(linearFit)
-
-
