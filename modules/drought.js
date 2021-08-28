@@ -27,7 +27,7 @@ var baseline = require('users/robitalec/CFS:modules/baseline.js');
 var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
 
 // Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
-aggDaymet = aggDaymet
+var cmi = aggDaymet
   .map(cmiDaymet.calcETMAX)
   .map(cmiDaymet.calcETMIN)
   .map(cmiDaymet.calcETDEW)
@@ -36,10 +36,10 @@ aggDaymet = aggDaymet
   .map(cmiDaymet.calcKTRF)
   .map(cmiDaymet.calcPET)
   .map(cmiDaymet.calcCMI);
-
+Map.addLayer(cmi)
 // Calculate baseline
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
-var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
+var means = baseline.antecedentMeans(cmi, 'CMI', years);
 
 // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
 var drought = baseline.ltPercentile(means, percentiles);
