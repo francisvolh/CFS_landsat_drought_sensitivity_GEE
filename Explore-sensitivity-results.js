@@ -295,7 +295,7 @@ var img = ee.Image([sens_modis.select(band3).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
 var x = band6 + '-MOD09Q1'
@@ -305,7 +305,7 @@ var img = ee.Image([sens_modis.select(band6).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
 var x = band12 + '-MOD09Q1'
@@ -315,7 +315,7 @@ var img = ee.Image([sens_modis.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
 
@@ -330,7 +330,7 @@ var img = ee.Image([sens_modis.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
 // delete me
@@ -343,7 +343,7 @@ var img = ee.Image([sens_land_full.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
 var index = 'NDVI'
@@ -355,5 +355,5 @@ var img = ee.Image([sens_modis_full.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
