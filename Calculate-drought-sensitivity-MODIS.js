@@ -147,7 +147,7 @@ var viz = {min: min, max: max, palette: pal};
 // }
 // showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
 
-Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
+// Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
 // Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
 
 
@@ -165,8 +165,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region,
+  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
