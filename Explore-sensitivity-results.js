@@ -392,6 +392,7 @@ print(chart)
 
 
 // delete me
+print('Compare old')
 var index = 'NDVI'
 var band12 = 'Sens_' + index + '_ante12mo_p' + 10
 var x = band12 + '-MOD09Q1'
