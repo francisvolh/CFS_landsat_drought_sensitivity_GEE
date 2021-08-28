@@ -173,7 +173,7 @@ var img = ee.Image([modis_filt, landsat_filt]);
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, n, 42).geometry(), scale: 30});
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y});
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}});
 print(chart);
 
 
@@ -189,7 +189,7 @@ var img = ee.Image([modis_filt, landsat_filt]);
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, n, 42).geometry(), scale: 30});
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y});
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}});
 print(chart);
 
 var index = 'EVI';
