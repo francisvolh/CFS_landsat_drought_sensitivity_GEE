@@ -165,11 +165,10 @@ var x = index + ' MODIS ' + yr
 var y = index + ' Landsat ' + yr
 
 var modis_filt = vegM.filter(ee.Filter.eq(yr, 'year'))
-                     .select(index)
+                     .select(index, x)
 var landsat_filt = vegL.filter(ee.Filter.eq(yr, 'year'))
-                       .select(index)
-var img = ee.Image([modis_filt.rename(x),
-                    landsat_filt.rename(y)])
+                       .select(index, y)
+var img = ee.Image([modis_filt, landsat_filt])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geo, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
