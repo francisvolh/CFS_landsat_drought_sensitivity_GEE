@@ -211,9 +211,10 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Gallery ----------------------------------------------------------------------
 var selectBands = toview.bandNames()
-                        .filter(ee.Filter.or(ee.Filter.stringEndsWith('item', '5'),
-                                             ee.Filter.stringEndsWith('item', '10'),
-                                             ee.Filter.stringEndsWith('item', '20')))
+                        .filter(ee.Filter.stringEndsWith('item', '5'))
+                        // .filter(ee.Filter.or(ee.Filter.stringEndsWith('item', '5'),
+                        //                     ee.Filter.stringEndsWith('item', '10'),
+                        //                     ee.Filter.stringEndsWith('item', '20')))
 print(selectBands)
 
 // Within Landsat gallery strip
