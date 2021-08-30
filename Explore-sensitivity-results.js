@@ -317,6 +317,15 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
+var x = band12 + '-MOD09Q1-full'
+var y = band12 + '-Landsat-full'
+var img = ee.Image([sens_modis_full.select(band12).rename(x),
+                    sens_land_full.select(band12).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
 var index = 'NDVI'
 print('Compare Landsat and MODIS: ' + index)
 var p = 10
@@ -337,6 +346,16 @@ var x = band6 + '-MOD09Q1'
 var y = band6 + '-Landsat'
 var img = ee.Image([sens_modis.select(band6).rename(x),
                     sens_land.select(band6).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var x = band6 + '-MOD09Q1-full'
+var y = band6 + '-Landsat-full'
+var img = ee.Image([sens_modis_full.select(band6).rename(x),
+                    sens_land_full.select(band6).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
