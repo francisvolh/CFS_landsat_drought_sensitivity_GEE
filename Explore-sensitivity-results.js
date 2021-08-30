@@ -219,7 +219,7 @@ var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames()
   return toview.select([name]).set({"name": ee.String(name)
   });
 }));
-var imagesRGB = toview.map(function(img) {
+var imagesRGB = ascol.map(function(img) {
   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
   return img.visualize(vizgallery).blend(label);
