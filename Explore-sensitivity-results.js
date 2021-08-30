@@ -271,35 +271,35 @@ var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(
 Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
 // Across index, within sensor gallery strip
-var comb = ee.Image([sens_modis.select(forindex)])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
-  return comb.select([name]).set({"name": ee.String(name)})
-}));
-var imagesRGB = combcol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-  return img.visualize(vizgallery).blend(label);
-});
+// var comb = ee.Image([sens_modis.select(forindex)])
+// var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
+//   return comb.select([name]).set({"name": ee.String(name)})
+// }));
+// var imagesRGB = combcol.map(function(img) {
+//   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+//       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+//   return img.visualize(vizgallery).blend(label);
+// });
 
-var rows = 1;
-var columns = 3;
-var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrossindex, null, 'gallery: MOD09Q1 across index', false);
+// var rows = 1;
+// var columns = 3;
+// var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+// Map.addLayer(acrossindex, null, 'gallery: MOD09Q1 across index', false);
 
-var comb = ee.Image([sens_land.select(forindex)])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
-  return comb.select([name]).set({"name": ee.String(name)})
-}));
-var imagesRGB = combcol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-  return img.visualize(vizgallery).blend(label);
-});
-
-var rows = 1;
-var columns = 3;
-var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
+// var comb = ee.Image([sens_land.select(forindex)])
+// var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
+//   return comb.select([name]).set({"name": ee.String(name)})
+// }));
+// var imagesRGB = combcol.map(function(img) {
+//   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+//       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+//   return img.visualize(vizgallery).blend(label);
+// });
+// 
+// var rows = 1;
+// var columns = 3;
+// var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+// Map.addLayer(acrossindex, null, 'gallery: Landsat across index', false);
 
 
 // Add all bands separately
