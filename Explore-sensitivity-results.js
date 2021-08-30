@@ -268,7 +268,7 @@ var imagesRGB = combcol.map(function(img) {
 var rows = 2;
 var columns = 3;
 var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
+Map.addLayer(acrosssensors, null, 'gallery: across sensor - MODIS (top) Landsat (bottom)', false);
 
 // Across index, within sensor gallery strip
 // var comb = ee.Image([sens_modis.select(forindex)])
