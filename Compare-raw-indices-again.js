@@ -158,8 +158,8 @@ vegM = vegM.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']
 
 
 // Compare ---------------------------------------------------------
-var yr = 2007;
-var n = 1e3;
+var yr = 2003;
+var n = 1e4;
 
 var index = 'NDVI';
 var x = index + ' MODIS ' + yr;
