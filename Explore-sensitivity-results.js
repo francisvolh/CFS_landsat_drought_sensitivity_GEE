@@ -251,11 +251,13 @@ var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), ro
 Map.addLayer(wisensor, null, 'gallery: within MODIS', false);
 
 // Across sensor gallery strip
-var selectBands = toview.bandNames()
+var selectBands = ['Sens_NDVI_ante3mo_p20', 'Sens_EVI_ante3mo_p20', 'Sens_NBR_ante3mo_p20',
+                   'Sens_NDVI_ante6mo_p20', 'Sens_EVI_ante6mo_p20', 'Sens_NBR_ante6mo_p20',
+                   'Sens_NDVI_ante12mo_p20', 'Sens_EVI_ante12mo_p20', 'Sens_NBR_ante12mo_p20']
+var selectBands = toview.bandNames().aside(print)
                         .filter(ee.Filter.stringContains('item', 'NBR'))
                         .filter(ee.Filter.stringContains('item', 'p1').not())
                         .filter(ee.Filter.stringContains('item', 'ante12mo'));
-
 var comb = ee.Image([sens_modis.select(selectBands),
                      sens_land.select(selectBands)])
                 .rename([selectBands + ' - MOD09Q1', selectBands + ' - Landsat'])
