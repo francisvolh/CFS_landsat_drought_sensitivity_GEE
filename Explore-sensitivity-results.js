@@ -230,7 +230,7 @@ var imagesRGB = ascol.map(function(img) {
 });
 print(toview.select(selectBands))
 var rows = 3;
-var columns = 9;
+var columns = 3;
 var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(wisensor, null, 'gallery: within Landsat', false);
 
