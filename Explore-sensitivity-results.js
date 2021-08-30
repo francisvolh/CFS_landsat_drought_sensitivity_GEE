@@ -174,7 +174,7 @@ var forindex = toview.bandNames()
 
 // As a collection
 var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
-  return sens_modis.select([name]).set({"name": ee.String(name)
+  return toview.select([name]).set({"name": ee.String(name)
   });
 }));
 
@@ -209,22 +209,53 @@ Map.addLayer(sens_land.select(band), viz, 'Landsat ' + band, false);
 // Land cover reverse mask
 Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false);
 
-// Within sensor gallery strip
-var imagesRGB = ascol.map(function(img) {
+// Gallery ----------------------------------------------------------------------
+var selectBands = toview.bandNames()
+                        .filter(ee.Filter.stringContains('item', 'p1')).not()
+
+// Within Landsat gallery strip
+var toview = sens_land
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
+  return toview.select([name]).set({"name": ee.String(name)
+  });
+}));
+var imagesRGB = toview.map(function(img) {
   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
   return img.visualize(vizgallery).blend(label);
 });
 
-var rows = 6;
-var columns = 4;
+var rows = 3;
+var columns = 3;
 var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(wisensor, null, 'gallery: within sensor', false);
+Map.addLayer(wisensor, null, 'gallery: within Landsat', false);
+
+// Within MODIS gallery strip
+var toview = sens_modis
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
+  return toview.select([name]).set({"name": ee.String(name)
+  });
+}));
+var imagesRGB = toview.map(function(img) {
+  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+  return img.visualize(vizgallery).blend(label);
+});
+
+var rows = 3;
+var columns = 3;
+var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(wisensor, null, 'gallery: within MODIS', false);
 
 // Across sensor gallery strip
-var comb = ee.Image([sens_modis.select(band),
-                     sens_land.select(band)])
-                .rename([band + ' - MOD09Q1', band + ' - Landsat'])
+var selectBands = toview.bandNames()
+                        .filter(ee.Filter.stringContains('item', 'NBR'))
+                        .filter(ee.Filter.stringContains('item', 'p1')).not()
+                        .filter(ee.Filter.stringContains('item', 'ante12mo'));
+
+var comb = ee.Image([sens_modis.select(selectBands),
+                     sens_land.select(selectBands)])
+                .rename([selectBands + ' - MOD09Q1', selectBands + ' - Landsat'])
 var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
@@ -234,8 +265,8 @@ var imagesRGB = combcol.map(function(img) {
   return img.visualize(vizgallery).blend(label);
 });
 
-var rows = 1;
-var columns = 2;
+var rows = 2;
+var columns = 3;
 var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 
@@ -290,7 +321,7 @@ var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
-var img = ee.Image([sens_modis.select(band3).rename(x), 
+var img = ee.Image([sens_modis.select(band3).rename(x),
                     sens_land.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
@@ -326,7 +357,7 @@ var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
-var img = ee.Image([sens_modis.select(band3).rename(x), 
+var img = ee.Image([sens_modis.select(band3).rename(x),
                     sens_land.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
@@ -362,7 +393,7 @@ var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
-var img = ee.Image([sens_modis.select(band3).rename(x), 
+var img = ee.Image([sens_modis.select(band3).rename(x),
                     sens_land.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
@@ -390,7 +421,7 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
 print(chart)
 
-// 
+//
 var index = 'EVI'
 print('Compare Landsat and MODIS - full time series: ' + index)
 var p = 10
@@ -399,7 +430,7 @@ var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
 var x = band3 + '-MOD09Q1'
 var y = band3 + '-Landsat'
-var img = ee.Image([sens_modis_full.select(band3).rename(x), 
+var img = ee.Image([sens_modis_full.select(band3).rename(x),
                     sens_land_full.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
