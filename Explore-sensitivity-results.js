@@ -215,7 +215,6 @@ var selectBands = toview.bandNames()
                         // .filter(ee.Filter.or(ee.Filter.stringEndsWith('item', '5'),
                         //                     ee.Filter.stringEndsWith('item', '10'),
                         //                     ee.Filter.stringEndsWith('item', '20')))
-print(selectBands)
 
 // Within Landsat gallery strip
 var toview = sens_land
@@ -228,7 +227,7 @@ var imagesRGB = ascol.map(function(img) {
       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
   return img.visualize(vizgallery).blend(label);
 });
-print(toview.select(selectBands))
+
 var rows = 3;
 var columns = 3;
 var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
