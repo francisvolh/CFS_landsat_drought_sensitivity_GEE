@@ -165,7 +165,7 @@ var selectBands = toview.bandNames()
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
 // Or select band
-var band = 'Sens_EVI_ante12mo_p10';
+var band = 'Sens_NBR_ante12mo_p10';
 
 // Or select period and percentile (to flex index)
 var forindex = toview.bandNames()
@@ -256,7 +256,6 @@ var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringContains('item', 'ante12mo'))
 var comb = ee.Image([sens_modis.select(selectBands),
                      sens_land.select(selectBands)])
-                .rename([selectBands + ' - MOD09Q1', selectBands + ' - Landsat'])
 var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
   return comb.select([name]).set({"name": ee.String(name)})
 }));
