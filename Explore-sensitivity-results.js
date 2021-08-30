@@ -211,7 +211,7 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Gallery ----------------------------------------------------------------------
 var selectBands = toview.bandNames()
-                        .filter(ee.Filter.stringContains('item', 'p1')).not()
+                        .filter(ee.Filter.stringContains('item', 'p1').not())
 
 // Within Landsat gallery strip
 var toview = sens_land
@@ -250,7 +250,7 @@ Map.addLayer(wisensor, null, 'gallery: within MODIS', false);
 // Across sensor gallery strip
 var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringContains('item', 'NBR'))
-                        .filter(ee.Filter.stringContains('item', 'p1')).not()
+                        .filter(ee.Filter.stringContains('item', 'p1').not())
                         .filter(ee.Filter.stringContains('item', 'ante12mo'));
 
 var comb = ee.Image([sens_modis.select(selectBands),
@@ -295,7 +295,7 @@ Map.addLayer(acrosssensors, null, 'gallery: across sensor', false);
 //       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
 //   return img.visualize(vizgallery).blend(label);
 // });
-// 
+//
 // var rows = 1;
 // var columns = 3;
 // var acrossindex = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
