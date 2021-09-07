@@ -36,6 +36,7 @@ var geometry2 =
     ee.Geometry.Point([-140.94764181339778, 64.61367045208839]),
     geometryAlberta = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
