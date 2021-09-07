@@ -36,7 +36,6 @@ var geometry2 =
     ee.Geometry.Point([-140.94764181339778, 64.61367045208839]),
     geometryAlberta = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -253,7 +252,7 @@ Map.addLayer(wisensor, null, 'gallery: within MODIS', false);
 // Across sensor gallery strip
 var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringEndsWith('item', '10'))
-                        .filter(ee.Filter.stringContains('item', 'ante3mo'))
+                        .filter(ee.Filter.stringContains('item', 'ante12mo'))
 var comb = ee.Image([sens_modis.select(selectBands),
                      sens_land.select(selectBands)])
 var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
