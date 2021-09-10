@@ -140,8 +140,8 @@ var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices)
 
 var exp = {
   image: splits,
-  description: 'sample-indices-pre-calc-Landsat' + region,
-  assetId: 'sample-indices-pre-calc-Landsat' + region,
+  description: 'sample-indices-pre-calc-Landsat-' + region,
+  assetId: 'sample-indices-pre-calc-Landsat-' + region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
