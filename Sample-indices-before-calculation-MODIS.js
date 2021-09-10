@@ -103,7 +103,7 @@ var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices)
 
 // Export -------------------------------------------------------
 var exp = {
-  image: droughtSens,
+  image: splits,
   description: 'sample-indices-pre-calc-MODIS-' + region,
   assetId: 'sample-indices-pre-calc-MODIS-' + region,
   region: geo,
