@@ -139,7 +139,7 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 var exp = {
-  image: droughtSens,
+  image: splits,
   description: 'sample-indices-pre-calc-Landsat' + region,
   assetId: 'sample-indices-pre-calc-Landsat' + region,
   region: geo,
