@@ -138,10 +138,11 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
+var yr = 2003;
 var exp = {
-  image: splits,
-  description: 'sample-indices-pre-calc-Landsat-' + region,
-  assetId: 'sample-indices-pre-calc-Landsat-' + region,
+  image: splits.filter(ee.Filter.eq('year', yr)).first(),
+  description: 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region,
+  assetId: 'sample-indices-pre-calc-Landsat-' +  yr + '-'+ region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
