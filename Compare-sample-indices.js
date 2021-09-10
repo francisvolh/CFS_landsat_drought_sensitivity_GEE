@@ -4,14 +4,10 @@ print('Region selected: ' + region)
 print('Year selected: ' + 2003)
 
 // Data -------------------------------------------------------------------------
-// Drought sensitivity
-var indices_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MODIS-' + region);
+var indices_modis = ee.Image('users/robitalec/CFS/' + 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
 
 // Landsat
-var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + '2000_2012-' + region);
-
-// Land cover mask function
-var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+var indices_landsat = ee.Image('users/robitalec/CFS/' + 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
 
 var geometry =
     ee.Geometry.Polygon(
@@ -22,6 +18,9 @@ var geometry =
 
 
 // Functions ---------------------------------------------------------------------
+// Land cover mask function
+var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+
 // Gena's functions
 var palettes = require('users/gena/packages:palettes');
 var text = require('users/gena/packages:text');
