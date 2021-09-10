@@ -109,8 +109,6 @@ Map.addLayer(ee.Image(1), {palette:'747474'}, 'constant', false);
 // Hillshade
 Map.addLayer(hill, {opacity:0.7}, az + ' deg', false);
 
-// CTEF regions
-Map.addLayer(ctef, null, 'ctef', false);
 
 // MODIS and Landsat, selected band
 Map.addLayer(indices_modis.select(band), viz, 'MODIS ' + band, false);
