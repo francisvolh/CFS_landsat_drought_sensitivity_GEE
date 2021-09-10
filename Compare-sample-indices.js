@@ -131,7 +131,7 @@ var band = index + '_' + ante + '_p10_' + which
 var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
 var img = ee.Image([indices_modis.select(band3).rename(x),
-                    indices_landsat.select(band3).rename(y)])
+                    indices_landsat.select(band).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
