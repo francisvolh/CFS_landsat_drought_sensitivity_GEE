@@ -92,13 +92,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 // Filter -----------------------------------------------------------
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
-
-if (region == 'Yukon') {
-  var geo = geometry;
-} else if (region == 'Alberta') {
-  var geo = geome;
-}
+var geo = geometry;
 
 // Landsat 5
 l5 = l5
