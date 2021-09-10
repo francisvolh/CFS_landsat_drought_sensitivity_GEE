@@ -1,4 +1,18 @@
-// === Calculate Drought Sensitivity ===
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.9594647158567, 64.06256790235535],
+          [-140.9594647158567, 61.98024284713474],
+          [-136.0815350283567, 61.98024284713474],
+          [-136.0815350283567, 64.06256790235535]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+// === Sample indices before calculation ===
 // --- Landsat ---
 // Alec L. Robitaille
 
@@ -7,6 +21,13 @@ var region = 'Yukon';
 print('Region set: ' + region);
 
 
+var geometry = 
+    ee.Geometry.Polygon(
+        [[[-140.9594647158567, 64.06256790235535],
+          [-140.9594647158567, 61.98024284713474],
+          [-136.0815350283567, 61.98024284713474],
+          [-136.0815350283567, 64.06256790235535]]], null, false);
+          
 
 // Data -------------------------------------------------------------
 // CTEF regions
@@ -37,7 +58,7 @@ var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
-var percentiles = [1, 5, 10, 20];
+var percentiles = [10];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
@@ -78,9 +99,9 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 if (region == 'Yukon') {
-  var geo = ctef;
+  var geo = geometry;
 } else if (region == 'Alberta') {
-  var geo = alberta;
+  var geo = geome;
 }
 
 // Landsat 5
@@ -126,3 +147,13 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
+
+var exp = {
+  image: droughtSens,
+  description: 'sample-indices-pre-calc-Landsat' + region,
+  assetId: 'sample-indices-pre-calc-Landsat' + region,
+  region: geo,
+  scale: 30,
+  maxPixels: 1e9
+};
+Export.image.toAsset(exp);
