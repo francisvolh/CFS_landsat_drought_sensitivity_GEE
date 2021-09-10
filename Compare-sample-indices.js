@@ -4,10 +4,10 @@ print('Region selected: ' + region)
 print('Year selected: ' + 2003)
 
 // Data -------------------------------------------------------------------------
-var indices_modis = ee.Image('users/robitalec/CFS/' + 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
+var indices_modis = ee.Image('users/robitalec/' + 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
 
 // Landsat
-var indices_landsat = ee.Image('users/robitalec/CFS/' + 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
+var indices_landsat = ee.Image('users/robitalec/' + 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
 
 var geometry =
     ee.Geometry.Polygon(
@@ -79,7 +79,7 @@ var hill = hillshade(az, ze, slope, aspect);
 
 
 // Filter -----------------------------------------------------------------------
-var toview = sens_land;
+var toview = indices_modis;
 
 // Set the percentile to view
 // either 5, 10, or 20
@@ -91,6 +91,7 @@ var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringContains('item', 'NBR'))
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
+print(indices_modis)
 // Or select band
 var band = 'Sens_NBR_ante12mo_p10';
 
