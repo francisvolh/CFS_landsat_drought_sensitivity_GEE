@@ -93,7 +93,7 @@ var selectBands = toview.bandNames()
 
 print(indices_modis)
 // Or select band
-var band = 'Sens_NBR_ante12mo_p10';
+var band = 'NDVI_ante3mo_p10_base';
 
 
 
