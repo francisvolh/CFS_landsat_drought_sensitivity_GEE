@@ -113,8 +113,8 @@ Map.addLayer(hill, {opacity:0.7}, az + ' deg', false);
 Map.addLayer(ctef, null, 'ctef', false);
 
 // MODIS and Landsat, selected band
-Map.addLayer(sens_modis.select(band), viz, 'MODIS ' + band, false);
-Map.addLayer(sens_land.select(band), viz, 'Landsat ' + band, false);
+Map.addLayer(indices_modis.select(band), viz, 'MODIS ' + band, false);
+Map.addLayer(indices_landsat.select(band), viz, 'Landsat ' + band, false);
 
 // Processed layers:
 // MODIS/Landsat dif
@@ -126,15 +126,14 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Charts -----------------------------------------------------------------------
 var index = 'NBR'
+var ante = 'ante3mo'
+var which = 'base'
 print('Compare Landsat and MODIS: ' + index)
-var p = 10
-var band3 = 'Sens_' + index + '_ante3mo_p' + p
-var band6 = 'Sens_' + index + '_ante6mo_p' + p
-var band12 = 'Sens_' + index + '_ante12mo_p' + p
-var x = band3 + '-MOD09Q1'
-var y = band3 + '-Landsat'
-var img = ee.Image([sens_modis.select(band3).rename(x),
-                    sens_land.select(band3).rename(y)])
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([indices_modis.select(band3).rename(x),
+                    indices_landsat.select(band3).rename(y)])
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
