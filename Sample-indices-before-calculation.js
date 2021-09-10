@@ -30,10 +30,6 @@ var geometry =
           
 
 // Data -------------------------------------------------------------
-// CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-
-
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
 var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
 
