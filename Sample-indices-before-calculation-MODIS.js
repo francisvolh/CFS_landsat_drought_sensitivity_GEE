@@ -102,10 +102,11 @@ var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices)
 
 
 // Export -------------------------------------------------------
+var yr = 2003;
 var exp = {
-  image: splits,
-  description: 'sample-indices-pre-calc-MODIS-' + region,
-  assetId: 'sample-indices-pre-calc-MODIS-' + region,
+  image: splits.filter(ee.Filter.eq('year', yr)).first(),
+  description: 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region,
+  assetId: 'sample-indices-pre-calc-MODIS-' +  yr + '-'+ region,
   region: geo,
   scale: 250,
   maxPixels: 2e9
