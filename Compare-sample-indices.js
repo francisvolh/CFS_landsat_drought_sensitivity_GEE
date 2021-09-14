@@ -4,10 +4,12 @@ print('Region selected: ' + region)
 print('Year selected: ' + 2003)
 
 // Data -------------------------------------------------------------------------
-var indices_modis = ee.Image('users/robitalec/' + 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
+var indices_modis = ee.Image('users/robitalec/sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
+var means_modis = ee.Image('users/robitalec/sample-indices-means-MODIS-' + '-'+ region);
 
 // Landsat
 var indices_landsat = ee.Image('users/robitalec/' + 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
+var means_landast = ee.Image('users/robitalec/sample-indices-means-Landsat-' + '-'+ region);
 
 var geometry =
     ee.Geometry.Polygon(
@@ -91,7 +93,6 @@ var selectBands = toview.bandNames()
                         .filter(ee.Filter.stringContains('item', 'NBR'))
                         // .filter(ee.Filter.stringContains('item', 'ante3'))
 
-print(indices_modis)
 // Or select band
 var band = 'NDVI_ante3mo_p10_base';
 
