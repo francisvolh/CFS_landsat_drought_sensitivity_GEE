@@ -110,7 +110,7 @@ var exp = {
   description: 'sample-indices-means-MODIS-' + region,
   assetId: 'sample-indices-means-MODIS-' +  region,
   region: geo,
-  scale: 30,
-  maxPixels: 1e9
+  scale: 250,
+  maxPixels: 2e9
 };
 Export.image.toAsset(exp);
