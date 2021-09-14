@@ -143,8 +143,8 @@ var means = splits.reduce(ee.Reducer.mean());
 
 var exp = {
   image: means,
-  description: 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region,
-  assetId: 'sample-indices-pre-calc-Landsat-' +  yr + '-'+ region,
+  description: 'sample-indices-means-Landsat-' + yr + '-'+ region,
+  assetId: 'sample-indices-means-Landsat-' +  yr + '-'+ region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
