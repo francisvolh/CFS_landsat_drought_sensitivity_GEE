@@ -4,11 +4,11 @@ print('Region selected: ' + region)
 
 // Data -------------------------------------------------------------------------
 var indices_modis = ee.Image('users/robitalec/sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
-var means_modis = ee.Image('users/robitalec/sample-indices-means-MODIS-' + '-'+ region);
+var means_modis = ee.Image('users/robitalec/sample-indices-means-MODIS' + '-'+ region);
 
 // Landsat
 var indices_landsat = ee.Image('users/robitalec/sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
-var means_landast = ee.Image('users/robitalec/sample-indices-means-Landsat-' + '-'+ region);
+var means_landast = ee.Image('users/robitalec/sample-indices-means-Landsat' + '-'+ region);
 
 var geometry =
     ee.Geometry.Polygon(
@@ -124,6 +124,21 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Charts -----------------------------------------------------------------------
 print('Baseline/drought means:')
+print(means_modis)
+var index = 'NBR'
+var ante = 'ante3mo'
+var which = 'base'
+print('Means: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([means_modis.select(band).rename(x),
+                    means_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
 
 
 print('Baseline/drought year: ' + 2003)
