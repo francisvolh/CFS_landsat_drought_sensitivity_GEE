@@ -126,7 +126,7 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'base'
-print('Compare Landsat and MODIS: ' + index)
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
 var band = index + '_' + ante + '_p10_' + which
 var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
@@ -141,7 +141,67 @@ print(chart)
 var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'drought'
-print('Compare Landsat and MODIS: ' + index)
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([indices_modis.select(band).rename(x),
+                    indices_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var index = 'NDVI'
+var ante = 'ante3mo'
+var which = 'drought'
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([indices_modis.select(band).rename(x),
+                    indices_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var index = 'NDVI'
+var ante = 'ante3mo'
+var which = 'drought'
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([indices_modis.select(band).rename(x),
+                    indices_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var index = 'EVI'
+var ante = 'ante3mo'
+var which = 'drought'
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([indices_modis.select(band).rename(x),
+                    indices_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var index = 'EVI'
+var ante = 'ante3mo'
+var which = 'drought'
+print('Compare Landsat and MODIS: ' + index + ' ' + ante + ' ' + which)
 var band = index + '_' + ante + '_p10_' + which
 var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
