@@ -144,8 +144,8 @@ var means = splits.reduce(ee.Reducer.mean());
 var yr = 2003;
 var exp = {
   image: means,
-  description: 'sample-indices-means-Landsat-' + '-'+ region,
-  assetId: 'sample-indices-means-Landsat-' +  '-'+ region,
+  description: 'sample-indices-means-Landsat-' + region,
+  assetId: 'sample-indices-means-Landsat-' +  region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
