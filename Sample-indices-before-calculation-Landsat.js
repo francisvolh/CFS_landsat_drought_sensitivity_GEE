@@ -141,10 +141,11 @@ var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices)
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
 
+var yr = 2003;
 var exp = {
   image: means,
-  description: 'sample-indices-means-Landsat-' + yr + '-'+ region,
-  assetId: 'sample-indices-means-Landsat-' +  yr + '-'+ region,
+  description: 'sample-indices-means-Landsat-' + '-'+ region,
+  assetId: 'sample-indices-means-Landsat-' +  '-'+ region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
