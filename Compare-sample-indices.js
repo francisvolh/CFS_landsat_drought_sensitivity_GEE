@@ -142,7 +142,7 @@ var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'drought'
 print(index + ' ' + ante + ' ' + which)
-var band = index + '_' + ante + '_p10_' + wich
+var band = index + '_' + ante + '_p10_' + which
 var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
 var img = ee.Image([indices_modis.select(band).rename(x),
