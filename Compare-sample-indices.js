@@ -129,7 +129,7 @@ var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'base'
 print('Means: ' + index + ' ' + ante + ' ' + which)
-var band = index + '_' + ante + '_p10_' + which
+var band = index + '_' + ante + '_p10_' + which + '_mean'
 var x = band + '-MOD09Q1'
 var y = band + '-Landsat'
 var img = ee.Image([means_modis.select(band).rename(x),
