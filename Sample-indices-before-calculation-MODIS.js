@@ -101,14 +101,16 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
 
-// Export -------------------------------------------------------
+// Reduce yearly measures to means of all years
+var means = splits.reduce(ee.Reducer.mean());
+
 var yr = 2003;
 var exp = {
-  image: splits.filter(ee.Filter.eq('year', yr)).first(),
-  description: 'sample-indices-pre-calc-MODIS-' + yr + '-'+ region,
-  assetId: 'sample-indices-pre-calc-MODIS-' +  yr + '-'+ region,
+  image: means,
+  description: 'sample-indices-means-MODIS-' + region,
+  assetId: 'sample-indices-means-MODIS-' +  region,
   region: geo,
-  scale: 250,
-  maxPixels: 2e9
+  scale: 30,
+  maxPixels: 1e9
 };
 Export.image.toAsset(exp);
