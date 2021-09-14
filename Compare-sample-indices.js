@@ -136,7 +136,7 @@ var img = ee.Image([means_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 var index = 'NBR'
 var ante = 'ante3mo'
@@ -150,7 +150,7 @@ var img = ee.Image([means_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 
 
@@ -168,7 +168,7 @@ var img = ee.Image([indices_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 
 var index = 'NBR'
@@ -183,7 +183,7 @@ var img = ee.Image([indices_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 
 var index = 'NDVI'
@@ -198,7 +198,7 @@ var img = ee.Image([indices_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 
 var index = 'NDVI'
@@ -213,7 +213,7 @@ var img = ee.Image([indices_modis.select(band).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
 
 var index = 'EVI'
