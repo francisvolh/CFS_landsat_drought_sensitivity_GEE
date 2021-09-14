@@ -8,7 +8,7 @@ var indices_modis = ee.Image('users/robitalec/sample-indices-pre-calc-MODIS-' + 
 var means_modis = ee.Image('users/robitalec/sample-indices-means-MODIS-' + '-'+ region);
 
 // Landsat
-var indices_landsat = ee.Image('users/robitalec/' + 'sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
+var indices_landsat = ee.Image('users/robitalec/sample-indices-pre-calc-Landsat-' + yr + '-'+ region);
 var means_landast = ee.Image('users/robitalec/sample-indices-means-Landsat-' + '-'+ region);
 
 var geometry =
