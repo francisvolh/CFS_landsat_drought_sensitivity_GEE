@@ -124,10 +124,23 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Charts -----------------------------------------------------------------------
 print('Baseline/drought means:')
-print(means_modis)
 var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'base'
+print('Means: ' + index + ' ' + ante + ' ' + which)
+var band = index + '_' + ante + '_p10_' + which + '_mean'
+var x = band + '-MOD09Q1'
+var y = band + '-Landsat'
+var img = ee.Image([means_modis.select(band).rename(x),
+                    means_landsat.select(band).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+var index = 'NBR'
+var ante = 'ante3mo'
+var which = 'drought'
 print('Means: ' + index + ' ' + ante + ' ' + which)
 var band = index + '_' + ante + '_p10_' + which + '_mean'
 var x = band + '-MOD09Q1'
