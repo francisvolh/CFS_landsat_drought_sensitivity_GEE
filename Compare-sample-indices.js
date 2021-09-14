@@ -1,7 +1,6 @@
 var region = 'Yukon';
 var yr = 2003;
 print('Region selected: ' + region)
-print('Year selected: ' + 2003)
 
 // Data -------------------------------------------------------------------------
 var indices_modis = ee.Image('users/robitalec/sample-indices-pre-calc-MODIS-' + yr + '-'+ region);
@@ -124,6 +123,11 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 
 // Charts -----------------------------------------------------------------------
+print('Baseline/drought means:')
+
+
+print('Baseline/drought year: ' + 2003)
+
 var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'base'
