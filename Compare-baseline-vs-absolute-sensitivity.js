@@ -89,7 +89,7 @@ var pal = palettes.colorbrewer.RdBu[9].reverse();
 var min = -20; var max = 20;
 var viz = {min: min, max: max, palette: pal, opacity:1};
 
-var viz_abs = {min: -0.5, max: 0.5, palette: pal, opacity:1};
+var viz_abs = {min: -0.25, max: 0.25, palette: pal, opacity:1};
 
 // Filter -----------------------------------------------------------------------
 var toview = sens_land;
@@ -163,41 +163,74 @@ var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(
 Map.addLayer(acrosssensors, null, 'gallery: MODIS relative (top) MODIS absolute (bottom)', false);
 
 
-// Across sensor gallery strip
-// var selectBands = toview.bandNames()
-//                         .filter(ee.Filter.stringEndsWith('item', '10'))
-//                         .filter(ee.Filter.stringContains('item', 'ante12mo'))
-// var comb = ee.Image([sens_land.select(selectBands),
-//                     sens_land_absolute.select(selectBands)])
-// var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
-//   return comb.select([name]).set({"name": ee.String(name)})
-// }));
-// var imagesRGB = combcol.map(function(img) {
-//   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-//       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-//   return img.visualize(vizgallery).blend(label);
-// });
-
-// var rows = 2;
-// var columns = 3;
-// var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-// Map.addLayer(acrosssensors, null, 'gallery: Landsat relative (top) Landsat absolute (bottom)', false);
-
-
 // Charts -----------------------------------------------------------------------
-// var index = 'NBR'
-// print('Compare Landsat and MODIS: ' + index)
-// var p = 10
-// var band3 = 'Sens_' + index + '_ante3mo_p' + p
-// var band6 = 'Sens_' + index + '_ante6mo_p' + p
-// var band12 = 'Sens_' + index + '_ante12mo_p' + p
-// var x = band3 + '-MOD09Q1'
-// var y = band3 + '-Landsat'
-// var img = ee.Image([sens_modis.select(band3).rename(x),
-//                     sens_land.select(band3).rename(y)])
-// var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
-// var chart = ui.Chart.feature.byFeature(values, x, y)
-//   .setChartType('ScatterChart')
-//   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
-// print(chart)
+var p = 10
 
+// print('Compare MODIS relative and absolute: ' + index)
+var index = 'NBR'
+var band3 = 'Sens_' + index + '_ante3mo_p' + p
+var band6 = 'Sens_' + index + '_ante6mo_p' + p
+var band12 = 'Sens_' + index + '_ante12mo_p' + p
+var x = band3 + '-MODIS-relative'
+var y = band3 + '-MODIS-absolute'
+var img = ee.Image([sens_modis.select(band3).rename(x),
+                    sens_modis_absolute.select(band3).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var x = band6 + '-MODIS-relative'
+var y = band6 + '-MODIS-absolute'
+var img = ee.Image([sens_modis.select(band6).rename(x),
+                    sens_modis_absolute.select(band6).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var x = band12 + '-MODIS-relative'
+var y = band12 + '-MODIS-absolute'
+var img = ee.Image([sens_modis.select(band12).rename(x),
+                    sens_modis_absolute.select(band12).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+// print('Compare Landsat relative and absolute: ' + index)
+var band3 = 'Sens_' + index + '_ante3mo_p' + p
+var band6 = 'Sens_' + index + '_ante6mo_p' + p
+var band12 = 'Sens_' + index + '_ante12mo_p' + p
+var x = band3 + '-Landsat-relative'
+var y = band3 + '-Landsat-absolute'
+var img = ee.Image([sens_land.select(band3).rename(x),
+                    sens_land_absolute.select(band3).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var x = band6 + '-Landsat-relative'
+var y = band6 + '-Landsat-absolute'
+var img = ee.Image([sens_land.select(band6).rename(x),
+                    sens_land_absolute.select(band6).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
+
+var x = band12 + '-Landsat-relative'
+var y = band12 + '-Landsat-absolute'
+var img = ee.Image([sens_land.select(band12).rename(x),
+                    sens_land_absolute.select(band12).rename(y)])
+var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
+var chart = ui.Chart.feature.byFeature(values, x, y)
+  .setChartType('ScatterChart')
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+print(chart)
