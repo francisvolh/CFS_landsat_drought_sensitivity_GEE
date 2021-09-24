@@ -124,7 +124,7 @@ Map.addLayer(ee.Image('users/robitalec/CFS/land-cover-mask'), null, 'lc', false)
 
 // Charts -----------------------------------------------------------------------
 print('Baseline/drought means:')
-var index = 'NBR'
+var index = 'EVI'
 var ante = 'ante3mo'
 var which = 'base'
 print('Means: ' + index + ' ' + ante + ' ' + which)
@@ -138,7 +138,6 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:0, max:1}}, hAxis:{viewWindow:{min:0, max:1}}})
 print(chart)
-var index = 'NBR'
 var ante = 'ante3mo'
 var which = 'drought'
 print('Means: ' + index + ' ' + ante + ' ' + which)
