@@ -289,3 +289,21 @@ var rows = 3;
 var columns = 3;
 var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
 Map.addLayer(wisensor, null, 'gallery: within Landsat absolute', false);
+
+
+// Within MODIS gallery strip
+var toview = sens_modis_absolute
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
+  return toview.select([name]).set({"name": ee.String(name)
+  });
+}));
+var imagesRGB = ascol.map(function(img) {
+  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+  return img.visualize(viz_abs).blend(label);
+});
+
+var rows = 3;
+var columns = 3;
+var wisensor = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+Map.addLayer(wisensor, null, 'gallery: within MODIS absolute', false);
