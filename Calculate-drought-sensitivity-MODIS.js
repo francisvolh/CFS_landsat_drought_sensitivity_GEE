@@ -17,7 +17,7 @@ var alberta =
 // --- MODIS ---
 // Alec L. Robitaille
 
-var region = 'Alberta';
+var region = 'Yukon';
 print('Region set: ' + region);
 
 
@@ -165,8 +165,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region,
-  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region,
+  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region + '_absolute',
+  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region + '_absolute',
   region: geo,
   scale: 250,
   maxPixels: 2e9
