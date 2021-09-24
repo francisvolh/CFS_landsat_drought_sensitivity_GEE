@@ -188,8 +188,8 @@ var exp = {
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-2-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-' + '2000_2012-2-' + region,
+  description: 'drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
+  assetId: 'CFS/drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
   region: geo,
   scale: 30,
   maxPixels: 1e9
