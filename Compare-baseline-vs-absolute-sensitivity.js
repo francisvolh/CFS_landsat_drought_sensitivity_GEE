@@ -1,3 +1,57 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-147.8210336191388, 70.07926665876009],
+                  [-147.8210336191388, 47.928518609971924],
+                  [-93.5925179941388, 47.928518609971924],
+                  [-93.5925179941388, 70.07926665876009]]], null, false),
+            {
+              "system:index": "0"
+            })]),
+    geometryYukon = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.97749192943172, 64.6302003963719],
+          [-140.97749192943172, 63.06662186618014],
+          [-137.43989427318172, 63.06662186618014],
+          [-137.43989427318172, 64.6302003963719]]], null, false),
+    geolabelYukon = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Point([-140.94764181339778, 64.61367045208839]),
+    geometryAlberta = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-119.9213387294983, 57.103879623207106],
+          [-119.9213387294983, 53.998563512094734],
+          [-113.5822274013733, 53.998563512094734],
+          [-113.5822274013733, 57.103879623207106]]], null, false),
+    geolabelAlberta = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Point([-119.9213387294983, 57.09791227473051]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var region = 'Alberta';
 print('Region selected: ' + region)
 
