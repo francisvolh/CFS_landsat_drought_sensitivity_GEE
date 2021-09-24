@@ -89,6 +89,8 @@ var pal = palettes.colorbrewer.RdBu[9].reverse();
 var min = -20; var max = 20;
 var viz = {min: min, max: max, palette: pal, opacity:1};
 
+var viz_abs = {min: -0.5, max: 0.5, palette: pal, opacity:1};
+
 // Filter -----------------------------------------------------------------------
 var toview = sens_land;
 
