@@ -166,7 +166,7 @@ Map.addLayer(acrosssensors, null, 'gallery: MODIS relative (top) MODIS absolute 
 // Charts -----------------------------------------------------------------------
 var p = 10
 
-var index = 'NBR'
+var index = 'EVI'
 
 print('Compare MODIS relative and absolute: ' + index)
 var band3 = 'Sens_' + index + '_ante3mo_p' + p
@@ -236,11 +236,11 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
-print('Compare Landsat absolute and band12 absolute: ' + index)
+print('Compare Landsat absolute and MODIS absolute: ' + index)
 var band3 = 'Sens_' + index + '_ante3mo_p' + p
 var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
-var x = band3 + '-MODIS-relative'
+var x = band3 + '-MODIS-absolute'
 var y = band3 + '-Landsat-absolute'
 var img = ee.Image([sens_modis_absolute.select(band3).rename(x),
                     sens_land_absolute.select(band3).rename(y)])
@@ -250,7 +250,7 @@ var chart = ui.Chart.feature.byFeature(values, x, y)
   .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.3, max:0.3}}, hAxis:{viewWindow:{min:-0.3, max:0.3}}})
 print(chart)
 
-var x = band12 + '-MODIS-relative'
+var x = band12 + '-MODIS-absolute'
 var y = band12 + '-Landsat-absolute'
 var img = ee.Image([sens_modis_absolute.select(band12).rename(x),
                     sens_land_absolute.select(band12).rename(y)])
