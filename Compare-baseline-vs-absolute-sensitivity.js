@@ -166,8 +166,8 @@ Map.addLayer(acrosssensors, null, 'gallery: MODIS relative (top) MODIS absolute 
 // Charts -----------------------------------------------------------------------
 var p = 10
 
-print('Compare MODIS relative and absolute: ' + index)
 var index = 'NBR'
+print('Compare MODIS relative and absolute: ' + index)
 var band3 = 'Sens_' + index + '_ante3mo_p' + p
 var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
