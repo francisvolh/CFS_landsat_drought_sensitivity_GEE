@@ -128,7 +128,7 @@ Map.addLayer(ee.Image(1), {palette:'747474'}, 'constant', false);
 Map.addLayer(ctef, null, 'ctef', false);
 
 // MODIS and Landsat, selected band
-Map.addLayer(sens_modis.select(band), viz, 'MODIS ' + band, false);
+Map.addLayer(sens_modis_absolute.select(band), viz, 'MODIS ' + band, false);
 Map.addLayer(sens_land.select(band), viz, 'Landsat ' + band, false);
 
 // Processed layers:
