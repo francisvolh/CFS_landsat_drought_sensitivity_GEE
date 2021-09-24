@@ -62,7 +62,7 @@ var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + '
 var sens_modis_full = ee.Image('users/robitalec/CFS/drought-sensitivity-MOD09Q1-' + region);
 
 // Landsat
-var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + '2000_2012-' + region);
+var sens_land = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + '2000_2012-2-' + region);
 var sens_land_full = ee.Image('users/robitalec/CFS/drought-sensitivity-Landsat-' + region);
 
 // Load CTEF regions
