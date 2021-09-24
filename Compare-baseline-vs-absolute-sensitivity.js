@@ -166,7 +166,7 @@ Map.addLayer(acrosssensors, null, 'gallery: MODIS relative (top) MODIS absolute 
 // Charts -----------------------------------------------------------------------
 var p = 10
 
-// print('Compare MODIS relative and absolute: ' + index)
+print('Compare MODIS relative and absolute: ' + index)
 var index = 'NBR'
 var band3 = 'Sens_' + index + '_ante3mo_p' + p
 var band6 = 'Sens_' + index + '_ante6mo_p' + p
@@ -178,7 +178,7 @@ var img = ee.Image([sens_modis.select(band3).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
 var x = band6 + '-MODIS-relative'
@@ -188,7 +188,7 @@ var img = ee.Image([sens_modis.select(band6).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
 var x = band12 + '-MODIS-relative'
@@ -198,10 +198,10 @@ var img = ee.Image([sens_modis.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
-// print('Compare Landsat relative and absolute: ' + index)
+print('Compare Landsat relative and absolute: ' + index)
 var band3 = 'Sens_' + index + '_ante3mo_p' + p
 var band6 = 'Sens_' + index + '_ante6mo_p' + p
 var band12 = 'Sens_' + index + '_ante12mo_p' + p
@@ -212,7 +212,7 @@ var img = ee.Image([sens_land.select(band3).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
 var x = band6 + '-Landsat-relative'
@@ -222,7 +222,7 @@ var img = ee.Image([sens_land.select(band6).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
 
 var x = band12 + '-Landsat-relative'
@@ -232,5 +232,5 @@ var img = ee.Image([sens_land.select(band12).rename(x),
 var values = img.sample({region: ee.FeatureCollection.randomPoints(geometry, 1e3, 42).geometry(), scale: 30})
 var chart = ui.Chart.feature.byFeature(values, x, y)
   .setChartType('ScatterChart')
-  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}})
+  .setOptions({titleX: x, titleY: y, trendlines: {0:{}}, vAxis:{viewWindow:{min:-0.5, max:0.5}}, hAxis:{viewWindow:{min:-100, max:100}}})
 print(chart)
