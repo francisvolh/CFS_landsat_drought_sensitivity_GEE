@@ -132,7 +132,7 @@ Map.addLayer(ctef, null, 'ctef', false);
 Map.addLayer(sens_modis.select(band), viz, 'MODIS relative ' + band, false);
 Map.addLayer(sens_modis_absolute.select(band), viz_abs, 'MODIS absolute ' + band, false);
 Map.addLayer(sens_land.select(band), viz, 'Landsat relative ' + band, false);
-Map.addLayer(sens_land_absolute.select(band), viz, 'Landsat absolute ' + band, false);
+Map.addLayer(sens_land_absolute.select(band), viz_abs, 'Landsat absolute ' + band, false);
 
 // Processed layers:
 // MODIS/Landsat dif
