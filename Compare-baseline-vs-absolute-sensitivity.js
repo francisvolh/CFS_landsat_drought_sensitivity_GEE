@@ -161,24 +161,24 @@ Map.addLayer(acrosssensors, null, 'gallery: MODIS relative (top) MODIS absolute 
 
 
 // Across sensor gallery strip
-var selectBands = toview.bandNames()
-                        .filter(ee.Filter.stringEndsWith('item', '10'))
-                        .filter(ee.Filter.stringContains('item', 'ante12mo'))
-var comb = ee.Image([sens_land.select(selectBands),
-                     sens_land_absolute.select(selectBands)])
-var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
-  return comb.select([name]).set({"name": ee.String(name)})
-}));
-var imagesRGB = combcol.map(function(img) {
-  var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
-      fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
-  return img.visualize(vizgallery).blend(label);
-});
+// var selectBands = toview.bandNames()
+//                         .filter(ee.Filter.stringEndsWith('item', '10'))
+//                         .filter(ee.Filter.stringContains('item', 'ante12mo'))
+// var comb = ee.Image([sens_land.select(selectBands),
+//                     sens_land_absolute.select(selectBands)])
+// var combcol = ee.ImageCollection.fromImages(comb.bandNames().map(function(name) {
+//   return comb.select([name]).set({"name": ee.String(name)})
+// }));
+// var imagesRGB = combcol.map(function(img) {
+//   var label = text.draw(img.get('name'), geolabel, Map.getScale(), {
+//       fontSize:32, textColor: '000000', outlineColor: 'ffffff', outlineWidth: 1, outlineOpacity: 0.6});
+//   return img.visualize(vizgallery).blend(label);
+// });
 
-var rows = 2;
-var columns = 3;
-var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
-Map.addLayer(acrosssensors, null, 'gallery: Landsat relative (top) Landsat absolute (bottom)', false);
+// var rows = 2;
+// var columns = 3;
+// var acrosssensors = gallery.draw(ee.ImageCollection(imagesRGB), geometry.bounds(), rows, columns);
+// Map.addLayer(acrosssensors, null, 'gallery: Landsat relative (top) Landsat absolute (bottom)', false);
 
 
 // Charts -----------------------------------------------------------------------
