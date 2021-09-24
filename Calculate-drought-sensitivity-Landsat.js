@@ -178,8 +178,8 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region,
-  folder: 'CFS-drought-sensitivity-Landsat-' + '2000_2012-' + region,
+  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
+  folder: 'CFS-drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
   region: geo,
   scale: 250,
   maxPixels: 1e9
