@@ -75,6 +75,9 @@ var indices = ['NDVI', 'NBR', 'EVI'];
 // Landsat prep functions
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
+var modisprep = require('users/robitalec/CFS:modules/modis-prep.js');
+
+
 // Land cover mask function
 var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 
