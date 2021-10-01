@@ -163,25 +163,11 @@ var points = ctef.map(function(ft) {
 }).flatten();
 
 
-var sampled = points.sample(ee.Image([means, droughtSens]));
+var sampled = ee.Image([means, droughtSens])
+  .reduceRegions(points, ee.Reducer.mean(), 30);
 
-print(sampled.limit(1))
-
-// veg_masked = veg_masked.select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']);
-// print(veg_masked.size())
-
-// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-// print(veg_years.size())
-// print(veg_years.limit(2))
-
-// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-// print(splits.size())
-// print(splits.limit(2))
-
-
-// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-// print(means.limit(2))
-
-
-// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-// print(droughtSens.limit(2))
+Export.table.toDrive({
+  collection: sampled, 
+  description: 'sampled-intermediate', 
+  folder: 'drought-sensisitivity-refugia'
+})
