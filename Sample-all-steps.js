@@ -59,7 +59,7 @@ var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
-var percentiles = [15];
+var percentiles = [5, 15];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
@@ -170,8 +170,6 @@ var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, in
 
 // Split vegetation indices into drought/non-drought pixels
 var splits_modis = sensitivity.splitDrought(veg_modis_years, drought, antes, percentiles, indices);
-
-print(splits_modis.bandNames())
 
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
