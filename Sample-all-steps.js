@@ -164,7 +164,7 @@ var points = ctef.map(function(ft) {
               .map(function(f) {
                 return f.set('REG_ID', ft.get('REG_ID'))
               })
-});
+}).flatten();
 print(points.limit(10))
 // print(veg_masked)
 // var combined_layers = ee.ImageCollection()
