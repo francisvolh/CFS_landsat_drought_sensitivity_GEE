@@ -31,7 +31,6 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
   .filterBounds(geometry);
-Map.addLayer(ctef)
 
 
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
