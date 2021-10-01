@@ -194,6 +194,9 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
+// TODO filter them here
+// TODO append modis band names
+
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
