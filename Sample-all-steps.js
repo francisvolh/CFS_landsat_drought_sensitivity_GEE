@@ -199,7 +199,7 @@ var means_names = means.bandNames()
                        .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
                                             ee.Filter.stringContains('item', 'ante3mo')));
                                             
-var drought_names = means.bandNames()
+var drought_names = droughtSens.bandNames()
                          .filter(ee.Filter.stringContains('item', 'p15'))
                          .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
                                               ee.Filter.stringContains('item', 'ante3mo')));
