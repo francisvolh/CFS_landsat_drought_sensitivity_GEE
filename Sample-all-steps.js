@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPoint(
         [[-120.01339170395872, 54.82097540279146],
          [-116.94820615708372, 56.69970979965382],
          [-118.67246694131055, 56.154441684771434],
@@ -12,8 +15,6 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
 // === Sample all steps ===
 // --- Landsat ---
 // Alec L. Robitaille
-
-
 
 
 
@@ -37,6 +38,7 @@ var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
 var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
 
 
+
 // Variables --------------------------------------------------------
 // Set min max year for daymet
 var minyear = 1980;
@@ -57,7 +59,7 @@ var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
-var percentiles = [1, 5, 10, 20];
+var percentiles = [5, 15];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
@@ -124,7 +126,7 @@ var veg = l5.merge(l7)
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
-veg = veg
+var veg_masked = veg
   .map(landsatprep.rescale)
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
@@ -133,12 +135,11 @@ veg = veg
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
-// Aggregate Landsat yearly, rename _mean bands
-veg = landsatprep.aggregateY(veg);
-veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+// Aggregate Landsat yearly, rename _mean bandsveg_years = landsatprep.aggregateY(veg_masked);
+var veg_years = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
-var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
+var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
 
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
@@ -149,48 +150,17 @@ var means = splits.reduce(ee.Reducer.mean());
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
 
-// Drought sensitivity prime (S’) = max across three antecedent periods
-// var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
+
+// Sample points -------------------------------------------------
+var years = ee.List.sequence(2000, 2012);
+
+var points = ee.FeatureCollection.randomPoints(geo, 1e4, 42);
+Map.addLayer(points)
+print(veg_masked)
+// var combined_layers = ee.ImageCollection()
+
+// var 
 
 
 
-// Map ------------------------------------------------------------
-var pal = palettes.colorbrewer.RdBu[9];
-var min = -50; var max = 50;
-var viz = {min: min, max: max, palette: pal};
 
-// function showPalette(name, palette) {
-//   var image = ee.Image.pixelLonLat().select(0)
-//     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
-//     .visualize({ min: 0, max: 100, palette: palette });
-
-//   print(name);
-//   print(ui.Thumbnail(image));
-// }
-// showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
-
-// Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
-// Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
-
-
-
-// Export -------------------------------------------------------
-var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
-  folder: 'CFS-drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
-  region: geo,
-  scale: 250,
-  maxPixels: 1e9
-};
-// Export.image.toDrive(exp);
-
-var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
-  assetId: 'CFS/drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
-  region: geo,
-  scale: 30,
-  maxPixels: 1e9
-};
-Export.image.toAsset(exp);
