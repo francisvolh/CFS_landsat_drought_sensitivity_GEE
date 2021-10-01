@@ -113,7 +113,7 @@ l7 = l7
 
 
 // Daymet -----------------------------------------------------------
-var drought = droughtModule.baselineCMI();
+var drought = droughtModule.baselineCMI(percentiles);
 
 
 
@@ -141,6 +141,7 @@ veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EV
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
+print(veg_years.limit(1))
 print(splits.limit(1))
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
@@ -167,21 +168,21 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-veg_masked = veg_masked.select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']);
-print(veg_masked.size())
-
-veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-print(veg_years.size())
-print(veg_years.limit(2))
+// veg_masked = veg_masked.select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']);
+// print(veg_masked.size())
 
 // veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-print(splits.size())
-print(splits.limit(2))
-
+// print(veg_years.size())
+// print(veg_years.limit(2))
 
 // veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-print(means.limit(2))
+// print(splits.size())
+// print(splits.limit(2))
 
 
 // veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
-print(droughtSens.limit(2))
+// print(means.limit(2))
+
+
+// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
+// print(droughtSens.limit(2))
