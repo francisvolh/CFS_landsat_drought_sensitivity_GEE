@@ -154,8 +154,9 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 // Sample points -------------------------------------------------
 var years = ee.List.sequence(2000, 2012);
 
-var points = ee.FeatureCollection.randomPoints(geo, 1e4, 42);
+var points = ee.FeatureCollection.randomPoints(geo, 5e3, 42);
 Map.addLayer(points)
+print(points)
 print(veg_masked)
 // var combined_layers = ee.ImageCollection()
 
