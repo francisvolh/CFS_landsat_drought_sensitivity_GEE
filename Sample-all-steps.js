@@ -145,14 +145,9 @@ var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, in
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
 
-
-
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
-
-
-
 
 // Sample points -------------------------------------------------
 // TODO: replicate above with MODIS
@@ -166,6 +161,11 @@ var points = ctef.map(function(ft) {
                 return f.set('REG_ID', ft.get('REG_ID'));
               });
 }).flatten();
+
+
+var sampled = points.sample(ee.Image([means, droughtSens]));
+
+print(sampled.limit(1))
 
 // veg_masked = veg_masked.select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']);
 // print(veg_masked.size())
