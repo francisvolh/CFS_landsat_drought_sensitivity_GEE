@@ -197,7 +197,7 @@ var points = ctef.map(function(ft) {
 var forindex = toview.bandNames()
                      .filter(ee.Filter.stringContains('item', 'p15'))
                      .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
-                                          ee.Filter.stringContains('item', 'ante3mo'));
+                                          ee.Filter.stringContains('item', 'ante3mo')));
 
 
 // TODO filter them here
