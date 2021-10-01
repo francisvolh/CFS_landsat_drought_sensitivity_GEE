@@ -62,7 +62,7 @@ var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 var percentiles = [15];
 
 // Set antecedent periods
-var antes = [3, 12];
+var antes = [3, 6, 12];
 
 // Set indices
 var indices = ['NDVI', 'NBR', 'EVI'];
@@ -149,13 +149,13 @@ var veg_masked = veg
   .map(lcmask.maskLc);
 
 var veg_modis_masked = veg_modis
-  .map(modisprep.rescale)
-  .map(modisprep.setYear)
-  .map(modisprep.calcIndices)
   .map(modisprep.maskClouds)
-  .map(water.maskWater)
+  .map(modisprep.rescale)
+  .map(modisprep.calcIndices)
   .map(fire.maskFires)
-  .map(lcmask.maskLc);
+  .map(lcmask.maskLc)
+  .map(water.maskWater)
+  .select(indices);
 
 // Aggregate Landsat yearly, rename _mean bands
 var veg_years = landsatprep.aggregateY(veg_masked);
