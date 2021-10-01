@@ -203,15 +203,11 @@ var drought_names = droughtSens.bandNames()
                          .filter(ee.Filter.stringContains('item', 'p15'))
                          .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
                                               ee.Filter.stringContains('item', 'ante3mo')));
-print(means_names)
-print(means_names.map(function(nm){ nm + '_modis'}))
-
-// print(means.select(means_names, means_names))
 
 // TODO filter them here
 // TODO append modis band names
 
-var sampled = ee.Image([means, droughtSens])
+var sampled = ee.Image([means.select(means_names), droughtSens.select(drought_names)])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
 Export.table.toDrive({
