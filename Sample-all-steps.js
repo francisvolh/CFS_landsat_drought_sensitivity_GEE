@@ -154,12 +154,13 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 
 // Sample points -------------------------------------------------
-
 // TODO: replicate above with MODIS
+
+
 var years = ee.List.sequence(2000, 2012);
 
 var points = ctef.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft, 1e3, 42)
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 1e3, 42)
               .set('REG_ID', ft.get('REG_ID'));
 });
 print(points)
