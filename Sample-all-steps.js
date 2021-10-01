@@ -167,7 +167,7 @@ var points = ctef.map(function(ft) {
 }).flatten();
 
 print(veg_masked.limit(2))
-print(veg_masked.limit(2).select(indices, 'raw_july_' + indices))
+print(veg_masked.limit(2).select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']))
 // veg_years
 // splits
 // means
