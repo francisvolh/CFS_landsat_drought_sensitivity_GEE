@@ -161,14 +161,12 @@ var years = ee.List.sequence(2000, 2012);
 
 var points = ctef.map(function(ft) {
   return ee.FeatureCollection.randomPoints(ft.geometry(), 1e3, 42)
-              .set('REG_ID', ft.get('REG_ID'));
+              .map(function(f) {
+                return f.set('REG_ID', ft.get('REG_ID'))
+              })
 });
-print(points)
-
-Map.addLayer(points)
-
-
-print(veg_masked)
+print(points.limit(10))
+// print(veg_masked)
 // var combined_layers = ee.ImageCollection()
 
 // var 
