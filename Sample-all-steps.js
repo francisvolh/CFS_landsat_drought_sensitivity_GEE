@@ -188,10 +188,6 @@ var droughtSens_modis = sensitivity.droughtSensitivity(means_modis, antes, perce
 
 
 // Sample points -------------------------------------------------
-// TODO: replicate above with MODIS
-
-var years = ee.List.sequence(2000, 2012);
-
 var points = ctef.map(function(ft) {
   return ee.FeatureCollection.randomPoints(ft.geometry(), 1e2, 42)
               .map(function(f) {
