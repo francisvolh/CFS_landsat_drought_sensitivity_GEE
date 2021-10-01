@@ -136,7 +136,7 @@ var veg_masked = veg
   .map(lcmask.maskLc);
 
 // Aggregate Landsat yearly, rename _mean bandsveg_years = landsatprep.aggregateY(veg_masked);
-var veg_years = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+var veg_years = veg_masked.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
@@ -166,10 +166,9 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-// veg_masked
+print(veg_masked.limit(2))
+print(veg_masked.limit(2).select(indices, 'raw_july_' + indices))
 // veg_years
 // splits
 // means
 // droughtSens
-
-print(veg_masked.limit(2))
