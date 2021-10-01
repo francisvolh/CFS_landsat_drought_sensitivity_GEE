@@ -141,7 +141,7 @@ veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EV
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
-
+print(splits.limit(1))
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
 
@@ -173,7 +173,15 @@ print(veg_masked.size())
 veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
 print(veg_years.size())
 print(veg_years.limit(2))
-// veg_years
-// splits
-// means
-// droughtSens
+
+// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
+print(splits.size())
+print(splits.limit(2))
+
+
+// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
+print(means.limit(2))
+
+
+// veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
+print(droughtSens.limit(2))
