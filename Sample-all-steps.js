@@ -126,7 +126,7 @@ var veg = l5.merge(l7)
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
-veg = veg
+var veg_masked = veg
   .map(landsatprep.rescale)
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
@@ -135,8 +135,9 @@ veg = veg
   .map(fire.maskFires)
   .map(lcmask.maskLc);
 
-// Aggregate Landsat yearly, rename _mean bandsveg_years = landsatprep.aggregateY(veg_masked);
-var veg_years = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+// Aggregate Landsat yearly, rename _mean bands
+var veg_years = landsatprep.aggregateY(veg_masked);
+veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
@@ -167,8 +168,10 @@ var points = ctef.map(function(ft) {
 }).flatten();
 
 veg_masked = veg_masked.select(['NDVI', 'NBR', 'EVI'], ['raw_july_NDVI', 'raw_july_NBR', 'raw_july_EVI']);
+print(veg_masked.length())
 
-print(veg_years.limit(2))
+veg_years = veg_years.select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI'])
+print(veg_years.length())
 print(veg_years.limit(2).select(['NDVI', 'NBR', 'EVI'], ['agg_july_NDVI', 'agg_july_NBR', 'agg_july_EVI']))
 // veg_years
 // splits
