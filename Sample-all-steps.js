@@ -190,14 +190,14 @@ var droughtSens_modis = sensitivity.droughtSensitivity(means_modis, antes, perce
 var years = ee.List.sequence(2000, 2012);
 
 var points = ctef.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 1e3, 42)
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 1e2, 42)
               .map(function(f) {
                 return f.set('REG_ID', ft.get('REG_ID'));
               });
 }).flatten();
 
-print(means_modis.bandNames)
-print(means_modis.bandNames + '_modis')
+// print(means_modis.bandNames)
+// print(means_modis.bandNames + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
