@@ -151,7 +151,11 @@ var means = splits.reduce(ee.Reducer.mean());
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
 
 
+
+
 // Sample points -------------------------------------------------
+
+// TODO: replicate above with MODIS
 var years = ee.List.sequence(2000, 2012);
 
 var points = ctef.map(function(ft) {
