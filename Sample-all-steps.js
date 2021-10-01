@@ -162,15 +162,14 @@ var years = ee.List.sequence(2000, 2012);
 var points = ctef.map(function(ft) {
   return ee.FeatureCollection.randomPoints(ft.geometry(), 1e3, 42)
               .map(function(f) {
-                return f.set('REG_ID', ft.get('REG_ID'))
-              })
+                return f.set('REG_ID', ft.get('REG_ID'));
+              });
 }).flatten();
-print(points.limit(10))
-// print(veg_masked)
-// var combined_layers = ee.ImageCollection()
 
-// var 
+// veg_masked
+// veg_years
+// splits
+// means
+// droughtSens
 
-
-
-
+print(veg_masked.limit(2))
