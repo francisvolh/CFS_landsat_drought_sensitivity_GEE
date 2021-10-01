@@ -144,7 +144,7 @@ var veg_masked = veg
   .map(water.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
-  
+
 var veg_modis_masked = veg_modis
   .map(landsatprep.rescale)
   .map(landsatprep.setYear)
@@ -196,13 +196,13 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-print(means_modis.bandNames())
-print(means_modis.bandNames() + '_modis')
+print(means_modis.bandNames)
+print(means_modis.bandNames + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
 Export.table.toDrive({
-  collection: sampled, 
-  description: 'sampled-intermediate', 
+  collection: sampled,
+  description: 'sampled-intermediate',
   folder: 'drought-sensisitivity-refugia'
 })
