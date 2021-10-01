@@ -154,16 +154,15 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 // Sample points -------------------------------------------------
 var years = ee.List.sequence(2000, 2012);
 
-print(ctef)
-
 var points = ctef.map(function(ft) {
   return ee.FeatureCollection.randomPoints(ft, 1e3, 42)
-              .set('REG_ID', ft.select('REG_ID'));
-})
-
-var points = ee.FeatureCollection.randomPoints(geo, 5e3, 42);
-Map.addLayer(points)
+              .set('REG_ID', ft.get('REG_ID'));
+});
 print(points)
+
+Map.addLayer(points)
+
+
 print(veg_masked)
 // var combined_layers = ee.ImageCollection()
 
