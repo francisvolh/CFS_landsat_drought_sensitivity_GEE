@@ -110,6 +110,13 @@ l7 = l7
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
+var modis = ee.ImageCollection("MODIS/006/MOD09A1");
+
+// MODIS
+modis = modis
+  .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'));
+
 
 
 // Daymet -----------------------------------------------------------
@@ -123,10 +130,22 @@ var veg = l5.merge(l7)
   // *** CHECKING LANDSAT v MODIS ***
   .filter(ee.Filter.calendarRange(2000, 2012, 'year'))
 
+var veg_modis = modis
+  // *** CHECKING LANDSAT v MODIS ***
+  .filter(ee.Filter.calendarRange(2000, 2012, 'year'))
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 var veg_masked = veg
+  .map(landsatprep.rescale)
+  .map(landsatprep.setYear)
+  .map(landsatprep.calcIndices)
+  .map(landsatprep.maskClouds)
+  .map(water.maskWater)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc);
+  
+var veg_modis_masked = veg_modis
   .map(landsatprep.rescale)
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
@@ -139,19 +158,34 @@ var veg_masked = veg
 var veg_years = landsatprep.aggregateY(veg_masked);
 veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
+var veg_modis_years = landsatprep.aggregateY(veg_modis_masked);
+veg_modis_years = veg_modis_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+
+
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
 
+// Split vegetation indices into drought/non-drought pixels
+var splits_modis = sensitivity.splitDrought(veg_modis_years, drought, antes, percentiles, indices);
+
+
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
+
+// Reduce yearly measures to means of all years
+var means_modis = splits_modis.reduce(ee.Reducer.mean());
+
 
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
 
+// SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
+var droughtSens_modis = sensitivity.droughtSensitivity(means_modis, antes, percentiles, indices);
+
+
 // Sample points -------------------------------------------------
 // TODO: replicate above with MODIS
-
 
 var years = ee.List.sequence(2000, 2012);
 
@@ -162,7 +196,8 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-
+print(means_modis.bandNames)
+print(means_modis.bandNames + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
