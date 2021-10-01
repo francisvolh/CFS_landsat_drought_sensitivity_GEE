@@ -141,8 +141,7 @@ veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EV
 
 // Split vegetation indices into drought/non-drought pixels
 var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, indices);
-print(veg_years.limit(1))
-print(splits.limit(1))
+
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
 
