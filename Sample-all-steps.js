@@ -196,8 +196,8 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-print(means_modis.bandNames)
-print(means_modis.bandNames + '_modis')
+print(means_modis.bandNames())
+print(means_modis.bandNames() + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
