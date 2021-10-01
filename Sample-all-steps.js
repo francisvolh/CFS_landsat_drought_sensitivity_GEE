@@ -146,10 +146,10 @@ var veg_masked = veg
   .map(lcmask.maskLc);
 
 var veg_modis_masked = veg_modis
-  .map(landsatprep.rescale)
-  .map(landsatprep.setYear)
-  .map(landsatprep.calcIndices)
-  .map(landsatprep.maskClouds)
+  .map(modisprep.rescale)
+  .map(modisprep.setYear)
+  .map(modisprep.calcIndices)
+  .map(modisprep.maskClouds)
   .map(water.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
@@ -158,7 +158,7 @@ var veg_modis_masked = veg_modis
 var veg_years = landsatprep.aggregateY(veg_masked);
 veg_years = veg_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
-var veg_modis_years = landsatprep.aggregateY(veg_modis_masked);
+var veg_modis_years = modisprep.aggregateY(veg_modis_masked);
 veg_modis_years = veg_modis_years.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 
@@ -196,7 +196,7 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-// print(means_modis.bandNames)
+print(means_modis.bandNames())
 // print(means_modis.bandNames + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
