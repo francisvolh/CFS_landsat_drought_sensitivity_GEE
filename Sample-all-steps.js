@@ -171,6 +171,7 @@ var splits = sensitivity.splitDrought(veg_years, drought, antes, percentiles, in
 // Split vegetation indices into drought/non-drought pixels
 var splits_modis = sensitivity.splitDrought(veg_modis_years, drought, antes, percentiles, indices);
 
+print(splits_modis.bandNames())
 
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
@@ -195,8 +196,6 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-print(means_modis.bandNames())
-// print(means_modis.bandNames + '_modis')
 var sampled = ee.Image([means, droughtSens])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
