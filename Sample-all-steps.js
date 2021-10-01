@@ -59,10 +59,10 @@ var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
 // Set percentiles to use
-var percentiles = [5, 15];
+var percentiles = [15];
 
 // Set antecedent periods
-var antes = [3, 6, 12];
+var antes = [3, 12];
 
 // Set indices
 var indices = ['NDVI', 'NBR', 'EVI'];
