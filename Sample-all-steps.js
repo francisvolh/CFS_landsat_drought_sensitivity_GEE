@@ -207,7 +207,10 @@ var drought_names = droughtSens.bandNames()
 // TODO filter them here
 // TODO append modis band names
 
-var sampled = ee.Image([means.select(means_names), droughtSens.select(drought_names)])
+var means_sel = means.select(means_names);
+var drought_sel = droughtSens.select(drought_names);
+
+var sampled = ee.Image([means_sel, drought_sel])
   .reduceRegions(points, ee.Reducer.mean(), 30);
 
 Export.table.toDrive({
