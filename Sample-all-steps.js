@@ -188,7 +188,7 @@ var droughtSens_modis = sensitivity.droughtSensitivity(means_modis, antes, perce
 
 // Sample points -------------------------------------------------
 var points = ctef.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 100, 42)
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
               .map(function(f) {
                 return f.set('REG_ID', ft.get('REG_ID'));
               });
