@@ -204,9 +204,6 @@ var drought_names = droughtSens.bandNames()
                          .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
                                               ee.Filter.stringContains('item', 'ante3mo')));
 
-// TODO filter them here
-// TODO append modis band names
-
 var means_sel = means.select(means_names);
 var means_modis_sel = means_modis.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
