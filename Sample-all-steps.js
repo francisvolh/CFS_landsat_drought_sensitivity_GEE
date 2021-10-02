@@ -208,10 +208,12 @@ var drought_names = droughtSens.bandNames()
 // TODO append modis band names
 
 var means_sel = means.select(means_names);
+var means_modis_sel = means_modis.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
+var drought_modis_sel = droughtSens_modis.select(drought_names);
 
 var sampled = points.map(function(ft) {
-  return ee.Image([means_sel, drought_sel])
+  return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel])
     .sampleRegions(ft, null, 30);
 }).flatten();
 print(sampled.limit(1))
