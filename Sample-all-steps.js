@@ -212,8 +212,9 @@ var drought_sel = droughtSens.select(drought_names);
 
 var sampled = points.map(function(ft) {
   return ee.Image([means_sel, drought_sel])
-    .sample(ft, ee.Reducer.mean(), 30);
-});
+    .sampleRegions(ft, null, 30);
+}).flatten();
+print(sampled.limit(1))
 
 Export.table.toDrive({
   collection: sampled,
