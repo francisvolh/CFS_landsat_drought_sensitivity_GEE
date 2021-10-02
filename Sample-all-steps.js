@@ -217,6 +217,6 @@ print(sampled.limit(1))
 
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate',
+  description: 'sampled-intermediate-landsat-and-modis',
   folder: 'drought-sensisitivity-refugia'
 })
