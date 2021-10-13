@@ -99,12 +99,10 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
 //         [-140.76982845442157, 63.46615402037919],
 //         [-137.26518978254657, 63.15528203910088],
 //         [-137.78154720442157, 62.58922824931989]]);
-geometry = geometry.filterBounds(sub_for_now)
 
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-  .filterBounds(geometry);
-
+  .filterBounds(ee.FeatureCollection(geometry).filterBounds(sub_for_now).geometry()) // TODO: for now
 
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
 var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
@@ -260,7 +258,7 @@ var droughtSens_modis = sensitivity.droughtSensitivity(means_modis, antes, perce
 
 // Sample points -------------------------------------------------
 var points = ctef.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 50, 42)
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
               .map(function(f) {
                 return f.set('REG_ID', ft.get('REG_ID'));
               });
@@ -270,7 +268,7 @@ var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
                        .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
                                             ee.Filter.stringContains('item', 'ante3mo')));
-                                            
+
 var drought_names = droughtSens.bandNames()
                          .filter(ee.Filter.stringContains('item', 'p15'))
                          .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
@@ -289,6 +287,6 @@ print(sampled.limit(1))
 
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate-landsat-and-modis',
+  description: 'sampled-intermediate-landsat-and-modis_van_island',
   folder: 'drought-sensisitivity-refugia'
 })
