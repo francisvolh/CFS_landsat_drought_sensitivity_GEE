@@ -69,19 +69,7 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
             ee.Geometry.Point([-127.87825758991876, 50.61938195875478]),
             {
               "system:index": "13"
-            })]),
-    sub_for_now = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-129.29156276775078, 51.302705832217704],
-          [-129.29156276775078, 47.70928859881755],
-          [-121.51324245525076, 47.70928859881755],
-          [-121.51324245525076, 51.302705832217704]]], null, false);
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Sample all steps ===
 // --- Landsat ---
@@ -90,20 +78,20 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
 
 
 // Data -------------------------------------------------------------
-// var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
-//         [[-120.01339170395872, 54.82097540279146],
-//         [-116.94820615708372, 56.69970979965382],
-//         [-118.67246694131055, 56.154441684771434],
-//         [-136.91728237631563, 60.982984401796536],
-//         [-140.69657925131563, 62.12368198955072],
-//         [-140.76982845442157, 63.46615402037919],
-//         [-137.26518978254657, 63.15528203910088],
-//         [-137.78154720442157, 62.58922824931989]]);
+var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
+        [[-120.01339170395872, 54.82097540279146],
+        [-116.94820615708372, 56.69970979965382],
+        [-118.67246694131055, 56.154441684771434],
+        [-136.91728237631563, 60.982984401796536],
+        [-140.69657925131563, 62.12368198955072],
+        [-140.76982845442157, 63.46615402037919],
+        [-137.26518978254657, 63.15528203910088],
+        [-137.78154720442157, 62.58922824931989]]);
 
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
-  .filterBounds(ee.FeatureCollection(geometry).filterBounds(sub_for_now).geometry()) // TODO: for now
-
+  .filterBounds(geometry)
+Map.addLayer(ctef)
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
 var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
 
@@ -284,10 +272,9 @@ var sampled = points.map(function(ft) {
   return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel, lc])
     .sampleRegions(ft, null, 30);
 }).flatten();
-print(sampled.limit(1))
 
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate-landsat-and-modis_van_island',
-  folder: 'drought-sensisitivity-refugia'
+  description: 'sampled-intermediate-landsat-and-modis-with-land-cover',
+  folder: 'Drought-sensisitivity-refugia'
 })
