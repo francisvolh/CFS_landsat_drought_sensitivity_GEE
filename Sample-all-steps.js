@@ -107,6 +107,7 @@ var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 var l5 = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR");
 var l7 = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR");
 
+var lc = ee.Image("ESA/GLOBCOVER_L4_200901_200912_V2_3").select('landcover');
 
 
 // Variables --------------------------------------------------------
@@ -280,7 +281,7 @@ var drought_sel = droughtSens.select(drought_names);
 var drought_modis_sel = droughtSens_modis.select(drought_names);
 
 var sampled = points.map(function(ft) {
-  return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel])
+  return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel, lc])
     .sampleRegions(ft, null, 30);
 }).flatten();
 print(sampled.limit(1))
