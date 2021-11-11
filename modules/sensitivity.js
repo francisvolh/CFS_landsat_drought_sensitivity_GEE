@@ -74,17 +74,17 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
   return ee.Image(percentiles.map(function(percent) {
     // Setup input and output band names
     var sens3NDVI = 'Sens_NDVI_ante3mo_p' + percent;
-    var sens6NDVI = 'Sens_NDVI_ante6mo_p' + percent;
+    // var sens6NDVI = 'Sens_NDVI_ante6mo_p' + percent;
     var sens12NDVI = 'Sens_NDVI_ante12mo_p' + percent;
     var sens5NDVI = 'Sens_NDVI_ante5yr_p' + percent;
 
     var sens3EVI = 'Sens_EVI_ante3mo_p' + percent;
-    var sens6EVI = 'Sens_EVI_ante6mo_p' + percent;
+    // var sens6EVI = 'Sens_EVI_ante6mo_p' + percent;
     var sens12EVI = 'Sens_EVI_ante12mo_p' + percent;
     var sens5EVI = 'Sens_EVI_ante5yr_p' + percent;
 
     var sens3NBR = 'Sens_NBR_ante3mo_p' + percent;
-    var sens6NBR = 'Sens_NBR_ante6mo_p' + percent;
+    // var sens6NBR = 'Sens_NBR_ante6mo_p' + percent;
     var sens12NBR = 'Sens_NBR_ante12mo_p' + percent;
     var sens5NBR = 'Sens_NBR_ante5yr_p' + percent;
 
@@ -96,19 +96,19 @@ exports.droughtSensivitityPrime = function(sens, percentiles) {
     // Select antecedent 3, 6, 12 and return the max
     return ee.Image([
       sens.select(sens3NDVI)
-          .max(sens.select(sens6NDVI))
+          // .max(sens.select(sens6NDVI))
           .max(sens.select(sens12NDVI))
-          // .max(sens.select(sens5NDVI))
+          .max(sens.select(sens5NDVI))
           .rename(sensPrimeNDVI),
       sens.select(sens3EVI)
-          .max(sens.select(sens6EVI))
+          // .max(sens.select(sens6EVI))
           .max(sens.select(sens12EVI))
-          // .max(sens.select(sens5EVI))
+          .max(sens.select(sens5EVI))
           .rename(sensPrimeEVI),
       sens.select(sens3NBR)
-          .max(sens.select(sens6NBR))
+          // .max(sens.select(sens6NBR))
           .max(sens.select(sens12NBR))
-          // .max(sens.select(sens5NBR))
+          .max(sens.select(sens5NBR))
           .rename(sensPrimeNBR)
       ]);
   }));
