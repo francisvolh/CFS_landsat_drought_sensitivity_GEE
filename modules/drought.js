@@ -45,7 +45,7 @@ var means = baseline.antecedentMeans(cmi, 'CMI', years);
 exports.baselineCMI = function(percentiles) {
     // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
   var drought = baseline.ltPercentile(means, percentiles);
-  
+
   // Drop since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
   drought = drought.filter(ee.Filter.gt('year', 1980));
   return drought;
