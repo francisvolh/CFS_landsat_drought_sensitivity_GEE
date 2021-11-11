@@ -169,13 +169,10 @@ var points = ctef.map(function(ft) {
 // TODO ***********************************************************************************
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
-                       .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
-                                            ee.Filter.stringContains('item', 'ante3mo')));
-
+                       .filter(ee.Filter.inList('item', ['ante3mo', 'ante12mo', 'ante5yr']));
 var drought_names = droughtSens.bandNames()
                          .filter(ee.Filter.stringContains('item', 'p15'))
-                         .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
-                                              ee.Filter.stringContains('item', 'ante3mo')));
+                       .filter(ee.Filter.inList('item', ['ante3mo', 'ante12mo', 'ante5yr']));
 
 var means_sel = means.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
