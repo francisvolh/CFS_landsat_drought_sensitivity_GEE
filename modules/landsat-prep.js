@@ -48,7 +48,7 @@ exports.maskL457sr = function(image) {
       .addBands(thermalBand, null, true)
       .updateMask(qaMask)
       .updateMask(saturationMask);
-}
+};
 
 
 // Set year
