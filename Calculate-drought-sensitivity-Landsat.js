@@ -151,7 +151,7 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 // var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
 
-print(droughtSens.limit(2))
+print(droughtSens)
 // Map ------------------------------------------------------------
 var pal = palettes.colorbrewer.RdBu[9];
 var min = -50; var max = 50;
