@@ -18,6 +18,8 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
 // === Sample all steps ===
 // Alec L. Robitaille
 
+var which_geo = 'points';
+print('Geometry set: ' + which_geo);
 
 
 // Data -------------------------------------------------------------
@@ -48,9 +50,15 @@ var polygon = ee.Geometry({
 																								 [-141.23205620026698, 65.2249422967821]]],
 								"geodesic":true, "evenOdd":true }], "coordinates":[] })
 
+if (region == 'Yukon') {
+  var geo = ctef;
+} else if (region == 'Alberta') {
+  var geo = alberta;
+}
+
 
 // CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')  
 
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
@@ -113,7 +121,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ctef = ctef.filter(ee.Filter.bounds(polygon));
+ctef = ctef.filter(ee.Filter.bounds(geo));
 
 // Landsat 5
 l5 = l5
