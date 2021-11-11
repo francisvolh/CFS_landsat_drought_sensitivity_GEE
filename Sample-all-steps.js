@@ -41,7 +41,7 @@ if (which_geo == 'points') {
 
 
 // CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')  
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');  
 
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
@@ -105,7 +105,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 // Filter -----------------------------------------------------------
 ctef = ctef.filterBounds(geo);
-Map.addLayer(ctef);
+
 
 // Landsat 5
 l5 = l5
