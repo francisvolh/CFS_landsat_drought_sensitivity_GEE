@@ -175,18 +175,18 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
-  folder: 'CFS-drought-sensitivity-Landsat-' + '2000_2012-' + region + '_absolute',
+  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
+  folder: 'Drought-sensitivity-refugia',
   region: geo,
-  scale: 250,
+  scale: 30,
   maxPixels: 1e9
 };
 // Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
-  assetId: 'CFS/drought-sensitivity-Landsat-' + '2000_2012-2-' + region + '_absolute',
+  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
+  assetId: 'CFS/drought-sensitivity-Landsat-1984_2012-' + region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
