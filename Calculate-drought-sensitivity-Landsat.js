@@ -10,8 +10,7 @@ var alberta =
         [[[-119.93250204872565, 57.093629281447924],
           [-119.93250204872565, 54.00038691085837],
           [-113.60437704872565, 54.00038691085837],
-          [-113.60437704872565, 57.093629281447924]]], null, false),
-    l5 = ee.ImageCollection("LANDSAT/LT05/C02/T1_L2");
+          [-113.60437704872565, 57.093629281447924]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
@@ -127,10 +126,9 @@ var veg = l5.merge(l7)
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg
-  .map(landsatprep.rescale)
+  .map(landsatprep.maskClouds)
   .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
-  .map(landsatprep.maskClouds)
   .map(water.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
