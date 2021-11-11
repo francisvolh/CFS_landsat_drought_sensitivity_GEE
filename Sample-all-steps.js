@@ -147,7 +147,7 @@ var geometry = /* color: #d63000 */ee.Geometry({
 
 
 // Data -------------------------------------------------------------
-var geometry = ee.Geometry({
+var polygon = ee.Geometry({
 	"type":"GeometryCollection",
 "geometries":[{"type":"Point", "coordinates":[-120.02437803208372, 56.52438100646832]},
 							{"type":"Point", "coordinates":[-116.94820615708372, 56.69970979965382]},
@@ -176,7 +176,6 @@ var geometry = ee.Geometry({
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 
-Map.addLayer(ctef)
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
 
@@ -238,25 +237,17 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-Map.addLayer(ctef)
-// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
-
-if (region == 'Yukon') {
-  var geo = ctef;
-} else if (region == 'Alberta') {
-  var geo = alberta;
-}
+ctef = ctef.filter(ee.Filter.bounds(geometry));
 
 // Landsat 5
 l5 = l5
-  .filterBounds(geo)
+  .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 l7 = l7
-  .filterBounds(geo)
+  .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
@@ -318,9 +309,7 @@ var drought_names = droughtSens.bandNames()
                                               ee.Filter.stringContains('item', 'ante3mo')));
 
 var means_sel = means.select(means_names);
-var means_modis_sel = means_modis.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
-var drought_modis_sel = droughtSens_modis.select(drought_names);
 
 var sampled = points.map(function(ft) {
   return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel, lc])
