@@ -10,7 +10,8 @@ var alberta =
         [[[-119.93250204872565, 57.093629281447924],
           [-119.93250204872565, 54.00038691085837],
           [-113.60437704872565, 54.00038691085837],
-          [-113.60437704872565, 57.093629281447924]]], null, false);
+          [-113.60437704872565, 57.093629281447924]]], null, false),
+    l5 = ee.ImageCollection("LANDSAT/LT05/C02/T1_L2");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
