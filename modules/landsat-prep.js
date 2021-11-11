@@ -29,18 +29,26 @@ exports.calcIndices = function(img) {
 };
 
 
-// from l5, l7 ee docs
-exports.maskClouds = function(image) {
-  var qa = image.select('pixel_qa');
-  // If the cloud bit (5) is set and the cloud confidence (6) is high
-  // or the cloud shadow bit is set (3), then it's a bad pixel.
-  var cloud = qa.bitwiseAnd(1 << 5)
-                  .and(qa.bitwiseAnd(1 << 6))
-                  .or(qa.bitwiseAnd(1 << 3));
-  // Remove edge pixels that don't occur in all bands
-  var mask2 = image.mask().reduce(ee.Reducer.min());
-  return image.updateMask(cloud.not()).updateMask(mask2);
-};
+// Mask clouds and rescale images, from EE docs
+exports.maskL457sr = function(image) {
+  // Bit 0 - Fill
+  // Bit 1 - Dilated Cloud
+  // Bit 2 - Unused
+  // Bit 3 - Cloud
+  // Bit 4 - Cloud Shadow
+  var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111', 2)).eq(0);
+  var saturationMask = image.select('QA_RADSAT').eq(0);
+
+  // Apply the scaling factors to the appropriate bands.
+  var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
+  var thermalBand = image.select('ST_B6').multiply(0.00341802).add(149.0);
+
+  // Replace the original bands with the scaled ones and apply the masks.
+  return image.addBands(opticalBands, null, true)
+      .addBands(thermalBand, null, true)
+      .updateMask(qaMask)
+      .updateMask(saturationMask);
+}
 
 
 // Set year
