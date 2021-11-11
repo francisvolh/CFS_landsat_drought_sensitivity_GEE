@@ -1,35 +1,182 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
-        [[-120.02437803208372, 56.52438100646832],
-         [-116.94820615708372, 56.69970979965382],
-         [-118.67246694131055, 56.154441684771434],
-         [-136.91728237631563, 60.982984401796536],
-         [-140.69657925131563, 62.12368198955072],
-         [-140.76982845442157, 63.46615402037919],
-         [-137.26518978254657, 63.15528203910088],
-         [-137.78154720442157, 62.58922824931989],
-         [-124.40657790241876, 48.68503849266654],
-         [-124.62630446491876, 49.190201734866044],
-         [-125.83480055866876, 49.37653263200246],
-         [-126.16439040241876, 50.17115295052788],
-         [-127.30696852741876, 50.24146818840383],
-         [-127.87825758991876, 50.61938195875478]]);
+var geometry = /* color: #d63000 */ee.Geometry({
+      "type": "GeometryCollection",
+      "geometries": [
+        {
+          "type": "Point",
+          "coordinates": [
+            -120.02437803208372,
+            56.52438100646832
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -116.94820615708372,
+            56.69970979965382
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -118.67246694131055,
+            56.154441684771434
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -136.91728237631563,
+            60.982984401796536
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -140.69657925131563,
+            62.12368198955072
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -140.76982845442157,
+            63.46615402037919
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -137.26518978254657,
+            63.15528203910088
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -137.78154720442157,
+            62.58922824931989
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -124.40657790241876,
+            48.68503849266654
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -124.62630446491876,
+            49.190201734866044
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -125.83480055866876,
+            49.37653263200246
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -126.16439040241876,
+            50.17115295052788
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -127.30696852741876,
+            50.24146818840383
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -127.87825758991876,
+            50.61938195875478
+          ]
+        },
+        {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -141.23205620026698,
+                60.41979920365629
+              ],
+              [
+                -132.53088432526698,
+                57.33302358860053
+              ],
+              [
+                -133.67346245026698,
+                52.75688444025042
+              ],
+              [
+                -124.18127495026698,
+                47.70308147300927
+              ],
+              [
+                -112.57971245026698,
+                48.98812225842628
+              ],
+              [
+                -116.00744682526698,
+                64.17335514796092
+              ],
+              [
+                -141.23205620026698,
+                65.2249422967821
+              ]
+            ]
+          ],
+          "geodesic": true,
+          "evenOdd": true
+        }
+      ],
+      "coordinates": []
+    });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-// === Calculate Drought Sensitivity ===
-// --- Landsat ---
+// === Sample all steps ===
 // Alec L. Robitaille
-
-
-var region = 'Yukon';
-print('Region set: ' + region);
 
 
 
 // Data -------------------------------------------------------------
+var geometry = ee.Geometry({
+	"type":"GeometryCollection",
+"geometries":[{"type":"Point", "coordinates":[-120.02437803208372, 56.52438100646832]},
+							{"type":"Point", "coordinates":[-116.94820615708372, 56.69970979965382]},
+							{"type":"Point", "coordinates":[-118.67246694131055, 56.154441684771434]},
+							{"type":"Point", "coordinates":[-136.91728237631563, 60.982984401796536]},
+							{"type":"Point", "coordinates":[-140.69657925131563, 62.12368198955072]}, 
+							{"type":"Point", "coordinates":[-140.76982845442157, 63.46615402037919]},
+							{"type":"Point", "coordinates":[-137.26518978254657, 63.15528203910088]},
+							{"type":"Point", "coordinates":[-137.78154720442157, 62.58922824931989]},
+							{"type":"Point", "coordinates":[-124.40657790241876, 48.68503849266654]},
+							{"type":"Point", "coordinates":[-124.62630446491876, 49.190201734866044]},
+							{"type":"Point", "coordinates":[-125.83480055866876, 49.37653263200246]},
+							{"type":"Point", "coordinates":[-126.16439040241876, 50.17115295052788]},
+							{"type":"Point", "coordinates":[-127.30696852741876, 50.24146818840383]},
+							{"type":"Point", "coordinates":[-127.87825758991876, 50.61938195875478]},
+							{"type":"Polygon", "coordinates":[[[-141.23205620026698, 60.41979920365629], 
+																								 [-132.53088432526698, 57.33302358860053],
+																								 [-133.67346245026698, 52.75688444025042],
+																								 [-124.18127495026698, 47.70308147300927],
+																								 [-112.57971245026698, 48.98812225842628],
+																								 [-116.00744682526698, 64.17335514796092],
+																								 [-141.23205620026698, 65.2249422967821]]],
+								"geodesic":true, "evenOdd":true }], "coordinates":[] })
+
+
 // CTEF regions
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
 
-
+Map.addLayer(ctef)
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
 
@@ -91,8 +238,9 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+Map.addLayer(ctef)
+// ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
 
 if (region == 'Yukon') {
   var geo = ctef;
@@ -149,49 +297,38 @@ var means = splits.reduce(ee.Reducer.mean());
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
-print(droughtSens)
-// Drought sensitivity prime (S’) = max across three antecedent periods
-// var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
 
+// Sample points -------------------------------------------------
+var points = ctef.map(function(ft) {
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
+              .map(function(f) {
+                return f.set('REG_ID', ft.get('REG_ID'));
+              });
+}).flatten();
 
-// Map ------------------------------------------------------------
-var pal = palettes.colorbrewer.RdBu[9];
-var min = -50; var max = 50;
-var viz = {min: min, max: max, palette: pal};
+var means_names = means.bandNames()
+                       .filter(ee.Filter.stringContains('item', 'p15'))
+                       .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
+                                            ee.Filter.stringContains('item', 'ante3mo')));
 
-// function showPalette(name, palette) {
-//   var image = ee.Image.pixelLonLat().select(0)
-//     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
-//     .visualize({ min: 0, max: 100, palette: palette });
+var drought_names = droughtSens.bandNames()
+                         .filter(ee.Filter.stringContains('item', 'p15'))
+                         .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
+                                              ee.Filter.stringContains('item', 'ante3mo')));
 
-//   print(name);
-//   print(ui.Thumbnail(image));
-// }
-// showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
+var means_sel = means.select(means_names);
+var means_modis_sel = means_modis.select(means_names);
+var drought_sel = droughtSens.select(drought_names);
+var drought_modis_sel = droughtSens_modis.select(drought_names);
 
-// Map.addLayer(droughtSens.select('Sens_EVI_ante12mo_p10'), viz);
-// Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
+var sampled = points.map(function(ft) {
+  return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel, lc])
+    .sampleRegions(ft, null, 30);
+}).flatten();
 
-
-
-// Export -------------------------------------------------------
-var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
-  folder: 'Drought-sensitivity-refugia',
-  region: geo,
-  scale: 30,
-  maxPixels: 1e9
-};
-Export.image.toDrive(exp);
-
-var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-1984_2012-' + region,
-  region: geo,
-  scale: 30,
-  maxPixels: 1e9
-};
-Export.image.toAsset(exp);
+Export.table.toDrive({
+  collection: sampled,
+  description: 'sampled-intermediate-landsat-and-modis-with-land-cover',
+  folder: 'Drought-sensisitivity-refugia'
+})
