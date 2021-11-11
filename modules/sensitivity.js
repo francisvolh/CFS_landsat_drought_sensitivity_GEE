@@ -15,8 +15,8 @@ exports.splitDrought = function(veg, drought, antes, percentiles, indices) {
           // Loop over indices
           return indices.map(function(index) {
             // Set up band names
-            var ltband = 'CMI_lt_ante' + ante + 'mo_p' + p;
-            var id = index + '_ante' + ante + 'mo_p' + p;
+            var ltband = 'CMI_lt_ante' + ante + '_p' + p;
+            var id = index + '_ante' + ante + '_p' + p;
             var droughtband = id + '_drought';
             var baseband = id + '_base';
 
@@ -51,7 +51,7 @@ exports.droughtSensitivity = function(means, antes, percentiles, indices) {
         // Loop over indices
         return indices.map(function(index) {
           // Set up band names
-          var id = index + '_ante' + ante + 'mo_p' + p;
+          var id = index + '_ante' + ante + '_p' + p;
           var baseband = id + '_base' + '_mean';
           var droughtband = id + '_drought' + '_mean';
           var sensband = 'Sens_' + id;
