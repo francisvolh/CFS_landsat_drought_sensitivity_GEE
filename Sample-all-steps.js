@@ -1,20 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
-        [[-120.02437803208372, 56.52438100646832],
-         [-116.94820615708372, 56.69970979965382],
-         [-118.67246694131055, 56.154441684771434],
-         [-136.91728237631563, 60.982984401796536],
-         [-140.69657925131563, 62.12368198955072],
-         [-140.76982845442157, 63.46615402037919],
-         [-137.26518978254657, 63.15528203910088],
-         [-137.78154720442157, 62.58922824931989],
-         [-124.40657790241876, 48.68503849266654],
-         [-124.62630446491876, 49.190201734866044],
-         [-125.83480055866876, 49.37653263200246],
-         [-126.16439040241876, 50.17115295052788],
-         [-127.30696852741876, 50.24146818840383],
-         [-127.87825758991876, 50.61938195875478]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Sample all steps ===
 // Alec L. Robitaille
 
@@ -48,12 +31,12 @@ var polygon = ee.Geometry({
 																								 [-112.57971245026698, 48.98812225842628],
 																								 [-116.00744682526698, 64.17335514796092],
 																								 [-141.23205620026698, 65.2249422967821]]],
-								"geodesic":true, "evenOdd":true }], "coordinates":[] })
+								"geodesic":true, "evenOdd":true }], "coordinates":[] });
 
-if (region == 'Yukon') {
-  var geo = ctef;
-} else if (region == 'Alberta') {
-  var geo = alberta;
+if (which_geo == 'points') {
+  var geo = points;
+} else if (which_geo == 'polygons') {
+  var geo = polygons;
 }
 
 
@@ -121,7 +104,8 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ctef = ctef.filter(ee.Filter.bounds(geo));
+ctef = ctef.filterBounds(geo);
+Map.addLayer(ctef);
 
 // Landsat 5
 l5 = l5
