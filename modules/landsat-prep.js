@@ -12,17 +12,17 @@
 exports.calcIndices = function(img) {
   return ee.Image([
     img.expression('(nir - red) / (nir + red)',
-                   {red: img.select('B3'),
-                    nir: img.select('B4')})
+                   {red: img.select('SR_B3'),
+                    nir: img.select('SR_B4')})
        .rename('NDVI'),
      img.expression('(nir - swir2) / (nir + swir2)',
-                   {nir: img.select('B4'),
-                    swir2: img.select('B7')})
+                   {nir: img.select('SR_B4'),
+                    swir2: img.select('SR_B7')})
        .rename('NBR'),
      img.expression('2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))',
-                   {blue: img.select('B1'),
-                    red: img.select('B3'),
-                    nir: img.select('B4')})
+                   {blue: img.select('SR_B1'),
+                    red: img.select('SR_B3'),
+                    nir: img.select('SR_B4')})
        .rename('EVI'),
      img.select('QA_PIXEL')
   ]).copyProperties(img).set({'system:time_start': img.date().millis()});
