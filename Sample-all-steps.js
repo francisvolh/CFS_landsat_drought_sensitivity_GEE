@@ -185,8 +185,15 @@ var sampled = points.map(function(ft) {
     .sampleRegions(ft, null, 30);
 }).flatten();
 
+
+// Map -----------------------------------------------------------
+Map.addLayer(ctef);
+
+
+
+// Export --------------------------------------------------------
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate-landsat-and-modis-with-land-cover',
+  description: 'sampled-intermediate-landsat',
   folder: 'Drought-sensisitivity-refugia'
-})
+});
