@@ -112,13 +112,13 @@ l7 = l7
 
 
 // Daymet -----------------------------------------------------------
-var drought = droughtModule.baselineCMI();
+var drought = droughtModule.baselineCMI(percentiles);
 
 
 
 // Landsat ----------------------------------------------------------
 // Merge L5 and L7
-var veg = l5.merge(l7)
+var veg = l5.merge(l7);
 
 
 // Filter within min/max year and for July
