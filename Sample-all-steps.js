@@ -165,7 +165,6 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-// TODO ***********************************************************************************
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
                        .filter(ee.Filter.inList('item', ['ante3mo', 'ante12mo', 'ante5yr']));
@@ -181,6 +180,7 @@ var sampled = points.map(function(ft) {
     .sampleRegions(ft, null, 30);
 }).flatten();
 
+print(sampled.limit(10))
 
 // Map -----------------------------------------------------------
 Map.addLayer(ctef);
