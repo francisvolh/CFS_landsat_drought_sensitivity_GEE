@@ -97,7 +97,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ctef = ctef.filter(ee.Filter.bounds(geometry));
+ctef = ctef.filter(ee.Filter.bounds(polygon));
 
 // Landsat 5
 l5 = l5
@@ -158,6 +158,7 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
+// TODO
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
                        .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
@@ -172,7 +173,7 @@ var means_sel = means.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
 
 var sampled = points.map(function(ft) {
-  return ee.Image([means_sel, drought_sel, means_modis_sel, drought_modis_sel, lc])
+  return ee.Image([means_sel, drought_sel])
     .sampleRegions(ft, null, 30);
 }).flatten();
 
