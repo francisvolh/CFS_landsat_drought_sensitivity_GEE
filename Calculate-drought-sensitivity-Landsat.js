@@ -54,7 +54,7 @@ var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 var percentiles = [5, 15];
 
 // Set antecedent periods
-var antes = [3, 12, 5];
+var antes = ['3mo', '12mo', '5yr'];
 
 // Set indices
 var indices = ['NDVI', 'NBR', 'EVI'];
