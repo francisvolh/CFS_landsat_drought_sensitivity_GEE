@@ -68,18 +68,11 @@ exports.aggregateY = function(images) {
 };
 
 
-exports.rescale = function(img) {
-  return ee.Image([
-    img.select('B1').multiply(0.0001),
-    img.select('B2').multiply(0.0001),
-    img.select('B3').multiply(0.0001),
-    img.select('B4').multiply(0.0001),
-    img.select('B5').multiply(0.1),
-    img.select('B6').multiply(0.0001),
-    img.select('B7').multiply(0.0001),
-    img.select('sr_atmos_opacity').multiply(0.001),
-    img.select('sr_cloud_qa'),
-    img.select('pixel_qa'),
-    img.select('radsat_qa')
-  ]).copyProperties(img).set({'system:time_start': img.get('system:time_start')});
+
+// Applies scaling factors. From EE docs. 
+exports.rescale = function(image) {
+  var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
+  var thermalBand = image.select('ST_B6').multiply(0.00341802).add(149.0);
+  return image.addBands(opticalBands, null, true)
+              .addBands(thermalBand, null, true);
 };
