@@ -1,7 +1,7 @@
 // === Sample all steps ===
 // Alec L. Robitaille
 
-var which_geo = 'points';
+var which_geo = 'polygons';
 print('Geometry set: ' + which_geo);
 
 
@@ -22,7 +22,7 @@ var points = /* color: #d63000 */ee.Geometry.MultiPoint(
          [-127.30696852741876, 50.24146818840383],
          [-127.87825758991876, 50.61938195875478]]);
          
-var polygon = ee.Geometry({
+var polygons = ee.Geometry({
 	"type":"GeometryCollection",
 "geometries":[{"type":"Polygon", "coordinates":[[[-141.23205620026698, 60.41979920365629], 
 																								 [-132.53088432526698, 57.33302358860053],
