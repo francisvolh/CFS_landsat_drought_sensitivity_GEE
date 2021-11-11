@@ -36,19 +36,19 @@ exports.antecedentMeans = function(images, band, years) {
 
       // Antecedent: 5 (driest in previous 5 years)
       ee.ImageCollection([
-        images.filter(ee.Filter.date(ante12max.advance(-1, 'year'), ante12max))
+        images.filter(ee.Filter.date(today.advance(-1, 'year'), today))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-2, 'year'), ante12max.advance(-1, 'year')))
+        images.filter(ee.Filter.date(today.advance(-2, 'year'), today.advance(-1, 'year')))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-3, 'year'), ante12max.advance(-2, 'year')))
+        images.filter(ee.Filter.date(today.advance(-3, 'year'), today.advance(-2, 'year')))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-4, 'year'), ante12max.advance(-3, 'year')))
+        images.filter(ee.Filter.date(today.advance(-4, 'year'), today.advance(-3, 'year')))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean()),
-        images.filter(ee.Filter.date(ante12max.advance(-5, 'year'), ante12max.advance(-4, 'year')))
+        images.filter(ee.Filter.date(today.advance(-5, 'year'), today.advance(-4, 'year')))
               .select([band], [band5yr])
               .reduce(ee.Reducer.mean())
         ]).reduce(ee.Reducer.min())
