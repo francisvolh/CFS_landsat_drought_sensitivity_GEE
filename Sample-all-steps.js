@@ -158,7 +158,7 @@ var points = ctef.map(function(ft) {
               });
 }).flatten();
 
-// TODO
+// TODO ***********************************************************************************
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
                        .filter(ee.Filter.or(ee.Filter.stringContains('item', 'ante12mo'),
