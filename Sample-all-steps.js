@@ -180,7 +180,6 @@ var sampled = points.map(function(ft) {
     .sampleRegions(ft, null, 30);
 }).flatten();
 
-print(sampled.limit(10))
 
 // Map -----------------------------------------------------------
 Map.addLayer(ctef);
