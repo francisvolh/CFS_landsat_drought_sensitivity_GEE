@@ -1,7 +1,7 @@
 // === Sample all steps ===
 // Alec L. Robitaille
 
-var which_geo = 'polygons';
+var which_geo = 'points';
 print('Geometry set: ' + which_geo);
 
 
@@ -189,6 +189,6 @@ Map.addLayer(ctef);
 // Export --------------------------------------------------------
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate-landsat',
+  description: 'sampled-intermediate-landsat-yt-ab-bc',
   folder: 'Drought-sensisitivity-refugia'
 });
