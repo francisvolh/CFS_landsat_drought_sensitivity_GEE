@@ -175,7 +175,7 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
+  description: 'drought-sensitivity-Landsat-1985_2012-' + region,
   folder: 'Drought-sensitivity-refugia',
   region: geo,
   scale: 30,
@@ -185,8 +185,8 @@ Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-1984_2012-' + region,
+  description: 'drought-sensitivity-Landsat-1985_2012-' + region,
+  assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-' + region,
   region: geo,
   scale: 30,
   maxPixels: 1e9
