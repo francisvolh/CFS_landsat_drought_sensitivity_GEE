@@ -17,8 +17,6 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Yukon';
-print('Region set: ' + region);
 
 
 
@@ -88,24 +86,24 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
+var ctef_list = ['CL09R05', 'CL09R07', 
+                 'CL13R02', 'CL13R03', 'CL13R04', 'CL13R05',
+                 'CL12R07', 'CL12R08'];
+                 
 // ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ctef_list));
 
-if (region == 'Yukon') {
-  var geo = ctef;
-} else if (region == 'Alberta') {
-  var geo = alberta;
-}
+
 
 // Landsat 5
 l5 = l5
-  .filterBounds(geo)
+  .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 l7 = l7
-  .filterBounds(geo)
+  .filterBounds(ctef)
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
@@ -175,7 +173,7 @@ var viz = {min: min, max: max, palette: pal};
 // Export -------------------------------------------------------
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
+  description: 'drought-sensitivity-Landsat-yt_ab_bc',
   folder: 'Drought-sensitivity-refugia',
   region: geo,
   scale: 30,
@@ -185,8 +183,8 @@ Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1984_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-1984_2012-' + region,
+  description: 'drought-sensitivity-Landsat-yt_ab_bc',
+  assetId: 'CFS/drought-sensitivity-Landsat-yt_ab_bc',
   region: geo,
   scale: 30,
   maxPixels: 1e9
