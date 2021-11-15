@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var polygons = /* color: #d63000 */ee.Geometry.Polygon(
+var polygons = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-141.23205620026698, 60.41979920365629],
           [-132.53088432526698, 57.33302358860053],
           [-133.67346245026698, 52.75688444025042],
@@ -7,7 +10,10 @@ var polygons = /* color: #d63000 */ee.Geometry.Polygon(
           [-112.57971245026698, 48.98812225842628],
           [-116.00744682526698, 64.17335514796092],
           [-141.23205620026698, 65.2249422967821]]]),
-    points = /* color: #d63000 */ee.Geometry.MultiPoint(
+    points = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPoint(
         [[-120.02437803208372, 56.52438100646832],
          [-116.94820615708372, 56.69970979965382],
          [-118.67246694131055, 56.154441684771434],
@@ -168,14 +174,20 @@ var points = ctef.map(function(ft) {
 
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
-                       .filter(ee.Filter.inList('item', ['ante3mo', 'ante12mo', 'ante5yr']));
+                       .filter(ee.Filter.or(
+                                ee.Filter.stringContains('item', 'ante12mo'),
+                                ee.Filter.stringContains('item', 'ante3mo'),
+                                ee.Filter.stringContains('item', 'ante5yr')));
 var drought_names = droughtSens.bandNames()
-                         .filter(ee.Filter.stringContains('item', 'p15'))
-                       .filter(ee.Filter.inList('item', ['ante3mo', 'ante12mo', 'ante5yr']));
-
+                       .filter(ee.Filter.stringContains('item', 'p15'))
+                       .filter(ee.Filter.or(
+                                ee.Filter.stringContains('item', 'ante12mo'),
+                                ee.Filter.stringContains('item', 'ante3mo'),
+                                ee.Filter.stringContains('item', 'ante5yr')));
 var means_sel = means.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
-
+print(means_sel)
+print(drought_sel)
 var sampled = points.map(function(ft) {
   return ee.Image([means_sel, drought_sel])
     .sampleRegions(ft, null, 30);
