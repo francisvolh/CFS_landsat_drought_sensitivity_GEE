@@ -186,8 +186,7 @@ var drought_names = droughtSens.bandNames()
                                 ee.Filter.stringContains('item', 'ante5yr')));
 var means_sel = means.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
-print(means_sel)
-print(drought_sel)
+
 var sampled = points.map(function(ft) {
   return ee.Image([means_sel, drought_sel])
     .sampleRegions(ft, null, 30);
