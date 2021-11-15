@@ -1,12 +1,13 @@
-// === Sample all steps ===
-// Alec L. Robitaille
-
-var which_geo = 'points';
-print('Geometry set: ' + which_geo);
-
-
-// Data -------------------------------------------------------------
-var points = /* color: #d63000 */ee.Geometry.MultiPoint(
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var polygons = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-141.23205620026698, 60.41979920365629],
+          [-132.53088432526698, 57.33302358860053],
+          [-133.67346245026698, 52.75688444025042],
+          [-124.18127495026698, 47.70308147300927],
+          [-112.57971245026698, 48.98812225842628],
+          [-116.00744682526698, 64.17335514796092],
+          [-141.23205620026698, 65.2249422967821]]]),
+    points = /* color: #d63000 */ee.Geometry.MultiPoint(
         [[-120.02437803208372, 56.52438100646832],
          [-116.94820615708372, 56.69970979965382],
          [-118.67246694131055, 56.154441684771434],
@@ -21,23 +22,20 @@ var points = /* color: #d63000 */ee.Geometry.MultiPoint(
          [-126.16439040241876, 50.17115295052788],
          [-127.30696852741876, 50.24146818840383],
          [-127.87825758991876, 50.61938195875478]]);
-         
-var polygons = ee.Geometry({
-	"type":"GeometryCollection",
-"geometries":[{"type":"Polygon", "coordinates":[[[-141.23205620026698, 60.41979920365629], 
-																								 [-132.53088432526698, 57.33302358860053],
-																								 [-133.67346245026698, 52.75688444025042],
-																								 [-124.18127495026698, 47.70308147300927],
-																								 [-112.57971245026698, 48.98812225842628],
-																								 [-116.00744682526698, 64.17335514796092],
-																								 [-141.23205620026698, 65.2249422967821]]],
-								"geodesic":true, "evenOdd":true }], "coordinates":[] });
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+// === Sample all steps ===
+// Alec L. Robitaille
 
-if (which_geo == 'points') {
-  var geo = points;
-} else if (which_geo == 'polygons') {
-  var geo = polygons;
-}
+// var which_geo = 'points';
+// print('Geometry set: ' + which_geo);
+
+
+// Data -------------------------------------------------------------
+// if (which_geo == 'points') {
+//   var geo = points;
+// } else if (which_geo == 'polygons') {
+//   var geo = polygons;
+// }
 
 
 // CTEF regions
@@ -104,7 +102,10 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ctef = ctef.filterBounds(geo);
+var ctef_list = ['CL09R05', 'CL09R07', 
+                 'CL13R02', 'CL13R03', 'CL13R04', 'CL13R05',
+                 'CL12R07', 'CL12R08'];
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ctef_list));
 
 
 // Landsat 5
