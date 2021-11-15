@@ -175,7 +175,7 @@ var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-Landsat-yt_ab_bc',
   folder: 'Drought-sensitivity-refugia',
-  region: geo,
+  region: ctef,
   scale: 30,
   maxPixels: 1e9
 };
@@ -185,7 +185,7 @@ var exp = {
   image: droughtSens,
   description: 'drought-sensitivity-Landsat-yt_ab_bc',
   assetId: 'CFS/drought-sensitivity-Landsat-yt_ab_bc',
-  region: geo,
+  region: ctef,
   scale: 30,
   maxPixels: 1e9
 };
