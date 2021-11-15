@@ -204,7 +204,7 @@ var exp = {
   description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   region: geo,
-  scale: 1000,
+  scale: 30,
   maxPixels: 1e9
 };
 Export.image.toAsset(exp);
