@@ -157,6 +157,7 @@ var pal = palettes.colorbrewer.RdBu[9];
 var min = -50; var max = 50;
 var viz = {min: min, max: max, palette: pal};
 
+Map.addLayer(geo)
 // function showPalette(name, palette) {
 //   var image = ee.Image.pixelLonLat().select(0)
 //     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
