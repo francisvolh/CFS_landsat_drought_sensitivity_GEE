@@ -182,7 +182,7 @@ var exp = {
   scale: 30,
   maxPixels: 1e9
 };
-Export.image.toDrive(exp);
+// Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens,
