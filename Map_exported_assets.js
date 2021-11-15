@@ -1,12 +1,13 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var image = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-West");
+var image = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-West"),
+    image2 = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-Alberta");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
 var pal = palettes.colorbrewer.RdBu[9];
-var min = -0.2; var max = 0.2;
+var min = -0.1; var max = 0.1;
 var viz = {min: min, max: max, palette: pal};
 
 function showPalette(name, palette) {
@@ -21,4 +22,4 @@ showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5])
 
 
 Map.addLayer(ee.Image.constant(1), {opacity:0.5})
-Map.addLayer(image, viz)
+Map.addLayer(image2, viz)
