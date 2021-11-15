@@ -200,9 +200,9 @@ var exp = {
 // Export.image.toDrive(exp);
 
 var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1985_2012-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-' + region,
+  image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
+  description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
+  assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   region: geo,
   scale: 1000,
   maxPixels: 1e9
