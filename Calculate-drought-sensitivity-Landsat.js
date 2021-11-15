@@ -30,7 +30,7 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'Alberta';
+var region = 'West';
 print('Region set: ' + region);
 
 
@@ -190,14 +190,14 @@ Map.addLayer(geo)
 
 // Export -------------------------------------------------------
 var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-Landsat-1985_2012-' + region,
+  image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
+  description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   folder: 'Drought-sensitivity-refugia',
   region: geo,
-  scale: 30,
+  scale: 1000,
   maxPixels: 1e9
 };
-// Export.image.toDrive(exp);
+Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
@@ -207,4 +207,4 @@ var exp = {
   scale: 30,
   maxPixels: 1e9
 };
-Export.image.toAsset(exp);
+// Export.image.toAsset(exp);
