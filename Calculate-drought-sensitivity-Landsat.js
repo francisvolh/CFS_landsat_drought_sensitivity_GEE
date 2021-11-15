@@ -10,14 +10,27 @@ var alberta =
         [[[-119.93250204872565, 57.093629281447924],
           [-119.93250204872565, 54.00038691085837],
           [-113.60437704872565, 54.00038691085837],
-          [-113.60437704872565, 57.093629281447924]]], null, false);
+          [-113.60437704872565, 57.093629281447924]]], null, false),
+    west = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-141.43046875000002, 61.75390836272355],
+          [-140.31151452966327, 60.40992197889474],
+          [-136.42070312500002, 60.26326999182864],
+          [-131.05937500000002, 55.95106562006025],
+          [-126.225390625, 49.24129644870385],
+          [-106.537890625, 48.953554735876885],
+          [-106.27421875, 54.80260562883647],
+          [-114.36015625, 57.77629444414828],
+          [-125.25859375, 61.961182286943874],
+          [-125.9116190088051, 67.25718358813353],
+          [-136.50859375000002, 67.49302695510208],
+          [-140.99101562500002, 67.45935893840027]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
 // Alec L. Robitaille
 
 
-var region = 'Alberta';
+var region = 'West';
 print('Region set: ' + region);
 
 
@@ -95,6 +108,8 @@ if (region == 'Yukon') {
   var geo = ctef;
 } else if (region == 'Alberta') {
   var geo = alberta;
+} else if (region == 'West') {
+  var geo = west;
 }
 
 // Landsat 5
@@ -189,7 +204,7 @@ var exp = {
   description: 'drought-sensitivity-Landsat-1985_2012-' + region,
   assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-' + region,
   region: geo,
-  scale: 30,
+  scale: 1000,
   maxPixels: 1e9
 };
 Export.image.toAsset(exp);
