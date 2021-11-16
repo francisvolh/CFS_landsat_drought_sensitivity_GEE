@@ -1,14 +1,15 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var image = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-West"),
-    image2 = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-Alberta");
+var alberta = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-Alberta"),
+    west = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-West"),
+    imageVisParam = {"opacity":1,"bands":["Sens_NDVI_ante3mo_p5"],"min":-0.2,"max":0.2,"palette":[]};
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
 var pal = palettes.colorbrewer.RdBu[9];
-var min = -0.1; var max = 0.1;
-var viz = {min: min, max: max, palette: pal};
+var min = -0.2; var max = 0.2;
+var viz = {bands: 'Sens_NDVI_ante12mo_p15', min: min, max: max, palette: pal};
 
 function showPalette(name, palette) {
   var image = ee.Image.pixelLonLat().select(0)
@@ -18,8 +19,9 @@ function showPalette(name, palette) {
   print(name);
   print(ui.Thumbnail(image));
 }
-showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
+showPalette(min + ' to ' + max, pal);
 
 
 Map.addLayer(ee.Image.constant(1), {opacity:0.5})
-Map.addLayer(image, viz)
+Map.addLayer(alberta, viz, 'alberta', false)
+Map.addLayer(west, viz, 'western canada')
