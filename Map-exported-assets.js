@@ -1,7 +1,6 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var alberta = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-Alberta"),
-    west = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-West"),
-    imageVisParam = {"opacity":1,"bands":["Sens_NDVI_ante3mo_p5"],"min":-0.2,"max":0.2,"palette":[]};
+    west = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_2012-West");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 
 // Gena's palette functions
