@@ -22,4 +22,4 @@ showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5])
 
 
 Map.addLayer(ee.Image.constant(1), {opacity:0.5})
-Map.addLayer(image2, viz)
+Map.addLayer(image, viz)
