@@ -202,5 +202,5 @@ Map.addLayer(ctef);
 Export.table.toDrive({
   collection: sampled,
   description: 'sampled-intermediate-landsat-yt-ab-bc',
-  folder: 'Drought-sensisitivity-refugia'
+  folder: 'Drought-sensitivity-refugia'
 });
