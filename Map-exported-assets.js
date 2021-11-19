@@ -6,7 +6,7 @@ var alberta = ee.Image("users/robitalec/CFS/drought-sensitivity-Landsat-1985_201
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
-var pal = palettes.colorbrewer.RdBu[9];
+var pal = palettes.colorbrewer.RdBu[9].reverse();
 var min = -0.2; var max = 0.2;
 var viz = {bands: 'Sens_NDVI_ante12mo_p15', min: min, max: max, palette: pal};
 
