@@ -25,6 +25,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 //       .select('landcover');
 
 exports.returnLc = function() {
+  // TODO: return collection
 	return lcmask;
 };
 
@@ -34,5 +35,6 @@ exports.reverseMask = function() {
 };
 
 exports.maskLc = function(img) {
-  return img.updateMask(lcmask);
+  // TODO: add filter for year
+  return img.updateMask(lcmask); 
 };
