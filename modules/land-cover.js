@@ -15,8 +15,11 @@
 
 // Load Hermosilla land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+// TODO: set years for each image
+
 
 // Set land cover mask, only retaining if not one of
+// TODO: map over collection
 // var lcmask = lc.updateMask(
 //     lc.expression('lc != 11 && lc != 14 && lc != 20 && lc != 30 && ' +
 //                   'lc != 120 && lc != 140 && lc != 150 && lc != 160 && lc != 170 && lc != 180 && lc != 190 && ' +
