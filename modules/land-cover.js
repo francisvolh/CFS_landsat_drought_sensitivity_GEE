@@ -17,12 +17,12 @@
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 // Set land cover mask, only retaining if not one of
-var lcmask = lc.updateMask(
-    lc.expression('lc != 11 && lc != 14 && lc != 20 && lc != 30 && ' +
-                  'lc != 120 && lc != 140 && lc != 150 && lc != 160 && lc != 170 && lc != 180 && lc != 190 && ' +
-                  'lc != 200 && lc != 210 && lc != 220 && lc != 230',
-                  {lc: lc.select('landcover')}))
-      .select('landcover');
+// var lcmask = lc.updateMask(
+//     lc.expression('lc != 11 && lc != 14 && lc != 20 && lc != 30 && ' +
+//                   'lc != 120 && lc != 140 && lc != 150 && lc != 160 && lc != 170 && lc != 180 && lc != 190 && ' +
+//                   'lc != 200 && lc != 210 && lc != 220 && lc != 230',
+//                   {lc: lc.select('landcover')}))
+//       .select('landcover');
 
 exports.returnLc = function() {
 	return lcmask;
@@ -32,9 +32,6 @@ exports.returnLc = function() {
 exports.reverseMask = function() {
   return lcmask.mask().not().selfMask();
 };
-
-
-
 
 exports.maskLc = function(img) {
   return img.updateMask(lcmask);
