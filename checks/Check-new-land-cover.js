@@ -28,7 +28,7 @@ lc = lc.filterDate(ee.Date.fromYMD(year, 1, 1), ee.Date.fromYMD(year + 1, 1, 1))
 // Map --------------------------------------------------------------
 Map.addLayer(lc, null, 'lc');
 
-Map.addLayer(lc.first().expression(
+Map.addLayer(lc.expression(
   'lc != 0 && lc != 20 && lc != 31 && lc != 32 && ' +
   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
   {lc: lc.first().select('b1')}), null, 'masked lc');
