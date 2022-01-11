@@ -39,10 +39,9 @@ lc = lc.map(landsatprep.setYear)
        .map(maskLandCover);
        
 /// Exports
-// exports.returnLc = function() {
-//   // TODO: return collection
-// 	return lcmask;
-// };
+exports.returnLc = function() {
+	return lc;
+};
 
 
 // exports.reverseMask = function() {
