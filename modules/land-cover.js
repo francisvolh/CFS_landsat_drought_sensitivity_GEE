@@ -50,7 +50,5 @@ exports.returnLandCover = function() {
 
 exports.maskLandCover = function(img) {
   var date = img.date();
-  return img.updateMask(
-    lc.filterDate(date, date.advance(1, 'year')).first()
-    );
+  return img.updateMask(lc.filterDate(date, date.advance(1, 'year')).first());
 };
