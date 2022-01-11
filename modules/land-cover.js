@@ -20,7 +20,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 
 // Functions
-// Mask land cover
+// Mask land cover, only retaining if not one of
 var maskLandCover = function(img) {
   lc.updateMask(
     lc.expression('lc == 0 && lc != 20 && lc != 31 && lc != 32 && ' +
@@ -38,15 +38,6 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 lc = lc.map(landsatprep.setYear)
        .map(maskLandCover);
 
-// Set land cover mask, only retaining if not one of
-// TODO: map over collection
-var lcmask = lc.updateMask(
-    lc.expression('lc != 11 && lc != 14 && lc != 20 && lc != 30 && ' +
-                  'lc != 120 && lc != 140 && lc != 150 && lc != 160 && lc != 170 && lc != 180 && lc != 190 && ' +
-                  'lc != 200 && lc != 210 && lc != 220 && lc != 230',
-                  {lc: lc.select('landcover')}))
-      .select('landcover');
-      
       
 
 exports.returnLc = function() {
