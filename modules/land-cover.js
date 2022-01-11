@@ -41,15 +41,15 @@ lc = lc.map(landsatprep.setYear)
        
 
 /// Exports
-exports.returnLc = function() {
-  // TODO: return collection
-	return lcmask;
-};
+// exports.returnLc = function() {
+//   // TODO: return collection
+// 	return lcmask;
+// };
 
 
-exports.reverseMask = function() {
-  return lcmask.mask().not().selfMask();
-};
+// exports.reverseMask = function() {
+//   return lcmask.mask().not().selfMask();
+// };
 
 exports.maskLc = function(img) {
   // TODO: add filter for year
