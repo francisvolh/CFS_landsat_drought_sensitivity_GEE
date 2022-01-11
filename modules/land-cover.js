@@ -38,7 +38,6 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 lc = lc.map(landsatprep.setYear)
        .map(maskLandCover);
        
-
 /// Exports
 // exports.returnLc = function() {
 //   // TODO: return collection
