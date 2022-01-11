@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var alberta = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -11,7 +12,10 @@ var alberta =
           [-119.93250204872565, 54.00038691085837],
           [-113.60437704872565, 54.00038691085837],
           [-113.60437704872565, 57.093629281447924]]], null, false),
-    west = /* color: #d63000 */ee.Geometry.Polygon(
+    west = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-141.43046875000002, 61.75390836272355],
           [-140.31151452966327, 60.40992197889474],
           [-136.42070312500002, 60.26326999182864],
@@ -138,14 +142,14 @@ var veg = l5.merge(l7);
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
-veg = veg
-  .map(landsatprep.maskL457sr)
-  .map(landsatprep.setYear)
-  .map(landsatprep.calcIndices)
-  .map(water.maskWater)
-  .map(fire.maskFires)
+veg = veg.limit(10)
+  // .map(landsatprep.maskL457sr)
+  // .map(landsatprep.setYear)
+  // .map(landsatprep.calcIndices)
+  // .map(water.maskWater)
+  // .map(fire.maskFires)
   .map(lcmask.maskLc);
-print(veg)
+
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
