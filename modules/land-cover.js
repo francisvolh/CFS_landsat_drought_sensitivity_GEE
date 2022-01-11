@@ -52,5 +52,6 @@ exports.reverseMask = function() {
 };
 
 exports.maskLc = function(img) {
+  // TODO: add filter for year
   return img.updateMask(lcmask.filter(ee.Filter.eq('year', img.date().get('year')))); 
 };
