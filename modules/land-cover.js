@@ -12,14 +12,15 @@
 // 220 Broad Leaf
 // 230 Mixedwood
 
-// Landsat prep functions
-var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
+// Data
 // Load Hermosilla land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
-lc = lc.map(landsatprep.setYear);
 
+
+// Functions
+// Mask land cover
 var maskLandCover = function(img) {
   lc.updateMask(
     lc.expression('lc == 0 && lc != 20 && lc != 31 && lc != 32 && ' +
@@ -27,6 +28,15 @@ var maskLandCover = function(img) {
                   {lc: lc.select('b1')}))
       .select('landcover');
 };
+
+// Landsat prep functions
+var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
+
+
+
+// Processing
+lc = lc.map(landsatprep.setYear)
+       .map(maskLandCover);
 
 // Set land cover mask, only retaining if not one of
 // TODO: map over collection
@@ -36,6 +46,8 @@ var lcmask = lc.updateMask(
                   'lc != 200 && lc != 210 && lc != 220 && lc != 230',
                   {lc: lc.select('landcover')}))
       .select('landcover');
+      
+      
 
 exports.returnLc = function() {
   // TODO: return collection
