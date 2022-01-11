@@ -26,7 +26,7 @@ var maskLandCover = function(img) {
     img.expression('lc == 0 && lc != 20 && lc != 31 && lc != 32 && ' +
                   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
                   {lc: img.select('b1')}))
-      .select('b1');
+      .select('b1', 'land-cover');
 };
 
 // Landsat prep functions
