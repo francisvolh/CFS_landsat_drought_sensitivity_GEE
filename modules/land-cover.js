@@ -52,6 +52,5 @@ exports.maskLandCover = function(img) {
   var date = img.date();
   return img.updateMask(
     lc.filterDate(date, date.advance(1, 'year')).first()
-    // ee.Image(lc.filter(ee.Filter.eq('year', img.date().get('year'))).first())); 
     );
 };
