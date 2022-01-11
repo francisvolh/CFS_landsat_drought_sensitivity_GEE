@@ -143,11 +143,11 @@ var veg = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 veg = veg.limit(10)
-  // .map(landsatprep.maskL457sr)
-  // .map(landsatprep.setYear)
-  // .map(landsatprep.calcIndices)
-  // .map(water.maskWater)
-  // .map(fire.maskFires)
+  .map(landsatprep.maskL457sr)
+  .map(landsatprep.setYear)
+  .map(landsatprep.calcIndices)
+  .map(water.maskWater)
+  .map(fire.maskFires)
   .map(lcmask.maskLc);
 
 // Aggregate Landsat yearly, rename _mean bands
