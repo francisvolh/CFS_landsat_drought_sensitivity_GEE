@@ -33,5 +33,5 @@ Map.addLayer(lc.first().expression(
   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
   {lc: lc.first().select('b1')}), null, 'masked lc');
   
-Map.addLayer(l5, null, 'raw l5');
-Map.addLayer(lcmask.maskLandCover(l5), null, 'masked l5');
+Map.addLayer(l5.mask(), null, 'raw l5');
+Map.addLayer(lcmask.maskLandCover(l5).mask(), null, 'masked l5');
