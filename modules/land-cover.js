@@ -53,5 +53,5 @@ lc = lc.map(landsatprep.setYear)
 
 exports.maskLc = function(img) {
   // TODO: add filter for year
-  return img.updateMask(lc.filter(ee.Filter.eq('year', img.date().get('year')))); 
+  return img.updateMask(ee.Image(lc.filter(ee.Filter.eq('year', img.date().get('year'))))); 
 };
