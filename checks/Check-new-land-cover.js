@@ -15,9 +15,9 @@ var lcMask = lcmask.returnLandCover();
 
 
 // Filter -----------------------------------------------------------
-var year = 2012;
+var year = 2008;
 
-l5 = l5.filter(ee.Filter.eq('year', year))
+l5 = l5.filterDate(ee.Date.fromYMD(year, 8, 1), ee.Date.fromYMD(year + 1, 8, 1))
        .filterBounds(geometry)
        .first();
 
