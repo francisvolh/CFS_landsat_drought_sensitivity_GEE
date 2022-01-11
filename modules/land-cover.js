@@ -49,6 +49,9 @@ exports.returnLandCover = function() {
 // };
 
 exports.maskLandCover = function(img) {
+  var year = img.get('year');
   return img.updateMask(
-    ee.Image(lc.filter(ee.Filter.eq('year', img.date().get('year'))).first())); 
+    lc.filterDate(ee.Date.fromYMD(year, 1, 1), ee.Date.fromYMD(year + 1, 1, 1))
+    // ee.Image(lc.filter(ee.Filter.eq('year', img.date().get('year'))).first())); 
+    );
 };
