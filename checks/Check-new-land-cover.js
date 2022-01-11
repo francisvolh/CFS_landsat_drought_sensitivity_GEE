@@ -9,6 +9,7 @@ var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
 // Data -------------------------------------------------------------
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 
+var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lcMask = lcmask.returnLandCover();
 
 // Filter -----------------------------------------------------------
@@ -17,7 +18,7 @@ var year = 2012
 l5 = l5.filter(ee.Filter.eq('year', year))
        .filterBounds(geometry);
 
-// var lc
+lc = lc.filterDate(ee.Date.fromYMD(year, 1, 1), ee.Date.fromYMD(year + 1, 1, 1))
 
 // Map --------------------------------------------------------------
-Map.addLayer(lcMask)
+Map.addLayer(lc, 'lc')
