@@ -12,10 +12,13 @@
 // 220 Broad Leaf
 // 230 Mixedwood
 
+// Landsat prep functions
+var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Load Hermosilla land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-// TODO: set years for each image
+
+lc = lc.map(landsatprep.setYear);
 
 
 // Set land cover mask, only retaining if not one of
