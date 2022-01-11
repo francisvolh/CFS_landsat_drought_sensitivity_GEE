@@ -37,9 +37,10 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 // Processing
 lc = lc.map(landsatprep.setYear)
        .map(maskLandCover);
+       
+       
 
-      
-
+/// Exports
 exports.returnLc = function() {
   // TODO: return collection
 	return lcmask;
@@ -51,6 +52,5 @@ exports.reverseMask = function() {
 };
 
 exports.maskLc = function(img) {
-  // TODO: add filter for year
-  return img.updateMask(lcmask); 
+  return img.updateMask(lcmask.filter(ee.Filter.eq('year', img.date().get('year')))); 
 };
