@@ -21,7 +21,8 @@ l5 = l5.filterDate(ee.Date.fromYMD(year, 8, 1), ee.Date.fromYMD(year + 1, 8, 1))
        .filterBounds(geometry)
        .first();
 
-lc = lc.filterDate(ee.Date.fromYMD(year, 1, 1), ee.Date.fromYMD(year + 1, 1, 1));
+lc = lc.filterDate(ee.Date.fromYMD(year, 1, 1), ee.Date.fromYMD(year + 1, 1, 1))
+       .first();
 
 
 
@@ -31,7 +32,7 @@ Map.addLayer(lc, null, 'lc');
 Map.addLayer(lc.expression(
   'lc != 0 && lc != 20 && lc != 31 && lc != 32 && ' +
   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
-  {lc: lc.first().select('b1')}), null, 'masked lc');
+  {lc: lc.select('b1')}), null, 'masked lc');
   
 Map.addLayer(l5.mask(), null, 'raw l5');
 Map.addLayer(lcmask.maskLandCover(l5).mask(), null, 'masked l5');
