@@ -22,7 +22,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 // Functions
 // Mask land cover, only retaining if not one of
 var maskLandCover = function(img) {
-  img.updateMask(
+  return img.updateMask(
     img.expression('lc == 0 && lc != 20 && lc != 31 && lc != 32 && ' +
                   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
                   {lc: img.select('b1')}))
