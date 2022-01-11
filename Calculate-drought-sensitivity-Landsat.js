@@ -145,7 +145,7 @@ veg = veg
   .map(water.maskWater)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
-
+print(veg)
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
