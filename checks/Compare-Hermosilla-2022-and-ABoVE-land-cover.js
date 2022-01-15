@@ -1,16 +1,12 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-140.8342541645255, 65.4904369738325],
-          [-140.8342541645255, 64.78842797948187],
-          [-139.191798109838, 64.78842797948187],
-          [-139.191798109838, 65.4904369738325]]], null, false);
+var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-141.45556041528832, 67.81315298461999],
+          [-142.86181041528832, 62.06758152127753],
+          [-135.74266979028835, 60.07000451196925],
+          [-127.56884166528833, 55.93038386081195],
+          [-121.24071666528833, 57.4268665762707],
+          [-131.34813854028835, 66.02222423940235],
+          [-136.79735729028835, 68.14270494094083]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Compare Hermosilla 2022 and ABoVE land cover
 // Alec Robitaille
@@ -37,7 +33,7 @@ above = above.select([27]);
 
 
 
-// Remap
+// Remap, with fake two fake classes in Hermosilla to match dims
 hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230, 999, 999],
                     [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12,  13,  14])
              .rename('Hermosilla');
@@ -63,7 +59,7 @@ print(combined_sample);
 
 
 // Error matrix
-var error_matrix = combined_sample.errorMatrix('Hermosilla', 'ABoVE');
+var error_matrix = combined_sample.errorMatrix('ABoVE', 'Hermosilla');
 print(error_matrix)
  
 
