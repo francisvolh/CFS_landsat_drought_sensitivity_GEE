@@ -26,13 +26,16 @@ var above = ee.Image("users/mghethcoat/ECCCwork/ABOVE_landcover");
 
 
 // Select the same year
-hermo = hermo.filterDate('2010-01-01', '2011-01-01').first();
+hermo = hermo.filterDate('2010-01-01', '2011-01-01')
+             .first()
+             .rename('Hermosilla');
 
 // The uploaded ABoVE data is not an image collection and doesn't have any dates
 // So we can't filter but
 // the full range of data is 1984-2014, a 31 year window (including bounds)
 // therefore, the 2010 image is the 27th image in the collection
-above = above.select([27]);
+above = above.select([27])
+             .rename('ABoVE');
 
 
 
@@ -50,6 +53,6 @@ var combined_sample = combined.sampleRegions(points);
 print(combined_sample);
 
 
-print(combined_sample.errorMatrix('b1', 'b28'))
+print(combined_sample.errorMatrix('Hermosilla', 'ABoVE'));
 // errorMatrix(actual, predicted, order) 
  
