@@ -68,4 +68,5 @@ var error_matrix = combined_sample.errorMatrix('Hermosilla', 'ABoVE');
  
 
 // Export
-Export.table.toDrive(ee.FeatureCollection(error_matrix), 'error-matrix', 'Drought-sensitivity-refugia');
+var export_matrix = ee.Feature(null, {matrix: error_matrix.array()});
+Export.table.toDrive(export_matrix, 'error-matrix', 'Drought-sensitivity-refugia');
