@@ -33,8 +33,7 @@ hermo = hermo.filterDate('2010-01-01', '2011-01-01')
 // So we can't filter but
 // the full range of data is 1984-2014, a 31 year window (including bounds)
 // therefore, the 2010 image is the 27th image in the collection
-above = above.select([27])
-             .rename('ABoVE');
+above = above.select([27]);
 
 
 
@@ -44,7 +43,8 @@ hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230],
              .rename('Hermosilla');
 // Since errorMatrix requires starting at 0
 above = above.remap([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14]);
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14])
+             .rename('ABoVE');
                     
 
 
