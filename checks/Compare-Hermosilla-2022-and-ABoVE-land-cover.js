@@ -64,7 +64,7 @@ print(combined_sample);
 
 // Error matrix
 var error_matrix = combined_sample.errorMatrix('Hermosilla', 'ABoVE');
- 
+print(error_matrix)
  
 
 // Export
