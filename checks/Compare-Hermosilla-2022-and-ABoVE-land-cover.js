@@ -39,6 +39,12 @@ above = above.select([27])
 
 
 
+// Remap
+hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230],
+                    [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ]);
+// above = above.remap()
+
+
 // Map
 Map.addLayer(hermo);
 Map.addLayer(above);
