@@ -27,8 +27,7 @@ var above = ee.Image("users/mghethcoat/ECCCwork/ABOVE_landcover");
 
 // Select the same year
 hermo = hermo.filterDate('2010-01-01', '2011-01-01')
-             .first()
-             .rename('Hermosilla');
+             .first();
 
 // The uploaded ABoVE data is not an image collection and doesn't have any dates
 // So we can't filter but
@@ -41,7 +40,8 @@ above = above.select([27])
 
 // Remap
 hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230],
-                    [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ]);
+                    [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ])
+             .rename('Hermosilla');
 // above = above.remap()
 
 
