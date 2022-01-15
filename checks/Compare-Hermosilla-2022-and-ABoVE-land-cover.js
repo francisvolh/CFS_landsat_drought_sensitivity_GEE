@@ -56,7 +56,7 @@ Map.addLayer(above);
 
 
 // Sample random points
-var points = ee.FeatureCollection.randomPoints(geometry, 100);
+var points = ee.FeatureCollection.randomPoints(geometry, 1000);
 var combined = ee.Image([hermo, above]);
 var combined_sample = combined.sampleRegions(points);
 
@@ -69,5 +69,5 @@ var error_matrix = combined_sample.errorMatrix('Hermosilla', 'ABoVE');
  
 
 // Export
-var export_matrix = ee.Feature(null, {matrix: error_matrix.array()});
+var export_matrix = ee.FeatureCollection(ee.Feature(null, {matrix: error_matrix.array()}));
 Export.table.toDrive(export_matrix, 'error-matrix', 'Drought-sensitivity-refugia');
