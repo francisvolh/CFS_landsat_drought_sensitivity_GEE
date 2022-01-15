@@ -62,6 +62,10 @@ var combined_sample = combined.sampleRegions(points);
 print(combined_sample);
 
 
-print(combined_sample.errorMatrix('Hermosilla', 'ABoVE'));
-// errorMatrix(actual, predicted, order) 
+// Error matrix
+var error_matrix = combined_sample.errorMatrix('Hermosilla', 'ABoVE');
  
+ 
+
+// Export
+Export.table.toDrive(ee.FeatureCollection(error_matrix), 'error-matrix', 'Drought-sensitivity-refugia');
