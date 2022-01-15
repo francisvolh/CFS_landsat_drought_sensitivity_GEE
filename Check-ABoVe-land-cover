@@ -1,4 +1,5 @@
 // AUTHOR: Matthew Hethcoat
+// EDITS: Alec Robitaille
 
 var above = ee.Image("users/mghethcoat/ECCCwork/ABOVE_landcover")
 
@@ -20,9 +21,6 @@ var labels2 = ["1 - evergreen",
               "15 - water"
 ];
 
-
-// display 2014
-Map.addLayer(above.select(30), {min:1, max:15, palette: above15 }, "ABoVE (1984-2014)")
 
 //Legend
 var legendPanel2 = ui.Panel({
@@ -69,3 +67,6 @@ for (var i = 0; i < 15; i++) {
 }  
  
 Map.add(legendPanel2);
+
+// display 2014
+Map.addLayer(above.select(30), {min:1, max:15, palette: palette2 }, "ABoVE (1984-2014)")
