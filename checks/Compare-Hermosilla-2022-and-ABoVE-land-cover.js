@@ -38,8 +38,8 @@ above = above.select([27]);
 
 
 // Remap
-hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230],
-                    [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ])
+hermo = hermo.remap([0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230, 999, 999],
+                    [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12,  13,  14])
              .rename('Hermosilla');
 // Since errorMatrix requires starting at 0
 above = above.remap([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
