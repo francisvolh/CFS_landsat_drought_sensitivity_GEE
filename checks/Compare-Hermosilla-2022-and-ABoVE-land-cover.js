@@ -51,7 +51,7 @@ Map.addLayer(above);
 
 
 // Sample random points, in large region to cover all classes
-var points = ee.FeatureCollection.randomPoints(geometry, 1000);
+var points = ee.FeatureCollection.randomPoints(geometry, 100000);
 var combined = ee.Image([hermo, above]);
 var combined_sample = combined.sampleRegions(points);
 
