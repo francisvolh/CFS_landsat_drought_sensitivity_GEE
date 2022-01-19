@@ -26,7 +26,7 @@ hermo = hermo.filterDate('2010-01-01', '2011-01-01')
              .first();
 
 // The uploaded ABoVE data is not an image collection and doesn't have any dates
-// So we can't filter but
+// So we can't filter using image collection functions but
 // the full range of data is 1984-2014, a 31 year window (including bounds)
 // therefore, the 2010 image is the 27th image in the collection
 above = above.select([27]);
