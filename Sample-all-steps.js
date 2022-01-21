@@ -187,12 +187,11 @@ var sampled = points.map(function(ft) {
 
 // Map -----------------------------------------------------------
 Map.addLayer(ecoregions);
-print(sampled.limit(10));
 
 
 // Export --------------------------------------------------------
 Export.table.toDrive({
   collection: sampled,
-  description: 'sampled-intermediate-landsat-yt-ab-bc',
+  description: new Date() + 'sampled-intermediate-landsat-yt-ab-bc',
   folder: 'Drought-sensitivity-refugia'
 });
