@@ -190,7 +190,7 @@ Map.addLayer(ecoregions);
 
 
 // Export --------------------------------------------------------
-var today = new Date().toJSON();
+var today = new Date().toJSON().slice(0,13);
 
 Export.table.toDrive({
   collection: sampled,
