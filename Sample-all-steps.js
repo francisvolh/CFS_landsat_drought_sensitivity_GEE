@@ -190,8 +190,10 @@ Map.addLayer(ecoregions);
 
 
 // Export --------------------------------------------------------
+var today = new Date().toJSON();
+
 Export.table.toDrive({
   collection: sampled,
-  description: new Date() + 'sampled-intermediate-landsat-yt-ab-bc',
+  description: today + '_sampled-intermediate-landsat-YT-AB-BC',
   folder: 'Drought-sensitivity-refugia'
 });
