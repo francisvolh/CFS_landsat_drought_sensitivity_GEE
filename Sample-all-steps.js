@@ -132,8 +132,9 @@ var drought = droughtModule.baselineCMI(percentiles);
 
 // Landsat ----------------------------------------------------------
 // Merge L5 and L7
-var veg = l5.merge(l7);
-
+var veg = l5.merge(l7)
+.limit(2);
+print(veg)
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
@@ -143,10 +144,10 @@ veg = veg
   .map(landsatprep.calcIndices)
   .map(water.maskWater)
   .map(fire.maskFires)
-  .map(lcmask.maskLc);
+  .map(lcmask.maskClasses);
 
 // Aggregate Landsat yearly, rename _mean bands
-veg = landsatprep.aggregateY(veg);
+veg = landsatprep.aggregateY(veg).aside(print);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
