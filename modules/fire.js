@@ -19,7 +19,7 @@ var generateFireMasks = function(firepols, yr) {
 };
 
 // Load NFDB fire polygons
-var firepol = ee.FeatureCollection("users/robitalec/CFS/NFDB_poly");
+var firepol = ee.FeatureCollection("users/robitalec/CFS/nbac_1986_to_2020_20210810");
 
 
 // Mask fires
