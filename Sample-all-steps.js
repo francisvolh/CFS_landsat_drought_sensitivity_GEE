@@ -44,8 +44,7 @@ var polygons =
 // }
 
 
-// CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');  
+var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
@@ -108,21 +107,19 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-var ctef_list = ['CL09R05', 'CL09R07', 
-                 'CL13R02', 'CL13R03', 'CL13R04', 'CL13R05',
-                 'CL12R07', 'CL12R08'];
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ctef_list));
+// TODO: filter ecoregions
+// ['CL09R05', 'CL09R07', 'CL13R02', 'CL13R03', 'CL13R04', 'CL13R05', 'CL12R07', 'CL12R08'];
 
 
 // Landsat 5
 l5 = l5
-  .filterBounds(ctef)
+  .filterBounds(ecoregions)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 l7 = l7
-  .filterBounds(ctef)
+  .filterBounds(ecoregions)
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
@@ -165,10 +162,10 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 
 // Sample points -------------------------------------------------
-var points = ctef.map(function(ft) {
+var points = ecoregions.map(function(ft) {
   return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
               .map(function(f) {
-                return f.set('REG_ID', ft.get('REG_ID'));
+                return f.set('ECOREGI', ft.get('ECOREGI'));
               });
 }).flatten();
 
@@ -194,7 +191,7 @@ var sampled = points.map(function(ft) {
 
 
 // Map -----------------------------------------------------------
-Map.addLayer(ctef);
+Map.addLayer(ecoregions);
 
 
 
