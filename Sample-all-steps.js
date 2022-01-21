@@ -144,7 +144,7 @@ veg = veg
   .map(landsatprep.calcIndices)
   .map(water.maskWater)
   .map(fire.maskFires)
-  .map(lcmask.maskClasses);
+  .map(lcmask.maskLandCover);
 
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg).aside(print);
