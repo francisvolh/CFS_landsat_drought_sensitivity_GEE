@@ -33,7 +33,6 @@ var maskClasses = function(img) {
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 
-
 // Processing
 lc = lc.map(landsatprep.setYear)
        .map(maskClasses);
