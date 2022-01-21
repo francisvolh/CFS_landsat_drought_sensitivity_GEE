@@ -10,10 +10,7 @@ var polygons =
           [-112.57971245026698, 48.98812225842628],
           [-116.00744682526698, 64.17335514796092],
           [-141.23205620026698, 65.2249422967821]]]),
-    points = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.MultiPoint(
+    points = /* color: #d63000 */ee.Geometry.MultiPoint(
         [[-120.02437803208372, 56.52438100646832],
          [-116.94820615708372, 56.69970979965382],
          [-118.67246694131055, 56.154441684771434],
@@ -107,9 +104,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-// TODO: filter ecoregions
-// ['CL09R05', 'CL09R07', 'CL13R02', 'CL13R03', 'CL13R04', 'CL13R05', 'CL12R07', 'CL12R08'];
-
+ecoregions = ecoregions.filterBounds(points);
 
 // Landsat 5
 l5 = l5
@@ -132,9 +127,8 @@ var drought = droughtModule.baselineCMI(percentiles);
 
 // Landsat ----------------------------------------------------------
 // Merge L5 and L7
-var veg = l5.merge(l7)
-.limit(2);
-print(veg)
+var veg = l5.merge(l7);
+
 
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
@@ -193,7 +187,7 @@ var sampled = points.map(function(ft) {
 
 // Map -----------------------------------------------------------
 Map.addLayer(ecoregions);
-
+print(sampled.limit(10));
 
 
 // Export --------------------------------------------------------
