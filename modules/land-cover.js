@@ -37,6 +37,7 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 lc = lc.map(landsatprep.setYear)
        .map(maskClasses);
 
+
 /// Exports
 exports.returnLandCover = function() {
 	return lc;
@@ -51,3 +52,14 @@ exports.maskLandCover = function(img) {
   var date = img.date();
   return img.updateMask(lc.filterDate(date, date.advance(1, 'year')).first());
 };
+
+
+
+// Return 1985, 2002, 2019
+exports.returnLandCoverSample = function() {
+ return ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2")
+              .map(landsatprep.setYear)
+              .filter(ee.Filter.inList('year', [1985, 2002, 2019]))
+              .toBands(); 
+}
+
