@@ -61,5 +61,5 @@ exports.returnLandCoverSample = function() {
               .map(landsatprep.setYear)
               .filter(ee.Filter.inList('year', [1985, 2002, 2019]))
               .toBands(); 
-}
+};
 
