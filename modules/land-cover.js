@@ -24,7 +24,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var maskClasses = function(img) {
   return img.updateMask(
     img.expression('lc != 0 && lc != 20 && lc != 31 && lc != 32 && ' +
-                   'lc != 33 && lc != 40 && lc != 80 && lc != 81 && lc != 100',
+                   'lc != 33 && lc != 40 && lc != 80 && lc != 100',
                   {lc: img.select('b1')}))
       .select(['b1'], ['land-cover']);
 };
@@ -36,7 +36,7 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 // Processing
 lc = lc.map(landsatprep.setYear)
        .map(maskClasses);
-       
+
 /// Exports
 exports.returnLandCover = function() {
 	return lc;
