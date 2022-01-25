@@ -158,7 +158,7 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 // Sample points -------------------------------------------------
 var points = ecoregions.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 50, 42)
+  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
               .map(function(f) {
                 return f.set('ECOREGI', ft.get('ECOREGI'));
               });
