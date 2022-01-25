@@ -141,7 +141,7 @@ veg = veg
   .map(lcmask.maskLandCover);
 
 // Aggregate Landsat yearly, rename _mean bands
-veg = landsatprep.aggregateY(veg).aside(print);
+veg = landsatprep.aggregateY(veg);
 veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 // Split vegetation indices into drought/non-drought pixels
@@ -179,10 +179,16 @@ var drought_names = droughtSens.bandNames()
 var means_sel = means.select(means_names);
 var drought_sel = droughtSens.select(drought_names);
 
-var sampled = points.map(function(ft) {
-  return ee.Image([means_sel, drought_sel])
-    .sampleRegions(ft, null, 30);
-}).flatten();
+var images_to_sample = ee.Image([
+  lcmask.returnLandCoverSample(),
+  means_sel
+  ]);
+
+var sampled = images_to_sample.sampleRegions(points, null, 30);
+// var sampled = points.map(function(ft) {
+//   return ee.Image([means_sel, drought_sel])
+//     .sampleRegions(ft, null, 30);
+// }).flatten();
 
 
 // Map -----------------------------------------------------------
