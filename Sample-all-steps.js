@@ -157,12 +157,12 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 
 // Sample points -------------------------------------------------
-var points = ecoregions.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
-              .map(function(f) {
-                return f.set('ECOREGI', ft.get('ECOREGI'));
-              });
-}).flatten();
+// var points = ecoregions.map(function(ft) {
+//   return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
+//               .map(function(f) {
+//                 return f.set('ECOREGI', ft.get('ECOREGI'));
+//               });
+// }).flatten();
 
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
@@ -184,7 +184,8 @@ var images_to_sample = ee.Image([
   means_sel
   ]);
 
-var sampled = images_to_sample.sampleRegions(points, null, 30);
+print(images_to_sample)
+var sampled = images_to_sample.sampleRegions(ecoregions, null, 30);
 // var sampled = points.map(function(ft) {
 //   return ee.Image([means_sel, drought_sel])
 //     .sampleRegions(ft, null, 30);
