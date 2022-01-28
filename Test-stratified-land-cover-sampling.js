@@ -15,6 +15,7 @@ var geometry =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Test stratified land cover sampling ------------------------------------
 // Alec L. Robitaille
+// Palettes library: Gennadii Donchyts
 
 
 
