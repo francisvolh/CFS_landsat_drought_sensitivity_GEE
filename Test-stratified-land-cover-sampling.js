@@ -60,16 +60,19 @@ var masked_sampled_points = masked_lc.addBands([ee.Image.pixelLonLat()]).stratif
 
 
 // Map ------------------------------------------------------------------------
+// Constant since masked
+Map.addLayer(ee.Image.constant(1).mask());
+
 // Palette
 var palettes = require('users/gena/packages:palettes');
 var pal = palettes.crameri.batlow[25];
 
 // Land cover
-Map.addLayer(lc, {palette: pal}, 'land cover');
+Map.addLayer(lc, {palette: pal}, 'land cover', false);
 
 // Sampled points
 print(sampled_points);
-Map.addLayer(sampled_points, null, 'sampled points');
+Map.addLayer(sampled_points, null, 'sampled points', false);
 
 
 // Masked land cover
