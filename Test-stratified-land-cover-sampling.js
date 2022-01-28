@@ -32,7 +32,7 @@ lc = lc.first();
 // Remap
 var from = [0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230];
 var to =   [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ];
-lc = lc.remap(from, to).rename('land-cover');
+lc = lc.remap(from, to).rename('land_cover');
 
 // Also a masked version
 var masked_lc = lc.updateMask(lc.eq(1).or(lc.eq(10)));
@@ -42,7 +42,7 @@ var masked_lc = lc.updateMask(lc.eq(1).or(lc.eq(10)));
 // Stratified sample ----------------------------------------------------------
 // Full land cover
 var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
-  classBand: 'land-cover',
+  classBand: 'land_cover',
   numPoints: 100,
   region: geometry
 }).map(function(ft) {
@@ -51,7 +51,7 @@ var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
 
 // Masked land cover
 var masked_sampled_points = masked_lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
-  classBand: 'land-cover',
+  classBand: 'land_cover',
   numPoints: 100,
   region: geometry
 }).map(function(ft) {
