@@ -38,7 +38,7 @@ var n_runs = lc.reduce(ee.Reducer.countRuns());
 
 // Map ------------------------------------------------------------------------
 // Add a white background to hide the map, since some layers are masked
-Map.addLayer(ee.Image.constant(1).mask());
+Map.addLayer(ee.Image.constant(1).mask(), {palette: '707070'});
 
 // Palette
 var pal = palettes.crameri.batlow[25];
@@ -48,7 +48,7 @@ var seq_pal = palettes.crameri.bilbao[10];
 Map.addLayer(lc, {palette: pal}, 'land cover', false);
 
 // N classes (unique classes)
-Map.addLayer(n_classes, {min: 1, max: 3, palette: seq_pal}, 'n classes');
+Map.addLayer(n_classes, {min: 1, max: 4, palette: seq_pal}, 'n classes');
 
 // N runs (unique runs of classes)
-Map.addLayer(n_runs, {min: 1, max: 3, palette: seq_pal}, 'n runs');
+Map.addLayer(n_runs, {min: 1, max: 4, palette: seq_pal}, 'n runs');
