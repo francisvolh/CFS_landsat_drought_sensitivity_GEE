@@ -40,13 +40,14 @@ var n_runs = lc.reduce(ee.Reducer.countRuns());
 // Add a white background to hide the map, since some layers are masked
 Map.addLayer(ee.Image.constant(1).mask());
 
-
+// Palette
 var pal = palettes.crameri.batlow[25];
 
 // Land cover
 Map.addLayer(lc, {palette: pal}, 'land cover', false);
 
+// N classes (unique classes)
+Map.addLayer(n_classes, null, 'n classes');
 
-
-// N classes (transitions)
-Map.addLayer(n_classes, {palette: pal}, 'masked land cover');
+// N runs (unique runs of classes)
+Map.addLayer(n_runs, null, 'n runs');
