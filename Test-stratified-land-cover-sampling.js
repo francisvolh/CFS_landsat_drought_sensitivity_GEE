@@ -60,7 +60,7 @@ var masked_sampled_points = masked_lc.addBands([ee.Image.pixelLonLat()]).stratif
 
 
 // Map ------------------------------------------------------------------------
-// Constant since masked
+// Add a white background to hide the map, since some layers are masked
 Map.addLayer(ee.Image.constant(1).mask());
 
 // Palette
