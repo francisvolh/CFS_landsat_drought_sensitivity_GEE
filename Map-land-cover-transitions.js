@@ -26,7 +26,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 // TODO: mask fires
 
 // Set years and mask classes
-lc = lc.map(landsatprep.setYear)
+lc = lc//.map(landsatprep.setYear)
        .map(land_cover.maskClasses);
 
 // Count unique classes (111122112233 = 3) 
@@ -42,12 +42,13 @@ Map.addLayer(ee.Image.constant(1).mask());
 
 // Palette
 var pal = palettes.crameri.batlow[25];
+var seq_pal = palettes.crameri.bilbao[10];
 
 // Land cover
 Map.addLayer(lc, {palette: pal}, 'land cover', false);
 
 // N classes (unique classes)
-Map.addLayer(n_classes, null, 'n classes');
+Map.addLayer(n_classes, {min: 1, max: 3, palette: seq_pal}, 'n classes');
 
 // N runs (unique runs of classes)
-Map.addLayer(n_runs, null, 'n runs');
+Map.addLayer(n_runs, {min: 1, max: 3, palette: seq_pal}, 'n runs');
