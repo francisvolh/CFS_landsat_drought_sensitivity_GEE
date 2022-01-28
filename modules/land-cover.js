@@ -66,6 +66,7 @@ exports.returnLandCoverSample = function() {
 // Stratified sampling
 var lc_2002 = lc.filter(ee.Filter.eq('year', 2002)).first();
 
+// Note unless seed is changed, always same points
 exports.stratifiedSample = function(region, n_pts) {
   return lc_2002.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
     classBand: 'land-cover',
