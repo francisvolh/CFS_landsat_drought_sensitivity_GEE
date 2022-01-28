@@ -27,7 +27,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 // Set years and mask classes
 lc = lc.map(landsatprep.setYear)
-       .map(maskClasses);
+       .map(land_cover.maskClasses);
 
 // Count unique classes (111122112233 = 3) 
 var n_classes = lc.reduce(ee.Reducer.countDistinctNonNull());
