@@ -179,7 +179,7 @@ var points = ecoregions.map(function(ft) {
              return f.set('ECOREGI', ft.get('ECOREGI'));
              });
 }).flatten();
-
+print(points)
 
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
@@ -202,7 +202,7 @@ var images_to_sample = ee.Image([
   ]);
 
 var sampled = images_to_sample.sampleRegions({
-  region: points, 
+  collection: points, 
   properties: null, 
   scale: 30, 
   projection: ee.Projection("EPSG:4326").atScale(1)
