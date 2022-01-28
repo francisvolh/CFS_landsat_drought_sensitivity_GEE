@@ -29,9 +29,11 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 lc = lc.map(landsatprep.setYear)
        .map(maskClasses);
 
-// Count unique classes
-var n_classes = lc.reduce(ee.Reducer.countDistinctNonNull);
+// Count unique classes (111122112233 = 3) 
+var n_classes = lc.reduce(ee.Reducer.countDistinctNonNull());
 
+// Count runs (111122112233 = 1 -> 2 -> 1 -> 2 -> 3 = 5) 
+var n_runs = lc.reduce(ee.Reducer.countRuns());
 
 
 // Map ------------------------------------------------------------------------
