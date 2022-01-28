@@ -67,7 +67,7 @@ exports.returnLandCoverSample = function() {
 var lc_2002 = lc.filter(ee.Filter.eq('year', 2002)).first();
 
 exports.stratifiedSample = function(region, n_pts) {
-  lc_2002.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
+  return lc_2002.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
     classBand: 'land-cover',
     numPoints: n_pts,
     region: region
