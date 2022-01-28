@@ -201,8 +201,12 @@ var images_to_sample = ee.Image([
   means_sel
   ]);
 
-// print(images_to_sample)
-var sampled = images_to_sample.sampleRegions(points, null, 30);
+var sampled = images_to_sample.sampleRegions({
+  region: points, 
+  properties: null, 
+  scale: 30, 
+  projection: ee.Projection("EPSG:4326").atScale(1)
+});
 // var sampled = points.map(function(ft) {
 //   return images_to_sample.sampleRegions(ft, null, 30);
 // }).flatten();
