@@ -11,6 +11,9 @@ var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 // Land cover functions
 var land_cover = require('users/robitalec/CFS:modules/land-cover.js');
 
+// Palette
+var palettes = require('users/gena/packages:palettes');
+
 
 
 // Images ---------------------------------------------------------------------
@@ -34,8 +37,7 @@ lc = lc.map(landsatprep.setYear)
 // Add a white background to hide the map, since some layers are masked
 Map.addLayer(ee.Image.constant(1).mask());
 
-// Palette
-var palettes = require('users/gena/packages:palettes');
+
 var pal = palettes.crameri.batlow[25];
 
 // Land cover
