@@ -59,6 +59,22 @@ exports.returnLandCoverSample = function() {
  return ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2")
               .map(landsatprep.setYear)
               .filter(ee.Filter.inList('year', [1985, 2002, 2019]))
-              .toBands(); 
+              .toBands();
 };
+
+
+// Stratified sampling
+var lc_2002 = lc.filter(ee.Filter.eq('year', 2002)).first();
+
+exports.stratifiedSample = function(region, n_pts) {
+  lc_2002.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
+    classBand: 'land-cover',
+    numPoints: n_pts,
+    region: region
+  }).map(function(ft) {
+    return ft.setGeometry(ee.Geometry.Point([ft.get('longitude'), ft.get('latitude')]));
+  });
+};
+
+
 
