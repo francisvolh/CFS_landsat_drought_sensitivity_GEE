@@ -22,7 +22,7 @@ lc = lc.first();
 
 var from = [0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230];
 var to =   [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ];
-lc = lc.remap(from, to);
+lc = lc.remap(from, to).rename('land-cover');
 
 
 var palettes = require('users/gena/packages:palettes')
@@ -43,7 +43,7 @@ Map.addLayer(lc, {palette: palettes.colorbrewer.Dark2[13]}, 'land cover');
 //  230 Mixedwood
 
 var sampled_points = lc.stratifiedSample({
-  classBand: 'b1',
+  classBand: 'land-cover',
   numPoints: 100,
   region: geometry
 });
