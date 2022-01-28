@@ -196,10 +196,8 @@ var means_names = means.bandNames()
 var means_sel = means.select(means_names);
 // var drought_sel = droughtSens.select(drought_names);
 
-var images_to_sample = ee.Image([
-  lc.returnLandCoverSample(),
-  means_sel
-  ]);
+var images_to_sample = means_sel;
+// ee.Image([lc.returnLandCoverSample(), means_sel]);
 
 var sampled = images_to_sample.sampleRegions({
   collection: points, 
