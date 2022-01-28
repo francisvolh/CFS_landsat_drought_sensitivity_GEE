@@ -202,8 +202,8 @@ var images_to_sample = means_sel;
 var sampled = images_to_sample.sampleRegions({
   collection: points, 
   properties: null, 
-  scale: 30, 
-  projection: ee.Projection("EPSG:4326").atScale(30)
+  scale: 30 
+  // projection: ee.Projection("EPSG:4326").atScale(30)
 });
 // var sampled = points.map(function(ft) {
 //   return images_to_sample.sampleRegions(ft, null, 30);
