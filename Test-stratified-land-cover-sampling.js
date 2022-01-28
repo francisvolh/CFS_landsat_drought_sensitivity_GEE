@@ -27,7 +27,7 @@ lc = lc.remap(from, to).rename('land-cover');
 
 
 var palettes = require('users/gena/packages:palettes')
-Map.addLayer(lc, {palette: palettes.colorbrewer.Set1[12]}, 'land cover');
+Map.addLayer(lc, {palette: palettes.crameri.batlow[25]}, 'land cover');
 
 //  0   Unclassified
 //  20  Water
@@ -43,10 +43,12 @@ Map.addLayer(lc, {palette: palettes.colorbrewer.Set1[12]}, 'land cover');
 //  220 Broad Leaf
 //  230 Mixedwood
 
-var sampled_points = lc.stratifiedSample({
+var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
   classBand: 'land-cover',
   numPoints: 100,
   region: geometry
+}).map(function(ft) {
+  return ft.setGeometry(ee.Geometry.Point([ft.get('longitude'), ft.get('latitude')]));
 });
 
 print(sampled_points)
