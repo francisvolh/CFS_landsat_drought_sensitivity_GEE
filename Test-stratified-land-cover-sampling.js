@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -26,7 +27,7 @@ lc = lc.remap(from, to).rename('land-cover');
 
 
 var palettes = require('users/gena/packages:palettes')
-Map.addLayer(lc, {palette: palettes.colorbrewer.Dark2[13]}, 'land cover');
+Map.addLayer(lc, {palette: palettes.colorbrewer.Set1[12]}, 'land cover');
 
 //  0   Unclassified
 //  20  Water
