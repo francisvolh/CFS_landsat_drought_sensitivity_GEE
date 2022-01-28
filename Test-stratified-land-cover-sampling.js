@@ -64,5 +64,6 @@ Map.addLayer(sampled_points);
 
 
 // Masked land cover
+Map.addLayer(masked_lc, {palette: pal}, 'masked land cover');
 
 // Sample points within masked land cover
