@@ -34,7 +34,7 @@ var maskClasses = function(img) {
 };
 
 exports.maskClasses = function(img) {
-  maskClasses(img);
+  return maskClasses(img);
 };
 
 // Landsat prep functions
