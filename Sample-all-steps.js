@@ -174,7 +174,7 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 // Sample points -------------------------------------------------
 var points = ecoregions.map(function(ft) {
-  return lc.stratifiedSample(ft.geometry(), 3)
+  return lc.stratifiedSample(ft.geometry(), 50)
            .map(function(f) {
              return f.set('ECOREGI', ft.get('ECOREGI'));
              });
@@ -199,14 +199,14 @@ var means_sel = means.select(means_names);
 var images_to_sample = means_sel;
 // ee.Image([lc.returnLandCoverSample(), means_sel]);
 
-var sampled = images_to_sample.sampleRegions({
-  collection: points, 
-  properties: null, 
-  scale: 30 
-});
-// var sampled = points.map(function(ft) {
-//   return images_to_sample.sampleRegions(ft, null, 30);
-// }).flatten();
+// var sampled = images_to_sample.sampleRegions({
+//   collection: points, 
+//   properties: null, 
+//   scale: 30 
+// });
+var sampled = points.map(function(ft) {
+  return images_to_sample.sampleRegions(ft, null, 30);
+}).flatten();
 
 
 // Map -----------------------------------------------------------
