@@ -13,36 +13,32 @@ var geometry =
           [-131.53850521161726, 59.28054068252197],
           [-131.53850521161726, 61.11465180698833]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-// Load Hermosilla land cover
+// === Test stratified land cover sampling ------------------------------------
+// Alec L. Robitaille
+
+
+
+// Images ---------------------------------------------------------------------
+// Hermosilla et al. 2022 land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 
 
+// Processing -----------------------------------------------------------------
+// Grab first year
 lc = lc.first();
 
-
+// Remap
 var from = [0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230];
 var to =   [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ];
 lc = lc.remap(from, to).rename('land-cover');
 
+// Also a masked version
+var lc_mask = lc.updateMask(lc.eq(20).or(lc.eq(210)));
 
-var palettes = require('users/gena/packages:palettes')
-Map.addLayer(lc, {palette: palettes.crameri.batlow[25]}, 'land cover');
 
-//  0   Unclassified
-//  20  Water
-//  31  Snow/Ice
-//  32  Rock/Rubble
-//  33  Exposed/Barren Land
-//  40  Bryoids
-//  50  Shrubs
-//  80  Wetland
-//  81  Wetland Treed
-//  100 Herbs
-//  210 Coniferous
-//  220 Broad Leaf
-//  230 Mixedwood
 
+// Stratified sample ----------------------------------------------------------
 var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
   classBand: 'land-cover',
   numPoints: 100,
@@ -51,5 +47,22 @@ var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
   return ft.setGeometry(ee.Geometry.Point([ft.get('longitude'), ft.get('latitude')]));
 });
 
-print(sampled_points)
+
+
+
+// Map ------------------------------------------------------------------------
+// Palette
+var palettes = require('users/gena/packages:palettes');
+var pal = palettes.crameri.batlow[25];
+
+// Land cover
+Map.addLayer(lc, {palette: pal}, 'land cover');
+
+// Sampled points
+print(sampled_points);
 Map.addLayer(sampled_points);
+
+
+// Masked land cover
+
+// Sample points within masked land cover
