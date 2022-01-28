@@ -33,6 +33,10 @@ var maskClasses = function(img) {
       .select(['b1'], ['land_cover']);
 };
 
+exports.maskClasses = function(img) {
+  maskClasses(img);
+};
+
 // Landsat prep functions
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
