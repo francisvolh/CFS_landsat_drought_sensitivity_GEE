@@ -202,7 +202,7 @@ var images_to_sample = ee.Image([
   ]);
 
 // print(images_to_sample)
-var sampled = images_to_sample.sampleRegions(points, ee.Reducer.mean(), 30);
+var sampled = images_to_sample.sampleRegions(points, null, 30);
 // var sampled = points.map(function(ft) {
 //   return images_to_sample.sampleRegions(ft, null, 30);
 // }).flatten();
