@@ -10,7 +10,10 @@ var polygons =
           [-112.57971245026698, 48.98812225842628],
           [-116.00744682526698, 64.17335514796092],
           [-141.23205620026698, 65.2249422967821]]]),
-    points = /* color: #d63000 */ee.Geometry.MultiPoint(
+    points = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPoint(
         [[-120.02437803208372, 56.52438100646832],
          [-116.94820615708372, 56.69970979965382],
          [-118.67246694131055, 56.154441684771434],
@@ -24,7 +27,20 @@ var polygons =
          [-125.83480055866876, 49.37653263200246],
          [-126.16439040241876, 50.17115295052788],
          [-127.30696852741876, 50.24146818840383],
-         [-127.87825758991876, 50.61938195875478]]);
+         [-127.87825758991876, 50.61938195875478]]),
+    alberta = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-119.99490865522603, 59.978553917868325],
+          [-119.99490865522603, 54.18996627134585],
+          [-109.99735006147603, 54.18996627134585],
+          [-109.99735006147603, 59.978553917868325]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Sample all steps ===
 // Alec L. Robitaille
@@ -84,7 +100,7 @@ var indices = ['NDVI', 'NBR', 'EVI'];
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Land cover mask function
-var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+var lc = require('users/robitalec/CFS:modules/land-cover.js');
 
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
@@ -104,7 +120,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ecoregions = ecoregions.filterBounds(points);
+ecoregions = ecoregions.filterBounds(alberta);
 
 // Landsat 5
 l5 = l5
@@ -138,7 +154,7 @@ veg = veg
   .map(landsatprep.calcIndices)
   .map(water.maskWater)
   .map(fire.maskFires)
-  .map(lcmask.maskLandCover);
+  .map(lc.maskLandCover);
 
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg);
@@ -158,11 +174,12 @@ var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indi
 
 // Sample points -------------------------------------------------
 var points = ecoregions.map(function(ft) {
-  return ee.FeatureCollection.randomPoints(ft.geometry(), 500, 42)
-              .map(function(f) {
-                return f.set('ECOREGI', ft.get('ECOREGI'));
-              });
+  return lc.stratifiedSample(ft.geometry(), 3)
+           .map(function(f) {
+             return f.set('ECOREGI', ft.get('ECOREGI'));
+             });
 }).flatten();
+
 
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
@@ -170,30 +187,30 @@ var means_names = means.bandNames()
                                 ee.Filter.stringContains('item', 'ante12mo'),
                                 ee.Filter.stringContains('item', 'ante3mo'),
                                 ee.Filter.stringContains('item', 'ante5yr')));
-var drought_names = droughtSens.bandNames()
-                       .filter(ee.Filter.stringContains('item', 'p15'))
-                       .filter(ee.Filter.or(
-                                ee.Filter.stringContains('item', 'ante12mo'),
-                                ee.Filter.stringContains('item', 'ante3mo'),
-                                ee.Filter.stringContains('item', 'ante5yr')));
+// var drought_names = droughtSens.bandNames()
+//                       .filter(ee.Filter.stringContains('item', 'p15'))
+//                       .filter(ee.Filter.or(
+//                                 ee.Filter.stringContains('item', 'ante12mo'),
+//                                 ee.Filter.stringContains('item', 'ante3mo'),
+//                                 ee.Filter.stringContains('item', 'ante5yr')));
 var means_sel = means.select(means_names);
-var drought_sel = droughtSens.select(drought_names);
+// var drought_sel = droughtSens.select(drought_names);
 
 var images_to_sample = ee.Image([
-  lcmask.returnLandCoverSample(),
+  lc.returnLandCoverSample(),
   means_sel
   ]);
 
 // print(images_to_sample)
-// var sampled = images_to_sample.sample(points, 30);
-var sampled = points.map(function(ft) {
-  return images_to_sample.sampleRegions(ft, null, 30);
-}).flatten();
+var sampled = images_to_sample.sampleRegions(points, ee.Reducer.mean(), 30);
+// var sampled = points.map(function(ft) {
+//   return images_to_sample.sampleRegions(ft, null, 30);
+// }).flatten();
 
 
 // Map -----------------------------------------------------------
 Map.addLayer(ecoregions);
-
+Map.addLayer(points)
 
 // Export --------------------------------------------------------
 var today = new Date().toJSON().slice(0,13);
