@@ -210,7 +210,7 @@ var sampled = images_to_sample.sampleRegions(points, ee.Reducer.mean(), 30);
 
 // Map -----------------------------------------------------------
 Map.addLayer(ecoregions);
-Map.addLayer(points)
+Map.addLayer(points);
 
 // Export --------------------------------------------------------
 var today = new Date().toJSON().slice(0,13);
