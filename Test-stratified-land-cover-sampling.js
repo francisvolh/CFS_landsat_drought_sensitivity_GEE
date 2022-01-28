@@ -49,7 +49,7 @@ var sampled_points = lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
 });
 
 // Masked land cover
-var sampled_points = masked_lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
+var masked_sampled_points = masked_lc.addBands([ee.Image.pixelLonLat()]).stratifiedSample({
   classBand: 'land-cover',
   numPoints: 100,
   region: geometry
@@ -69,10 +69,11 @@ Map.addLayer(lc, {palette: pal}, 'land cover');
 
 // Sampled points
 print(sampled_points);
-Map.addLayer(sampled_points);
+Map.addLayer(sampled_points, null, 'sampled points');
 
 
 // Masked land cover
 Map.addLayer(masked_lc, {palette: pal}, 'masked land cover');
 
 // Sample points within masked land cover
+Map.addLayer(masked_sampled_points, null, 'sampled points within mask');
