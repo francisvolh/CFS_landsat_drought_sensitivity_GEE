@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var alberta = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-119.93250204872565, 57.093629281447924],
-          [-119.93250204872565, 54.00038691085837],
-          [-113.60437704872565, 54.00038691085837],
-          [-113.60437704872565, 57.093629281447924]]], null, false),
+        [[[-119.93250204872565, 60.0476034936002],
+          [-119.93250204872565, 54.79344435994582],
+          [-110.13269736122565, 54.79344435994582],
+          [-110.13269736122565, 60.0476034936002]]], null, false),
     west = 
     /* color: #d63000 */
     /* shown: false */
@@ -36,7 +35,7 @@ var alberta =
 // Alec L. Robitaille
 
 
-var region = 'West';
+var region = 'Alberta';
 print('Region set: ' + region);
 
 
