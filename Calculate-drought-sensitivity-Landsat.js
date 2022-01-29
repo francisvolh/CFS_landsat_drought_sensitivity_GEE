@@ -213,4 +213,4 @@ var exp = {
   scale: 30,
   maxPixels: 1e9
 };
-// Export.image.toAsset(exp);
+Export.image.toAsset(exp);
