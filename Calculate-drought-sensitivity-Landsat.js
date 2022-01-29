@@ -28,7 +28,19 @@ var alberta =
           [-110.14140625, 66.67170637803635],
           [-125.9116190088051, 67.25718358813353],
           [-136.50859375000002, 67.49302695510208],
-          [-140.99101562500002, 67.45935893840027]]]);
+          [-140.99101562500002, 67.45935893840027]]]),
+    albertasubsample = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-116.66728515625, 60.117462090287006],
+          [-116.66728515625, 56.65384690115585],
+          [-110.0974609375, 56.65384690115585],
+          [-110.0974609375, 60.117462090287006]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Calculate Drought Sensitivity ===
 // --- Landsat ---
@@ -169,7 +181,7 @@ var pal = palettes.colorbrewer.RdBu[9];
 var min = -50; var max = 50;
 var viz = {min: min, max: max, palette: pal};
 
-Map.addLayer(geo)
+// Map.addLayer(geo)
 // function showPalette(name, palette) {
 //   var image = ee.Image.pixelLonLat().select(0)
 //     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
