@@ -68,7 +68,7 @@ var minyearl7 = 1999;
 var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
-// Set percentiles to use
+// Set percentiles to use, out of options listed in modules/drought.js
 var percentiles = [15];
 
 // Set antecedent periods
@@ -168,7 +168,10 @@ var means = splits.reduce(ee.Reducer.mean());
 // Drought sensitivity -------------------------------------------
 // SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
+print(drought)
+print(means)
 print(droughtSens)
+
 // Drought sensitivity prime (S’) = max across three antecedent periods
 // var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
 
