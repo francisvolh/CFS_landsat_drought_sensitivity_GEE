@@ -202,7 +202,7 @@ var exp = {
   image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
   description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   folder: 'Drought-sensitivity-refugia',
-  region: geo,
+  region: albertasubsample,
   scale: 1000,
   maxPixels: 1e9
 };
