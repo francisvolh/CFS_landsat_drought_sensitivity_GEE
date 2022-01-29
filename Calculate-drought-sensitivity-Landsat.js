@@ -72,6 +72,7 @@ var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 var percentiles = [15];
 
 // Set antecedent periods
+// TODO: 3yr?
 var antes = ['3mo', '12mo', '5yr'];
 // var antes = ['12mo'];
 
