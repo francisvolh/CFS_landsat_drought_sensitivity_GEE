@@ -162,8 +162,8 @@ var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices)
 
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
-print(drought)
-print(splits)
+// print(drought)
+// print(splits)
 
 
 // Drought sensitivity -------------------------------------------
