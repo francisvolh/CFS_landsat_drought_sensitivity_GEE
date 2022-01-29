@@ -182,7 +182,7 @@ var means = splits.reduce(ee.Reducer.mean());
 
 // Drought sensitivity -------------------------------------------
 var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
-
+print(droughtSens)
 
 // Sample points -------------------------------------------------
 var points = ecoregions.map(function(ft) {
