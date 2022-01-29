@@ -7,9 +7,9 @@ var alberta =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-119.93250204872565, 60.0476034936002],
-          [-119.93250204872565, 54.79344435994582],
-          [-110.13269736122565, 54.79344435994582],
+        [[[-117.93299032997565, 60.0476034936002],
+          [-117.93299032997565, 55.892913879277266],
+          [-110.13269736122565, 55.892913879277266],
           [-110.13269736122565, 60.0476034936002]]], null, false),
     west = 
     /* color: #d63000 */
@@ -72,12 +72,12 @@ var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 var percentiles = [15];
 
 // Set antecedent periods
-// var antes = ['3mo', '12mo', '3yr'];
-var antes = ['12mo'];
+var antes = ['3mo', '12mo', '5yr'];
+// var antes = ['12mo'];
 
 // Set indices
-// var indices = ['NDVI', 'NBR', 'EVI'];
-var indices = ['NDVI'];
+var indices = ['NDVI', 'NBR', 'EVI'];
+// var indices = ['NDVI'];
 
 
 
