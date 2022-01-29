@@ -198,9 +198,11 @@ var viz = {min: min, max: max, palette: pal};
 
 
 // Export -------------------------------------------------------
+var today = new Date().toJSON().slice(0,13);
+
 var exp = {
   image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
-  description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
+  description: today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
   folder: 'Drought-sensitivity-refugia',
   region: albertasubsample,
   scale: 1000,
@@ -210,9 +212,9 @@ Export.image.toDrive(exp);
 
 var exp = {
   image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
-  description: 'drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
-  assetId: 'CFS/drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
-  region: geo,
+  description: today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
+  assetId: 'CFS/' + today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
+  region: albertasubsample,
   scale: 30,
   maxPixels: 1e9
 };
