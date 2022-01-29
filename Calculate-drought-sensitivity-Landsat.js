@@ -41,9 +41,7 @@ print('Region set: ' + region);
 
 
 // Data -------------------------------------------------------------
-// Ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-
 
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
 var l7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2');
@@ -68,17 +66,14 @@ var minyearl7 = 1999;
 var maxyearl7 = 2003;
 var yearsl7 = ee.List.sequence(minyearl7, maxyearl7);
 
-// Set percentiles to use, out of options listed in modules/drought.js
+// Set percentiles to use
 var percentiles = [5, 15];
 
 // Set antecedent periods
-// TODO: 3yr?
 var antes = ['3mo', '12mo', '5yr'];
-// var antes = ['12mo'];
 
 // Set indices
 var indices = ['NDVI', 'NBR', 'EVI'];
-// var indices = ['NDVI'];
 
 
 
@@ -89,7 +84,7 @@ var indices = ['NDVI', 'NBR', 'EVI'];
 var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Land cover mask function
-var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+var lc = require('users/robitalec/CFS:modules/land-cover.js');
 
 // Fire functions
 var fire = require('users/robitalec/CFS:modules/fire.js');
@@ -109,25 +104,18 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-// TODO: filter ecoregions
-
-if (region == 'Yukon') {
-  var geo = ecoregions;
-} else if (region == 'Alberta') {
-  var geo = alberta;
-} else if (region == 'West') {
-  var geo = west;
-}
+ecoregions = ecoregions.filterBounds(albertasubsample);
+print('using alberta subsample')
 
 // Landsat 5
 l5 = l5
-  .filterBounds(geo)
+  .filterBounds(ecoregions)
   .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
 // Landsat 7
 l7 = l7
-  .filterBounds(geo)
+  .filterBounds(ecoregions)
   .filter(ee.Filter.calendarRange(minyearl7, maxyearl7, 'year'))
   .filter(ee.Filter.calendarRange(7, 7, 'month'));
 
@@ -151,7 +139,7 @@ veg = veg
   .map(landsatprep.calcIndices)
   .map(water.maskWater)
   .map(fire.maskFires)
-  .map(lcmask.maskLandCover);
+  .map(lc.maskLandCover);
 
 // Aggregate Landsat yearly, rename _mean bands
 veg = landsatprep.aggregateY(veg);
