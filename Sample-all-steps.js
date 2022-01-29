@@ -30,17 +30,28 @@ var polygons =
          [-127.87825758991876, 50.61938195875478]]),
     alberta = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-119.99490865522603, 59.978553917868325],
-          [-119.99490865522603, 54.18996627134585],
-          [-109.99735006147603, 54.18996627134585],
-          [-109.99735006147603, 59.978553917868325]]], null, false);
+        [[[-119.81912740522603, 59.96755864262016],
+          [-119.81912740522603, 54.1771080775117],
+          [-109.82156881147603, 54.1771080775117],
+          [-109.82156881147603, 59.96755864262016]]], null, false),
+    albertasubsample = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-114.97224140100526, 59.9871210932434],
+          [-114.97224140100526, 57.55026777081534],
+          [-110.00642108850526, 57.55026777081534],
+          [-110.00642108850526, 59.9871210932434]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // === Sample all steps ===
 // Alec L. Robitaille
@@ -120,7 +131,8 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-ecoregions = ecoregions.filterBounds(alberta);
+ecoregions = ecoregions.filterBounds(albertasubsample);
+print('using alberta subsample')
 
 // Landsat 5
 l5 = l5
@@ -179,7 +191,6 @@ var points = ecoregions.map(function(ft) {
              return f.set('ECOREGI', ft.get('ECOREGI'));
              });
 }).flatten();
-print(points)
 
 var means_names = means.bandNames()
                        .filter(ee.Filter.stringContains('item', 'p15'))
