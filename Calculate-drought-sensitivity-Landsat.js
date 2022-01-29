@@ -41,8 +41,8 @@ print('Region set: ' + region);
 
 
 // Data -------------------------------------------------------------
-// CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+// Ecoregions
+var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
 
 var l5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');
@@ -106,11 +106,10 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+// TODO: filter ecoregions
 
 if (region == 'Yukon') {
-  var geo = ctef;
+  var geo = ecoregions;
 } else if (region == 'Alberta') {
   var geo = alberta;
 } else if (region == 'West') {
