@@ -243,3 +243,13 @@ var exp = {
   maxPixels: 1e9
 };
 Export.image.toDrive(exp);
+
+var exp = {
+  image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
+  description: today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-AB-sub',
+  assetId: 'CFS/' + today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-AB-sub',
+  region: albertasubsample,
+  scale: 30,
+  maxPixels: 1e9
+};
+Export.image.toAsset(exp);
