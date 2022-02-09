@@ -41,7 +41,7 @@ var cmi = aggDaymet
 // Calculate baseline
 // Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
 var means = baseline.antecedentMeans(cmi, 'CMI', years);
-
+exports.means = means;
 
 exports.baselineCMI = function(percentiles) {
     // Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
