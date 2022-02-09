@@ -22,7 +22,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 var drought = droughtModule.means;
-var pal_cmi = palettes.colorbrewer.RdBu[5]
+var pal_cmi = palettes.colorbrewer.RdBu[7]
 var viz_cmi = {"opacity":1,"bands":["CMI_ante12mo_mean"],"min":-10,"max":10,palette:pal_cmi}
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2018))
                     .select('CMI_ante12mo_mean'),
@@ -32,7 +32,7 @@ Map.addLayer(drought.filter(ee.Filter.eq('year', 2018))
 // buildSRcollection(startYear, endYear, startDay, endDay, aoi, maskThese)
 var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['cloud', 'shadow', 'snow', 'water']);
 
-var pal = palettes.cmocean.Speed[7]
+var pal = palettes.cmocean.Speed[5]
 
 Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {min:0, max:1, palette:pal}, 'NDVI', false)
 
@@ -41,7 +41,7 @@ Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {min:0, max:1, pale
 
 // Define a dictionary which will be used to make legend and visualize image on map
 var dict = {
-  "names": [-5, -2.5, 0, 2.5, 5],
+  "names": [-10, -5, 0, 5, 10],
   "colors": pal_cmi};
 
 // Create a panel to hold the legend widget
