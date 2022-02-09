@@ -23,7 +23,7 @@ var palettes = require('users/gena/packages:palettes');
 
 var drought = droughtModule.means;
 var pal_cmi = palettes.colorbrewer.RdBu[5]
-var viz_cmi = {"opacity":1,"bands":["CMI_ante12mo_mean"],"min":-10,"max":10,palette:pal_cmi}
+var viz_cmi = {"opacity":1,"bands":["CMI_ante12mo_mean"],"min":-5,"max":5,palette:pal_cmi}
 Map.addLayer(drought.filter(ee.Filter.eq('year', 2018))
                     .select('CMI_ante12mo_mean'),
              viz_cmi, 'CMI')
