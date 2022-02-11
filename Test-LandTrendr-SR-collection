@@ -21,4 +21,11 @@ var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['clou
 
 var pal = palettes.cmocean.Speed[7]
 
+Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {palette:'7f7f7f'})
+
+
+var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['cloud', 'shadow', 'snow', 'water', 'waterplus']);
+
+var pal = palettes.cmocean.Speed[7]
+
 Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {min:0, max:1, palette:pal})
