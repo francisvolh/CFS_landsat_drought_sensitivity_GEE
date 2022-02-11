@@ -10,7 +10,6 @@ var get_collection = require('users/robitalec/CFS:modules/get_collection.js');
 // Geometry
 var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
                                     [-105.988, 58.941], [-105.988, 59.673]]]);
-Map.addLayer(geometry);
 
 
 // Test SR collection
