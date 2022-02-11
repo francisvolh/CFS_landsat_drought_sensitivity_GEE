@@ -16,7 +16,9 @@ var img = lc.first();
 
 // Test mask_classes
 // Usage: mask_classes(img)
-Map.addLayer(land_cover.mask_classes(img));
+var masked_lc = land_cover.mask_classes(img);
+print(masked_lc);
+Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
 
 
 // Test get_land_cover
