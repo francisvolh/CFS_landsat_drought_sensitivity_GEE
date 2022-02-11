@@ -15,7 +15,7 @@ on Google Earth Engine. Remote Sensing. 10, 691.
 var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
 
 // Set flags to mask
-var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
+var mask = ['cloud', 'shadow', 'snow', 'water'];//, 'waterplus'];
 
 // Get collection of Landsat SR bands
 var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
