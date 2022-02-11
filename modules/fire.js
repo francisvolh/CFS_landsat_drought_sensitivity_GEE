@@ -26,7 +26,7 @@ var five_year_fires = function(yr) {
     NBAC_fires.filter(ee.Filter.rangeContains('YEAR', ymin5, y))
 							.reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
 							.rename('fire-in-last-5-years')
-    ]).set('year', yr);
+    ]).set('year', yr); 
 };
 exports.five_year_fires = five_year_fires;
 
