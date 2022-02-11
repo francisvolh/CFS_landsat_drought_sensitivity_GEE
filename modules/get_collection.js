@@ -19,14 +19,7 @@ var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 
 // Get collection of Landsat SR bands
 var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
-	return(ltgee.buildSRcollection({
-		startYear: min_year,
-		endYear: max_year,
-		startDay: min_mm_dd,
-		endDay:  max_mm_dd,
-		aoi:  region,
-		maskThese: mask
-	}));
+  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region));
 };
 exports.get_SR = get_SR;
 
