@@ -1,5 +1,5 @@
 /*
-Test modules/fire.js
+Testing: modules/fire.js
 Alec L. Robitaille
 
 */
