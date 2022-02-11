@@ -19,3 +19,7 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
 var five_year_fires = fire.five_year_fires(2013);
 print(five_year_fires);
 
+
+
+// Map
+Map.addLayer(five_year_fires)
