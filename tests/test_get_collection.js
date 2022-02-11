@@ -1,40 +1,29 @@
 /*
-Thin wrapper around LandTrendr API
-Generates a SR collection in a region, then transforms into spectral indices
+Testing: modules/get_collection.js
 Alec L. Robitaille
-
-https://emapr.github.io/LT-GEE/api.html
-
-Kennedy, R.E., Yang, Z., Gorelick, N., Braaten, J., Cavalcante, L.,
-Cohen, W.B., Healey, S. (2018). Implementation of the LandTrendr Algorithm
-on Google Earth Engine. Remote Sensing. 10, 691.
 */
 
 
-// Load LandTrendr API
-var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
+// Load get_collection module
+var get_collection = require('users/robitalec/CFS:modules/get_collection.js');
 
-// Set flags to mask
-var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
-
-// Get collection of Landsat SR bands
-var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
-  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region)
-  						.map(setYear));
-};
-exports.get_SR = get_SR;
-
-// Get collection of spectral indices
-var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-	var collection = get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region);
-
-	return(ltgee.transformSRcollection(collection, indices));
-};
-exports.get_indices = get_indices;
+// Geometry
+var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
+                                    [-105.988, 58.941], [-105.988, 59.673]]]);
 
 
-// Set year
-var setYear = function(img) {
-  return img.set('year', img.date().get('year'));
-};
-exports.setYear = setYear;
+// Test SR collection
+// Usage: get_collection.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var sr_col = get_collection.get_SR(2014, 2019, '06-15', '07-15', geometry);
+print(sr_col);
+
+// Test indices collection
+// Usage: get_collection.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_col = get_collection.get_indices(2014, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+print(indices_col);
+
+// Map
+Map.addLayer(geometry);
+Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: -100, max: 1500}, 'RGB SR collection');
+Map.addLayer(indices_col.select(['NDVI']), {min: -500, max:1200}, 'NDVI collection');
+Map.addLayer(indices_col.select(['EVI']), {min: -5e3, max:5e3}, 'EVI collection');
