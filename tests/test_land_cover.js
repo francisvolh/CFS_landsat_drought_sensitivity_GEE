@@ -13,7 +13,6 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var img = lc.first();
 
-
 // Test mask_classes
 // Usage: mask_classes(img)
 var masked_lc = land_cover.mask_classes(img);
