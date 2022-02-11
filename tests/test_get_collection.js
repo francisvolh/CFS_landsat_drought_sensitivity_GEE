@@ -25,3 +25,6 @@ print(indices_col);
 
 // Map
 Map.addLayer(geometry);
+Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), null, 'RGB SR collection');
+Map.addLayer(indices_col.select(['NDVI']), null, 'NDVI collection');
+Map.addLayer(indices_col.select(['EVI']), null, 'EVI collection');
