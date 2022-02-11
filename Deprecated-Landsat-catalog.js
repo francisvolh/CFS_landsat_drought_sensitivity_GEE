@@ -45,3 +45,15 @@ img = applyScaleFactors(img);
 Map.addLayer(img_depr, null, 'LT05/C01/T1_SR');
 Map.addLayer(img, null, 'LT05/C02/T1_L2');
 
+
+
+print(ee.ImageCollection("LANDSAT/LT05/C01/T1_SR").size());
+print(ee.ImageCollection("LANDSAT/LT05/C01/T1_SR").size());
+
+print(ee.ImageCollection("LANDSAT/LE07/C01/T1_SR").size());
+print(ee.ImageCollection("LANDSAT/LE07/C01/T1_SR").size());
+
+print(ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").size());
+print(ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").size());
+
+
