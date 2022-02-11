@@ -14,25 +14,14 @@ Map.addLayer(geometry);
 
 
 // Test SR collection
-var sr_col = get_collection.get_SR({
-	'min_year': 2014,
-	'max_year': 2019,
-	'min_mm_dd': '06-15',
-	'max_mm_dd': '12-30',
-	'region': geometry
-});
-print(sr_col)
+// Usage: get_collection.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var sr_col = get_collection.get_SR(2014, 2019, '06-15', '07-15', geometry);
+print(sr_col);
 
 // Test indices collection
-var indices_col = get_collection.get_indices({
-	'min_year': 2018,
-	'max_year': 2019,
-	'min_mm_dd': '06-15',
-	'max_mm_dd': '07-15',
-	'region': geometry,
-	'indices': ['NDVI', 'EVI']
-});
-print(indices_col)
+// Usage: get_collection.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_col = get_collection.get_SR(2014, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+print(indices_col);
 
 // Map
 Map.addLayer(geometry)
