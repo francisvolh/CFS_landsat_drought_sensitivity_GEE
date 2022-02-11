@@ -34,6 +34,7 @@ exports.get_indices = get_indices;
 
 
 // Set year
-exports.setYear = function(img) {
+var setYear = function(img) {
   return img.set('year', img.date().get('year'));
 };
+exports.setYear = setYear;
