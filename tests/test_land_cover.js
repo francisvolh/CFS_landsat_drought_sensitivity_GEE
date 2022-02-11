@@ -24,9 +24,8 @@ Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
 // Test get_land_cover
 // Usage: get_land_cover()
 var lc_collection = land_cover.get_land_cover();
-Map.addLayer();
-print(masked_lc);
-Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
+print(lc_collection);
+Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
 
 
 // Test mask_land_cover
