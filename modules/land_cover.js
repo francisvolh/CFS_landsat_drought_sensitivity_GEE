@@ -57,7 +57,7 @@ var mask_classes = function(img) {
 	return img.updateMask(
 		img.expression('lc == 50 || lc == 81 || lc == 210 || lc == 220 || lc == 230',
 		{lc: img.select('b1')})
-	).select(['b1'], ['land_cover'])
+	).select(['b1'], ['land_cover']);
 };
 exports.mask_classes = mask_classes;
 
