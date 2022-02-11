@@ -24,6 +24,6 @@ print(indices_col);
 
 // Map
 Map.addLayer(geometry);
-Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), null, 'RGB SR collection');
-Map.addLayer(indices_col.select(['NDVI']), null, 'NDVI collection');
-Map.addLayer(indices_col.select(['EVI']), null, 'EVI collection');
+Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: -100, max: 1500}, 'RGB SR collection');
+Map.addLayer(indices_col.select(['NDVI']), {min: -500, max:1200}, 'NDVI collection');
+Map.addLayer(indices_col.select(['EVI']), {min: -5e3, max:5e3}, 'EVI collection');
