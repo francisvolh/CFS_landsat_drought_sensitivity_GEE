@@ -64,8 +64,8 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var get_land_cover = function() {
-	lc = lc.map(utils.set_year)
-				 .map(mask_land_cover);
+	return lc = lc.map(utils.set_year)
+								.map(mask_land_cover);
 };
 exports.get_land_cover = get_land_cover;
 
