@@ -31,4 +31,6 @@ Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
 // Test mask_land_cover
 // Usage: mask_land_cover(img)
 var img = ee.Image.constant(1);
-Map.addLayer(land_cover.mask_land_cover(img));
+var img_masked_lc = land_cover.mask_land_cover(img);
+print(img_masked_lc);
+Map.addLayer(img_masked_lc, null, 'land_cover.mask_land_cover(img)');
