@@ -19,6 +19,29 @@ function applyScaleFactors(image) {
 }
 img = applyScaleFactors(img);
 
-Map.addLayer(img_depr, null, 'C01/T1_SR');
-Map.addLayer(img, null, 'C02/T1_L2');
+Map.addLayer(img_depr, null, 'LC08/C01/T1_SR');
+Map.addLayer(img, null, 'LC08/C02/T1_L2');
+
+
+
+// CO1/T1_SR (deprecated)
+var col_depr = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR").filterBounds(geometry);
+var img_depr = col_depr.first();
+
+
+// CO2/T1_L2
+var col = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2').filterBounds(geometry);
+var img = col.first();
+
+// Scaling
+function applyScaleFactors(image) {
+  var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
+  var thermalBands = image.select('ST_B.*').multiply(0.00341802).add(149.0);
+  return image.addBands(opticalBands, null, true)
+              .addBands(thermalBands, null, true);
+}
+img = applyScaleFactors(img);
+
+Map.addLayer(img_depr, null, 'LT05/C01/T1_SR');
+Map.addLayer(img, null, 'LT05/C02/T1_L2');
 
