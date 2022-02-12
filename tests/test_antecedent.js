@@ -6,6 +6,9 @@ Alec L. Robitaille
 // Load antecedent module
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 
+// Load CMI module
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+
 // Load palettes module
 var palettes = require('users/gena/packages:palettes');
 
