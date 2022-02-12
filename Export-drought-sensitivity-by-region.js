@@ -40,7 +40,29 @@ var percentile_list = [5, 10];
 
 
 // -- Loop over regions, export task for each
+// Land cover
 var lc = land_cover.get_land_cover();
-
 lc = lc.map(fire.mask_five_year_fires);
 
+
+// Daymet
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
+    .filterDate('2015-07-01', '2015-07-30')
+    .mean();
+var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+
+// Calculate CMI
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
+
+
+
+var sample = ecoregions.map(function(ft) {
+
+	var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft, ['NDVI', 'EVI', 'NBR']);
+
+
+
+})
