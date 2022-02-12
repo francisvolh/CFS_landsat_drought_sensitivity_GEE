@@ -47,8 +47,7 @@ lc = lc.map(fire.mask_five_year_fires);
 
 // Daymet
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
-    .filterDate('2015-07-01', '2015-07-30')
-    .mean();
+    .filterDate('1980-01-01', '2020-01-01');
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
 // Calculate CMI
