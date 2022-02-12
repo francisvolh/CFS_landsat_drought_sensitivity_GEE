@@ -17,4 +17,4 @@ var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 // Usage: get_monthly_daymet(year_list, month_list, reducer)
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months, reducer);
 print(monthly_daymet);
-Map.addLayer(monthly_daymet);
+Map.addLayer(monthly_daymet.select('prcp_mean'));
