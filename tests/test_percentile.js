@@ -45,6 +45,7 @@ Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p10'), {min:-30, max:30,
 
 // Test lt_percentile
 // Usage: lt_percentile(means, percentile_images)
+print(ante_means)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 print(lt_percent);
 // Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
