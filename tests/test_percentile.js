@@ -21,7 +21,7 @@ var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
 // Set years, months
 var years = ee.List.sequence(2010, 2015);
-var months = ee.List.sequence(5, 7);
+var months = ee.List.sequence(1, 12);
 
 // Get Daymet collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
@@ -39,4 +39,5 @@ var percentile_list = [5, 10];
 // Usage: lt_percentile(means, percentile_list)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_list);
 print(lt_percent);
+Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10'));
