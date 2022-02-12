@@ -26,7 +26,6 @@ print(five_year_fires);
 // Test mask_five_year_fires
 // Usage: fire.mask_five_year_fires(img)
 var img = land_cover.get_land_cover().filter(ee.Filter.eq('year', 2013)).first();
-
 var mask_five_year_fires = fire.mask_five_year_fires(img);
 print(mask_five_year_fires);
 
