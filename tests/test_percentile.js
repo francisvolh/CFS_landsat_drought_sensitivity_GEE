@@ -39,4 +39,4 @@ var percentile_list = [5, 10];
 // Usage: lt_percentile(means, percentile_list)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_list);
 print(lt_percent);
-Map.addLayer(ante_means.select('CMI_lt_ante3mo_p5'));
+Map.addLayer(ante_means.select('CMI_ante3mo_lt_p10'));
