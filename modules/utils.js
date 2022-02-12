@@ -11,7 +11,7 @@ exports.set_year = set_year;
 
 
 // Aggregate each month within each year with reducer
-exports.aggregate_month_year = function(images, year_list, month_list, reducer) {
+var aggregate_month_year = function(images, year_list, month_list, reducer) {
   // Combine images returned for each year+month
   return ee.ImageCollection.fromImages(
     // Map over years
