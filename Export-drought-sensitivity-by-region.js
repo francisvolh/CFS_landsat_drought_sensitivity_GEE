@@ -68,7 +68,7 @@ var sample = ecoregions.limit(1).map(function(ft) {
   var join = ee.Join.simple();
   var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
   
-  return joined.reduceRegions(points, ee.Reducer.mean(), 30);
+  return ee.ImageCollection(joined).reduceRegions(points, ee.Reducer.mean(), 30);
 }).flatten();
 
 Export.table.toDrive(sample, 'test.csv')
