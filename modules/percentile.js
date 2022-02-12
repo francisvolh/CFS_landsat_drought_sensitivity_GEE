@@ -13,10 +13,16 @@ exports.get_percentile = get_percentile;
 var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     return ee.Image([
-      img.select('CMI_ante3mo_mean').eq(percentile_images.select('CMI_ante3mo.*')),
+      percentile_images.select('CMI_ante3mo.*').gt(img.select('CMI_ante3mo_mean')),
+      percentile_images.select('CMI_ante12mo.*').gt(img.select('CMI_ante12mo_mean')),
+      percentile_images.select('CMI_ante5yr.*').gt(img.select('CMI_ante35yr_mean'))
+
+
+
+/*      img.select('CMI_ante3mo_mean').lte(percentile_images.select('CMI_ante3mo.*')),
       // img.select('CMI_ante6mo_mean').lte(percentile_images.select('CMI_ante6mo.*')),
-      img.select('CMI_ante12mo_mean').eq(percentile_images.select('CMI_ante12mo.*')),
-      img.select('CMI_ante5yr_mean_min').eq(percentile_images.select('CMI_ante5yr.*'))
+      img.select('CMI_ante12mo_mean').lte(percentile_images.select('CMI_ante12mo.*')),
+      img.select('CMI_ante5yr_mean_min').lte(percentile_images.select('CMI_ante5yr.*'))*/
      ]).copyProperties(img);
 	});
 	return images_lt_percentiles;
@@ -26,7 +32,7 @@ exports.lt_percentile = lt_percentile;
 // TODO: find a fix to insert "lt_"
 
 /*
- 
+
   var percentile_3mo = means.select(['CMI_ante3mo_mean'], ['CMI_ante3mo_lt'])
                             .reduce(ee.Reducer.percentile(percentile_list));
 
