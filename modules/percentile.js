@@ -14,9 +14,9 @@ var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     return ee.Image([
       img.select('CMI_ante3mo_mean').lte(percentile_images.select('CMI_ante3mo.*')),
-      // img.select('CMI_ante6mo_mean').rename('CMI_ante6mo_lt').lte(percentile_images.select('CMI_ante6mo.*')),
-      img.select('CMI_ante12mo_mean').rename('CMI_ante12mo_lt').lte(percentile_images.select('CMI_ante12mo.*')),
-      img.select('CMI_ante5yr_mean_min').rename('CMI_ante5yr_lt').lte(percentile_images.select('CMI_ante5yr.*'))
+      // img.select('CMI_ante6mo_mean').lte(percentile_images.select('CMI_ante6mo.*')),
+      img.select('CMI_ante12mo_mean').lte(percentile_images.select('CMI_ante12mo.*')),
+      img.select('CMI_ante5yr_mean_min').lte(percentile_images.select('CMI_ante5yr.*'))
      ]).copyProperties(img);
 	});
 	return images_lt_percentiles;
