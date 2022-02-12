@@ -65,8 +65,8 @@ var sample = ecoregions.limit(1).map(function(ft) {
   
   var points = stratified.stratified_sample(lc, 'land_cover', ft, 250);
   
-  var join = ee.Join.inner('year');
-  return join.apply(indices_col, ante_means);
+  var join = ee.Join.simple();
+  return join.apply(indices_col, ante_means, ee.Filter.eq({leftField: 'year', rightField: 'year'}));
 });
 
 print(sample)
