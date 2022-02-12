@@ -31,4 +31,4 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 // Usage: antecedent_mean(images, band, year_list)
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 print(ante_means);
-Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: palettes.});
+Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
