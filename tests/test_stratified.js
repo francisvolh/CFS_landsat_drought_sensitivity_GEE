@@ -11,6 +11,10 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 // Load land cover module
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
+// Load palettes module
+var palettes = require('users/gena/packages:palettes');
+
+
 // Load Hermosilla land cover
 var hermosilla_2022 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc = hermosilla_2022.first();
