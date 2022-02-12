@@ -38,15 +38,15 @@ var percentile_list = [5, 10];
 // Test get_percentile
 // Usage: get_percentile(images, percentile_list)
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
-print(percentile_images);
+print('Antecedent means');print(ante_means);
+print('Percentile images');print(percentile_images);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal}, '2010-2015 CMI 3 month antecedent means', false);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), {min:-30, max:30, palette: pal}, '2010 CMI 3 month antecedent means');
 Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p10'), {min:-30, max:30, palette: pal}, '2010-2015 CMI 10th percentile');
 
 // Test lt_percentile
 // Usage: lt_percentile(means, percentile_images)
-print(ante_means)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
-print(lt_percent);
+print('Less than percentile'); print(lt_percent);
 // Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
 // Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').limit(-1), {min:0, max:0});
