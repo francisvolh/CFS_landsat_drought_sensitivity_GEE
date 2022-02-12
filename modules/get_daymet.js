@@ -20,8 +20,11 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
 	.filterDate('1980-01-01', '2020-01-01');
 
+// Reducer
+var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
 // Get collection of Daymet images
-var get_monthly_daymet = function(year_list, month_list, reducer) {
+var get_monthly_daymet = function(year_list, month_list) {
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
 							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
