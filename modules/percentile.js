@@ -22,7 +22,7 @@ var lt_percentile = function(images, percentile_images) {
 	return images_lt_percentiles;
 };
 /*
-
+ 
   var percentile_3mo = means.select(['CMI_ante3mo_mean'], ['CMI_ante3mo_lt'])
                             .reduce(ee.Reducer.percentile(percentile_list));
 
