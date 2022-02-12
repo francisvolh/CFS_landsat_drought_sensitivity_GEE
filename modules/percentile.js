@@ -5,13 +5,17 @@ Alec L. Robitaille
 
 // Get percentile
 var get_percentile = function(images, percentile_list) {
-  var percentile_3mo = images.reduce(ee.Reducer.percentile(percentile_list));
+  var percentile_3mo = images.select(['CMI_ante3mo_mean'], ['CMI_ante3mo'])
+                            .reduce(ee.Reducer.percentile(percentile_list));
 
-  // var percentile_6mo = images.reduce(ee.Reducer.percentile(percentile_list));
+  // var percentile_6mo = images.select(['CMI_ante6mo_mean'], ['CMI_ante6mo'])
+  //                           .reduce(ee.Reducer.percentile(percentile_list));
 
-  var percentile_12mo = images.reduce(ee.Reducer.percentile(percentile_list));
+  var percentile_12mo = images.select(['CMI_ante12mo_mean'], ['CMI_ante12mo'])
+                             .reduce(ee.Reducer.percentile(percentile_list));
 
-  var percentile_5yr = images.reduce(ee.Reducer.percentile(percentile_list));
+  var percentile_5yr = images.select(['CMI_ante5yr_mean_min'], ['CMI_ante5yr'])
+                            .reduce(ee.Reducer.percentile(percentile_list));
 
   return(ee.Image([percentile_3mo, percentile_12mo, percentile_5yr]));
 };
