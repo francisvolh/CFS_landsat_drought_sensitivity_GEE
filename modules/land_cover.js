@@ -49,7 +49,7 @@ DOI: https://doi.org/10.1016/j.rse.2022.112780 [Open Access]
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Load Hermosilla land cover
-var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+var hermosilla_2022 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 
 // Mask classes
@@ -64,10 +64,13 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var get_land_cover = function() {
-	return lc.map(utils.set_year).map(mask_land_cover);
+	return hermosilla_2022.map(utils.set_year).map(mask_classes);
 };
 exports.get_land_cover = get_land_cover;
 
+
+// (Local) get land cover collection
+var lc = get_land_cover();
 
 // Mask image with land cover
 var mask_land_cover = function(img) {
@@ -75,7 +78,3 @@ var mask_land_cover = function(img) {
   return img.updateMask(lc.filter(ee.Filter.eq('year', img_year)));
 };
 exports.mask_land_cover = mask_land_cover;
-
-
-
-
