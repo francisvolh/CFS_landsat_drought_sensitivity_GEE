@@ -31,5 +31,5 @@ print(mask_five_year_fires);
 
 
 // Map
-Map.addLayer(five_year_fires);
+Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']});
 Map.addLayer(mask_five_year_fires);
