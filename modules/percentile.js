@@ -21,7 +21,6 @@ var lt_percentile = function(img, percentile_images) {
 		img.select('CMI_ante5yr_mean')
        .lt(percentile_images)
      ]).copyProperties(img);
-	])
 };
 /*
 
