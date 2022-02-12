@@ -35,9 +35,16 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 // Percentile list
 var percentile_list = [5, 10];
 
+// Test get_percentile
+// Usage: get_percentile(images, percentile_list)
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+print(percentile_images);
+Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
+Map.addLayer(percentile_images.select('CMI_ante3mo_lt_p10'));
+
 // Test lt_percentile
 // Usage: lt_percentile(means, percentile_list)
-var lt_percent = percentile.lt_percentile(ante_means, percentile_list);
-print(lt_percent);
-Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
-Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:0});
+// var lt_percent = percentile.lt_percentile(ante_means, percentile_list);
+// print(lt_percent);
+// Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
+// Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').limit(-1), {min:0, max:0});
