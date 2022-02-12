@@ -1,41 +1,46 @@
-/*
-Fire masks from NBAC fire data
-Alec L. Robitaille
+// -- Load regions, land cover
+var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
-https://cwfis.cfs.nrcan.gc.ca/datamart
-https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/nbac_2020_r9_20210810.shp.pdf
-*/
+// -- Load modules
+// Load get_landsat module
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
-// Load NBAC fire polygons
-var NBAC_fires = ee.FeatureCollection("users/robitalec/CFS/nbac_1986_to_2020_20210810");
+// Load land cover module
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
-// Generate fire masks from NBAC - any fire in preceeding 5 years
-var five_year_fires = function(yr) {
-  var date = ee.Date.fromYMD(yr, 1, 1);
+// Load fire module
+var fire = require('users/robitalec/CFS:modules/fire.js');
 
-  // Present year
-  var y = date.get('year');
+// Load CMI module
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
 
-  // 5 years previous
-  var ymin5 = date.advance(-4, 'year').get('year');
+// Load get_daymet module
+var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
-  // Filter fires within last 5 years
-  // Reduce to any non zero = anywhere there is a fire
-  // Result is 0 = no fire, 1 = fire
-  return ee.Image([
-    NBAC_fires.filter(ee.Filter.rangeContains('YEAR', ymin5, y))
-							.reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
-							.rename('fire-in-last-5-years')
-    ]).set('year', yr);
-};
-exports.five_year_fires = five_year_fires;
+// Load percentile module
+var percentile = require('users/robitalec/CFS:modules/percentile.js');
+
+// Load antecedent module
+var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 
 
-// Mask fires
-var mask_five_year_fires = function(img) {
-  var yr = img.date().get('year');
 
-  var fire = five_year_fires(yr).eq(0)
-  return(img.updateMask(fire));
-}
-exports.mask_current_year = mask_current_year;
+// -- Set variables
+// Set years, months
+var min_year = 1985;
+var max_year = 2019
+var years = ee.List.sequence(min_year, max_year);
+var min_month = 1;
+var max_month = 12;
+var months = ee.List.sequence(1, 12);
+
+// Percentile list
+var percentile_list = [5, 10];
+
+
+
+// -- Loop over regions, export task for each
+var lc = land_cover.get_land_cover();
+
+lc = lc.map(fire.mask_five_year_fires);
+Map.addLayer(lc.first());
