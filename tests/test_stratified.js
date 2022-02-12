@@ -24,7 +24,7 @@ var geometry = ee.Geometry.Polygon([[[-96.677, 52.700], [-96.677, 52.214], [-95.
 
 // Test stratified_sample
 // Usage: stratified.stratified_sample(img, band, region, n_pts)
-var strat = stratified.stratified_sample(lc, 'b1', geometry, 100);
+var strat = stratified.stratified_sample(lc, 'b1', geometry, 50);
 print(strat);
 Map.addLayer(geometry);
 Map.addLayer(lc, {palette: palettes.crameri.batlow[25]});
