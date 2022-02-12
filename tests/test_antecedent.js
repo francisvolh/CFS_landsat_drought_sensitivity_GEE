@@ -24,5 +24,3 @@ var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 var ante_means = antecedent.antecedent_means(monthly_daymet, 'CMI', years);
 print(ante_means);
 Map.addLayer(ante_means.select('prcp'), {min:0, max:500});
-
-
