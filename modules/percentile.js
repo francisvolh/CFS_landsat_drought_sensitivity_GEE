@@ -19,7 +19,7 @@ var get_percentile = function(images, percentile_list) {
                             
   return(ee.Image([percentile_3mo, percentile_12mo, percentile_5yr]));
 };
-
+exports.get_percentile = get_percentile;
 
 // Compare percentile images for each antecedent period to each image's antecedent means
 var lt_percentile = function(means, percentile_list) {
