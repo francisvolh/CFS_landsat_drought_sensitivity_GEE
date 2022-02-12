@@ -14,7 +14,6 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 
 // Load palettes module
 var palettes = require('users/gena/packages:palettes');
-var pal = palettes.colorbrewer.RdBu[5];
 
 // Load get_daymet module
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
@@ -36,7 +35,7 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 var percentile_list = [5, 10];
 
 // CMI viz
-var cmi_viz = {min:-30, max:30, palette: pal};
+var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 
 // Test get_percentile
 // Usage: get_percentile(images, percentile_list)
