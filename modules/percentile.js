@@ -21,6 +21,9 @@ var lt_percentile = function(images, percentile_images) {
 	});
 	return images_lt_percentiles;
 };
+exports.lt_percentile = lt_percentile;
+
+
 /*
  
   var percentile_3mo = means.select(['CMI_ante3mo_mean'], ['CMI_ante3mo_lt'])
@@ -54,4 +57,3 @@ var lt_percentile = function(images, percentile_images) {
 	});
 
 	return means_lt_percentiles;*/
-exports.lt_percentile = lt_percentile;
