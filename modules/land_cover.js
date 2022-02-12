@@ -64,16 +64,15 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var get_land_cover = function() {
-	return lc = lc.map(utils.set_year)
-								.map(mask_land_cover);
+	return lc.map(utils.set_year).map(mask_land_cover);
 };
 exports.get_land_cover = get_land_cover;
 
 
 // Mask image with land cover
 var mask_land_cover = function(img) {
-  var date = img.date();
-  return img.updateMask(lc.filterDate(date, date.advance(1, 'year')).first());
+  var img_year = img.date().get('year');
+  return img.updateMask(lc.filter(ee.Filter.eq('year', img_year)));
 };
 exports.mask_land_cover = mask_land_cover;
 
