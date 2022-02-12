@@ -28,7 +28,7 @@ var aggregate_month_year = function(images, year_list, month_list, reducer) {
                      .set('year', yr)
                      .set('month', mnth)
                      .set('system:time_start',
-                          ee.Date.fromYMD(yr, mnth, 1));
+                          ee.Date.fromYMD(yr, mnth, 1).millis());
         });
   }).flatten()
   );
