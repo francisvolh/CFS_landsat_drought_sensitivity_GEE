@@ -23,7 +23,7 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
 // Get collection of Daymet images
 var get_monthly_daymet = function(year_list, month_list, reducer) {
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer);
-}
+};
 exports.get_monthly_daymet = get_monthly_daymet;
 
 // Prep Daymet for CMI
