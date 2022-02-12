@@ -61,12 +61,14 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 var sample = ecoregions.limit(1).map(function(ft) {
 
-	var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft, ['NDVI', 'EVI', 'NBR']);
+	var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft.geometry(), ['NDVI', 'EVI', 'NBR']);
   
-  var points = stratified.stratified_sample(lc, 'land_cover', ft, 250);
+  var points = stratified.stratified_sample(lc, 'land_cover', ft.geometry(), 250);
   
   var join = ee.Join.simple();
-  return join.apply(indices_col, ante_means, ee.Filter.eq({leftField: 'year', rightField: 'year'}));
-});
+  var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
+  
+  return joined.reduceRegions(points, ee.Reducer.mean(), 30);
+}).flatten();
 
-print(sample)
+Export.table.toDrive(sample, 'test.csv')
