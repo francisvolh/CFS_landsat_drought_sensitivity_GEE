@@ -8,8 +8,8 @@ Alec L. Robitaille
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
 // Set years, months, reducer
-var years = ee.List.sequence(minyear, maxyear);
-var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(2010, 2015);
+var months = ee.List.sequence(5, 7);
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 
