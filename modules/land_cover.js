@@ -75,6 +75,6 @@ var lc = get_land_cover();
 // Mask image with land cover
 var mask_land_cover = function(img) {
   var img_year = img.date().get('year');
-  return img.updateMask(lc.filter(ee.Filter.eq('year', img_year)));
+  return img.updateMask(lc.filter(ee.Filter.eq('year', img_year)).mask());
 };
 exports.mask_land_cover = mask_land_cover;
