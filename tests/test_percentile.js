@@ -40,7 +40,7 @@ var percentile_list = [5, 10];
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 print(percentile_images);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal}, 'antecedent_means');
-Map.addLayer(percentile_images.select('CMI_ante3mo_lt_p10'), 'get_percentile p10');
+Map.addLayer(percentile_images.select('CMI_ante3mo_lt_p10'), {min:-30, max:30, palette: pal}, 'get_percentile p10');
 
 // Test lt_percentile
 // Usage: lt_percentile(means, percentile_list)
