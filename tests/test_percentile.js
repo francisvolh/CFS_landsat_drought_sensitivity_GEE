@@ -51,4 +51,4 @@ Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p10'), cmi_viz, '2010-20
 // Usage: lt_percentile(means, percentile_images)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 print('Less than percentile'); print(lt_percent);
-Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').limit(-1), {min:0, max:0});
+Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:0});
