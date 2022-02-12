@@ -11,7 +11,7 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 
 // Load palettes module
 var palettes = require('users/gena/packages:palettes');
-var pal = palettes.colorbrewer.RdBu[5]}
+var pal = palettes.colorbrewer.RdBu[5];
 
 // Load get_daymet module
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
