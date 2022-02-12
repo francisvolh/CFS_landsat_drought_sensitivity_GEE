@@ -61,3 +61,4 @@ var antecedent_means = function(images, band, year_list) {
       ]).set({'year': yr});
   }));
 };
+exports.antecedent_means = antecedent_means;
