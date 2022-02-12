@@ -46,10 +46,6 @@ Map.addLayer(ante_means.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI 3 mo
 Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3 month antecedent means');
 Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p10'), cmi_viz, '2010-2015 CMI 10th percentile');
 
-// print(percentile_images.select('CMI_ante3mo.*'))
-// Map.addLayer(ante_means.first().select('CMI_ante3mo_mean').lt(percentile_images.select('CMI_ante3mo.*')))
-// Map.addLayer(percentile_images.select('CMI_ante3mo.*').lt(ante_means.first().select('CMI_ante3mo_mean')))
-
 // Test lt_percentile
 // Usage: lt_percentile(images, percentile_images)
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
