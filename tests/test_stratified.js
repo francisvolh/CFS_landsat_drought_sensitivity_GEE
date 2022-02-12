@@ -20,11 +20,11 @@ var hermosilla_2022 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FORES
 var lc = hermosilla_2022.first();
 
 // Region
-var geometry = ee.Geometry.Polygon([[[-96.188, 54.036], [-96.188, 51.866], [-92.233, 51.866], [-92.233, 54.036]]]);
+var geometry = ee.Geometry.Polygon([[[-96.677, 52.700], [-96.677, 52.214], [-95.853, 52.214], [-95.853, 52.7]]]);
 
 // Test stratified_sample
 // Usage: stratified.stratified_sample(img, band, region, n_pts)
-var strat = stratified.stratified_sample(lc, 'b1', geometry, 10);
+var strat = stratified.stratified_sample(lc, 'b1', geometry, 50);
 print(strat);
 Map.addLayer(geometry);
 Map.addLayer(lc, {palette: palettes.crameri.batlow[25]});
