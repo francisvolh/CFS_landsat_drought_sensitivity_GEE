@@ -27,26 +27,26 @@ var get_monthly_daymet = function(year_list, month_list, reducer) {
 exports.get_monthly_daymet = get_monthly_daymet;
 
 // Prep Daymet for CMI
-exports.prepDaymet = function(minyear, maxyear) {
-  // Set list of years and months
-  var months = ee.List.sequence(1, 12);
-  var years = ee.List.sequence(minyear, maxyear);
+// exports.prepDaymet = function(minyear, maxyear) {
+//   // Set list of years and months
+//   var months = ee.List.sequence(1, 12);
+//   var years = ee.List.sequence(minyear, maxyear);
 
-  // Reducer
-  // Combine both mean and sum reducers
-  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+//   // Reducer
+//   // Combine both mean and sum reducers
+//   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
-  // Filter daymet within years
-  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3")
-    .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
+//   // Filter daymet within years
+//   var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3")
+//     .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'));
 
-  // Aggregate monthly for each year
-  // Using reducer
-  var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
+//   // Aggregate monthly for each year
+//   // Using reducer
+//   var aggDaymet = agg.aggregateMY(years, months, daymet, reducer);
 
-  // Only keep tmin tmax mean and prcp sum
-  aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
-                               ['tmin', 'tmax', 'prcp']);
+//   // Only keep tmin tmax mean and prcp sum
+//   aggDaymet = aggDaymet.select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
+//                               ['tmin', 'tmax', 'prcp']);
 
-  return aggDaymet
-}
+//   return aggDaymet
+// }
