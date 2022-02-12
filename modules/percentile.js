@@ -16,7 +16,7 @@ var lt_percentile = function(images, percentile_images) {
       percentile_images.select('CMI_ante3mo.*').gte(img.select(['CMI_ante3mo_mean'], ['CMI_ante3mo_lt'])),
       // percentile_images.select('CMI_ante6mo.*').gte(img.select(['CMI_ante6mo_mean'], ['CMI_ante6mo_lt'])),
       percentile_images.select('CMI_ante12mo.*').gte(img.select(['CMI_ante12mo_mean'], ['CMI_ante12mo_lt'])),
-      percentile_images.select('CMI_ante5yr.*').gte(img.select(['CMI_ante5yr_mean'], ['CMI_ante5yr_lt']))
+      percentile_images.select('CMI_ante5yr.*').gte(img.select(['CMI_ante5yr_mean_min'], ['CMI_ante5yr_lt']))
 
 
 
