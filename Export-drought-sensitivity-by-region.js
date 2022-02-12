@@ -59,9 +59,14 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 
-var sample = ecoregions.map(function(ft) {
+var sample = ecoregions.limit(1).map(function(ft) {
 
 	var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft, ['NDVI', 'EVI', 'NBR']);
   
-  var points = stratified_sample(lc, 'land_cover', ft, 250);
+  var points = stratified.stratified_sample(lc, 'land_cover', ft, 250);
+  
+  var join = ee.Join.inner('year');
+  return join.apply(indices_col, ante_means);
 });
+
+print(sample)
