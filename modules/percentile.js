@@ -13,9 +13,9 @@ exports.get_percentile = get_percentile;
 var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     return ee.Image([
-      percentile_images.select('CMI_ante3mo.*').gt(img.select('CMI_ante3mo_mean')),
-      percentile_images.select('CMI_ante12mo.*').gt(img.select('CMI_ante12mo_mean')),
-      percentile_images.select('CMI_ante5yr.*').gt(img.select('CMI_ante5yr_mean_min'))
+      percentile_images.select('CMI_ante3mo.*').gte(img.select('CMI_ante3mo_mean')),
+      percentile_images.select('CMI_ante12mo.*').gte(img.select('CMI_ante12mo_mean')),
+      percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min'))
 
 
 
