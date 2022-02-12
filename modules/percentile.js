@@ -23,6 +23,7 @@ var lt_percentile = function(images, percentile_images) {
 };
 exports.lt_percentile = lt_percentile;
 
+// TODO: find a fix to insert "lt_"
 
 /*
  
