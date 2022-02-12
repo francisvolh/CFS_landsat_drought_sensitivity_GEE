@@ -19,6 +19,10 @@ var months = ee.List.sequence(5, 7);
 // Get Daymet collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
+// Calculate CMI
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);;
+
+
 // Test antecedent_means
 // Usage: antecedent_mean(images, band, year_list)
 var ante_means = antecedent.antecedent_means(monthly_daymet, 'CMI', years);
