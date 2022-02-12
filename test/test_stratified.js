@@ -22,4 +22,5 @@ var geometry = ee.Geometry.Polygon([[[-96.188, 54.036], [-96.188, 51.866], [-92.
 var strat = stratified.stratified_sample(lc, 'land_cover', geometry, 10);
 print(strat);
 Map.addLayer(geometry);
+Map.addLayer(lc);
 Map.addLayer(strat);
