@@ -37,4 +37,4 @@ var lt_percentile = function(means, percentile_list) {
 
 	return means_lt_percentiles;
 };
-exports lt_percentile = lt_percentile;
+exports.lt_percentile = lt_percentile;
