@@ -11,14 +11,14 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 // Load Hermosilla land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-var lc_1985 = lc.first();
+var lc_2014 = lc.filter(ee.Filter.date('2014-01-01')).first();
 
 // Map a constant background
-Map.addLayer(ee.Image.constant(), {palette: '6f6f6f'});
+Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'});
 
 // Test mask_classes
 // Usage: mask_classes(lc_img)
-var masked_lc = land_cover.mask_classes(lc_1985);
+var masked_lc = land_cover.mask_classes(lc_2014);
 print(masked_lc);
 Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
 
