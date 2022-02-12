@@ -11,7 +11,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 // Load Hermosilla land cover
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-var lc_2014 = lc.filter(ee.Filter.date('2014-01-01')).first();
+var lc_2014 = lc.filterDate('2014-01-01', '2015-01-01').first();
 
 // Map a constant background
 Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'});
