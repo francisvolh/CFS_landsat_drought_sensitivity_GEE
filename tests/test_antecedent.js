@@ -25,6 +25,6 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
 // Test antecedent_means
 // Usage: antecedent_mean(images, band, year_list)
-var ante_means = antecedent.antecedent_means(monthly_daymet, 'CMI', years);
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 print(ante_means);
 Map.addLayer(ante_means.select('prcp'), {min:0, max:500});
