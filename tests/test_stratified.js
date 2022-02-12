@@ -32,10 +32,10 @@ Map.addLayer(strat);
 
 // Test stratified_sample for two classes
 // Usage: stratified.stratified_sample(img, band, region, n_pts)
+lc = lc.updateMask(lc.eq(20).or(lc.eq(220)));
 var strat = stratified.stratified_sample(lc, 'b1', geometry, 50);
 print(strat);
 Map.addLayer(geometry);
 Map.addLayer(lc, {palette: palettes.crameri.batlow[25]});
 Map.addLayer(strat);
 
-lc = lc.updateMask(lc.eq(20).or(lc.eq(220)));
