@@ -16,9 +16,8 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
     .filterDate('2015-07-03', '2015-07-04')
     .first();
 
-
 // Test calc_CMI
 // Usage: calc_CMI(img)
 var cmi_daymet = cmi.calc_CMI(daymet);
 print(cmi_daymet);
-Map.addLayer(cmi_daymet.select('CMI'), {palette: palettes.colorbrewer.RdBu[5]});
+Map.addLayer(cmi_daymet, {palette: palettes.colorbrewer.RdBu[5]});
