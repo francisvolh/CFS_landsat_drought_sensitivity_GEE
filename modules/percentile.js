@@ -17,7 +17,7 @@ var lt_percentile = function(images, percentile_images) {
       // img.select(['CMI_ante6mo_mean'], ['CMI_ante6mo_lt']).lt(percentile_images.select('CMI_ante6mo.*')),
       img.select(['CMI_ante12mo_mean'], ['CMI_ante12mo_lt']).lt(percentile_images.select('CMI_ante12mo.*')),
       img.select(['CMI_ante5yr_mean_min'], ['CMI_ante5yr_lt']).lt(percentile_images.select('CMI_ante5yr.*'))
-     ])/..copyProperties(img);
+     ])//.copyProperties(img);
 	});
 	return images_lt_percentiles;
 };
