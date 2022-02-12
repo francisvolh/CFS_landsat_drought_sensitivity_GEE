@@ -20,7 +20,7 @@ var months = ee.List.sequence(5, 7);
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
 // Calculate CMI
-var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);;
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
 
 // Test antecedent_means
