@@ -12,12 +12,12 @@ exports.get_percentile = get_percentile;
 // Compare percentile images for each antecedent period to each image's antecedent means
 var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
-    return ee.Image([
-      img.select('CMI_ante3mo_mean').lt(percentile_images),
+    return img.lt(percentile_images)//ee.Image([
+      // img.select('CMI_ante3mo_mean').lt(percentile_images),
       // img.select('CMI_ante6mo_mean').lt(percentile_images),
-      img.select('CMI_ante12mo_mean').lt(percentile_images),
-      img.select('CMI_ante5yr_mean_min').lt(percentile_images)
-     ]).copyProperties(img);
+      // img.select('CMI_ante12mo_mean').lt(percentile_images),
+      // img.select('CMI_ante5yr_mean_min').lt(percentile_images)
+    // ]).copyProperties(img);
 	});
 	return images_lt_percentiles;
 };
