@@ -11,6 +11,9 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 // Load fire module
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
+// Load stratified module
+var stratified = require('users/robitalec/CFS:modules/stratified.js');
+
 // Load CMI module
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 
@@ -45,7 +48,7 @@ var lc = land_cover.get_land_cover();
 lc = lc.map(fire.mask_five_year_fires);
 // TODO: fix this flex
 lc = lc.filter(ee.Filter.eq('year', 2005));
-
+print(lc)
 // Daymet
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
@@ -60,5 +63,5 @@ var sample = ecoregions.map(function(ft) {
 
 	var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft, ['NDVI', 'EVI', 'NBR']);
   
-
+  var points = stratified_sample(lc, 'land_cover', ft, 250);
 });
