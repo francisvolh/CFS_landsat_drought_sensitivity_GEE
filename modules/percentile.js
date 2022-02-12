@@ -13,10 +13,10 @@ exports.get_percentile = get_percentile;
 var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     return ee.Image([
-      img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo.*')),
+      img.select('CMI_ante3mo_mean').eq(percentile_images.select('CMI_ante3mo.*')),
       // img.select('CMI_ante6mo_mean').lte(percentile_images.select('CMI_ante6mo.*')),
-      img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo.*')),
-      img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr.*'))
+      img.select('CMI_ante12mo_mean').eq(percentile_images.select('CMI_ante12mo.*')),
+      img.select('CMI_ante5yr_mean_min').eq(percentile_images.select('CMI_ante5yr.*'))
      ]).copyProperties(img);
 	});
 	return images_lt_percentiles;
