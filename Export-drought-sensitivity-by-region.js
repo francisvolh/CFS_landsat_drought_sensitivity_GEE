@@ -28,7 +28,7 @@ var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 // -- Set variables
 // Set years, months
 var min_year = 1985;
-var max_year = 2019
+var max_year = 2019;
 var years = ee.List.sequence(min_year, max_year);
 var min_month = 1;
 var max_month = 12;
@@ -43,4 +43,4 @@ var percentile_list = [5, 10];
 var lc = land_cover.get_land_cover();
 
 lc = lc.map(fire.mask_five_year_fires);
-Map.addLayer(lc.first());
+
