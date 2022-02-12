@@ -1,7 +1,11 @@
-// DAYMET (+DEM) based CMI
+/*
+Calculate CMI using Daymet
+Alec L. Robitaille
+*/
+
 
 // Calculate ETMAX using tmax
-exports.calcETMAX = function(img) {
+var calc_ETMAX_band = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmax / (237.3 + tmax)))', {
@@ -10,7 +14,7 @@ exports.calcETMAX = function(img) {
 };
 
 // Calculate ETMIN using tmin
-exports.calcETMIN = function(img) {
+var calc_ETMIN_band = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * tmin / (237.3 + tmin)))', {
@@ -19,7 +23,7 @@ exports.calcETMIN = function(img) {
 };
 
 // Calculate ETDEW using tmin
-exports.calcETDEW = function(img) {
+var calc_ETDEW_band = function(img) {
   return img.addBands(
     img.expression(
     '0.61078 * (2.71828182846 ** (17.269 * (tmin - 2.5) / (237.3 + tmin - 2.5)))', {
@@ -28,7 +32,7 @@ exports.calcETDEW = function(img) {
 };
 
 // Calculate VPD using ETMAX, ETMIN, ETDEW
-exports.calcVPD = function(img) {
+var calc_VPD_band = function(img) {
   return img.addBands(
     img.expression(
     '0.5 * (ETMAX + ETMIN) - ETDEW', {
@@ -39,7 +43,7 @@ exports.calcVPD = function(img) {
 };
 
 // Calculate Tavg 5, 15 using tmin, tmax
-exports.calcTAVG515 = function(img) {
+var calc_TAVG515_band = function(img) {
   return img.addBands(
     img.expression(
     '(1.0 * ((tmin + tmax) / 2) + 5) / 15', {
@@ -50,7 +54,7 @@ exports.calcTAVG515 = function(img) {
 
 // Calculate KTRF, returning TAVG515 or if lt 0 returning 0, or if gt 1 returning 1
 // (just capping within 0-1 range)
-exports.calcKTRF = function(img) {
+var calc_KTRF_band = function(img) {
   return img.addBands(
     img.select('TAVG515')
        .where(img.select('TAVG515').lt(0), 0)
@@ -59,7 +63,7 @@ exports.calcKTRF = function(img) {
 };
 
 // Calculate PET using VPD, KTRF, and DEM
-exports.calcPET = function(img) {
+var calc_PET_band = function(img) {
   return img.addBands(
     img.expression(
     '93 * VPD * KTRF * (2.71828182846 ** (1.0 * ELEV / 9300))', {
@@ -71,7 +75,7 @@ exports.calcPET = function(img) {
 };
 
 // Calculate CMI using prcp and PET
-exports.calcCMI = function(img) {
+var calc_CMI_band = function(img) {
   return img.addBands(
     img.expression(
     '1.0 * (PREC - PET) / 10', {
@@ -79,6 +83,21 @@ exports.calcCMI = function(img) {
       'PET': img.select('PET')
     }).rename('CMI'));
 };
+
+// Calculate CMI from input Daymet image
+var calc_CMI = function(img) {
+	img = calc_ETMAX_band(img);
+	img = calc_ETMIN_band(img);
+	img = calc_ETDEW_band(img);
+	img = calc_VPD_band(img);
+	img = calc_TAVG515_band(img);
+	img = calc_KTRF_band(img);
+	img = calc_PET_band(img);
+
+	return calc_CMI_band(img);
+};
+exports.calc_CMI = calc_CMI;
+
 
 
 
