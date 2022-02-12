@@ -35,7 +35,7 @@ var max_month = 12;
 var months = ee.List.sequence(1, 12);
 
 // Percentile list
-var percentile_list = [5, 10];
+var percentile_list = [10, 20, 30];
 
 
 
