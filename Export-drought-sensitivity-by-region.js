@@ -75,7 +75,7 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 // TODO: add modules - join collections, sample images
 
-var eco_ids = ecoregions.filterBounds(geometry).aggregate_array('ECOREGI')
+var eco_ids = ecoregions.filterBounds(geometry).limit(2).aggregate_array('ECOREGI')
 
 
 
@@ -95,7 +95,7 @@ eco_ids.evaluate(
         var sampled = ee.ImageCollection(joined).map(function(img) {
           return img.reduceRegions(points, ee.Reducer.mean(), 30)
         }).flatten();
-
+      
         Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export')
       })
   })
