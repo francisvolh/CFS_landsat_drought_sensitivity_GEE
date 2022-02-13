@@ -75,7 +75,7 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 // TODO: add modules - join collections, sample images
 
-var eco_ids = ecoregions.filterBounds(geometry).limit(2).aggregate_array('ECOREGI')
+var eco_ids = ecoregions.filterBounds(geometry).aggregate_array('ECOREGI')
 
 
 
