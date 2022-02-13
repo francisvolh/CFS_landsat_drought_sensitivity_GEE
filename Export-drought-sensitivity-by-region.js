@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-141.38652343750002, 67.51894613280258],
+          [-141.38652343750002, 49.228143544359924],
+          [-105.7908203125, 49.228143544359924],
+          [-105.7908203125, 67.51894613280258]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // -- Load regions, land cover
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
@@ -61,7 +75,7 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 // TODO: add modules - join collections, sample images
 
-var eco_ids = ecoregions.filterBounds(geometry).aggregate_array('ECOREGI')
+var eco_ids = ecoregions.filterBounds(geometry).limit(2).aggregate_array('ECOREGI')
 
 // Asynchronously pass the object's value to the callback function
 eco_ids.evaluate(
@@ -77,6 +91,6 @@ eco_ids.evaluate(
         var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
         var sampled = ee.ImageCollection(joined).map(function(img) {return img.reduceRegions(points, ee.Reducer.mean(), 30)});
 
-        Export.table.toDrive(sampled, ecoreg_id)
+        Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export')
       })
   })
