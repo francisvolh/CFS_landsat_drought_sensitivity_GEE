@@ -71,7 +71,7 @@ indices_col = indices_col.map(function(img) {return img.set('system:time_start',
 ante_means = ante_means.map(function(img) {return img.set('system:time_start', ee.Date.fromYMD(img.get('year'), 07, 01).millis())})
 print(indices_col)
 print(ante_means)
-var joined = join.apply(indices_col, ante_means, ee.Filter.equals('system:time_start', null, 'system:time_start'));
+var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'system:time_start', rightField: 'system:time_start'}));
 print(joined)
 
 joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))})
