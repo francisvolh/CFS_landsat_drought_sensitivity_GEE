@@ -33,12 +33,12 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
             // Baseline vegetation index
             var baseline = img.select([index])
                               .updateMask(baseline_mask)
-                              .rename([base_band]);
+                              .rename([base_veg_band]);
 
             // Drought vegetation index
             var drought = img.select([index])
                              .updateMask(drought_mask)
-                             .rename([drought_band]);
+                             .rename([drought_veg_band]);
             return [baseline, drought];
           });
         });
