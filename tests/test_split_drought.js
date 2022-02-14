@@ -31,7 +31,7 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
-var indices_col = get_landsat.get_indices(years[1], years[2], '06-15', '07-15', geometry, index_list);
+var indices_col = get_landsat.get_indices(min_year, max_year, '06-15', '07-15', geometry, index_list);
 
 
 
