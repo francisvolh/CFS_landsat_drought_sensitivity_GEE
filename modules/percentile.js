@@ -19,7 +19,7 @@ var lt_percentile = function(images, percentile_images) {
       percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min'))
       ]).copyProperties(img);
 	});
-	var out = images_lt_percentiles;
+	var out = ee.ImageCollection(images_lt_percentiles);
   var new_names = out.bandNames();
   new_names = new_names.replaceAll('_mean', '_lt').replaceAll('_min', '');
   out = out.rename(new_names);
