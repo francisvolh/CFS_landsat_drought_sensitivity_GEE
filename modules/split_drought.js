@@ -9,7 +9,7 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
   // Map over images
   return images.map(function(img) {
     // Get year
-    var yr = img.get('year');
+    var yr = img.date().get('year');
 
     // Filter percentile masks matching year
     var percent_mask = percentile_masks.filter(ee.Filter.eq('year', yr)).first();
