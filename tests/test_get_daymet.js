@@ -4,12 +4,13 @@ Alec L. Robitaille
 */
 
 
-// Load get_daymet module
+// Load modules
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
-// Set years, months, reducer
+// Set variables
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(5, 7);
+
 
 
 // Test get_monthly_daymet
