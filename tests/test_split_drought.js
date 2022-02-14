@@ -13,7 +13,8 @@ var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Set variables
-var years = ee.List.sequence(2010, 2015);
+var min_year = 2010; var max_year = 2015;
+var years = ee.List.sequence(min_year, max_year);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
 var index_list = ['NDVI', 'EVI'];
