@@ -3,27 +3,22 @@ Testing: modules/percentile.js
 Alec L. Robitaille
 */
 
-// Load percentile module
+// Load modules
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
-
-// Load antecedent module
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-
-// Load CMI module
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-
-// Load palettes module
 var palettes = require('users/gena/packages:palettes');
-
-// Load get_daymet module
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
-// Set years, months
+// Set variables
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
-
-// Get Daymet collection
+var percentile_list = [5, 10];
+var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+// Load collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+
+
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
@@ -31,11 +26,7 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 // Antecedent means
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 
-// Percentile list
-var percentile_list = [5, 10];
 
-// CMI viz
-var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 
 // Test get_percentile
 // Usage: get_percentile(images, percentile_list)
