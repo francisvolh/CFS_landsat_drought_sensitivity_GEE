@@ -10,6 +10,7 @@ var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Set variables
 var years = ee.List.sequence(2010, 2015);
