@@ -3,28 +3,25 @@ Testing: modules/antecedent.js
 Alec L. Robitaille
 */
 
-// Load antecedent module
+// Load modules
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-
-// Load CMI module
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-
-// Load palettes module
-var palettes = require('users/gena/packages:palettes');
-var pal = palettes.colorbrewer.RdBu[5];
-
-// Load get_daymet module
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var palettes = require('users/gena/packages:palettes');
 
-// Set years, months
+// Set variables
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(5, 7);
+var pal = palettes.colorbrewer.RdBu[5];
 
-// Get Daymet collection
+
+
+// Load collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
+
 
 
 // Test antecedent_means
