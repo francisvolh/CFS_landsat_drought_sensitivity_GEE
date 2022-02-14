@@ -27,12 +27,12 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
             var base_veg_band = veg_band + '_base';
 
             // Set up drought and base mask
-            var drought_mask = percent_mask.select(percent_mask_band).eq(1);
-            var baseline_mask = percent_mask.select(percent_mask_band).eq(0);
+            var drought_mask = percent_mask.select(percent_mask_band);
+            var baseline_mask = percent_mask.select(percent_mask_band);
 
             // Baseline vegetation index
             var baseline = img.select([index])
-                              .updateMask(baseline_mask)
+                              .updateMask(baseline_mask.neq(1))
                               .rename([base_veg_band]);
 
             // Drought vegetation index
