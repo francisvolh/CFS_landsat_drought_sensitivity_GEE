@@ -4,12 +4,13 @@ Alec L. Robitaille
 */
 
 
-// Load get_landsat module
+// Load modules
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
-// Geometry
+// Set variables
 var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
                                     [-105.988, 58.941], [-105.988, 59.673]]]);
+
 
 
 // Test SR collection
