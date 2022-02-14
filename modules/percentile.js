@@ -17,7 +17,7 @@ var lt_percentile = function(images, percentile_images) {
 	    // percentile_images.select('CMI_ante6mo.*').gte(img.select('CMI_ante6mo_mean')),
       percentile_images.select('CMI_ante12mo.*').gte(img.select('CMI_ante12mo_mean')),
       percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min'))
-      ]).copyProperties(img);
+      ])//.copyProperties(img);
     var new_names = out.bandNames();
     new_names = new_names.replaceAll('_mean', '_lt').replaceAll('_min', '');
     out = out.rename(new_names);
