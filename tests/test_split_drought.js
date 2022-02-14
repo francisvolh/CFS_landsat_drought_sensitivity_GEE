@@ -4,6 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
+var split_drought = require('users/robitalec/CFS:modules/split_drought.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
@@ -30,6 +31,12 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 // Percentile masks
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
+
+
+
+// Test split_drought
+// Usage: split_drought.split_drought(image) 
+var split_drought = function(images, percentile_masks, antecedent_list, percentile_list, index_list) {
 
 
 
