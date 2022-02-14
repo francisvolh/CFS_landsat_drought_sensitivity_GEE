@@ -22,7 +22,7 @@ var lt_percentile = function(images, percentile_images) {
     new_names = new_names.map(function(nm) {
       return ee.String(nm).replace('_min', '').replace('_mean', '_lt');
     });
-    out = out.rename(new_names);
+    out = ee.Image(out).rename(new_names);
     return out;
 	});
 	return images_lt_percentiles;
