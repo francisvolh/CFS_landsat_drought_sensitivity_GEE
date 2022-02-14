@@ -23,8 +23,8 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
             // Set up band names
             var percent_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile;
             var veg_band = index + '_ante' + antecedent_period + '_p' + percentile;
-            var drought_band = id + '_drought';
-            var base_band = id + '_base';
+            var drought_veg_band = id + '_drought';
+            var base_veg_band = id + '_base';
 
             // Set up drought and base mask
             var drought_mask = percent_mask.select(percent_mask_band).eq(1);
