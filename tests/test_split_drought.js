@@ -40,3 +40,4 @@ var split_drought = split_drought.split_drought(indices_col, lt_percent, anteced
 print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
 print('Split drought'); print(split_drought);
+Map.addLayer(split_drought.select('NDVI_ante3mo_p10_drought').first(),  {min: -500, max:1200}, '2010 NDVI drought 10th percentile 3 month antecedent');
