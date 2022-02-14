@@ -4,17 +4,17 @@ Alec L. Robitaille
 */
 
 
-// Load CMI module
+// Load modules
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-
-// Load palettes module
 var palettes = require('users/gena/packages:palettes');
 
 
-// Load Daymet V4
+
+// Load collection
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
     .filterDate('2015-07-01', '2015-07-30')
     .mean();
+
 
 
 // Test calc_CMI
