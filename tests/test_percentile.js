@@ -15,6 +15,7 @@ var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+
 // Load collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
