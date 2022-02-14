@@ -17,12 +17,12 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
         // Loop over percentile_list
-        return percentile_list.map(function(p) {
+        return percentile_list.map(function(percentile) {
           // Loop over index_list
           return index_list.map(function(index) {
             // Set up band names
-            var lt_band = 'CMI_lt_ante' + antecedent_period + '_p' + p;
-            var id = index + '_ante' + antecedent_period + '_p' + p;
+            var lt_band = 'CMI_lt_ante' + antecedent_period + '_p' + percentile;
+            var id = index + '_ante' + antecedent_period + '_p' + percentile;
             var drought_band = id + '_drought';
             var base_band = id + '_base';
 
