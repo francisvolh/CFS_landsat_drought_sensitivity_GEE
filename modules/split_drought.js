@@ -22,7 +22,7 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
           return index_list.map(function(index) {
             // Set up band names
             var percent_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile;
-            var id = index + '_ante' + antecedent_period + '_p' + percentile;
+            var veg_band = index + '_ante' + antecedent_period + '_p' + percentile;
             var drought_band = id + '_drought';
             var base_band = id + '_base';
 
