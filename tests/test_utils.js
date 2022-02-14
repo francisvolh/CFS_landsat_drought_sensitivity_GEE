@@ -3,8 +3,7 @@ Test modules/utils.js
 Alec L. Robitaille
 */
 
-
-// Load utils
+// Load modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Test set_year
