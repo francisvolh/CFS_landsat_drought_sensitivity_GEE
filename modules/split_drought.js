@@ -11,9 +11,8 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
     // Get year
     var yr = img.date().get('year');
 
-    // Filter drought masks matching year
-    var base = percentile_masks.filter(ee.Filter.eq('year', yr))
-                               .first();
+    // Filter percentile masks matching year
+    var percent_mask = percentile_masks.filter(ee.Filter.eq('year', yr)).first();
 
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
@@ -33,13 +32,13 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
 
             // Baseline vegetation index
             var baseline = img.select([index])
-                           .updateMask(baseline_mask)
-                           .rename([base_band]);
+                              .updateMask(baseline_mask)
+                              .rename([base_band]);
 
             // Drought vegetation index
             var drought = img.select([index])
-                              .updateMask(drought_mask)
-                              .rename([drought_band]);
+                             .updateMask(drought_mask)
+                             .rename([drought_band]);
             return [baseline, drought];
           });
         });
