@@ -15,12 +15,16 @@ var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
+var index_list = ['NDVI', 'EVI'];
+var antecedent_list = ['3mo', '12mo', '5yr'];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
+                                    [-105.988, 58.941], [-105.988, 59.673]]]);
 
-// Load collection
+
+
+// Get daymet
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-
-
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
@@ -31,12 +35,15 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 // Percentile masks
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
+// Get indices
+var indices_col = get_landsat.get_indices(years[1], years[2], '06-15', '07-15', geometry, index_list);
+
 
 
 
 // Test split_drought
 // Usage: split_drought.split_drought(image) 
-var split_drought = function(images, percentile_masks, antecedent_list, percentile_list, index_list) {
+var split_drought = split_drought.split_drought(indices_col, lt_percent, , percentile_list, index_list)
 
 
 
