@@ -43,10 +43,7 @@ var indices_col = get_landsat.get_indices(years[1], years[2], '06-15', '07-15', 
 
 // Test split_drought
 // Usage: split_drought.split_drought(image) 
-var split_drought = split_drought.split_drought(indices_col, lt_percent, , percentile_list, index_list)
-
-
-
+var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_mean_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
-
+print('Split drought'); print(split_drought);
