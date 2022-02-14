@@ -1,0 +1,211 @@
+// Modules ----------------------------------------------------------
+// Load modules of functions
+
+// Aggregate functions
+var agg = require('users/robitalec/CFS:modules/aggregate.js');
+
+// CMI functions
+var cmiDaymet = require('users/robitalec/CFS:modules/cmi-daymet.js');
+
+// L5 prep functions
+var l5prep = require('users/robitalec/CFS:modules/l5-prep.js');
+
+// Land cover mask function
+var lcmask = require('users/robitalec/CFS:modules/land-cover.js');
+
+// Baseline functions
+var baseline = require('users/robitalec/CFS:modules/baseline.js');
+
+// Fire functions
+var fire = require('users/robitalec/CFS:modules/fire.js');
+
+// Sensitivity
+var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
+
+// Gena's palette functions
+var palettes = require('users/gena/packages:palettes');
+
+
+// Data -------------------------------------------------------------
+// CTEF regions
+var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
+// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
+ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
+
+// Aggregate --------------------------------------------------------
+// Set min max year for daymet
+var minyear = 1980;
+var maxyear = 2019;
+
+// Set list of years and months
+var months = ee.List.sequence(1, 12);
+var years = ee.List.sequence(minyear, maxyear);
+
+var aggDaymet = cmiDaymet.prepDaymet(minyear, maxyear);
+
+// Calculate CMI ----------------------------------------------------
+// Calculate CMI (and ETMAX, ETMIN, ETDEW, VPD, TAVG 5, 15, KTRF and PET)
+aggDaymet = aggDaymet
+  .map(cmiDaymet.calcETMAX)
+  .map(cmiDaymet.calcETMIN)
+  .map(cmiDaymet.calcETDEW)
+  .map(cmiDaymet.calcVPD)
+  .map(cmiDaymet.calcTAVG515)
+  .map(cmiDaymet.calcKTRF)
+  .map(cmiDaymet.calcPET)
+  .map(cmiDaymet.calcCMI);
+
+// Calculate baseline -----------------------------------------------
+// Set percentiles to use. Javascript list.
+var percentiles = [1, 5, 10, 20];
+
+// Calculate antecedent means across years. Eg. mean CMI for antecedent 3 period across years
+var means = baseline.antecedentMeans(aggDaymet, 'CMI', years);
+
+// Compare antecedent means to percentiles. Eg. mean CMI for ante 3 year 2011 vs full period 10%
+var drought = baseline.ltPercentile(means, percentiles);
+
+// Drop before 1985 since there's no complete antecedent 12 period (1980) or 5 yr (1980-1985)
+drought = drought.filter(ee.Filter.gt('year', 1980));
+
+
+// EVI/NDVI ---------------------------------------------------------
+// Min/max years
+var minyearl5 = 1985;
+var maxyearl5 = 2012;
+var yearsl5 = ee.List.sequence(minyearl5, maxyearl5);
+
+// Load L5
+// Filter within min/max year and for July
+// Mask clouds, fires, land cover and calculate indices
+var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
+  .filterBounds(ctef)
+  .filter(ee.Filter.calendarRange(minyearl5, maxyearl5, 'year'))
+  .filter(ee.Filter.calendarRange(7, 7, 'month'))
+  .map(l5prep.setYear)
+  .map(l5prep.cloudMaskL5)
+  .map(l5prep.calcIndices)
+  .map(fire.maskFires)
+  .map(lcmask.maskLc);
+
+veg = l5prep.aggregateY(veg);
+drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
+var indices = ['NDVI', 'NBR', 'EVI'];
+veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
+
+// Mask fire and land cover, return baseline and drought percentiles EVI/NDVI across years
+// var maskveg = sensitivity.maskVeg(veg, drought, firemask, lc, percentiles);
+var antes = [3, 6, 12];
+// var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
+// print(veg)
+// print(splits)
+
+var splitDrought = function(veg, drought, antes, percentiles, indices) {
+  return veg.map(function(v) {
+    var yr = v.date().get('year');
+    var base = drought.filter(ee.Filter.eq('year', yr))
+                      .first();
+    return ee.Image(antes.map(function(ante) {
+        return percentiles.map(function(p) {
+          return indices.map(function(index) {
+            // Set up band names
+            var droughtmaskband = 'CMI_lt_ante' + ante + 'mo_p' + p;
+            var antepindexband = index + '_ante' + ante + 'mo_p' + p + '_drought';
+            var baseband = index + '_ante' + ante + 'mo_p' + p + '_base';
+
+            // Set up drought and base mask
+            var droughtmask = base.select(droughtmaskband).eq(1);
+            var basemask = base.select(droughtmaskband).eq(0);
+
+            // Baseline vegetation index
+            var baseveg = v.select([index])
+                           .updateMask(basemask)
+                           .rename([baseband]);
+
+            // Drought vegetation index
+            var droughtveg = v.select([index])
+                              .updateMask(droughtmask)
+                              .rename([antepindexband]);
+            return [baseveg, droughtveg]
+          });
+        });
+      }))
+  });
+};
+var splits = splitDrought(veg, drought, antes, percentiles, indices);
+// Map.addLayer(splits, null, 'splits')
+var means = splits.reduce(ee.Reducer.mean());
+// print(means)
+// Map.addLayer(splits.limit(10).select('NDVI.*'))
+// Map.addLayer(means.select('NDVI_ante3mo_p10_base_mean'), null, 'base')
+// Map.addLayer(means.select('NDVI_ante3mo_p10_drought_mean'), null, 'drought')
+
+var sens = sensitivity.droughtSensitivity(means, antes, percentiles, indices)
+
+// print(sens)
+var palettes = require('users/gena/packages:palettes');
+
+var pal = palettes.colorbrewer.RdBu[9].reverse();
+var min = -20; var max = 20;
+var viz = {min: min, max: max, palette: pal};
+
+
+// Map.addLayer(sens.limit(10).select('Sens_NDVI.*'))
+Map.addLayer(sens.select('Sens_NDVI_ante3mo_p10'), viz, 'sens')
+var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
+
+
+var exp = {
+  image: lcmask.reverseMask(),
+  description: 'lc-mask',
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 300,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var a = 'Sens_NDVI_ante3_p10'
+var exp = {
+  image: sens_80_19.select(a),
+  description: a,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var b = 'Sens_NDVI_ante12_p10'
+var exp = {
+  image: sens_80_19.select(b),
+  description: b,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var c = 'Sens_EVI_ante3_p10'
+var exp = {
+  image: sens_80_19.select(c),
+  description: c,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+
+var d = 'Sens_EVI_ante12_p10'
+var exp = {
+  image: sens_80_19.select(d),
+  description: d,
+  folder: 'CFS-drought-sensitivity',
+  region: geometry,
+  scale: 250,
+  maxPixels: 2e9
+};
+Export.image.toDrive(exp);
+

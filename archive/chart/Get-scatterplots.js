@@ -1,36 +1,5 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-141.0367481146711, 64.76633228247655],
-          [-141.0367481146711, 61.84752382750249],
-          [-136.3126270209211, 61.84752382750249],
-          [-136.3126270209211, 64.76633228247655]]], null, false),
-    geometry2 = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.Geometry.MultiPoint(
-        [[-139.95916965557532, 63.70435832848431],
-         [-139.08026340557532, 63.53350092779306],
-         [-138.26178196026282, 63.49675483765842],
-         [-137.70147922588782, 63.63125949888033],
-         [-137.03131321026282, 63.86451363545733],
-         [-137.53119113995032, 64.17971408308071],
-         [-138.15191867901282, 64.1126417845022],
-         [-139.26703098370032, 63.85483311775371],
-         [-140.23382785870032, 63.99487483284026],
-         [-139.50323703838782, 64.25616993332066],
-         [-138.57489231182532, 64.30384766782944],
-         [-138.37713840557532, 63.76755836210998]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------------------
-// Drought sensitivity 
+// Drought sensitivity
 var sens_modis = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019_v2');
 
 // Landsat
@@ -134,7 +103,7 @@ var selectBands = toview.bandNames()
 var band = 'Sens_NDVI_ante6mo_p10';
 
 // As a collection
-var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) { 
+var ascol = ee.ImageCollection.fromImages(toview.select(selectBands).bandNames().map(function(name) {
   return sens_modis.select([name]).set({"name": ee.String(name)
   });
 }));

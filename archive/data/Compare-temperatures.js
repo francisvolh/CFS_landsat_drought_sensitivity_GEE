@@ -1,12 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
-        [[-136.4189271709071, 63.09182572827663],
-         [-131.4531068584071, 61.07641008462972],
-         [-128.7724427959071, 59.90772678548384],
-         [-125.9159974834071, 58.5362123082456],
-         [-122.3124818584071, 56.84542789960619],
-         [-116.5556459209071, 54.59377335005215]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Data -------------------------------------------------------------
 var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
         [[-136.4189271709071, 63.09182572827663],
@@ -15,7 +6,7 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
          [-125.9159974834071, 58.5362123082456],
          [-122.3124818584071, 56.84542789960619],
          [-116.5556459209071, 54.59377335005215]]);
-         
+
 // DAYMET
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V3");
 
@@ -45,6 +36,6 @@ var min = ee.Image([terra.select('tmmn').divide(10), tmin]);
 // Chart -----------------------------------------------------------
 print(ui.Chart.image.regions(max, geometry)
         .setChartType('ScatterChart'));
-        
+
 print(ui.Chart.image.regions(min, geometry)
-        .setChartType('ScatterChart'));  
+        .setChartType('ScatterChart'));

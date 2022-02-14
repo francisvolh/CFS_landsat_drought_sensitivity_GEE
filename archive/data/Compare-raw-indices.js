@@ -69,28 +69,6 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
-// Define a function to convert from degrees to radians.
-function radians(img) {
-  return img.toFloat().multiply(Math.PI).divide(180);
-}
-
-// Define a function to compute a hillshade from terrain data
-// for the given sun azimuth and elevation.
-function hillshade(az, ze, slope, aspect) {
-  // Convert angles to radians.
-  var azimuth = radians(ee.Image(az));
-  var zenith = radians(ee.Image(ze));
-  // Note that methods on images are needed to do the computation.
-  // i.e. JavaScript operators (e.g. +, -, /, *) do not work on images.
-  // The following implements:
-  // Hillshade = cos(Azimuth - Aspect) * sin(Slope) * sin(Zenith) +
-  //     cos(Zenith) * cos(Slope)
-  return azimuth.subtract(aspect).cos()
-    .multiply(slope.sin())
-    .multiply(zenith.sin())
-    .add(
-      zenith.cos().multiply(slope.cos()));
-}
 
 
 // Filter -----------------------------------------------------------
@@ -126,9 +104,6 @@ modis = modis
   // TODO: mask clouds
   .map(fire.maskFires)
   .map(lcmask.maskLc)
-  .map(function(img) {
-    return img.updateMask(img.select('SummaryQA').eq(0))
-  })
   .select(indices).map(function(img) {
     return img.multiply(0.0001)
               .float()
@@ -142,7 +117,7 @@ var landsat = l5.merge(l7);
 // Filter within min/max year and for July
 // Mask clouds, fires, land cover and calculate indices
 landsat = landsat
-  .map(landsatprep.setYear).aside(print)
+  .map(landsatprep.setYear)
   .map(landsatprep.calcIndices)
   .map(landsatprep.maskClouds)
   .map(fire.maskFires)
@@ -152,10 +127,11 @@ landsat = landsat
 });
 
 
-var yr = 2008;
+var yr = 2010;
 var mindate = yr + '-07-01';
 var maxdate = (yr+1) + '-07-13';
-var b = 'EVI'
+print(yr, mindate, maxdate)
+var b = 'NDVI'
 
 var m = modis.filter(ee.Filter.date(mindate, maxdate))
              .select(b)
@@ -163,7 +139,7 @@ var m = modis.filter(ee.Filter.date(mindate, maxdate))
 var l = landsat.filter(ee.Filter.date(mindate, maxdate))
                .select(b)
                .mean()
-               
+
 var palette = palettes.cmocean.Balance[7];
 
 print(palette)
@@ -172,7 +148,8 @@ Map.addLayer(m, null, 'modis', false)
 Map.addLayer(l, null, 'landsat', false)
 Map.addLayer(m.subtract(l), {min: -0.5, max: 0.5, palette: palette}, 'diff')
 
-Map.addLayer(ee.ImageCollection("COPERNICUS/CORINE/V20/100m").first().eq(410))
+
+
 // var chart = ui.Chart.image.doySeriesByYear({
 //   imageCollection: m ,
 //   bandName: 'NDVI',

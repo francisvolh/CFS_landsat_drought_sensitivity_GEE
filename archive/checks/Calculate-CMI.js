@@ -1,18 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-140.64429004382453, 66.78390825999355],
-          [-140.64429004382453, 60.44720654719036],
-          [-131.76733691882453, 60.44720654719036],
-          [-131.76733691882453, 66.78390825999355]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 var agg = require('users/robitalec/CFS:modules/aggregate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
@@ -30,10 +15,10 @@ dem = dem.filterBounds(geometry)
 
 // Aggregate --------------------------------------------------------
 // Filter
-var minyear = 2005;
+var minyear = 2012;
 var maxyear = 2012;
 var minmonth = 6;
-var maxmonth = 8;
+var maxmonth = 6;
 
 daymet = daymet
   .filter(ee.Filter.calendarRange(minyear, maxyear, 'year'))

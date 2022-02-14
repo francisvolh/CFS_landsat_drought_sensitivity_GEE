@@ -1,48 +1,44 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var viz_cmi = {"opacity":1,"bands":["CMI_ante12mo_mean"],"min":-0.5,"max":15,"gamma":1},
-    geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-169.42363281250002, 71.30949017069483],
-          [-169.42363281250002, 48.76683332204826],
-          [-92.07988281250002, 48.76683332204826],
-          [-92.07988281250002, 71.30949017069483]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
-// Modules
-var droughtModule = require('users/robitalec/CFS:modules/drought.js');
-var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
-var palettes = require('users/gena/packages:palettes');
+var ca_lc_last = ee.Image(ca_lc.sort('system:time_start',false).first());
 
+var from = [0, 20, 31, 32, 33, 40, 50, 80, 81, 100, 210, 220, 230];
+var to =   [0, 1,  2,  3,  4,  5,  6,  7,  8,  9,   10,  11,  12 ];
+ca_lc_last = ca_lc_last.remap(from, to);
 
-
-var drought = droughtModule.means;
-var pal_cmi = palettes.colorbrewer.RdBu[5]
-var viz_cmi = {"opacity":1,"bands":["CMI_ante12mo_mean"],"min":-10,"max":10,palette:pal_cmi}
-Map.addLayer(drought.filter(ee.Filter.eq('year', 2018)).first()
-                    .select('CMI_ante12mo_mean'),
-             viz_cmi, 'CMI')
-             
-
-// buildSRcollection(startYear, endYear, startDay, endDay, aoi, maskThese)
-var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['cloud', 'shadow', 'snow', 'water']);
-
-var pal = palettes.cmocean.Speed[5]
-
-Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {min:0, max:1, palette:pal}, 'NDVI', false)
-
-
-
+print("Reclassed values:");
+print({"from": from, "to": to});
 
 // Define a dictionary which will be used to make legend and visualize image on map
 var dict = {
-  "names": [-10, -5, 0, 5, 10],
-  "colors": pal_cmi};
+  "names": [
+  "Unclassified",
+  "Water",
+  "Snow/Ice",
+  "Rock/Rubble",
+  "Exposed/Barren land",
+  "Bryoids",
+  "Shrubs",
+  "Wetland",
+  "Wetland-treed",
+  "Herbs",
+  "Coniferous",
+  "Broadleaf",
+  "Mixedwood"
+  ],
+  "colors": [
+    "#686868",
+    "#3333ff",
+    "#ccffff",
+    "#cccccc",
+    "#996633",
+    "#ffccff",
+    "#ffff00",
+    "#993399",
+    "#9933cc",
+    "#ccff33",
+    "#006600",
+    "#00cc00",
+    "#cc9900"
+  ]};
 
 // Create a panel to hold the legend widget
 var legend = ui.Panel({
@@ -113,5 +109,9 @@ function addCategoricalLegend(panel, dict, title) {
 */
 
 // Add the legend to the map
-addCategoricalLegend(legend, dict, 'CMI');
+addCategoricalLegend(legend, dict, 'CA Annual forest LC map 2019');
 
+Map.setCenter(-97.61655457157725,55.6280720462063,4)
+
+// Add image to the map
+Map.addLayer(ca_lc_last.mask(ca_lc_last.neq(0)), {min:0, max:12, palette:dict['colors']}, 'CA Annual forest LC map 2019')

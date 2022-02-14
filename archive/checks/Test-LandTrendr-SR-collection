@@ -1,0 +1,26 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-169.42363281250002, 71.30949017069483],
+          [-169.42363281250002, 48.76683332204826],
+          [-92.07988281250002, 48.76683332204826],
+          [-92.07988281250002, 71.30949017069483]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
+var palettes = require('users/gena/packages:palettes');
+
+// buildSRcollection(startYear, endYear, startDay, endDay, aoi, maskThese)
+var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['cloud', 'shadow', 'snow', 'water']);
+var pal = palettes.cmocean.Speed[7]
+Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {palette:'7f7f7f'})
+
+
+var col = ltgee.buildSRcollection(2018, 2019, '06-01', '07-31', geometry, ['cloud', 'shadow', 'snow', 'water', 'waterplus']);
+var pal = palettes.cmocean.Speed[7]
+Map.addLayer(col.first().normalizedDifference(['B4', 'B3']), {min:0, max:1, palette:pal})

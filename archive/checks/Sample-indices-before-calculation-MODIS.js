@@ -1,16 +1,19 @@
-// === Calculate Drought Sensitivity ===
+// === Sample indices before calculation ===
 // --- MODIS ---
 // Alec L. Robitaille
 
 var region = 'Yukon';
 print('Region set: ' + region);
 
+var geometry =
+    ee.Geometry.Polygon(
+        [[[-140.9594647158567, 64.06256790235535],
+          [-140.9594647158567, 61.98024284713474],
+          [-136.0815350283567, 61.98024284713474],
+          [-136.0815350283567, 64.06256790235535]]], null, false);
 
 
 // Data -------------------------------------------------------------
-// CTEF regions
-var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions');
-
 var modis = ee.ImageCollection("MODIS/006/MOD09A1");
 
 
@@ -25,7 +28,7 @@ var months = ee.List.sequence(1, 12);
 var years = ee.List.sequence(minyear, maxyear);
 
 // Set percentiles to use
-var percentiles = [1, 5, 10, 20];
+var percentiles = [10];
 
 // Set antecedent periods
 var antes = [3, 6, 12];
@@ -62,14 +65,7 @@ var droughtModule = require('users/robitalec/CFS:modules/drought.js');
 
 
 // Filter -----------------------------------------------------------
-// ctef = ctef.filter(ee.Filter.stringContains('ZONE_EN', 'Arctic').not());
-ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']));
-
-if (region == 'Yukon') {
-  var geo = ctef;
-} else if (region == 'Alberta') {
-  var geo = alberta;
-}
+var geo = geometry;
 
 // MODIS
 modis = modis
@@ -103,55 +99,15 @@ veg = veg.select(['NDVI_mean', 'EVI_mean', 'NBR_mean'], ['NDVI', 'EVI', 'NBR']);
 
 var splits = sensitivity.splitDrought(veg, drought, antes, percentiles, indices);
 
+
 // Reduce yearly measures to means of all years
 var means = splits.reduce(ee.Reducer.mean());
 
-
-
-// Drought sensitivity -------------------------------------------
-// SP,T,L = [ (baseline EVIP – drought EVIP,T,L) / baseline EVIP ] x 100
-var droughtSens = sensitivity.droughtSensitivity(means, antes, percentiles, indices);
-
-// Drought sensitivity prime (S’) = max across three antecedent periods
-// var droughtSensPrime = sensitivity.droughtSensivitityPrime(droughtSens, percentiles);
-
-
-
-// Map ------------------------------------------------------------
-var pal = palettes.colorbrewer.RdBu[9];
-var min = -20; var max = 20;
-var viz = {min: min, max: max, palette: pal};
-
-// function showPalette(name, palette) {
-//   var image = ee.Image.pixelLonLat().select(0)
-//     .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 10]], geodesic: false }))
-//     .visualize({ min: 0, max: 100, palette: palette });
-
-//   print(name);
-//   print(ui.Thumbnail(image));
-// }
-// showPalette(min + '           0           ' + max, palettes.colorbrewer.RdBu[5]);
-
-// Map.addLayer(droughtSens.select('Sens_NDVI_ante3mo_p10'), viz);
-// Map.addLayer(droughtSensPrime.select('Sens_Prime_NBR_p20'));
-
-
-
-// Export -------------------------------------------------------
+var yr = 2003;
 var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
-  folder: 'CFS-drought-sensitivity-MOD09Q1-' + '2000_2012-' + region,
-  region: geo,
-  scale: 250,
-  maxPixels: 2e9
-};
-// Export.image.toDrive(exp);
-
-var exp = {
-  image: droughtSens,
-  description: 'drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region + '_absolute',
-  assetId: 'CFS/drought-sensitivity-MOD09Q1-' + '2000_2012-2-' + region + '_absolute',
+  image: means,
+  description: 'sample-indices-means-MODIS-' + region,
+  assetId: 'sample-indices-means-MODIS-' +  region,
   region: geo,
   scale: 250,
   maxPixels: 2e9

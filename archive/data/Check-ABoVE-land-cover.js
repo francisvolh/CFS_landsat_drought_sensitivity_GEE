@@ -1,0 +1,72 @@
+// AUTHOR: Matthew Hethcoat
+// EDITS: Alec Robitaille
+
+var above = ee.Image("users/mghethcoat/ECCCwork/ABOVE_landcover")
+
+// they have a 10 and 15 class dataset I've imported the 15
+var labels2 = ["1 - evergreen",
+              "2 - deciduous",
+              "3 - mixed",
+              "4 - woodland",
+              "5 - low shrubs",
+              "6 - tall shrubs",
+              "7 - open shrubs",
+              "8 - herbacious",
+              "9 - tundra/taiga",
+              "10 - sparse veg",
+              "11 - fen",
+              "12 - bog",
+              "13 - shallow/litteral",
+              "14 - barren",
+              "15 - water"
+];
+
+
+//Legend
+var legendPanel2 = ui.Panel({
+  style: {
+    position: 'bottom-left',
+    padding: '8px 15px'
+  }});
+
+var legendTitle2 = ui.Label({
+  value: 'ABoVE classes',
+  style: {fontWeight: 'bold',
+    fontSize: '15px',
+    margin: '0 0 4px 0',
+    padding: '0'
+    }});
+
+legendPanel2.add(legendTitle2);
+
+var makeRow = function(color, label) {
+      var colorBox = ui.Label({
+        style: {
+          backgroundColor: color,
+          padding: '8px',
+          margin: '0 0 4px 0'
+        }});
+      var description = ui.Label({
+        value: label,
+        style: {margin: '0 0 4px 6px'}
+      });
+       return ui.Panel({
+        widgets: [colorBox, description],
+        layout: ui.Panel.Layout.Flow('horizontal')
+      })};
+
+
+// I made these up
+var palette2 = ['DarkGreen', 'Green', 'ForestGreen', 'YellowGreen', // evergreen, deciduous, mixed, woodland
+            'Olive', 'DarkOliveGreen', 'OliveDrab',  // low, tall, open Shrubs
+            'SandyBrown', 'Goldenrod', 'Khaki',  // herbaceous, tundra, sparse veg
+            'DarkTurquoise', 'SaddleBrown', 'LightSkyBlue', 'Grey', 'Blue']  // fen, bog, shallow, barren, water
+
+for (var i = 0; i < 15; i++) {
+  legendPanel2.add(makeRow(palette2[i], labels2[i]));
+}
+
+Map.add(legendPanel2);
+
+// display 2014
+Map.addLayer(above.select(30), {min:1, max:15, palette: palette2 }, "ABoVE (1984-2014)")

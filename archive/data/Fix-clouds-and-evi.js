@@ -1,10 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var evi = ee.ImageCollection("LANDSAT/LT5_L1T_32DAY_EVI"),
-    geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Point([-136.66353930440835, 62.86656969625943]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 
 Map.addLayer(ee.Image('LANDSAT/LT5_L1T_32DAY_EVI/19840609'), null, 'evi composite')
 // Map.addLayer(evi)
@@ -31,7 +24,7 @@ var maskClouds = function(image) {
   var cloud = qa.bitwiseAnd(1 << 5)
                 .and(qa.bitwiseAnd(1 << 6))
                 .or(qa.bitwiseAnd(1 << 3));
-                  
+
   // Remove edge pixels that don't occur in all bands
   var mask2 = image.mask().reduce(ee.Reducer.min());
   return image.updateMask(cloud.not()).updateMask(mask2);

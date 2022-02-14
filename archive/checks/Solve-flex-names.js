@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-141.1072996524697, 64.71982943939068],
-          [-141.1072996524697, 60.7694376851515],
-          [-135.3065184024697, 60.7694376851515],
-          [-135.3065184024697, 64.71982943939068]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Modules ----------------------------------------------------------
 // Load modules of functions
 
@@ -101,7 +87,7 @@ var veg = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
   .map(l5prep.calcIndices)
   .map(fire.maskFires)
   .map(lcmask.maskLc);
-  
+
 veg = l5prep.aggregateY(veg);
 drought = drought.filter(ee.Filter.inList('year', veg.aggregate_array('year').distinct()));
 var indices = ['NDVI', 'NBR', 'EVI'];
@@ -170,6 +156,6 @@ var sens_80_19 = ee.Image('users/robitalec/CFS/drought-sensitivity-1980-2019');
 Map.addLayer(sens_80_19.select('Sens_NDVI_ante3_p10'), viz, 'modis');
 Map.addLayer(lcmask.reverseMask())
 
-Map.addLayer(ctef)
+
 
 

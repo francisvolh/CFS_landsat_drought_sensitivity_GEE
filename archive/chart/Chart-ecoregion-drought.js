@@ -1,7 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var conusDrought = ee.ImageCollection("GRIDMET/DROUGHT"),
-    imageCollection = ee.ImageCollection("UTOKYO/WTLAB/KBDI/v1");
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var ctef = ee.FeatureCollection('users/robitalec/CFS/CTEF_Ecoregions')
 ctef = ctef.filter(ee.Filter.inList('REG_ID', ['CL13R02', 'CL13R03', 'CL13R04']))
 
@@ -105,8 +101,7 @@ function calcCMI (img) {
 
 // Calculate CMI
 // Subset for
-daymet = daymet//.filter(ee.Filter.dayOfYear(150, 200))
-               .filter(ee.Filter.calendarRange(2010, 2012, 'year'))
+daymet = daymet.filter(ee.Filter.dayOfYear(150, 200)).limit(1);
 
 daymet = daymet
   .map(calcETMAX)
@@ -120,23 +115,14 @@ daymet = daymet
 
 
 
-// ui.Chart.image.doySeriesByYear(imageCollection, bandName, region, regionReducer, scale, sameDayReducer, startDay, endDay)
-var ts = ui.Chart.image.doySeriesByYear({
-  imageCollection: daymet,
-  region: points,
-  regionReducer: ee.Reducer.mean(),
-  bandName: 'CMI',
-  scale: 500
-});
-print(ts)
 
-// var ts = ui.Chart.image.seriesByRegion({
-//   imageCollection: daymet,
-//   regions: points,
-//   reducer: ee.Reducer.mean(),
-//   band: 'CMI',
-//   scale: 500,
-//   xProperty: 'system:time_start',
-//   seriesProperty: 'label'
-// });
+var ts = ui.Chart.image.seriesByRegion({
+  imageCollection: daymet,
+  regions: points,
+  reducer: ee.Reducer.mean(),
+  band: 'CMI',
+  scale: 500,
+  xProperty: 'system:time_start',
+  seriesProperty: 'label'
+});
 // print(ts)
