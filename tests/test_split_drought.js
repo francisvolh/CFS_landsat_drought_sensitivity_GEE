@@ -20,8 +20,7 @@ var percentile_list = [5, 10];
 var index_list = ['NDVI', 'EVI'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
-var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
-                                    [-105.988, 58.941], [-105.988, 59.673]]]);
+var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
@@ -39,6 +38,7 @@ var indices_col = get_landsat.get_indices(min_year, max_year, '06-15', '07-15', 
 // Usage: split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list)
 var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 print('Less than percentile'); print(lt_percent);
+Map.addLayer(geometry)
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
 print('Split drought'); print(split_drought);
 Map.addLayer(split_drought.select('NDVI_ante3mo_p10_drought').first(),  {min: -500, max:1200}, '2010 NDVI drought 10th percentile 3 month antecedent');
