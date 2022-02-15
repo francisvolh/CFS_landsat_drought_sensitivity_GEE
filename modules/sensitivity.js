@@ -14,7 +14,6 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return percentile_list.map(function(p) {
         return indices.map(function(index) {
-          // Set up band names
           var id = index + '_ante' + antecedent_period + '_p' + percentile;
           var baseline_band = id + '_base' + '_mean';
           var drought_band = id + '_drought' + '_mean';
