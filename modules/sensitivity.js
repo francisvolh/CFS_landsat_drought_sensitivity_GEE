@@ -30,10 +30,10 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
 };
 exports.sensitivity_absolute = sensitivity_absolute;
 
-var sensitivity_relative = function(means, antecedent_list, percentile_list, indices) {
+var sensitivity_relative = function(means, antecedent_list, percentile_list, index_list) {
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return percentile_list.map(function(percentile) {
-        return indices.map(function(index) {
+        return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period + '_p' + percentile;
           var baseline_band = id + '_base' + '_mean';
           var drought_band = id + '_drought' + '_mean';
