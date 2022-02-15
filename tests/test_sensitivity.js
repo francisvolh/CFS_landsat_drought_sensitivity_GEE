@@ -44,4 +44,5 @@ print('Absolute sensitivity'); print(sens_absolute);
 print('Relative sensitivity'); print(sens_relative);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
 Map.addLayer(indices_col.select('NDVI'), null, '2010-2015 NDVI', false);
-Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p10'));
+Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p10'), cmi_viz, '2010-2015 relative drought sensitivity NDVI 10th percentile 3 month antecedent');
+Map.addLayer(sens_absolute.select('Rel_sens_NDVI_ante3mo_p10'), cmi_viz, '2010-2015 absolute drought sensitivity NDVI 10th percentile 3 month antecedent');
