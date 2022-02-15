@@ -40,3 +40,9 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
               );
 };
 exports.get_indices = get_indices;
+
+// Set year
+var setYear = function(img) {
+  return img.set('year', img.date().get('year'));
+};
+exports.setYear = setYear;
