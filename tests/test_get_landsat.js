@@ -24,7 +24,7 @@ var indices_col = get_landsat.get_indices(2014, 2019, '06-15', '07-15', geometry
 print(indices_col);
 
 // Map
-Map.addLayer(geometry);
+Map.addLayer(geometry, null, 'region');
 Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'RGB SR collection');
 Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
 Map.addLayer(indices_col.select(['EVI']), {min: -0.5, max:0.5}, 'EVI collection');
