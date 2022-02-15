@@ -15,8 +15,8 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
       return percentile_list.map(function(percentile) {
         return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period + '_p' + percentile;
-          var baseline_band = id + '_base' + '_mean';
-          var drought_band = id + '_drought' + '_mean';
+          var baseline_band = id + '_base'
+          var drought_band = id + '_drought'
           var sensitivity_band = 'Abs_sens_' + id;
 
           return means.expression('baseline - drought', {
@@ -36,8 +36,8 @@ var sensitivity_relative = function(split_indices, antecedent_list, percentile_l
       return percentile_list.map(function(percentile) {
         return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period + '_p' + percentile;
-          var baseline_band = id + '_base' + '_mean';
-          var drought_band = id + '_drought' + '_mean';
+          var baseline_band = id + '_base'
+          var drought_band = id + '_drought'
           var sensitivity_band = 'Rel_sens_' + id;
 
           return means.expression('((baseline - drought) / baseline) * 100', {
