@@ -9,11 +9,6 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
-// Set variables
-var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
-                                    [-105.988, 58.941], [-105.988, 59.673]]]);
-
-
 
 // Test five_year_fires
 // Usage: fire.five_year_fires(year)
