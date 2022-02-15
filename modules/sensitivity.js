@@ -40,9 +40,9 @@ var sensitivity_relative = function(means, antecedent_list, percentile_list, ind
           var sensitivity_band = 'Rel_sens_' + id;
 
           return means.expression('((baseline - drought) / baseline) * 100', {
-                                baseline: means.select(baseline_band),
-                                drought: means.select(drought_band)
-                                }).rename(sensitivity_band);
+            baseline: means.select(baseline_band),
+            drought: means.select(drought_band)
+          }).rename(sensitivity_band);
         });
       });
     })
