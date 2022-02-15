@@ -11,7 +11,7 @@ var palettes = require('users/gena/packages:palettes');
 
 // Set variables
 var years = ee.List.sequence(2010, 2015);
-var months = ee.List.sequence(5, 7);
+var months = ee.List.sequence(1, 12);
 var pal = palettes.colorbrewer.RdBu[5];
 
 
