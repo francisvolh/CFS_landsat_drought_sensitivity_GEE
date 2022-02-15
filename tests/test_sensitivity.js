@@ -1,52 +1,47 @@
 /*
-Drought sensitivity
+Testing: modules/sensitivity.js
 Alec L. Robitaille
-
-Relative
-S {P,T,L} = [ (baseline EVI{P} – drought EVI{P,T,L}) / baseline EVI{P} ] x 100
-
-Absolute
-S {P,T,L} = baseline EVI{P} – drought EVI{P,T,L}
 */
 
-var sensitivity_absolute = function(split_indices, antecedent_list, percentile_list, index_list) {
-	var means = split_indices.reduce(ee.Reducer.mean());
-  return ee.Image(antecedent_list.map(function(antecedent_period) {
-      return percentile_list.map(function(percentile) {
-        return index_list.map(function(index) {
-          var id = index + '_ante' + antecedent_period + '_p' + percentile;
-          var baseline_band = id + '_base' + '_mean';
-          var drought_band = id + '_drought' + '_mean';
-          var sensitivity_band = 'Abs_sens_' + id;
+// Load modules
+var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
+var split_drought = require('users/robitalec/CFS:modules/split_drought.js');
+var percentile = require('users/robitalec/CFS:modules/percentile.js');
+var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var palettes = require('users/gena/packages:palettes');
+var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
-          return means.expression('(baseline - drought)', {
-            baseline: means.select(baseline_band),
-            drought: means.select(drought_band)
-          }).rename(sensitivity_band);
-        });
-      });
-    })
-  );
-};
-exports.sensitivity_absolute = sensitivity_absolute;
+// Set variables
+var min_year = 2010; var max_year = 2015;
+var years = ee.List.sequence(min_year, max_year);
+var months = ee.List.sequence(1, 12);
+var percentile_list = [5, 10];
+var index_list = ['NDVI', 'EVI'];
+var antecedent_list = ['3mo', '12mo', '5yr'];
+var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
-var sensitivity_relative = function(split_indices, antecedent_list, percentile_list, index_list) {
-	var means = split_indices.reduce(ee.Reducer.mean());
-  return ee.Image(antecedent_list.map(function(antecedent_period) {
-      return percentile_list.map(function(percentile) {
-        return index_list.map(function(index) {
-          var id = index + '_ante' + antecedent_period + '_p' + percentile;
-          var baseline_band = id + '_base' + '_mean';
-          var drought_band = id + '_drought' + '_mean';
-          var sensitivity_band = 'Rel_sens_' + id;
 
-          return means.expression('((baseline - drought) / baseline) * 100', {
-            baseline: means.select(baseline_band),
-            drought: means.select(drought_band)
-          }).rename(sensitivity_band);
-        });
-      });
-    })
-  );
-};
-exports.sensitivity_relative = sensitivity_relative;
+
+// Processing
+var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
+var indices_col = get_landsat.get_indices(min_year, max_year, '06-15', '07-15', geometry, index_list);
+var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
+
+
+
+// Test sensitivity_relative
+// Usage: sensitivity.sensitivity_relative(split_indices, antecedent_list, percentile_list, index_list)
+var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
+var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
+
+
+
+Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent', false);
+Map.addLayer(indices_col.select('NDVI'), null, '2010-2015 NDVI', false);
