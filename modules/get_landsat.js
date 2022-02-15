@@ -17,14 +17,16 @@ var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
 // Load utils
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
+
 // Set flags to mask
 var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
+
 
 // Get collection of Landsat SR bands
 var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region)
-              .map(setYear)
-              .map(function(img) {return img.divide(1000)}));
+              .map(utils.set_year)
+              .map(function(img) {return img.divide(1000).copyProperties(img)}));
 };
 exports.get_SR = get_SR;
 
@@ -33,14 +35,7 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
 	var collection = get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region);
 
 	return(ltgee.transformSRcollection(collection, indices)
-              .map(setYear)
-              .map(function(img) {return img.divide(1000)}));
+              .map(utils.set_year)
+              .map(function(img) {return img.divide(1000).copyProperties(img)}));
 };
 exports.get_indices = get_indices;
-
-
-// Set year
-var setYear = function(img) {
-  return img.set('year', img.date().get('year'));
-};
-exports.setYear = setYear;
