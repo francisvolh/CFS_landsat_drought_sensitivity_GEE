@@ -1,31 +1,24 @@
 /*
-Testing: modules/antecedent.js
+Testing: modules/cmi.js
 Alec L. Robitaille
 */
 
-// Load modules
-var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
-var palettes = require('users/gena/packages:palettes');
 
-// Set variables
-var years = ee.List.sequence(2010, 2015);
-var months = ee.List.sequence(5, 7);
-var pal = palettes.colorbrewer.RdBu[5];
+// Load modules
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var palettes = require('users/gena/packages:palettes');
 
 
 
 // Load collection
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-
-// Calculate CMI
-var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
-
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
+    .filterDate('2015-07-01', '2015-07-30')
+    .mean();
 
 
-// Test antecedent_means
-// Usage: antecedent_mean(images, band, year_list)
-var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-print(ante_means);
-Map.addLayer(ante_means.select('CMI_ante3mo_mean'), {min:-30, max:30, palette: pal});
+
+// Test calc_CMI
+// Usage: calc_CMI(img)
+var cmi_daymet = cmi.calc_CMI(daymet);
+print(cmi_daymet);
+Map.addLayer(cmi_daymet.select('CMI'), {min: -30, max: 30, palette: palettes.colorbrewer.RdBu[5]});
