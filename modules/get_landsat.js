@@ -30,7 +30,7 @@ exports.get_SR = get_SR;
 
 // Get collection of spectral indices
 var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-	var collection = get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region);
+	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region);
 
 	return(ltgee.transformSRcollection(collection, indices)
               .map(utils.set_year)
