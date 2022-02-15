@@ -40,8 +40,8 @@ var split_drought = split_drought.split_drought(indices_col, lt_percent, anteced
 // Usage: sensitivity.sensitivity_relative(split_indices, antecedent_list, percentile_list, index_list)
 var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
 
-// Test sens_absolute
-// Usage: sensitivity.sens_absolute(split_indices, antecedent_list, percentile_list, index_list)
+// Test sensitivity_absolute
+// Usage: sensitivity.sensitivity_absolute(split_indices, antecedent_list, percentile_list, index_list)
 var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
 
 print('Absolute sensitivity'); print(sens_absolute);
