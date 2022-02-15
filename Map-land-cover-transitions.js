@@ -6,10 +6,10 @@
 
 // Function -------------------------------------------------------------------
 // Landsat prep functions
-var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
+// var landsatprep = require('users/robitalec/CFS:modules/landsat-prep.js');
 
 // Land cover functions
-var land_cover = require('users/robitalec/CFS:modules/land-cover.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 // Palette
 var palettes = require('users/gena/packages:palettes');
