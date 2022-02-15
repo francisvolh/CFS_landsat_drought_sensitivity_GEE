@@ -41,6 +41,6 @@ print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent', false);
 print('Split drought'); print(split_drought);
 Map.addLayer(indices_col.select('NDVI'), null, '2010-2015 NDVI', false);
-Map.addLayer(split_drought.select('NDVI_ante3mo_p10_drought').first(),  {min: -500, max:1200}, '2010 NDVI drought 10th percentile 3 month antecedent');
-Map.addLayer(split_drought.select('NDVI_ante3mo_p10_base').first(),  {min: -500, max:1200}, '2010 NDVI baseline 10th percentile 3 month antecedent', false);
+Map.addLayer(split_drought.select('NDVI_ante3mo_p10_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 10th percentile 3 month antecedent');
+Map.addLayer(split_drought.select('NDVI_ante3mo_p10_base').first(),  {min: -0.5, max:1}, '2010 NDVI baseline 10th percentile 3 month antecedent', false);
 Map.centerObject(geometry);
