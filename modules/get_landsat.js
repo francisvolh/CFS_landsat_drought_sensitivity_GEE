@@ -37,7 +37,7 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
 
 	return(ltgee.transformSRcollection(collection, indices)
               .map(utils.set_year)
-              .map(function(img) {return img.divide(1000).copyProperties(img)})
+              // .map(function(img) {return img.divide(1000).copyProperties(img)})
               );
 };
 exports.get_indices = get_indices;
