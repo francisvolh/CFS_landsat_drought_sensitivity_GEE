@@ -19,7 +19,7 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
           var drought_band = id + '_drought' + '_mean';
           var sensitivity_band = 'Abs_sens_' + id;
 
-          return means.expression('(baseline - drought)', {
+          return means.expression('baseline - drought', {
             baseline: means.select(baseline_band),
             drought: means.select(drought_band)
           }).rename(sensitivity_band);
