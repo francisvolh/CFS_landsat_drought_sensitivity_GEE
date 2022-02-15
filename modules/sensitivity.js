@@ -31,7 +31,7 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
 exports.sensitivity_absolute = sensitivity_absolute;
 
 var sensitivity_relative = function(split_indices, antecedent_list, percentile_list, index_list) {
-	var means = split_indices.reduce(ee.Reducer.mean());
+	var means = split_indices.mean();
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return percentile_list.map(function(percentile) {
         return index_list.map(function(index) {
