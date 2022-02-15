@@ -14,6 +14,9 @@ on Google Earth Engine. Remote Sensing. 10, 691.
 // Load LandTrendr API
 var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
 
+// Load utils
+var utils = require('users/robitalec/CFS:modules/utils.js');
+
 // Set flags to mask
 var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 
