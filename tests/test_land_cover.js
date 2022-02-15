@@ -32,3 +32,4 @@ var img = ee.Image('LANDSAT/LC08/C02/T1_L2/LC08_060016_20140910');
 var img_masked_lc = land_cover.mask_land_cover(img);
 print(img_masked_lc);
 Map.addLayer(img_masked_lc, null, 'land_cover.mask_land_cover(img)');
+Map.centerObject(img);
