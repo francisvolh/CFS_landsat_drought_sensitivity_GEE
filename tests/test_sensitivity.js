@@ -40,8 +40,8 @@ var split_drought = split_drought.split_drought(indices_col, lt_percent, anteced
 // Usage: sensitivity.sensitivity_relative(split_indices, antecedent_list, percentile_list, index_list)
 var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
 var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
-
-
-
+print('Absolute sensitivity'); print(sens_absolute);
+print('Relative sensitivity'); print(sens_relative);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent', false);
 Map.addLayer(indices_col.select('NDVI'), null, '2010-2015 NDVI', false);
+Map.addLayer(sens_relative)
