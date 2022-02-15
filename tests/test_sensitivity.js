@@ -20,7 +20,7 @@ var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
 var index_list = ['NDVI', 'EVI'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
-var rel_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var rel_viz = {min:-20, max:20, palette: palettes.colorbrewer.RdBu[5]};
 var abs_viz = {min:-0.75, max:0.75, palette: palettes.colorbrewer.RdBu[5]};
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
