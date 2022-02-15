@@ -26,7 +26,7 @@ var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region)
               // .map(utils.set_date)
-              // .map(function(img) {return img.divide(1000).copyProperties(img)})
+              .map(function(img) {return img.divide(1000)})
               );
 };
 exports.get_SR = get_SR;
