@@ -9,6 +9,12 @@ var set_year = function(img) {
 };
 exports.set_year = set_year;
 
+// Set date
+var set_date = function(img) {
+	return img.set('system:time_start', img.date().millis());
+};
+exports.set_year = set_year;
+
 
 // Aggregate each month within each year with reducer
 var aggregate_month_year = function(images, year_list, month_list, reducer) {
