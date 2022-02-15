@@ -20,9 +20,9 @@ var sensitivity_absolute = function(split_indices, antecedent_list, percentile_l
           var sensitivity_band = 'Abs_sens_' + id;
 
           return means.expression('(baseline - drought)', {
-                                baseline: means.select(baseline_band),
-                                drought: means.select(drought_band)
-                                }).rename(sensitivity_band);
+            baseline: means.select(baseline_band),
+            drought: means.select(drought_band)
+          }).rename(sensitivity_band);
         });
       });
     })
