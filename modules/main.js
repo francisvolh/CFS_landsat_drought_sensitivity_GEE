@@ -43,8 +43,15 @@ var main = function(output, region,
   var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
   var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
 
+  if (output == 'relative sensitivity') {
+    
+  } else if (output == 'absolute sensitivity') {
+    
+  } else if (output == 'vegetation index and antecedent means') {
+    
+  } 
   
-  // if else return
+    // if else return
 
 };
 exports.main = main;
