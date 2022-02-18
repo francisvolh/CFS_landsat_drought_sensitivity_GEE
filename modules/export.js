@@ -4,9 +4,9 @@ var export_by_ecoregion = function(ecoregions, geometry) {
     .aggregate_array('ECOREGI')
     .distinct();
     
-  eco_ids.evaluate(function(eco) {
+  ids.evaluate(function(id) {
     // Reducer for each element of the object
-    ecoreg.forEach(
+    id.forEach(
       // Export function
       function(ecoreg_id) {
         var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id))
