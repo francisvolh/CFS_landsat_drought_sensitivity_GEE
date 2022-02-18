@@ -8,7 +8,6 @@ var main = require('users/robitalec/CFS:modules/main.js');
 var palettes = require('users/gena/packages:palettes');
 
 // Set variables
-var geometry = ee.Geometry.Polygon([[[-128.69, 58.70], [-128.69, 50.66], [-111.20, 50.66], [-111.20, 58.70]]]);
 var min_year = 1985;
 var max_year = 2019;
 var min_mm_dd = '06-15';
