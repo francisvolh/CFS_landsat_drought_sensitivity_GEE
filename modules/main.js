@@ -40,7 +40,9 @@ var main = function(output, region,
   var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 
   // Calculate drought sensitivitity
-  
+  var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
+  var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
+
   
   // if else return
 
