@@ -15,7 +15,7 @@ var geometry = ee.Geometry.Polygon([[[-128.69, 58.70], [-128.69, 50.66], [-111.2
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
 
-print(ecoregions.filterBounds(geometry).aggregate_array('ECOREGI').distinct())
+print(ecoregions.filterBounds(geometry).aggregate_array('ECOREGI').distinct());
 
 
 // Test export_by_ecoregion
