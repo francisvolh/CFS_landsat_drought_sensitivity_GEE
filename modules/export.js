@@ -2,7 +2,7 @@ var export_by_ecoregion = function(ecoregions, geometry) {
   var eco_ids = ecoregions
     .filterBounds(geometry)
     .aggregate_array('ECOREGI')
-    .distinct();
+    .distinct()
 
   
   eco_ids.evaluate(
