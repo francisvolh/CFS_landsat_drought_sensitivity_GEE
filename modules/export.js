@@ -1,14 +1,12 @@
 var export_by_ecoregion = function(ecoregions, geometry) {
-  var ids = ecoregions
+  var id_list = ecoregions
     .filterBounds(geometry)
     .aggregate_array('ECOREGI')
     .distinct();
     
   ids.evaluate(function(id) {
     // Reducer for each element of the object
-    id.forEach(
-      // Export function
-      function(ecoreg_id) {
+    id.forEach(function(ecoreg_id) {
         var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id))
         var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft.geometry(), ['NDVI', 'EVI', 'NBR']);
         var points = stratified.stratified_sample(lc, 'land_cover', ft.geometry(), 250);
