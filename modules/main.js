@@ -27,18 +27,20 @@ var main = function(output, region,
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
-  
-  // Calculate CMI
+  // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
   
-  // Antecedent means
+  // Define drought  
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-  
-  // Percentile
   var percentile_images = percentile.get_percentile(ante_means, percentile_list);
   var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
+  // Split vegetation index into baseline/drought
   
+  // Calculate drought sensitivitity
+  
+  
+  // if else reutrn
 
 };
 exports.main = main;
