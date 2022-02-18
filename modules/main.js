@@ -52,7 +52,7 @@ var main = function(output, region,
   } else if (output == 'vegetation index and antecedent means') {
     var join = ee.Join.inner();
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
-    joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))});
+    joined = ee.ImageCollect(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
     
     return joined;
   } 
