@@ -26,5 +26,5 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 // Test main
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-var main_relative = main.main('relative sensitivity', ecoregions.first(), min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
+var main_relative = main.main('relative sensitivity', ecoregions.limit(1), min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 Map.addLayer(main_relative)
