@@ -1,35 +1,45 @@
 /*
-Testing: modules/land_cover.js
+Testing: modules/percentile.js
 Alec L. Robitaille
 */
 
-
 // Load modules
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var percentile = require('users/robitalec/CFS:modules/percentile.js');
+var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var palettes = require('users/gena/packages:palettes');
+var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+
+// Set variables
+var years = ee.List.sequence(2010, 2015);
+var months = ee.List.sequence(1, 12);
+var percentile_list = [5, 10];
+var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 
 // Load collection
-var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-var lc_2014 = lc.filterDate('2014-01-01', '2015-01-01').first();
+var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 
 
 
-// Test mask_classes
-// Usage: mask_classes(lc_img)
-var masked_lc = land_cover.mask_classes(lc_2014);
-print(masked_lc);
-Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'}, 'constant');
-Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
+// Calculate CMI
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
-// Test get_land_cover
-// Usage: get_land_cover()
-var lc_collection = land_cover.get_land_cover();
-print(lc_collection);
-Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
+// Antecedent means
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 
-// Test mask_land_cover
-// Usage: mask_land_cover(img)
-var img = ee.Image('LANDSAT/LC08/C02/T1_L2/LC08_060016_20140910');
-var img_masked_lc = land_cover.mask_land_cover(img);
-print(img_masked_lc);
-Map.addLayer(img_masked_lc, null, 'land_cover.mask_land_cover(img)');
-Map.centerObject(img);
+
+
+// Test get_percentile
+// Usage: get_percentile(images, percentile_list)
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+print('Antecedent means'); print(ante_means);
+print('Percentile images'); print(percentile_images);
+Map.addLayer(ante_means.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI 3 month antecedent means', false);
+Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3 month antecedent means');
+Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p10'), cmi_viz, '2010-2015 CMI 10th percentile');
+
+// Test lt_percentile
+// Usage: lt_percentile(images, percentile_images)
+var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
+print('Less than percentile'); print(lt_percent);
+Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
