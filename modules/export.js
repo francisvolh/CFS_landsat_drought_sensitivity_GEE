@@ -24,9 +24,9 @@ var export_by_ecoregion = function(ecoregions, geometry) {
         //   return img.reduceRegions(points, ee.Reducer.mean(), 30)
         // }).flatten();
       
-        Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export')
-      })
-  })
+        Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export');
+      });
+  });
 
-}
-exports.export_by_ecoregion
+};
+exports.export_by_ecoregion = export_by_ecoregion;
