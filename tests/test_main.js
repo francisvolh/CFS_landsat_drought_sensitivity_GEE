@@ -40,6 +40,3 @@ Map.centerObject(ecoregion);
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 var main_absolute = main.main('absolute sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p10'), abs_viz, '2000-2015 absolute drought sensitivity NDVI 10th percentile 3 month antecedent');
-
-
-
