@@ -14,16 +14,15 @@ var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 
 
-// Variables
-var years = ee.List.sequence(min_year, max_year);
-var months = ee.List.sequence(1, 12);
 
 
 var main = function(output, region, 
                     min_year, max_year, min_mm_dd, max_mm_dd, 
                     index_list, percentile_list) {
-  
-  
+  // Variables
+  var years = ee.List.sequence(min_year, max_year);
+  var months = ee.List.sequence(1, 12);
+
   // Get Daymet
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   
@@ -43,8 +42,8 @@ var main = function(output, region,
 
   
 
-}
-
+};
+exports.main = main;
 
 
 // VEGETATION
