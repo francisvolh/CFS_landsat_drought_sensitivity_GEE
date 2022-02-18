@@ -3,7 +3,7 @@ Main
 Alec L. Robitaille
 */
 
-// -- Load modules
+// Load modules
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
