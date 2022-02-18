@@ -19,7 +19,7 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 
 
 // Set flags to mask
-var mask = ['cloud', 'shadow', 'snow', 'water'];//, 'waterplus'];
+var mask = ['cloud', 'shadow', 'snow', 'water'], 'waterplus'];
 
 
 // Get collection of Landsat SR bands
