@@ -23,10 +23,8 @@ var main = function(output, region,
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
 
-  // Get Daymet
+  // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-  
-  // Get Landsat indices
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), percentile_list);
 
   
