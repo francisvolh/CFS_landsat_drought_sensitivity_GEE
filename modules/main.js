@@ -40,7 +40,7 @@ var main = function(output, region,
   // Calculate drought sensitivitity
   
   
-  // if else reutrn
+  // if else return
 
 };
 exports.main = main;
