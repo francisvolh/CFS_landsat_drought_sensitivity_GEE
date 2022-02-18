@@ -3,7 +3,7 @@ Exports
 Alec L. Robitaille
 */
 
-
+// Export task for each ecoregion
 var export_by_ecoregion = function(ecoregions, geometry) {
   var ecoreg_id_list = ecoregions
     .filterBounds(geometry)
