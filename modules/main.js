@@ -50,8 +50,6 @@ var main = function(output, region,
   } else if (output == 'vegetation index and antecedent means') {
     
   } 
-  
-    // if else return
 
 };
 exports.main = main;
