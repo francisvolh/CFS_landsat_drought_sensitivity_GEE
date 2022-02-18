@@ -22,7 +22,6 @@ var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 // Load an ecoregion
 var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filter(ee.Filter.eq('ECOREGI', 136));
-print(ecoregion);//.aggregate_array('ECOREG_ID'))
 
 
 // Test main - index + antecedent means
