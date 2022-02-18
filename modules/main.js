@@ -38,7 +38,7 @@ var main = function(output, region,
   var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
-  var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
+  var split = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 
   if (output == 'relative sensitivity') {
     return sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
