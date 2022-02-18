@@ -17,6 +17,6 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 
 
-// Test export_by_ecoregion
-// Usage:
+// Test main
+// Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 
