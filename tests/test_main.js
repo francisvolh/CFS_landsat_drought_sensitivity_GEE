@@ -17,8 +17,9 @@ var index_list = ['NDVI', 'NBR'];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 
 
-// Load ecoregions
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
+// Load an ecoregion
+var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
+  .limit(1);
 
 
 
