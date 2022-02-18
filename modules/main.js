@@ -28,6 +28,11 @@ var main = function(output, region,
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
+  var lc = land_cover.get_land_cover();
+  
+  // Mask fires
+  lc = lc.map(fire.mask_five_year_fires);
+  indices_col = indices_col.map(mask_five_year_fires);
 
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
