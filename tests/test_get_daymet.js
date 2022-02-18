@@ -1,24 +1,20 @@
 /*
-Testing: modules/fire.js
+Testing: modules/get_daymet.js
 Alec L. Robitaille
 */
 
 
 // Load modules
-var fire = require('users/robitalec/CFS:modules/fire.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+
+// Set variables
+var years = ee.List.sequence(2010, 2015);
+var months = ee.List.sequence(5, 7);
 
 
 
-// Test five_year_fires
-// Usage: fire.five_year_fires(year)
-var five_year_fires = fire.five_year_fires(2013);
-print(five_year_fires);
-Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']}, 'five_year_firest');
-
-// Test mask_five_year_fires
-// Usage: fire.mask_five_year_fires(img)
-var img = land_cover.get_land_cover().filter(ee.Filter.eq('year', 2013)).first();
-var mask_five_year_fires = fire.mask_five_year_fires(img);
-print(mask_five_year_fires);
-Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
+// Test get_monthly_daymet
+// Usage: get_monthly_daymet(year_list, month_list)
+var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+print(monthly_daymet);
+Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
