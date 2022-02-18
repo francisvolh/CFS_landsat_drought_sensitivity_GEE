@@ -22,6 +22,7 @@ var main = function(output, region,
   // Variables
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
+  var antecedent_list = ['3mo', '12mo', '5yr'];
 
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
@@ -36,7 +37,8 @@ var main = function(output, region,
   var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
-  
+  var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
+
   // Calculate drought sensitivitity
   
   
