@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var exports = require('users/robitalec/CFS:modules/export.js');
+var export = require('users/robitalec/CFS:modules/export.js');
 
 // Set variables
 var geometry = ee.Geometry.Polygon([[[-128.69, 58.70], [-128.69, 50.66], [-111.20, 50.66], [-111.20, 58.70]]]);
