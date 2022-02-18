@@ -32,7 +32,7 @@ var main = function(output, region,
   
   // Mask fires
   lc = lc.map(fire.mask_five_year_fires);
-  indices_col = indices_col.map(mask_five_year_fires);
+  indices_col = indices_col.map(first.mask_five_year_fires);
 
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
