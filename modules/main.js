@@ -1,3 +1,15 @@
+// -- Load modules
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var fire = require('users/robitalec/CFS:modules/fire.js');
+var stratified = require('users/robitalec/CFS:modules/stratified.js');
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var percentile = require('users/robitalec/CFS:modules/percentile.js');
+var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
+
+
+
 var main = function(output, region, 
                     min_year, max_year, min_mm_dd, max_mm_dd, 
                     index_list, percentile_list) {
