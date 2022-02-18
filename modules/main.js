@@ -25,7 +25,7 @@ var main = function(output, region,
 
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), percentile_list);
+  var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
   
   // Calculate CMI
