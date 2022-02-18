@@ -24,7 +24,7 @@ var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 
 // Get collection of Landsat SR bands
 var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
-  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region)
+  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask)
               .map(utils.set_year)
               .map(function(img) {return img.divide(1000).copyProperties(img)}));
 };
@@ -32,7 +32,7 @@ exports.get_SR = get_SR;
 
 // Get collection of spectral indices
 var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region);
+	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
 
 	return(ltgee.transformSRcollection(collection, indices)
               .map(utils.set_year)
