@@ -39,16 +39,16 @@ var main = function(output, region,
   // Split vegetation index into baseline/drought
   var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 
-  // Calculate drought sensitivitity
-  var sens_relative = sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
-  var sens_absolute = sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
-
   if (output == 'relative sensitivity') {
-    
+    return sensitivity.sensitivity_relative(split_drought, antecedent_list, percentile_list, index_list);
   } else if (output == 'absolute sensitivity') {
-    
+    return sensitivity.sensitivity_absolute(split_drought, antecedent_list, percentile_list, index_list);
   } else if (output == 'vegetation index and antecedent means') {
+    var join = ee.Join.inner();
+    var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
+    joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))});
     
+    return joined;
   } 
 
 };
@@ -80,9 +80,7 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 
 var points = stratified.stratified_sample(lc, 'land_cover', ft.geometry(), 250);
-var join = ee.Join.inner();
-var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
-joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))});
+
 var sampled = ee.ImageCollection(joined).map(function(img) {
   return img.reduceRegions(points, ee.Reducer.mean(), 30)
 }).flatten();
