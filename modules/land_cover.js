@@ -5,19 +5,19 @@ Alec L. Robitaille
 
 High-resolution annual forest land cover maps for Canada's forested ecosystems (1984-2019)
 
-0 	Unclassified
-20 	Water
-31 	Snow/Ice
-32 	Rock/Rubble
-33 	Exposed/Barren Land
-40 	Bryoids
-50 	Shrubs
-80 	Wetland
-81 	Wetland Treed
-100 	Herbs
-210 	Coniferous
-220 	Broad Leaf
-230 	Mixedwood
+0   Unclassified
+20  Water
+31  Snow/Ice
+32  Rock/Rubble
+33  Exposed/Barren Land
+40  Bryoids
+50  Shrubs
+80  Wetland
+81  Wetland Treed
+100 Herbs
+210 Coniferous
+220 Broad Leaf
+230 Mixedwood
 
 
 Hermosilla, T., Wulder, M.A., White, J.C., Coops, N.C., 2022. Land cover
