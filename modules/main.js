@@ -7,7 +7,6 @@ Alec L. Robitaille
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
-var stratified = require('users/robitalec/CFS:modules/stratified.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
@@ -28,11 +27,9 @@ var main = function(output, region,
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
-  var lc = land_cover.get_land_cover();
   
-  // Mask fires
-  lc = lc.map(fire.mask_five_year_fires);
-  indices_col = indices_col.map(fire.mask_five_year_fires);
+  // Mask land cover and fires
+  indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
 
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
