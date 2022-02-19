@@ -38,6 +38,7 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 
 var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', 136));
 
+var output = 'vegetation index and antecedent means'
 var out = main.main(output, ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
 var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
