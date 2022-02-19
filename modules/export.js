@@ -19,7 +19,7 @@ var export_by_ecoregion = function(n_pts, ecoregions, geometry, output, min_year
         
         var output = main.main(output, ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 
-        var points = stratified.stratified_sample(land_cover.lc_and_fire, 'land_cover', ft.geometry(), 250);
+        var points = stratified.stratified_sample(land_cover.lc_and_fire, 'land_cover', ft.geometry(), n_pts);
         // var join = ee.Join.inner();
         // var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
         // joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))});
