@@ -43,9 +43,11 @@ var main = function(output, region,
   var split = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 
   if (output == 'relative sensitivity') {
-    return sensitivity.sensitivity_relative(split, antecedent_list, percentile_list, index_list);
+    var sens_rel = sensitivity.sensitivity_relative(split, antecedent_list, percentile_list, index_list);
+    return ee.Image(sens_rel);
   } else if (output == 'absolute sensitivity') {
-    return sensitivity.sensitivity_absolute(split, antecedent_list, percentile_list, index_list);
+    var sens_abs = sensitivity.sensitivity_absolute(split, antecedent_list, percentile_list, index_list);
+    return ee.Image(sens_abs);
   } else if (output == 'vegetation index and antecedent means') {
     var join = ee.Join.inner();
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
