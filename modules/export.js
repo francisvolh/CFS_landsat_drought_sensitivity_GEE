@@ -22,9 +22,6 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
       var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
       
-      if (output == )      
-
-      
       if (output == 'relative sensitivity' | output == 'absolute sensitivity') {
         var sampled = output.reduceRegions(points, ee.Reducer.mean(), 30);
         return sampled;
