@@ -19,17 +19,17 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id));
     
       var output = main.main(output, ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-
-      var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
-      var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
+      return output
+      // var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
+      // var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
       
       // var sampled = ee.ImageCollection(output).map(function(img) {
-      var sampled = output.map(function(img) {
-        return img.reduceRegions(points, ee.Reducer.mean(), 30);
-      }).flatten();
+      // var sampled = output.map(function(img) {
+      //   return img.reduceRegions(points, ee.Reducer.mean(), 30);
+      // }).flatten();
     
-      var today = new Date().toJSON().slice(0, 10);
-      Export.table.toDrive(sampled, today + ecoreg_id, folder);
+      // var today = new Date().toJSON().slice(0, 10);
+      // Export.table.toDrive(sampled, today + ecoreg_id, folder);
     });
   });
 };
