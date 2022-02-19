@@ -33,3 +33,10 @@ var img_masked_lc = land_cover.mask_land_cover(img);
 print(img_masked_lc);
 Map.addLayer(img_masked_lc, null, 'land_cover.mask_land_cover(img)');
 Map.centerObject(img);
+
+// Test mask_land_cover_and_fire
+// Usage: mask_land_cover_and_fire(img)
+var img_masked_lc_and_fire = land_cover.mask_land_cover_and_fire(img);
+print(img_masked_lc_and_fire);
+Map.addLayer(img_masked_lc_and_fire, null, 'land_cover.mask_land_cover_and_fire(img)');
+Map.centerObject(img);
