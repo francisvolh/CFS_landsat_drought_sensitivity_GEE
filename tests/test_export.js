@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var exports = require('users/robitalec/CFS:modules/export.js');
+var export_by = require('users/robitalec/CFS:modules/export.js');
 
 // Set variables
 var geometry = ee.Geometry.Polygon([[[-128.69, 58.70], [-128.69, 50.66], [-111.20, 50.66], [-111.20, 58.70]]]);
@@ -20,7 +20,11 @@ var n_pts = 10;
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry);
+var stratified = require('users/robitalec/CFS:modules/stratified.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
+var points = stratified.stratified_sample(land_cover.lc_and_fire, 'land_cover', ft.geometry(), n_pts);
+print(points)
 print(ecoregions)
 
 // Test export_by_ecoregion - veg index and ante means
