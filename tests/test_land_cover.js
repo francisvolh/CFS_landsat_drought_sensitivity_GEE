@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-125.10511309395461, 58.994758102907085],
-          [-125.10511309395461, 58.62851304385702],
-          [-124.26877886543899, 58.62851304385702],
-          [-124.26877886543899, 58.994758102907085]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/land_cover.js
 Alec L. Robitaille
@@ -27,15 +13,15 @@ var geometry =  ee.Geometry.Polygon([[[-125.10, 58.99], [-125.10, 58.62], [-124.
 
 // Load collection
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-var lc_2014 = lc.filterDate('2014-01-01', '2015-01-01').first();
-var indices_col = get_landsat.get_indices(2014, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
+var indices_col = get_landsat.get_indices(2008, 2012, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
 
 
 
 
 // Test mask_classes
 // Usage: mask_classes(lc_img)
-var masked_lc = land_cover.mask_classes(lc_2014);
+var masked_lc = land_cover.mask_classes(lc_2008);
 print(masked_lc);
 Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'}, 'constant');
 Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
