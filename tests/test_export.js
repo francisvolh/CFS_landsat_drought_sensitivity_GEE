@@ -21,7 +21,7 @@ var n_pts = 10;
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry);
 
-
+print(ecoregions)
 
 // Test export_by_ecoregion - veg index and ante means
 // Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
