@@ -39,6 +39,7 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
               .map(function(img) {
                 return img.divide(1000)
                           .set('system:time_start', img.get('system:time_start'))
-                          .copyProperties(img)}));
+                          .copyProperties(img);
+              }));
 };
 exports.get_indices = get_indices;
