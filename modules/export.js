@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Export task for each ecoregion
-var export_by_ecoregion = function(ecoregions, geometry, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list) {
+var export_by_ecoregion = function(ecoregions, geometry, output, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list) {
   var ecoreg_id_list = ecoregions
     .filterBounds(geometry)
     .aggregate_array('ECOREGI')
@@ -15,7 +15,6 @@ var export_by_ecoregion = function(ecoregions, geometry, min_year, max_year, min
         var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id));
         
         var main_relative = main.main('relative sensitivity', ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-
         
         // var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', ft.geometry(), ['NDVI', 'EVI', 'NBR']);
         // var points = stratified.stratified_sample(lc, 'land_cover', ft.geometry(), 250);
