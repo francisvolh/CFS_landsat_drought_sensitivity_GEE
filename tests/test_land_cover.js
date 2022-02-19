@@ -31,7 +31,7 @@ Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
 var img = ee.Image('LANDSAT/LC08/C02/T1_L2/LC08_060016_20140910');
 var img_masked_lc = land_cover.mask_land_cover(img);
 print(img_masked_lc);
-Map.addLayer(img_masked_lc, null, 'land_cover.mask_land_cover(img)', false);
+Map.addLayer(img_masked_lc.select('SR_B1'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas');
 Map.centerObject(img);
 
 // Test mask_land_cover_and_fire
