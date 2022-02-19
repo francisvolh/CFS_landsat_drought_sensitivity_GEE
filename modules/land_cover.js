@@ -96,4 +96,4 @@ var mask_land_cover_and_fire = function(img) {
                .mask());
 };
 exports.mask_land_cover_and_fire = mask_land_cover_and_fire;
-
+exports.lc_and_fire = lc_and_fire;
