@@ -30,7 +30,7 @@ Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)', false);
 // Usage: get_land_cover()
 var lc_collection = land_cover.get_land_cover();
 print(lc_collection);
-Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
+Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()', false);
 
 // Test mask_land_cover
 // Usage: mask_land_cover(img)
