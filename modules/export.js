@@ -22,7 +22,7 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, geometry, 
         var points = stratified.stratified_sample(land_cover.lc_and_fire, 'land_cover', ft.geometry(), n_pts);
         
         var sampled = ee.ImageCollection(output).map(function(img) {
-          return img.reduceRegions(points, ee.Reducer.mean(), 30)
+          return img.reduceRegions(points, ee.Reducer.mean(), 30);
         }).flatten();
       
         Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export');
