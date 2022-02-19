@@ -3,6 +3,9 @@ Exports
 Alec L. Robitaille
 */
 
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+
+
 // Export task for each ecoregion
 var export_by_ecoregion = function(ecoregions, geometry, output, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list) {
   var ecoreg_id_list = ecoregions
