@@ -22,13 +22,9 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
       var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
       
-      // if (out == 'relative sensitivity' | out == 'absolute sensitivity') {
-      //   var sampled = out.reduceRegions(points, ee.Reducer.mean(), 30);
-      // } else if (out == 'vegetation index and antecedent means') {
-        var sampled = ee.ImageCollection(out).map(function(img) {
-          return img.reduceRegions(points, ee.Reducer.mean(), 30);
-        }).flatten();
-      // } 
+      var sampled = ee.ImageCollection(out).map(function(img) {
+        return img.reduceRegions(points, ee.Reducer.mean(), 30);
+      }).flatten();
     
       var today = new Date().toJSON().slice(0, 10);
       Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + ecoreg_id, folder);
