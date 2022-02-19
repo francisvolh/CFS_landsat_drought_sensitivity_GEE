@@ -31,7 +31,7 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       // } 
     
       var today = new Date().toJSON().slice(0, 10);
-      Export.table.toDrive(ee.FeatureCollection(sampled), today + ecoreg_id, folder);
+      Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + ecoreg_id, folder);
     });
   });
 };
