@@ -9,7 +9,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Variables
-var geometry =  ee.Geometry.Polygon([[[-125.10, 58.99], [-125.10, 58.62], [-124.26, 58.62], [-124.26, 58.99]]]);
+var geometry =  ee.Geometry.Polygon([[[-113.61, 59.74], [-113.61, 57.14], [-107.22, 57.14], [-107.22, 59.74]]]);
 
 // Load collection
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
