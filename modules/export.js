@@ -24,12 +24,10 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       
       if (output == 'relative sensitivity' | output == 'absolute sensitivity') {
         var sampled = output.reduceRegions(points, ee.Reducer.mean(), 30);
-        return sampled;
       } else if (output == 'vegetation index and antecedent means') {
         var sampled = output.map(function(img) {
           return img.reduceRegions(points, ee.Reducer.mean(), 30);
         }).flatten();
-        return sampled;
       } 
     
       var today = new Date().toJSON().slice(0, 10);
