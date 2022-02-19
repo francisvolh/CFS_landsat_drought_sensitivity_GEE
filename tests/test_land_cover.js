@@ -24,7 +24,7 @@ var indices_col = get_landsat.get_indices(2008, 2012, '06-15', '07-15', geometry
 var masked_lc = land_cover.mask_classes(lc_2008);
 print(masked_lc);
 Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'}, 'constant');
-Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)');
+Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)', false);
 
 // Test get_land_cover
 // Usage: get_land_cover()
