@@ -51,7 +51,7 @@ Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()');
 var indices_masked_lc = indices_col.map(land_cover.mask_land_cover);
 print(indices_masked_lc);
 Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas');
-Map.centerObject(indices_masked_lc);
+Map.centerObject(geometry);
 
 // Test mask_land_cover_and_fire
 // Usage: mask_land_cover_and_fire(img)
