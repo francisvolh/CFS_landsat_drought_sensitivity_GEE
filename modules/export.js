@@ -4,6 +4,7 @@ Alec L. Robitaille
 */
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var main = require('users/robitalec/CFS:modules/main.js');
 
 
 // Export task for each ecoregion
