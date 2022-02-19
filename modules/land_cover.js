@@ -48,6 +48,9 @@ DOI: https://doi.org/10.1016/j.rse.2022.112780 [Open Access]
 // Load utils
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
+// Load fire
+var fire = require('users/robitalec/CFS:modules/fire.js');
+
 // Load Hermosilla land cover
 var hermosilla_2022 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
@@ -81,3 +84,16 @@ var mask_land_cover = function(img) {
 			.mask());
 };
 exports.mask_land_cover = mask_land_cover;
+
+
+// Mask image with land cover and fire
+var lc_and_fire = lc.map(fire.mask_five_year_fires);
+var mask_land_cover_and_fire = function(img) {
+  var img_year = img.date().get('year');
+  return img.updateMask(
+		lc_and_fire.filter(ee.Filter.eq('year', img_year))
+               .first()
+               .mask());
+};
+exports.mask_land_cover_and_fire = mask_land_cover_and_fire;
+
