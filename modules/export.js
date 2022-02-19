@@ -22,10 +22,10 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       var lc_2002 = land_cover.lc_and_fire.filter(ee.Filter.eq('year', 2002)).first();
       var points = stratified.stratified_sample(lc_2002, 'land_cover', ft.geometry(), n_pts);
       
-      // if (output == 'relative sensitivity' | output == 'absolute sensitivity') {
-      //   var sampled = output.reduceRegions(points, ee.Reducer.mean(), 30);
-      // } else if (output == 'vegetation index and antecedent means') {
-        var sampled = ee.ImageCollection(output).map(function(img) {
+      // if (out == 'relative sensitivity' | out == 'absolute sensitivity') {
+      //   var sampled = out.reduceRegions(points, ee.Reducer.mean(), 30);
+      // } else if (out == 'vegetation index and antecedent means') {
+        var sampled = ee.ImageCollection(out).map(function(img) {
           return img.reduceRegions(points, ee.Reducer.mean(), 30);
         }).flatten();
       // } 
