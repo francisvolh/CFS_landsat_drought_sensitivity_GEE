@@ -15,6 +15,7 @@ var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var stddev_viz = {min:-3, max:3, palette: palettes.colorbrewer.RdBu[5]};
 
 // Load collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
@@ -33,8 +34,8 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 // Usage: get_stddev(images)
 var stddev_images = stddev.get_stddev(ante_means);
 print('Antecedent means'); print(ante_means);
-print('Percentile images'); print(stddev_images);
+print('Standard deviation images'); print(stddev_images);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI 3 month antecedent means', false);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3 month antecedent means');
-Map.addLayer(stddev_images.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI standard deviations');
+Map.addLayer(stddev_images.select('CMI_ante3mo_mean_stdDev'), stddev_viz, '2010-2015 CMI standard deviations');
 
