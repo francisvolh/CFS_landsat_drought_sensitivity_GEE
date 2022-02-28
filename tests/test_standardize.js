@@ -37,5 +37,5 @@ print('Antecedent means'); print(ante_means);
 print('Standard deviation images'); print(standardize_images);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI 3 month antecedent means', false);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3 month antecedent means');
-Map.addLayer(standardize_images.select('CMI_ante3mo_mean_standardize'), standardize_viz, '2010-2015 CMI standardized');
+Map.addLayer(standardize_images.select('CMI_ante3mo_mean'), standardize_viz, '2010-2015 CMI standardized');
 
