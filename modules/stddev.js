@@ -4,8 +4,8 @@ Alec L. Robitaille
 */
 
 // Get standard deviation
-var get_stddev = function(images) {
+var get_standardize = function(images) {
 	return images.reduce(ee.Reducer.stdDev());
 };
-exports.get_stddev = get_stddev;
+exports.get_standardize = get_standardize;
 
