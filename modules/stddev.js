@@ -1,5 +1,5 @@
 /*
-Standard devitation
+Standardize
 Alec L. Robitaille
 */
 
