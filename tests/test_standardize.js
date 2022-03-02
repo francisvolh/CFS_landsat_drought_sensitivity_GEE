@@ -11,7 +11,7 @@ var palettes = require('users/gena/packages:palettes');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
 // Set variables
-var years = ee.List.sequence(2010, 2015);
+var years = ee.List.sequence(1985, 2019);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [5, 10];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
