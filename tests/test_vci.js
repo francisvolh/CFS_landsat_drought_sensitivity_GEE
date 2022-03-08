@@ -41,6 +41,7 @@ var vci_col = calc_vci(indices_col);
 
 // Print
 print(indices_col);
+print(vci_col);
 
 
 // Map
