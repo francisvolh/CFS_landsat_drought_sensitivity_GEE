@@ -32,7 +32,7 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
 
 
 // Get indices collection
-var indices_col = get_landsat.get_indices(2014, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+var indices_col = get_landsat.get_indices(1985, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
 
 // Test: calc_vci
 // Usage: calc_vci(images)
