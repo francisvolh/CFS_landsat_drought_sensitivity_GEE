@@ -23,7 +23,7 @@ var calc_vci = function(images) {
   var min = images.select(band).min();
   
   return images.map(function(img) {
-    img.expression('vci = ndvi', {
+    return img.expression('vci = ndvi', {
     ndvi: img.select(band),
     max: max,
     min: min
