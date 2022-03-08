@@ -82,6 +82,8 @@ var percentile = require('users/robitalec/CFS:modules/percentile.js');
 // Load antecedent module
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 
+// Load VHI module
+var vhi = require('users/robitalec/CFS:modules/vhi.js');
 
 
 // -- Set variables
