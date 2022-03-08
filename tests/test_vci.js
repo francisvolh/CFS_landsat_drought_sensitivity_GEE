@@ -18,7 +18,7 @@ var calc_vci = function(images) {
     NDVI: img.select(band),
     max: max,
     min: min
-  });
+  }).copyProperties(img);
   });
 };
 
