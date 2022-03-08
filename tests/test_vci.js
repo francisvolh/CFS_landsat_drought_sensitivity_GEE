@@ -14,11 +14,11 @@ var calc_vci = function(images) {
   
   return images.map(function(img) {
     // VCI = ((NDVI - NDVI min) X 100) / (NDVI max - NDVI min)
-    return img.expression('VCI = ((NDVI - min) * 100) / (max - min) ', {
+    return img.addBands([expression('VCI = ((NDVI - min) * 100) / (max - min) ', {
     NDVI: img.select(band),
     max: max,
     min: min
-  }).copyProperties(img);
+  })]);
   });
 };
 
