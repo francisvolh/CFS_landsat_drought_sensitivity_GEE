@@ -10,7 +10,8 @@ var stratified_sample = function(img, band, scale, region, n_pts) {
 		classBand: band,
 		numPoints: n_pts,
 		region: region,
-		scale: scale
+		scale: scale,
+		tileScale: 4
 	}).map(function(ft) {
 		return ft.setGeometry(ee.Geometry.Point([ft.get('longitude'), ft.get('latitude')]));
 	});
