@@ -18,7 +18,6 @@ Alec L. Robitaille
 var export_by = require('users/robitalec/CFS:modules/export.js');
 
 // Set variables
-
 var min_year = 1985;
 var max_year = 2020;
 var min_mm_dd = '07-01';
