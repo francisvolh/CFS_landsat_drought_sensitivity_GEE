@@ -1,6 +1,6 @@
 var calc_vci = function(images) {
   var band = 'NDVI';
-  var max = images.select(band).max();
+  var max = images.select(band).reduce(ee.Reducer.max());
   var min = images.select(band).min();
   
   return images.map(function(img) {
