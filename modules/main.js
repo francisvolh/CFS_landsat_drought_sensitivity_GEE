@@ -30,6 +30,7 @@ var main = function(output, region,
   
   // Mask land cover and fires
   indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
+  indices_col = vhi.calc_vci(indices_col);
 
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
