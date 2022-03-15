@@ -31,6 +31,11 @@ Map.addLayer(strat);
 lc = lc.updateMask(lc.eq(20).or(lc.eq(220)));
 var strat = stratified.stratified_sample(lc, 'b1', 30, geometry, 50);
 print(strat);
-Map.addLayer(geometry);
-Map.addLayer(lc, {palette: palettes.crameri.batlow[25]});
+Map.addLayer(strat);
+
+// Test stratified_sample for modal class
+// Usage: stratified.stratified_sample(img, band, scale, region, n_pts)
+var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
+var strat = stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, geometry, 50);
+print(strat);
 Map.addLayer(strat);
