@@ -17,8 +17,7 @@ doi:10.3334/ORNLDAAC/1840
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Load Daymet
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
-// 	.filterDate('1980-01-01', '2022-01-01');
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 
 // Reducer
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
