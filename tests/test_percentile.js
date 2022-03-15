@@ -45,8 +45,8 @@ print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
 
 
-// Test lt_percentile
-// Usage: lt_percentile(images, percentile_images)
+// Test lt_percentile_with_cap
+// Usage: lt_percentile_with_cap(images, percentile_images)
 var lt_percent = percentile.lt_percentile_with_cap(ante_means, percentile_images);
 print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent');
