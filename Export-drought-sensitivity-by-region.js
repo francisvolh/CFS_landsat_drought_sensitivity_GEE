@@ -104,8 +104,7 @@ var percentile_list = [10, 20, 30];
 // Land cover
 var lc = land_cover.get_land_cover();
 lc = lc.map(fire.mask_five_year_fires);
-// TODO: fix this flex
-lc = lc.filter(ee.Filter.eq('year', 2005)).first();
+var modal_lc = lc.filter(ee.Filter.eq('year', 2005)).first();
 
 // Daymet
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
