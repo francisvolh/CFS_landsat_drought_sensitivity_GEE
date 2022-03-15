@@ -33,7 +33,7 @@ var lt_percentile_with_cap = function(images, percentile_images) {
 	});
 	return images_lt_percentiles;
 };
-exports.lt_percentile = lt_percentile;
+exports.lt_percentile_with_cap = lt_percentile_with_cap;
 
 
 
