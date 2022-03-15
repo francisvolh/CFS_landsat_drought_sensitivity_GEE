@@ -19,7 +19,7 @@ var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, 
       var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id));
     
       var out = main.main(output, ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-      var lc_modal = land_cover.lc_and_fire.mode();
+      var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
       var points = stratified.stratified_sample(lc_modal, 'land_cover', 30, ft.geometry(), n_pts);
       
       var sampled = ee.ImageCollection(out).map(function(img) {
