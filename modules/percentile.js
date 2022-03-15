@@ -10,7 +10,7 @@ var get_percentile = function(images, percentile_list) {
 exports.get_percentile = get_percentile;
 
 // Compare percentile images for each antecedent period to each image's antecedent means
-var lt_percentile = function(images, percentile_images) {
+var lt_percentile_with_cap = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     var out = ee.Image([
       percentile_images.select('CMI_ante3mo_p15').gte(img.select('CMI_ante3mo_mean')),
