@@ -138,7 +138,7 @@ eco_ids.evaluate(
         var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
         joined = joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))});
         var sampled = ee.ImageCollection(joined).map(function(img) {
-          return img.reduceRegions(points, ee.Reducer.mean(), 30)
+          return img.reduceRegions(points, ee.Reducer.mean(), 30);
         }).flatten();
       
         Export.table.toDrive(sampled, ecoreg_id, 'Batch-ecoregion-export')
