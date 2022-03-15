@@ -9,7 +9,7 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 
 // Modal land cover
 var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
-lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection().crs());
+lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 
 // Export task for each ecoregion
 var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list) {
