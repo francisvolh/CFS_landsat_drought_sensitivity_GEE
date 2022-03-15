@@ -8,7 +8,7 @@ Alec L. Robitaille
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 
 // Set variables
-var years = ee.List.sequence(2010, 2015);
+var years = ee.List.sequence(1985, 2020);
 var months = ee.List.sequence(5, 7);
 
 
