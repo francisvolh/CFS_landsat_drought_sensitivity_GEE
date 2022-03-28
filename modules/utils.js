@@ -19,6 +19,7 @@ exports.set_date = set_date;
 var add_year_band = function(img) {
   return img.addBands([ee.Image.constant(img.get('year')).rename('year')]);
 };
+exports.add_year_band = add_year_band;
 
 // Aggregate each month within each year with reducer
 var aggregate_month_year = function(images, year_list, month_list, reducer) {
