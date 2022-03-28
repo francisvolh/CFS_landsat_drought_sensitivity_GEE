@@ -40,6 +40,7 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
 
 	return(ltgee.transformSRcollection(collection, indices)
               .map(utils.set_year)
+              .map(utils.add_year_band)
               .map(function(img) {
                 return img.divide(1000)
                           .set('system:time_start', img.get('system:time_start'))
