@@ -18,5 +18,5 @@ print(utils.set_year(img));
 // Usage: utils.add_year_band(image)
 var img = forest_lc.first();
 img = utils.set_year(img);
-Map.addLayer(utils.add_year_band(img));
+Map.addLayer(utils.add_year_band(img).select('year'));
 
