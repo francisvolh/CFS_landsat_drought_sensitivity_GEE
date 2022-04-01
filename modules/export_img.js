@@ -28,7 +28,7 @@ var export_img_asset = function(asset_dir, asset_name, region, min_year, max_yea
 };
 
 // Export img drive
-var export_img_asset = function(drive_name, drive_folder, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
+var export_img_drive = function(drive_name, drive_folder, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
   var out = export_img(region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
   
   var today = new Date().toJSON().slice(0, 10);
