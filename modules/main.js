@@ -17,12 +17,12 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 var main = function(output, region, 
                     min_year, max_year, min_mm_dd, max_mm_dd, 
-                    index_list, percentile_list, antecedent_list = ['3mo', '12mo', '5yr']) {
+                    index_list, percentile_list, antecedent_list) {
   // Variables
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
   
-  // if (typeof(antecedent_list)==='undefined') var antecedent_list = ['3mo', '12mo', '5yr']
+  if (typeof(antecedent_list)==='undefined') var antecedent_list = ['3mo', '12mo', '5yr'];
   
   // var antecedent_list = ['3mo', '12mo', '5yr'];
 
