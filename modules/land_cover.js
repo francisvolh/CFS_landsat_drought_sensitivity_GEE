@@ -53,6 +53,11 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 // Load Hermosilla land cover
 var hermosilla_2022 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+var lc_2019 = ee.Image(hermosilla_2022.filter(ee.Filter.date('2019-01-01')).first())
+var lc_2020 = lc_2019
+  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
+  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis())
+var hermosilla_plus_2022 = ee.ImageCollection(hermosilla_2022.toList(50).add(lc_2020))
 
 
 // Mask classes
@@ -67,7 +72,7 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var get_land_cover = function() {
-	return hermosilla_2022.map(utils.set_year).map(mask_classes);
+	return hermosilla_plus_2022.map(utils.set_year).map(mask_classes);
 };
 exports.get_land_cover = get_land_cover;
 
