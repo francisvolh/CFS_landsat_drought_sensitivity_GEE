@@ -13,12 +13,12 @@ lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 
 
 // Export img asset
-var export_img_asset = function(asset_dir, asset_name, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
+var export_img_asset = function(asset_path, asset_name, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
   var out = main.main('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
   
   var today = new Date().toJSON().slice(0, 10);
   
-  Export.image.toAsset(out, null, asset_dir + '/' + today + '_' + asset_name);
+  Export.image.toAsset(out, null, asset_path + '/' + today + '_' + asset_name);
 };
 exports.export_img_asset = export_img_asset;
 
