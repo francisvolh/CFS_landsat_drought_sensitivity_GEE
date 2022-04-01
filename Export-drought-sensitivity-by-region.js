@@ -18,7 +18,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var export_by = require('users/robitalec/CFS:modules/export.js');
+var export_by = require('users/robitalec/CFS:modules/export_by.js');
 
 // Set variables
 var min_year = 1985;
