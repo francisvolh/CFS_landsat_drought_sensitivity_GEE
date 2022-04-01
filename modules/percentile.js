@@ -5,6 +5,7 @@ Alec L. Robitaille
 
 // Get percentile
 var get_percentile = function(images, percentile_list) {
+  percentile_list = [percentile_list, 85];
 	return images.reduce(ee.Reducer.percentile(percentile_list));
 };
 exports.get_percentile = get_percentile;
