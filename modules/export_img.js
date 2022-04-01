@@ -15,5 +15,5 @@ lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 // output either 'relative sensitivity' or 'absolute sensitivity'
 var export_img = function(output, folder, n_pts, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
   var out = main.main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
-  
+
 }
