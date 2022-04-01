@@ -36,7 +36,6 @@ var export_img_asset = function(asset_name, asset_path, scale, region, min_year,
 exports.export_img_asset = export_img_asset;
 
 
-
 // Export img drive
 var export_img_drive = function(drive_name, drive_folder, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
   var out = main.main('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
