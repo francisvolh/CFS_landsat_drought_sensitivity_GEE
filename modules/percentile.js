@@ -3,11 +3,15 @@ Percentiles
 Alec L. Robitaille
 */
 
+
+
 // Get percentile
 var get_percentile = function(images, percentile_list) {
 	return images.reduce(ee.Reducer.percentile(percentile_list));
 };
 exports.get_percentile = get_percentile;
+
+
 
 // Compare percentile images for each antecedent period to each image's antecedent means
 var lt_percentile_with_cap = function(images, percentile_images) {
