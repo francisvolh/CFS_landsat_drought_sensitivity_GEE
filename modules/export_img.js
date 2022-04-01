@@ -43,20 +43,12 @@ var export_img_drive = function(drive_name, drive_folder, scale, region, min_yea
   
   var today = new Date().toJSON().slice(0, 10);
   
-  Export.image.toDrive(out, today + '_' + drive_name, drive_folder, scale);
+  Export.image.toDrive({
+    image: out, 
+    description: today + '_' + drive_name, 
+    folder: drive_folder, 
+    region: region,
+    scale: scale
+  });
 };
 exports.export_img_drive = export_img_drive;
-
-
-
-
-var exp = {
-  image: droughtSens.select('Sens_NDVI_ante12mo_p15'),
-  description: today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
-  assetId: 'CFS/' + today + '_drought-sensitivity-Landsat-1985_2012-NDVI-12mo-p15-' + region,
-  region: albertasubsample,
-  scale: 30,
-  maxPixels: 1e9
-};
-Export.image.toAsset(exp);
-
