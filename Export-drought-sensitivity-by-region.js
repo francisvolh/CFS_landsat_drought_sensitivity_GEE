@@ -32,7 +32,7 @@ var n_pts = 50;
 
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(geometry);
+ecoregions = ecoregions.filterBounds(geometry).limit(1);
 
 
 
