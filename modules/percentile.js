@@ -38,7 +38,6 @@ exports.lt_percentile_with_cap = lt_percentile_with_cap;
 
 
 
-// _________________________________________________________________________________________________
 // Compare percentile images for each antecedent period to each image's antecedent means
 var lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
