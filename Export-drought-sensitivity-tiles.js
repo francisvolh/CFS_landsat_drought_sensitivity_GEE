@@ -20,86 +20,39 @@ Alec L. Robitaille
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
 
 // Set variables
-var min_year = 2000;
-var max_year = 2015;
-var min_mm_dd = '06-15';
-var max_mm_dd = '07-15';
-var percentile = [15];
+var min_year = 1985;
+var max_year = 2020;
+var min_mm_dd = '07-01';
+var max_mm_dd = '07-31';
+var percentile_low = 15;
+var percentile_high = 85;
 var index = ['NDVI'];
 var antecedent = ['12mo'];
 
-
-
-var drive_folder = 'Batch-ecoregion-export';
-
-
-// Test export_img
-// Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-export_by.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-// Map.addLayer(ecoregions)
-/*
-Testing: modules/export_img.js
-Alec L. Robitaille
-*/
-
-// Load modules
-var export_img = require('users/robitalec/CFS:modules/export_img.js');
-
-// Set variables
-var geometry = ee.Geometry.Polygon([[[-128.69, 58.70], [-128.69, 50.66], [-111.20, 50.66], [-111.20, 58.70]]]);
-var min_year = 2000;
-var max_year = 2015;
-var min_mm_dd = '06-15';
-var max_mm_dd = '07-15';
-var percentile = [15];
-var index = ['NDVI'];
-var 
-
-
-var drive_folder = 'Batch-ecoregion-export';
-
-
-// Test export_img
-// Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-export_by.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-// Map.addLayer(ecoregions)
-
-
+// Get tiles
 var tiler = require('users/gena/packages:tiler')
-
-
-
-
 var tiles = tiler.getTilesForGeometry(geometry, 6)
- 
-var export_by_ecoregion = function(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list) {
-  var ecoreg_id_list = ecoregions
-    .aggregate_array('ECOREGI')
-    .distinct();
 
-  ecoreg_id_list.evaluate(function(ecoreg_ids) {
-    ecoreg_ids.forEach(function(ecoreg_id) {
-      var ft = ecoregions.filter(ee.Filter.eq('ECOREGI', ecoreg_id));
-    
-      var out = main.main(output, ft, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 
-      var points = stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts);
-      
-      var sampled = ee.ImageCollection(out).map(function(img) {
-        return img.reduceRegions(points, ee.Reducer.mean(), 30);
-      }).flatten();
-    
-      var today = new Date().toJSON().slice(0, 10);
-      Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + ecoreg_id, folder);
+
+var asset_path = 'CFS';
+var scale = 30;
+
+
+var out = export_img.export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
+
+
+// loop regions
+// asset_name = id
+
+var tile_id_list = tilels.aggregate_array('id').distinct();
+
+tile_id_list.evaluate(function(tile_ids) {
+    tile_ids.forEach(function(tile_id) {
+      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+
+      export_img.export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
     });
-  });
-};
-exports.export_by_ecoregion = export_by_ecoregion;
-
-
-
-
-
-
+});
 
 Map.addLayer(tiles, null, 'tiles')
