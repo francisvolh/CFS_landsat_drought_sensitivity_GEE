@@ -56,3 +56,6 @@ print('Split drought  with cap'); print(split_drought_cap);
 Map.addLayer(split_drought_cap.select('NDVI_ante3mo_p15_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 15th percentile 3 month antecedent');
 Map.addLayer(split_drought_cap.select('NDVI_ante3mo_p15_base').first(),  {min: -0.5, max:1}, '2010 NDVI baseline 15th-85th percentile 3 month antecedent', false);
 Map.centerObject(geometry);
+
+Map.addLayer(split_drought.mean())
+Map.addLayer(split_drought_cap.mean())
