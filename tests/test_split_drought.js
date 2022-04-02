@@ -58,7 +58,4 @@ Map.centerObject(geometry);
 
 
 
-// print(lt_percent)
-Map.addLayer(split_drought.mean().subtract(split_drought_cap.mean()))
-// Map.addLayer(split_drought.mean(), null, 'split means')
-// Map.addLayer(split_drought_cap.mean(), null, 'split cap means')
+Map.addLayer(split_drought.mean().subtract(split_drought_cap.mean()), 'split drought - split drought cap')
