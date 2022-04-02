@@ -30,21 +30,21 @@ var main_index_and_antecedent = main.main('vegetation index and antecedent means
 print('veg index + antecedent means'); print(main_index_and_antecedent);
 Map.setOptions('SATELLITE');
 Map.centerObject(ecoregion, 12);
-Map.addLayer(main_index_and_antecedent.select('CMI_ante3mo_mean').first(), cmi_viz, '2000 CMI 3 month antecedent mean', false);
-Map.addLayer(main_index_and_antecedent.select('NDVI').first(), {min:-1, max:1}, '2000 NDVI', false);
+Map.addLayer(main_index_and_antecedent.select('CMI_ante3mo_mean').first(), cmi_viz, '1995 CMI 3 month antecedent mean', false);
+Map.addLayer(main_index_and_antecedent.select('NDVI').first(), {min:-1, max:1}, '1995 NDVI', false);
 
 // Test main - relative
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 var main_relative = main.main('relative sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 print('relative sensitivity'); print(main_relative);
-Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p10'), rel_viz, '2000-2015 relative drought sensitivity NDVI 10th percentile 3 month antecedent', false);
+Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p10'), rel_viz, '1995-2015 relative drought sensitivity NDVI 10th percentile 3 month antecedent', false);
 
 
 // Test main - absolute
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 var main_absolute = main.main('absolute sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 print('absolute sensitivity'); print(main_absolute);
-Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p10'), abs_viz, '2000-2015 absolute drought sensitivity NDVI 10th percentile 3 month antecedent');
+Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p10'), abs_viz, '1995-2015 absolute drought sensitivity NDVI 10th percentile 3 month antecedent');
 
 
 // Test main cap - absolute
@@ -52,5 +52,5 @@ Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p10'), abs_viz, '2000-2
 var percentile_low = 15;
 var percentile_high = 85;
 var main_cap_absolute = main.main_cap('absolute sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high);
-print('absolute sensitivity'); print(main_cap_absolute);
-Map.addLayer(main_cap_absolute.select('Abs_sens_NDVI_ante3mo_p15'), abs_viz, '2000-2015 absolute drought sensitivity NDVI 15-85 percentile 3 month antecedent');
+print('absolute sensitivity with cap'); print(main_cap_absolute);
+Map.addLayer(main_cap_absolute.select('Abs_sens_NDVI_ante3mo_p15'), abs_viz, '1995-2015 absolute drought sensitivity NDVI 15-85 percentile 3 month antecedent');
