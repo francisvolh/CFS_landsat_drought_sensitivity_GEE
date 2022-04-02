@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var split_drought = require('users/robitalec/CFS:modules/split_drought.js');
+var split = require('users/robitalec/CFS:modules/split_drought.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
