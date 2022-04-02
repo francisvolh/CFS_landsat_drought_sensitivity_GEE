@@ -90,6 +90,7 @@ var main_cap = function(output, region,
   // Split vegetation index into baseline/drought
   var split = split_drought.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_low, percentile_high, index_list);
 
+  percentile_list = [percentile_low];
   if (output == 'relative sensitivity') {
     return sensitivity.sensitivity_relative(split, antecedent_list, percentile_list, index_list);
   } else if (output == 'absolute sensitivity') {
