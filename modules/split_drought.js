@@ -64,31 +64,31 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
 
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
-          // Loop over index_list
-          return index_list.map(function(index) {
-            // Set up band names
-            var percent_low_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_low;
-            var percent_high_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_high;
-            
-            var veg_band = index + '_ante' + antecedent_period + '_p' + percentile_low;
-            var drought_veg_band = veg_band + '_drought';
-            var base_veg_band = veg_band + '_base';
+        // Loop over index_list
+        return index_list.map(function(index) {
+          // Set up band names
+          var percent_low_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_low;
+          var percent_high_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_high;
+          
+          var veg_band = index + '_ante' + antecedent_period + '_p' + percentile_low;
+          var drought_veg_band = veg_band + '_drought';
+          var base_veg_band = veg_band + '_base';
 
-            // Set up drought and base mask
-            var percentile_low_mask = percent_mask.select(percent_low_mask_band);
-            var percentile_high_mask = percent_mask.select(percent_high_mask_band);
+          // Set up drought and base mask
+          var percentile_low_mask = percent_mask.select(percent_low_mask_band);
+          var percentile_high_mask = percent_mask.select(percent_high_mask_band);
 
-            // Baseline vegetation index
-            var baseline = img.select([index])
-                              .updateMask(percentile_low_mask.eq(0).and(percentile_high_mask.eq(1)))
-                              .rename([base_veg_band]);
+          // Baseline vegetation index
+          var baseline = img.select([index])
+                            .updateMask(percentile_low_mask.not().and(percentile_high_mask))
+                            .rename([base_veg_band]);
 
-            // Drought vegetation index
-            var drought = img.select([index])
-                             .updateMask(percentile_low_mask)
-                             .rename([drought_veg_band]);
-            return [baseline, drought];
-          });
+          // Drought vegetation index
+          var drought = img.select([index])
+                           .updateMask(percentile_low_mask)
+                           .rename([drought_veg_band]);
+          return [baseline, drought];
+        });
       })
     );
   });
