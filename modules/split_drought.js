@@ -64,8 +64,6 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
 
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
-        // Loop over percentile_list
-        // return percentile_list.map(function(percentile) {
           // Loop over index_list
           return index_list.map(function(index) {
             // Set up band names
@@ -92,7 +90,6 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
                              .rename([drought_veg_band]);
             return [baseline, drought];
           });
-        // });
       })
     );
   });
