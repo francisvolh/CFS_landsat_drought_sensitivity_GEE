@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-125.75374796477628, 56.26962911141167],
+          [-125.75374796477628, 55.65469597589261],
+          [-124.24862101165128, 55.65469597589261],
+          [-124.24862101165128, 56.26962911141167]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/export_img.js
 Alec L. Robitaille
