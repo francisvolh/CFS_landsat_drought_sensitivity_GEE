@@ -8,7 +8,7 @@ var main = require('users/robitalec/CFS:modules/main.js');
 var palettes = require('users/gena/packages:palettes');
 
 // Set variables
-var min_year = 2000;
+var min_year = 1995;
 var max_year = 2015;
 var min_mm_dd = '06-15';
 var max_mm_dd = '07-15';
