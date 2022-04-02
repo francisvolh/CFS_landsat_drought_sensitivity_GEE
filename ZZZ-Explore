@@ -1,0 +1,14 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var image = ee.Image("users/robitalec/CFS/2022-04-01_test-export-asset");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+// Gena's palette functions
+var palettes = require('users/gena/packages:palettes');
+
+var p = palettes.crameri.vik[10]
+print(p)
+palettes.showPalette('vik', p)
+
+
+Map.addLayer(image, {palette: p, min: -0.4, max: 0.4})
+
+// TEST Palettes vik
