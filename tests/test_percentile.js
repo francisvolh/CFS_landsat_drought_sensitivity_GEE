@@ -45,8 +45,11 @@ print('Less than percentile'); print(lt_percent);
 Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p15').first(), {min:0, max:1}, '2010 CMI lt 15th percentile 3 month antecedent');
 
 
-// Test lt_percentile_with_cap
-// Usage: lt_percentile_with_cap(images, percentile_images)
-var lt_percent_cap = percentile.lt_percentile_with_cap(ante_means, percentile_images);
-print('Less than percentile, with cap'); print(lt_percent_cap);
-Map.addLayer(lt_percent_cap.select('CMI_ante3mo_lt_p15_gt_p85').first(), {min:0, max:1}, '2010 CMI lt 15th-85th p 3 month antecedent');
+// // Test lt_percentile_cap
+// // Usage: lt_percentile_cap(images, percentile_images)
+// var lt_percent_cap = percentile.lt_percentile_cap(ante_means, percentile_images);
+// print('Less than percentile, with cap'); print(lt_percent_cap);
+// Map.addLayer(lt_percent_cap.select('CMI_ante3mo_lt_p15').first(), {min:0, max:1}, '2010 CMI lt 15th-85th p 3 month antecedent');
+
+
+// Map.addLayer(lt_percent_cap.select('CMI_ante3mo_lt_p15').first().subtract(lt_percent.select('CMI_ante3mo_lt_p15').first()))
