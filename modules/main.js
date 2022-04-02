@@ -98,7 +98,6 @@ var main_cap = function(output, region,
     var join = ee.Join.inner();
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
     joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
-    
     return joined;
   } 
 
