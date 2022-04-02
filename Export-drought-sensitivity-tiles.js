@@ -44,12 +44,13 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
+tile_id_list = tile_id_list.filter(ee.Filter.lt(20))
 
-// tile_id_list.evaluate(function(tile_ids) {
-//     tile_ids.forEach(function(tile_id) {
-//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-//       export_img.export_img_asset_cap('Abs_' + index + '_' + antecedent + '_p' + percentile_low + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
-//     });
-// });
+tile_id_list.evaluate(function(tile_ids) {
+    tile_ids.forEach(function(tile_id) {
+      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+      export_img.export_img_asset_cap('Abs_' + index + '_' + antecedent + '_p' + percentile_low + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+    });
+});
 
 Map.addLayer(tiles, null, 'tiles');
