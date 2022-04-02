@@ -1,5 +1,5 @@
 /*
-Testing: modules/p15.js
+Testing: modules/split_drought.js
 Alec L. Robitaille
 */
 
