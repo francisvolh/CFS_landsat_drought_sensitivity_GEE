@@ -1,5 +1,5 @@
 /*
-Testing: modules/split_drought.js
+Testing: modules/p15.js
 Alec L. Robitaille
 */
 
@@ -16,7 +16,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var min_year = 2010; var max_year = 2015;
 var years = ee.List.sequence(min_year, max_year);
 var months = ee.List.sequence(1, 12);
-var percentile_list = [5, 10];
+var percentile_list = [15, 95];
 var index_list = ['NDVI', 'EVI'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
@@ -38,9 +38,19 @@ var indices_col = get_landsat.get_indices(min_year, max_year, '06-15', '07-15', 
 // Usage: split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list)
 var split_drought = split_drought.split_drought(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
 print('Less than percentile'); print(lt_percent);
-Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p10').first(), {min:0, max:1}, '2010 CMI lt 10th percentile 3 month antecedent', false);
+Map.addLayer(lt_percent.select('CMI_ante3mo_lt_p15').first(), {min:0, max:1}, '2010 CMI lt 15th percentile 3 month antecedent', false);
 print('Split drought'); print(split_drought);
 Map.addLayer(indices_col.select('NDVI'), null, '2010-2015 NDVI', false);
-Map.addLayer(split_drought.select('NDVI_ante3mo_p10_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 10th percentile 3 month antecedent');
-Map.addLayer(split_drought.select('NDVI_ante3mo_p10_base').first(),  {min: -0.5, max:1}, '2010 NDVI baseline 10th percentile 3 month antecedent', false);
+Map.addLayer(split_drought.select('NDVI_ante3mo_p15_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 15th percentile 3 month antecedent');
+Map.addLayer(split_drought.select('NDVI_ante3mo_p15_base').first(),  {min: -0.5, max:1}, '2010 NDVI baseline 15th percentile 3 month antecedent', false);
+
+
+
+
+// Test split_drought_cap
+// Usage: split_drought_cap.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_list, index_list)
+var split_drought_cap = split_drought_cap.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_list, index_list);
+print('Split drought  with cap'); print(split_drought_cap);
+Map.addLayer(split_drought_cap.select('NDVI_ante3mo_p15_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 15th percentile 3 month antecedent');
+Map.addLayer(split_drought_cap.select('NDVI_ante3mo_p15_base').first(),  {min: -0.5, max:1}, '2010 NDVI baseline 15th-85th percentile 3 month antecedent', false);
 Map.centerObject(geometry);
