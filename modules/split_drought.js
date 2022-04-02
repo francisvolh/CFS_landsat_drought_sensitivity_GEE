@@ -76,20 +76,20 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
           // Set up drought and base mask
           var lt_low_mask = percent_mask.select(percent_low_mask_band);
           var lt_high_mask = percent_mask.select(percent_high_mask_band);
-          return([lt_low_mask, lt_high_mask])
-          // Baseline vegetation index
-          // var baseline = img.select([index])
-          //                   .updateMask(lt_low_mask.not())
-          //                   .updateMask(lt_high_mask)
-          //                   // .updateMask(lt_low_mask.eq(0).or(lt_high_mask.eq(1)))
-          //                   // .updateMask(lt_high_mask.eq(1))
-          //                   .rename([base_veg_band]);
 
-          // // Drought vegetation index
-          // var drought = img.select([index])
-          //                 .updateMask(lt_low_mask.eq(1))
-          //                 .rename([drought_veg_band]);
-          // return [baseline, drought];
+          // Baseline vegetation index
+          var baseline = img.select([index])
+                            .updateMask(lt_low_mask.eq(0))
+                            // .updateMask(lt_high_mask)
+                            // .updateMask(lt_low_mask.eq(0).or(lt_high_mask.eq(1)))
+                            // .updateMask(lt_high_mask.eq(1))
+                            .rename([base_veg_band]);
+
+          // Drought vegetation index
+          var drought = img.select([index])
+                           .updateMask(lt_low_mask.eq(1))
+                           .rename([drought_veg_band]);
+          return [baseline, drought];
         });
       })
     );
