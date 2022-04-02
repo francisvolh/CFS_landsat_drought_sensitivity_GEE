@@ -5,7 +5,7 @@ var p = palettes.crameri.vik[10]
 print(p)
 palettes.showPalette('vik', p)
 
-Map.addLayer(ee.Image.constant(1), {palette:'a7a7a7', opacity:0.5})
+Map.addLayer(ee.Image.constant(1), {palette:'a7a7a7', opacity:0.5 })
 
 Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_12'), {palette: p, min: -0.4, max: 0.4})
 Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_13'), {palette: p, min: -0.4, max: 0.4})
