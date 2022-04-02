@@ -79,7 +79,7 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
 
           // Baseline vegetation index
           var baseline = img.select([index])
-                            .updateMask(lt_low_mask.eq(1).or(lt_high_mask.eq(0)))
+                            .updateMask(lt_low_mask.eq(0).or(lt_high_mask.eq(1)))
                             // .updateMask(lt_high_mask.eq(1))
                             .rename([base_veg_band]);
 
