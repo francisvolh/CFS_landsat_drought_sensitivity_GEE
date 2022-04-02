@@ -46,12 +46,12 @@ exports.get_percentile = get_percentile;
 var lt_percentile_cap = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     var out = ee.Image([
-      percentile_images.select('CMI_ante3mo.*').gte(img.select('CMI_ante3mo_mean')).where(
-        img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85')), 0),
-      percentile_images.select('CMI_ante12mo.*').gte(img.select('CMI_ante12mo_mean')).where(
-        img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p85')), 0),
-      percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min')).where(
-        img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p85')), 0)
+      percentile_images.select('CMI_ante3mo.*').gte(img.select('CMI_ante3mo_mean')).updateMask(
+        img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85'))),
+      percentile_images.select('CMI_ante12mo.*').gte(img.select('CMI_ante12mo_mean')).updateMask(
+        img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p85'))),
+      percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min')).updateMask(
+        img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p85')))
       ]).copyProperties(img);
     var new_names = ee.Image(out).bandNames();
     new_names = new_names.map(function(nm) {
