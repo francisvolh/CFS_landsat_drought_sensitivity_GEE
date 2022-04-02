@@ -21,6 +21,7 @@ var main_cap = function(output, region,
   // Variables
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
+  var percentile_list = [percentile_low, percentile_high];
   
   if (typeof(antecedent_list)==='undefined') var antecedent_list = ['3mo', '12mo', '5yr'];
   // var antecedent_list = ['3mo', '12mo', '5yr'];
