@@ -72,3 +72,21 @@ var export_img_cloud = function(cloud_name, cloud_bucket, scale, region, min_yea
 };
 exports.export_img_cloud = export_img_cloud;
 
+// ----------------- CAP --------------------------
+// Export img asset
+var export_img_asset_cap = function(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent) {
+  var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+  
+  var today = new Date().toJSON().slice(0, 10);
+  
+  asset_name = today + '_' + asset_name;
+  Export.image.toAsset({
+    image: out, 
+    description: asset_name, 
+    assetId: asset_path + '/' + asset_name, 
+    region: region, 
+    scale: scale
+  });
+};
+exports.export_img_asset_cap = export_img_asset_cap;
+
