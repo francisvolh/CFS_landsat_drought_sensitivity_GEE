@@ -30,8 +30,8 @@ var index = ['NDVI'];
 var antecedent = ['12mo'];
 
 // Get tiles
-var tiler = require('users/gena/packages:tiler')
-var tiles = tiler.getTilesForGeometry(geometry, 6)
+var tiler = require('users/gena/packages:tiler');
+var tiles = tiler.getTilesForGeometry(geometry, 6);
 
 
 
