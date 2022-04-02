@@ -41,13 +41,13 @@ var scale = 30;
 // loop regions
 // asset_name = id
 
-var tile_id_list = tilels.aggregate_array('id').distinct();
+var tile_id_list = tiles.aggregate_array('id').distinct();
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      
-      export_img.export_img_asset_cap(tile_id, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+      print('Abs' + index + ante + percentile_low + tile_id)
+      // export_img.export_img_asset_cap('Abs' + index + ante + percentile_low + tile_id, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
     });
 });
 
