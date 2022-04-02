@@ -43,28 +43,6 @@ var scale = 30;
 tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 
-// tile_id_list.evaluate(function(tile_ids) {
-//   tile_ids.forEach(function(tile_id) {
-//       var region = tiles.filter(ee.Filter.eq('id', tile_id));
-//       var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
-  
-//       var today = new Date().toJSON().slice(0, 10);
-      
-//       var asset_name = 'Abs' + index + ante + percentile_low + tile_id;
-//       asset_name = today + '_' + asset_name;
-//       Export.image.toAsset({
-//         image: out, 
-//         description: asset_name, 
-//         assetId: asset_path + '/' + asset_name, 
-//         region: region, 
-//         scale: scale
-//       });
-      
-//     });
-// });
-
-
-
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
