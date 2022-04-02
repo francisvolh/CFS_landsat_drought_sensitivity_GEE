@@ -98,3 +98,4 @@ var split_drought_cap = function(images, percentile_masks, antecedent_list, perc
   });
 };
 exports.split_drought_cap = split_drought_cap;
+ 
