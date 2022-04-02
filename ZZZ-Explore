@@ -1,6 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var image = ee.Image("users/robitalec/CFS/2022-04-01_test-export-asset");
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Gena's palette functions
 var palettes = require('users/gena/packages:palettes');
 
@@ -9,6 +6,10 @@ print(p)
 palettes.showPalette('vik', p)
 
 
-Map.addLayer(image, {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('CFS/2022-04-02_Abs_NDVI_12mo_p15_1'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('CFS/2022-04-02_Abs_NDVI_12mo_p15_2'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('CFS/2022-04-02_Abs_NDVI_12mo_p15_3'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('CFS/2022-04-02_Abs_NDVI_12mo_p15_4'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('CFS/2022-04-02_Abs_NDVI_12mo_p15_5'), {palette: p, min: -0.4, max: 0.4})
 
 // TEST Palettes vik
