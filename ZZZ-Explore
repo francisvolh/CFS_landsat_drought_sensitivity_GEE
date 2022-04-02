@@ -6,10 +6,12 @@ print(p)
 palettes.showPalette('vik', p)
 
 
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_1'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_2'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_3'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_4'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_5'), {palette: p, min: -0.4, max: 0.4})
-
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_12'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_13'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_14'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_15'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_15'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_16'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_17'), {palette: p, min: -0.4, max: 0.4})
+Map.centerObject(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_1'))
 // TEST Palettes vik
