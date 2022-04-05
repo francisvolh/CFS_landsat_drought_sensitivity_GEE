@@ -1,5 +1,266 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Point([-114.744677734375, 56.191807189132916]),
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "marker"
+      },
+      {
+        "type": "rectangle"
+      },
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry({
+      "type": "GeometryCollection",
+      "geometries": [
+        {
+          "type": "Point",
+          "coordinates": [
+            -114.744677734375,
+            56.191807189132916
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -123.37277758262944,
+            63.64308643820746
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -126.43246996544194,
+            64.68796839554574
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -123.66391527794194,
+            64.62683622373834
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -121.12607348106694,
+            63.75640321301208
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -125.86118090294194,
+            63.620050531536975
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -140.00058519981695,
+            63.922754097170795
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -140.16538012169195,
+            63.558202307349475
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -139.40732348106695,
+            63.56798479856994
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -139.34140551231695,
+            63.85990160544163
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -140.13242113731695,
+            64.82545117725188
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -137.94064867637945,
+            64.81610288552311
+          ]
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -137.96811449669195,
+            64.0840728780791
+          ]
+        },
+        {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -140.88498461387945,
+                64.95366161058391
+              ],
+              [
+                -140.88498461387945,
+                63.467554881694355
+              ],
+              [
+                -138.78659594200445,
+                63.467554881694355
+              ],
+              [
+                -138.78659594200445,
+                64.95366161058391
+              ]
+            ]
+          ],
+          "geodesic": false,
+          "evenOdd": true
+        },
+        {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -127.32999524109199,
+                64.99196374490535
+              ],
+              [
+                -127.32999524109199,
+                63.605816341068596
+              ],
+              [
+                -122.98490246765449,
+                63.605816341068596
+              ],
+              [
+                -122.98490246765449,
+                64.99196374490535
+              ]
+            ]
+          ],
+          "geodesic": false,
+          "evenOdd": true
+        },
+        {
+          "type": "Point",
+          "coordinates": [
+            -123.4911571755139,
+            60.23055240994466
+          ]
+        },
+        {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -122.89354108534761,
+                62.69771297511059
+              ],
+              [
+                -122.89354108534761,
+                61.22095155469151
+              ],
+              [
+                -118.48802350722261,
+                61.22095155469151
+              ],
+              [
+                -118.48802350722261,
+                62.69771297511059
+              ]
+            ]
+          ],
+          "geodesic": false,
+          "evenOdd": true
+        },
+        {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -118.05568296654681,
+                57.38105503967329
+              ],
+              [
+                -118.05568296654681,
+                55.10478297867873
+              ],
+              [
+                -111.35402281029681,
+                55.10478297867873
+              ],
+              [
+                -111.35402281029681,
+                57.38105503967329
+              ]
+            ]
+          ],
+          "geodesic": false,
+          "evenOdd": true
+        }
+      ],
+      "coordinates": []
+    }),
     dem = ee.Image("MERIT/DEM/v1_0_3");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Gena's palette functions
@@ -11,22 +272,22 @@ palettes.showPalette('vik', p)
 // Map.addLayer(dem)
 
 var blend = require('users/jja/public:blend.js');
-var dem_rgb = dem.visualize({
-  min:100, 
-  max:2000, 
-  palette: ['#000004', '#50127b', '#b63679', '#fc8761', '#fdfd65'],
-  forceRgbOutput:true
-});
+// var dem_rgb = dem.visualize({
+//   min:100, 
+//   max:2000, 
+//   palette: ['#000', '#fff'],
+//   forceRgbOutput:true
+// });
 
-var sens_rgb = ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_14').visualize({
-  palette:p,
-  min: -0.4,
-  max: 0.4,
-  forceRgbOutput:true
-})
+// var sens_rgb = ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_14').visualize({
+//   palette:p,
+//   min: -0.4,
+//   max: 0.4,
+//   forceRgbOutput:true
+// })
 
 // Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5})
-Map.addLayer(blend.addition(dem_rgb, sens_rgb), {min:-100, max:100})//, {min:-41, max:163});
+// Map.addLayer(blend.difference(dem_rgb, sens_rgb), {min:-100, max:100})//, {min:-41, max:163});
 
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_10'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_11'), {palette: p, min: -0.4, max: 0.4})
