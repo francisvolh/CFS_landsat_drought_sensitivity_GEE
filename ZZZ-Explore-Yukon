@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "marker"
@@ -46,9 +47,6 @@ var geometry =
       },
       {
         "type": "marker"
-      },
-      {
-        "type": "rectangle"
       },
       {
         "type": "rectangle"
@@ -185,31 +183,6 @@ var geometry =
           "coordinates": [
             [
               [
-                -122.89354108534761,
-                62.69771297511059
-              ],
-              [
-                -122.89354108534761,
-                61.22095155469151
-              ],
-              [
-                -118.48802350722261,
-                61.22095155469151
-              ],
-              [
-                -118.48802350722261,
-                62.69771297511059
-              ]
-            ]
-          ],
-          "geodesic": false,
-          "evenOdd": true
-        },
-        {
-          "type": "Polygon",
-          "coordinates": [
-            [
-              [
                 -118.05568296654681,
                 57.38105503967329
               ],
@@ -320,17 +293,16 @@ Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_14'), {p
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_69'), {palette: p, min: -0.4, max: 0.4})
 
 
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_70'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_71'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_72'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_70'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_71'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_72'), {palette: p, min: -0.4, max: 0.4})
 Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_73'), {palette: p, min: -0.4, max: 0.4})
 Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_74'), {palette: p, min: -0.4, max: 0.4})
 Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_75'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_75'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_76'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_77'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_78'), {palette: p, min: -0.4, max: 0.4})
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_79'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_76'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_77'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_78'), {palette: p, min: -0.4, max: 0.4})
+// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_79'), {palette: p, min: -0.4, max: 0.4})
 
 
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_80'), {palette: p, min: -0.4, max: 0.4})
@@ -365,9 +337,9 @@ Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_79'), {p
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_103'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_104'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_105'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_105'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_106'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_107'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_105'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_106'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_107'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_108'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_109'), {palette: p, min: -0.4, max: 0.4})
 
@@ -378,9 +350,9 @@ Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_79'), {p
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_113'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_114'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_115'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_115'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_116'), {palette: p, min: -0.4, max: 0.4})
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_117'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_115'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_116'), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_117'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_118'), {palette: p, min: -0.4, max: 0.4})
 // Map.addLayer(ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_119'), {palette: p, min: -0.4, max: 0.4})
 
