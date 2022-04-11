@@ -26,6 +26,17 @@ Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5})
 
 var col = ee.ImageCollection([
 ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_1'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_2'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_3'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_4'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_5'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_6'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_7'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_8'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_9'),
+ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_10'),
+
+
 // ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_11'),
 ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_12'),
 ee.Image('users/robitalec/CFS/2022-04-02_Abs_NDVI_12mo_p15_13'),
