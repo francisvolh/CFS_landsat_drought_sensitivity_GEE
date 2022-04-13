@@ -1,0 +1,11 @@
+var forest_lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+
+
+var snow = forest_lc.first().eq(31)
+
+Map.addLayer(snow)
+
+Map.addLayer(snow.focalMean(1000, null, 'meters'))
+
+
+Map.addLayer(snow.fastDistanceTransform())
