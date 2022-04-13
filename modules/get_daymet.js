@@ -28,3 +28,9 @@ var get_monthly_daymet = function(year_list, month_list) {
 							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
 exports.get_monthly_daymet = get_monthly_daymet;
+
+
+// Get long term normals 
+var get_long_term_normals = function(year_list) {
+  
+}
