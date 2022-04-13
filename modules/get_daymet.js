@@ -30,7 +30,7 @@ var get_monthly_daymet = function(year_list, month_list) {
 exports.get_monthly_daymet = get_monthly_daymet;
 
 
-// Get long term normals 
+// Get mean annual
 var get_mean_annual = function(year_list) {
   var annual = utils.aggregate_year(daymet, year_list, ee.Reducer.mean());
   
