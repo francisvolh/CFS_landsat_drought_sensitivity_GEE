@@ -36,4 +36,4 @@ var get_mean_annual = function(year_list) {
   
   return annual.reduce(ee.Reducer.mean());
 };
-exports.get_monthly_daymet = get_monthly_daymet;
+exports.get_mean_annual = get_mean_annual;
