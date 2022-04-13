@@ -62,7 +62,7 @@ var aggregrate_year = function(images, year_list, reducer) {
                    .reduce(reducer)
                    .set('year', yr)
                    .set('system:time_start', ee.Date.fromYMD(yr, 1, 1).millis());
-      });
+      }));
 };
 exports.aggregate_month_year = aggregate_month_year;
 
