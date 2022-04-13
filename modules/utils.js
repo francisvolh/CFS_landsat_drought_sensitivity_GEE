@@ -50,11 +50,11 @@ exports.aggregate_month_year = aggregate_month_year;
 
 // Aggregate each year with reducer
 var aggregrate_year = function(images, year_list, reducer) {
-  // Combine images returned for each year+month
+  // Combine images returned for each year
   return ee.ImageCollection.fromImages(
     // Map over years
     year_list.map(function(yr) {
-      // Filter images to year and month
+      // Filter images to year
       // Reduce with reducer provided
       // Set year, month and pseudo date properties
       // Return an image for each year and month
