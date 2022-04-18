@@ -27,14 +27,13 @@ var get_long_term_climate = function(year_list) {
   var annual = utils.aggregrate_year(daymet, year_list, reducer)
                     .select(['tmin_mean', 'tmax_mean', 'prcp_sum'], 
                             ['tmin', 'tmax', 'prcp']);
-  return annual                            
-  // var tmean = annual.map(function(img) {
-  //   return img.addBands([img.select(['tmin', 'tmax'])
-  //                           .reduce(ee.Reducer.mean())
-  //                           .rename('tmean')]);
-  // });
-  // annual = annual.addBands(tmean);
-  
+  var tmean = annual.map(function(img) {
+    return img.addBands([img.select(['tmin', 'tmax'])
+                            .reduce(ee.Reducer.mean())
+                            .rename('tmean')]);
+  });
+  annual = annual.addBands(tmean);
+  return annual
   // return annual.reduce(ee.Reducer.mean());
 };
 exports.get_long_term_climate = get_long_term_climate;
