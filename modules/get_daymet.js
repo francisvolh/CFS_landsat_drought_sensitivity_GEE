@@ -28,12 +28,3 @@ var get_monthly_daymet = function(year_list, month_list) {
 							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
 exports.get_monthly_daymet = get_monthly_daymet;
-
-
-// Get mean annual
-var get_mean_annual = function(year_list) {
-  var annual = utils.aggregrate_year(daymet, year_list, ee.Reducer.mean());
-  
-  return annual.reduce(ee.Reducer.mean());
-};
-exports.get_mean_annual = get_mean_annual;
