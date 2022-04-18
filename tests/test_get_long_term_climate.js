@@ -12,8 +12,8 @@ var years = ee.List.sequence(1985, 2020);
 var months = ee.List.sequence(5, 7);
 
 
-// Test get_monthly_daymet
-// Usage: get_monthly_daymet(year_list, month_list)
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-print(monthly_daymet);
-Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
+// Test get_long_term_climate
+// Usage: get_long_term_climate(year_list, month_list)
+var long_climate = climate.get_long_term_climate(years, months);
+print(long_climate);
+Map.addLayer(long_climate.select('prcp'), {min:0, max:500});
