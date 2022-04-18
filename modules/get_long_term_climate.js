@@ -29,8 +29,10 @@ var get_long_term_climate = function(year_list) {
                             ['tmin', 'tmax', 'prcp']);
                             
   var tmean = annual.map(function(img) {
-    return img.select(['tmin', 'tmax']).reduce(ee.Reducer.mean());
-  }).rename('tmean');
+    return img.select(['tmin', 'tmax'])
+              .reduce(ee.Reducer.mean())
+              .rename('tmean');
+  });
   annual = annual.addBands(tmean);
   
   return annual.reduce(ee.Reducer.mean());
