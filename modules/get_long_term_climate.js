@@ -24,9 +24,14 @@ var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 // Get long term climate
 var get_long_term_climate = function(year_list) {
-  var annual = utils.aggregrate_year(daymet, year_list, ee.Reducer.mean()
+  var annual = utils.aggregrate_year(daymet, year_list, reducer)
                     .select(['tmin_mean', 'tmax_mean', 'prcp_sum'], 
                             ['tmin', 'tmax', 'prcp']);
+                            
+  var tmean = annual.map(function(img) {
+    return img.select(['tmin', 'tmax']).reduce(ee.Reducer.mean());
+  }).rename('tmean');
+  annual = annual.addBands(tmean)
   
   return annual.reduce(ee.Reducer.mean());
 };
