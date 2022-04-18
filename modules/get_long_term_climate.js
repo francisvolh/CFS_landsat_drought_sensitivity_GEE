@@ -32,7 +32,6 @@ var get_long_term_climate = function(year_list) {
                             .reduce(ee.Reducer.mean())
                             .rename('tmean')]);
   });
-  return annual
-  // return annual.reduce(ee.Reducer.mean());
+  return annual.reduce(ee.Reducer.mean());
 };
 exports.get_long_term_climate = get_long_term_climate;
