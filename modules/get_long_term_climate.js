@@ -27,7 +27,7 @@ var get_long_term_climate = function(year_list) {
   var annual = utils.aggregrate_year(daymet, year_list, reducer)
                     .select(['tmin_mean', 'tmax_mean', 'prcp_sum'], 
                             ['tmin', 'tmax', 'prcp']);
-  var tmean = annual.map(function(img) {
+  annual = annual.map(function(img) {
     return img.addBands([img.select(['tmin', 'tmax'])
                             .reduce(ee.Reducer.mean())
                             .rename('tmean')]);
