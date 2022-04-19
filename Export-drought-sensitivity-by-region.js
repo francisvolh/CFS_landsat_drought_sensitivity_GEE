@@ -38,4 +38,4 @@ ecoregions = ecoregions.filterBounds(geometry).limit(1);
 
 // Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
 export_by.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-Map.addLayer(ecoregions)
+Map.addLayer(ecoregions);
