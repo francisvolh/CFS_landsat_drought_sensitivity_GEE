@@ -13,7 +13,7 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Export drought sensitivity by region
-Based on: tests/test_exports.js
+Based on: tests/test_export_by.js
 Alec L. Robitaille
 */
 
