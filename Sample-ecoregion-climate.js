@@ -33,8 +33,8 @@ var long_climate = climate.get_long_term_climate(years)
     .select(['tmean_mean', 'prcp_mean']);
 
 var sample = ecoregions.map(function(ft) {
-  return ft.set(long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry(), 1000))
-}).flatten()
+  return ft.set(long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry(), 1000));
+}).flatten();
 
 
 Map.addLayer(ecoregions)
