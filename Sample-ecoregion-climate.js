@@ -35,7 +35,7 @@ var long_climate = climate.get_long_term_climate(years)
 
 
 var sample = ecoregions.map(function(ft) {
-  return long_climate.reduceRegions(ft, ee.Reducer.mean(), 1000);
+  return long_climate.reduceRegion(ft, ee.Reducer.mean(), 1000);
 }).flatten();
 
 Map.addLayer(ecoregions)
