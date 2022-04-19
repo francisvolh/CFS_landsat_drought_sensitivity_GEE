@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-141.4430528814123, 68.27919277463084],
           [-141.13300806589254, 64.04137893026935],
           [-139.73426050644431, 60.04815657459371],
@@ -21,7 +24,7 @@ var years = ee.List.sequence(1985, 2020);
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry)
-  // .randomColumn().filter(ee.Filter.lt('random', 0.2));
+  .randomColumn().filter(ee.Filter.lt('random', 0.2));
 
 
 
