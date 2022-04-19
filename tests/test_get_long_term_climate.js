@@ -11,6 +11,7 @@ var climate = require('users/robitalec/CFS:modules/get_long_term_climate.js');
 var years = ee.List.sequence(1985, 2020);
 
 
+
 // Test get_long_term_climate
 // Usage: get_long_term_climate(year_list)
 var long_climate = climate.get_long_term_climate(years);
