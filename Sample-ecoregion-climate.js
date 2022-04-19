@@ -20,4 +20,4 @@ var long_climate = climate.get_long_term_climate(years)
 var sample = long_climate.reduceRegions(ecoregions, ee.Reducer.mean(), 1000);
 
 
-Export.table.toDrive(sample, 'subsample-reverse-long-term')
+Export.table.toDrive(sample, 'ecoregion-long-term-climate');
