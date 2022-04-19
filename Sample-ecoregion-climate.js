@@ -20,7 +20,8 @@ var years = ee.List.sequence(1985, 2020);
 
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(geometry);
+ecoregions = ecoregions.filterBounds(geometry)
+  .randomColumn().filter(ee.Filter.lt('random', 0.2));
 
 
 
