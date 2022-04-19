@@ -17,7 +17,6 @@ lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 
 
 
-
 // Export img asset
 var export_img_asset = function(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
   var out = main.main('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
@@ -71,6 +70,8 @@ var export_img_cloud = function(cloud_name, cloud_bucket, scale, region, min_yea
   });
 };
 exports.export_img_cloud = export_img_cloud;
+
+
 
 // ----------------- CAP --------------------------
 // Export img asset
