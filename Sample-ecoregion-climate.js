@@ -20,7 +20,7 @@ var years = ee.List.sequence(1985, 2020);
 
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(geometry).limit(1);
+ecoregions = ecoregions.filterBounds(geometry);
 
 
 
@@ -32,5 +32,5 @@ var long_climate = climate.get_long_term_climate(years)
 
 var sample = long_climate.reduceRegions(ecoregions, ee.Reducer.mean(), 1000);
 
-
+Map.addLayer(ecoregions)
 Export.table.toDrive(sample, 'ecoregion-long-term-climate');
