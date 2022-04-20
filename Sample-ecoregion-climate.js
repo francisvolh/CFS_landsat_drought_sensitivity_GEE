@@ -24,7 +24,7 @@ var years = ee.List.sequence(1985, 2020);
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry)
-  .randomColumn().filter(ee.Filter.lt('random', 0.20))
+  // .randomColumn().filter(ee.Filter.lt('random', 0.20))
   // .limit(2);
   
   
@@ -34,11 +34,11 @@ var long_climate = climate.get_long_term_climate(years)
     .select(['tmean_mean', 'prcp_mean']);
 
 // var sample = ecoregions.map(function(ft) {
-//   return ft.set(long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry()), 1000);
+//   return ft.set(long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry()));
 // }).flatten();
 
 var sample = ecoregions.map(function(ft) {
-  var red = long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry(), 1000)
+  var red = long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry(), 2500)
                         .set('ECOREGI', ft.get('ECOREGI'))
   return ee.Feature(ee.Geometry.Point([0,0]), red);
 })
@@ -47,4 +47,4 @@ var sample = ecoregions.map(function(ft) {
 // Map.addLayer(ecoregions)
 
 
-Export.table.toDrive(sample, 'ecoregion-long-term-climate-dict-20');
+Export.table.toDrive(sample, 'ecoregion-long-term-climate-dict-2500');
