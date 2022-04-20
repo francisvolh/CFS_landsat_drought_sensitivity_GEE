@@ -7,9 +7,9 @@ Alec L. Robitaille
 // Load modules
 var hand = require('users/robitalec/CFS:modules/get_hand.js');
 
-
+// Palette
 var palettes = require('users/gena/packages:palettes');
-var p = palettes.crameri.lajolla[50]
+var p = palettes.crameri.lajolla[50];
 
 
 // Test get_hand
