@@ -9,6 +9,10 @@ Geophysical Research Abstracts, Vol. 18, EGU2016-17445-3, 2016, EGU General Asse
 
 */
 
+// Modules
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+
+
 
 // Get HAND
 var get_hand = function(resolution, threshold) {
@@ -22,3 +26,20 @@ var get_hand = function(resolution, threshold) {
   }
 };
 exports.get_hand = get_hand;
+
+
+
+// Get proportion glacier/permanent snow
+// 
+
+var snow_mode = land_cover.hermosilla_plus_2022()
+                .reduce(ee.Reducer.mode())
+                .eq(31);
+
+var get_prop_permanent_snow = function(focal_dist) {
+  snow_mode.focalMean(focal_dist, null, 'meters');
+};
+exports.get_prop_permanent_snow = get_prop_permanent_snow;
+                
+
+// img.fastDistanceTransform()
