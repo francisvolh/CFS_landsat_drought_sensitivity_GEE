@@ -51,7 +51,7 @@ exports.get_prop_permanent_snow = get_prop_permanent_snow;
 // Distance to major lake
 // Note: searchRadius (Float, default: 100000):
 //       Maximum distance in meters from each pixel to look for edges. Pixels will be masked unless there are edges within this distance.
-var get_dist_major_lake = function(min_lake_area) {
+var get_dist_major_lakes = function(min_lake_area) {
   var lake_poly = ee.FeatureCollection("projects/sat-io/open-datasets/HydroLakes/lake_poly_v10")
     .filter(ee.Filter.eq('Continent', 'North America'))
     .filter(ee.Filter.eq('Country', 'Canada'))
@@ -59,4 +59,4 @@ var get_dist_major_lake = function(min_lake_area) {
   
   return lake_poly.distance();
 };
-exports.get_dist_major_lake = get_dist_major_lake;
+exports.get_dist_major_lakes = get_dist_major_lakes;
