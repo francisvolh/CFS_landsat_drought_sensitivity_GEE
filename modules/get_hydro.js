@@ -30,7 +30,7 @@ exports.get_hand = get_hand;
 
 
 // Get proportion glacier/permanent snow
-var snow_mode = land_cover.hermosilla_plus_2022(
+var snow_mode = land_cover.hermosilla_plus_2022
                 .reduce(ee.Reducer.mode())
                 .eq(31);
 
