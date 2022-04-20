@@ -41,7 +41,7 @@ var sample = ecoregions.map(function(ft) {
   var red = long_climate.reduceRegion({
     reducer: ee.Reducer.mean(), 
     geometry: ft.geometry(), 
-    scale: 1000,
+    scale: 2500,
     bestEffort: true
   }).set('ECOREGI', ft.get('ECOREGI'));
   return ee.Feature(ee.Geometry.Point([0,0]), red);
