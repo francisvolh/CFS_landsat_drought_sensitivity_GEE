@@ -37,3 +37,15 @@ Map.addLayer(prop_snow_1000, {min:0, max:1});
 var prop_snow_5000 = get_hydro.get_prop_permanent_snow(5000);
 print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1});
+
+
+
+// Test get_dist_major_lakes
+// Usage: get_dist_major_lakes(min_lake_area)
+var dist_major_lake_500 = get_hydro.get_dist_major_lakes(500);
+print(dist_major_lake_500);
+Map.addLayer(dist_major_lake_500, {min:0, max:10000});
+
+var dist_major_lake_1000 = get_hydro.get_dist_major_lakes(1000);
+print(dist_major_lake_1000);
+Map.addLayer(dist_major_lake_1000, {min:0, max:10000});
