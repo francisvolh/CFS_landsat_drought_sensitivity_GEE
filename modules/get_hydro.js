@@ -7,6 +7,13 @@ HAND
 Donchyts, Gennadii, Hessel Winsemius, Jaap Schellekens, Tyler Erickson, Hongkai Gao, Hubert Savenije, and Nick van de Giesen. "Global 30m Height Above the Nearest Drainage (HAND)",
 Geophysical Research Abstracts, Vol. 18, EGU2016-17445-3, 2016, EGU General Assembly (2016).
 
+HydroLAKES
+Messager, Mathis Loïc, Bernhard Lehner, Günther Grill, Irena Nedeva, and Oliver Schmitt. "Estimating the volume and
+age of water stored in global lakes using a geo-statistical approach."
+Nature communications 7, no. 1 (2016): 1-11.
+https://samapriya.github.io/awesome-gee-community-datasets/projects/hydrolakes/
+
+
 */
 
 // Modules
@@ -40,4 +47,16 @@ var get_prop_permanent_snow = function(focal_dist) {
 exports.get_prop_permanent_snow = get_prop_permanent_snow;
                 
 
-// img.fastDistanceTransform()
+
+// Distance to major lake
+// Note: searchRadius (Float, default: 100000):
+//       Maximum distance in meters from each pixel to look for edges. Pixels will be masked unless there are edges within this distance.
+var get_dist_major_lake = function(min_lake_area) {
+  var lake_poly = ee.FeatureCollection("projects/sat-io/open-datasets/HydroLakes/lake_poly_v10")
+    .filter(ee.Filter.eq('Continent', 'North America'))
+    .filter(ee.Filter.eq('Country', 'Canada'))
+    .filter(ee.Filter.gt('Lake_area', min_lake_area));
+  
+  return lake_poly.distance();
+};
+exports.get_dist_major_lake = get_dist_major_lake;
