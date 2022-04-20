@@ -51,4 +51,4 @@ var sample = ecoregions.map(function(ft) {
 // Map.addLayer(ecoregions)
 
 
-Export.table.toDrive(sample, 'ecoregion-long-term-climate-dict-2500');
+Export.table.toDrive(sample, 'ecoregion-long-term-climate-dict-best-effort');
