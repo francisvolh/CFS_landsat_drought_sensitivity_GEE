@@ -1,14 +1,16 @@
 /*
-Get HAND
+Get hydro variables
 Alec L. Robitaille
 
+
+HAND
 Donchyts, Gennadii, Hessel Winsemius, Jaap Schellekens, Tyler Erickson, Hongkai Gao, Hubert Savenije, and Nick van de Giesen. "Global 30m Height Above the Nearest Drainage (HAND)",
 Geophysical Research Abstracts, Vol. 18, EGU2016-17445-3, 2016, EGU General Assembly (2016).
 
 */
 
 
-// Get HAND 
+// Get HAND
 var get_hand = function(resolution, threshold) {
   if (resolution == 30 & threshold == 100) {
     // Note: image collection vs image
@@ -18,5 +20,5 @@ var get_hand = function(resolution, threshold) {
   } else if (resolution == 90 & threshold == 1000) {
     return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000");
   }
-}; 
+};
 exports.get_hand = get_hand;
