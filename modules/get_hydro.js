@@ -48,7 +48,7 @@ exports.get_prop_permanent_snow = get_prop_permanent_snow;
                 
 
 
-// Distance to major lake
+// Distance to major lakes
 // Note: searchRadius (Float, default: 100000):
 //       Maximum distance in meters from each pixel to look for edges. Pixels will be masked unless there are edges within this distance.
 var get_dist_major_lakes = function(min_lake_area) {
