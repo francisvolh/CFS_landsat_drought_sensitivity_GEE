@@ -30,10 +30,10 @@ Map.addLayer(hand_90_1000.select('b1'), {min:0, max:500, palette:p});
 
 // Test get_prop_permanent_snow
 // Usage: get_prop_permanent_snow(focal_dist)
-var prop_snow_1000 = get_prop_permanent_snow(1000);
+var prop_snow_1000 = get_hydro.get_prop_permanent_snow(1000);
 print(prop_snow_1000);
 Map.addLayer(prop_snow_1000, {min:0, max:1});
 
-var prop_snow_5000 = get_prop_permanent_snow(5000);
+var prop_snow_5000 = get_hydro.get_prop_permanent_snow(5000);
 print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1});
