@@ -58,7 +58,7 @@ var lc_2020 = lc_2019
   .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
   .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis())
 var hermosilla_plus_2022 = ee.ImageCollection(hermosilla_2022.toList(50).add(lc_2020))
-
+exports.hermosilla_plus_2022 = hermosilla_plus_2022;
 
 // Mask classes
 var mask_classes = function(img) {
