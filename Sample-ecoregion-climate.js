@@ -38,10 +38,14 @@ var long_climate = climate.get_long_term_climate(years)
 // }).flatten();
 
 var sample = ecoregions.map(function(ft) {
-  var red = long_climate.reduceRegion(ee.Reducer.mean(), ft.geometry(), 2500)
-                        .set('ECOREGI', ft.get('ECOREGI'))
+  var red = long_climate.reduceRegion({
+    reducer: ee.Reducer.mean(), 
+    geometry: ft.geometry(), 
+    scale: 1000,
+    bestEffort: true
+  }).set('ECOREGI', ft.get('ECOREGI'));
   return ee.Feature(ee.Geometry.Point([0,0]), red);
-})
+});
 
 // print(sample)
 // Map.addLayer(ecoregions)
