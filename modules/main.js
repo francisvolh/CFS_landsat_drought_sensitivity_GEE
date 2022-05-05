@@ -60,7 +60,7 @@ exports.main = main;
 
 
 
-
+// TODO: does this use cap?
 var main_cap = function(output, region, 
                     min_year, max_year, min_mm_dd, max_mm_dd, 
                     index_list, percentile_low, percentile_high, antecedent_list) {
