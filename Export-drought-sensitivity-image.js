@@ -36,4 +36,4 @@ var export_name = 'sens_' + index + '_' + antecedent + '_p' + percentile;
 
 // Export image to drive
 // Usage: export_img_drive(drive_name, drive_folder, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
-export_img.export_img_drive(export_name, 'Export', 30, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
+export_img.export_img_drive(export_name, 'Exports', 30, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
