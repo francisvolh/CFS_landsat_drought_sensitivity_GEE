@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-123.65066691768052, 53.76317973565826],
-          [-123.65066691768052, 50.807514646527544],
-          [-114.33426066768052, 50.807514646527544],
-          [-114.33426066768052, 53.76317973565826]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Build sampling collection
 Alec L. Robitaille
@@ -39,7 +25,8 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 var n_pts = 500;
 
-var lc = land_cover.get_homogeneous_land_cover().reduce(ee.Reducer.mode()).rename('land_cover');
+var lc = land_cover.get_land_cover();
+var lc = land_cover.get_().reduce(ee.Reducer.mode()).rename('land_cover');
 
 
 var points = ecoregions.map(function(ft) {
@@ -48,11 +35,12 @@ var points = ecoregions.map(function(ft) {
       return f.set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
                     ecozone: ft.get('ECOZONE'),
-                    sampling_collection: new Date().toJSON().slice(0, 10)
+                    sampling_collection: new Date().toJSON().slice(0, 10),
+                    lc_focal_mean: f.sample(lc_focal_mean)
       });
     });
 }).flatten();
 
 
 var today = new Date().toJSON().slice(0, 10);
-Export.table.toAsset(points, 'sampling points', 'CFS/' + today + '_sampling_points');
+Export.table.toAsset(points, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
