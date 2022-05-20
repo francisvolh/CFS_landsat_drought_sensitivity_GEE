@@ -39,6 +39,12 @@ print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1});
 
 
+// Test get_prop_water
+var prop_water_5000 = get_hydro.get_prop_water(5000);
+print(prop_water_5000);
+Map.addLayer(prop_water_5000, {min:0, max:1});
+
+
 
 // Test get_dist_major_lakes
 // Usage: get_dist_major_lakes(min_lake_area)
