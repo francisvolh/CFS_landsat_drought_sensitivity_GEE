@@ -25,12 +25,14 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 var n_pts = 500;
 
-var lc = land_cover.get_land_cover();
+var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
+lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
+
 var lc_focal_mean = land_cover.get_lc_focal_mean();
 
 
 var points = ecoregions.map(function(ft) {
-  return stratified.stratified_sample(lc, 'land_cover', 30, ft.geometry(), n_pts)
+  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts)
     .map(function(f) {
       return f.set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
