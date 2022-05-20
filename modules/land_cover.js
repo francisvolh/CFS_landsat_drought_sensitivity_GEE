@@ -127,6 +127,6 @@ var get_lc_focal_mean = function() {
   return hermosilla_plus_2022
     .reduce(ee.Reducer.mode())
     .focalMean(n_pixels, 'square', 'pixels')
-    .updateMask(lc_and_fire);
+    .updateMask(lc_and_fire.reduce(ee.Reducer.mode()).mask());
 };
 exports.get_lc_focal_mean = get_lc_focal_mean;
