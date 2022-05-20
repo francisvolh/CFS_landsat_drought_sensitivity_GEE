@@ -55,3 +55,8 @@ Map.addLayer(dist_major_lake_500, {min:0, max:10000}, 'dist lakes > 500');
 var dist_major_lake_1000 = get_hydro.get_dist_major_lakes(1000);
 print(dist_major_lake_1000);
 Map.addLayer(dist_major_lake_1000, {min:0, max:10000}, 'dist lakes > 1000');
+
+
+// Test get_col
+var col = get_hydro.get_col();
+print(col);
