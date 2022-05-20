@@ -120,3 +120,12 @@ var get_homogeneous_land_cover = function() {
     .map(mask_classes);
 };
 exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
+
+// Get focal mean band
+var get_lc_focal_mean = function() {
+  return hermosilla_plus_2022
+    .map(utils.set_year)
+    .map(function(img) {return img.focalMean(1, 'square', 'pixels')})
+    .map(mask_classes);
+};
+exports.get_lc_focal_mean = get_lc_focal_mean;
