@@ -29,7 +29,7 @@ var get_hand = function(resolution, threshold) {
   } else if (resolution == 30 & threshold == 1000) {
     return ee.Image("users/gena/GlobalHAND/30m/hand-1000");
   } else if (resolution == 90 & threshold == 1000) {
-    return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select('b1', 'hand-90-1000');
+    return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select(['b1'], ['hand-90-1000']);
   }
 };
 exports.get_hand = get_hand;
