@@ -124,9 +124,8 @@ exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
 
 // Get focal mean band
 var get_lc_focal_mean = function() {
-  return hermosilla_plus_2022
+  return mask_classes(hermosilla_plus_2022
     .reduce(ee.Reducer.mode())
-    .focalMean(n_pixels, 'square', 'pixels')
-    .map(mask_classes);
+    .focalMean(n_pixels, 'square', 'pixels'));
 };
 exports.get_lc_focal_mean = get_lc_focal_mean;
