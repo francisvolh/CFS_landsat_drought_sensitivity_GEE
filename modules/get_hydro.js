@@ -49,7 +49,7 @@ var snow_mode = land_cover.hermosilla_plus_2022
                 .eq(31);
 
 var get_prop_permanent_snow = function(focal_dist) {
-  return snow_mode.focalMean(focal_dist, null, 'meters');
+  return snow_mode.focalMean(focal_dist, null, 'meters').rename('prop_water_' + focal_dist);
 };
 exports.get_prop_permanent_snow = get_prop_permanent_snow;
                 
@@ -59,7 +59,7 @@ var water_mode = land_cover.hermosilla_plus_2022
                            .eq(20);
                 
 var get_prop_water = function(focal_dist) {
-  return water_mode.focalMean(focal_dist, null, 'meters');
+  return water_mode.focalMean(focal_dist, null, 'meters').rename('prop_water_' + focal_dist);
 };
 exports.get_prop_water = get_prop_water;
 
@@ -73,7 +73,7 @@ var get_dist_major_lakes = function(min_lake_area) {
     .filter(ee.Filter.eq('Country', 'Canada'))
     .filter(ee.Filter.gt('Lake_area', min_lake_area));
   
-  return lake_poly.distance();
+  return lake_poly.distance().rename('dist_lake_gt_' + min_lake_area);
 };
 exports.get_dist_major_lakes = get_dist_major_lakes;
 
