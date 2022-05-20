@@ -110,3 +110,13 @@ var mask_heterogeneous = function(img) {
   return img.mask(img.eq(img_mode));
 };
 exports.mask_heterogeneous = mask_heterogeneous;
+
+
+// Get homogeneous land cover collection
+var get_homogeneous_land_cover = function() {
+	return hermosilla_plus_2022
+    .map(utils.set_year)
+    .map(mask_heterogeneous)
+    .map(mask_classes);
+};
+exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
