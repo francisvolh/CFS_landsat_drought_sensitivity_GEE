@@ -31,12 +31,12 @@ var geometry =
 var get_hand = function(resolution, threshold) {
   if (resolution == 30 & threshold == 100) {
     // Note: image collection vs image
-    return ee.ImageCollection("users/gena/global-hand/hand-100").select(['b1'], ['hand-30-100'])
+    return ee.ImageCollection("users/gena/global-hand/hand-100").select(['b1'], ['hand_30_100'])
         .filterBounds(geometry).mosaic();
   } else if (resolution == 30 & threshold == 1000) {
-    return ee.Image("users/gena/GlobalHAND/30m/hand-1000").select(['b1'], ['hand-30-1000']);
+    return ee.Image("users/gena/GlobalHAND/30m/hand-1000").select(['b1'], ['hand_30_1000']);
   } else if (resolution == 90 & threshold == 1000) {
-    return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select(['b1'], ['hand-90-1000']);
+    return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select(['b1'], ['hand_90_1000']);
   }
 };
 exports.get_hand = get_hand;
