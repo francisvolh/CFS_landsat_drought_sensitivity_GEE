@@ -47,5 +47,5 @@ Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.mask_l
 
 // Test mask_heterogeneous
 // Usage: mask_heterogeneous(img)
-var mask_hetero_lc = land_cover.mask_heterogeneous(lc_2008);
+var mask_hetero_lc = land_cover.mask_heterogeneous(indices_masked_lc_and_fire);
 Map.addLayer(mask_hetero_lc, null, 'land_cover.mask_heterogeneous(img)')
