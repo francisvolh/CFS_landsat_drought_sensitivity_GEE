@@ -71,7 +71,10 @@ var get_dist_major_lakes = function(min_lake_area) {
 exports.get_dist_major_lakes = get_dist_major_lakes;
 
 
-ee.ImageCollection([
+
+// Get sampling collection
+var get_col = function() {
+  return ee.ImageCollection([
   get_hand(30, 100),
   get_hand(30, 1000),
   get_hand(90, 1000),
@@ -79,21 +82,6 @@ ee.ImageCollection([
   get_prop_water(1000),
   get_prop_water(300),
   get_dist_major_lakes(500)
-
-  
-  
-  ])
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  ]);
+};
+exports.get_col = get_col;
