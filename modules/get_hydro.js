@@ -66,7 +66,7 @@ var get_dist_major_lakes = function(min_lake_area) {
     .filter(ee.Filter.eq('Country', 'Canada'))
     .filter(ee.Filter.gt('Lake_area', min_lake_area));
   
-  return lake_poly.distance();
+  return lake_poly.distance().where(water_mode, 0);
 };
 exports.get_dist_major_lakes = get_dist_major_lakes;
 
