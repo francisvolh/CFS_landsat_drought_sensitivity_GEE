@@ -102,3 +102,11 @@ var mask_land_cover_and_fire = function(img) {
 };
 exports.mask_land_cover_and_fire = mask_land_cover_and_fire;
 exports.lc_and_fire = lc_and_fire;
+
+
+// Mask heterogeneous
+var mask_heterogeneous = function(img) {
+  var img_mode = img.focalMode(1, 'square', 'pixels');
+  return img.mask(img.eq(img_mode));
+};
+exports.mask_heterogeneous = mask_heterogeneous;
