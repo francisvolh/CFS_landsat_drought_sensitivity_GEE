@@ -26,7 +26,7 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 var n_pts = 500;
 
 var lc = land_cover.get_land_cover();
-var lc = land_cover.get_().reduce(ee.Reducer.mode()).rename('land_cover');
+var lc_focal_mean = land_cover.get_lc_focal_mean();
 
 
 var points = ecoregions.map(function(ft) {
