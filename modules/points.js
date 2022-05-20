@@ -47,7 +47,9 @@ var points = ecoregions.map(function(ft) {
     .map(function(f) {
       return f.set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
-                    ecozone: ft.get('ECOZONE')});
+                    ecozone: ft.get('ECOZONE'),
+                    sampling_collection: new Date().toJSON().slice(0, 10)
+      });
     });
 }).flatten();
 
