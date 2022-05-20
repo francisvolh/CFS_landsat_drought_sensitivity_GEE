@@ -74,7 +74,7 @@ exports.get_dist_major_lakes = get_dist_major_lakes;
 
 // Get sampling collection
 var get_col = function() {
-  return ee.ImageCollection([
+  return ee.Image([
   get_hand(30, 100),
   get_hand(30, 1000),
   get_hand(90, 1000),
