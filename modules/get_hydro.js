@@ -46,6 +46,15 @@ var get_prop_permanent_snow = function(focal_dist) {
 };
 exports.get_prop_permanent_snow = get_prop_permanent_snow;
                 
+// Get proportion water
+var water_mode = land_cover.hermosilla_plus_2022
+                           .reduce(ee.Reducer.mode())
+                           .eq(20);
+                
+var get_prop_water = function(focal_dist) {
+  return water_mode.focalMean(focal_dist, null, 'meters');
+};
+exports.get_prop_water = get_prop_water;
 
 
 // Distance to major lakes
@@ -60,3 +69,31 @@ var get_dist_major_lakes = function(min_lake_area) {
   return lake_poly.distance();
 };
 exports.get_dist_major_lakes = get_dist_major_lakes;
+
+
+ee.ImageCollection([
+  get_hand(30, 100),
+  get_hand(30, 1000),
+  get_hand(90, 1000),
+  get_prop_permanent_snow(1000),
+  get_prop_water(1000),
+  get_prop_water(300),
+  get_dist_major_lakes(500)
+
+  
+  
+  ])
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
