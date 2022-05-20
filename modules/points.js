@@ -12,9 +12,11 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 
 var n_pts = 5//150;
 
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
+var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
 
-var lc_homogeneous = land_cover.get_homogeneous_land_cover().mode();
+.limit(2);
+
+var lc_homogeneous = land_cover.get_homogeneous_land_cover().limit(2).mode();
 
 
 var points = ecoregions.map(function(ft) {
