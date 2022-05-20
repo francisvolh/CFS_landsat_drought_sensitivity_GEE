@@ -106,7 +106,7 @@ exports.lc_and_fire = lc_and_fire;
 
 // Mask heterogeneous
 var mask_heterogeneous = function(img) {
-  var img_mode = img.focalMode(1, 'square', 'pixels');
+  var img_mode = img.focalMean(1, 'square', 'pixels');
   return img.mask(img.eq(img_mode));
 };
 exports.mask_heterogeneous = mask_heterogeneous;
