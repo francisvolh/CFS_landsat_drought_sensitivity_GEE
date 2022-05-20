@@ -105,8 +105,9 @@ exports.lc_and_fire = lc_and_fire;
 
 
 // Mask heterogeneous
+var n_pixels = 1.5;
 var mask_heterogeneous = function(img) {
-  var foc_mean = img.focalMean(1.5, 'square', 'pixels');
+  var foc_mean = img.focalMean(n_pixels, 'square', 'pixels');
   return img.mask(img.eq(foc_mean));
 };
 exports.mask_heterogeneous = mask_heterogeneous;
@@ -125,7 +126,7 @@ exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
 var get_lc_focal_mean = function() {
   return hermosilla_plus_2022
     .reduce(ee.Reducer.mode())
-    .focalMean(1, 'square', 'pixels')
+    .focalMean(n_pixels, 'square', 'pixels')
     .map(mask_classes);
 };
 exports.get_lc_focal_mean = get_lc_focal_mean;
