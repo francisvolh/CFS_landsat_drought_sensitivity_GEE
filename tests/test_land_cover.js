@@ -54,5 +54,5 @@ Map.addLayer(mask_hetero_lc, null, 'land_cover.mask_heterogeneous(img)');
 
 // Test get_homogeneous_land_cover
 // Usage: get_homogeneous_land_cover()
-var lc_homogeneous = get_homogeneous_land_cover();
+var lc_homogeneous = land_cover.get_homogeneous_land_cover();
 print(lc_homogeneous);
