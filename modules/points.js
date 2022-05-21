@@ -38,7 +38,7 @@ var points = ecoregions.map(function(ft) {
                     ecoregion: ft.get('ECOREGI'),
                     ecozone: ft.get('ECOZONE'),
                     sampling_collection: new Date().toJSON().slice(0, 10),
-                    lc_focal_mean: lc_focal_mean.sample(f, 30)
+                    lc_focal_mean: lc_focal_mean.sample(f.geometry(), 30)
       });
     });
 }).flatten();
