@@ -37,12 +37,13 @@ var points = ecoregions.map(function(ft) {
       return f.set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
                     ecozone: ft.get('ECOZONE'),
-                    sampling_collection: new Date().toJSON().slice(0, 10),
-                    lc_focal_mean: lc_focal_mean.sample(f.geometry(), 30)
+                    sampling_collection: new Date().toJSON().slice(0, 10)
       });
     });
 }).flatten();
 
+var reduce = lc_focal_mean.reduceRegions(points, ee.Reducer.mean(), 30);
+
 
 var today = new Date().toJSON().slice(0, 10);
-Export.table.toAsset(points, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
+Export.table.toAsset(reduce, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
