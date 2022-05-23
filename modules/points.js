@@ -29,10 +29,10 @@ var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
 lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 
 var lc_focal_mean = land_cover.get_lc_focal_mean();
-
+print(lc_focal_mean)
 
 var points = ecoregions.map(function(ft) {
-  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts)
+  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 3000, ft.geometry(), n_pts)
     .map(function(f) {
       return f.set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
@@ -42,8 +42,8 @@ var points = ecoregions.map(function(ft) {
     });
 }).flatten();
 
-var reduce = lc_focal_mean.reduceRegions(points, ee.Reducer.mean(), 30);
+var reduce = lc_focal_mean.reduceRegions(points, ee.Reducer.mean(), 30)
+  .copyProperties(points);
 
-print(reduce.limit(2))
 var today = new Date().toJSON().slice(0, 10);
 Export.table.toAsset(reduce, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
