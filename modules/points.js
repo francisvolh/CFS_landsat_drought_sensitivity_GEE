@@ -44,6 +44,6 @@ var points = ecoregions.map(function(ft) {
 
 var reduce = lc_focal_mean.reduceRegions(points, ee.Reducer.mean(), 30);
 
-
+print(reduce.limit(2))
 var today = new Date().toJSON().slice(0, 10);
 Export.table.toAsset(reduce, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
