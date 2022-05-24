@@ -42,8 +42,5 @@ var points = ecoregions.map(function(ft) {
     });
 }).flatten();
 
-var reduce = lc_focal_mean.reduceRegions(points, ee.Reducer.mean(), 30)
-  .copyProperties(points);
-
 var today = new Date().toJSON().slice(0, 10);
-Export.table.toAsset(reduce, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
+Export.table.toAsset(points, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
