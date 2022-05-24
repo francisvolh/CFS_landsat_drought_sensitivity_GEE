@@ -33,12 +33,13 @@ print(lc_focal_mean)
 
 var points = ecoregions.map(function(ft) {
   return stratified.stratified_sample(lc_modal, 'land_cover_mode', 3000, ft.geometry(), n_pts)
-    .map(function(f) {
-      return f.set({ecoprovince: ft.get('ECOPROV'),
+    // .map(function(f) {
+    //   return f
+      .set({ecoprovince: ft.get('ECOPROV'),
                     ecoregion: ft.get('ECOREGI'),
                     ecozone: ft.get('ECOZONE'),
                     sampling_collection: new Date().toJSON().slice(0, 10)
-      });
+      // });
     });
 }).flatten();
 
