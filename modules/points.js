@@ -33,15 +33,20 @@ print(lc_focal_mean)
 
 var points = ecoregions.map(function(ft) {
   return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts)
+    .copyProperties(ft)
     // .map(function(f) {
-    //   return f
-      .set({ecoprovince: ft.get('ECOPROV'),
-                    ecoregion: ft.get('ECOREGI'),
-                    ecozone: ft.get('ECOZONE'),
-                    sampling_collection: new Date().toJSON().slice(0, 10)
+    // //   return f
+    //   .set({ecoprovince: ft.get('ECOPROV'),
+    //                 ecoregion: ft.get('ECOREGI'),
+    //                 ecozone: ft.get('ECOZONE'),
+    //                 sampling_collection: new Date().toJSON().slice(0, 10)
       // });
-    });
-}).flatten();
-print(points.limit(2))
+    // });
+})//.flatten();
+// print(points.limit(2))
+
+// points = ee.Join.saveAll().apply(points, ecoregions, ee.Filter.intersects('.geo', null, '.geo'))
+// print(points.limit(2))
+
 var today = new Date().toJSON().slice(0, 10);
 Export.table.toAsset(points, today + '_sampling_points', 'CFS/' + today + '_sampling_points');
