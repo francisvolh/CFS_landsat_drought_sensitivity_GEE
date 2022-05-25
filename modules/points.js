@@ -37,4 +37,5 @@ var points = ecoregions.map(function(ft) {
 print(points.limit(2))
 
 var today = new Date().toJSON().slice(0, 10);
-Export.table.toAsset(points, today + '_sampling_points_n' + n_pts, 'CFS/' + today + '_sampling_points');
+var filename = today + '_sampling_points_n' + n_pts;
+Export.table.toAsset(points, filename, 'CFS/' + filename);
