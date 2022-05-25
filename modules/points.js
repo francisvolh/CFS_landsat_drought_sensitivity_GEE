@@ -23,7 +23,7 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filterBounds(geometry);
 
-var n_pts = 500;
+var n_pts = 250;
 
 var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
 lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
