@@ -29,24 +29,12 @@ var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
 lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
 
 var lc_focal_mean = land_cover.get_lc_focal_mean();
-print(lc_focal_mean)
 
 var points = ecoregions.map(function(ft) {
-  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts)
-    // .copyProperties(ft)
-    // .map(function(f) {
-    // //   return f
-    //   .set({ecoprovince: ft.get('ECOPROV'),
-    //                 ecoregion: ft.get('ECOREGI'),
-    //                 ecozone: ft.get('ECOZONE'),
-    //                 sampling_collection: new Date().toJSON().slice(0, 10)
-      // });
-    // });
+  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts);
 }).flatten();
-// print(points.limit(2))
 
-// points = ee.Join.saveAll().apply(points, ecoregions, ee.Filter.intersects('.geo', null, '.geo'))
-// print(points.limit(2))
+print(points.limit(2))
 
 var today = new Date().toJSON().slice(0, 10);
 Export.table.toAsset(points, today + '_sampling_points_n' + n_pts, 'CFS/' + today + '_sampling_points');
