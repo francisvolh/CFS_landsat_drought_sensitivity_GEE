@@ -27,25 +27,17 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
   .filterBounds(geometry);
 
 
-
+// Export points as asset
 var export_points_asset = function(n_pts) {
+  var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
+  lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
   
+  var points = ecoregions.map(function(ft) {
+    return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts);
+  }).flatten();
+  
+  var today = new Date().toJSON().slice(0, 10);
+  var filename = today + '_sampling_points_n' + n_pts;
+  Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
-exports.export_points_asset = points
-
-var n_pts = 125;
-
-var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
-lc_modal = lc_modal.reproject(land_cover.lc_and_fire.first().projection());
-
-var lc_focal_mean = land_cover.get_lc_focal_mean();
-
-var points = ecoregions.map(function(ft) {
-  return stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, ft.geometry(), n_pts);
-}).flatten();
-
-print(points.limit(2))
-
-var today = new Date().toJSON().slice(0, 10);
-var filename = today + '_sampling_points_n' + n_pts;
-Export.table.toAsset(points, filename, 'CFS/' + filename);
+exports.export_points_asset = export_points_asset;
