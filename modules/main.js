@@ -22,11 +22,6 @@ var main = function(output, region,
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
   
-  if (typeof(antecedent_list)==='undefined') {
-    var antecedent_list = ['3mo', '12mo', '5yr'];
-  }
-  // var antecedent_list = ['3mo', '12mo', '5yr'];
-
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
@@ -62,7 +57,6 @@ exports.main = main;
 
 
 
-// TODO: does this use cap?
 var main_cap = function(output, region, 
                     min_year, max_year, min_mm_dd, max_mm_dd, 
                     index_list, percentile_low, percentile_high, antecedent_list) {
@@ -71,10 +65,6 @@ var main_cap = function(output, region,
   var months = ee.List.sequence(1, 12);
   var percentile_list = [percentile_low, percentile_high];
   
-  if (typeof(antecedent_list)==='undefined') {
-    var antecedent_list = ['3mo', '12mo', '5yr'];
-  }  // var antecedent_list = ['3mo', '12mo', '5yr'];
-
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
