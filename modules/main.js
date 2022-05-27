@@ -22,7 +22,7 @@ var main = function(output, region,
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
   
-  if (typeof(antecedent_list)==='undefined') d{
+  if (typeof(antecedent_list)==='undefined') {
     var antecedent_list = ['3mo', '12mo', '5yr'];
   }
   // var antecedent_list = ['3mo', '12mo', '5yr'];
@@ -71,8 +71,9 @@ var main_cap = function(output, region,
   var months = ee.List.sequence(1, 12);
   var percentile_list = [percentile_low, percentile_high];
   
-  if (typeof(antecedent_list)==='undefined') var antecedent_list = ['3mo', '12mo', '5yr'];
-  // var antecedent_list = ['3mo', '12mo', '5yr'];
+  if (typeof(antecedent_list)==='undefined') {
+    var antecedent_list = ['3mo', '12mo', '5yr'];
+  }  // var antecedent_list = ['3mo', '12mo', '5yr'];
 
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
