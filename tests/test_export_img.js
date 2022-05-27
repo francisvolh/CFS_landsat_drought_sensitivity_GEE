@@ -27,6 +27,8 @@ var max_year = 2015;
 var min_mm_dd = '06-15';
 var max_mm_dd = '07-15';
 var percentile = [15];
+var percentile_low = 15;
+var percentile_high = 85;
 var index = ['NDVI'];
 var antecedent = ['12mo'];
 
@@ -48,3 +50,8 @@ export_img.export_img_drive('test-export-drive', 'Test-export', 30, region, min_
 // Test export_img_cloud
 // Usage: export_img_cloud(cloud_name, cloud_bucket, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
 export_img.export_img_cloud('test-export-cloud', null, 30, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
+
+
+// Test export_img_asset_cap
+// Usage: export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
+export_img.export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
