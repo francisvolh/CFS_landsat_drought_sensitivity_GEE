@@ -5,9 +5,12 @@ Alec L. Robitaille
 */
 
 
+// Modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
 
+
+// Region
 var geometry = /* color: #d63000 */ee.Geometry.Polygon(
         [[[-141.4430528814123, 68.27919277463084],
           [-141.13300806589254, 64.04137893026935],
@@ -19,9 +22,16 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
           [-99.80739862269407, 62.42033801780019],
           [-108.28910573882132, 65.53581583394379],
           [-128.65907556424258, 68.27919277463084]]]);
-          
+
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filterBounds(geometry);
+
+
+
+var export_points_asset = function(n_pts) {
+  
+};
+exports.export_points_asset = points
 
 var n_pts = 125;
 
