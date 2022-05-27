@@ -53,6 +53,13 @@ export_img.export_img_drive('test-export-drive', 'Test-export', scale, region, m
 export_img.export_img_cloud('test-export-cloud', null, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
 
 
+// --- CAP --------------------------------------------------------------------
 // Test export_img_asset_cap
 // Usage: export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
 export_img.export_img_asset_cap('test-export-asset-cap', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+
+
+// Test export_img_drive_cap
+// Usage: export_img_drive_cap(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
+export_img.export_img_drive_cap('test-export-drive-cap', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+
