@@ -95,7 +95,7 @@ exports.export_img_asset_cap = export_img_asset_cap;
 
 // Export img drive
 var export_img_drive_cap = function(drive_name, drive_folder, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent) {
-  var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
+  var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
 
   var today = new Date().toJSON().slice(0, 10);
 
