@@ -32,9 +32,35 @@ var n_pts = 50;
 
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(geometry).limit(1);
+ecoregions = ecoregions.filterBounds(geometry);
 
 
-// Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-// export_points.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
+// Load points
+
+
+
+
+
+// Sample
+
+// Sensitivity
+
+// Hydro
+
+// Climate
+
+// Topo
+
+
+
+
+
+
 Map.addLayer(ecoregions);
+
+
+
+// (Export by)
+// export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
+// export_points.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
+
