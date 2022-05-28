@@ -13,12 +13,12 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Export drought sensitivity by region
-Based on: tests/test_export_by.js
+Based on: tests/test_export_points.js
 Alec L. Robitaille
 */
 
 // Load modules
-var export_by = require('users/robitalec/CFS:modules/export_by.js');
+var export_by = require('users/robitalec/CFS:modules/export_points.js');
 
 // Set variables
 var min_year = 1985;
@@ -35,7 +35,6 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 ecoregions = ecoregions.filterBounds(geometry).limit(1);
 
 
-
 // Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-export_by.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
+// export_points.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 Map.addLayer(ecoregions);
