@@ -13,9 +13,11 @@ var export_abs_sensitivity_cap = function(points, region, drive_name, drive_fold
 
 	var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list);
 
-	var sampled = ee.ImageCollection([out, ee.Image.pixelLonLat()]).map(function(img) {
-    return img.reduceRegions(points, ee.Reducer.mean(), 30).copyProperties(points);
-  }).flatten();
+  out = out.addBands([ee.Image.pixelLonLat()]);
+  
+	var sampled = points.map(function(ft) {
+    return out.reduceRegion(ft, ee.Reducer.mean(), 30).copyProperties(ft);
+	}).flatten();
 
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
