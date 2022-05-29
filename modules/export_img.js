@@ -86,7 +86,8 @@ var export_img_asset_cap = function(asset_name, asset_path, scale, region, min_y
     description: asset_name,
     assetId: asset_path + '/' + asset_name,
     region: region,
-    scale: scale
+    scale: scale,
+    maxPixels: 2.5e8
   });
 };
 exports.export_img_asset_cap = export_img_asset_cap;
