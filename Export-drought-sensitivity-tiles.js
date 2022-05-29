@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+var bc = /* color: #d63000 */ee.Geometry.Polygon(
         [[[-139.0898192325786, 59.84160650588499],
           [-137.3979247013286, 58.844554732801065],
           [-135.4423582950786, 59.55335579276839],
@@ -22,9 +22,20 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
           [-121.127734375, 59.946592182407706],
           [-128.68632812500002, 59.99057921359762],
           [-134.57500000000002, 59.99057921359762],
-          [-138.92558593750002, 59.99057921359762]]]);
+          [-138.92558593750002, 59.99057921359762]]]),
+    west = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-141.4430528814123, 68.27919277463084],
+          [-141.13300806589254, 64.04137893026935],
+          [-139.73426050644431, 60.04815657459371],
+          [-126.34684688322079, 49.10211106287488],
+          [-108.90484061318891, 49.055202844054236],
+          [-91.79138600476233, 48.67346079998252],
+          [-95.41638550817073, 59.939877470328504],
+          [-99.80739862269407, 62.42033801780019],
+          [-108.28910573882132, 65.53581583394379],
+          [-128.65907556424258, 68.27919277463084]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
- /*
+/*
 Export tiles
 Based on: modules/export_img.js
 Alec L. Robitaille
@@ -43,22 +54,25 @@ var percentile_high = 85;
 var index = ['NDVI'];
 var antecedent = ['3mo', '12mo', '5yr'];
 
-// Get tiles
-var tiler = require('users/gena/packages:tiler');
-var tiles = tiler.getTilesForGeometry(geometry, 7);
-
-
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
 var scale = 30;
+
+
+var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
+  .filterBounds(west);
+
+
+// Get tiles
+var tiler = require('users/gena/packages:tiler');
+var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 5);
+
 
 // loop regions
 // asset_name = id
 tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
-
-tile_id_list = tile_id_list.slice(80, 110);
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
