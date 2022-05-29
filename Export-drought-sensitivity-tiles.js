@@ -41,15 +41,15 @@ var max_mm_dd = '07-31';
 var percentile_low = 15;
 var percentile_high = 85;
 var index = ['NDVI'];
-var antecedent = ['12mo'];
+var antecedent = ['3mo', '12mo', '5yr'];
 
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(geometry, 7);
 
 
-
-var asset_path = 'CFS';
+var today = new Date().toJSON().slice(0, 10);
+var asset_path = 'CFS/' + today;
 var scale = 30;
 
 // loop regions
