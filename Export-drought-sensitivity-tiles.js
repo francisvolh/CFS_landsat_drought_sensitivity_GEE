@@ -24,7 +24,7 @@ var geometry = /* color: #d63000 */ee.Geometry.Polygon(
           [-134.57500000000002, 59.99057921359762],
           [-138.92558593750002, 59.99057921359762]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-/*
+ /*
 Export tiles
 Based on: modules/export_img.js
 Alec L. Robitaille
