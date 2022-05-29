@@ -13,7 +13,7 @@ var export_abs_sensitivity_cap = function(points, region, drive_name, drive_fold
 
 	var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list);
 
-	var sampled = ee.ImageCollection(out).map(function(img) {
+	var sampled = ee.ImageCollection([out, ee.Image.pixelLonLat()]).map(function(img) {
     return img.reduceRegions(points, ee.Reducer.mean(), 30);
   }).flatten();
 
