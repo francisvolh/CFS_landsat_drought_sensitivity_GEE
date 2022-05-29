@@ -65,7 +65,7 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
-var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6);
+var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 7);
 
 
 // loop regions
