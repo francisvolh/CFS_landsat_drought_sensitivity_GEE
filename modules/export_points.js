@@ -16,7 +16,7 @@ var export_abs_sensitivity_cap = function(points, region, drive_name, drive_fold
   out = out.addBands([ee.Image.pixelLonLat()]);
   
 	var sampled = points.map(function(ft) {
-    return out.reduceRegion(ft, ee.Reducer.mean(), 30).copyProperties(ft);
+    return out.reduceRegion(ft, ee.Reducer.mean(), 30)//.copyProperties(ft);
 	}).flatten();
 
 	var today = new Date().toJSON().slice(0, 10);
