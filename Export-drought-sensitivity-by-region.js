@@ -18,7 +18,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var export_by = require('users/robitalec/CFS:modules/export_points.js');
+var export_points = require('users/robitalec/CFS:modules/export_points.js');
 
 // Set variables
 var min_year = 1985;
@@ -36,14 +36,15 @@ ecoregions = ecoregions.filterBounds(geometry);
 
 
 // Load points
-
-
+var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_points_n125');
 
 
 
 // Sample
 
+
 // Sensitivity
+exports.export_sensitivity_from_asset(points, drive_folder, 'sample-sensitivity');
 
 // Hydro
 
