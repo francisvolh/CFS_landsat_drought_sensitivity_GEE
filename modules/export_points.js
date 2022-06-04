@@ -141,9 +141,9 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
     .mosaic()
     .addBands([ee.Image.pixelLonLat()]);
   
-	var sampled = points.map(function(ft) {
-    return drought_sens.reduceRegion(ee.Reducer.mean(), ft, 30);
-	}).flatten();
+	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
+//     return drought_sens.reduceRegion(ee.Reducer.mean(), ft, 30);
+// 	}).flatten();
 
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
