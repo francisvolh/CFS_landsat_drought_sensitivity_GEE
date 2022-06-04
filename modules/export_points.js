@@ -142,7 +142,7 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
     .addBands([ee.Image.pixelLonLat()]);
   
 	var sampled = points.map(function(ft) {
-    return drought_sens.reduceRegion(ft, ee.Reducer.mean(), 30);
+    return drought_sens.reduceRegion(ee.Reducer.mean(), ft, 30);
 	}).flatten();
 
 	var today = new Date().toJSON().slice(0, 10);
