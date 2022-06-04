@@ -27,7 +27,7 @@ exports.export_abs_sensitivity_cap = export_abs_sensitivity_cap;
 
 var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
 
-  var drought_sens = ee.Image([
+  var drought_sens = ee.ImageCollection([
     ee.Image('users/robitalec/CFS/2022-05-30/2022-05-30_Abs_NDVI_p15_85_0'),
     ee.Image('users/robitalec/CFS/2022-05-30/2022-05-30_Abs_NDVI_p15_85_1'),
     ee.Image('users/robitalec/CFS/2022-05-30/2022-05-30_Abs_NDVI_p15_85_2'),
