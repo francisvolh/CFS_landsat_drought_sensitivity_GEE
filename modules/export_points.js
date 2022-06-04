@@ -137,7 +137,9 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
     ee.Image('users/robitalec/CFS/2022-05-30/2022-05-30_Abs_NDVI_p15_85_130'),
     ee.Image('users/robitalec/CFS/2022-05-30/2022-05-30_Abs_NDVI_p15_85_131')]);
 
-  drought_sens = drought_sens.addBands([ee.Image.pixelLonLat()]);
+  drought_sens = drought_sens
+    .mosaic()
+    .addBands([ee.Image.pixelLonLat()]);
   
 	var sampled = points.map(function(ft) {
     return drought_sens.reduceRegion(ft, ee.Reducer.mean(), 30);
