@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-141.4430528814123, 68.27919277463084],
           [-141.13300806589254, 64.04137893026935],
           [-139.73426050644431, 60.04815657459371],
@@ -44,7 +47,7 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_point
 
 
 // Sensitivity
-exports.export_sensitivity_from_asset(points, drive_folder, 'sample-sensitivity');
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity', drive_folder);
 
 // Hydro
 
