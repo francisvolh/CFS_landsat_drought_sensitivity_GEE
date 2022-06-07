@@ -6,9 +6,20 @@ Alec L. Robitaille
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var main = require('users/robitalec/CFS:modules/main.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
+var get_hydro = require('users/robitalec/CFS:modules/get_hydro.js');
 
 
 // --- Sample -----------------------------------------------------------------
+var export_hydro = function(points, drive_name, drive_folder) {
+  var hydro = get_hydro.get_col();
+	var sampled = hydro.reduceRegions(points, ee.Reducer.mean(), 30);
+	var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+};
+exports.export_hydro = export_hydro;
+
+
+
 var export_abs_sensitivity_cap = function(points, region, drive_name, drive_folder, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list) {
 
 	var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list);
@@ -142,9 +153,6 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
     .addBands([ee.Image.pixelLonLat()]);
   
 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
-//     return drought_sens.reduceRegion(ee.Reducer.mean(), ft, 30);
-// 	}).flatten();
-
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
