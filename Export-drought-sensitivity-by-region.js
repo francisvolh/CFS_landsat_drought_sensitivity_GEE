@@ -43,11 +43,10 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_point
 
 
 
-// Sample
-
-
+// Sample ----------------------------------------------------------------------
 // Sensitivity
 export_points.export_sensitivity_from_asset(points, 'sample-sensitivity', drive_folder);
+
 
 // Hydro
 export_points.export_hydro(points, 'hydro', drive_folder);
