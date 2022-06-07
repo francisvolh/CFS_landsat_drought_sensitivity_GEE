@@ -15,15 +15,18 @@ var geometry =
           [-128.65907556424258, 68.27919277463084]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-Export sample
+Export drought sensitivity by region
 Based on: tests/test_export_points.js
 Alec L. Robitaille
 */
 
+
+// Modules --------------------------------------------------------------------
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
 
-// Set variables
+
+// Variables ------------------------------------------------------------------
 var min_year = 1985;
 var max_year = 2020;
 var min_mm_dd = '07-01';
@@ -33,6 +36,8 @@ var index_list = ['NDVI', 'NBR'];
 var drive_folder = 'Batch-ecoregion-export';
 var n_pts = 50;
 
+
+// Data -----------------------------------------------------------------------
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry);
@@ -43,7 +48,7 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_point
 
 
 
-// Sample ----------------------------------------------------------------------
+// Sample ---------------------------------------------------------------------
 // Sensitivity
 export_points.export_sensitivity_from_asset(points, 'sample-sensitivity', drive_folder);
 
