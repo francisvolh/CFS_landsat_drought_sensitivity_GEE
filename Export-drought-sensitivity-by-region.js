@@ -55,17 +55,3 @@ export_points.export_hydro(points, 'hydro', drive_folder);
 // Climate
 
 // Topo
-
-
-
-
-
-
-Map.addLayer(ecoregions);
-
-
-
-// (Export by)
-// export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-// export_points.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-
