@@ -1,3 +1,10 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-168.54997439051382, 71.83257848283961],
+          [-168.54997439051382, 38.21307697867719],
+          [-79.25309939051384, 38.21307697867719],
+          [-79.25309939051384, 71.83257848283961]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Get hydro variables
 Alec L. Robitaille
@@ -28,6 +35,8 @@ var geometry =
           [-168.54997439051382, 38.21307697867719],
           [-79.25309939051384, 38.21307697867719],
           [-79.25309939051384, 71.83257848283961]]], null, false);
+
+
 var get_hand = function(resolution, threshold) {
   if (resolution == 30 & threshold == 100) {
     // Note: image collection vs image
@@ -88,7 +97,7 @@ var get_col = function() {
   get_prop_permanent_snow(1000),
   get_prop_water(1000),
   get_prop_water(300),
-  get_dist_major_lakes(500)
+  get_dist_major_lakes(50)
   ]);
 };
 exports.get_col = get_col;
