@@ -43,3 +43,10 @@ export_points.export_by_ecoregion_cap('vegetation index and antecedent means', d
 // Usage: export_abs_sensitivity_cap(points, region, drive_name, drive_folder, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list)
 var points = ee.FeatureCollection.randomPoints(ecoregions, 10);
 export_points.export_abs_sensitivity_cap(points, ecoregions, 'test-export-abs-sens-cap', 'Exports', min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent);
+
+
+
+// Test export_hydro
+// Usage: export_hydro(points, drive_name, drive_folder)
+export_points.export_hydro(points, ecoregions, 'test-export-hydro', 'Exports');
+
