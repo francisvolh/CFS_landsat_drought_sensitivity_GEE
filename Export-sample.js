@@ -15,7 +15,7 @@ var geometry =
           [-128.65907556424258, 68.27919277463084]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-Export drought sensitivity by region
+Export sample
 Based on: tests/test_export_points.js
 Alec L. Robitaille
 */
