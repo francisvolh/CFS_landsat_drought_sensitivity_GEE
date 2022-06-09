@@ -18,12 +18,12 @@ var max_mm_dd = '07-31';
 
 // Test SR collection
 // Usage: get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
-var sr_col = get_landsat.get_SR(2014, 2019, min_mm_dd, max_min_dd, geometry);
+var sr_col = get_landsat.get_SR(2014, 2019, min_mm_dd, max_mm_dd, geometry);
 print(sr_col);
 
 // Test indices collection
 // Usage: get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
-var indices_col = get_landsat.get_indices(2014, 2019, min_mm_dd, max_min_dd, geometry, ['NDVI', 'EVI']);
+var indices_col = get_landsat.get_indices(2014, 2019, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
 print(indices_col);
 
 // Map
