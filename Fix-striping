@@ -85,7 +85,7 @@ var medoidMosaic = function(inCollection, dummyCollection) {
 
 
 
-Map.addLayer(medoidMosaic(col, dummyCollection).select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'medoid RGB')
+Map.addLayer(medoidMosaic(col, dummyCollection).select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'medoid RGB')
 col = col.map(function(img) {return img.addBands([img.normalizedDifference(['B4', 'B3']).rename('ndvi')])})
 
-Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'greenest RGB')
+Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'greenest RGB')
