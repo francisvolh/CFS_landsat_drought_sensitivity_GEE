@@ -51,3 +51,4 @@ Map.addLayer(sr_col.select(['B3', 'B2', 'B1']).filter(ee.Filter.calendarRange(yr
 
 // Notes
 // Clouds coming through
+// Gaps
