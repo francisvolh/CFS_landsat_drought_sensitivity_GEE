@@ -1,0 +1,46 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-139.57573846956396, 64.96410928855829],
+          [-139.57573846956396, 64.18111989966431],
+          [-137.36748651643896, 64.18111989966431],
+          [-137.36748651643896, 64.96410928855829]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+/*
+Fixing Landsat striping
+Based on testing: modules/get_landsat.js
+Alec L. Robitaille
+*/
+
+
+// Load modules
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+
+// Set variables
+var min_year = 1985;
+var max_year = 2019;
+var min_mm_dd = '07-01';
+var max_mm_dd = '07-31';
+
+
+// Test SR collection
+// Usage: get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var sr_col = get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+print(sr_col);
+
+// Test indices collection
+// Usage: get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI']);
+print(indices_col);
+
+// Map
+Map.addLayer(geometry, null, 'region');
+Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'RGB SR collection');
+Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
+Map.centerObject(geometry);
