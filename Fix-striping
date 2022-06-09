@@ -27,7 +27,8 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var min_year = 1985;
 var max_year = 2019;
 var min_mm_dd = '07-01';
-var max_mm_dd = '08-15';
+var max_mm_dd = '07-31';
+
 
 
 // Test SR collection
@@ -54,7 +55,7 @@ Map.centerObject(geometry);
 // Clouds coming through
 // Gaps
 // Haze
-
+// more images but less consistent phenology when extending the dates
 
 
 
