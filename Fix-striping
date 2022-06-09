@@ -55,7 +55,7 @@ Map.centerObject(geometry);
 // Clouds coming through
 // Gaps
 // Haze
-// more images but less consistent phenology when extending the dates
+// more images but less consistent phenology when extending the min/max dates
 
 
 
