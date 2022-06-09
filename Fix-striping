@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -40,7 +41,13 @@ var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_
 print(indices_col);
 
 // Map
-Map.addLayer(geometry, null, 'region');
+var yr = 1996
+
 Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'RGB SR collection');
 Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
 Map.centerObject(geometry);
+
+Map.addLayer(sr_col.select(['B3', 'B2', 'B1']).filter(ee.Filter.calendarRange(yr, yr, 'year')), {min: 0, max: 1.5}, 'RGB SR collection');
+
+// Notes
+// Clouds coming through
