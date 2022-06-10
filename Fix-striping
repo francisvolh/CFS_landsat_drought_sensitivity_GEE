@@ -90,12 +90,12 @@ Map.addLayer(ee.Image.constant(1), {palette:'#a14981'})
 var med = medoidMosaic(col, dummyCollection)
 med = med.addBands([med.normalizedDifference(['B4', 'B3']).rename('ndvi')])
 
-Map.addLayer(med.select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'medoid RGB')
+Map.addLayer(med.select(['B3', 'B2', 'B1']), {min: 30, max: 12000}, 'medoid RGB')
 Map.addLayer(med.select('ndvi'), {min: -0.3, max: 1}, 'medoid NDVI')
 
 col = col.map(function(img) {return img.addBands([img.normalizedDifference(['B4', 'B3']).rename('ndvi')])})
 
-Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'greenest RGB')
+Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 30, max: 12000}, 'greenest RGB')
 // Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
 Map.addLayer(col.map(function(img){return img.mask(
   img.select('B1').neq(0)
