@@ -1,16 +1,17 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-118.65776971956393, 55.252317458907655],
-          [-118.65776971956393, 53.25679450053045],
-          [-115.32891229768894, 53.25679450053045],
-          [-115.32891229768894, 55.252317458907655]]], null, false);
+        [[[-116.72417596956393, 57.8372600165476],
+          [-116.72417596956393, 55.97207060121854],
+          [-113.39531854768894, 55.97207060121854],
+          [-113.39531854768894, 57.8372600165476]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Fixing Landsat striping
