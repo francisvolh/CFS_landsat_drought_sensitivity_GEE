@@ -8,10 +8,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.69634393831393, 65.62981645918128],
-          [-140.69634393831393, 64.18111989966431],
-          [-137.36748651643896, 64.18111989966431],
-          [-137.36748651643896, 65.62981645918128]]], null, false);
+        [[[-127.16118768831393, 57.194135254324934],
+          [-127.16118768831393, 55.29612593702908],
+          [-123.83233026643894, 55.29612593702908],
+          [-123.83233026643894, 57.194135254324934]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Fixing Landsat striping
@@ -96,18 +96,28 @@ Map.addLayer(med.select('ndvi'), {min: -0.3, max: 1}, 'medoid NDVI')
 col = col.map(function(img) {return img.addBands([img.normalizedDifference(['B4', 'B3']).rename('ndvi')])})
 
 Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'greenest RGB')
-// Map.addLayer(col.map(function(img){return img.mask(img.select('ndvi').lt(0.95))}).qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
-Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+// Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+Map.addLayer(col.map(function(img){return img.mask(
+  img.select('B1').neq(0)
+    .and(img.select('B2').neq(0))
+    .and(img.select('B3').neq(0))
+    .and(img.select('ndvi').lt(0.98)))}).qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+
 
 
 function bufferImage(image) {
-   var mask = image.mask()
-   var buffered = mask.reduceNeighborhood(ee.Reducer.mean(), ee.Kernel.circle(10));
-   image.mask(buffered);
+   return image.clip(image.geometry().buffer(-5000));
 }
 
-col = col.map(bufferImage)
-Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+var erode = function(img) {
+  var distance = 5000;
+  var mask = img.mask()
+  var d = mask.not().unmask(1).fastDistanceTransform(distance).sqrt()  //.multiply(ee.Image.pixelArea().sqrt())
+  return img.mask(d.gt(distance))
+}
+
+col = col.map(erode)
+// Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
 
 
 
