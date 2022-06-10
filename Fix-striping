@@ -27,8 +27,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var min_year = 1985;
 var max_year = 2019;
 var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
-
+var max_mm_dd = '08-15';
 
 
 // Test SR collection
@@ -42,11 +41,13 @@ var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_
 print(indices_col);
 
 // Map
-var yr = 1996
+var yr = 2005
+
+// 2004 has some issues
 
 // Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'RGB SR collection');
 // Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
-Map.centerObject(geometry);
+// Map.centerObject(geometry);
 
 // Map.addLayer(sr_col.select(['B3', 'B2', 'B1']).filter(ee.Filter.calendarRange(yr, yr, 'year')), {min: 0, max: 1.5}, 'one year RGB SR collection');
 // Map.addLayer(indices_col.select(['NDVI']).filter(ee.Filter.calendarRange(yr, yr, 'year')), {min: -0.5, max:1}, 'one year NDVI collection');
@@ -55,7 +56,7 @@ Map.centerObject(geometry);
 // Clouds coming through
 // Gaps
 // Haze
-// more images but less consistent phenology when extending the min/max dates
+
 
 
 
@@ -85,8 +86,18 @@ var medoidMosaic = function(inCollection, dummyCollection) {
 };
 
 
+Map.addLayer(ee.Image.constant(1), {palette:'#a14981'})
+var med = medoidMosaic(col, dummyCollection)
+med = med.addBands([med.normalizedDifference(['B4', 'B3']).rename('ndvi')])
 
-Map.addLayer(medoidMosaic(col, dummyCollection).select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'medoid RGB')
+Map.addLayer(med.select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'medoid RGB')
+Map.addLayer(med.select('ndvi'), {min: -0.3, max: 1}, 'medoid NDVI')
+
 col = col.map(function(img) {return img.addBands([img.normalizedDifference(['B4', 'B3']).rename('ndvi')])})
 
 Map.addLayer(col.qualityMosaic('ndvi').select(['B3', 'B2', 'B1']), {min: 300, max: 1200}, 'greenest RGB')
+// Map.addLayer(col.map(function(img){return img.mask(img.select('ndvi').lt(0.95))}).qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+Map.addLayer(col.qualityMosaic('ndvi').select('ndvi'), {min: -0.3, max: 1}, 'greenest NDVI')
+
+
+// Mask where NDVI is 1, or RGB is 0, or almost 1
