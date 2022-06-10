@@ -41,7 +41,7 @@ var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_
 print(indices_col);
 
 // Map
-var yr = 2005
+var yr = 1995
 
 // 2004 has some issues
 
