@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-127.16118768831393, 57.194135254324934],
-          [-127.16118768831393, 55.29612593702908],
-          [-123.83233026643894, 55.29612593702908],
-          [-123.83233026643894, 57.194135254324934]]], null, false);
+        [[[-118.65776971956393, 55.252317458907655],
+          [-118.65776971956393, 53.25679450053045],
+          [-115.32891229768894, 53.25679450053045],
+          [-115.32891229768894, 55.252317458907655]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Fixing Landsat striping
@@ -41,7 +40,7 @@ var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_
 print(indices_col);
 
 // Map
-var yr = 1995
+var yr = 2015
 
 // 2004 has some issues
 
