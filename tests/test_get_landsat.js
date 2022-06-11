@@ -26,9 +26,15 @@ print(sr_col);
 var indices_col = get_landsat.get_indices(2014, 2019, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
 print(indices_col);
 
+// Test indices collection
+// Usage: get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_green_col = get_landsat.get_indices_greenest(2014, 2019, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
+print(indices_green_col);
+
+
 // Map
 Map.addLayer(geometry, null, 'region');
 Map.addLayer(sr_col.select(['B3', 'B2', 'B1']), {min: 0, max: 1.5}, 'RGB SR collection');
 Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
-Map.addLayer(indices_col.select(['EVI']), {min: -1, max:4}, 'EVI collection');
+Map.addLayer(indices_green_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI (greenest) collection');
 Map.centerObject(geometry);
