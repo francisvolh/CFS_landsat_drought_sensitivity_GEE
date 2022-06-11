@@ -59,27 +59,15 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
     return img.mask(img.select('B1').neq(0)
                        .and(img.select('B2').neq(0))
                        .and(img.select('B3').neq(0))
-                       .and(img.select('NDVI').lt(0.98)));
-    })
-                .map(utils.set_year)
-                .map(function(img) {
-                          return img.divide(1000)
-                            .mask(img.select('B1').neq(0)
-                                  .and(img.select('B2').neq(0))
-                                  .and(img.select('B3').neq(0))
-                                  .and(img.select('ndvi').lt(0.98)))})
-                          // .qualityMosaic('ndvi'))
-  
-// 	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
-
-	return(ltgee.transformSRcollection(collection, indices)
-              .map(utils.set_year)
-              .map(utils.add_year_band)
-              .map(function(img) {
-                return img.divide(1000)
-                          .set('system:time_start', img.get('system:time_start'))
-                          .copyProperties(img);
-              }));
+                       .and(img.select('NDVI').lt(0.98)))
+              .qualityMosaic('NDVI');
+    }).map(utils.set_year)
+      .map(utils.add_year_band)
+      .map(function(img) {
+        return img.divide(1000)
+                  .set('system:time_start', img.get('system:time_start'))
+                  .copyProperties(img);
+      });
 };
-exports.get_indices = get_indices;
+exports.get_indices_greenest = get_indices_greenest;
 
