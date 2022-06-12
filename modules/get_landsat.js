@@ -52,7 +52,7 @@ exports.get_indices = get_indices;
 
 // Get indices, qualityMosaic on NDVI
 var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-  var years = ee.List([min_year, max_year]);
+  var years = [min_year, max_year];
   
   var year_col = years.map(function(yr) {
     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
