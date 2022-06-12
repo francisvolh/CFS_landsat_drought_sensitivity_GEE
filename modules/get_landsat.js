@@ -51,27 +51,31 @@ exports.get_indices = get_indices;
 
 
 // Get indices, qualityMosaic on NDVI
-var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
+var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   var years = [min_year, max_year];
   
   var year_col = years.map(function(yr) {
+    // Get and scale Landsat collection
     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
-    var col_w_indices = ltgee.transformSRcollection(collection, indices);
-    return col_w_indices
-  // return col_w_indices.map(function(img) {
-  //   return img.mask(img.select('B1').neq(0)
-  //                     .and(img.select('B2').neq(0))
-  //                     .and(img.select('B3').neq(0))
-  //                     .and(img.select('NDVI').lt(0.98)))
-  //             .qualityMosaic('NDVI');
-  //   }).map(utils.set_year)
-  //     .map(utils.add_year_band)
-  //     .map(function(img) {
-  //       return img.divide(1000)
-  //                 .set('system:time_start', img.get('system:time_start'))
-  //                 .copyProperties(img);
-  //     });
-  });
+    
+    // Calculate NDVI, NBR
+    // Mask invalid pixels
+    // Quality mosaic on NDVI
+    return collection.map(function(img) {
+      img = img.addBands([
+        img.normalizedDifference(['B4', 'B3']).rename('NDVI'),  
+        img.normalizedDifference(['B4', 'B7']).rename('NBR')  
+      ]);
+      
+      return img.mask(img.select('B1').neq(0)
+                         .and(img.select('B2').neq(0))
+                         .and(img.select('B3').neq(0))
+                         .and(img.select('NDVI').lt(0.98)));
+      }).qualityMosaic('NDVI')
+        .set('system:time_start', ee.Date.fromYMD(yr, 07, 15).millis());
+    
+  }).map(utils.set_year)
+    .map(utils.add_year_band);
 };
 exports.get_indices_greenest = get_indices_greenest;
 
