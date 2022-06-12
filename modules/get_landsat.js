@@ -52,7 +52,7 @@ exports.get_indices = get_indices;
 
 // Get indices, qualityMosaic on NDVI
 var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
-  var years = ee.List.sequence(min_year, max_year);
+  var years = ee.List.sequence(min_year, max_year).getInfo();
   
   return ee.ImageCollection(years.map(function(yr) {
     // Get and scale Landsat collection
