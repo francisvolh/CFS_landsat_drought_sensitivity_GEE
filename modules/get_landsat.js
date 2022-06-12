@@ -52,7 +52,10 @@ exports.get_indices = get_indices;
 
 // Get indices, qualityMosaic on NDVI
 var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-  var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
+  var years = ee.List([min_year, max_year]);
+  
+  var year_col = years.map(function(yr) {
+     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
   var col_w_indices = ltgee.transformSRcollection(collection, indices);
   
   return col_w_indices.map(function(img) {
@@ -68,6 +71,7 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
                   .set('system:time_start', img.get('system:time_start'))
                   .copyProperties(img);
       });
+  });
 };
 exports.get_indices_greenest = get_indices_greenest;
 
