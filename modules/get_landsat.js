@@ -58,9 +58,9 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
     // Get and scale Landsat collection
     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
     
+    
     // Calculate NDVI, NBR
     // Mask invalid pixels
-    // Quality mosaic on NDVI
     return collection.map(function(img) {
       img = img.addBands([
         img.normalizedDifference(['B4', 'B3']).rename('NDVI'),  
@@ -75,7 +75,7 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
         .set('system:time_start', ee.Date.fromYMD(yr, 07, 15).millis());
     
   })).map(utils.set_year)
-    .map(utils.add_year_band);
+     .map(utils.add_year_band);
 };
 exports.get_indices_greenest = get_indices_greenest;
 
