@@ -54,7 +54,7 @@ exports.get_indices = get_indices;
 var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   var years = [min_year, max_year];
   
-  var year_col = ee.ImageCollection(years.map(function(yr) {
+  return ee.ImageCollection(years.map(function(yr) {
     // Get and scale Landsat collection
     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
     
@@ -76,7 +76,6 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
     
   })).map(utils.set_year)
      .map(utils.add_year_band);
-  return year_col;
 };
 exports.get_indices_greenest = get_indices_greenest;
 
