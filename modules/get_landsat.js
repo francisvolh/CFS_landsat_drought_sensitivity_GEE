@@ -76,7 +76,7 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
     
   })).map(utils.set_year)
      .map(utils.add_year_band);
-  return year_col
+  return year_col;
 };
 exports.get_indices_greenest = get_indices_greenest;
 
