@@ -51,7 +51,7 @@ var min_mm_dd = '07-01';
 var max_mm_dd = '07-31';
 var percentile_low = 15;
 var percentile_high = 85;
-var index = ['NDVI'];
+var index = ['NDVI', 'NBR'];
 var antecedent = ['3mo', '12mo', '5yr'];
 
 var today = new Date().toJSON().slice(0, 10);
@@ -79,7 +79,7 @@ tile_id_list = tile_id_list.slice(0, 20);
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_cap('Abs_' + index + '_p' + percentile_low + '_' + percentile_high + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+      export_img.export_img_asset_cap('Abs_' + '_p' + percentile_low + '_' + percentile_high + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
     });
 });
 
