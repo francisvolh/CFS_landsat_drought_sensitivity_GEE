@@ -88,7 +88,7 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_58'),
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_59'),
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_60'),
-    ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_2022-06-14'),
+    ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_61'),
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_62'),
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_63'),
     ee.Image('users/robitalec/CFS/2022-06-14/2022-06-14_Abs_NDVI_p15_85_64'),
