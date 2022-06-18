@@ -40,8 +40,8 @@ var min_mm_dd = '07-01';
 var max_mm_dd = '07-31';
 var percentile_low = 15;
 var percentile_high = 85;
-var index = ['NDVI'];
-var antecedent = ['3mo'];
+var index = ['NDVI', 'NBR'];
+var antecedent = ['3mo', '12mo'];
 
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
