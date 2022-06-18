@@ -49,7 +49,7 @@ var tiles = tiler.getTilesForGeometry(geometry, 7);
 
 
 
-var drive_folder = 'Exports';
+var drive_folder = '2022-06-18';
 var scale = 30;
 
 // loop regions
