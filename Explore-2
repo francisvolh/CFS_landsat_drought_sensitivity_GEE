@@ -1,40 +1,15 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry_ab = 
-    /* color: #d63000 */
-    /* shown: false */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-141.39292248912346, 64.22206090699575],
-          [-141.39292248912346, 60.33119892940287],
-          [-130.84604748912346, 60.33119892940287],
-          [-130.84604748912346, 64.22206090699575]]], null, false),
-    geometry = /* color: #747474 */ee.Geometry.MultiPoint(
-        [[-139.44828457934977, 64.06742990394334],
-         [-137.51469082934977, 60.764564072552496],
-         [-136.29520840747477, 62.10391930718258],
-         [-136.59183926684977, 62.82509152136364],
-         [-136.70170254809977, 63.41123291307474],
-         [-135.89970059497477, 63.6023675471175],
-         [-135.28446621997477, 63.92775159968364],
-         [-138.78910489184977, 61.2279950188915]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5})
 
 var assetList = ee.data.listAssets("users/robitalec/CFS/2022-06-14")['assets']
                     .map(function(d) { return d.name });
 var col = ee.ImageCollection(assetList);
-drought_sens = drought_sens
-  .mosaic()
-  .addBands([ee.Image.pixelLonLat()]);
-  
+
+print(col)
+col = col.select('Abs_sens_NDVI_ante3mo_p15')  
 
 var palettes = require('users/gena/packages:palettes');
 
 var p = palettes.crameri.vik[10]
 
 
-Map.addLayer(col.filterBounds(geometry_ab), {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(col, {palette: p, min: -0.4, max: 0.4})
