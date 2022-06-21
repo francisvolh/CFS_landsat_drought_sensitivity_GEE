@@ -67,8 +67,8 @@ var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(region, 7);
 
 
-
-var drive_folder = '2022-06-18';
+var today = new Date().toJSON().slice(0, 10);
+var drive_folder = today;
 var scale = 30;
 
 // loop regions
