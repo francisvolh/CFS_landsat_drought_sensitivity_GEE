@@ -4,8 +4,8 @@ var assetList = ee.data.listAssets("users/robitalec/CFS/2022-06-14")['assets']
                     .map(function(d) { return d.name });
 var col = ee.ImageCollection(assetList);
 
-print(col)
-col = col.select('Abs_sens_NDVI_ante3mo_p15')  
+print('Band names', col.first().bandNames())
+col = col.select('Abs_sens_NBR_ante12mo_p15')  
 
 var palettes = require('users/gena/packages:palettes');
 
