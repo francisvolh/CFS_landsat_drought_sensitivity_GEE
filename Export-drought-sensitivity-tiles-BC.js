@@ -60,9 +60,11 @@ var percentile_high = 85;
 var index = ['NDVI', 'NBR'];
 var antecedent = ['3mo', '12mo'];
 
+var region = geometry_yt;
+
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
-var tiles = tiler.getTilesForGeometry(geometry_yt, 7);
+var tiles = tiler.getTilesForGeometry(region, 7);
 
 
 
