@@ -42,7 +42,7 @@ var geometry_bc = /* color: #d63000 */ee.Geometry.Polygon(
           [-141.02668939140625, 68.44570385411821]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-Export tiles: BC
+Export tiles
 Based on: modules/export_img.js
 Alec L. Robitaille
 */
