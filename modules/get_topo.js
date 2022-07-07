@@ -21,3 +21,15 @@ var get_hand = function(resolution, threshold) {
 exports.get_hand = get_hand;
 
 
+
+// Get sampling collection
+var get_col = function() {
+  return ee.Image([
+  // TODO: which?
+  get_hand(30, 100),
+  get_hand(30, 1000),
+  get_hand(90, 1000)
+  ]);
+};
+exports.get_col = get_col;
+
