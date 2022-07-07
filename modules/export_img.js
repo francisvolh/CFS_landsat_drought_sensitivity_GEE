@@ -110,5 +110,5 @@ var zzz_export_img_cloud = function(cloud_name, cloud_bucket, scale, region, min
     scale: scale
   });
 };
-exports.export_img_cloud = export_img_cloud;
+exports.zzz_export_img_cloud = zzz_export_img_cloud;
 
