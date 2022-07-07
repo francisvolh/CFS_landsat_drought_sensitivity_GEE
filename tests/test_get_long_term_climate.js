@@ -1,11 +1,11 @@
 /*
-Testing: modules/get_long_term_climate.js
+Testing: modules/get_climate.js
 Alec L. Robitaille
 */
 
 
 // Load modules
-var climate = require('users/robitalec/CFS:modules/get_long_term_climate.js');
+var climate = require('users/robitalec/CFS:modules/get_climate.js');
 
 // Set variables
 var years = ee.List.sequence(1985, 2020);
