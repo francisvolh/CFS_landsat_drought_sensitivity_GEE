@@ -27,14 +27,14 @@ var export_points = require('users/robitalec/CFS:modules/export_points.js');
 
 
 // Variables ------------------------------------------------------------------
-var min_year = 1985;
-var max_year = 2020;
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
-var percentile_list = [15];
-var index_list = ['NDVI', 'NBR'];
-var drive_folder = 'Batch-ecoregion-export';
-var n_pts = 50;
+// var min_year = 1985;
+// var max_year = 2020;
+// var min_mm_dd = '07-01';
+// var max_mm_dd = '07-31';
+// var percentile_list = [15];
+// var index_list = ['NDVI', 'NBR'];
+var drive_folder = 'Exports';
+// var n_pts = 50;
 
 
 // Data -----------------------------------------------------------------------
