@@ -35,7 +35,7 @@ var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
 exports.get_SR = get_SR;
 
 // Get collection of spectral indices
-var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
+var zzz_get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
 	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
 
 	return(ltgee.transformSRcollection(collection, indices)
@@ -47,7 +47,7 @@ var get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, ind
                           .copyProperties(img);
               }));
 };
-exports.get_indices = get_indices;
+exports.zzz_get_indices = zzz_get_indices;
 
 
 // Get indices, qualityMosaic on NDVI
