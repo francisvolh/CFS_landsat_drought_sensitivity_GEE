@@ -40,9 +40,6 @@ exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
 
 
 // --- Export by --------------------------------------------------------------
-
-
-
 // Export task for each ecoregion (cap)
 var export_by_ecoregion_cap = function(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list) {
   var ecoreg_id_list = ecoregions
