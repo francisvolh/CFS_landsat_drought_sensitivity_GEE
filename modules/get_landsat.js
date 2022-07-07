@@ -22,34 +22,6 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 
 
-// Get collection of Landsat SR bands
-var get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
-  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask)
-              .map(utils.set_year)
-              .map(function(img) {
-                return img.divide(1000)
-                          .set('system:time_start', img.get('system:time_start'))
-                          .copyProperties(img);
-              }));
-};
-exports.get_SR = get_SR;
-
-// Get collection of spectral indices
-var zzz_get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
-	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
-
-	return(ltgee.transformSRcollection(collection, indices)
-              .map(utils.set_year)
-              .map(utils.add_year_band)
-              .map(function(img) {
-                return img.divide(1000)
-                          .set('system:time_start', img.get('system:time_start'))
-                          .copyProperties(img);
-              }));
-};
-exports.zzz_get_indices = zzz_get_indices;
-
-
 // Get indices, qualityMosaic on NDVI
 var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   var years = ee.List.sequence(min_year, max_year).getInfo();
@@ -79,3 +51,31 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
 };
 exports.get_indices_greenest = get_indices_greenest;
 
+
+// ARCHIVE ---------------------------------------------------------------------------------------
+// Get collection of Landsat SR bands
+var zzz_get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
+  return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask)
+              .map(utils.set_year)
+              .map(function(img) {
+                return img.divide(1000)
+                          .set('system:time_start', img.get('system:time_start'))
+                          .copyProperties(img);
+              }));
+};
+exports.zzz_get_SR = zzz_get_SR;
+
+// Get collection of spectral indices
+var zzz_get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
+	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
+
+	return(ltgee.transformSRcollection(collection, indices)
+              .map(utils.set_year)
+              .map(utils.add_year_band)
+              .map(function(img) {
+                return img.divide(1000)
+                          .set('system:time_start', img.get('system:time_start'))
+                          .copyProperties(img);
+              }));
+};
+exports.zzz_get_indices = zzz_get_indices;
