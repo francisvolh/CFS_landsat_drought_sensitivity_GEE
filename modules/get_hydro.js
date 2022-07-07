@@ -28,30 +28,6 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
 
-// Get HAND
-var geometry = 
-    ee.Geometry.Polygon(
-        [[[-168.54997439051382, 71.83257848283961],
-          [-168.54997439051382, 38.21307697867719],
-          [-79.25309939051384, 38.21307697867719],
-          [-79.25309939051384, 71.83257848283961]]], null, false);
-
-
-var get_hand = function(resolution, threshold) {
-  if (resolution == 30 & threshold == 100) {
-    // Note: image collection vs image
-    return ee.ImageCollection("users/gena/global-hand/hand-100").select(['b1'], ['hand_30_100'])
-        .filterBounds(geometry).mosaic();
-  } else if (resolution == 30 & threshold == 1000) {
-    return ee.Image("users/gena/GlobalHAND/30m/hand-1000").select(['b1'], ['hand_30_1000']);
-  } else if (resolution == 90 & threshold == 1000) {
-    return ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select(['b1'], ['hand_90_1000']);
-  }
-};
-exports.get_hand = get_hand;
-
-
-
 // Get proportion glacier/permanent snow
 var snow_mode = land_cover.hermosilla_plus_2022
                 .reduce(ee.Reducer.mode())
@@ -91,9 +67,6 @@ exports.get_dist_major_lakes = get_dist_major_lakes;
 // Get sampling collection
 var get_col = function() {
   return ee.Image([
-  get_hand(30, 100),
-  get_hand(30, 1000),
-  get_hand(90, 1000),
   get_prop_permanent_snow(1000),
   get_prop_water(1000),
   get_prop_water(300),
