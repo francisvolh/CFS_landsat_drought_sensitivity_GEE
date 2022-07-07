@@ -5,7 +5,7 @@ Alec L. Robitaille
 
 
 // Split vegetation indices into drought/non-drought pixels
-var split_drought = function(images, percentile_masks, antecedent_list, percentile_list, index_list) {
+var zzz_split_drought = function(images, percentile_masks, antecedent_list, percentile_list, index_list) {
   // Map over images
   return images.map(function(img) {
     // Get year
@@ -45,7 +45,7 @@ var split_drought = function(images, percentile_masks, antecedent_list, percenti
     );
   });
 };
-exports.split_drought = split_drought;
+exports.zzz_split_drought = zzz_split_drought;
 
 
 
