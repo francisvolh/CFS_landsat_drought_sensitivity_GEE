@@ -73,7 +73,7 @@ var zzz_export_img_asset = function(asset_name, asset_path, scale, region, min_y
     scale: scale
   });
 };
-exports.export_img_asset = export_img_asset;
+exports.zzz_export_img_asset = zzz_export_img_asset;
 
 
 
@@ -91,7 +91,7 @@ var zzz_export_img_drive = function(drive_name, drive_folder, scale, region, min
     scale: scale
   });
 };
-exports.export_img_drive = export_img_drive;
+exports.zzz_export_img_drive = zzz_export_img_drive;
 
 
 
