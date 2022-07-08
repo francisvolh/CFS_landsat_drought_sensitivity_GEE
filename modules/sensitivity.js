@@ -42,7 +42,7 @@ var sensitivity_relative_cap = function(split_indices, antecedent_list, percenti
             drought: means.select(drought_band)
           }).rename(sensitivity_band);
         });
-      });
+    })
   );
 };
 exports.sensitivity_relative_cap = sensitivity_relative_cap;
