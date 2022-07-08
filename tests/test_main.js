@@ -12,7 +12,7 @@ var min_year = 1995;
 var max_year = 2015;
 var min_mm_dd = '06-15';
 var max_mm_dd = '07-15';
-var percentile_low = [15];
+var percentile_low = 15;
 var antecedent_list = ['3mo'];
 
 var rel_viz = {min:-50, max:50, palette: palettes.colorbrewer.RdBu[5]};
