@@ -1,3 +1,23 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-112.98819556291845, 59.371840771122656],
+                  [-112.98819556291845, 59.139819554382086],
+                  [-112.54977240618017, 59.139819554382086],
+                  [-112.54977240618017, 59.371840771122656]]], null, false),
+            {
+              "system:index": "0"
+            })]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
 Alec L. Robitaille
@@ -23,7 +43,7 @@ var cmi_viz = {min:-15, max:15, palette: palettes.colorbrewer.RdBu[5]};
 // Load an ecoregion
 var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filter(ee.Filter.eq('ECOREGI', 136));
-
+Map.addLayer(ecoregion)
 
 
 // Test main - index + antecedent means
@@ -41,6 +61,7 @@ var main_relative = main.main_greenest('relative sensitivity', ecoregion, min_ye
 print('relative sensitivity'); print(main_relative);
 Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15'), rel_viz, '1995-2015 relative drought sensitivity NDVI 15th percentile 3 month antecedent', false);
 
+print(ui.Chart.image.histogram(main_relative, geometry, 1000))
 
 // Test main - absolute
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
