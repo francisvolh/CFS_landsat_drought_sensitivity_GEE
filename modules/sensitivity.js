@@ -43,7 +43,6 @@ var sensitivity_relative_cap = function(split_indices, antecedent_list, percenti
           }).rename(sensitivity_band);
         });
       });
-    })
   );
 };
 exports.sensitivity_relative_cap = sensitivity_relative_cap;
