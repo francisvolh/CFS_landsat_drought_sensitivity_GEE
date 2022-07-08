@@ -44,18 +44,16 @@ var main_greenest = function(output, region,
   // Split vegetation index into baseline/drought
   var split = split_drought.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_low, percentile_high, index_list);
 
-  return sensitivity.sensitivity_relative(split, antecedent_list, percentile_list, index_list);
-  // percentile_list = [percentile_low];
-  // if (output == 'relative sensitivity') {
-  //   return sensitivity.sensitivity_relative(split, antecedent_list, percentile_list, index_list);
-  // } else if (output == 'absolute sensitivity') {
-  //   return sensitivity.sensitivity_absolute(split, antecedent_list, percentile_list, index_list);
-  // } else if (output == 'vegetation index and antecedent means') {
-  //   var join = ee.Join.inner();
-  //   var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
-  //   joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
-  //   return joined;
-  // }
+  if (output == 'relative sensitivity') {
+    return sensitivity.sensitivity_relative_cap(split, antecedent_list, percentile_low, index_list);
+  } else if (output == 'absolute sensitivity') {
+    return sensitivity.sensitivity_absolute_cap(split, antecedent_list, percentile_low, index_list);
+  } else if (output == 'vegetation index and antecedent means') {
+    var join = ee.Join.inner();
+    var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
+    joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
+    return joined;
+  }
 
 };
 exports.main_greenest = main_greenest;
