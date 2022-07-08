@@ -37,14 +37,16 @@ var main_greenest = function(output, region,
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
   // Define drought
-  var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+  var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years); // CMI_ante3mo_mean
   var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+  
+  // here
   var lt_percent = percentile.lt_percentile_cap(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
   var split = split_drought.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_low, percentile_high, index_list);
 
-  return ante_means
+  return percentile_images
   // if (output == 'relative sensitivity') {
     // return sensitivity.sensitivity_relative_cap(split, antecedent_list, percentile_low, index_list);
   // } else if (output == 'absolute sensitivity') {
