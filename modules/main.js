@@ -44,7 +44,7 @@ var main_greenest = function(output, region,
   // Split vegetation index into baseline/drought
   var split = split_drought.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_low, percentile_high, index_list);
 
-  return split
+  return percentile_images
   // if (output == 'relative sensitivity') {
     // return sensitivity.sensitivity_relative_cap(split, antecedent_list, percentile_low, index_list);
   // } else if (output == 'absolute sensitivity') {
