@@ -15,9 +15,10 @@ var max_mm_dd = '07-15';
 var percentile_low = 15;
 var antecedent_list = ['3mo'];
 
+var ndvi_viz = {min:0.3, max:0.85};
 var rel_viz = {min:-50, max:50, palette: palettes.colorbrewer.RdBu[5]};
 var abs_viz = {min:-0.5, max:0.5, palette: palettes.colorbrewer.RdBu[5]};
-var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var cmi_viz = {min:-3, max:3, palette: palettes.colorbrewer.RdBu[5]};
 
 // Load an ecoregion
 var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
@@ -32,7 +33,7 @@ print('veg index + antecedent means'); print(main_index_and_antecedent);
 Map.setOptions('SATELLITE');
 Map.centerObject(ecoregion, 12);
 Map.addLayer(main_index_and_antecedent.select('CMI_ante3mo_mean').first(), cmi_viz, '1995 CMI 3 month antecedent mean', false);
-Map.addLayer(main_index_and_antecedent.select('NDVI').first(), {min:-1, max:1}, '1995 NDVI', false);
+Map.addLayer(main_index_and_antecedent.select('NDVI').first(), ndvi_viz, '1995 NDVI', false);
 
 // Test main - relative
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
