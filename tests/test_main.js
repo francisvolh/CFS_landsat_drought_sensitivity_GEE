@@ -61,10 +61,16 @@ var main_relative = main.main_greenest('relative sensitivity', ecoregion, min_ye
 print('relative sensitivity'); print(main_relative);
 Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15'), rel_viz, '1995-2015 relative drought sensitivity NDVI 15th percentile 3 month antecedent', false);
 
-print(ui.Chart.image.histogram(main_relative, geometry, 1000))
 
 // Test main - absolute
 // Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
 var main_absolute = main.main_greenest('absolute sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, percentile_low, antecedent_list);
 print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15'), abs_viz, '1995-2015 absolute drought sensitivity NDVI 15th percentile 3 month antecedent');
+
+
+
+
+
+print(ui.Chart.image.histogram(main_relative, geometry, 1000))
+
