@@ -22,7 +22,7 @@ var lt_percentile_cap = function(images, percentile_images) {
         img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85'))),
       percentile_images.select('CMI_ante12mo_mean_p15').gte(img.select('CMI_ante12mo_mean')).updateMask(
         img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p85'))),
-      percentile_images.select('CMI_ante5yr_mean_min_p15.*').gte(img.select('CMI_ante5yr_mean_min')).updateMask(
+      percentile_images.select('CMI_ante5yr_mean_min_p15').gte(img.select('CMI_ante5yr_mean_min')).updateMask(
         img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p85')))
       ]).copyProperties(img);
     var new_names = ee.Image(out).bandNames();
