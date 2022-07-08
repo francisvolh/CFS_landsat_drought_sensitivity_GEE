@@ -27,8 +27,8 @@ var indices_col = get_landsat.get_indices(2014, 2019, min_mm_dd, max_mm_dd, geom
 print(indices_col);
 
 // Test indices collection
-// Usage: get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
-var indices_green_col = get_landsat.get_indices_greenest(2014, 2019, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
+// Usage: get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var indices_green_col = get_landsat.get_indices_greenest(2014, 2019, min_mm_dd, max_mm_dd, geometry);
 print(indices_green_col);
 
 
