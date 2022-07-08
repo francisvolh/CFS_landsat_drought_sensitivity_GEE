@@ -17,8 +17,9 @@ var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 var main_greenest = function(output, region,
                     min_year, max_year, min_mm_dd, max_mm_dd,
-                    percentile_low, antecedent_list) {
+                    antecedent_list) {
   // Variables
+  var percentile_low = 15;
   var percentile_high = 85;
   var index_list = ['NDVI', 'NBR'];
 
@@ -38,7 +39,7 @@ var main_greenest = function(output, region,
 
   // Define drought
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years); // CMI_ante3mo_mean
-  var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+  var percentile_images = percentile.get_percentile(ante_means, percentile_list); //CMI_ante3mo_mean_p85 CMI_ante5yr_mean_min_p15
   
   // here
   var lt_percent = percentile.lt_percentile_cap(ante_means, percentile_images);
