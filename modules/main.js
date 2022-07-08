@@ -20,7 +20,7 @@ var main_greenest = function(output, region,
                     percentile_low, antecedent_list) {
   // Variables
   var percentile_high = 85;
-  var index_list = ['NDVI', 'NBR']
+  var index_list = ['NDVI', 'NBR'];
 
   var years = ee.List.sequence(min_year, max_year);
   var months = ee.List.sequence(1, 12);
