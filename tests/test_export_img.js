@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-125.75374796477628, 56.26962911141167],
-          [-125.75374796477628, 55.65469597589261],
-          [-124.24862101165128, 55.65469597589261],
-          [-124.24862101165128, 56.26962911141167]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/export_img.js
 Alec L. Robitaille
@@ -31,7 +17,7 @@ var index_list = ['NDVI', 'NBR'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
 var scale = 30;
 
-var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
+var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
@@ -40,6 +26,6 @@ var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.8
 export_img.export_img_asset_greenest('test-export-asset-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 
 
-// Test export_img_drive_greeenest
-// Usage: export_img_drive_greeenest(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list)
-export_img.export_img_drive_greeenest('test-export-drive-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+// Test export_img_drive_greenest
+// Usage: export_img_drive_greenest(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list)
+export_img.export_img_drive_greenest('test-export-drive-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
