@@ -20,16 +20,6 @@ var index_list = ['NDVI', 'NBR'];
 var drive_folder = 'Batch-ecoregion-export';
 var n_pts = 10;
 
-// Load ecoregions
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(geometry).limit(3);
-
-
-// Test export_abs_sensitivity_cap
-// Usage: export_abs_sensitivity_cap(points, region, drive_name, drive_folder, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list)
-var points = ee.FeatureCollection.randomPoints(ecoregions, 10);
-export_points.export_abs_sensitivity_cap(points, ecoregions, 'test-export-abs-sens-cap', 'Exports', min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent);
-
 
 
 // Test export_hydro
@@ -37,10 +27,3 @@ export_points.export_abs_sensitivity_cap(points, ecoregions, 'test-export-abs-se
 export_points.export_hydro(points, 'test-export-hydro', 'Exports');
 
 
-
-// Test export_by_ecoregion - veg index and ante means
-// Usage: export_by_ecoregion(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
-export_points.export_by_ecoregion('vegetation index and antecedent means', drive_folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list, antecedent);
-
-// Test export_by_ecoregion_cap - veg index and ante means
-// Usage: export_by_ecoregion_cap(output, folder, n_pts, ecoregions, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list)
