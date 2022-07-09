@@ -22,7 +22,7 @@ var max_mm_dd = '07-31';
 var percentile_low = 15;
 var percentile_high = 85;
 var percentile_list = [percentile_low, percentile_high];
-var index_list = ['NDVI', 'EVI'];
+var index_list = ['NDVI', 'NBR'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
 var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
@@ -45,7 +45,7 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 var percentile_images = percentile.get_percentile(ante_means, percentile_list); 
 var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
 
-
+print(indices_col)
 
 // Test split_drought_wi
 // Usage: split_drought.split_drought_wi(indices_col, wi_masks, antecedent_list, index_list)
