@@ -16,7 +16,8 @@ var geometry =
                   [-112.54977240618017, 59.371840771122656]]], null, false),
             {
               "system:index": "0"
-            })]);
+            })]),
+    geometry2 = /* color: #d63000 */ee.FeatureCollection([]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
@@ -41,29 +42,26 @@ var rel_viz = {min:-50, max:50, palette: p};
 var abs_viz = {min:-0.5, max:0.5, palette: p};
 var cmi_viz = {min:-15, max:15, palette: p};
 
-// Load an ecoregion
-var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
-  .filter(ee.Filter.eq('ECOREGI', 136));
+var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 // Test main - index + antecedent means
-// Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-var main_index_and_antecedent = main.main_greenest('vegetation index and antecedent means', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, percentile_low, antecedent_list);
+// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+var main_index_and_antecedent = main.main_greenest('vegetation index and antecedent means', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 print('veg index + antecedent means'); print(main_index_and_antecedent);
 Map.setOptions('SATELLITE');
-Map.centerObject(ecoregion, 12);
 Map.addLayer(main_index_and_antecedent.select('CMI_ante3mo_mean').first(), cmi_viz, '1995 CMI 3 month antecedent mean', false);
 Map.addLayer(main_index_and_antecedent.select('NDVI').first(), ndvi_viz, '1995 NDVI', false);
 
 // Test main - relative
-// Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-var main_relative = main.main_greenest('relative sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, percentile_low, antecedent_list);
+// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+var main_relative = main.main_greenest('relative sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 print('relative sensitivity'); print(main_relative);
-Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15'), rel_viz, '1995-2015 relative drought sensitivity NDVI 15th percentile 3 month antecedent', false);
+Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, '1995-2015 relative drought sensitivity NDVI p15-85 3 month antecedent', false);
 
 
 // Test main - absolute
-// Usage: main(output, region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_list);
-var main_absolute = main.main_greenest('absolute sensitivity', ecoregion, min_year, max_year, min_mm_dd, max_mm_dd, percentile_low, antecedent_list);
+// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+var main_absolute = main.main_greenest('absolute sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 print('absolute sensitivity'); print(main_absolute);
-Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15'), abs_viz, '1995-2015 absolute drought sensitivity NDVI 15th percentile 3 month antecedent');
+Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, '1995-2015 absolute drought sensitivity NDVI p15-85  3 month antecedent');
