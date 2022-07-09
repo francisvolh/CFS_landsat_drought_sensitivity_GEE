@@ -5,6 +5,7 @@ Alec L. Robitaille
 
 // Load modules
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
+var palettes = require('users/gena/packages:palettes');
 
 // Set variables
 var min_year = 1985; var max_year = 2015;
