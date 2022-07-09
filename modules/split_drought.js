@@ -12,17 +12,19 @@ var split_drought_wi = function(images, percentile_masks, antecedent_list, index
     var yr = img.get('year');
 
     // Filter percentile masks matching year
-    var wi_mask = wi_masks.filter(ee.Filter.eq('year', yr)).first();
+    var percentile_mask = percentile_masks.filter(ee.Filter.eq('year', yr)).first();
 
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
         // Loop over index_list
         return index_list.map(function(index) {
-          var ante_mask_band = 'CMI_ante' + antecedent_period + '_wi_p15_p85';
+          var ante_mask_band = 'CMI_ante' + antecedent_period;
+          var ante_mask_band_drought = ante_mask_band + '_lte_p15';
+          var ante_mask_band_baseline = ante_mask_band + '_wi_p15_p85';
           
-          var veg_band = index + '_ante' + antecedent_period + '_p15_p85';
-          var drought_veg_band = veg_band + '_drought';
-          var base_veg_band = veg_band + '_base';
+          var veg_band = index + '_ante' + antecedent_period;
+          var drought_veg_band = veg_band + '_lte_p15_drought';
+          var base_veg_band = veg_band + '_wi_p15_p85_baseline';
 
           // Baseline vegetation index
           var baseline = img.select([index])
