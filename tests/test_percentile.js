@@ -39,10 +39,17 @@ Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3
 Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p15'), cmi_viz, '2010-2015 CMI 15th percentile');
 Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p85'), cmi_viz, '2010-2015 CMI 85th percentile');
 
+
+
 // Test get_percentile_masks
 // Usage: get_percentile_masks(antecedent_images, percentile_images)
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 print('Percentile masks', percentile_masks);
 Map.addLayer(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first(), {min:0, max:1}, '2010 CMI wi 15th-85th 3 month antecedent');
-Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI wi 15th-85th 3 month antecedent');
+Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI lte 15th 3 month antecedent');
 
+
+
+Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first()
+                             .add(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first().not()), 
+             {min:-1, max:0}, '2010 CMI diff wi (not) vs lte 3 month antecedent', false);
