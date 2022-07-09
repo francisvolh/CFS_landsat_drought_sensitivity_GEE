@@ -5,7 +5,7 @@ Alec L. Robitaille
 
 
 // Split vegetation indices into drought/non-drought pixels, with cap at percentile_high
-var split_drought_wi = function(images, wi_masks, antecedent_list, index_list) {
+var split_drought_wi = function(images, perncetile_masks, antecedent_list, index_list) {
   // Map over images
   return images.map(function(img) {
     // Get year
