@@ -49,7 +49,7 @@ Map.addLayer(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first(), {min:0, 
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI lte 15th 3 month antecedent');
 
 
-// Compare
+// Compare (>15 areas + with 15-85 areas = 0 (both drought), 1 (one baseline), 2 (both baseline)
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first().not()
                              .add(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first()), 
              null, '2010 CMI wi, lte agree 3 month antecedent', false);
