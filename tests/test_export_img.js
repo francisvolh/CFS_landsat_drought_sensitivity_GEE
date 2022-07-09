@@ -27,8 +27,12 @@ var abs_viz = {min:-0.3, max:0.3, palette: p};
 // Test export_img_asset_greenest
 // Usage: export_img_asset_greenest(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list)
 export_img.export_img_asset_greenest('test-export-asset-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest'), abs_viz, 'Exported image greenest asset');
+
 
 // Test export_img_drive_greenest
 // Usage: export_img_drive_greenest(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list)
 export_img.export_img_drive_greenest('test-export-drive-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+
+
+
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85 '), abs_viz, 'Exported image greenest asset');
