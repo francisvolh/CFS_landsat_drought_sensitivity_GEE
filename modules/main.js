@@ -42,10 +42,10 @@ var main_greenest = function(output, region,
   var percentile_images = percentile.get_percentile(ante_means, percentile_list); //CMI_ante3mo_mean_p85 CMI_ante5yr_mean_min_p15
   
   // here
-  var lt_percent = percentile.lt_percentile_cap(ante_means, percentile_images);
+  var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
-  var split = split_drought.split_drought_cap(indices_col, lt_percent, antecedent_list, percentile_low, percentile_high, index_list);
+  var split = split_drought.split_drought_cap(indices_col, wi_percent, antecedent_list, percentile_low, percentile_high, index_list);
 
   return lt_percent
   // if (output == 'relative sensitivity') {
