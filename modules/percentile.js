@@ -19,13 +19,17 @@ var lt_percentile_cap = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     var out = ee.Image([
       percentile_images.select('CMI_ante3mo_mean_p15').gte(img.select('CMI_ante3mo_mean')),
+
       percentile_images.select('CMI_ante12mo_mean_p15').gte(img.select('CMI_ante12mo_mean')),
+      
       percentile_images.select('CMI_ante5yr_mean_min_p15').gte(img.select('CMI_ante5yr_mean_min')),
 
       percentile_images.select('CMI_ante3mo_mean_p15').gte(img.select('CMI_ante3mo_mean')).where(
         img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85')), 0).rename('CMI_ante3mo_lt_p15_gt_p85'),
+      
       percentile_images.select('CMI_ante12mo_mean_p15').gte(img.select('CMI_ante12mo_mean')).where(
         img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p15')), 0).rename('CMI_ante12mo_lt_p15_gt_p85'),
+        
       percentile_images.select('CMI_ante5yr_mean_min_p15').gte(img.select('CMI_ante5yr_mean_min')).where(
         img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p15')), 0).rename('CMI_ante5yr_lt_p15_gt_p85')
 
