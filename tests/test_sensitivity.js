@@ -54,12 +54,12 @@ var sens_absolute = sensitivity.sensitivity_absolute_cap(split_drought_wi, antec
 
 print('Absolute sensitivity', sens_absolute);
 print('Relative sensitivity', sens_relative);
-// Map.centerObject(geometry);
-// Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI lte p15th 3 month antecedent');
-// Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI drought lte 15th 3 month antecedent');
-// Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI baseline wi p15-86 3 month antecedent', false);
-// Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, '2010-2015 relative drought sensitivity NDVI p15-85 3 month antecedent');
-// Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, '2010-2015 absolute drought sensitivity NDVI p15-85 3 month antecedent', false);
+Map.centerObject(geometry);
+Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI lte p15th 3 month antecedent');
+Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI drought lte 15th 3 month antecedent');
+Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI baseline wi p15-86 3 month antecedent', false);
+Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, '2010-2015 relative drought sensitivity NDVI p15-85 3 month antecedent');
+Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, '2010-2015 absolute drought sensitivity NDVI p15-85 3 month antecedent', false);
 
 
 
