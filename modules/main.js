@@ -15,9 +15,7 @@ var split_drought = require('users/robitalec/CFS:modules/split_drought.js');
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 
-var main_greenest = function(output, region,
-                    min_year, max_year, min_mm_dd, max_mm_dd,
-                    antecedent_list) {
+var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list) {
   // Variables
   var percentile_low = 15;
   var percentile_high = 85;
@@ -29,7 +27,7 @@ var main_greenest = function(output, region,
 
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+  var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
   indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
   
   // CMI
