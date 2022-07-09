@@ -25,9 +25,10 @@ var percentile_high = 85;
 var percentile_list = [percentile_low, percentile_high];
 var index_list = ['NDVI', 'NBR'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
-var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
-var rel_viz = {min:-20, max:20, palette: palettes.colorbrewer.RdBu[5]};
-var abs_viz = {min:-0.3, max:0.3, palette: palettes.colorbrewer.RdBu[5]};
+var p = palettes.crameri.vik[10];
+var cmi_viz = {min:-30, max:30, palette: p};
+var rel_viz = {min:-20, max:20, palette: p};
+var abs_viz = {min:-0.3, max:0.3, palette: p};
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
