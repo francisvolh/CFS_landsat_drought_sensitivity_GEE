@@ -11,7 +11,7 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-var split_drought = require('users/robitalec/CFS:modules/split_drought.js');
+var split = require('users/robitalec/CFS:modules/split_drought.js');
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 
 
