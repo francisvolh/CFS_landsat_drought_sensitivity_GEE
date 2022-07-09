@@ -14,8 +14,8 @@ var sensitivity_absolute_cap = function(split_indices, antecedent_list, index_li
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period;
-          var baseline_band = id + 'wi_p15_p85_base';
-          var drought_band = id + 'lte_p15_drought';
+          var baseline_band = id + '_wi_p15_p85_base';
+          var drought_band = id + '_lte_p15_drought';
           var sensitivity_band = 'Abs_sens_' + id + '_p15_p85';
 
           return means.expression('baseline - drought', {
@@ -33,8 +33,8 @@ var sensitivity_relative_cap = function(split_indices, antecedent_list, index_li
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period;
-          var baseline_band = id + 'wi_p15_p85_base';
-          var drought_band = id + 'lte_p15_drought';
+          var baseline_band = id + '_wi_p15_p85_base';
+          var drought_band = id + '_lte_p15_drought';
           var sensitivity_band = 'Rel_sens_' + id + '_p15_p85';
 
           return means.expression('((baseline - drought) / baseline) * 100', {
