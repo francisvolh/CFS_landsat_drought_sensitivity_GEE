@@ -14,7 +14,8 @@ var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var years = ee.List.sequence(2010, 2020);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [15, 85];
-var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
+var p = palettes.crameri.vik[10];
+var cmi_viz = {min:-30, max:30, palette: p};
 
 // Load collection
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
