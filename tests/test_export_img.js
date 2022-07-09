@@ -21,45 +21,26 @@ Alec L. Robitaille
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
 
 // Set variables
-var region = ee.FeatureCollection(geometry);
-var min_year = 2000;
-var max_year = 2015;
+var min_year = 1985; var max_year = 2015;
+var years = ee.List.sequence(min_year, max_year);
+var months = ee.List.sequence(1, 12);
+var min_mm_dd = '07-01';
+var max_mm_dd = '07-31';
+var percentile_list = [15, 85];
+var index_list = ['NDVI', 'NBR'];
+var antecedent_list = ['3mo', '12mo', '5yr'];
 var scale = 30;
-var min_mm_dd = '06-15';
-var max_mm_dd = '07-15';
-var percentile = [15];
-var percentile_low = 15;
-var percentile_high = 85;
-var index = ['NDVI'];
-var antecedent = ['12mo'];
+
+var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
-
-// Test export_img_asset
-// Usage: export_img_asset(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
-export_img.export_img_asset('test-export-asset', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
-
+// Test export_img_asset_greenest
+// Usage: export_img_asset_greenest(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
+export_img.export_img_asset_greenest('test-export-asset-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
 
 
-// Test export_img_drive
-// Usage: export_img_drive(drive_name, drive_folder, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
-export_img.export_img_drive('test-export-drive', 'Test-export', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
-
-
-
-// Test export_img_cloud
-// Usage: export_img_cloud(cloud_name, cloud_bucket, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
-export_img.export_img_cloud('test-export-cloud', null, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
-
-
-// --- CAP --------------------------------------------------------------------
-// Test export_img_asset_cap
-// Usage: export_img_asset_cap(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
-export_img.export_img_asset_cap('test-export-asset-cap', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
-
-
-// Test export_img_drive_cap
-// Usage: export_img_drive_cap(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
-export_img.export_img_drive_cap('test-export-drive-cap', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+// Test export_img_drive_greeenest
+// Usage: export_img_drive_greeenest(drive_name, drive_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent)
+export_img.export_img_drive_greeenest('test-export-drive-greenest', 'CFS', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
 
