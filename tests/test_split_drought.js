@@ -46,12 +46,12 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
 
 
-
+print(indices_col)
 // Test split_drought_wi
 // Usage: split_drought.split_drought_wi(indices_col, wi_masks, antecedent_list, index_list)
 var split_drought_wi = split.split_drought_wi(indices_col, wi_percent, antecedent_list, index_list);
 print('Split drought within'); print(split_drought_wi);
-Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 15th percentile 3 month antecedent');
-Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_base'),  {min: -0.5, max:1}, '2010 NDVI baseline 15th-85th percentile 3 month antecedent', false);
+Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_p85_drought').first(),  {min: -0.5, max:1}, '2010 NDVI drought 15-85th 3 month antecedent');
+Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_p85_base'),  {min: -0.5, max:1}, '2010 NDVI baseline 15th-85th 3 month antecedent', false);
 Map.centerObject(geometry);
 
