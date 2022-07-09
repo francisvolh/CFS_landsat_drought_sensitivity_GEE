@@ -32,8 +32,8 @@ var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 // Test get_percentile
 // Usage: get_percentile(images, percentile_list)
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
-print('Antecedent means'); print(ante_means);
-print('Percentile images'); print(percentile_images);
+print('Antecedent means', ante_means);
+print('Percentile images', percentile_images);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean'), cmi_viz, '2010-2015 CMI 3 month antecedent means', false);
 Map.addLayer(ante_means.select('CMI_ante3mo_mean').first(), cmi_viz, '2010 CMI 3 month antecedent means');
 Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p15'), cmi_viz, '2010-2015 CMI 15th percentile');
