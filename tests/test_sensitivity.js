@@ -23,10 +23,12 @@ var max_mm_dd = '07-31';
 var percentile_list = [15, 85];
 var index_list = ['NDVI', 'NBR'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
+
 var p = palettes.crameri.vik[10];
 var cmi_viz = {min:-30, max:30, palette: p};
 var rel_viz = {min:-20, max:20, palette: p};
 var abs_viz = {min:-0.3, max:0.3, palette: p};
+
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
