@@ -39,7 +39,8 @@ var export_img_drive_greenest = function(drive_name, drive_folder, scale, region
     description: today + '_' + drive_name,
     folder: drive_folder,
     region: region,
-    scale: scale
+    scale: scale,
+    maxPixels: 200000000
   });
 };
 exports.export_img_drive_greenest = export_img_drive_greenest;
