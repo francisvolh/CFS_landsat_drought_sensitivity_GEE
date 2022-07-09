@@ -35,4 +35,4 @@ export_img.export_img_drive_greenest('test-export-drive-greenest', 'CFS', scale,
 
 
 
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85 '), abs_viz, 'Exported image greenest asset');
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'Exported image greenest asset');
