@@ -22,7 +22,6 @@ var export_img = require('users/robitalec/CFS:modules/export_img.js');
 
 // Set variables
 var region = ee.FeatureCollection(geometry);
-var percentile = [15];
 var index = ['NDVI'];
 var antecedent = ['3mo'];
 var min_year = 1985;
@@ -32,8 +31,7 @@ var max_mm_dd = '07-31';
 
 
 // File name
-var export_name = 'sens_' + index + '_' + antecedent + '_p' + percentile;
+var export_name = 'sens_' + index + '_' + antecedent + '_p15_p85';
 
 // Export image to drive
-// Usage: export_img_drive(drive_name, drive_folder, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent)
-export_img.export_img_drive(export_name, 'Exports', 30, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile, antecedent);
+export_img.export_img_drive_greenest(export_name, 'Exports', 30, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
