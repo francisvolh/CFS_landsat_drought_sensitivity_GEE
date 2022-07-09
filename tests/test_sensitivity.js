@@ -12,6 +12,7 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 // Set variables
 var min_year = 1985; var max_year = 2015;
