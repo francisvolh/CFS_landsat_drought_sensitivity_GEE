@@ -40,8 +40,6 @@ var main_greenest = function(output, region,
   // Define drought
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years); // CMI_ante3mo_mean
   var percentile_images = percentile.get_percentile(ante_means, percentile_list); //CMI_ante3mo_mean_p85 CMI_ante5yr_mean_min_p15
-  
-  // here
   var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
