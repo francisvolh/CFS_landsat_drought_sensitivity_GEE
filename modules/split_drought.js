@@ -5,40 +5,32 @@ Alec L. Robitaille
 
 
 // Split vegetation indices into drought/non-drought pixels, with cap at percentile_high
-var split_drought_cap = function(images, percentile_masks, antecedent_list, percentile_low, percentile_high, index_list) {
+var split_drought_wi = function(images, wi_masks, antecedent_list, index_list) {
   // Map over images
   return images.map(function(img) {
     // Get year
     var yr = img.get('year');
 
     // Filter percentile masks matching year
-    var percent_mask = percentile_masks.filter(ee.Filter.eq('year', yr)).first();
+    var wi_mask = wi_masks.filter(ee.Filter.eq('year', yr)).first();
 
     // Loop over antecedent_list
     return ee.Image(antecedent_list.map(function(antecedent_period) {
         // Loop over index_list
         return index_list.map(function(index) {
-          // Set up band names
-          var percent_low_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_low;
-          var percent_high_mask_band = 'CMI_ante' + antecedent_period + '_lt_p' + percentile_high;
           
-          var veg_band = index + '_ante' + antecedent_period + '_p' + percentile_low;
+          var veg_band = index + '_ante' + antecedent_period + '_p15_p85';
           var drought_veg_band = veg_band + '_drought';
           var base_veg_band = veg_band + '_base';
 
-          // Set up drought and base mask
-          var lt_low_mask = percent_mask.select(percent_low_mask_band);
-          var lt_high_mask = percent_mask.select(percent_high_mask_band);
-
           // Baseline vegetation index
           var baseline = img.select([index])
-                            .updateMask(lt_low_mask.not())
-                            .updateMask(lt_high_mask)
+                            .updateMask(wi_mask.not())
                             .rename([base_veg_band]);
 
           // Drought vegetation index
           var drought = img.select([index])
-                           .updateMask(lt_low_mask)
+                           .updateMask(wi_mask)
                            .rename([drought_veg_band]);
           return [baseline, drought];
         });
