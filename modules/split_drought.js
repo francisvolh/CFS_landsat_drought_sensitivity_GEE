@@ -23,7 +23,7 @@ var split_drought_wi = function(images, percentile_masks, antecedent_list, index
           var ante_mask_band_baseline = ante_mask_band + '_wi_p15_p85';
           
           var veg_band = index + '_ante' + antecedent_period;
-          var drought_veg_band = veg_band + 'lte_p15_drought';
+          var drought_veg_band = veg_band + '_lte_p15_drought';
           var base_veg_band = veg_band + '_wi_p15_p85_base';
 
           // Baseline vegetation index
