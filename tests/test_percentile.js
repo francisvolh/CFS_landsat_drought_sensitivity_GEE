@@ -52,4 +52,4 @@ Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max
 // Compare
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first().not()
                              .add(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first()), 
-             null, '2010 CMI diff wi (not) vs lte 3 month antecedent', false);
+             null, '2010 CMI wi, lte agree 3 month antecedent', false);
