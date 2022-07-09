@@ -43,13 +43,13 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 // Define drought
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 var percentile_images = percentile.get_percentile(ante_means, percentile_list); 
-var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
+var percentile_masks = percentile.wi_percentile(ante_means, percentile_images);
 
 
 // Test split_drought_wi
-// Usage: split_drought.split_drought_wi(indices_col, wi_masks, antecedent_list, index_list)
-var split_drought_wi = split.split_drought_wi(indices_col, wi_percent, antecedent_list, index_list);
-print('Split drought within'); print(split_drought_wi);
+// Usage: split_drought.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list)
+var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
+print('Split drought within', split_drought_wi);
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_p85_drought'),  {min: -0.5, max:1}, '2010 NDVI drought 15-85th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_p15_p85_base'),  {min: -0.5, max:1}, '2010 NDVI baseline 15th-85th 3 month antecedent', false);
 Map.centerObject(geometry);
