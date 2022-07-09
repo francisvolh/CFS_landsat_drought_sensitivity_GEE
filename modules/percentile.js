@@ -18,15 +18,15 @@ exports.get_percentile = get_percentile;
 var wi_percentile = function(ante_images, percentile_images) {
 	var ante_wi_percentile = ante_images.map(function(ante_img) {
     var out = ee.Image([
-      ante_img.select('CMI_ante3mo_mean').gte(percentile_images.select('CMI_ante3mo_mean_p15'))
-        .and(ante_img.select('CMI_ante3mo_mean').lte(percentile_images.select('CMI_ante3mo_mean_p85')))
+      ante_img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p15'))
+        .and(ante_img.select('CMI_ante3mo_mean').lt(percentile_images.select('CMI_ante3mo_mean_p85')))
         .rename('CMI_ante3mo_wi_p15_p85'),
-      ee.Image.constant(0).where(ante_img.select('CMI_ante12mo_mean').gte(percentile_images.select('CMI_ante12mo_mean_p15')).and(
-                                 ante_img.select('CMI_ante12mo_mean').lte(percentile_images.select('CMI_ante12mo_mean_p85'))),
+      ee.Image.constant(0).where(ante_img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p15')).and(
+                                 ante_img.select('CMI_ante12mo_mean').lt(percentile_images.select('CMI_ante12mo_mean_p85'))),
                                  1)
                            .rename('CMI_ante12mo_wi_p15_p85'),
-      ee.Image.constant(0).where(ante_img.select('CMI_ante5yr_mean_min').gte(percentile_images.select('CMI_ante5yr_mean_min_p15')).and(
-                                 ante_img.select('CMI_ante5yr_mean_min').lte(percentile_images.select('CMI_ante5yr_mean_min_p85'))),
+      ee.Image.constant(0).where(ante_img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p15')).and(
+                                 ante_img.select('CMI_ante5yr_mean_min').lt(percentile_images.select('CMI_ante5yr_mean_min_p85'))),
                                  1)
                            .rename('CMI_ante5yr_wi_p15_p85')
        ]).copyProperties(ante_img);
@@ -45,10 +45,10 @@ exports.wi_percentile = wi_percentile;
 var zzz_lt_percentile = function(images, percentile_images) {
 	var images_lt_percentiles = images.map(function(img) {
     var out = ee.Image([
-      percentile_images.select('CMI_ante3mo.*').gte(img.select('CMI_ante3mo_mean')),
-      // percentile_images.select('CMI_ante6mo.*').gte(img.select('CMI_ante6mo_mean')),
-      percentile_images.select('CMI_ante12mo.*').gte(img.select('CMI_ante12mo_mean')),
-      percentile_images.select('CMI_ante5yr.*').gte(img.select('CMI_ante5yr_mean_min'))
+      percentile_images.select('CMI_ante3mo.*').gt(img.select('CMI_ante3mo_mean')),
+      // percentile_images.select('CMI_ante6mo.*').gt(img.select('CMI_ante6mo_mean')),
+      percentile_images.select('CMI_ante12mo.*').gt(img.select('CMI_ante12mo_mean')),
+      percentile_images.select('CMI_ante5yr.*').gt(img.select('CMI_ante5yr_mean_min'))
       ]).copyProperties(img);
     var new_names = ee.Image(out).bandNames();
     new_names = new_names.map(function(nm) {
@@ -68,19 +68,19 @@ exports.zzz_lt_percentile = zzz_lt_percentile;
 // var lt_percentile_cap = function(images, percentile_images) {
 // 	var images_lt_percentiles = images.map(function(img) {
 //     var out = ee.Image([
-//       percentile_images.select('CMI_ante3mo_mean_p15').gte(img.select('CMI_ante3mo_mean')),
+//       percentile_images.select('CMI_ante3mo_mean_p15').gt(img.select('CMI_ante3mo_mean')),
 
-//       percentile_images.select('CMI_ante12mo_mean_p15').gte(img.select('CMI_ante12mo_mean')),
+//       percentile_images.select('CMI_ante12mo_mean_p15').gt(img.select('CMI_ante12mo_mean')),
       
-//       percentile_images.select('CMI_ante5yr_mean_min_p15').gte(img.select('CMI_ante5yr_mean_min')),
+//       percentile_images.select('CMI_ante5yr_mean_min_p15').gt(img.select('CMI_ante5yr_mean_min')),
 
-//       percentile_images.select('CMI_ante3mo_mean_p15').gte(img.select('CMI_ante3mo_mean')).where(
-//         img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85')), 0).rename('CMI_ante3mo_lt_p15_gt_p85'),
+//       percentile_images.select('CMI_ante3mo_mean_p15').gt(img.select('CMI_ante3mo_mean')).where(
+//         img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p85')), 0).rename('CMI_ante3mo_gt5'),
       
-//       percentile_images.select('CMI_ante12mo_mean_p15').gte(img.select('CMI_ante12mo_mean')).where(
+//       percentile_images.select('CMI_ante12mo_mean_p15').gt(img.select('CMI_ante12mo_mean')).where(
 //         img.select('CMI_ante12mo_mean').gt(percentile_images.select('CMI_ante12mo_mean_p15')), 0).rename('CMI_ante12mo_lt_p15_gt_p85'),
         
-//       percentile_images.select('CMI_ante5yr_mean_min_p15').gte(img.select('CMI_ante5yr_mean_min')).where(
+//       percentile_images.select('CMI_ante5yr_mean_min_p15').gt(img.select('CMI_ante5yr_mean_min')).where(
 //         img.select('CMI_ante5yr_mean_min').gt(percentile_images.select('CMI_ante5yr_mean_min_p15')), 0).rename('CMI_ante5yr_lt_p15_gt_p85')
 
 //       ]).copyProperties(img);
