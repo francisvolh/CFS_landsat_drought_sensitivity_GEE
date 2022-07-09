@@ -29,8 +29,8 @@ var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.8
 
 
 
-// Processing
-  // Collections
+// Processing ---
+// Collections
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 
@@ -41,9 +41,10 @@ indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
 // Define drought
-var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years); // CMI_ante3mo_mean
-var percentile_images = percentile.get_percentile(ante_means, percentile_list); //CMI_ante3mo_mean_p85 CMI_ante5yr_mean_min_p15
-  
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+var percentile_images = percentile.get_percentile(ante_means, percentile_list); 
+var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
+
 
 
 // Test split_drought_wi
