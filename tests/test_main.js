@@ -35,10 +35,11 @@ var max_mm_dd = '07-15';
 var percentile_low = 15;
 var antecedent_list = ['3mo'];
 
+var p = palettes.crameri.vik[10];
 var ndvi_viz = {min:0.3, max:0.85};
-var rel_viz = {min:-50, max:50, palette: palettes.colorbrewer.RdBu[5]};
-var abs_viz = {min:-0.5, max:0.5, palette: palettes.colorbrewer.RdBu[5]};
-var cmi_viz = {min:-15, max:15, palette: palettes.colorbrewer.RdBu[5]};
+var rel_viz = {min:-50, max:50, palette: p};
+var abs_viz = {min:-0.5, max:0.5, palette: p};
+var cmi_viz = {min:-15, max:15, palette: p};
 
 // Load an ecoregion
 var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
