@@ -14,14 +14,17 @@ var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Set variables
-var min_year = 2010; var max_year = 2015;
+var min_year = 1985; var max_year = 2015;
 var years = ee.List.sequence(min_year, max_year);
 var months = ee.List.sequence(1, 12);
-var percentile_list = [5, 10];
-var index_list = ['NDVI', 'EVI'];
+var min_mm_dd = '07-01';
+var max_mm_dd = '07-31';
+var percentile_low = 15;
+var percentile_high = 85;
+var percentile_list = [percentile_low, percentile_high];
+var index_list = ['NDVI', 'NBR'];
 var antecedent_list = ['3mo', '12mo', '5yr'];
-var rel_viz = {min:-20, max:20, palette: palettes.colorbrewer.RdBu[5]};
-var abs_viz = {min:-0.5, max:0.5, palette: palettes.colorbrewer.RdBu[5]};
+var cmi_viz = {min:-30, max:30, palette: palettes.colorbrewer.RdBu[5]};
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
