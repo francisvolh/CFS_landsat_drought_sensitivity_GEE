@@ -1,10 +1,10 @@
 /*
-Split vegetation indices into drought/non-drought
+Split vegetation indices into drought/baseline
 Alec L. Robitaille
 */
 
 
-// Split vegetation indices into drought/non-drought pixels, with cap at percentile_high
+// Split vegetation indices into drought/baseline pixels
 var split_drought_wi = function(images, perncetile_masks, antecedent_list, index_list) {
   // Map over images
   return images.map(function(img) {
