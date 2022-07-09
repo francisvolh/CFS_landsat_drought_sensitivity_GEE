@@ -12,23 +12,26 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
                                     [-105.988, 58.941], [-105.988, 59.673]]]);
 
 
+var min_year = 2010;
+var max_year = 2015;
 var min_mm_dd = '07-01';
 var max_mm_dd = '07-31';
 
 
+
 // Test SR collection
 // Usage: get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
-var sr_col = get_landsat.get_SR(2014, 2019, min_mm_dd, max_mm_dd, geometry);
+var sr_col = get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 print(sr_col);
 
 // Test indices collection
 // Usage: get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
-var indices_col = get_landsat.get_indices(2014, 2019, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
+var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
 print(indices_col);
 
 // Test indices collection
 // Usage: get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region)
-var indices_green_col = get_landsat.get_indices_greenest(2014, 2019, min_mm_dd, max_mm_dd, geometry);
+var indices_green_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 print(indices_green_col);
 
 
