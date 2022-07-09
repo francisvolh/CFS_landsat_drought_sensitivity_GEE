@@ -18,14 +18,15 @@ var split_drought_wi = function(images, wi_masks, antecedent_list, index_list) {
     return ee.Image(antecedent_list.map(function(antecedent_period) {
         // Loop over index_list
         return index_list.map(function(index) {
+          var ante_mask_band = 'CMI_ante' + antecedent_period + '_wi_p15_p85';
           
-          var veg_band = index + '_ante' + antecedent_period + '_p15_p85';
+          var veg_band = index + '_ante' + antecedent_period + '_p' + percentile_low;
           var drought_veg_band = veg_band + '_drought';
           var base_veg_band = veg_band + '_base';
 
           // Baseline vegetation index
           var baseline = img.select([index])
-                            .updateMask(wi_mask.not())
+                            .updateMask(wi_mask.select(ante_mask_band).not())
                             .rename([base_veg_band]);
 
           // Drought vegetation index
