@@ -1,0 +1,6 @@
+var assetList = ee.data.listAssets("users/robitalec/CFS/2022-05-30")['assets']
+                    .map(function(d) { 
+                      ee.data.deleteAsset(d.name)
+                      return d.name 
+                    });
+                    
