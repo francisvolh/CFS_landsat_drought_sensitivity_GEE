@@ -38,7 +38,7 @@ var split_drought_wi = function(images, wi_masks, antecedent_list, index_list) {
     );
   });
 };
-exports.split_drought_cap = split_drought_cap;
+exports.split_drought_wi = split_drought_wi;
  
  
  
