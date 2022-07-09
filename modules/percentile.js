@@ -30,7 +30,7 @@ var wi_percentile = function(ante_images, percentile_images) {
                                  ante_img.select('CMI_ante5yr_mean').lte(percentile_images.select('CMI_ante5yr_mean_p85'))),
                                  1)
                            .rename('CMI_ante5yr_lt_p15_gt_p85')
-       ]).copyProperties(img);
+       ]).copyProperties(ante_img);
     return out;
 	});
 	return ante_wi_percentile;
