@@ -10,7 +10,7 @@ S {P,T,L} = baseline EVI{P} – drought EVI{P,T,L}
 */
 
 var sensitivity_absolute_cap = function(split_indices, antecedent_list, index_list) {
-	var means = split_indices.median();
+	var means = split_indices.mean();
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period;
@@ -29,7 +29,7 @@ var sensitivity_absolute_cap = function(split_indices, antecedent_list, index_li
 exports.sensitivity_absolute_cap = sensitivity_absolute_cap;
 
 var sensitivity_relative_cap = function(split_indices, antecedent_list, index_list) {
-	var means = split_indices.mean();
+	var means = split_indices.median();
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period;
