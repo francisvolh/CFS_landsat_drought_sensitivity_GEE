@@ -52,7 +52,7 @@ var max_mm_dd = '07-31';
 var percentile_low = 15;
 var percentile_high = 85;
 var index = ['NDVI', 'NBR'];
-var antecedent = ['3mo', '12mo', '5yr'];
+var antecedent_list = ['3mo', '12mo', '5yr'];
 
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
@@ -72,15 +72,12 @@ var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 // asset_name = id
 tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
-print(tile_id_list);
 
-tile_id_list = tile_id_list.slice(120, 130);
+tile_id_list = tile_id_list.slice(0, 10);
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_cap('Abs_' + 'p' + percentile_low + '_' + percentile_high + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent);
+      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, index, antecedent_list);
     });
 });
-
-Map.addLayer(tiles, null, 'tiles');
