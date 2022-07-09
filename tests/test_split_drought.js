@@ -46,7 +46,6 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var wi_percent = percentile.wi_percentile(ante_means, percentile_images);
 
 
-print(indices_col)
 // Test split_drought_wi
 // Usage: split_drought.split_drought_wi(indices_col, wi_masks, antecedent_list, index_list)
 var split_drought_wi = split.split_drought_wi(indices_col, wi_percent, antecedent_list, index_list);
