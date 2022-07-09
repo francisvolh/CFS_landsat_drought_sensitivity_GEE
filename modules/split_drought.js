@@ -20,6 +20,7 @@ var split_drought_wi = function(images, wi_masks, antecedent_list, index_list) {
         return index_list.map(function(index) {
           var ante_mask_band = 'CMI_ante' + antecedent_period + '_wi_p15_p85';
           
+          var veg_band = index + '_ante' + antecedent_period + '_p15_p85';
           var drought_veg_band = veg_band + '_drought';
           var base_veg_band = veg_band + '_base';
 
