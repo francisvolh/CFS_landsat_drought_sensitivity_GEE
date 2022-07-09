@@ -44,7 +44,6 @@ var cmi_viz = {min:-15, max:15, palette: p};
 // Load an ecoregion
 var ecoregion = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filter(ee.Filter.eq('ECOREGI', 136));
-Map.addLayer(ecoregion)
 
 
 // Test main - index + antecedent means
