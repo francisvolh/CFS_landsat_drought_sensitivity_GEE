@@ -12,8 +12,8 @@ var palettes = require('users/gena/packages:palettes');
 // Set variables
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
-var pal = palettes.colorbrewer.RdBu[5];
-
+var p = palettes.crameri.vik[10];
+var cmi_viz = {min:-30, max:30, palette: p};
 
 
 // Load collection
@@ -28,4 +28,4 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 // Usage: antecedent_mean(images, band, year_list)
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 print(ante_means);
-Map.addLayer(ante_means.select('CMI_ante12mo_mean'), {min:-30, max:30, palette: pal});
+Map.addLayer(ante_means.select('CMI_ante12mo_mean'), cmi_viz);
