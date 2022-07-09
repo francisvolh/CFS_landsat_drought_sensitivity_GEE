@@ -44,4 +44,5 @@ Map.addLayer(percentile_images.select('CMI_ante3mo_mean_p85'), cmi_viz, '2010-20
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 print('Percentile masks', percentile_masks);
 Map.addLayer(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first(), {min:0, max:1}, '2010 CMI wi 15th-85th 3 month antecedent');
+Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI wi 15th-85th 3 month antecedent');
 
