@@ -75,7 +75,7 @@ var tile_id_list = tiles.aggregate_array('id').distinct();
 
 print(tile_id_list);
 
-tile_id_list = tile_id_list.slice(11, 20);
+tile_id_list = tile_id_list.slice(0, 10);
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
