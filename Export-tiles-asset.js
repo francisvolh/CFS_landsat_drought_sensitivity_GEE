@@ -73,6 +73,8 @@ var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 
+print(tile_id_list);
+
 tile_id_list = tile_id_list.slice(0, 10);
 
 tile_id_list.evaluate(function(tile_ids) {
