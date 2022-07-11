@@ -47,6 +47,32 @@ exports.export_img_drive_greenest = export_img_drive_greenest;
 
 
 
+// Export img drive from asset
+var export_img_drive_from_asset = function(asset_folder, drive_name, drive_folder) {
+  var asset_path = "users/robitalec/CFS/2022-07-10";
+  print('asset path: ', asset_path);
+  
+  // (thanks Noel https://gis.stackexchange.com/a/428747/27076)
+  var asset_list = ee.data.listAssets(asset_path)['assets']
+                    .map(function(d) { return d });
+  
+  var tiles = asset_list.slice(0, 2).map(function(asset) {
+    var out = ee.Image(asset.name);
+    
+    Export.image.toDrive({
+      image: out,
+      description: asset.id.split('/').reverse()[0],
+      folder: drive_folder,
+      scale: scale,
+      maxPixels: 200000000
+    });
+  });
+};
+exports.export_img_drive_from_asset = export_img_drive_from_asset;
+
+
+
+
 // ARCHIVE --------------------------------------------------------------------
 // Export img asset cap
 var zzz_export_img_asset_cap = function(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent) {
