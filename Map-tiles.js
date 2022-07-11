@@ -29,3 +29,4 @@ Map.addLayer(land_cover.get_land_cover().filter(ee.Filter.eq('year', 2000)), {pa
 // Notes
 // Relationship between distance to climate station/consider daymet inaccuracies
 // Haida Gwaii / 3 month NDVI
+// Cuts
