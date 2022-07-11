@@ -20,7 +20,7 @@ col = col.select('Abs_sens_NBR_ante12mo_p15_p85')
 var palettes = require('users/gena/packages:palettes');
 
 var p = palettes.crameri.vik[10]
-var lc_p = palettes.crameri.vik[13]
+var lc_p = palettes.crameri.bamako[25]
 
 Map.addLayer(col, {palette: p, min: -0.3, max: 0.3})
 
