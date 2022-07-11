@@ -23,7 +23,7 @@ exports.export_hydro = export_hydro;
 var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
   // (thanks Noel https://gis.stackexchange.com/a/428747/27076)
   var asset_path = "users/robitalec/CFS/2022-07-10";
-  console.log('asset path: ', asset_path);
+  print('asset path: ', asset_path);
   
   var assetList = ee.data.listAssets(asset_path)['assets']
                     .map(function(d) { return d.name });
