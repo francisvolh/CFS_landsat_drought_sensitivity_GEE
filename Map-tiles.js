@@ -12,7 +12,7 @@ var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.vik[10]
 
 
-Map.addLayer(col, {palette: p, min: -0.4, max: 0.4})
+Map.addLayer(col, {palette: p, min: -0.3, max: 0.3})
 
 
 // Notes
