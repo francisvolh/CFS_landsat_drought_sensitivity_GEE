@@ -48,7 +48,7 @@ exports.export_img_drive_greenest = export_img_drive_greenest;
 
 
 // Export img drive from asset
-var export_img_drive_from_asset = function(asset_folder, drive_name, drive_folder) {
+var export_img_drive_from_asset = function(asset_folder, drive_folder) {
   var asset_path = "users/robitalec/CFS/2022-07-10";
   print('asset path: ', asset_path);
   
