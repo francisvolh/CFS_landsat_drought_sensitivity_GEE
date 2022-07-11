@@ -71,15 +71,20 @@ var today = new Date().toJSON().slice(0, 10);
 var drive_folder = today;
 var scale = 30;
 
-// loop regions
-// asset_name = id
-tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
-var tile_id_list = tiles.aggregate_array('id').distinct();
-// print(tile_id_list);
 
-tile_id_list.evaluate(function(tile_ids) {
-    tile_ids.forEach(function(tile_id) {
-      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_drive_greenest('Abs_p15_p85' + '_' + tile_id, drive_folder, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-    });
-});
+var asset_folder = '2022-07-10';
+export_img.export_img_drive_from_asset(asset_folder, drive_name, drive_folder);
+
+
+// // loop regions
+// // asset_name = id
+// tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
+// var tile_id_list = tiles.aggregate_array('id').distinct();
+// // print(tile_id_list);
+
+// tile_id_list.evaluate(function(tile_ids) {
+//     tile_ids.forEach(function(tile_id) {
+//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+//       export_img.export_img_drive_greenest('Abs_p15_p85' + '_' + tile_id, drive_folder, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+//     });
+// });
