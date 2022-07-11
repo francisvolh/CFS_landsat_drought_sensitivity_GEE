@@ -1,6 +1,6 @@
 Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5})
 
-var assetList = ee.data.listAssets("users/robitalec/CFS/2022-06-14")['assets']
+var assetList = ee.data.listAssets("users/robitalec/CFS/2022-07-10")['assets']
                     .map(function(d) { return d.name });
 var col = ee.ImageCollection(assetList);
 
