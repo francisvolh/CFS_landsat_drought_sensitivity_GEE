@@ -53,7 +53,7 @@ var export_img_drive_from_asset = function(asset_folder, drive_folder, scale) {
   var asset_list = ee.data.listAssets(asset_folder)['assets']
                     .map(function(d) { return d });
   
-  var tiles = asset_list.slice(0, 2).map(function(asset) {
+  var tiles = asset_list.map(function(asset) {
     var out = ee.Image(asset.name);
     
     Export.image.toDrive({
