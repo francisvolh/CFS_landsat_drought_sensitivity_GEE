@@ -73,7 +73,7 @@ var scale = 30;
 
 
 var asset_folder = 'users/robitalec/CFS/2022-07-10';
-export_img.export_img_drive_from_asset(asset_folder, drive_folder, scale);
+export_img.export_img_drive_from_asset(asset_folder, bounds, drive_folder, scale);
 
 
 // // loop regions
