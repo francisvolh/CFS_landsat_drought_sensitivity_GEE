@@ -67,12 +67,13 @@ var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(region, 7);
 
 
-var today = new Date().toJSON().slice(0, 10);
-var drive_folder = today;
+// var today = new Date().toJSON().slice(0, 10);
+// var drive_folder = today;
 var scale = 30;
 
 
 var asset_folder = 'users/robitalec/CFS/2022-07-10';
+var drive_folder = '2022-07-10'
 export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, scale);
 
 
