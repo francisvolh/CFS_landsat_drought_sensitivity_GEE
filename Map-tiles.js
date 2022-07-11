@@ -24,7 +24,7 @@ var lc_p = palettes.crameri.bamako[25]
 
 
 Map.addLayer(land_cover.get_land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc');
-Map.addLayer(col, {palette: p, min: -0.3, max: 0.3})
+Map.addLayer(col, {palette: p, min: -0.3, max: 0.3}, 'absolute sensitivity')
 
 
 // Notes
