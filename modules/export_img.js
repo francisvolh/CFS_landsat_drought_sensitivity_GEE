@@ -50,19 +50,28 @@ exports.export_img_drive_greenest = export_img_drive_greenest;
 // Export img drive from asset
 var export_img_drive_from_asset = function(asset_folder, bounds, drive_folder, scale) {
   // (thanks Noel https://gis.stackexchange.com/a/428747/27076)
-  var asset_list = ee.data.listAssets(asset_folder)['assets']
-                    .map(function(d) { return d });
+  var asset_list = ee.data.listAssets(asset_path)['assets']
+    .map(function(asset) {
+      return ee.Image(asset.name).set({'asset-name': asset.name});
+  });
   
-  var tiles = asset_list.map(function(asset) {
-    var out = ee.Image(asset.name);
+  var filter_asset = ee.ImageCollection(asset_list)
+    .filterBounds(bounds)
+    .aggregate_array('asset-name')
+    .getInfo();
     
+  
+  var tiles = filter_asset.map(function(asset) {
+    var out = ee.Image(asset);
+  
     Export.image.toDrive({
       image: out,
-      description: asset.id.split('/').reverse()[0],
+      description: asset.split('/').reverse()[0],
       folder: drive_folder,
       scale: scale,
       maxPixels: 200000000
     });
+    return out;
   });
 };
 exports.export_img_drive_from_asset = export_img_drive_from_asset;
