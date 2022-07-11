@@ -20,11 +20,11 @@ col = col.select('Abs_sens_NBR_ante12mo_p15_p85')
 var palettes = require('users/gena/packages:palettes');
 
 var p = palettes.crameri.vik[10]
-
+var lc_p = palettes.crameri.vik[13]
 
 Map.addLayer(col, {palette: p, min: -0.3, max: 0.3})
 
-Map.addLayer(land_cover.get_land_cover().filter(ee.Filter.eq('year', 2000)), null, 'lc', false);
+Map.addLayer(land_cover.get_land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc');
 
 // Notes
 // Relationship between distance to climate station/consider daymet inaccuracies
