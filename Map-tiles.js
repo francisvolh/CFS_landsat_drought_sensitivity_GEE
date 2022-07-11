@@ -6,7 +6,7 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
          [-123.13207241108223, 54.67282444419289],
          [-106.98880981586618, 55.69926735189692]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant')
+Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.25}, 'constant')
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
