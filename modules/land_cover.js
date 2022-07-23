@@ -72,7 +72,7 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var get_land_cover = function() {
-	return hermosilla_plus_2022.map(utils.set_year).map(mask_classes);
+	return hermosilla_1984_2019_plus_2020.map(utils.set_year).map(mask_classes);
 };
 exports.get_land_cover = get_land_cover;
 
@@ -115,7 +115,7 @@ exports.mask_heterogeneous = mask_heterogeneous;
 
 // Get homogeneous land cover collection
 var get_homogeneous_land_cover = function() {
-	return hermosilla_plus_2022
+	return hermosilla_1984_2019_plus_2020
     .map(utils.set_year)
     .map(mask_heterogeneous)
     .map(mask_classes);
@@ -124,7 +124,7 @@ exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
 
 // Get focal mean band
 var get_lc_focal_mean = function() {
-  return hermosilla_plus_2022
+  return hermosilla_1984_2019_plus_2020
     .reduce(ee.Reducer.mode())
     .focalMean(n_pixels, 'square', 'pixels')
     .updateMask(lc_and_fire.reduce(ee.Reducer.mode()).mask());
