@@ -57,8 +57,8 @@ var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01'))
 var lc_2020 = lc_2019
   .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
   .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis());
-var hermosilla_plus_2022 = ee.ImageCollection(hermosilla_1984_2019.toList(50).add(lc_2020));
-exports.hermosilla_plus_2022 = hermosilla_plus_2022;
+var hermosilla_1984_2019_plus_2020 = ee.ImageCollection(hermosilla_1984_2019.toList(50).add(lc_2020));
+exports.hermosilla_1984_2019_plus_2020 = hermosilla_1984_2019_plus_2020;
 
 // Mask classes
 var mask_classes = function(img) {
