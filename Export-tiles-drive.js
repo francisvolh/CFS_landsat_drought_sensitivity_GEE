@@ -8,29 +8,24 @@ Alec L. Robitaille
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
 
 // Set variables
-var min_year = 1985;
-var max_year = 2020;
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
-var percentile_low = 15;
-var percentile_high = 85;
-var index = ['NDVI', 'NBR'];
-var antecedent = ['3mo', '12mo'];
+var ante_list = vars.ante_list;
+var min_year =  vars.min_year;
+var max_year = vars.max_year;
+var min_mm_dd = vars.min_mm_dd;
+var max_mm_dd = vars.max_mm_dd;
+var region = vars.yukon;
 
-var region = geometry_yt;
+
 
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(region, 7);
 
-
-// var today = new Date().toJSON().slice(0, 10);
-// var drive_folder = today;
 var scale = 30;
 
 
 var asset_folder = 'users/robitalec/CFS/2022-07-10';
-var drive_folder = '2022-07-10'
+var drive_folder = '2022-07-10';
 export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, scale);
 
 
@@ -43,6 +38,6 @@ export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, 
 // tile_id_list.evaluate(function(tile_ids) {
 //     tile_ids.forEach(function(tile_id) {
 //       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-//       export_img.export_img_drive_greenest('Abs_p15_p85' + '_' + tile_id, drive_folder, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+//       export_img.export_img_drive_greenest('Abs_p15_p85' + '_' + tile_id, drive_folder, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list_list);
 //     });
 // });
