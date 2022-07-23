@@ -7,6 +7,7 @@ Alec L. Robitaille
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
+
 // Testing
 print('---- Variables -------------------------- ');
 print('Index list:', vars.index_list);
