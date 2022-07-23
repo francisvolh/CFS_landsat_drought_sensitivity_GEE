@@ -3,7 +3,6 @@ Variables
 Alec L. Robitaille
 */
 
-var region = ee.FeatureCollection(geometry);
 var index = ['NDVI'];
 var antecedent = ['3mo'];
 var min_year = 1985;
