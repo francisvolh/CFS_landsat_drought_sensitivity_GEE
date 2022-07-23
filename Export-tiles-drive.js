@@ -14,6 +14,10 @@ var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var region = vars.yukon;
+var scale = 30;
+
+var asset_folder = 'users/robitalec/CFS/2022-07-10';
+var drive_folder = '2022-07-10';
 
 
 
@@ -21,23 +25,7 @@ var region = vars.yukon;
 var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(region, 7);
 
-var scale = 30;
 
 
-var asset_folder = 'users/robitalec/CFS/2022-07-10';
-var drive_folder = '2022-07-10';
+// Export drive from asset
 export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, scale);
-
-
-// // loop regions
-// // asset_name = id
-// tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
-// var tile_id_list = tiles.aggregate_array('id').distinct();
-// // print(tile_id_list);
-
-// tile_id_list.evaluate(function(tile_ids) {
-//     tile_ids.forEach(function(tile_id) {
-//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-//       export_img.export_img_drive_greenest('Abs_p15_p85' + '_' + tile_id, drive_folder, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list_list);
-//     });
-// });
