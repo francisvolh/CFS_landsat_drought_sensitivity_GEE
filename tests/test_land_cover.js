@@ -30,7 +30,7 @@ Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()');
 // Usage: mask_classes(lc_img)
 var masked_lc = land_cover.mask_classes(lc_2008);
 print(masked_lc);
-Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'}, 'constant');
+Map.addLayer(ee.Image.constant(1), {palette: 'a8b98a'}, 'constant', false);
 Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)', false);
 
 // Test get_land_cover
@@ -43,14 +43,14 @@ Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()', false);
 // Usage: mask_land_cover(img)
 var indices_masked_lc = indices_green_col.map(land_cover.mask_land_cover);
 print(indices_masked_lc);
-Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas');
+Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas', false);
 Map.centerObject(geometry);
 
 // Test mask_land_cover_and_fire
 // Usage: mask_land_cover_and_fire(img)
 var indices_masked_lc_and_fire = indices_green_col.map(land_cover.mask_land_cover_and_fire);
 print(indices_masked_lc_and_fire);
-Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.mask_land_cover_and_fire(img)');
+Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.mask_land_cover_and_fire(img)', false);
 
 // Test mask_heterogeneous
 // Usage: mask_heterogeneous(img)
