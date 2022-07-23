@@ -45,15 +45,18 @@ DOI: https://doi.org/10.1016/j.rse.2022.112780 [Open Access]
 230 Mixedwood
 */
 
-// Load utils
+// Modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
-
-// Load fire
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
-// Load Hermosilla land cover
+
+
+// Data
+// Hermosilla land cover
 var hermosilla_1984_2019 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
+
+
 var lc_2020 = lc_2019
   .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
   .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis());
