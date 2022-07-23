@@ -9,6 +9,11 @@ exports.min_year = 1985;
 exports.max_year = 2021;
 exports.min_mm_dd = '07-01';
 exports.max_mm_dd = '07-31';
+exports.percentile_low = 15;
+exports.percentile_high = 85;
+exports.months = ee.List.sequence(1, 12);
+  
+
 
 
 // Geometries
