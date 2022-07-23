@@ -16,7 +16,6 @@ print('Max year:', vars.max_year);
 print('Min month day:', vars.min_mm_dd);
 print('Max month day:', vars.max_mm_dd);
 
-
 // Assign
 var index_list = vars.index_list;
 var ante_list = vars.ante_list;
