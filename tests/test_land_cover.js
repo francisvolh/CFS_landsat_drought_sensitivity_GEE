@@ -17,6 +17,13 @@ var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
 var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '07-15', geometry);
 
 
+// Test get_lc_count_mask
+// Usage: get_lc_count_mask()
+var lc_count_mask = land_cover.get_lc_count_mask();
+Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()');
+
+
+
 
 
 // Test mask_classes
