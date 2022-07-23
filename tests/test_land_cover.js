@@ -34,14 +34,14 @@ Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()', false);
 
 // Test mask_land_cover
 // Usage: mask_land_cover(img)
-var indices_masked_lc = indices_col.map(land_cover.mask_land_cover);
+var indices_masked_lc = indices_green_col.map(land_cover.mask_land_cover);
 print(indices_masked_lc);
 Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas');
 Map.centerObject(geometry);
 
 // Test mask_land_cover_and_fire
 // Usage: mask_land_cover_and_fire(img)
-var indices_masked_lc_and_fire = indices_col.map(land_cover.mask_land_cover_and_fire);
+var indices_masked_lc_and_fire = indices_green_col.map(land_cover.mask_land_cover_and_fire);
 print(indices_masked_lc_and_fire);
 Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.mask_land_cover_and_fire(img)');
 
