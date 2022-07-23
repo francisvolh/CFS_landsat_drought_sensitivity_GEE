@@ -51,7 +51,6 @@ var mask_hetero_lc = land_cover.mask_heterogeneous(lc_2008);
 Map.addLayer(lc_2008, {palette:'#abffbd'}, 'constant (lc)');
 Map.addLayer(mask_hetero_lc, {palette:'#000000'}, 'land_cover.mask_heterogeneous(img)');
 
-
 // Test get_homogeneous_land_cover
 // Usage: get_homogeneous_land_cover()
 var lc_homogeneous = land_cover.get_homogeneous_land_cover();
