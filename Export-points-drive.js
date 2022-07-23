@@ -21,27 +21,22 @@ Alec L. Robitaille
 */
 
 
+
 // Modules --------------------------------------------------------------------
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
 
 
+
 // Variables ------------------------------------------------------------------
-// var min_year = 1985;
-// var max_year = 2020;
-// var min_mm_dd = '07-01';
-// var max_mm_dd = '07-31';
-// var percentile_list = [15];
-// var index_list = ['NDVI', 'NBR'];
 var drive_folder = 'Exports';
-// var n_pts = 50;
+
 
 
 // Data -----------------------------------------------------------------------
 // Load ecoregions
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 ecoregions = ecoregions.filterBounds(geometry);
-
 
 // Load points
 var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_points_n125');
@@ -52,11 +47,11 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_point
 // Sensitivity
 export_points.export_sensitivity_from_asset(points, 'sample-sensitivity', drive_folder);
 
-
 // Hydro
 export_points.export_hydro(points, 'hydro', drive_folder);
 
-
 // Climate
 
+
 // Topo
+
