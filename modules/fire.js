@@ -7,7 +7,7 @@ https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/nbac_2020_r9_20210810.shp.pdf
 */
 
 // Load NBAC fire polygons
-var NBAC_fires = ee.FeatureCollection("users/robitalec/CFS/nbac_1986_to_2020_20210810");
+var NBAC_fires = ee.FeatureCollection("users/robitalec/CFS/nbac_combined_1986_to_2020_20210810_and_2021_20220624");
 
 // Generate fire masks from NBAC - any fire in preceeding 5 years
 var five_year_fires = function(yr) {
