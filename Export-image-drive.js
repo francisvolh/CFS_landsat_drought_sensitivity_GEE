@@ -23,7 +23,6 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 
-
 // Set variables
 var region = vars.dawson;
 var ante_list = vars.ante_list;
