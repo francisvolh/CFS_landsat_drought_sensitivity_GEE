@@ -14,7 +14,7 @@ var geometry =  ee.Geometry.Polygon([[[-113.61, 59.74], [-113.61, 57.14], [-107.
 // Load collection
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
-var indices_col = get_landsat.get_indices(2008, 2012, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '07-15', geometry);
 
 
 
