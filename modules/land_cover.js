@@ -58,8 +58,8 @@ exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 
-// Get land cover always select classes mask
-var get_land_cover_select_mask = function() {
+// Get land cover count mask mask
+var get_lc_count_mask = function() {
   var lc_masked = hermosilla_1984_2019
     .map(utils.set_year)
     .map(mask_classes);
