@@ -67,7 +67,6 @@ exports.hermosilla_1984_2019_plus_2020 = hermosilla_1984_2019_plus_2020;
 
 
 
-
 // Mask classes
 var mask_classes = function(img) {
 	return img.updateMask(
