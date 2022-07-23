@@ -57,6 +57,16 @@ var hermosilla_1984_2019 = ee.ImageCollection("projects/sat-io/open-datasets/CA_
 exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
+
+// Get land cover always select classes mask
+var get_land_cover_select_mask = function() {
+  var lc_masked = hermosilla_1984_2019
+    .map(utils.set_year)
+    .map(mask_classes);
+  return lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
+};
+exports.get_land_cover_select_mask = get_land_cover_select_mask;
+
 // Add 2020
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
 var lc_2020 = lc_2019
