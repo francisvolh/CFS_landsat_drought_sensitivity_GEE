@@ -54,7 +54,7 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 // Data
 // Hermosilla land cover
 var hermosilla_1984_2019 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-
+exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 // Add 2020
