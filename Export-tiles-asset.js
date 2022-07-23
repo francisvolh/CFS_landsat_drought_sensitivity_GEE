@@ -48,26 +48,26 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Set variables
-var index_list = vars.index_list;
 var ante_list = vars.ante_list;
 var min_year =  vars.min_year;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
-
+var western_can = vars.western_can;
 
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
 var scale = 30;
 
-
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
-  .filterBounds(west);
+  .filterBounds(western_can);
+
 
 
 // Get tiles
 var tiler = require('users/gena/packages:tiler');
 var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
+
 
 
 // loop regions
@@ -81,6 +81,6 @@ tile_id_list = tile_id_list.slice(100, 101);
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
+      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
     });
 });
