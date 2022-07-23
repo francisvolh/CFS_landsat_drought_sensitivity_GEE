@@ -1,0 +1,35 @@
+var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+
+Map.addLayer(lc)
+
+var mask_classes = function(img) {
+	return img.updateMask(
+		img.expression('lc == 50 || lc == 81 || lc == 210 || lc == 220 || lc == 230',
+		{lc: img.select('b1')})
+	).select(['b1'], ['land_cover']);
+};
+
+lc = lc.map(mask_classes)
+
+Map.addLayer(lc.reduce(ee.Reducer.count()))
+
+Map.addLayer(lc.reduce(ee.Reducer.count()).eq(36))
+// make this an explore clear cuts
+
+
+// 0   Unclassified
+// 20  Water
+// 31  Snow/Ice
+// 32  Rock/Rubble
+// 33  Exposed/Barren Land
+// 40  Bryoids
+// 50  Shrubs
+// 80  Wetland
+// 81  Wetland Treed
+// 100 Herbs
+// 210 Coniferous
+// 220 Broad Leaf
+// 230 Mixedwood
+
+
+
