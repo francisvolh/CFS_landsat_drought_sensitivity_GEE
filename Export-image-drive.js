@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-140.98169334224528, 64.89866428936777],
-          [-140.98169334224528, 63.10300863803273],
-          [-137.86706931880778, 63.10300863803273],
-          [-137.86706931880778, 64.89866428936777]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Export single image to drive
 Alec L. Robitaille
