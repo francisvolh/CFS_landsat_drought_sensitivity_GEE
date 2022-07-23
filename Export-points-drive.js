@@ -38,5 +38,3 @@ export_points.export_hydro(points, 'hydro', drive_folder);
 
 
 // Topo
-
-Map.addLayer(geometry)
