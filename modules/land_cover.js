@@ -77,11 +77,13 @@ var mask_classes = function(img) {
 exports.mask_classes = mask_classes;
 
 
+
 // Get land cover collection
 var get_land_cover = function() {
 	return hermosilla_1984_2019_plus_2020.map(utils.set_year).map(mask_classes);
 };
 exports.get_land_cover = get_land_cover;
+
 
 
 // (Local) get land cover collection
@@ -98,6 +100,7 @@ var mask_land_cover = function(img) {
 exports.mask_land_cover = mask_land_cover;
 
 
+
 // Mask image with land cover and fire
 var lc_and_fire = lc.map(fire.mask_five_year_fires);
 var mask_land_cover_and_fire = function(img) {
@@ -111,6 +114,7 @@ exports.mask_land_cover_and_fire = mask_land_cover_and_fire;
 exports.lc_and_fire = lc_and_fire;
 
 
+
 // Mask heterogeneous
 var n_pixels = 1.5;
 var mask_heterogeneous = function(img) {
@@ -118,6 +122,7 @@ var mask_heterogeneous = function(img) {
   return img.mask(img.eq(foc_mean));
 };
 exports.mask_heterogeneous = mask_heterogeneous;
+
 
 
 // Get homogeneous land cover collection
@@ -128,6 +133,8 @@ var get_homogeneous_land_cover = function() {
     .map(mask_classes);
 };
 exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
+
+
 
 // Get focal mean band
 var get_lc_focal_mean = function() {
