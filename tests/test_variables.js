@@ -16,6 +16,9 @@ print('Min year:', vars.min_year);
 print('Max year:', vars.max_year);
 print('Min month day:', vars.min_mm_dd);
 print('Max month day:', vars.max_mm_dd);
+print('Percentile low:', vars.percentile_low);
+print('Percentile high:', vars.percentile_high);
+print('Months:', vars.months);
 
 // Assign
 var index_list = vars.index_list;
