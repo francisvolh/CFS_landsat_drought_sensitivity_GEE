@@ -9,7 +9,7 @@ Alec L. Robitaille
 // Modules --------------------------------------------------------------------
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
-
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Variables ------------------------------------------------------------------
