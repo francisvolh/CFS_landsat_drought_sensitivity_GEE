@@ -29,3 +29,4 @@ var max_mm_dd = vars.max_mm_dd;
 Map.addLayer(vars.dawson, null, 'dawson');
 Map.addLayer(vars.western_can, null, 'western_can');
 Map.addLayer(vars.bc, null, 'bc');
+Map.addLayer(vars.yukon, null, 'yukon');
