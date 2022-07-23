@@ -65,7 +65,9 @@ var get_lc_count_mask = function() {
     .map(mask_classes);
   return lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
 };
-exports.get_land_cover_select_mask = get_land_cover_select_mask;
+exports.get_lc_count_mask = get_lc_count_mask;
+
+
 
 // Add 2020
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
