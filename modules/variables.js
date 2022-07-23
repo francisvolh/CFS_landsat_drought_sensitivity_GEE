@@ -3,9 +3,9 @@ Variables
 Alec L. Robitaille
 */
 
-var index = ['NDVI'];
-var antecedent = ['3mo'];
-var min_year = 1985;
-var max_year = 2021;
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
+exports.index = ['NDVI', 'NBR'];
+exports.antecedent = ['3mo', '12mo', '5yr'];
+exports.min_year = 1985;
+exports.max_year = 2021;
+exports.min_mm_dd = '07-01';
+exports.max_mm_dd = '07-31';
