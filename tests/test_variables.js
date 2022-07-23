@@ -26,4 +26,4 @@ var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 
 // Map
-Map.addLayer(vars.dawson);
+Map.addLayer(vars.dawson, null, 'dawson');
