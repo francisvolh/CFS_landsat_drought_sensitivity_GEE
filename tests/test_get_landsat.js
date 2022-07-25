@@ -14,8 +14,8 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
 
 var min_year = 2011;
 var max_year = 2021;
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
+var min_mm_dd = '06-01';
+var max_mm_dd = '08-15';
 
 
 
@@ -32,6 +32,6 @@ print(indices_green_col);
 
 // Map
 Map.addLayer(geometry, null, 'region');
-Map.addLayer(indices_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI collection');
-Map.addLayer(indices_green_col.select(['NDVI']), {min: -0.5, max:1}, 'NDVI (greenest) collection');
+Map.addLayer(indices_col.select(['NDVI']).first(), {min: -0.5, max:1}, 'NDVI collection');
+Map.addLayer(indices_green_col.select(['NDVI']).first(), {min: -0.5, max:1}, 'NDVI (greenest) collection');
 Map.centerObject(geometry);
