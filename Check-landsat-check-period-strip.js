@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-129.59356482690322, 66.7414387401488],
+          [-129.59356482690322, 65.76832422956818],
+          [-126.91290076440322, 65.76832422956818],
+          [-126.91290076440322, 66.7414387401488]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Compare time period for stripping
 Based on Testing: modules/get_landsat.js
