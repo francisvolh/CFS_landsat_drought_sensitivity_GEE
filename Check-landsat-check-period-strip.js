@@ -27,13 +27,19 @@ var indices_june_sep = get_landsat.get_indices_greenest(min_year, max_year, '06-
 
 
 // Map
+// Map.addLayer(geometry, null, 'region');
 var ndvi_viz = {min: -0.5, max: 1};
 
 // Blend maps
+var indices_july_viz = indices_july.visualize(ndvi_viz);
+var indices_june_july_viz = indices_june_july.visualize(ndvi_viz);
+var indices_june_aug_viz = indices_june_aug.visualize(ndvi_viz);
+var indices_june_sep_viz = indices_june_sep.visualize(ndvi_viz);
 
+Map.addLayer(blend.difference(indices_june_july_viz, indices_july_viz), {min: -10, max: 75, gamma: 2}, '(June-July) - July');
+Map.addLayer(blend.difference(indices_june_july_viz, indices_june_aug_viz), {min: -10, max: 75, gamma: 2}, 'Aug - (June-July)');
+Map.addLayer(blend.difference(indices_june_aug_viz, indices_june_sep_viz), {min: -10, max: 75, gamma: 2}, 'Sep - Aug');
 
-
-Map.addLayer(geometry, null, 'region');
 
 Map.addLayer(indices_july, {min: -0.5, max:1}, 'NDVI greenest: July', false);
 Map.addLayer(indices_june_july, {min: -0.5, max:1}, 'NDVI greenest: June-July', false);
