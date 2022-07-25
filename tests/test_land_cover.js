@@ -22,7 +22,9 @@ var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '0
 var lc_count_mask = land_cover.get_lc_count_mask();
 Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()');
 
-
+// Mask with get_lc_count_mask()
+var img = ee.Image.random().clip(geometry).updateMask(lc_count_mask);
+Map.addLayer(img, null, 'mask with get_lc_count_mask()');
 
 
 
