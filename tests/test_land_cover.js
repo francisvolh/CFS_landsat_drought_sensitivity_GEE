@@ -48,9 +48,9 @@ Map.centerObject(geometry);
 
 // Test mask_land_cover_and_fire
 // Usage: mask_land_cover_and_fire(img)
-var indices_masked_lc_and_fire = indices_green_col.map(land_cover.mask_land_cover_and_fire);
+var indices_masked_lc_and_fire = indices_green_col.map(land_cover.zzz_mask_land_cover_and_fire);
 print(indices_masked_lc_and_fire);
-Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.mask_land_cover_and_fire(img)', false);
+Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.zzz_mask_land_cover_and_fire(img)', false);
 
 // Test mask_heterogeneous
 // Usage: mask_heterogeneous(img)
