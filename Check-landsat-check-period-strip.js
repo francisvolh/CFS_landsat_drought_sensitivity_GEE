@@ -33,7 +33,7 @@ var ndvi_viz = {min: -0.5, max: 1};
 var blend_viz = {min: -20, max: 20, palette: palettes.crameri.vik[10]};
 
 // Blend maps
-var indices_june_aug_viz = indices_june_july.visualize(ndvi_viz);
+var indices_june_july_viz = indices_june_july.visualize(ndvi_viz);
 var indices_june_aug_viz = indices_june_aug.visualize(ndvi_viz);
 var indices_june_sep_viz = indices_june_sep.visualize(ndvi_viz);
 
