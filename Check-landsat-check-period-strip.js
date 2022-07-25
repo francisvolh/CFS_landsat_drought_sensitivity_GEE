@@ -22,6 +22,7 @@ var max_year = min_year + 1;
 
 
 
+var indices_july = get_landsat.get_indices_greenest(min_year, max_year, '07-01', '07-31', geometry).select('NDVI').first();
 var indices_june_july = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '07-31', geometry).select('NDVI').first();
 var indices_june_aug = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '08-31', geometry).select('NDVI').first();
 var indices_june_sep = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '09-30', geometry).select('NDVI').first();
@@ -33,10 +34,12 @@ var ndvi_viz = {min: -0.5, max: 1};
 var blend_viz = {min: -20, max: 20, palette: palettes.crameri.vik[10]};
 
 // Blend maps
+var indices_july_viz = indices_july.visualize(ndvi_viz);
 var indices_june_july_viz = indices_june_july.visualize(ndvi_viz);
 var indices_june_aug_viz = indices_june_aug.visualize(ndvi_viz);
 var indices_june_sep_viz = indices_june_sep.visualize(ndvi_viz);
 
+Map.addLayer(blend.difference(indices_july_viz, indices_june_july_viz), blend_viz, 'July - (June-July)');
 Map.addLayer(blend.difference(indices_june_july_viz, indices_june_aug_viz), blend_viz, '(June-July) - (June-Aug)');
 Map.addLayer(blend.difference(indices_june_aug_viz, indices_june_sep_viz), blend_viz, '(June-Aug) - (June-Sep)');
 
