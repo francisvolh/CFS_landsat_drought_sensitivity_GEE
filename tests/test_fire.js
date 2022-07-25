@@ -17,7 +17,7 @@ Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']}, 'fi
 
 // Test mask_five_year_fires
 // Usage: fire.mask_five_year_fires(img)
-var img = ee.Image.constant(1).set('year', 2021);
+var img = ee.Image.random(42, 'normal').set('year', 2021);
 var mask_five_year_fires = fire.mask_five_year_fires(img);
 print(mask_five_year_fires);
 Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
