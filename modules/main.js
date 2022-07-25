@@ -32,7 +32,7 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
   
   // Fire and land cover masks
   indices_col = indices_col.map(function(img) {
-    return fire.mask_five_year_fires(img.mask(lc_mask));
+    return fire.mask_five_year_fires(img.updateMask(lc_mask));
   });
               
   
