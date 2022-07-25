@@ -1,16 +1,17 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.97540076440322, 64.05468136514281],
-          [-140.97540076440322, 62.97696608476574],
-          [-138.29473670190322, 62.97696608476574],
-          [-138.29473670190322, 64.05468136514281]]], null, false);
+        [[[-140.42608435815322, 63.20072748613919],
+          [-140.42608435815322, 62.090280046286736],
+          [-137.74542029565322, 62.090280046286736],
+          [-137.74542029565322, 63.20072748613919]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Compare time period for stripping
