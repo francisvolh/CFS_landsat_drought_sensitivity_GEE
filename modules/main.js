@@ -27,8 +27,14 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
 
   // Collections
   var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+  var lc_mask = land_cover.get_lc_count_mask();
   var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
-  indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
+  
+  // Fire and land cover masks
+  indices_col = indices_col.map(function(img) {
+    return fire.mask_five_year_fires(img.mask(lc_mask));
+  });
+              
   
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
