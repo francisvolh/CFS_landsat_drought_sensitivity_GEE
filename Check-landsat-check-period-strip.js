@@ -27,11 +27,17 @@ var indices_june_sep = get_landsat.get_indices_greenest(min_year, max_year, '06-
 
 
 // Map
+var ndvi_viz = {min: -0.5, max: 1};
+
+// Blend maps
+
+
+
 Map.addLayer(geometry, null, 'region');
 
 Map.addLayer(indices_july, {min: -0.5, max:1}, 'NDVI greenest: July', false);
-Map.addLayer(indices_june_july, {min: -0.5, max:1}, 'NDVI greenest: June-July');
-Map.addLayer(indices_june_aug, {min: -0.5, max:1}, 'NDVI greenest: June-Aug');
-Map.addLayer(indices_june_sep, {min: -0.5, max:1}, 'NDVI greenest: June-Sep');
+Map.addLayer(indices_june_july, {min: -0.5, max:1}, 'NDVI greenest: June-July', false);
+Map.addLayer(indices_june_aug, {min: -0.5, max:1}, 'NDVI greenest: June-Aug', false);
+Map.addLayer(indices_june_sep, {min: -0.5, max:1}, 'NDVI greenest: June-Sep', false);
 
 Map.centerObject(geometry);
