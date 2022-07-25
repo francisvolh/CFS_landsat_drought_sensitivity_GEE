@@ -22,6 +22,7 @@ Alec L. Robitaille
 var fire = require('users/robitalec/CFS:modules/fire.js');
 
 
+
 // Test five_year_fires
 // Usage: fire.five_year_fires(year)
 var five_year_fires = fire.five_year_fires(2021);
