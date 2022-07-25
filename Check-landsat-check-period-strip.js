@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-129.59356482690322, 66.7414387401488],
-          [-129.59356482690322, 65.76832422956818],
-          [-126.91290076440322, 65.76832422956818],
-          [-126.91290076440322, 66.7414387401488]]], null, false);
+        [[[-140.97540076440322, 64.05468136514281],
+          [-140.97540076440322, 62.97696608476574],
+          [-138.29473670190322, 62.97696608476574],
+          [-138.29473670190322, 64.05468136514281]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Compare time period for stripping
@@ -28,7 +27,7 @@ var palettes = require('users/gena/packages:palettes');
 var blend = require('users/jja/public:blend.js');
 
 
-var min_year = 2015;
+var min_year = 1987;
 var max_year = min_year + 1;
 
 
