@@ -16,8 +16,7 @@ var geometry =
                   [-112.54977240618017, 59.371840771122656]]], null, false),
             {
               "system:index": "0"
-            })]),
-    geometry2 = /* color: #d63000 */ee.FeatureCollection([]);
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
@@ -65,3 +64,5 @@ Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, '19
 var main_absolute = main.main_greenest('absolute sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, '1995-2015 absolute drought sensitivity NDVI p15-85  3 month antecedent');
+
+Map.centerObject(geometry);
