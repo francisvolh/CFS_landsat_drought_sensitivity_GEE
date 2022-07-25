@@ -53,6 +53,7 @@ var indices_june_sep_viz = indices_june_sep.visualize(ndvi_viz);
 Map.addLayer(blend.difference(indices_july_viz, indices_june_july_viz), blend_viz, 'July - (June-July)');
 Map.addLayer(blend.difference(indices_june_july_viz, indices_june_aug_viz), blend_viz, '(June-July) - (June-Aug)');
 Map.addLayer(blend.difference(indices_june_aug_viz, indices_june_sep_viz), blend_viz, '(June-Aug) - (June-Sep)');
+Map.addLayer(blend.difference(indices_june_july_viz, indices_june_sep_viz), blend_viz, '(June-July) - (June-Sep)');
 
 
 Map.addLayer(indices_june_july, {min: -0.5, max:1}, 'NDVI greenest: June-July', false);
