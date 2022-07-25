@@ -1,22 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.FeatureCollection(
-        [ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-112.98819556291845, 59.371840771122656],
-                  [-112.98819556291845, 59.139819554382086],
-                  [-112.54977240618017, 59.139819554382086],
-                  [-112.54977240618017, 59.371840771122656]]], null, false),
-            {
-              "system:index": "0"
-            })]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
 Alec L. Robitaille
@@ -64,4 +45,5 @@ var main_absolute = main.main_greenest('absolute sensitivity', geometry, min_yea
 print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'absolute drought sensitivity NDVI p15-85  3 month antecedent');
 
+Map.addLayer(geometry)
 Map.centerObject(geometry);
