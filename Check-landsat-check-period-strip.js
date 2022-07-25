@@ -28,7 +28,7 @@ var palettes = require('users/gena/packages:palettes');
 var blend = require('users/jja/public:blend.js');
 
 
-var min_year = 1987;
+var min_year = 2021;
 var max_year = min_year + 1;
 
 
