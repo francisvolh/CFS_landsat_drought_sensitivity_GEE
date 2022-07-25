@@ -115,14 +115,14 @@ exports.mask_land_cover = mask_land_cover;
 
 // Mask image with land cover and fire
 var lc_and_fire = lc.map(fire.mask_five_year_fires);
-var mask_land_cover_and_fire = function(img) {
+var zzz_mask_land_cover_and_fire = function(img) {
   var img_year = img.date().get('year');
   return img.updateMask(
 		lc_and_fire.filter(ee.Filter.eq('year', img_year))
                .first()
                .mask());
 };
-exports.mask_land_cover_and_fire = mask_land_cover_and_fire;
+exports.zzz_mask_land_cover_and_fire = zzz_mask_land_cover_and_fire;
 exports.lc_and_fire = lc_and_fire;
 
 
