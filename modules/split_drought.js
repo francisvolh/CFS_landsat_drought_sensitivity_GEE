@@ -30,19 +30,13 @@ var split_drought_wi = function(images, percentile_masks, antecedent_list, index
           var baseline = img.select([index])
                             .updateMask(percentile_mask.select(ante_mask_band_baseline))
                             .rename([base_veg_band]);
-                            
-          var baseline_count = baseline.reduce(ee.Reducer.count())
-                                       .rename(veg_band + '_lte_p15_drought_count');
 
           // Drought vegetation index
           var drought = img.select([index])
                            .updateMask(percentile_mask.select(ante_mask_band_drought))
                            .rename([drought_veg_band]);
-                           
-          var drought_count = baseline.reduce(ee.Reducer.count())
-                                      .rename(veg_band + '_wi_p15_p85_base_count');
-                                      
-          return [baseline, drought, baseline_count, drought_count];
+
+          return [baseline, drought];
         });
       })
     );
