@@ -50,8 +50,8 @@ var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, ant
 var count = split_drought_wi.reduce(ee.Reducer.count())
 print(count)
 Map.addLayer(geometry)
-Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:40})
-Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:40})
+Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count')
+Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count')
 
 
 // Test sensitivity_relative_cap
