@@ -38,7 +38,6 @@ var cmi_viz = {min:-15, max:15, palette: p};
 
 
 
-
 // Test main - index + antecedent means
 // Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 var main_index_and_antecedent = main.main_greenest('vegetation index and antecedent means', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
