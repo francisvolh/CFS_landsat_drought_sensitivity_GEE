@@ -12,6 +12,7 @@ var palettes = require('users/gena/packages:palettes');
 var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var fire = require('users/robitalec/CFS:modules/fire.js');
 
 // Set variables
 var min_year = 1985; var max_year = 2015;
@@ -34,9 +35,12 @@ var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.8
 // Collections
 var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
 var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+var lc_mask = land_cover.get_lc_count_mask();
 
-// Mask land cover and fires
-indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
+// Fire and land cover masks
+indices_col = indices_col.map(function(img) {
+  return fire.mask_five_year_fires(img.updateMask(lc_mask));
+});
 
 // CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
