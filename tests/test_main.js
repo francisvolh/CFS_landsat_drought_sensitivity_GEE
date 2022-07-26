@@ -1,3 +1,18 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.73978380750106, 64.75408317982838],
+          [-140.73978380750106, 64.12125497975113],
+          [-138.7155528504698, 64.12125497975113],
+          [-138.7155528504698, 64.75408317982838]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
 Alec L. Robitaille
@@ -21,7 +36,7 @@ var rel_viz = {min:-20, max:20, palette: p};
 var abs_viz = {min:-0.2, max:0.2, palette: p};
 var cmi_viz = {min:-15, max:15, palette: p};
 
-var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
+
 
 
 // Test main - index + antecedent means
