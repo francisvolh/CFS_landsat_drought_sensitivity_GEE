@@ -54,10 +54,10 @@ var sens_absolute = sensitivity.sensitivity_absolute_cap(split_drought_wi, antec
 // Usage: nobs.count_nobs(split_indices, sensitivity);
 var counts = nobs.count_nobs(split_drought_wi, sens_absolute);
 
-print('Counts:', counts)
-Map.addLayer(ee.Image.constant(1), {palette: '#113355'})
-Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count')
-Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10')
-Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count')
-Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3 ')
+print('Counts:', counts);
+Map.addLayer(ee.Image.constant(1), {palette: '#113355'});
+Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count');
+Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10');
+Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count');
+Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3 ');
 
