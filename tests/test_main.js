@@ -26,7 +26,7 @@ var palettes = require('users/gena/packages:palettes');
 var min_year = 1985;
 var max_year = 2021;
 var min_mm_dd = '06-01';
-var max_mm_dd = '08-30';
+var max_mm_dd = '09-30';
 var percentile_low = 15;
 var antecedent_list = ['3mo'];
 
