@@ -11,14 +11,14 @@ var palettes = require('users/gena/packages:palettes');
 var min_year = 1985;
 var max_year = 2021;
 var min_mm_dd = '06-01';
-var max_mm_dd = '09-30';
+var max_mm_dd = '08-30';
 var percentile_low = 15;
 var antecedent_list = ['3mo'];
 
 var p = palettes.crameri.vik[10];
 var ndvi_viz = {min:0.3, max:0.85};
-var rel_viz = {min:-50, max:50, palette: p};
-var abs_viz = {min:-0.5, max:0.5, palette: p};
+var rel_viz = {min:-20, max:20, palette: p};
+var abs_viz = {min:-0.2, max:0.2, palette: p};
 var cmi_viz = {min:-15, max:15, palette: p};
 
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
@@ -44,5 +44,3 @@ Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, 're
 var main_absolute = main.main_greenest('absolute sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'absolute drought sensitivity NDVI p15-85  3 month antecedent');
-
-Map.centerObject(geometry);
