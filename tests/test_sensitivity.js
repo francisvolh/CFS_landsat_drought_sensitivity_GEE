@@ -50,7 +50,7 @@ var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, ant
 var count = split_drought_wi.reduce(ee.Reducer.count())
 print(count)
 Map.addLayer(geometry)
-Map.addLayer(ee.Image.constant(1), {palette: '#113355'})
+Map.addLayer(ee.Image.constant(1), {palette: '#0083cc'})
 Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 5, max:21}, 'baseline count')
 Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10')
 Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 1, max:5}, 'drought count')
