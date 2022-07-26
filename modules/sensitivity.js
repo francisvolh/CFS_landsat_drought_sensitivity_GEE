@@ -9,6 +9,15 @@ Absolute
 S {P,T,L} = baseline EVI{P} – drought EVI{P,T,L}
 */
 
+var get_n_obs = function(split_indices) {
+  var count = split_indices
+    // .select()
+    .reduce(ee.Reducer.count())
+    // .rename(veg_band + '_lte_p15_drought_count');
+  
+  return count
+}
+
 var sensitivity_absolute_cap = function(split_indices, antecedent_list, index_list) {
 	var means = split_indices.mean();
   return ee.Image(antecedent_list.map(function(antecedent_period) {
@@ -23,7 +32,7 @@ var sensitivity_absolute_cap = function(split_indices, antecedent_list, index_li
             drought: means.select(drought_band)
           }).rename(sensitivity_band);
       });
-    })
+    }).addBands([get_n_obs(split_indices)])
   );
 };
 exports.sensitivity_absolute_cap = sensitivity_absolute_cap;
