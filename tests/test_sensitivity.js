@@ -47,6 +47,11 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
+var count = split_drought_wi.reduce(ee.Reducer.count())
+print(count)
+Map.addLayer(geometry)
+Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:40})
+Map.addLayer(count.select('NDVI_ante3mo_lt_p15_drought_count'), {min: 0, max:40})
 
 
 // Test sensitivity_relative_cap
@@ -62,7 +67,6 @@ print('Relative sensitivity', sens_relative);
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, '2010 CMI lte p15th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI drought lte 15th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, '2010-2015 mean NDVI baseline wi p15-85 3 month antecedent', false);
-Map.addLayer(split_drought_wi.reduce(ee.Reducer.count()))
 Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, '2010-2015 relative drought sensitivity NDVI p15-85 3 month antecedent', false);
 Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, '2010-2015 absolute drought sensitivity NDVI p15-85 3 month antecedent');
 
