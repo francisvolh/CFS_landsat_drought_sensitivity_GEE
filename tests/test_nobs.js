@@ -61,11 +61,13 @@ var counts = nobs.count_nobs(split_drought_wi, sens_absolute);
 var mask_counts = nobs.mask_nobs(sens_absolute, antecedent_list, index_list);
 
 print('Counts:', counts);
+print('Mask count:', mask_counts);
+
 Map.addLayer(geometry, null, 'region');
 Map.addLayer(ee.Image.constant(1), {palette: '#113355'}, 'constant');
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count');
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10');
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count');
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3');
-Map.addLayer(counts.select('Abs_NDVI_ante3mo_p15_p85'), null, 'ante');
+Map.addLayer(counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), null, 'ante');
 
