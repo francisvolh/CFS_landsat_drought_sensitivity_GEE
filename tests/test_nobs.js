@@ -57,8 +57,8 @@ var counts = nobs.count_nobs(split_drought_wi, sens_absolute);
 
 
 // Test mask_nobs
-// Usage: nobs.mask_nobs(sensitivity, antecedent_list, index_list);
-var mask_counts = nobs.mask_nobs(sens_absolute, antecedent_list, index_list);
+// Usage: nobs.mask_nobs(counts, antecedent_list, index_list);
+var mask_counts = nobs.mask_nobs(counts, antecedent_list, index_list);
 
 print('Counts:', counts);
 print('Mask count:', mask_counts);
