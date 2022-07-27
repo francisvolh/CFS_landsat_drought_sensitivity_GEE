@@ -61,7 +61,7 @@ var counts = nobs.count_nobs(split_drought_wi, sens_absolute);
 var mask_counts = nobs.mask_nobs(counts, antecedent_list, index_list);
 
 print('Counts:', counts);
-print('Mask count:', mask_counts);
+print('Mask counts:', mask_counts);
 
 Map.addLayer(geometry, null, 'region');
 Map.addLayer(ee.Image.constant(1), {palette: '#113355'}, 'constant');
