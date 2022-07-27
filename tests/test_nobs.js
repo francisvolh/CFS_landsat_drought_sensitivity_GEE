@@ -69,5 +69,5 @@ Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:3
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10');
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count');
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3');
-Map.addLayer(counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), null, 'Absolute sensitivity');
+Map.addLayer(counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), null, 'sensitivity');
 
