@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-140.9502089939156, 65.25678050686281],
+          [-140.9502089939156, 64.04344020680696],
+          [-137.3357070407906, 64.04344020680696],
+          [-137.3357070407906, 65.25678050686281]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/nobs.js
 Alec L. Robitaille
@@ -31,7 +45,7 @@ var cmi_viz = {min:-30, max:30, palette: p};
 var rel_viz = {min:-20, max:20, palette: p};
 var abs_viz = {min:-0.3, max:0.3, palette: p};
 
-var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
+// var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
@@ -57,8 +71,8 @@ var counts = nobs.count_nobs(split_drought_wi, sens_absolute);
 
 
 // Test mask_nobs
-// Usage: nobs.mask_nobs(counts, antecedent_list, index_list);
-var mask_counts = nobs.mask_nobs(counts, antecedent_list, index_list);
+// Usage: nobs.mask_nobs(type, counts, antecedent_list, index_list);
+var mask_counts = nobs.mask_nobs('Abs', counts, antecedent_list, index_list);
 
 print('Counts:', counts);
 print('Mask counts:', mask_counts);
