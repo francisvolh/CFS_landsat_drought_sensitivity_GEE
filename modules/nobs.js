@@ -22,7 +22,7 @@ var mask_nobs = function(counts, antecedent_list, index_list) {
           var mask_baseline = counts.select(baseline_count_band).lt(21);
           var mask_drought = counts.select(drought_count_band).lt(3);
           
-          var mask = mask_baseline.and(mask_drought);
+          var mask = mask_baseline.or(mask_drought);
           
           return ee.Image([counts.select(sensitivity_band)
                                  .updateMask(mask)]);
