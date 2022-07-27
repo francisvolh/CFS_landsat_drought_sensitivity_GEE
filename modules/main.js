@@ -46,9 +46,15 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
   var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
   if (output == 'relative sensitivity') {
-    return sensitivity.sensitivity_relative_cap(split_drought_wi, antecedent_list, index_list);
+    var sens_rel = sensitivity.sensitivity_relative_cap(split_drought_wi, antecedent_list, index_list);
+
+    var counts_rel = nobs.count_nobs(split_drought_wi, sens_absolute);
+    return nobs.mask_nobs(counts_rel, antecedent_list, index_list);
   } else if (output == 'absolute sensitivity') {
-    return sensitivity.sensitivity_absolute_cap(split_drought_wi, antecedent_list, index_list);
+    var sens_abs = sensitivity.sensitivity_absolute_cap(split_drought_wi, antecedent_list, index_list);
+
+    var counts_abs = nobs.count_nobs(split_drought_wi, sens_absolute);
+    return nobs.mask_nobs(counts_abs, antecedent_list, index_list);
   } else if (output == 'vegetation index and antecedent means') {
     var join = ee.Join.inner();
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
