@@ -14,6 +14,7 @@ var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var split = require('users/robitalec/CFS:modules/split_drought.js');
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+var nobs = require('users/robitalec/CFS:modules/nobs.js');
 
 
 var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list) {
