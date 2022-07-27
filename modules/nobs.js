@@ -11,7 +11,7 @@ var count_nobs = function(split_indices, sensitivity) {
 };
 exports.count_nobs = count_nobs;
 
-var mask_nobs = function(sensitivity, antecedent_list, index_list) {
+var mask_nobs = function(counts, antecedent_list, index_list) {
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
           var id = index + '_ante' + antecedent_period;
