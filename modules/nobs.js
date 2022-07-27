@@ -19,8 +19,8 @@ var mask_nobs = function(counts, antecedent_list, index_list) {
           var baseline_count_band = id + '_wi_p15_p85_base' + '_count';
           var drought_count_band = id + '_lte_p15_drought' + '_count';
           
-          var mask_baseline = counts.select(baseline_count_band).gte(21);
-          var mask_drought = counts.select(drought_count_band).gte(3);
+          var mask_baseline = counts.select(baseline_count_band).lt(21);
+          var mask_drought = counts.select(drought_count_band).lt(3);
           
           var mask = mask_baseline.and(mask_drought);
           
