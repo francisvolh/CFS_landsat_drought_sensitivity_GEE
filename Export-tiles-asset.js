@@ -58,7 +58,7 @@ var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var region = vars.yukon;
 
-var today = new Date().toJSON().slice(11, 30);
+var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
 var scale = 30;
 
@@ -79,7 +79,7 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
-tile_id_list = tile_id_list.slice(0, 20);
+tile_id_list = tile_id_list.slice(21, 40);
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
