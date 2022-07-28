@@ -79,7 +79,7 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
-tile_id_list = tile_id_list.slice(21, 40);
+tile_id_list = tile_id_list.slice(41, 60);
 
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
