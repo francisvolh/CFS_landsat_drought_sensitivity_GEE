@@ -53,14 +53,14 @@ var min_year =  vars.min_year;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
-var western_can = vars.western_can;
+var region = vars.western_can;
 
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
 var scale = 30;
 
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
-  .filterBounds(western_can);
+  .filterBounds(region);
 
 
 
