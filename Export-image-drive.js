@@ -24,3 +24,6 @@ var export_name = 'sens_p15_p85';
 
 // Export image to drive
 export_img.export_img_drive_greenest(export_name, 'Exports', 30, region, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
+
+
+Map.addLayer(region);
