@@ -58,7 +58,7 @@ var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var region = vars.yukon;
 
-var today = new Date().toJSON().slice(0, 10);
+var today = new Date().toJSON().slice(11, 30);
 var asset_path = 'CFS/' + today;
 var scale = 30;
 
