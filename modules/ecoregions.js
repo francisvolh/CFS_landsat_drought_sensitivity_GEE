@@ -14,5 +14,5 @@ var get_eco_bands = function() {
     ecoregions.reduceToImage(['ECOREGI'], ee.Reducer.first()).rename('ecoregion'),
     ecoregions.reduceToImage(['ECOZONE'], ee.Reducer.first()).rename('ecozone'),
   ]);
-}l
+};
 exports.get_eco_bands = get_eco_bands;
