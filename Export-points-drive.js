@@ -10,20 +10,21 @@ Alec L. Robitaille
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
-var western_can = vars.western_can;
+var region = vars.yukon;
 
 
 // Data -----------------------------------------------------------------------
 // Load ecoregions
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
-ecoregions = ecoregions.filterBounds(western_can);
+var ecoregions = eco.ecoregions;
+ecoregions = ecoregions.filterBounds(region);
 
 // Load points
-var points = ee.FeatureCollection('users/robitalec/CFS/2022-05-25_sampling_points_n125');
+var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
 
 
 
