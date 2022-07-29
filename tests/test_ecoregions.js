@@ -4,5 +4,23 @@ Alec L. Robitaille
 */
 
 // Load modules
-var ecoregions = require('users/robitalec/CFS:modules/ecoregions.js');
+var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
+
+
+// Testing: ecoregions
+var ecoregions = eco.ecoregions;
+
+
+// Testing: get_ecoreg_bands();
+var ecoreg_bands = eco.get_ecoreg_bands();
+
+
+print('Ecoregions:', ecoregions);
+print('Ecoregion, ecozone, ecoprovince as image bands:', ecoreg_bands);
+
+
+Map.addLayer(ecoregions);
+Map.addLayer(ecoreg_bands.select('ecoregion'));
+Map.addLayer(ecoreg_bands.select('ecozone'));
+Map.addLayer(ecoreg_bands.select('ecoprovince'));
