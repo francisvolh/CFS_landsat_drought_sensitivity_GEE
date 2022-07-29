@@ -19,6 +19,8 @@ print('Max month day:', vars.max_mm_dd);
 print('Percentile low:', vars.percentile_low);
 print('Percentile high:', vars.percentile_high);
 print('Months:', vars.months);
+print('Min drought nobs:', vars.min_drought_nobs);
+print('Min baseline nobs:', vars.min_baseline_nobs);
 
 // Assign
 var index_list = vars.index_list;
