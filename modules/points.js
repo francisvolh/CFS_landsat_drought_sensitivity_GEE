@@ -21,7 +21,7 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
     .mask(lc_mask);
   
   var points = ecoregions.map(function(ft) {
-    return stratified.stratified_sample(lc_mask, 'land_cover_count', 30, ft.geometry(), n_pts);
+    return stratified.stratified_sample(lc_masked, 'land_cover', 30, ft.geometry(), n_pts);
   }).flatten();
   
   var today = new Date().toJSON().slice(0, 10);
