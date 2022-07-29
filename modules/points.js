@@ -10,7 +10,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
 
 // Export points as asset
-var export_points_asset = function(n_pts, ecoregions) {
+var export_points_asset = function(n_pts, ecoregions, region_name) {
   var lc_mask = land_cover.get_lc_count_mask();
   
   var points = ecoregions.map(function(ft) {
@@ -18,7 +18,7 @@ var export_points_asset = function(n_pts, ecoregions) {
   }).flatten();
   
   var today = new Date().toJSON().slice(0, 10);
-  var filename = today + '_sampling_points_n' + n_pts;
+  var filename = today + '_' + region_name + '_sampling_points_n' + n_pts;
   Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
 exports.export_points_asset = export_points_asset;
