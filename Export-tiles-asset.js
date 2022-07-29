@@ -84,9 +84,9 @@ print(tile_id_list);
 
 tile_id_list = tile_id_list.slice(20, 40);
 
-// tile_id_list.evaluate(function(tile_ids) {
-//     tile_ids.forEach(function(tile_id) {
-//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-//       export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
-//     });
-// });
+tile_id_list.evaluate(function(tile_ids) {
+    tile_ids.forEach(function(tile_id) {
+      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
+    });
+});
