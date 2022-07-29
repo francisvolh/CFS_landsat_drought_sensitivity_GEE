@@ -7,6 +7,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var main = require('users/robitalec/CFS:modules/main.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
 var get_hydro = require('users/robitalec/CFS:modules/get_hydro.js');
+var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // --- Sample -----------------------------------------------------------------
@@ -31,7 +32,8 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
 
   drought_sens = drought_sens
     .mosaic()
-    .addBands([ee.Image.pixelLonLat()]);
+    .addBands([ee.Image.pixelLonLat(), 
+               eco.get_eco_bands()]);
   
 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
