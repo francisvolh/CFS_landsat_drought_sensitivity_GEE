@@ -10,9 +10,9 @@ exports.ecoregions = ecoregions;
 
 var get_eco_bands = function() {
 	return ee.Image([
-    ecoregions.reduceToImage(['ECOPROV'], ee.Reducer.first()).rename('ECOPROV'),
-    ecoregions.reduceToImage(['ECOREGI'], ee.Reducer.first()).rename('ECOREGI'),
-    ecoregions.reduceToImage(['ECOZONE'], ee.Reducer.first()).rename('ECOZONE'),
+    ecoregions.reduceToImage(['ECOPROV'], ee.Reducer.first()).rename('ecoprovince'),
+    ecoregions.reduceToImage(['ECOREGI'], ee.Reducer.first()).rename('ecoregion'),
+    ecoregions.reduceToImage(['ECOZONE'], ee.Reducer.first()).rename('ecozone'),
   ]);
 }
 exports.get_eco_bands = get_eco_bands;
