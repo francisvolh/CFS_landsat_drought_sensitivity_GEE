@@ -19,7 +19,6 @@ var ecoreg_bands = eco.get_ecoreg_bands();
 print('Ecoregions:', ecoregions);
 print('Ecoregion, ecozone, ecoprovince as image bands:', ecoreg_bands);
 
-
 Map.addLayer(ecoregions);
 Map.addLayer(ecoreg_bands.select('ecoregion'));
 Map.addLayer(ecoreg_bands.select('ecozone'));
