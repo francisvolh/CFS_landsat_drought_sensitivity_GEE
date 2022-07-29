@@ -30,7 +30,7 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling
 
 // Sample ---------------------------------------------------------------------
 // Sensitivity
-export_points.export_sensitivity_from_asset(points, 'sample-sensitivity', drive_folder);
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-Yukon', drive_folder);
 
 // Hydro
 // export_points.export_hydro(points, 'hydro', drive_folder);
