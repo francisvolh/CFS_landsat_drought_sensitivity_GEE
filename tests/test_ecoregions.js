@@ -13,7 +13,7 @@ var ecoregions = eco.ecoregions;
 
 
 // Testing: get_ecoreg_bands();
-var ecoreg_bands = eco.get_ecoreg_bands();
+var ecoreg_bands = eco.get_eco_bands();
 
 
 print('Ecoregions:', ecoregions);
