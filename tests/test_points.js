@@ -10,6 +10,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 // Region
 var region = vars.yukon;
+var region_name = 'Yukon';
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
   .filterBounds(region);
 
@@ -18,4 +19,4 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 // Test export_points_asset
 // Usage: export_points_asset(n_pts, ecoregions)
 var n_pts = 125;
-points.export_points_asset(125, ecoregions);
+points.export_points_asset(125, ecoregions, region_name);
