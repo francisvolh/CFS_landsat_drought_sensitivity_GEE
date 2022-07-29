@@ -26,7 +26,10 @@ var bc =
           [-128.68632812500002, 59.99057921359762],
           [-134.57500000000002, 59.99057921359762],
           [-138.92558593750002, 59.99057921359762]]]),
-    west = /* color: #d63000 */ee.Geometry.Polygon(
+    west = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-141.4430528814123, 68.27919277463084],
           [-141.13300806589254, 64.04137893026935],
           [-139.73426050644431, 60.04815657459371],
@@ -79,11 +82,11 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
-tile_id_list = tile_id_list.slice(41, 60);
+tile_id_list = tile_id_list.slice(20, 40);
 
-tile_id_list.evaluate(function(tile_ids) {
-    tile_ids.forEach(function(tile_id) {
-      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
-    });
-});
+// tile_id_list.evaluate(function(tile_ids) {
+//     tile_ids.forEach(function(tile_id) {
+//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+//       export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
+//     });
+// });
