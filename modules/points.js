@@ -8,10 +8,17 @@ Alec L. Robitaille
 // Modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
+var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Export points as asset
 var export_points_asset = function(n_pts, ecoregions, region_name) {
   var lc_mask = land_cover.get_lc_count_mask();
+  
+  var lc_masked = land_cover.hermosilla_1984_2019
+    .map(utils.set_year)
+    .map(land_cover.mask_classes)
+    .mode()
+    .mask(lc_mask);
   
   var points = ecoregions.map(function(ft) {
     return stratified.stratified_sample(lc_mask, 'land_cover_count', 30, ft.geometry(), n_pts);
