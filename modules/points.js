@@ -8,14 +8,6 @@ Alec L. Robitaille
 // Modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
-
-// Region
-var region = vars.yukon;
-
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
-  .filterBounds(region);
-  
 
 // Export points as asset
 var export_points_asset = function(n_pts, ecoregions) {
