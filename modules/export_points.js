@@ -11,13 +11,13 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // --- Sample -----------------------------------------------------------------
-var export_hydro = function(points, drive_name, drive_folder) {
-  var hydro = get_hydro.get_col();
-	var sampled = hydro.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
-};
-exports.export_hydro = export_hydro;
+// var export_hydro = function(points, drive_name, drive_folder) {
+//   var hydro = get_hydro.get_col();
+// 	var sampled = hydro.reduceRegions(points, ee.Reducer.mean(), 30);
+// 	var today = new Date().toJSON().slice(0, 10);
+// 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+// };
+// exports.export_hydro = export_hydro;
 
 
 
