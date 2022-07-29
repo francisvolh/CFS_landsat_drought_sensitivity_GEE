@@ -83,9 +83,9 @@ print('Mask counts:', mask_counts);
 Map.addLayer(geometry, null, 'region');
 Map.addLayer(ee.Image.constant(1), {palette: '#113355'}, 'constant');
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count', false);
-Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(21), null, 'baseline count gte 21');
+Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(vars.min_baseline_nobs), null, 'baseline count gte ' + vars.min_baseline_nobs);
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count', false);
-Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3');
+Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(vars.min_drought_nobs), null, 'drought count gte ' + vars.min_drought_nobs);
 
 Map.addLayer(mask_counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), {min:-0.3, max:0.3, palette: palettes.crameri.vik[10]}, 'sensitivity');
 
