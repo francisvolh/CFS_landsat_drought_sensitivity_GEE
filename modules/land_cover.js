@@ -68,7 +68,6 @@ var get_lc_count_mask = function() {
 exports.get_lc_count_mask = get_lc_count_mask;
 
 
-
 // Add 2020
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
 var lc_2020 = lc_2019
