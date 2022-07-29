@@ -20,6 +20,7 @@ print('Ecoregions:', ecoregions);
 print('Ecoregion, ecozone, ecoprovince as image bands:', ecoreg_bands);
 
 Map.addLayer(ecoregions);
-Map.addLayer(ecoreg_bands.select('ecoregion'));
-Map.addLayer(ecoreg_bands.select('ecozone'));
-Map.addLayer(ecoreg_bands.select('ecoprovince'));
+var viz = {min: 0, max: 300};
+Map.addLayer(ecoreg_bands.select('ecoregion'), viz);
+Map.addLayer(ecoreg_bands.select('ecozone'), viz);
+Map.addLayer(ecoreg_bands.select('ecoprovince'), viz);
