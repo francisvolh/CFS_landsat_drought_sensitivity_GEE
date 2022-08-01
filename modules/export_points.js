@@ -9,6 +9,7 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 // var get_hydro = require('users/robitalec/CFS:modules/get_hydro.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
+var soil = require('users/robitalec/CFS:modules/soil.js');
 
 // --- Sample -----------------------------------------------------------------
 // var export_hydro = function(points, drive_name, drive_folder) {
@@ -52,6 +53,17 @@ var export_vegetation = function(points, drive_name, drive_folder) {
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
 exports.export_vegetation = export_vegetation;
+
+
+var export_soil = function(points, drive_name, drive_folder) {
+  var veg = soil.get_canopy_height();
+  // TODO: add forest carbon
+  
+	var sampled = veg.reduceRegions(points, ee.Reducer.mean(), 30);
+	var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+};
+exports.export_soil = export_soil;
 
 
 
