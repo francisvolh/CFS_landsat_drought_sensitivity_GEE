@@ -17,14 +17,14 @@ silt 	Proportion of silt particles (≥ 0.002 mm and ≤ 0.05 mm) in the fine ea
 */
 
 
-var get_soil_percents = function() {
+var get_soil_percent = function() {
 	var silt = ee.Image("projects/soilgrids-isric/silt_mean");
 	var sand = ee.Image("projects/soilgrids-isric/sand_mean");
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
 
 	return ee.Image([silt, sand, clay])
 }
-exports.get_soil_percents = get_soil_percents;
+exports.get_soil_percent = get_soil_percent;
 
 
 
