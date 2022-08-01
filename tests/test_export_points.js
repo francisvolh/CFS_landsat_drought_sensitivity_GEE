@@ -41,3 +41,9 @@ var points = ee.FeatureCollection.randomPoints(geometry, 10);
 // Test export_vegetation
 // Usage: export_vegetation(points, drive_name, drive_folder)
 export_points.export_vegetation(points, 'test-export-vegetation', 'Exports');
+
+
+
+// Test export_soil
+// Usage: export_soil(points, drive_name, drive_folder)
+export_points.export_soil(points, 'test-export-soil', 'Exports');
