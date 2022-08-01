@@ -9,8 +9,8 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 
 
 
-// Test get_canopy_height();
-// Usage: get_canopy_height();
-var canopy_height = soil.get_canopy_height();
-print(canopy_height);
-Map.addLayer(canopy_height);
+// Test get_soil_percent();
+// Usage: get_soil_percent();
+var soil_percent = soil.get_soil_percent();
+print(soil_percent);
+Map.addLayer(soil_percent);
