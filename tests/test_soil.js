@@ -13,4 +13,4 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 // Usage: get_soil_percent();
 var soil_percent = soil.get_soil_percent();
 print(soil_percent);
-Map.addLayer(soil_percent);
+Map.addLayer(soil_percent, {min: 0, max: 100});
