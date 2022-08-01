@@ -44,10 +44,10 @@ exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
 
 
 var export_vegetation = function(points, drive_name, drive_folder) {
-  var vegetation = vegetation.get_canopy_height();
+  var veg = vegetation.get_canopy_height();
   // TODO: add forest carbon
   
-	var sampled = vegetation.reduceRegions(points, ee.Reducer.mean(), 30);
+	var sampled = veg.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
