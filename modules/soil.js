@@ -23,8 +23,9 @@ var get_soil_percent = function() {
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
 
 	return ee.Image([silt, sand, clay])
-    .multiply(0.1)
-    .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean']);
+    .multiply(1)
+    .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
+            [.]);
 };
 exports.get_soil_percent = get_soil_percent;
 
