@@ -56,8 +56,8 @@ exports.export_vegetation = export_vegetation;
 
 
 var export_soil = function(points, drive_name, drive_folder) {
-  var veg = soil.get_canopy_height();
-  // TODO: add forest carbon
+  var veg = soil.get_soil_percent();
+  // TODO: add peat, soil carbon
   
 	var sampled = veg.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
