@@ -55,6 +55,7 @@ var export_vegetation = function(points, drive_name, drive_folder) {
 exports.export_vegetation = export_vegetation;
 
 
+
 var export_soil = function(points, drive_name, drive_folder) {
   var veg = soil.get_soil_percent();
   // TODO: add peat, soil carbon
