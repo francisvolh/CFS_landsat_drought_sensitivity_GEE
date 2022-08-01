@@ -1,19 +1,16 @@
 /*
-Soil
+Testing: modules/soil.js
 Alec L. Robitaille
 */
 
 
-var get_canopy_height = function() {
-  var ch = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/ch");
+// Load modules
+var soil = require('users/robitalec/CFS:modules/soil.js');
 
-  return ch.toBands()
-           .select(['ch_85perc_height_250m_b1',
-                    'ch_95perc_height_250m_b1',
-                    'ch_max_height_250m_b1'],
-                   ['ch_85perc_height_250m',
-                    'ch_95perc_height_250m',
-                    'ch_max_height_250m']);
-};
-exports.get_canopy_height = get_canopy_height;
 
+
+// Test get_canopy_height();
+// Usage: get_canopy_height();
+var canopy_height = soil.get_canopy_height();
+print(canopy_height);
+Map.addLayer(canopy_height);
