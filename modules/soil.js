@@ -25,7 +25,7 @@ var get_soil_percent = function() {
 	return ee.Image([silt, sand, clay])
     .multiply(1)
     .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
-            [.]);
+            ['sand_0-5cm_percent', 'clay_0-5cm_percent', 'silt_0-5cm_percent']);
 };
 exports.get_soil_percent = get_soil_percent;
 
