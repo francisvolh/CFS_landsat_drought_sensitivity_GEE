@@ -90,6 +90,7 @@ var sample_collection = function() {
   proportion_permanent_snow(1000),
   proportion_water(1000),
   proportion_water(300),
+  distance_water_lc(),
   distance_major_lakes(50)
   ]);
 };
