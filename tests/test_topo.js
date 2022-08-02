@@ -29,6 +29,13 @@ Map.addLayer(hand_90_1000, {min:0, max:500, palette:p}, 'hand 90 1000', false);
 
 
 
+// Test CHILI
+var chili = topo.chili_alos;
+print('CHILI', chili);
+Map.addLayer(chili, null, 'CHILI');
+
+
+
 // Test sampling_collection
 // Usage: sampling_collection();
 var col = topo.sampling_collection();
