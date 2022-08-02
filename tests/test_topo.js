@@ -17,13 +17,13 @@ var p = palettes.crameri.lajolla[50];
 // Test hand
 // Usage: hand(resolution, threshold)
 var hand_30_100 = topo.hand(30, 100);
-print(hand_30_100);
+print('Hand 30 100', hand_30_100);
 Map.addLayer(hand_30_100, {min:0, max:500, palette:p}, 'hand 30 100');
 
 var hand_30_1000 = topo.hand(30, 1000);
-print(hand_30_1000);
+print('Hand 30 1000', hand_30_1000);
 Map.addLayer(hand_30_1000, {min:0, max:500, palette:p}, 'hand 30 1000', false);
 
 var hand_90_1000 = topo.hand(90, 1000);
-print(hand_90_1000);
+print('Hand 90 1000', hand_90_1000);
 Map.addLayer(hand_90_1000, {min:0, max:500, palette:p}, 'hand 90 1000', false);
