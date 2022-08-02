@@ -27,7 +27,7 @@ Map.addLayer(prop_snow_5000, {min:0, max:1}, 'prop snow 5000');
 
 // Test proportion_water
 var prop_water_5000 = hydro.proportion_water(5000);
-print(prop_water_5000);
+print('Proportion water lc 5000:', prop_water_5000);
 Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water lc 5000');
 
 
