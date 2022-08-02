@@ -16,7 +16,9 @@ age of water stored in global lakes using a geo-statistical approach."
 Nature communications 7, no. 1 (2016): 1-11.
 https://samapriya.github.io/awesome-gee-community-datasets/projects/hydrolakes/
 
-
+Lake size threshold
+5000 hectares = 50 sq km
+https://www.mdpi.com/1999-4907/7/11/265/htm
 */
 
 // Modules
