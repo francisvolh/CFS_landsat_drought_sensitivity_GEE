@@ -14,6 +14,10 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. 
 ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
 
+CHILI
+Theobald, D. M., Harrison-Atlas, D., Monahan, W. B., & Albano, C. M. (2015). 
+Ecologically-relevant maps of landforms and physiographic diversity for climate adaptation planning. PloS one, 10(12),
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0143619
 
 */
 
@@ -47,8 +51,11 @@ exports.hand = hand;
 
 
 // CHILI
-var chili = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI");
-exports.chili = chili;
+// ALOS some gaps, SRTM only < 60
+var chili_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI");
+var chili_srtm = ee.Image('CSP/ERGo/1_0/Global/SRTM_CHILI');
+exports.chili_alos = chili_alos.rename('chili_alos');
+exports.chili_srtm = chili_srtm;
 
 
 // CTI
@@ -65,7 +72,8 @@ exports.chili = chili;
 var sampling_collection = function() {
   return ee.Image([
   hand(30, 100),
-  hand(90, 1000)
+  hand(90, 1000),
+  chili_alos
   ]);
 };
 exports.sampling_collection = sampling_collection;
