@@ -85,7 +85,7 @@ exports.distance_major_lakes = distance_major_lakes;
 
 
 // Get sampling collection
-var sample_collection = function() {
+var sampling_collection = function() {
   return ee.Image([
   proportion_permanent_snow(1000),
   proportion_water(1000),
@@ -94,4 +94,4 @@ var sample_collection = function() {
   distance_major_lakes(50)
   ]);
 };
-exports.sample_collection = sample_collection;
+exports.sampling_collection = sampling_collection;
