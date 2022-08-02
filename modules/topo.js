@@ -71,10 +71,14 @@ exports.chili_srtm = chili_srtm;
 
 
 // Landforms
-var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
+var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_landforms") 
   .rename(['landforms_alos']);
 exports.landforms_alos = landforms_alos;
 
+// Landforms
+var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
+  .rename(['landforms_alos']);
+exports.landforms_alos = landforms_alos;
 
 
 // Get sampling collection
