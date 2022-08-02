@@ -13,9 +13,12 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
+
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
 var region = vars.yukon;
+var region_name = 'Yukon';
+
 
 
 // Data -----------------------------------------------------------------------
@@ -30,12 +33,21 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling
 
 // Sample ---------------------------------------------------------------------
 // Sensitivity
-export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-Yukon', drive_folder);
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
+
+// Soil
+export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
+
+// Vegetation
+export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
+
+
 
 // Hydro
 // export_points.export_hydro(points, 'hydro', drive_folder);
 
 // Climate
+
 
 
 // Topo
