@@ -51,5 +51,5 @@ Map.addLayer(dist_major_lake_1000, {min:0, max:10000}, 'dist lakes > 1000 sq km'
 
 
 // Test sampling_collection
-var col = hydro.sampling_collection();
-print(col);
+var col =  hydro.sampling_collection();
+print('Sampling collection:',col);
