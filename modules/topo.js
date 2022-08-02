@@ -75,10 +75,10 @@ var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_landforms")
   .rename(['landforms_alos']);
 exports.landforms_alos = landforms_alos;
 
-// Landforms
-var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
-  .rename(['landforms_alos']);
-exports.landforms_alos = landforms_alos;
+// Topographic diversity
+var topo_diversity_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
+  .rename(['topo_diversity_alos']);
+exports.topo_diversity_alos = topo_diversity_alos;
 
 
 // Get sampling collection
