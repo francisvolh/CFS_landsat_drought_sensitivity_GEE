@@ -55,7 +55,7 @@ exports.hand = hand;
 var chili_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI");
 var chili_srtm = ee.Image('CSP/ERGo/1_0/Global/SRTM_CHILI');
 exports.chili_alos = chili_alos.rename('chili_alos');
-exports.chili_srtm = chili_srtm;
+exports.chili_srtm = chili_srtm.rename('chili_srtm');
 
 
 // CTI
