@@ -18,7 +18,6 @@ var geometry =
           [-79.25309939051384, 38.21307697867719],
           [-79.25309939051384, 71.83257848283961]]], null, false);
 
-
 var hand = function(resolution, threshold) {
   if (resolution == 30 & threshold == 100) {
     // Note: image collection vs image
