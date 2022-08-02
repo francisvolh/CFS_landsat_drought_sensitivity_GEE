@@ -10,6 +10,10 @@ Geophysical Research Abstracts, Vol. 18, EGU2016-17445-3, 2016, EGU General Asse
 */
 
 
+// Modules
+var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
+
+
 // Get HAND
 var geometry =
     ee.Geometry.Polygon(
@@ -30,6 +34,20 @@ var hand = function(resolution, threshold) {
   }
 };
 exports.hand = hand;
+
+
+
+// CHILI
+
+
+
+// CTI
+
+
+// Curvature
+// Min, max
+
+// Shape index
 
 
 
