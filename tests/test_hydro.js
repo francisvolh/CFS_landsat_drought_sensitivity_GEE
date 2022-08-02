@@ -24,22 +24,22 @@ print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1}, 'prop snow 5000');
 
 
-// Test get_prop_water
-var prop_water_5000 = hydro.get_prop_water(5000);
+// Test proportion_water
+var prop_water_5000 = hydro.proportion_water(5000);
 print(prop_water_5000);
-Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water 5000');
+Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water lc 5000');
 
 
 
-// Test get_dist_major_lakes
-// Usage: get_dist_major_lakes(min_lake_area)
-var dist_major_lake_500 = hydro.get_dist_major_lakes(500);
+// Test distance_major_lakes
+// Usage: distance_major_lakes(min_lake_area)
+var dist_major_lake_500 = hydro.distance_major_lakes(500);
 print(dist_major_lake_500);
-Map.addLayer(dist_major_lake_500, {min:0, max:10000}, 'dist lakes > 500');
+Map.addLayer(dist_major_lake_500, {min:0, max:10000}, 'dist lakes > 500 sq km');
 
-var dist_major_lake_1000 = hydro.get_dist_major_lakes(1000);
+var dist_major_lake_1000 = hydro.distance_major_lakes(1000);
 print(dist_major_lake_1000);
-Map.addLayer(dist_major_lake_1000, {min:0, max:10000}, 'dist lakes > 1000', false);
+Map.addLayer(dist_major_lake_1000, {min:0, max:10000}, 'dist lakes > 1000 sq km', false);
 
 
 // Test get_col
