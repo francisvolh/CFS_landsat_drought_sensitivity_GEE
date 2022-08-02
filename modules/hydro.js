@@ -32,28 +32,41 @@ exports.permanent_snow = permanent_snow;
 
 // Proportion snow
 var proportion_permanent_snow = function(focal_dist) {
-  return permanent_snow.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
+  return permanent_snow.focalMean(focal_dist, null, 'meters')
+                       .rename('prop_perm_snow_' + focal_dist);
 };
 exports.proportion_permanent_snow = proportion_permanent_snow;
 
 // Distance snow
 var distance_permanent_snow = function() {
-  return permanent_snow.distance(ee.Kernel.euclidean(10e3, 'meters'));
+  return permanent_snow.distance(ee.Kernel.euclidean(10e3, 'meters'))
+                       .rename('distance_perm_snow');
 };
 exports.distance_permanent_snow = distance_permanent_snow;
 
 
 
 
-// Get ` water
-var get_prop_water = function(focal_dist) {
-  var water_mode = land_cover.hermosilla_1984_2019
-                    .reduce(ee.Reducer.mode())
-                    .eq(20);
-                    
-  return water_mode.focalMean(focal_dist, null, 'meters').rename('prop_water_' + focal_dist);
+// Water
+var water = land_cover.hermosilla_1984_2019
+                .reduce(ee.Reducer.mode())
+                .eq(20);
+exports.water = water;
+
+// Proportion water
+var proportion_water = function(focal_dist) {
+  return water.focalMean(focal_dist, null, 'meters')
+              .rename('prop_water_' + focal_dist);
 };
-exports.get_prop_water = get_prop_water;
+exports.proportion_water = proportion_water;
+
+// Distance water lc
+var distance_water_lc = function() {
+  return water.distance(ee.Kernel.euclidean(10e3, 'meters'))
+              .rename('distance_water_lc');
+};
+exports.distance_water_lc = distance_water_lc;
+
 
 
 
