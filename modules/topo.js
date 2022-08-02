@@ -14,7 +14,7 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. 
 ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
 
-CHILI
+CHILI, Topo diversity, Landforms
 Theobald, D. M., Harrison-Atlas, D., Monahan, W. B., & Albano, C. M. (2015). 
 Ecologically-relevant maps of landforms and physiographic diversity for climate adaptation planning. PloS one, 10(12),
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0143619
@@ -79,6 +79,7 @@ exports.landforms_alos = landforms_alos;
 var topo_diversity_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
   .rename(['topo_diversity_alos']);
 exports.topo_diversity_alos = topo_diversity_alos;
+
 
 
 // Get sampling collection
