@@ -37,9 +37,7 @@ exports.hand = hand;
 // Get sampling collection
 var get_col = function() {
   return ee.Image([
-  // TODO: which?
   hand(30, 100),
-  hand(30, 1000),
   hand(90, 1000)
   ]);
 };
