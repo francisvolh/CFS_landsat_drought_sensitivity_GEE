@@ -39,6 +39,12 @@ var landforms = topo.landforms_alos;
 print('landforms', landforms);
 Map.addLayer(landforms, null, 'landforms');
 
+// Test topo_diversity
+var topo_diversity = topo.topo_diversity_alos;
+print('topo_diversity', topo_diversity);
+Map.addLayer(topo_diversity, null, 'topo_diversity');
+
+
 
 // Test sampling_collection
 // Usage: sampling_collection();
