@@ -4,8 +4,16 @@ Alec L. Robitaille
 
 
 HAND
-Donchyts, Gennadii, Hessel Winsemius, Jaap Schellekens, Tyler Erickson, Hongkai Gao, Hubert Savenije, and Nick van de Giesen. "Global 30m Height Above the Nearest Drainage (HAND)",
-Geophysical Research Abstracts, Vol. 18, EGU2016-17445-3, 2016, EGU General Assembly (2016).
+Donchyts, Gennadii, Hessel Winsemius, Jaap Schellekens, Tyler Erickson, Hongkai Gao, Hubert Savenije, and Nick van de Giesen. 
+"Global 30m Height Above the Nearest Drainage (HAND)", Geophysical Research Abstracts, 
+Vol. 18, EGU2016-17445-3, 2016, EGU General Assembly (2016).
+
+
+TAGEE
+Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Rizzo, R.; Demattê, J.A.M. 
+Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. 
+ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
+
 
 */
 
