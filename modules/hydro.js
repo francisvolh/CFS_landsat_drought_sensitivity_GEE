@@ -79,8 +79,11 @@ var distance_major_lakes = function(min_lake_area) {
     .filter(ee.Filter.eq('Continent', 'North America'))
     .filter(ee.Filter.eq('Country', 'Canada'))
     .filter(ee.Filter.gt('Lake_area', min_lake_area));
+    
+  var lake_img = lake_poly.reduceToImage('Country', ee.Reducer.anyNonZero());
   
-  return lake_poly.distance().rename('distance_lake_gt_' + min_lake_area + '_sq_km');
+  return lake_img.distance(ee.Kernel.euclidean(7.5e3, 'meters'))
+                 .rename('distance_lake_gt_' + min_lake_area + '_sq_km');
 };
 exports.distance_major_lakes = distance_major_lakes;
 
