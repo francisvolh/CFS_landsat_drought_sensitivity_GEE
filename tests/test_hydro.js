@@ -13,13 +13,13 @@ var p = palettes.crameri.lajolla[50];
 
 
 
-// Test get_prop_permanent_snow
-// Usage: get_prop_permanent_snow(focal_dist)
-var prop_snow_1000 = hydro.get_prop_permanent_snow(1000);
+// Test proportion_permanent_snow
+// Usage: proportion_permanent_snow(focal_dist)
+var prop_snow_1000 = hydro.proportion_permanent_snow(1000);
 print(prop_snow_1000);
 Map.addLayer(prop_snow_1000, {min:0, max:1}, 'prop snow 1000', false);
 
-var prop_snow_5000 = hydro.get_prop_permanent_snow(5000);
+var prop_snow_5000 = hydro.proportion_permanent_snow(5000);
 print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1}, 'prop snow 5000');
 
