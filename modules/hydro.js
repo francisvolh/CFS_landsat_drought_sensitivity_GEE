@@ -35,11 +35,11 @@ var get_prop_permanent_snow = function(focal_dist) {
 exports.get_prop_permanent_snow = get_prop_permanent_snow;
                 
 // Get proportion water
-var water_mode = land_cover.hermosilla_plus_2022
-                           .reduce(ee.Reducer.mode())
-                           .eq(20);
-                
 var get_prop_water = function(focal_dist) {
+  var water_mode = land_cover.hermosilla_1984_2019
+                    .reduce(ee.Reducer.mode())
+                    .eq(20);
+                    
   return water_mode.focalMean(focal_dist, null, 'meters').rename('prop_water_' + focal_dist);
 };
 exports.get_prop_water = get_prop_water;
