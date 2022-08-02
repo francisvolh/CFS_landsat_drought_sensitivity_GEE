@@ -35,11 +35,11 @@ exports.hand = hand;
 
 
 // Get sampling collection
-var get_col = function() {
+var sampling_collection = function() {
   return ee.Image([
   hand(30, 100),
   hand(90, 1000)
   ]);
 };
-exports.get_col = get_col;
+exports.sampling_collection = sampling_collection;
 
