@@ -92,6 +92,7 @@ exports.distance_major_lakes = distance_major_lakes;
 var sampling_collection = function() {
   return ee.Image([
   proportion_permanent_snow(1000),
+  distance_permanent_snow(),
   proportion_water(1000),
   proportion_water(300),
   distance_water_lc(),
