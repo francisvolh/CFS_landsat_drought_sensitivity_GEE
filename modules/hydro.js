@@ -33,7 +33,9 @@ var get_prop_permanent_snow = function(focal_dist) {
   return snow_mode.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
 };
 exports.get_prop_permanent_snow = get_prop_permanent_snow;
-                
+
+
+
 // Get proportion water
 var get_prop_water = function(focal_dist) {
   var water_mode = land_cover.hermosilla_1984_2019
@@ -43,6 +45,7 @@ var get_prop_water = function(focal_dist) {
   return water_mode.focalMean(focal_dist, null, 'meters').rename('prop_water_' + focal_dist);
 };
 exports.get_prop_water = get_prop_water;
+
 
 
 // Distance to major lakes
