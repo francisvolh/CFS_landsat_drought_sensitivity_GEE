@@ -38,8 +38,7 @@ exports.proportion_permanent_snow = proportion_permanent_snow;
 
 // Distance snow
 var distance_permanent_snow = function() {
-  var snow_mode = permanent_snow();
-  return snow_mode.distance(ee.Kernel.euclidean(10e3, 'meters'));
+  return permanent_snow.distance(ee.Kernel.euclidean(10e3, 'meters'));
 };
 exports.distance_permanent_snow = distance_permanent_snow;
 
