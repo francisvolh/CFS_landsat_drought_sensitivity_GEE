@@ -6,15 +6,15 @@ Alec L. Robitaille
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var main = require('users/robitalec/CFS:modules/main.js');
 var stratified = require('users/robitalec/CFS:modules/stratified.js');
-// var get_hydro = require('users/robitalec/CFS:modules/get_hydro.js');
+// var hydro = require('users/robitalec/CFS:modules/hydro.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
 var soil = require('users/robitalec/CFS:modules/soil.js');
 
 // --- Sample -----------------------------------------------------------------
 // var export_hydro = function(points, drive_name, drive_folder) {
-//   var hydro = get_hydro.get_col();
-// 	var sampled = hydro.reduceRegions(points, ee.Reducer.mean(), 30);
+//   var hyd = hydro.get_col();
+// 	var sampled = hyd.reduceRegions(points, ee.Reducer.mean(), 30);
 // 	var today = new Date().toJSON().slice(0, 10);
 // 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 // };
