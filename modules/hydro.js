@@ -82,7 +82,7 @@ var distance_major_lakes = function(min_lake_area) {
   
   return lake_poly.distance()
                   .rename('distance_lake_gt_' + min_lake_area + '_sq_km')
-                  .updateMask(lake_poly.reduceToImage(['Lake_area'], ee.Reducer.anyNonZero()));
+                  .updateMask(lake_poly.reduceToImage(['Lake_area'], ee.Reducer.anyNonZero()).not());
 };
 exports.distance_major_lakes = distance_major_lakes;
 
