@@ -27,8 +27,8 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 // Get proportion glacier/permanent snow
 var get_prop_permanent_snow = function(focal_dist) {
   var snow_mode = land_cover.hermosilla_1984_2019
-                .reduce(ee.Reducer.mode())
-                .eq(31);
+                    .reduce(ee.Reducer.mode())
+                    .eq(31);
                 
   return snow_mode.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
 };
