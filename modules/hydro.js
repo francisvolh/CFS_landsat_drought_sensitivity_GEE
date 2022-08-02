@@ -25,17 +25,14 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
 // Snow
-var permanent_snow = function() {
-  return land_cover.hermosilla_1984_2019
-            .reduce(ee.Reducer.mode())
-            .eq(31);
-};
+var permanent_snow = land_cover.hermosilla_1984_2019
+                        .reduce(ee.Reducer.mode())
+                        .eq(31);
 exports.permanent_snow = permanent_snow;
 
 // Proportion snow
 var proportion_permanent_snow = function(focal_dist) {
-  var snow_mode = permanent_snow();
-  return snow_mode.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
+  return permanent_snow.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
 };
 exports.proportion_permanent_snow = proportion_permanent_snow;
 
