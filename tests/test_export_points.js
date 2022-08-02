@@ -34,7 +34,7 @@ var points = ee.FeatureCollection.randomPoints(geometry, 10);
 
 // Test export_hydro
 // Usage: export_hydro(points, drive_name, drive_folder)
-// export_points.export_hydro(points, 'test-export-hydro', 'Exports');
+export_points.export_hydro(points, 'test-export-hydro', 'Exports');
 
 
 
