@@ -69,7 +69,6 @@ exports.distance_water_lc = distance_water_lc;
 
 
 
-
 // Distance to major lakes
 // Note: searchRadius (Float, default: 100000):
 //       Maximum distance in meters from each pixel to look for edges. Pixels will be masked unless there are edges within this distance.
