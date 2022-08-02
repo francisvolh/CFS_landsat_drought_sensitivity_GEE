@@ -44,7 +44,7 @@ export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exp
 
 
 // Hydro
-// export_points.export_hydro(points, 'hydro', drive_folder);
+export_points.export_hydro(points, 'hydro', drive_folder);
 
 // Climate
 
