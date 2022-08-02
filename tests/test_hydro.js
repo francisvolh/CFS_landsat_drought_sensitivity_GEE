@@ -27,7 +27,7 @@ Map.addLayer(prop_snow_5000, {min:0, max:1}, 'prop snow 5000');
 
 // Test distance_permanent_snow
 // Usage: distance_permanent_snow();
-var dist_perm_snow = distance_permanent_snow();
+var dist_perm_snow = hydro.distance_permanent_snow();
 print('Distance permanent snow:', dist_perm_snow);
 Map.addLayer(dist_perm_snow, {min: 0, max:7.5e3});
 
