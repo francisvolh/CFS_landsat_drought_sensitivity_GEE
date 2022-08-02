@@ -7,7 +7,6 @@ Alec L. Robitaille
 // Load modules
 var topo = require('users/robitalec/CFS:modules/topo.js');
 
-
 // Palette
 var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.lajolla[50];
