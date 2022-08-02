@@ -24,10 +24,18 @@ print(prop_snow_5000);
 Map.addLayer(prop_snow_5000, {min:0, max:1}, 'prop snow 5000');
 
 
+
 // Test proportion_water
 var prop_water_5000 = hydro.proportion_water(5000);
 print(prop_water_5000);
 Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water lc 5000');
+
+
+
+// Test distance_water_lc
+var dist_water_lc = hydro.distance_water_lc();
+print('Distance water lc:', dist_water_lc);
+Map.addLayer(dist_water_lc, {min: 0, max: 10e3}, 'distance water lc');
 
 
 
