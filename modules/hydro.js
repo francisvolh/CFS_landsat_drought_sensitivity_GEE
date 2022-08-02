@@ -41,7 +41,7 @@ exports.proportion_permanent_snow = proportion_permanent_snow;
 
 // Distance snow
 var distance_permanent_snow = function() {
-  return permanent_snow.distance(ee.Kernel.euclidean(10e3, 'meters'))
+  return permanent_snow.distance(ee.Kernel.euclidean(7.5e3, 'meters'))
                        .rename('distance_perm_snow');
 };
 exports.distance_permanent_snow = distance_permanent_snow;
@@ -92,7 +92,6 @@ exports.distance_major_lakes = distance_major_lakes;
 var sampling_collection = function() {
   return ee.Image([
   proportion_permanent_snow(1000),
-  distance_permanent_snow(),
   proportion_water(1000),
   proportion_water(300),
   distance_water_lc(),
