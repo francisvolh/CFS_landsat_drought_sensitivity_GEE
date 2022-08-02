@@ -34,6 +34,10 @@ var chili = topo.chili_alos;
 print('CHILI', chili);
 Map.addLayer(chili, null, 'CHILI');
 
+// Test landforms
+var landforms = topo.landforms_alos;
+print('landforms', landforms);
+Map.addLayer(landforms, null, 'landforms');
 
 
 // Test sampling_collection
