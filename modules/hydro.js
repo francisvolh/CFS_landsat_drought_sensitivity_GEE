@@ -64,7 +64,7 @@ exports.proportion_water = proportion_water;
 
 // Distance water lc
 var distance_water_lc = function() {
-  return water.distance(ee.Kernel.euclidean(10e3, 'meters'))
+  return water.distance(ee.Kernel.euclidean(7.5e3, 'meters'))
               .rename('distance_water_lc');
 };
 exports.distance_water_lc = distance_water_lc;
