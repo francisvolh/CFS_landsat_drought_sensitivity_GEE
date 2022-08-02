@@ -87,10 +87,10 @@ exports.distance_major_lakes = distance_major_lakes;
 // Get sampling collection
 var get_col = function() {
   return ee.Image([
-  get_prop_permanent_snow(1000),
-  get_prop_water(1000),
-  get_prop_water(300),
-  get_dist_major_lakes(50)
+  proportion_permanent_snow(1000),
+  proportion_water(1000),
+  proportion_water(300),
+  distance_major_lakes(50)
   ]);
 };
 exports.get_col = get_col;
