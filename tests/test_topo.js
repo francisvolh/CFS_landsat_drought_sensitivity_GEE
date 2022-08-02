@@ -26,3 +26,10 @@ Map.addLayer(hand_30_1000, {min:0, max:500, palette:p}, 'hand 30 1000', false);
 var hand_90_1000 = topo.hand(90, 1000);
 print('Hand 90 1000', hand_90_1000);
 Map.addLayer(hand_90_1000, {min:0, max:500, palette:p}, 'hand 90 1000', false);
+
+
+
+// Test sampling_collection
+// Usage: sampling_collection();
+var col = topo.sampling_collection();
+print('Sampling collection', col);
