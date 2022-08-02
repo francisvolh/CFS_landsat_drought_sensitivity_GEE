@@ -22,6 +22,7 @@ ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
 var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 
 
+
 // Get HAND
 var geometry =
     ee.Geometry.Polygon(
@@ -46,7 +47,8 @@ exports.hand = hand;
 
 
 // CHILI
-
+var chili = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI");
+exports.chili = chili;
 
 
 // CTI
