@@ -52,10 +52,12 @@ exports.hand = hand;
 
 // CHILI
 // ALOS some gaps, SRTM only < 60
-var chili_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_CHILI");
-var chili_srtm = ee.Image('CSP/ERGo/1_0/Global/SRTM_CHILI');
-exports.chili_alos = chili_alos.rename('chili_alos');
-exports.chili_srtm = chili_srtm.rename('chili_srtm');
+var chili_alos = ee.Image('CSP/ERGo/1_0/Global/ALOS_CHILI')
+  .rename(['chili_alos']);
+var chili_srtm = ee.Image('CSP/ERGo/1_0/Global/SRTM_CHILI')
+  .rename(['chili_srtm']);
+exports.chili_alos = chili_alos;
+exports.chili_srtm = chili_srtm;
 
 
 // CTI
