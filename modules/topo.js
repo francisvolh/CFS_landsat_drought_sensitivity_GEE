@@ -60,6 +60,7 @@ exports.chili_alos = chili_alos;
 exports.chili_srtm = chili_srtm;
 
 
+
 // CTI
 
 
@@ -69,13 +70,20 @@ exports.chili_srtm = chili_srtm;
 // Shape index
 
 
+// Landforms
+var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
+  .rename(['landforms_alos']);
+exports.landforms_alos = landforms_alos;
+
+
 
 // Get sampling collection
 var sampling_collection = function() {
   return ee.Image([
   hand(30, 100),
   hand(90, 1000),
-  chili_alos
+  chili_alos,
+  landforms_alos
   ]);
 };
 exports.sampling_collection = sampling_collection;
