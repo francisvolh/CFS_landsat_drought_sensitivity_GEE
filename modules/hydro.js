@@ -24,19 +24,32 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
 
-// Get proportion glacier/permanent snow
-var get_prop_permanent_snow = function(focal_dist) {
-  var snow_mode = land_cover.hermosilla_1984_2019
-                    .reduce(ee.Reducer.mode())
-                    .eq(31);
-                
+// Snow
+var permanent_snow = function() {
+  return land_cover.hermosilla_1984_2019
+            .reduce(ee.Reducer.mode())
+            .eq(31);
+};
+exports.permanent_snow = permanent_snow;
+
+// Proportion snow
+var proportion_permanent_snow = function(focal_dist) {
+  var snow_mode = permanent_snow();
   return snow_mode.focalMean(focal_dist, null, 'meters').rename('prop_perm_snow_' + focal_dist);
 };
-exports.get_prop_permanent_snow = get_prop_permanent_snow;
+exports.proportion_permanent_snow = proportion_permanent_snow;
+
+// Distance snow
+var distance_permanent_snow = function() {
+  var snow_mode = permanent_snow();
+  return snow_mode.distance(ee.Kernel.euclidean(10e3, 'meters'));
+};
+exports.distance_permanent_snow = distance_permanent_snow;
 
 
 
-// Get proportion water
+
+// Get ` water
 var get_prop_water = function(focal_dist) {
   var water_mode = land_cover.hermosilla_1984_2019
                     .reduce(ee.Reducer.mode())
