@@ -25,7 +25,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
 // Get proportion glacier/permanent snow
-var snow_mode = land_cover.hermosilla_plus_2022
+var snow_mode = land_cover.hermosilla_1984_2019
                 .reduce(ee.Reducer.mode())
                 .eq(31);
 
