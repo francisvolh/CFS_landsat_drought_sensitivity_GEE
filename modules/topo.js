@@ -112,11 +112,6 @@ var tagee_terrain = function() {
 exports.tagee_terrain = tagee_terrain;
 
 
-// Curvature
-// Min, max
-
-// Shape index
-
 
 // Landforms
 var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_landforms") 
