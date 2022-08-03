@@ -89,6 +89,7 @@ var geometry = ee.Geometry.Polygon(
           [-99.0478, 71.184]]]);
 var dem = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
   .filterBounds(geometry)
+  .select('DSm')
   .mosaic();
 
 // TAGEE
@@ -104,7 +105,7 @@ var smooth_dem = function(dem) {
 };
 
 var smoothed_dem = smooth_dem(dem);
-
+print(smoothed_dem)
 var tagee_terrain = function() {
   return tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
 };
