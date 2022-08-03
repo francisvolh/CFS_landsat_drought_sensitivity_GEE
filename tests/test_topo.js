@@ -45,6 +45,10 @@ print('topo_diversity', topo_diversity);
 Map.addLayer(topo_diversity, null, 'topo_diversity');
 
 
+// Test TAGEE
+var terr_tagee = topo.tagee_terrain();
+print('Terrain TAGEE', terr_tagee);
+
 
 // Test sampling_collection
 // Usage: sampling_collection();
