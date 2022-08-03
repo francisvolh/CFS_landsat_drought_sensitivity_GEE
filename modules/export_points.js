@@ -10,6 +10,7 @@ var hydro = require('users/robitalec/CFS:modules/hydro.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
 var soil = require('users/robitalec/CFS:modules/soil.js');
+var topo = require('users/robitalec/CFS:modules/topo.js');
 
 
 
@@ -68,6 +69,16 @@ var export_soil = function(points, drive_name, drive_folder) {
 };
 exports.export_soil = export_soil;
 
+
+
+var export_topo = function(points, drive_name, drive_folder) {
+  var top_col = topo.sampling_collection();
+  
+	var sampled = top_col.reduceRegions(points, ee.Reducer.mean(), 30);
+	var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+};
+exports.export_topo = export_topo;
 
 
 
