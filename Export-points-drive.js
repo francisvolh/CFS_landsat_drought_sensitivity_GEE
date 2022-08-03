@@ -44,10 +44,11 @@ export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exp
 // Hydro
 export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
 
+// Topo
+export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
 
 
 // Climate
 
 
 
-// Topo
