@@ -107,7 +107,11 @@ var smooth_dem = function(dem) {
 var smoothed_dem = smooth_dem(dem);
 print(smoothed_dem)
 var tagee_terrain = function() {
-  return tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
+  var terr = tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
+  
+  return terr.select([
+    'Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
+    'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex']);
 };
 exports.tagee_terrain = tagee_terrain;
 
