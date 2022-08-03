@@ -106,7 +106,7 @@ var smooth_dem = function(dem) {
 var smoothed_dem = smooth_dem(dem);
 
 var tagee_terrain = function() {
-  tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
+  return tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
 };
 exports.tagee_terrain = tagee_terrain;
 
