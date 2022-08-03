@@ -89,7 +89,7 @@ var geometry = ee.Geometry.Polygon(
           [-99.0478, 71.184]]]);
 var dem = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
   .filterBounds(geometry)
-  .select('DSm')
+  .select('DSM')
   .mosaic();
 
 // TAGEE
