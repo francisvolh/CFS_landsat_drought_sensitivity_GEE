@@ -49,3 +49,13 @@ var soil_carbon = function() {
   return sc;
 };
 exports.soil_carbon = soil_carbon;
+
+
+
+var sampling_collection = function() {
+  return ee.Image([
+    soil_percent(),
+    soil_carbon()
+    ]);
+};
+exports.sampling_collection = sampling_collection;
