@@ -18,6 +18,7 @@ Sothe, C., Gonsamo, A., Arabian, J., Kurz, W. A., Finkelstein, S. A., & Snider, 
 Large soil carbon storage in terrestrial ecosystems of Canada. 
 Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213 
 
+https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 */
 
 // TODO: Hugelius peat
