@@ -66,3 +66,28 @@ var aggregrate_year = function(images, year_list, reducer) {
 };
 exports.aggregrate_year = aggregrate_year;
 
+
+
+// Aggregate weekly
+var week_list = ee.List.sequence(1, 53);
+var aggregate_weekly = function(images, year_list) {
+  var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
+  
+  return ee.ImageCollection.fromImages(
+  
+    year_list.map(function(yr) {
+      week_list.map(function(wk) {
+        
+        imgs = mean
+        
+        
+        var syst_mean = aggregate_mean
+        return images.filter(ee.Filter.calendarRange(wk, wk, 'week'))
+                     .filter(ee.Filter.calendarRange(yr, yr, 'year'))
+                     .reduce(reducer)
+                     .set('week', wk)
+                     .set('year', yr)
+                     .set('system:time_start', ee.Date.fromYMD())
+  })  
+  )
+}
