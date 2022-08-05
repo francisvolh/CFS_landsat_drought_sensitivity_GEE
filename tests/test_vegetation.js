@@ -24,6 +24,7 @@ print('Forest carbon', forest_carbon);
 Map.addLayer(forest_carbon, {min: 0, max: 12}, 'forest carbon');
 
 
+
 // Test sampling_collection();
 // Usage: sampling_collection();
 var col = vegetation.sampling_collection();
