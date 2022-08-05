@@ -36,10 +36,12 @@ exports.daymet = daymet;
 
 var weekly = function(daymet, year_list) {
   var daymet_col = daymet();
+  
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
   
-  var agg_wk = utils.aggregrate_week(daymet, year_list, reducer);
-
+  var agg_wk = utils.aggregrate_week(daymet_col, year_list, reducer);
+  
+  
 }
 daymet = daymet.map(utils.set_week);
 
