@@ -43,9 +43,9 @@ print('Aggregate year', agg_year);
 
 
 
-// Test aggregate_week
-// Usage: aggregate_week(images, year_list, reducer);
-var agg_wk = utils.aggregate_week(daymet, year_list, reducer);
+// Test aggregrate_week
+// Usage: aggregrate_week(images, year_list, reducer);
+var agg_wk = utils.aggregrate_week(daymet, year_list, reducer);
 print('Aggregate week', agg_wk);
 
 
