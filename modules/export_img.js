@@ -78,6 +78,25 @@ exports.export_img_drive_from_asset = export_img_drive_from_asset;
 
 
 
+// Export hydro sampling collection
+var export_hydro_sampling_collection = function(region) {
+  var col = hydro.sampling_collection();
+
+  var today = new Date().toJSON().slice(0, 10);
+
+  var asset_name = today + '_hydro_sampling_collection';
+  Export.image.toAsset({
+    image: out,
+    description: asset_name,
+    assetId: 'CFS/' + asset_name,
+    region: region,
+    scale: scale,
+    maxPixels: 2.5e8
+  });
+};
+exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
+
+
 
 // ARCHIVE --------------------------------------------------------------------
 // Export img asset cap
