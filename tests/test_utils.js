@@ -10,6 +10,9 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var img = ee.Image.constant(1).set('system:time_start', ee.Date.fromYMD(2020, 1, 1).millis());
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
   .filter(ee.Filter.calendarRange('2000-01-01', '2002-01-01'));
+var year_list = ee.List.sequence(2000, 2002);
+var month_list = ee.List.sequence(1, 12);
+var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 
 // Test set_year
@@ -25,4 +28,14 @@ img = utils.add_year_band(img);
 Map.addLayer(img.select('year'));
 
 
+
+// Test aggregate_month_year
+// Usage: aggregate_month_year(images, year_list, month_list, reducer);
+var agg_month_year = utils.aggregate_month_year(daymet, year_list, month_list, reducer);
+print('Aggregate month year', agg_month_year);
+
+
+// var aggregrate_year = function(images, year_list, reducer) {
+
+// var aggregate_weekly = function(images, year_list) {
 
