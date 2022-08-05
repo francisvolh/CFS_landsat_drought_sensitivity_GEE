@@ -45,7 +45,7 @@ print('Aggregate year', agg_year);
 
 // Test set_week
 // Usage: set_week(images);
-var test_week = utils.set_week(daymet);
+var test_week = daymet.map(utils.set_week);
 print('Set week', test_week);
 
 
