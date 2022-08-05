@@ -6,6 +6,7 @@ Alec L. Robitaille
 
 
 var main = require('users/robitalec/CFS:modules/main.js');
+var hydro = require('users/robitalec/CFS:modules/hydro.js');
 
 
 // Export img asset greenest
