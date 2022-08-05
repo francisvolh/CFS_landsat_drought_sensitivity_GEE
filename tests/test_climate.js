@@ -25,3 +25,10 @@ var year_list = ee.List.sequence(2002, 2020);
 // Usage: weekly_daymet(year_list);
 var week_daymet = climate.weekly_daymet(year_list);
 print('Weekly daymet', week_daymet);
+
+
+
+// Test annual_mean_temp
+// Usage: annual_mean_temp(year_list);
+var week_daymet = climate.annual_mean_temp(year_list);
+print('Weekly daymet', week_daymet);
