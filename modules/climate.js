@@ -28,7 +28,7 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 // Get long term climate
-var get_long_term_climate = function(year_list) {
+var long_term_climate = function(year_list) {
   var annual = utils.aggregrate_year(daymet, year_list, reducer)
                     .select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                             ['tmin', 'tmax', 'prcp']);
@@ -39,4 +39,4 @@ var get_long_term_climate = function(year_list) {
   });
   return annual.reduce(ee.Reducer.mean());
 };
-exports.get_long_term_climate = get_long_term_climate;
+exports.long_term_climate = long_term_climate;
