@@ -17,6 +17,14 @@ var set_date = function(img) {
 };
 exports.set_date = set_date;
 
+// Set week
+var set_week = function(img) {
+	return img.set('week', img.date().get('week'));
+};
+exports.set_week = set_week;
+
+
+
 // Add year band 
 var add_year_band = function(img) {
   return img.addBands([ee.Image.constant(img.get('year')).rename('year')]);
