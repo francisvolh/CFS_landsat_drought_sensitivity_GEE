@@ -48,6 +48,17 @@ var weekly_daymet = function(year_list) {
 exports.weekly_daymet = weekly_daymet;
 
 
+var annual_mean_temp = function(year_list) {
+  var weekly = weekly_daymet(year_list);
+  
+  weekly = weekly.select([
+    'tmin_min',
+    'tmax_max'
+    ]);
+    
+    return weekly;
+};
+exports.annual_mean_temp = annual_mean_temp;
 
 
 
