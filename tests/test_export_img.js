@@ -45,9 +45,9 @@ export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale
 
 
 // Test export_hydro_sampling_collection
-// Usage: export_hydro_sampling_collection(region, region_name);
+// Usage: export_hydro_sampling_collection(region, region_name, scale);
 var region_name = 'Test';
-export_img.export_hydro_sampling_collection(region, region_name);
+export_img.export_hydro_sampling_collection(region, region_name, scale);
 
 
 
