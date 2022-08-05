@@ -1,10 +1,18 @@
 /*
 Vegetation
 Alec L. Robitaille
+
+
+
+Sothe, C., Gonsamo, A., Arabian, J., Kurz, W. A., Finkelstein, S. A., & Snider, J. (2022).
+Large soil carbon storage in terrestrial ecosystems of Canada.
+Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213
+
+https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 */
 
 
-var get_canopy_height = function() {
+var canopy_height = function() {
   var ch = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/ch");
   
   return ch.toBands()
@@ -15,5 +23,7 @@ var get_canopy_height = function() {
                     'ch_95perc_height_250m',
                     'ch_max_height_250m']);
 };
-exports.get_canopy_height = get_canopy_height;
+exports.canopy_height = canopy_height;
 
+
+var fc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/fc");
