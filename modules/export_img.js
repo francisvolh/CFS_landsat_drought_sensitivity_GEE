@@ -93,7 +93,7 @@ var export_hydro_sampling_collection = function(region, region_name, scale) {
     assetId: 'CFS/' + asset_name,
     region: region,
     scale: scale,
-    maxPixels: 2.5e8
+    maxPixels: 2100000000
   });
 };
 exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
