@@ -28,7 +28,7 @@ exports.canopy_height = canopy_height;
 
 
 var forest_carbon = function() {
-  console.log('warning: Sothe carbon stocks data may be out of date');
+  console.log('warning: Sothe forest carbon data may be out of date');
   var fc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/fc")
     .toBands()
     .select(['fc_250m_version10_b1'],
