@@ -78,20 +78,17 @@ var aggregate_weekly = function(images, year_list) {
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
   
   return ee.ImageCollection.fromImages(
-  
     year_list.map(function(yr) {
       week_list.map(function(wk) {
+        var filter_images = images.filter(ee.Filter.calendarRange(wk, wk, 'week'))
+                                  .filter(ee.Filter.calendarRange(yr, yr, 'year'));
+                                  
+        var mean_date = filter_images.aggregate_mean('system:time_start');
         
-        imgs = mean
-        
-        
-        var syst_mean = aggregate_mean
-        return images.filter(ee.Filter.calendarRange(wk, wk, 'week'))
-                     .filter(ee.Filter.calendarRange(yr, yr, 'year'))
-                     .reduce(reducer)
-                     .set('week', wk)
-                     .set('year', yr)
-                     .set('system:time_start', ee.Date.fromYMD())
-  })  
-  )
-}
+        return filter_images.reduce(reducer)
+                            .set('week', wk)
+                            .set('year', yr)
+                            .set('system:time_start', mean_date);
+    });
+  }));
+};
