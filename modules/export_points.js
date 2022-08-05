@@ -60,7 +60,7 @@ exports.export_vegetation = export_vegetation;
 
 
 var export_soil = function(points, drive_name, drive_folder) {
-  var veg = soil.get_soil_percent();
+  var veg = soil.soil_percent();
   // TODO: add peat, soil carbon
   
 	var sampled = veg.reduceRegions(points, ee.Reducer.mean(), 30);
