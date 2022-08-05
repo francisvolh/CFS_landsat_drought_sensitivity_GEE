@@ -13,7 +13,7 @@ var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
 // Usage: canopy_height();
 var canopy_height = vegetation.canopy_height();
 print('Canopy height', canopy_height);
-Map.addLayer(canopy_height);
+Map.addLayer(canopy_height, {bands: 'ch_max_height_250m', min: 0, max: 30}, 'canopy height');
 
 
 
@@ -21,4 +21,4 @@ Map.addLayer(canopy_height);
 // Usage: forest_carbon();
 var forest_carbon = vegetation.forest_carbon();
 print('Forest carbon', forest_carbon);
-Map.addLayer(forest_carbon);
+Map.addLayer(forest_carbon, {min: 0, max: 12}, 'forest carbon');
