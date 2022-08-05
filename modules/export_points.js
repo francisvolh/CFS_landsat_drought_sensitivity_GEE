@@ -62,7 +62,7 @@ exports.export_vegetation = export_vegetation;
 var export_soil = function(points, drive_name, drive_folder) {
   var col = soil.sampling_collection();
   
-	var sampled = veg.reduceRegions(points, ee.Reducer.mean(), 30);
+	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
