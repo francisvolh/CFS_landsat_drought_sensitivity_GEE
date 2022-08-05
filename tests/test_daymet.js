@@ -16,5 +16,5 @@ var months = ee.List.sequence(5, 7);
 // Test monthly_daymet
 // Usage: monthly_daymet(year_list, month_list)
 var monthly_daymet = daymet.monthly_daymet(years, months);
-print(monthly_daymet);
+print('Monthly daymet', monthly_daymet);
 Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
