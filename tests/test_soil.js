@@ -25,6 +25,14 @@ Map.addLayer(soil_carbon, {min: 0, max: 350});
 
 
 
+// Test peat_depth();
+// Usage: peat_depth();
+var peat_depth = soil.peat_depth();
+print('Peat depth', peat_depth);
+Map.addLayer(peat_depth, {min: 0, max: 350});
+
+
+
 // Test sampling_collection();
 // Usage: sampling_collection();
 var sampling_collection = soil.sampling_collection();
