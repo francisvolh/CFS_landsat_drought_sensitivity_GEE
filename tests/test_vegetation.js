@@ -22,3 +22,9 @@ Map.addLayer(canopy_height, {bands: 'ch_max_height_250m', min: 0, max: 30}, 'can
 var forest_carbon = vegetation.forest_carbon();
 print('Forest carbon', forest_carbon);
 Map.addLayer(forest_carbon, {min: 0, max: 12}, 'forest carbon');
+
+
+// Test sampling_collection();
+// Usage: sampling_collection();
+var col = vegetation.sampling_collection();
+print('Sampling collection', col);
