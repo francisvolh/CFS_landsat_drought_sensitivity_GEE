@@ -36,3 +36,12 @@ var forest_carbon = function() {
   return fc;
 };
 exports.forest_carbon = forest_carbon;
+
+
+var sampling_collection = function() {
+  return ee.Image([
+    canopy_height(),
+    forest_carbon()
+  ]);
+};
+export.sampling_collection = sampling_collection;
