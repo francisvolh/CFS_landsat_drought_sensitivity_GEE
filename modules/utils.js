@@ -77,7 +77,7 @@ var aggregrate_week = function(images, year_list, reducer) {
   var week_list = ee.List.sequence(1, 53);
 
   return ee.ImageCollection.fromImages(
-    year_list.map(function(yr) {
+    return year_list.map(function(yr) {
       week_list.map(function(wk) {
         var filter_images = images.filter(ee.Filter.calendarRange(wk, wk, 'week'))
                                   .filter(ee.Filter.calendarRange(yr, yr, 'year'));
