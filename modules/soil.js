@@ -17,7 +17,7 @@ silt 	Proportion of silt particles (≥ 0.002 mm and ≤ 0.05 mm) in the fine ea
 */
 
 
-var get_soil_percent = function() {
+var soil_percent = function() {
 	var silt = ee.Image("projects/soilgrids-isric/silt_mean");
 	var sand = ee.Image("projects/soilgrids-isric/sand_mean");
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
@@ -29,9 +29,13 @@ var get_soil_percent = function() {
     .round()
     .toInt();
 };
-exports.get_soil_percent = get_soil_percent;
+exports.soil_percent = soil_percent;
 
 
+
+var 
+var sc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/sc");
+print(sc.toBands())
 
 
 // TODO: Hugelius peat
