@@ -30,5 +30,5 @@ print('Weekly daymet', week_daymet);
 
 // Test annual_mean_temp
 // Usage: annual_mean_temp(year_list);
-var week_daymet = climate.annual_mean_temp(year_list);
-print('Weekly daymet', week_daymet);
+var ann_mean_t = climate.annual_mean_temp(year_list);
+print('Annual mean temperature', ann_mean_t);
