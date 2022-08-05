@@ -44,4 +44,4 @@ var sampling_collection = function() {
     forest_carbon()
   ]);
 };
-export.sampling_collection = sampling_collection;
+exports.sampling_collection = sampling_collection;
