@@ -56,6 +56,8 @@ var annual_mean_temp = function(year_list) {
     'tmax_max'
     ]);
     
+  // TODO: weekly temps then mean of weeklys
+    
     return weekly;
 };
 exports.annual_mean_temp = annual_mean_temp;
