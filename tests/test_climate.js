@@ -8,7 +8,7 @@ Alec L. Robitaille
 var climate = require('users/robitalec/CFS:modules/climate.js');
 
 // Set variables
-var year_list = ee.List.sequence(1985, 2020);
+var year_list = ee.List.sequence(2002, 2020);
 
 
 
