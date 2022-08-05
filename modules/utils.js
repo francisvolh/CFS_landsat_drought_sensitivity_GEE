@@ -89,8 +89,8 @@ var aggregrate_week = function(images, year_list, reducer) {
   return ee.ImageCollection.fromImages(
     year_list.map(function(yr) {
       return week_list.map(function(wk) {
-        var filter_images = images.filter(ee.Filter.calendarRange(wk, wk, 'week'))
-                                  .filter(ee.Filter.calendarRange(yr, yr, 'year'));
+        var filter_images = images_w_week.filter(ee.Filter.eq('week', wk))
+                                         .filter(ee.Filter.calendarRange(yr, yr, 'year'));
                                   
         var mean_date = filter_images.aggregate_mean('system:time_start');
         
