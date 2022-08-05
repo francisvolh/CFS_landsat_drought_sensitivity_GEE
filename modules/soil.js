@@ -32,11 +32,14 @@ var soil_percent = function() {
 exports.soil_percent = soil_percent;
 
 
-
-var 
-var sc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/sc");
-print(sc.toBands())
+var soil_carbon = function() {
+  var sc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/sc")
+    .toBands()
+    .select(['sc_250m_v20_b1'], ['sc_250m_v20']);
+  
+  return sc;
+};
+exports.soil_carbon = soil_carbon;
 
 
 // TODO: Hugelius peat
-// TODO: Sothe soil carbon stock
