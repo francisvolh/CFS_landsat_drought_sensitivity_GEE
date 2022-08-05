@@ -23,8 +23,8 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 // Get collection of Daymet images
-var get_monthly_daymet = function(year_list, month_list) {
+var monthly_daymet = function(year_list, month_list) {
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
 							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
-exports.get_monthly_daymet = get_monthly_daymet;
+exports.monthly_daymet = monthly_daymet;
