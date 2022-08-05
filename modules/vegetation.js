@@ -38,6 +38,7 @@ var forest_carbon = function() {
 exports.forest_carbon = forest_carbon;
 
 
+
 var sampling_collection = function() {
   return ee.Image([
     canopy_height(),
