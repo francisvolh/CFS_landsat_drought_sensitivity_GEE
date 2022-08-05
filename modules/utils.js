@@ -72,9 +72,9 @@ exports.aggregrate_year = aggregrate_year;
 
 
 
-// Aggregate weekly
+// Aggregate week
 var week_list = ee.List.sequence(1, 53);
-var aggregate_weekly = function(images, year_list) {
+var aggregrate_week = function(images, year_list) {
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
   
   return ee.ImageCollection.fromImages(
@@ -92,3 +92,4 @@ var aggregate_weekly = function(images, year_list) {
     });
   }));
 };
+exports.aggregrate_week = aggregrate_week;
