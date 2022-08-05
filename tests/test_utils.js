@@ -7,7 +7,7 @@ Alec L. Robitaille
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Data
-var img = ee.Image.constant(1).set('system:time_start', ee.Date.fromYMD(2020, 1, 1));
+var img = ee.Image.constant(1).set('system:time_start', ee.Date.fromYMD(2020, 1, 1).millis());
 
 
 // Test set_year
