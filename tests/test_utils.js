@@ -37,8 +37,8 @@ print('Aggregate month year', agg_month_year);
 
 
 // Test aggregrate_year
-// Usage: aggregate_year(images, year_list, reducer);
-var agg_year = utils.aggregate_year(daymet, year_list, reducer);
+// Usage: aggregrate_year(images, year_list, reducer);
+var agg_year = utils.aggregrate_year(daymet, year_list, reducer);
 print('Aggregate year', agg_year);
 
 
