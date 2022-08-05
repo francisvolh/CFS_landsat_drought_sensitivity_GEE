@@ -1,7 +1,5 @@
 /*
 Climate
-
-Long term climate from Daymet
 Alec L. Robitaille
 
 Thornton, M.M., R. Shrestha, Y. Wei, P.E. Thornton, S. Kao, and B.E. Wilson.
@@ -12,6 +10,11 @@ Other Citation Details - Thornton, M.M., R. Shrestha, Y. Wei, P.E. Thornton,
 S. Kao, and B.E. Wilson. 2020. Daymet: Daily Surface Weather Data on a 1-km
 Grid for North America, Version 4. ORNL DAAC, Oak Ridge, Tennessee, USA.
 doi:10.3334/ORNLDAAC/1840
+
+
+Using ANUCLIM formulas
+https://fennerschool.anu.edu.au/files/anuclim61.pdf
+
 */
 
 
@@ -27,7 +30,7 @@ var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 // Get long term climate
 var get_long_term_climate = function(year_list) {
   var annual = utils.aggregrate_year(daymet, year_list, reducer)
-                    .select(['tmin_mean', 'tmax_mean', 'prcp_sum'], 
+                    .select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
                             ['tmin', 'tmax', 'prcp']);
   annual = annual.map(function(img) {
     return img.addBands([img.select(['tmin', 'tmax'])
