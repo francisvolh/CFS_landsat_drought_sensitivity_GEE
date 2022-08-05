@@ -88,7 +88,7 @@ var export_hydro_sampling_collection = function(region, region_name) {
 
   var asset_name = today + '_' + region_name + '_hydro_sampling_collection';
   Export.image.toAsset({
-    image: out,
+    image: col,
     description: asset_name,
     assetId: 'CFS/' + asset_name,
     region: region,
