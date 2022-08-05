@@ -35,7 +35,7 @@ exports.daymet = daymet;
 
 
 
-var weekly_daymet = function(daymet, year_list) {
+var weekly_daymet = function(year_list) {
   var daymet_col = daymet();
   
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
