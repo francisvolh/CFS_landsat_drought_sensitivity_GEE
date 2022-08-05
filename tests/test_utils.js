@@ -6,7 +6,7 @@ Alec L. Robitaille
 // Load modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
-var forest_lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
+var forest_lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_lc_VLCE2");
 
 
 // Test set_year
