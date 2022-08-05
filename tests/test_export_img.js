@@ -51,5 +51,4 @@ export_img.export_hydro_sampling_collection(region, region_name);
 
 
 
-Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'Exported image greenest asset');
 Map.addLayer(region);
