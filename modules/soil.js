@@ -26,7 +26,6 @@ Gustaf Hugelius, Julie Loisel, Sarah Chadburn, Robert B. Jackson, Miriam Jones, 
 David Olefeldt, Maara Packalen, Matthias B. Siewert, Claire Treat, Merritt Turetsky, Carolina Voigt, Zicheng Yu (2021) 
 Maps of northern peatland extent, depth, carbon storage and nitrogen storage. Dataset version 2. Bolin Centre Database. 
 https://doi.org/10.17043/hugelius-2020-peatland-2
-References
 
 Gustaf Hugelius, Julie Loisel, Sarah Chadburn, Robert B. Jackson, Miriam Jones, Glen MacDonald, Maija Marushchak, 
 David Olefeldt, Maara Packalen, Matthias B. Siewert, Claire Treat, Merritt Turetsky, Carolina Voigt and Zicheng Yu (2020) 
