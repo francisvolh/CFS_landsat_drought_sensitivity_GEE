@@ -52,10 +52,20 @@ exports.soil_carbon = soil_carbon;
 
 
 
+var peat_depth = function() {
+  var peat_depth = ee.Image("");
+
+  return peat_depth;
+};
+exports.peat_depth = peat_depth;
+
+
+
 var sampling_collection = function() {
   return ee.Image([
     soil_percent(),
-    soil_carbon()
+    soil_carbon(),
+    peat_depth()
     ]);
 };
 exports.sampling_collection = sampling_collection;
