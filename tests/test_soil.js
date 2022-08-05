@@ -9,10 +9,10 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 
 
 
-// Test soil_percent();
+// Test sampling_collection();
 // Usage: soil_percent();
 var soil_percent = soil.soil_percent();
-print(soil_percent);
+print('Soil percent', soil_percent);
 Map.addLayer(soil_percent, {min: 0, max: 100});
 
 
@@ -20,6 +20,13 @@ Map.addLayer(soil_percent, {min: 0, max: 100});
 // Test soil_carbon();
 // Usage: soil_carbon();
 var soil_carbon = soil.soil_carbon();
-print(soil_carbon);
+print('Soil carbon', soil_carbon);
 Map.addLayer(soil_carbon, {min: 0, max: 350});
+
+
+
+// Test sampling_collection();
+// Usage: sampling_collection();
+var sampling_collection = soil.sampling_collection();
+print('Sampling collection', sampling_collection);
 
