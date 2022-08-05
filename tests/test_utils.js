@@ -6,13 +6,14 @@ Alec L. Robitaille
 // Load modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
+// Data
 var img = ee.Image.constant(1);
 
 
 // Test set_year
 // Usage: utils.set_year(image)
-img = img.first();
-print(utils.set_year(img));
+img = utils.set_year(img);
+print('Set year', img);
 
 
 
