@@ -99,6 +99,7 @@ var aggregrate_week = function(images, year_list, reducer) {
                             .set('year', yr)
                             .set('system:time_start', mean_date);
     });
-  }).flatten());
+  }).flatten()
+  );
 };
 exports.aggregrate_week = aggregrate_week;
