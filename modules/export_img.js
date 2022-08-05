@@ -81,7 +81,7 @@ exports.export_img_drive_from_asset = export_img_drive_from_asset;
 
 
 // Export hydro sampling collection
-var export_hydro_sampling_collection = function(region, region_name) {
+var export_hydro_sampling_collection = function(region, region_name, scale) {
   var col = hydro.sampling_collection();
 
   var today = new Date().toJSON().slice(0, 10);
