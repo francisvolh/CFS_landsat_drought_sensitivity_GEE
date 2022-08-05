@@ -9,7 +9,7 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 // Data
 var img = ee.Image.constant(1).set('system:time_start', ee.Date.fromYMD(2020, 1, 1).millis());
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
-  .filter(ee.Filter.calendarRange('2000-01-01', '2002-01-01'));
+  .filter(ee.Filter.calendarRange(2000, 2002, year));
 var year_list = ee.List.sequence(2000, 2002);
 var month_list = ee.List.sequence(1, 12);
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
