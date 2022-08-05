@@ -26,4 +26,13 @@ var canopy_height = function() {
 exports.canopy_height = canopy_height;
 
 
-var fc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/fc");
+
+var forest_carbon = function() {
+  var fc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/fc")
+    .toBands()
+    .select(['fc_250m_version10_b1'],
+            ['forest_carbon_250m_version10']);
+            
+  return fc;
+};
+exports.forest_carbon = forest_carbon;
