@@ -34,6 +34,7 @@ var daymet = function() {
 exports.daymet = daymet;
 
 
+
 var weekly = function(daymet, year_list) {
   var daymet_col = daymet();
   
