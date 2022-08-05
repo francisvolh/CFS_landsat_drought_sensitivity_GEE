@@ -21,22 +21,48 @@ https://fennerschool.anu.edu.au/files/anuclim61.pdf
 // Load modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
 
-// Load Daymet
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 
-// Reducer
-var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
-// Get long term climate
-var long_term_climate = function(year_list) {
-  var annual = utils.aggregrate_year(daymet, year_list, reducer)
-                    .select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
-                            ['tmin', 'tmax', 'prcp']);
-  annual = annual.map(function(img) {
-    return img.addBands([img.select(['tmin', 'tmax'])
-                            .reduce(ee.Reducer.mean())
-                            .rename('tmean')]);
-  });
-  return annual.reduce(ee.Reducer.mean());
+var daymet = function() {
+  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
+  daymet = daymet.map(utils.set_date)           
+                 .map(utils.set_week)
+                 .map(utils.set_year);
+                 
+  return daymet;
 };
-exports.long_term_climate = long_term_climate;
+exports.daymet = daymet;
+
+var weekly = function(daymet, year_list) {
+  var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
+  
+  var agg_wk = utils.aggregrate_week(daymet, year_list, reducer);
+
+}
+daymet = daymet.map(utils.set_week);
+
+print(daymet.limit(10))
+print(daymet.aggregate_array('week').unique())
+
+
+
+// // Reducer
+// var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
+
+
+
+
+// // Get long term climate
+// var long_term_climate = function(year_list) {
+//   var annual = utils.aggregrate_year(daymet, year_list, reducer)
+//                     .select(['tmin_mean', 'tmax_mean', 'prcp_sum'],
+//                             ['tmin', 'tmax', 'prcp']);
+//   annual = annual.map(function(img) {
+//     return img.addBands([img.select(['tmin', 'tmax'])
+//                             .reduce(ee.Reducer.mean())
+//                             .rename('tmean')]);
+//   });
+//   return annual.reduce(ee.Reducer.mean());
+// };
+// exports.long_term_climate = long_term_climate;
