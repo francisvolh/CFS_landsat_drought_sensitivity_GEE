@@ -41,13 +41,10 @@ var weekly = function(daymet, year_list) {
   
   var agg_wk = utils.aggregrate_week(daymet_col, year_list, reducer);
   
+  return agg_wk;
   
-}
-daymet = daymet.map(utils.set_week);
-
-print(daymet.limit(10))
-print(daymet.aggregate_array('week').unique())
-
+};
+exports.weekly = weekly;
 
 
 // // Reducer
