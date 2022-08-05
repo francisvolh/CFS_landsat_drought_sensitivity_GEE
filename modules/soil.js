@@ -55,6 +55,7 @@ exports.soil_percent = soil_percent;
 
 
 var soil_carbon = function() {
+  console.log('warning: Sothe soil carbon data may be out of date');
   var sc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/sc")
     .toBands()
     .select(['sc_250m_v20_b1'], ['soil_carbon_250m_v20']);
