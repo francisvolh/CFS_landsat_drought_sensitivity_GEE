@@ -22,5 +22,5 @@ var years = ee.List.sequence(1985, 2020);
 
 // Test weekly_daymet
 // Usage: weekly_daymet(year_list);
-var week_daymet = climate.weekly_daymet(year_list);
+var week_daymet = climate.weekly_daymet(years);
 print('Weekly daymet', week_daymet);
