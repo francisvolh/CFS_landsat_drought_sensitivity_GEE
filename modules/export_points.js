@@ -71,9 +71,9 @@ exports.export_soil = export_soil;
 
 
 var export_topo = function(points, drive_name, drive_folder) {
-  var top_col = topo.sampling_collection();
+  var col = topo.sampling_collection();
   
-	var sampled = top_col.reduceRegions(points, ee.Reducer.mean(), 30);
+	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
