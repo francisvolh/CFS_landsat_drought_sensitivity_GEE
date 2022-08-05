@@ -48,6 +48,8 @@ var weekly_daymet = function(daymet, year_list) {
 exports.weekly_daymet = weekly_daymet;
 
 
+// TODO: monthly_daymet;
+
 // // Reducer
 // var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
