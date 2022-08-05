@@ -20,6 +20,7 @@ var year_list = ee.List.sequence(2002, 2020);
 // Map.addLayer(long_climate.select('prcp_mean'), {min:100, max:4000}, 'mean annual sum prcp');
 
 
+
 // Test weekly_daymet
 // Usage: weekly_daymet(year_list);
 var week_daymet = climate.weekly_daymet(year_list);
