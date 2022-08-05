@@ -46,9 +46,10 @@ export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale
 
 // Test export_hydro_sampling_collection
 // Usage: export_hydro_sampling_collection(region, region_name);
+var region_name = 'Test';
 export_img.export_hydro_sampling_collection(region, region_name);
 
 
 
-// Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'Exported image greenest asset');
+Map.addLayer(ee.Image('users/robitalec/CFS/2022-07-09_test-export-asset-greenest').select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'Exported image greenest asset');
 Map.addLayer(region);
