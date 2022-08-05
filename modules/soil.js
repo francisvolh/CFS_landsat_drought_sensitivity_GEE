@@ -19,6 +19,20 @@ Large soil carbon storage in terrestrial ecosystems of Canada.
 Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213 
 
 https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
+
+
+
+Gustaf Hugelius, Julie Loisel, Sarah Chadburn, Robert B. Jackson, Miriam Jones, Glen MacDonald, Maija Marushchak, 
+David Olefeldt, Maara Packalen, Matthias B. Siewert, Claire Treat, Merritt Turetsky, Carolina Voigt, Zicheng Yu (2021) 
+Maps of northern peatland extent, depth, carbon storage and nitrogen storage. Dataset version 2. Bolin Centre Database. 
+https://doi.org/10.17043/hugelius-2020-peatland-2
+References
+
+Gustaf Hugelius, Julie Loisel, Sarah Chadburn, Robert B. Jackson, Miriam Jones, Glen MacDonald, Maija Marushchak, 
+David Olefeldt, Maara Packalen, Matthias B. Siewert, Claire Treat, Merritt Turetsky, Carolina Voigt and Zicheng Yu (2020) 
+Large stocks of peatland carbon and nitrogen are vulnerable to permafrost thaw. Proceedings of the National Academy of Sciences. 
+https://doi.org/10.1073/pnas.1916387117
+
 */
 
 // TODO: Hugelius peat
