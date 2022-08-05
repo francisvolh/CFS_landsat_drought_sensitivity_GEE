@@ -9,7 +9,7 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 
 
 
-// Test sampling_collection();
+// Test soil_percent();
 // Usage: soil_percent();
 var soil_percent = soil.soil_percent();
 print('Soil percent', soil_percent);
