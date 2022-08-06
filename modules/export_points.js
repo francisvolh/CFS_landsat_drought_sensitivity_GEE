@@ -77,6 +77,15 @@ exports.export_topo = export_topo;
 
 
 
+var export_climate = function(points, drive_name, drive_folder) {
+  var col = climate.sampling_collection();
+	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
+	var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+};
+exports.export_climate = export_climate;
+
+
 // ARCHIVE ---------------------------------------------------------
 var zzz_export_abs_sensitivity_cap = function(points, region, drive_name, drive_folder, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list) {
 
