@@ -79,12 +79,10 @@ exports.temp_annual_range = temp_annual_range;
 
 
 var prcp_annual = function(weekly_daymet) {
-  var weekly_max = weekly_daymet.select(['tmax_max']).max();
-  var weekly_min = weekly_daymet.select(['tmin_min']).min();
+  var weekly_sum = weekly_daymet.select(['prcp_sum']).sum();
 
-  return ee.Image(weekly_max.subtract(weekly_min)
-                            .rename(['prcp_annual'])
-                            .copyProperties(weekly_max));
+  return weekly_sum.rename(['prcp_annual'])
+                   .copyProperties(weekly_daymet);
 };
 exports.prcp_annual = temp_annual_range;
 
