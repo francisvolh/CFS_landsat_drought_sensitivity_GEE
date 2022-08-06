@@ -82,6 +82,7 @@ exports.aggregrate_year = aggregrate_year;
 
 // Aggregate week
 var aggregrate_week = function(images, year_list, reducer) {
+  // TODO: FIX FIX FIX
   var week_list = ee.List.sequence(1, 3);
   
   var images_w_week = images.map(set_week);
