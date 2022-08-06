@@ -30,4 +30,4 @@ print('Weekly daymet', week_daymet);
 // Usage: annual_mean_temp(daymet);
 var ann_mean_t = climate.annual_mean_temp(week_daymet);
 print('Annual mean temperature', ann_mean_t);
-Map.addLayer(ann_mean_t, null, 'annual mean temperature')
+Map.addLayer(ann_mean_t, null, 'annual mean temperature');
