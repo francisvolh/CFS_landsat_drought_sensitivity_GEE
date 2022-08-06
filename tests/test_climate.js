@@ -23,7 +23,7 @@ print('Daymet (filter in year list)', daymet);
 // Test weekly_daymet
 // Usage: weekly_daymet(daymet, year_list);
 var week_daymet = climate.weekly_daymet(daymet, year_list);
-print('Weekly daymet (limit 5)', week_daymet.limit(2));
+print('Weekly daymet (limit 2)', week_daymet.limit(2));
 
 
 
