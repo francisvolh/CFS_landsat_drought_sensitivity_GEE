@@ -47,14 +47,14 @@ exports.weekly_daymet = weekly_daymet;
 
 
 var annual_mean_temp = function(weekly_daymet, year_list) {
-  weekly_daymet = weekly_daymet.map(function(image) {
+  var annual_mean_t = weekly_daymet.map(function(image) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
                 .rename(['annual_mean_t']);
   });
 
-  return weekly_daymet;
+  return annual_mean_t;
 };
 exports.annual_mean_temp = annual_mean_temp;
 
