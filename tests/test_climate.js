@@ -14,14 +14,15 @@ var year_list = ee.List.sequence(2002, 2002);
 
 // Test daymet
 // Usage: daymet();
-var daymet = climate.daymet();
-print('Daymet (limit 5)', daymet.limit(5));
+var daymet = climate.daymet()
+  .filter(ee.Filter.inList('year', year_list));
+print('Daymet (filter in year list)', daymet);
 
 
 
 // Test weekly_daymet
-// Usage: weekly_daymet(year_list);
-var week_daymet = climate.weekly_daymet(year_list);
+// Usage: weekly_daymet(daymet, year_list);
+var week_daymet = climate.weekly_daymet(daymet, year_list);
 print('Weekly daymet (limit 5)', week_daymet.limit(2));
 
 
