@@ -94,7 +94,8 @@ var sampling_collection = function() {
   
   return ee.Image([
     temp_annual_mean(weekly_daymet),
-    temp_annual_range(weekly_daymet)
+    temp_annual_range(weekly_daymet),
+    prcp_annual(weekly_daymet)
     ]);
 };
 exports.sampling_collection = sampling_collection;
