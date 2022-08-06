@@ -51,7 +51,7 @@ var annual_mean_temp = function(daymet_col, year_list) {
 
   weekly = weekly.map(function(image) {
     return image.select(['tmax_max'])
-                .add(weekly.select(['tmin_min']))
+                .add(image.select(['tmin_min']))
                 .divide(2)
                 .rename(['annual_mean_t']);
   });
