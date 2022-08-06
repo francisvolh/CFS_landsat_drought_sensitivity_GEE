@@ -92,7 +92,7 @@ var aggregrate_week = function(images, year_list, reducer) {
         var filter_images = images_w_week.filter(ee.Filter.eq('year', yr))
                                          .filter(ee.Filter.eq('week', wk));
                                   
-        var mean_date = filter_images.aggregate_mean('system:time_start').millis();
+        var mean_date = filter_images.aggregate_mean('system:time_start');
         
         return filter_images.reduce(reducer)
                             .set('week', wk)
