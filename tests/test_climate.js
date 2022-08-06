@@ -52,5 +52,5 @@ Map.addLayer(prcp_ann, {min: 0, max: 250}, 'prcp annual');
 
 // Test sampling_collection
 // Usage: sampling_collection();
-var col = sampling_collection();
+var col = climate.sampling_collection();
 print('Sampling collection', col);
