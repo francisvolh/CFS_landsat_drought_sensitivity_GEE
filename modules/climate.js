@@ -47,7 +47,7 @@ exports.weekly_daymet = weekly_daymet;
 
 
 var temp_annual_mean = function(weekly_daymet) {
-  var weekly_min_max = weekly_daymet.map(function(image) {
+  var weekly_means = weekly_daymet.map(function(image) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
