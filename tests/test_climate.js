@@ -28,6 +28,6 @@ print('Weekly daymet (limit 5)', week_daymet.limit(2));
 
 
 // Test annual_mean_temp
-// Usage: annual_mean_temp(year_list);
-// var ann_mean_t = climate.annual_mean_temp(year_list);
-// print('Annual mean temperature', ann_mean_t);
+// Usage: annual_mean_temp(daymet, year_list);
+var ann_mean_t = climate.annual_mean_temp(daymet, year_list);
+print('Annual mean temperature', ann_mean_t);
