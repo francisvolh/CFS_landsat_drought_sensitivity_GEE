@@ -49,8 +49,8 @@ exports.weekly_daymet = weekly_daymet;
 
 
 
-var temp_annual_mean = function(weekly_daymet) {
-  var weekly_means = weekly_daymet.map(function(image) {
+var temp_annual_mean = function(weekly) {
+  var weekly_means = weekly.map(function(image) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
@@ -66,20 +66,20 @@ exports.temp_annual_mean = temp_annual_mean;
 
 
 
-var temp_annual_range = function(weekly_daymet) {
-  var weekly_max = weekly_daymet.select(['tmax_max']).max();
-  var weekly_min = weekly_daymet.select(['tmin_min']).min();
+var temp_annual_range = function(weekly) {
+  var weekly_max = weekly.select(['tmax_max']).max();
+  var weekly_min = weekly.select(['tmin_min']).min();
 
-  return ee.Image(weekly_max.subtract(weekly_min)
-                            .rename(['temp_annual_range'])
-                            .copyProperties(weekly_max));
+  return ee.Image(weekly.subtract(weekly_min)
+                        .rename(['temp_annual_range'])
+                        .copyProperties(weekly_max));
 };
 exports.temp_annual_range = temp_annual_range;
 
 
 
-var prcp_annual = function(weekly_daymet) {
-  var weekly_sum = weekly_daymet.select(['prcp_sum']).sum();
+var prcp_annual = function(weekly) {
+  var weekly_sum = weekly.select(['prcp_sum']).sum();
 
   return ee.Image(weekly_sum.rename(['prcp_annual'])
                             .copyProperties(weekly_daymet));
@@ -90,12 +90,12 @@ exports.prcp_annual = prcp_annual;
 
 var sampling_collection = function() {
   var years = ee.List.sequence(vars.min_year, vars.max_year);
-  var weekly_daymet = weekly_daymet(daymet(), vars.years, vars.weeks);
+  var weekly = weekly_daymet(daymet(), vars.years, vars.weeks);
   
   return ee.Image([
-    temp_annual_mean(weekly_daymet),
-    temp_annual_range(weekly_daymet),
-    prcp_annual(weekly_daymet)
+    temp_annual_mean(weekly),
+    temp_annual_range(weekly),
+    prcp_annual(weekly)
     ]);
 };
 exports.sampling_collection = sampling_collection;
