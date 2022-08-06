@@ -26,8 +26,16 @@ print('Weekly daymet', week_daymet);
 
 
 
-// Test temp_annual_range
-// Usage: temp_annual_range(daymet);
-var t_ann_mean = climate.temp_annual_range(week_daymet);
+// Test temp_annual_mean
+// Usage: temp_annual_mean(daymet);
+var t_ann_mean = climate.temp_annual_mean(week_daymet);
 print('Temperature annual mean', t_ann_mean);
 Map.addLayer(t_ann_mean, {min: 0, max: 20}, 'temperature annual mean');
+
+
+
+// Test temp_annual_range
+// Usage: temp_annual_range(daymet);
+var t_ann_range = climate.temp_annual_range(week_daymet);
+print('Temperature annual range', t_ann_range);
+Map.addLayer(t_ann_range, {min: 0, max: 20}, 'temperature annual range');
