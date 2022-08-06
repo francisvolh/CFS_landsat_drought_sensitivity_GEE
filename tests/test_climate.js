@@ -12,15 +12,6 @@ var year_list = ee.List.sequence(2002, 2004);
 
 
 
-// Test long_term_climate
-// Usage: long_term_climate(year_list)
-// var long_climate = climate.long_term_climate(years);
-// print(long_climate);
-// Map.addLayer(long_climate.select('tmean_mean'), {min:-20, max:20}, 'mean annual tmean');
-// Map.addLayer(long_climate.select('prcp_mean'), {min:100, max:4000}, 'mean annual sum prcp');
-
-
-
 // Test weekly_daymet
 // Usage: weekly_daymet(year_list);
 var week_daymet = climate.weekly_daymet(year_list);
