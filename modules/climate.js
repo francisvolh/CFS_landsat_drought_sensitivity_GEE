@@ -67,9 +67,9 @@ var temp_annual_range = function(weekly_daymet) {
   var weekly_max = weekly_daymet.select(['tmax_max']).max();
   var weekly_min = weekly_daymet.select(['tmin_min']).min();
 
-  return weekly_max.subtract(weekly_min)
-                   .rename(['temp_annual_range'])
-                   .copyProperties(weekly_max);
+  return ee.Image(weekly_max.subtract(weekly_min))
+                            .rename(['temp_annual_range'])
+                            .copyProperties(weekly_max);
 };
 exports.temp_annual_range = temp_annual_range;
 
