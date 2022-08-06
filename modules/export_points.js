@@ -11,6 +11,7 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
 var soil = require('users/robitalec/CFS:modules/soil.js');
 var topo = require('users/robitalec/CFS:modules/topo.js');
+var climate = require('users/robitalec/CFS:modules/climate.js');
 
 
 
