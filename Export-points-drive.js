@@ -47,8 +47,8 @@ export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
 // Topo
 export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
 
-
 // Climate
+export_points.export_climate(points, 'sample-climate-' + region_name, 'Exports');
 
 
 
