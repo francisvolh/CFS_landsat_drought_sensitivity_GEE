@@ -38,7 +38,7 @@ exports.daymet = daymet;
 
 var weekly_daymet = function(daymet_col, year_list) {
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
-  var agg_wk = utils.aggregrate_week(daymet_col, year_list, reducer);
+  var agg_wk = utils.aggregrate_week(daymet_col, year_list, vars.weeks, reducer);
   return agg_wk;
 
 };
