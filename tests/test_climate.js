@@ -38,4 +38,4 @@ Map.addLayer(t_ann_mean, {min: 0, max: 20}, 'temperature annual mean');
 // Usage: temp_annual_range(daymet);
 var t_ann_range = climate.temp_annual_range(week_daymet);
 print('Temperature annual range', t_ann_range);
-Map.addLayer(t_ann_range, {min: 0, max: 20}, 'temperature annual range');
+Map.addLayer(t_ann_range, {min: 0, max: 50}, 'temperature annual range');
