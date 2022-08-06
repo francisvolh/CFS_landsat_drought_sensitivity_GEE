@@ -51,7 +51,8 @@ var annual_mean_temp = function(weekly_daymet) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
-                .rename(['annual_mean_t']);
+                .rename(['annual_mean_t'])
+                .copyProperties(image);
   });
 
   return annual_mean_t;
