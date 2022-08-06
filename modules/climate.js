@@ -47,7 +47,7 @@ exports.weekly_daymet = weekly_daymet;
 
 
 var temp_annual_mean = function(weekly_daymet) {
-  var weekly_means = weekly_daymet.map(function(image) {
+  var weekly_min_max = weekly_daymet.map(function(image) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
@@ -55,12 +55,23 @@ var temp_annual_mean = function(weekly_daymet) {
                 .copyProperties(image);
   });
   
-  var temp_ann_mean = weekly_means.mean();
+  var temp_ann_range = weekly_means.mean();
 
-  return temp_ann_mean;
+  return temp_ann_range;
 };
 exports.temp_annual_mean = temp_annual_mean;
 
+
+
+var temp_annual_range = function(weekly_daymet) {
+  var weekly_max = weekly_daymet.select(['tmax_max']).max();
+  var weekly_min = weekly_daymet.select(['tmin_min']).min();
+  
+  return weekly_max.subtract(weekly_min)
+                   .rename(['temp_annual_range'])
+                   .copyProperties(weekly_max);
+};
+exports.temp_annual_range = temp_annual_range;
 
 
 // TODO: monthly_daymet
