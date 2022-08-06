@@ -35,6 +35,7 @@ var daymet = function() {
 exports.daymet = daymet;
 
 
+// TODO: monthly_daymet
 
 var weekly_daymet = function(daymet_col, year_list, week_list) {
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
@@ -74,6 +75,5 @@ var temp_annual_range = function(weekly_daymet) {
 exports.temp_annual_range = temp_annual_range;
 
 
-// TODO: monthly_daymet
 
 
