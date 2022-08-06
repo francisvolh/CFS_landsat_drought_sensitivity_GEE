@@ -38,7 +38,9 @@ exports.daymet = daymet;
 // TODO: monthly_daymet
 
 var weekly_daymet = function(daymet_col, year_list, week_list) {
-  var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
+  var reducer = ee.Reducer.min()
+    .combine(ee.Reducer.max(), null, true)
+    .combine(ee.Reducer.sum(), null, true);
   var agg_wk = utils.aggregrate_week(daymet_col, year_list, week_list, reducer);
   return agg_wk;
 
@@ -73,6 +75,18 @@ var temp_annual_range = function(weekly_daymet) {
                             .copyProperties(weekly_max));
 };
 exports.temp_annual_range = temp_annual_range;
+
+
+
+var prcp_annual = function(weekly_daymet) {
+  var weekly_max = weekly_daymet.select(['tmax_max']).max();
+  var weekly_min = weekly_daymet.select(['tmin_min']).min();
+
+  return ee.Image(weekly_max.subtract(weekly_min)
+                            .rename(['prcp_annual'])
+                            .copyProperties(weekly_max));
+};
+exports.prcp_annual = temp_annual_range;
 
 
 
