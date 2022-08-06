@@ -49,9 +49,10 @@ exports.weekly_daymet = weekly_daymet;
 var annual_mean_temp = function(daymet_col, year_list) {
   var weekly = weekly_daymet(daymet_col, year_list);
 
-  weekly = weekly.select('tmax_max')
-                 .add(weekly.select('tmin_min')
-                 .divide(2))
+  weekly = weekly.select(['tmax_max'])
+                 .add(weekly.select(['tmin_min']))
+                 .divide(2)
+                 
                  .rename(['annual_mean_t']);
 
   return weekly;
