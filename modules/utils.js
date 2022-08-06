@@ -13,7 +13,7 @@ exports.set_year = set_year;
 
 // Set date
 var set_date = function(img) {
-	return img.set('system:time_start', img.date());
+	return img.set('system:time_start', img.date().millis());
 };
 exports.set_date = set_date;
 
