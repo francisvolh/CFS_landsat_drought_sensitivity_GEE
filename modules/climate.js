@@ -76,4 +76,15 @@ exports.temp_annual_range = temp_annual_range;
 
 
 
+var sampling_collection = function() {
+  var years = ee.List.sequence(vars.min_year, vars.max_year);
+  var weekly_daymet = weekly_daymet(daymet(), vars.years, vars.weeks);
+  
+  return ee.Image([
+    temp_annual_mean(weekly_daymet),
+    temp_annual_range(weekly_daymet)
+    ]);
+};
+exports.sampling_collection = sampling_collection;
+
 
