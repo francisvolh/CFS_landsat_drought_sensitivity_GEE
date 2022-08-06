@@ -53,3 +53,7 @@ export_points.export_soil(points, 'test-export-soil', 'Exports');
 // Test export_topo
 // Usage: export_topo(points, drive_name, drive_folder)
 export_points.export_topo(points, 'test-export-topo', 'Exports');
+
+// Test export_export_climate
+// Usage: export_climate(points, drive_name, drive_folder)
+export_points.export_climate(points, 'test-export-climate', 'Exports');
