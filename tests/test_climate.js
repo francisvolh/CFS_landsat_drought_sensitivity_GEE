@@ -47,3 +47,10 @@ Map.addLayer(t_ann_range, {min: 0, max: 50}, 'temperature annual range');
 var prcp_ann = climate.prcp_annual(week_daymet);
 print('Precipitation annual', prcp_ann);
 Map.addLayer(prcp_ann, {min: 0, max: 250}, 'prcp annual');
+
+
+
+// Test sampling_collection
+// Usage: sampling_collection();
+var col = sampling_collection();
+print('Sampling collection', col);
