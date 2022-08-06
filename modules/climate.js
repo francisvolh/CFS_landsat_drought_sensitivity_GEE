@@ -84,7 +84,7 @@ var prcp_annual = function(weekly_daymet) {
   return weekly_sum.rename(['prcp_annual'])
                    .copyProperties(weekly_daymet);
 };
-exports.prcp_annual = temp_annual_range;
+exports.prcp_annual = prcp_annual;
 
 
 
