@@ -81,8 +81,8 @@ exports.temp_annual_range = temp_annual_range;
 var prcp_annual = function(weekly_daymet) {
   var weekly_sum = weekly_daymet.select(['prcp_sum']).sum();
 
-  return weekly_sum.rename(['prcp_annual'])
-                   .copyProperties(weekly_daymet);
+  return ee.Image(weekly_sum.rename(['prcp_annual'])
+                            .copyProperties(weekly_daymet));
 };
 exports.prcp_annual = prcp_annual;
 
