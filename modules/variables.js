@@ -12,7 +12,7 @@ exports.max_mm_dd = '09-30';
 exports.percentile_low = 15;
 exports.percentile_high = 85;
 exports.months = ee.List.sequence(1, 12);
-exports.weeks = ee.List.sequence(1, 3);
+exports.weeks = ee.List.sequence(1, 53);
 exports.min_drought_nobs = 3;
 exports.min_baseline_nobs = 21;
 
