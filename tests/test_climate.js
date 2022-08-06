@@ -45,5 +45,5 @@ Map.addLayer(t_ann_range, {min: 0, max: 50}, 'temperature annual range');
 // Test prcp_annual
 // Usage: prcp_annual(daymet);
 var prcp_ann = climate.prcp_annual(week_daymet);
-print('Temperature annual range', prcp_ann);
+print('Precipitation annual', prcp_ann);
 Map.addLayer(prcp_ann, {min: 0, max: 500}, 'prcp annual');
