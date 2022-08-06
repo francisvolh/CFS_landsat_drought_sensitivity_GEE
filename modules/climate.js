@@ -70,9 +70,9 @@ var temp_annual_range = function(weekly) {
   var weekly_max = weekly.select(['tmax_max']).max();
   var weekly_min = weekly.select(['tmin_min']).min();
 
-  return ee.Image(weekly.subtract(weekly_min)
-                        .rename(['temp_annual_range'])
-                        .copyProperties(weekly_max));
+  return ee.Image(weekly_max.subtract(weekly_min)
+                            .rename(['temp_annual_range'])
+                            .copyProperties(weekly_max));
 };
 exports.temp_annual_range = temp_annual_range;
 
