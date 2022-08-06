@@ -8,7 +8,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var split = require('users/robitalec/CFS:modules/split_drought.js');
@@ -27,7 +27,7 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
-  var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+  var monthly_daymet = daymet.get_monthly_daymet(years, months);
   var lc_mask = land_cover.get_lc_count_mask();
   var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
   
@@ -79,7 +79,7 @@ var zzz_main = function(output, region,
   var months = ee.List.sequence(1, 12);
 
   // Collections
-  var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+  var monthly_daymet = daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
   // Mask land cover and fires
@@ -122,7 +122,7 @@ var zzz_main_cap = function(output, region,
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
-  var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+  var monthly_daymet = daymet.get_monthly_daymet(years, months);
   var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
   // Mask land cover and fires
