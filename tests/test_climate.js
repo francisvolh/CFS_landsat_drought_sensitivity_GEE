@@ -22,7 +22,7 @@ print('Daymet (limit 5)', daymet.limit(5));
 // Test weekly_daymet
 // Usage: weekly_daymet(daymet, year_list, week_list);
 var week_daymet = climate.weekly_daymet(daymet, year_list, week_list);
-print('Weekly daymet (limit 2)', week_daymet.limit(2));
+print('Weekly daymet', week_daymet);
 
 
 
