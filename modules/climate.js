@@ -20,12 +20,13 @@ https://fennerschool.anu.edu.au/files/anuclim61.pdf
 
 // Load modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
-
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 var daymet = function() {
   var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-  daymet = daymet.map(utils.set_date)
+  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year, vars.max_year, 'year'))
+                 .map(utils.set_date)
                  .map(utils.set_week)
                  .map(utils.set_year);
 
