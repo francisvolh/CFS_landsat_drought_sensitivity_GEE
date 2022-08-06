@@ -19,6 +19,7 @@ print('Max month day:', vars.max_mm_dd);
 print('Percentile low:', vars.percentile_low);
 print('Percentile high:', vars.percentile_high);
 print('Months:', vars.months);
+print('Weeks:', vars.weeks);
 print('Min drought nobs:', vars.min_drought_nobs);
 print('Min baseline nobs:', vars.min_baseline_nobs);
 
@@ -32,6 +33,7 @@ var max_mm_dd = vars.max_mm_dd;
 var percentile_low = vars.percentile_low;
 var percentile_high = vars.percentile_high;
 var months = vars.months;
+var weeks = vars.weeks;
 var min_drought_nobs = vars.min_drought_nobs;
 var min_baseline_nobs = vars.min_baseline_nobs;
 
