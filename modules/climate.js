@@ -82,7 +82,7 @@ var prcp_annual = function(weekly) {
   var weekly_sum = weekly.select(['prcp_sum']).sum();
 
   return ee.Image(weekly_sum.rename(['prcp_annual'])
-                            .copyProperties(weekly_daymet));
+                            .copyProperties(weekly));
 };
 exports.prcp_annual = prcp_annual;
 
