@@ -36,9 +36,9 @@ exports.daymet = daymet;
 
 
 
-var weekly_daymet = function(daymet_col, year_list) {
+var weekly_daymet = function(daymet_col, year_list, week_list) {
   var reducer = ee.Reducer.min().combine(ee.Reducer.max(), null, true);
-  var agg_wk = utils.aggregrate_week(daymet_col, year_list, vars.weeks, reducer);
+  var agg_wk = utils.aggregrate_week(daymet_col, year_list, week_list, reducer);
   return agg_wk;
 
 };
@@ -46,17 +46,15 @@ exports.weekly_daymet = weekly_daymet;
 
 
 
-var annual_mean_temp = function(daymet_col, year_list) {
-  var weekly = weekly_daymet(daymet_col, year_list);
-
-  weekly = weekly.map(function(image) {
+var annual_mean_temp = function(weekly_daymet, year_list) {
+  weekly_daymet = weekly_daymet.map(function(image) {
     return image.select(['tmax_max'])
                 .add(image.select(['tmin_min']))
                 .divide(2)
                 .rename(['annual_mean_t']);
   });
 
-  return weekly;
+  return weekly_daymet;
 };
 exports.annual_mean_temp = annual_mean_temp;
 
