@@ -90,7 +90,7 @@ exports.prcp_annual = prcp_annual;
 
 var sampling_collection = function() {
   var years = ee.List.sequence(vars.min_year, vars.max_year);
-  var weekly = weekly_daymet(daymet(), vars.years, vars.weeks);
+  var weekly = weekly_daymet(daymet(), years, vars.weeks);
   
   return ee.Image([
     temp_annual_mean(weekly),
