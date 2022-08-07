@@ -100,13 +100,13 @@ exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
 
 
 
-// Export hydro sampling collection
-var export_hydro_sampling_collection = function(region, region_name, scale) {
-  var col = hydro.sampling_collection();
+// Export climate sampling collection
+var export_climate_sampling_collection = function(region, region_name, scale) {
+  var col = climate.sampling_collection();
 
   var today = new Date().toJSON().slice(0, 10);
 
-  var asset_name = today + '_' + region_name + '_hydro_sampling_collection';
+  var asset_name = today + '_' + region_name + '_climate_sampling_collection';
   Export.image.toAsset({
     image: col,
     description: asset_name,
@@ -116,7 +116,7 @@ var export_hydro_sampling_collection = function(region, region_name, scale) {
     maxPixels: 2100000000
   });
 };
-exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
+exports.export_climate_sampling_collection = export_climate_sampling_collection;
 
 
 
