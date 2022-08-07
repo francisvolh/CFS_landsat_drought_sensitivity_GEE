@@ -100,6 +100,27 @@ exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
 
 
 
+// Export hydro sampling collection
+var export_hydro_sampling_collection = function(region, region_name, scale) {
+  var col = hydro.sampling_collection();
+
+  var today = new Date().toJSON().slice(0, 10);
+
+  var asset_name = today + '_' + region_name + '_hydro_sampling_collection';
+  Export.image.toAsset({
+    image: col,
+    description: asset_name,
+    assetId: 'CFS/' + asset_name,
+    region: region,
+    scale: scale,
+    maxPixels: 2100000000
+  });
+};
+exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
+
+
+
+
 // ARCHIVE --------------------------------------------------------------------
 // Export img asset cap
 var zzz_export_img_asset_cap = function(asset_name, asset_path, scale, region, min_year, max_year, min_mm_dd, max_mm_dd, index, percentile_low, percentile_high, antecedent) {
