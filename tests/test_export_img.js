@@ -50,6 +50,7 @@ var region_name = 'Yukon';
 var vars = require('users/robitalec/CFS:modules/variables.js');
 export_img.export_hydro_sampling_collection(vars.yukon, region_name, scale);
 
+export_img.export_climate_sampling_collection(vars.yukon, region_name, scale);
 
 
 Map.addLayer(region);
