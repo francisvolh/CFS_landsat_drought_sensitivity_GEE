@@ -13,7 +13,7 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 // Usage: soil_percent();
 var soil_percent = soil.soil_percent();
 print('Soil percent', soil_percent);
-Map.addLayer(soil_percent, {min: 0, max: 100});
+Map.addLayer(soil_percent, {min: 0, max: 100}, 'soil percent');
 
 
 
@@ -21,7 +21,7 @@ Map.addLayer(soil_percent, {min: 0, max: 100});
 // Usage: soil_carbon();
 var soil_carbon = soil.soil_carbon();
 print('Soil carbon', soil_carbon);
-Map.addLayer(soil_carbon, {min: 0, max: 350});
+Map.addLayer(soil_carbon, {min: 0, max: 350}, 'soil carbon');
 
 
 
@@ -29,7 +29,7 @@ Map.addLayer(soil_carbon, {min: 0, max: 350});
 // Usage: peat_depth();
 var peat_depth = soil.peat_depth();
 print('Peat depth', peat_depth);
-Map.addLayer(peat_depth, {min: 0, max: 500});
+Map.addLayer(peat_depth, {min: 0, max: 500}, 'peat depth');
 
 
 
