@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-168.15216754447385, 71.53974669486493],
+          [-168.15216754447385, 49.47000556013458],
+          [-92.74201129447385, 49.47000556013458],
+          [-92.74201129447385, 71.53974669486493]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Variables
 Alec L. Robitaille
@@ -79,3 +93,9 @@ exports.yukon = ee.Geometry.Polygon(
   [-136.19270501640625, 67.04822570308592],
   [-136.45637689140625, 68.43763003906189],
   [-141.02668939140625, 68.44570385411821]]]);
+  
+exports.ak_to_mb = ee.Geometry.Polygon(
+        [[[-168.15216754447385, 71.53974669486493],
+          [-168.15216754447385, 49.47000556013458],
+          [-92.74201129447385, 49.47000556013458],
+          [-92.74201129447385, 71.53974669486493]]]);
