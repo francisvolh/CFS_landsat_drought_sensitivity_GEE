@@ -102,7 +102,7 @@ exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
 
 
 // Export climate sampling collection
-var export_climate_sampling_collection = function(region, region_name, scale) {
+var export_climate_sampling_collection = function(region, region_name) {
   var col = climate.sampling_collection();
 
   var today = new Date().toJSON().slice(0, 10);
@@ -113,12 +113,11 @@ var export_climate_sampling_collection = function(region, region_name, scale) {
     description: asset_name,
     assetId: 'CFS/' + asset_name,
     region: region,
-    scale: scale,
+    scale: 1000,
     maxPixels: 2100000000
   });
 };
 exports.export_climate_sampling_collection = export_climate_sampling_collection;
-
 
 
 
