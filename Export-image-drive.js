@@ -10,7 +10,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Set variables
-var region = vars.ak_to_mb;
+var region = vars.yt_to_mb;
 var ante_list = vars.ante_list;
 var min_year =  vars.min_year;
 var max_year = vars.max_year;
