@@ -21,7 +21,7 @@ var scale = 1000;
 
 
 // File name
-var export_name = 'Abs_sens_p15YT85_AK_to_MB';
+var export_name = 'Abs_sens_p15_85_YT_to_MB';
 
 // Export image to drive
 export_img.export_img_drive_greenest(export_name, 'Exports', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
