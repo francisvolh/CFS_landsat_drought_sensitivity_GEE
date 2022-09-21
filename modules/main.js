@@ -37,7 +37,7 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
   indices_col = indices_col.map(function(img) {
     return fire.mask_five_year_fires(
     	img.updateMask(lc_mask)
-    		 .updateMask(agriculture_mask)
+    		 .updateMask(agriculture_mask.not())
 		 );
   });
 
