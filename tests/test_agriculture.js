@@ -16,7 +16,6 @@ var img = ee.Image.constant(1);
 var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.eq('year', 2015));
 
 
-
 // Test aafc_aci
 // Usage: agriculture.aafc_aci;
 var aafc_aci = agriculture.aafc_aci;
