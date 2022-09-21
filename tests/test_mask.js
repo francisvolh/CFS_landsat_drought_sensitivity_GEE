@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-124.53209363685184, 59.11583406555694],
+          [-124.53209363685184, 58.24209710544161],
+          [-121.69762098060184, 58.24209710544161],
+          [-121.69762098060184, 59.11583406555694]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/mask.js
 Alec L. Robitaille
@@ -12,11 +26,13 @@ var human = require('users/robitalec/CFS:modules/human.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var agriculture = require('users/robitalec/CFS:modules/agriculture.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 
 
 // Variables
 var img = ee.Image.constant(1);
+var ndvi = get_landsat.get_indices_greenest(2010, 2012, '07-01', '08-31', geometry);
 
 
 
@@ -30,3 +46,12 @@ Map.addLayer(land_cover.get_lc_count_mask().updateMask(land_cover.get_lc_count_m
 
 // Atemporal mask (without fire)
 Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
+
+
+
+// Testing: apply_mask
+// Usage: mask.apply_mask(images);
+var masked_indices = mask.apply_mask(ndvi);
+print('Masked indices', masked_indices);
+Map.addLayer(masked_indices);
+
