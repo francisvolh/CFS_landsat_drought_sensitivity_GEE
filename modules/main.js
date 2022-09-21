@@ -7,6 +7,7 @@ Alec L. Robitaille
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var fire = require('users/robitalec/CFS:modules/fire.js');
+var agriculture = require('users/robitalec/CFS:modules/agriculture.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
@@ -29,20 +30,24 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
   var lc_mask = land_cover.get_lc_count_mask();
+  var agriculture_mask = agriculture.get_agriculture_mask;
   var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
-  
-  // Fire and land cover masks
+
+  // Fire, land cover and agriculture masks
   indices_col = indices_col.map(function(img) {
-    return fire.mask_five_year_fires(img.updateMask(lc_mask));
+    return fire.mask_five_year_fires(
+    	img.updateMask(lc_mask)
+    		 .updateMask(agriculture_mask)
+		 );
   });
-              
-  
+
+
   // CMI
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
-  
+
   // Drought/baseline
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-  var percentile_images = percentile.get_percentile(ante_means, percentile_list); 
+  var percentile_images = percentile.get_percentile(ante_means, percentile_list);
   var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
   var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
