@@ -7,7 +7,7 @@ Alec L. Robitaille
 
 // Set year
 var set_year = function(img) {
-	return img.set('year', img.date().get('year').int());
+	return img.set('year', img.date().get('year'));
 };
 exports.set_year = set_year;
 
@@ -27,10 +27,9 @@ exports.set_week = set_week;
 
 // Add year band 
 var add_year_band = function(img) {
-  return img.addBands([ee.Image.constant(img.get('year')).rename('year')]);
+  return img.addBands([ee.Image.constant(img.get('year').int()).rename('year')]);
 };
 exports.add_year_band = add_year_band;
-
 
 
 // Aggregate each month within each year with reducer
