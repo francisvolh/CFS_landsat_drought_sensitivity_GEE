@@ -29,7 +29,7 @@ Map.addLayer(aafc_aci, null, 'AAFC ACI');
 // Usage: agriculture.masked_aci;
 var masked_aci = agriculture.masked_aci;
 print('Masked ACI', masked_aci);
-Map.addLayer(masked_aci, null, 'Masked ACI')
+Map.addLayer(masked_aci, null, 'Masked ACI');
 
 
 
