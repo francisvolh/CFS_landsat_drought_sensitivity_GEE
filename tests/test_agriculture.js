@@ -8,13 +8,13 @@ Alec L. Robitaille
 // Load modules
 var agriculture = require('users/robitalec/CFS:modules/agriculture.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-Map.addLayer(land_cover, null, 'Land cover 2015', false);
 
 
 
 // Variables
 var img = ee.Image.constant(1);
 var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.eq('year', 2015));
+Map.addLayer(lc_2015, null, 'Land cover 2015', false);
 
 
 
