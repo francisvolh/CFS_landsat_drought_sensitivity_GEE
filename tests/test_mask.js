@@ -17,4 +17,4 @@ var img = ee.Image.constant(1);
 
 
 // Test
-Map.addLayer(img.updateMask(mask.atemporal_mask))
+Map.addLayer(img.updateMask(mask.atemporal_mask));
