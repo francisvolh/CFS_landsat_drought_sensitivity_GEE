@@ -13,7 +13,7 @@ var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 // Variables
 var img = ee.Image.constant(1);
-var lc_2015 = land_cover.hermosilla_1984_2019.aside(print).filter(ee.Filter.eq('year', 2015));
+var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2015-01-01')).first();
 Map.addLayer(lc_2015, null, 'Land cover 2015', false);
 
 
