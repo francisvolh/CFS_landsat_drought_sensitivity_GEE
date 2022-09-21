@@ -33,13 +33,14 @@ DOI: https://doi.org/10.1016/j.rse.2022.112780 [Open Access]
 31  Snow/Ice
 32  Rock/Rubble
 33  Exposed/Barren Land
-40  Bryoids
 80  Wetland
-100 Herbs
+
 
 -- Included --
+40  Bryoids
 50  Shrubs
 81  Wetland Treed
+100 Herbs
 210 Coniferous
 220 Broad Leaf
 230 Mixedwood
@@ -81,7 +82,8 @@ exports.hermosilla_1984_2019_plus_2020 = hermosilla_1984_2019_plus_2020;
 // Mask classes
 var mask_classes = function(img) {
 	return img.updateMask(
-		img.expression('lc == 50 || lc == 81 || lc == 210 || lc == 220 || lc == 230',
+		img.expression(
+			'lc == 40 || lc == 50 || lc == 81 || lc == 100 || lc == 210 || lc == 220 || lc == 230',
 		{lc: img.select('b1')})
 	).select(['b1'], ['land_cover']);
 };
