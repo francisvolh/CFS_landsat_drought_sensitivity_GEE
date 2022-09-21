@@ -20,8 +20,9 @@ var agriculture_mask = agriculture.get_agriculture_mask;
 var min_land_cover_mask = land_cover.get_lc_count_mask();
 
 var atemporal_mask = min_land_cover_mask
-	.mask(human_mask.not())
-	.mask(agriculture_mask.not());
+	.updateMask(human_mask.unmask().not())
+	.updateMask(agriculture_mask.unmask().not())
+	
 exports.atemporal_mask = atemporal_mask;
 // Function to update mask that will be mapped
 
