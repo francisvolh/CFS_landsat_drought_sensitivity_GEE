@@ -22,8 +22,16 @@ var min_land_cover_mask = land_cover.get_lc_count_mask();
 var atemporal_mask = min_land_cover_mask
 	.updateMask(human_mask.unmask().not())
 	.updateMask(agriculture_mask.unmask().not())
-	.rename('atemporal_mask')
-	
-exports.atemporal_mask = atemporal_mask;
-// Function to update mask that will be mapped
+	.rename('atemporal_mask');
 
+exports.atemporal_mask = atemporal_mask;
+
+
+
+// Apply masks
+var apply_mask = function(images) {
+	images.map(function(img) {
+		fire.mask_five_year_fires(img.updateMask(atemporal_mask));
+	});
+};
+exports.apply_mask = apply_mask;
