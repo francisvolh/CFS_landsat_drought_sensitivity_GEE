@@ -21,9 +21,9 @@ var img = ee.Image.constant(1);
 
 
 // Test
-Map.addLayer(human.world_settlement_area, {palette: '#60ccc2', opacity: 0.5}, 'World Settlement Area');
+Map.addLayer(human.world_settlement_area, {palette: '#3486cc', opacity: 0.5}, 'World Settlement Area');
 Map.addLayer(agriculture.get_agriculture_mask, {palette: '#44bf3c', opacity: 0.5}, 'Agriculture');
-Map.addLayer(land_cover.get_lc_count_mask(), {palette: '#945cd2', opacity: 0.5}, 'Land cover (min count)');
+Map.addLayer(land_cover.get_lc_count_mask().not(), {palette: '#945cd2', opacity: 0.5}, 'Land cover (min count)');
 
 
 Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask')
