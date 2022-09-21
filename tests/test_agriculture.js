@@ -26,7 +26,7 @@ Map.addLayer(aafc_aci, null, 'AAFC ACI')
 
 
 // Test get_agriculture_mask
-// Usage: agriculture.get_agriculture_mask()
-var ag_mask = agriculture.get_agriculture_mask();
+// Usage: agriculture.get_agriculture_mask
+var ag_mask = agriculture.get_agriculture_mask;
 print('Agriculture mask', ag_mask);
 Map.addLayer(ag_mask, null, 'Agriculture');
