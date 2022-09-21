@@ -99,7 +99,7 @@ var mask_aci = function(img) {
 			img.lt(200)
 		)
 	);
-}
+};
 exports.mask_aci = mask_aci;
 
 
