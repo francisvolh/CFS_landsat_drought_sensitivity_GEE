@@ -21,13 +21,7 @@ var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.eq('year', 2015))
 // Usage: agriculture.aafc_aci
 var aafc_aci = agriculture.aafc_aci;
 print('AAFC ACI', aafc_aci);
-
-
-// Test mask_aci
-// Usage: agriculture.mask_aci(img)
-var masked_aci = agriculture.mask_aci(aafc_aci);
-print('Masked ACI', masked_aci);
-Map.addLayer(masked_aci);
+Map.addLayer(aafc_aci, null, 'AAFC ACI')
 
 
 
@@ -35,4 +29,4 @@ Map.addLayer(masked_aci);
 // Usage: agriculture.get_agriculture_mask()
 var ag_mask = agriculture.get_agriculture_mask();
 print('Agriculture mask', ag_mask);
-Map.addLayer(ag_mask);
+Map.addLayer(ag_mask, null, 'Agriculture');
