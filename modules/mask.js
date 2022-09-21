@@ -17,7 +17,7 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 // Get masks
 var human_mask = human.world_settlement_area;
 var agriculture_mask = agriculture.get_agriculture_mask;
-var min_land_cover_mask = land_cover.get_lc_count_mask().not();
+var min_land_cover_mask = land_cover.get_lc_count_mask();
 
 var atemporal_mask = min_land_cover_mask
 	.updateMask(human_mask.not())
