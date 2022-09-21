@@ -19,7 +19,7 @@ var human_mask = human.world_settlement_area;
 var agriculture_mask = agriculture.get_agriculture_mask;
 var min_land_cover_mask = land_cover.get_lc_count_mask().not();
 
-var atemporal_mask = human_mask.or(not_agriculture_mask).or(min_land_cover_mask);
+var atemporal_mask = human_mask.or(agriculture_mask).or(min_land_cover_mask);
 exports.atemporal_mask = atemporal_mask;
 // Function to update mask that will be mapped
 
