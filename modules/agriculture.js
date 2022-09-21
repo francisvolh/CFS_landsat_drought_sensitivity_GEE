@@ -3,7 +3,7 @@ Agriculture masks from  Canada AAFC Annual Crop Inventory
 Alec L. Robitaille
 
 
-Canada AAFC Annual Crop Inventory
+Agriculture and Agri-Food Canada Annual Crop Inventory.
 
 10 	Cloud
 20 	Water
@@ -108,6 +108,7 @@ exports.masked_aci = masked_aci;
 
 var get_agriculture_mask = masked_aci
 	.sum()
-	.neq(0);
+	.neq(0)
+	.rename('agriculture');
 exports.get_agriculture_mask = get_agriculture_mask;
 
