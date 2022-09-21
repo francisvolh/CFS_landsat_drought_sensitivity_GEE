@@ -101,7 +101,7 @@ var mask_aci = function(img) {
 	);
 };
 var masked_aci = aafc_aci
-	.map(mask_aci)
+	.map(mask_aci);
 exports.masked_aci = masked_aci;
 
 
