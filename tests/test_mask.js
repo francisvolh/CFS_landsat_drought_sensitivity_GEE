@@ -52,7 +52,7 @@ Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
 
 // Testing: apply_mask
 // Usage: mask.apply_mask(images);
-var masked_indices = mask.apply_mask(ndvi);
-print('Masked indices', masked_indices);
-Map.addLayer(masked_indices);
+var masked_ndvi = mask.apply_mask(ndvi);
+print('Masked NDVI', masked_ndvi);
+Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
 
