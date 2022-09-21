@@ -27,7 +27,7 @@ exports.set_week = set_week;
 
 // Add year band 
 var add_year_band = function(img) {
-  return img.addBands([ee.Image.constant(img.get('year').int()).rename('year')]);
+  return img.addBands([ee.Image.constant(img.get('year')).int().rename('year')]);
 };
 exports.add_year_band = add_year_band;
 
