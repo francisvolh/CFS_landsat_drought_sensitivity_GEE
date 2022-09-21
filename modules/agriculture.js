@@ -100,9 +100,14 @@ var mask_aci = function(img) {
 		)
 	);
 };
-var ag_mask = aafc_aci
+var masked_aci = aafc_aci
 	.map(mask_aci)
+exports.masked_aci = masked_aci;
+
+
+
+var get_agriculture_mask = masked_aci
 	.sum()
 	.eq(0);
-exports.get_agriculture_mask = ag_mask;
+exports.get_agriculture_mask = get_agriculture_mask;
 
