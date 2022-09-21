@@ -65,7 +65,7 @@ var get_lc_count_mask = function() {
     .map(utils.set_year)
     .map(mask_classes);
   var lc_masked_count = lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
-  return hermosilla_1984_2019.mask().updateMask(lc_masked_count);
+  return lc_masked_count.mask().updateMask(lc_masked_count);
 };
 exports.get_lc_count_mask = get_lc_count_mask;
 
