@@ -6,7 +6,7 @@ Alec L. Robitaille
 // Load modules
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var palettes = require('users/gena/packages:palettes');
 
 // Set variables
@@ -17,7 +17,7 @@ var cmi_viz = {min:-30, max:30, palette: p};
 
 
 // Load collection
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+var monthly_daymet = daymet.get_monthly_daymet(years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
