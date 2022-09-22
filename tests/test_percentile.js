@@ -8,7 +8,7 @@ var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
 
 // Set variables
 var years = ee.List.sequence(2010, 2020);
@@ -18,7 +18,7 @@ var p = palettes.crameri.vik[10];
 var cmi_viz = {min:-30, max:30, palette: p};
 
 // Load collection
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+var monthly_daymet = daymet.monthly_daymet(years, months);
 
 
 
@@ -52,5 +52,5 @@ Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max
 
 // Compare (>15 areas + with 15-85 areas = 0 (both drought), 1 (one baseline), 2 (both baseline)
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first().not()
-                             .add(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first()), 
+                             .add(percentile_masks.select('CMI_ante3mo_wi_p15_p85').first()),
              null, '2010 CMI wi, lte agree 3 month antecedent', false);
