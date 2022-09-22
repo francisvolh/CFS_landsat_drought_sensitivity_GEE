@@ -18,8 +18,9 @@ Alec L. Robitaille
 */
 
 exports.index_list = ['NDVI', 'NBR'];
-exports.ante_list = ['3mo', '12mo', '5yr'];
-exports.min_year = 1985;
+exports.ante_list = ['3mo', '12mo', '3yr'];
+exports.min_landsat_year = 1985;
+exports.min_daymet_year = 1980;
 exports.max_year = 2021;
 exports.min_mm_dd = '06-01';
 exports.max_mm_dd = '09-30';
@@ -93,7 +94,7 @@ exports.yukon = ee.Geometry.Polygon(
   [-136.19270501640625, 67.04822570308592],
   [-136.45637689140625, 68.43763003906189],
   [-141.02668939140625, 68.44570385411821]]]);
-  
+
 exports.yt_to_mb = ee.Geometry.Polygon(
    [[[-140.61272043854052, 69.60272090467828],
           [-140.61272043854052, 43.912011140261754],
