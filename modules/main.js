@@ -5,9 +5,7 @@ Alec L. Robitaille
 
 // Load modules
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var fire = require('users/robitalec/CFS:modules/fire.js');
-var agriculture = require('users/robitalec/CFS:modules/agriculture.js');
+var mask = require('users/robitalec/CFS:modules/mask.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
@@ -29,17 +27,10 @@ var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_
 
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
-  var lc_mask = land_cover.get_lc_count_mask();
-  var agriculture_mask = agriculture.get_agriculture_mask;
   var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
 
-  // Fire, land cover and agriculture masks
-  indices_col = indices_col.map(function(img) {
-    return fire.mask_five_year_fires(
-    	img.updateMask(lc_mask)
-    		 .updateMask(agriculture_mask.not())
-		 );
-  });
+  // Apply mask
+  indices_col = mask.apply_mask(indices);
 
 
   // CMI
