@@ -19,11 +19,11 @@ var get_percentile_masks = function(ante_images, percentile_images) {
 	var percentile_masks = ante_images.map(function(ante_img) {
     var out = ee.Image([
       ante_img.select('CMI_ante3mo_mean').lte(percentile_images.select('CMI_ante3mo_mean_p15'))
-        .rename('CMI_ante3mo_lt_p15'),
+        .rename('CMI_ante3mo_lte_p15'),
       ante_img.select('CMI_ante12mo_mean').lte(percentile_images.select('CMI_ante12mo_mean_p15'))
-        .rename('CMI_ante12mo_lt_p15'),
+        .rename('CMI_ante12mo_lte_p15'),
       ante_img.select('CMI_ante3yr_mean').lte(percentile_images.select('CMI_ante3yr_mean_p15'))
-        .rename('CMI_ante5yr_lt_p15'),
+        .rename('CMI_ante5yr_lte_p15'),
 
       ante_img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p15'))
         .and(ante_img.select('CMI_ante3mo_mean').lt(percentile_images.select('CMI_ante3mo_mean_p85')))
