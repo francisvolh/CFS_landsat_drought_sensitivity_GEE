@@ -33,7 +33,8 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Variables
 var img = ee.Image.constant(1);
-var ndvi = get_landsat.get_indices_greenest(2010, 2012, '07-01', '08-31', geometry);
+var min_year = 2010;
+var ndvi = get_landsat.get_indices_greenest(min_year, 2012, '07-01', '08-31', geometry);
 
 
 
@@ -43,10 +44,15 @@ Map.addLayer(human.world_settlement_area, {palette: '#ccc848', opacity: 0.5}, 'W
 Map.addLayer(agriculture.get_agriculture_mask, {palette: '#44bf3c', opacity: 0.5}, 'Agriculture');
 Map.addLayer(land_cover.get_lc_count_mask().updateMask(land_cover.get_lc_count_mask().eq(0)), {palette: ['#945cd2', '#ffffff'], opacity: 0.5}, 'Land cover (min count)');
 
-
-
 // Atemporal mask (without fire)
 Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
+
+
+
+
+// Temporal mask: fire
+Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, 'Fires');
+
 
 
 
