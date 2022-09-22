@@ -17,7 +17,7 @@ var cmi_viz = {min:-30, max:30, palette: p};
 
 
 // Load collection
-var monthly_daymet = daymet.get_monthly_daymet(years, months);
+var monthly_daymet = daymet.monthly_daymet(years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
