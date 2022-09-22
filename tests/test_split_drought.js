@@ -15,7 +15,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 
 // Set variables
-var min_year = 1985; var max_year = 2015;
+var min_year = 1985; var max_year = 2020;
 var years = ee.List.sequence(min_year, max_year);
 var months = ee.List.sequence(1, 12);
 var min_mm_dd = '07-01';
