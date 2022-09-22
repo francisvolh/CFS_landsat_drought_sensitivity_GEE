@@ -63,7 +63,7 @@ var antecedent_means = function(images, band, year_list) {
       // Reduce with mean reducer
       images.filter(ee.Filter.date(today.advance(-4, 'year'), today.advance(-3, 'year')))
             .select([band], [band3lag])
-            .reduce(ee.Reducer.mean()),
+            .reduce(ee.Reducer.mean())
 
       ]).set({'year': yr});
   }));
