@@ -38,6 +38,7 @@ var antecedent_means = function(images, band, year_list) {
       images.filter(ee.Filter.date(today.advance(-3, 'year'), today))
             .select([band], [band3yr])
             .reduce(ee.Reducer.mean())
+      ]).set({'year': yr});
   }));
 };
 exports.antecedent_means = antecedent_means;
