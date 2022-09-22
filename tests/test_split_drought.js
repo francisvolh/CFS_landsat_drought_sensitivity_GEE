@@ -31,7 +31,7 @@ var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.8
 
 // Processing ---
 // Collections
-var monthly_daymet = daymet.get_monthly_daymet(years, months);
+var monthly_daymet = daymet.monthly_daymet(years, months);
 var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 indices_col = mask.apply_mask(indices_col);
 
