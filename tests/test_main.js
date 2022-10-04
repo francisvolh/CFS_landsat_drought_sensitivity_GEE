@@ -51,3 +51,5 @@ Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, 're
 var main_absolute = main.main_greenest('absolute sensitivity', geometry);
 print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'absolute drought sensitivity NDVI p15-85  3 month antecedent');
+
+Map.centerObject(geometry);
