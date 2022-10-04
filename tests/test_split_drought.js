@@ -56,4 +56,4 @@ var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, ant
 print('Split drought within', split_drought_wi);
 Map.addLayer(split_drought_wi.select('NDVI_ante3yr_lte_p15_drought'),  {min: -0.5, max:1}, 'NDVI drought 15-85th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3yr_wi_p15_p85_base'),  {min: -0.5, max:1}, 'NDVI baseline 15th-85th 3 month antecedent', false);
-Map.centerObject(geometry);
+Map.centerObject(region);
