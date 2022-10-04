@@ -29,14 +29,15 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 // Antecedent means
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 
+// Drop without sufficient lag
+ante_means = ante_means.filter(ee.Filter.gte('year', 2013));
+
 
 
 // Test get_percentile
 // Usage: get_percentile(images, percentile_list)
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 
-// To drop without sufficient lag
-percentile_images = percentile_images.filter(ee.Filter.gt('year', 2013));
 
 
 print('Antecedent means', ante_means);
