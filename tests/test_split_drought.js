@@ -27,6 +27,7 @@ var percentile_high = vars.percentile_high;
 var months = vars.months;
 var years = ee.List.sequence(min_year_daymet, max_year);
 var percentile_list = [percentile_low, percentile_high];
+var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
