@@ -28,7 +28,7 @@ var max_year = 2021;
 var min_mm_dd = '06-01';
 var max_mm_dd = '09-30';
 var percentile_low = 15;
-var antecedent_list = ['3mo'];
+var antecedent_list = ['3mo', '3lag'];
 
 var p = palettes.crameri.vik[10];
 var ndvi_viz = {min:0.3, max:0.85};
