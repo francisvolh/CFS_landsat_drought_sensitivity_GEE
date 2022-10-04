@@ -16,18 +16,24 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 var nobs = require('users/robitalec/CFS:modules/nobs.js');
 
 
-var main_greenest = function(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list) {
+var main_greenest = function(output, region) {
   // Variables
-  var percentile_low = vars.percentile_low;
-  var percentile_high = vars.percentile_high;
   var index_list = vars.index_list;
-  var years = ee.List.sequence(vars.min_year, vars.max_year);
-  var months = vars.months;
+	var antecedent_list = vars.ante_list;
+	var min_year_daymet =  vars.min_year_daymet;
+	var min_year_landsat =  vars.min_year_landsat;
+	var max_year = vars.max_year;
+	var min_mm_dd = vars.min_mm_dd;
+	var max_mm_dd = vars.max_mm_dd;
+	var percentile_low = vars.percentile_low;
+	var percentile_high = vars.percentile_high;
+	var months = vars.months;
+  var years = ee.List.sequence(min_year_daymet, max_year);
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region);
+  var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
   // Apply mask
   indices_col = mask.apply_mask(indices_col);
