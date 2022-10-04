@@ -12,6 +12,7 @@ var palettes = require('users/gena/packages:palettes');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 // Variables
 var index_list = vars.index_list;
