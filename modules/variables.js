@@ -18,7 +18,7 @@ Alec L. Robitaille
 */
 
 exports.index_list = ['NDVI', 'NBR'];
-exports.ante_list = ['3mo', '12mo', '3yr'];
+exports.ante_list = ['3mo', '12mo', '3yr', '1lag', '2lag', '3lag'];
 exports.min_landsat_year = 1985;
 exports.min_daymet_year = 1980;
 exports.max_year = 2021;
