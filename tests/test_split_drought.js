@@ -4,15 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var split = require('users/robitalec/CFS:modules/split_drought.js');
-var percentile = require('users/robitalec/CFS:modules/percentile.js');
-var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var palettes = require('users/gena/packages:palettes');
-var daymet = require('users/robitalec/CFS:modules/daymet.js');
-var mask = require('users/robitalec/CFS:modules/mask.js');
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
-
+ee
 
 // Set variables
 var min_year = 1985; var max_year = 2020;
