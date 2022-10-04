@@ -24,7 +24,7 @@ var percentile_low = 15;
 var percentile_high = 85;
 var percentile_list = [percentile_low, percentile_high];
 var index_list = ['NDVI', 'NBR'];
-var antecedent_list = ['3mo', '12mo', '3yr'];
+var antecedent_list = ['3mo', '12mo', '3yr', '1lag', '2lag', '3lag'];
 var p = palettes.crameri.vik[10];
 var cmi_viz = {min:-30, max:30, palette: p};
 var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
@@ -42,6 +42,11 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
 // Define drought
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+
+// Drop without sufficient lag
+ante_means = ante_means.filter(ee.Filter.gte('year', 2013));
+
+// Percentile
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 
