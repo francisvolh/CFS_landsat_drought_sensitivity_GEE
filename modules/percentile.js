@@ -24,6 +24,12 @@ var get_percentile_masks = function(ante_images, percentile_images) {
         .rename('CMI_ante12mo_lte_p15'),
       ante_img.select('CMI_ante3yr_mean').lte(percentile_images.select('CMI_ante3yr_mean_p15'))
         .rename('CMI_ante3yr_lte_p15'),
+      ante_img.select('CMI_ante1lag_mean').lte(percentile_images.select('CMI_ante1lag_mean_p15'))
+        .rename('CMI_ante1lag_lte_p15'),
+      ante_img.select('CMI_ante2lag_mean').lte(percentile_images.select('CMI_ante2lag_mean_p15'))
+        .rename('CMI_ante2lag_lte_p15'),
+      ante_img.select('CMI_ante3lag_mean').lte(percentile_images.select('CMI_ante3lag_mean_p15'))
+        .rename('CMI_ante3lag_lte_p15'),
 
       ante_img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p15'))
         .and(ante_img.select('CMI_ante3mo_mean').lt(percentile_images.select('CMI_ante3mo_mean_p85')))
@@ -33,7 +39,17 @@ var get_percentile_masks = function(ante_images, percentile_images) {
         .rename('CMI_ante12mo_wi_p15_p85'),
       ante_img.select('CMI_ante3yr_mean').gt(percentile_images.select('CMI_ante3yr_mean_p15'))
         .and(ante_img.select('CMI_ante3yr_mean').lt(percentile_images.select('CMI_ante3yr_mean_p85')))
-        .rename('CMI_ante3yr_wi_p15_p85')
+        .rename('CMI_ante3yr_wi_p15_p85'),
+      ante_img.select('CMI_ante1lag_mean').gt(percentile_images.select('CMI_ante1lag_mean_p15'))
+        .and(ante_img.select('CMI_ante1lag_mean').lt(percentile_images.select('CMI_ante1lag_mean_p85')))
+        .rename('CMI_ante1lag_wi_p15_p85'),
+      ante_img.select('CMI_ante2lag_mean').gt(percentile_images.select('CMI_ante2lag_mean_p15'))
+        .and(ante_img.select('CMI_ante2lag_mean').lt(percentile_images.select('CMI_ante2lag_mean_p85')))
+        .rename('CMI_ante2lag_wi_p15_p85'),
+      ante_img.select('CMI_ante3lag_mean').gt(percentile_images.select('CMI_ante3lag_mean_p15'))
+        .and(ante_img.select('CMI_ante3lag_mean').lt(percentile_images.select('CMI_ante3lag_mean_p85')))
+        .rename('CMI_ante3lag_wi_p15_p85')
+
        ]).copyProperties(ante_img);
     return out;
 	});
