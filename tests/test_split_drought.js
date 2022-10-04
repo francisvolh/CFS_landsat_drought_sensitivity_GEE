@@ -16,6 +16,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 // Set variables
 var min_year = 1985; var max_year = 2020;
+var min_year_landsat = min_year + 3;
 var years = ee.List.sequence(min_year, max_year);
 var months = ee.List.sequence(1, 12);
 var min_mm_dd = '07-01';
@@ -34,7 +35,7 @@ var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.8
 // Processing ---
 // Collections
 var monthly_daymet = daymet.monthly_daymet(years, months);
-var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, geometry);
 indices_col = mask.apply_mask(indices_col);
 
 // CMI
@@ -44,7 +45,7 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 
 // Drop without sufficient lag
-ante_means = ante_means.filter(ee.Filter.gte('year', 2013));
+ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
 
 // Percentile
 var percentile_images = percentile.get_percentile(ante_means, percentile_list);
