@@ -14,47 +14,64 @@ var geometry =
           [-138.7155528504698, 64.75408317982838]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-Testing: modules/main.js
+Testing: modules/split_drought.js
 Alec L. Robitaille
 */
 
 // Load modules
-var main = require('users/robitalec/CFS:modules/main.js');
+var split = require('users/robitalec/CFS:modules/split_drought.js');
+var percentile = require('users/robitalec/CFS:modules/percentile.js');
+var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
+var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
+var mask = require('users/robitalec/CFS:modules/mask.js');
+var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+
 
 // Set variables
-var min_year = 1985;
-var max_year = 2021;
-var min_mm_dd = '06-01';
-var max_mm_dd = '09-30';
+var min_year = 1985; var max_year = 2020;
+var min_year_landsat = min_year + 3;
+var years = ee.List.sequence(min_year, max_year);
+var months = ee.List.sequence(1, 12);
+var min_mm_dd = '07-01';
+var max_mm_dd = '07-31';
 var percentile_low = 15;
-var antecedent_list = ['3mo'];
-
+var percentile_high = 85;
+var percentile_list = [percentile_low, percentile_high];
+var index_list = ['NDVI', 'NBR'];
+var antecedent_list = ['3mo', '12mo', '3yr', '1lag', '2lag', '3lag'];
 var p = palettes.crameri.vik[10];
-var ndvi_viz = {min:0.3, max:0.85};
-var rel_viz = {min:-20, max:20, palette: p};
-var abs_viz = {min:-0.2, max:0.2, palette: p};
-var cmi_viz = {min:-15, max:15, palette: p};
+var cmi_viz = {min:-30, max:30, palette: p};
+var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
-// Test main - index + antecedent means
-// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-var main_index_and_antecedent = main.main_greenest('vegetation index and antecedent means', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-print('veg index + antecedent means'); print(main_index_and_antecedent);
-Map.setOptions('SATELLITE');
-Map.addLayer(main_index_and_antecedent.select('CMI_ante3mo_mean').first(), cmi_viz, 'CMI 3 month antecedent mean', false);
-Map.addLayer(main_index_and_antecedent.select('NDVI').first(), ndvi_viz, 'NDVI', false);
+// Processing ---
+// Collections
+var monthly_daymet = daymet.monthly_daymet(years, months);
+var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, geometry);
+indices_col = mask.apply_mask(indices_col);
 
-// Test main - relative
-// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-var main_relative = main.main_greenest('relative sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-print('relative sensitivity'); print(main_relative);
-Map.addLayer(main_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, 'relative drought sensitivity NDVI p15-85 3 month antecedent', false);
+// CMI
+var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
+
+// Define drought
+var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+
+// Drop without sufficient lag
+ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
+
+// Percentile
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 
 
-// Test main - absolute
-// Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-var main_absolute = main.main_greenest('absolute sensitivity', geometry, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
-print('absolute sensitivity'); print(main_absolute);
-Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'absolute drought sensitivity NDVI p15-85  3 month antecedent');
+// Test split_drought_wi
+// Usage: split_drought.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list)
+var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
+print('Split drought within', split_drought_wi);
+Map.addLayer(split_drought_wi.select('NDVI_ante3yr_lte_p15_drought'),  {min: -0.5, max:1}, 'NDVI drought 15-85th 3 month antecedent');
+Map.addLayer(split_drought_wi.select('NDVI_ante3yr_wi_p15_p85_base'),  {min: -0.5, max:1}, 'NDVI baseline 15th-85th 3 month antecedent', false);
+Map.centerObject(geometry);
+
