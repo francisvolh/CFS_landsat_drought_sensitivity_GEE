@@ -3,6 +3,8 @@ Testing: modules/split_drought.js
 Alec L. Robitaille
 */
 
+
+
 // Load modules
 var split = require('users/robitalec/CFS:modules/split_drought.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
@@ -13,6 +15,8 @@ var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+
+
 
 // Variables
 var index_list = vars.index_list;
