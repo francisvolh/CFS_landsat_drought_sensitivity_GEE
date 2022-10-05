@@ -5,23 +5,20 @@ Alec L. Robitaille
 
 // Load modules
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var palettes = require('users/gena/packages:palettes');
+var vars = require('users/robitalec/CFS:modules/variables.js');
+
+
 
 // Set variables
-var min_year = 1985; var max_year = 2015;
-var years = ee.List.sequence(min_year, max_year);
-var months = ee.List.sequence(1, 12);
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
-var percentile_list = [15, 85];
-var index_list = ['NDVI', 'NBR'];
-var antecedent_list = ['3mo', '12mo', '5yr'];
-var scale = 30;
-
+var antecedent_list = vars.ante_list;
+var max_year = vars.max_year;
+var min_mm_dd = vars.min_mm_dd;
+var max_mm_dd = vars.max_mm_dd;
+var percentile_low = vars.percentile_low;
+var percentile_high = vars.percentile_high;
+var months = vars.months;
+var percentile_list = [percentile_low, percentile_high];
 var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
-
-var p = palettes.crameri.vik[10];
-var abs_viz = {min:-0.3, max:0.3, palette: p};
 
 var asset_folder = 'users/robitalec/CFS/2022-07-10';
 var drive_folder = 'Test-export-img-drive-from-asset';
@@ -46,14 +43,9 @@ export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale
 
 // Test export_hydro_sampling_collection
 // Usage: export_hydro_sampling_collection(region, region_name, scale);
-var region_name = 'Yukon';
-var vars = require('users/robitalec/CFS:modules/variables.js');
-export_img.export_hydro_sampling_collection(vars.yukon, region_name, scale);
+var region_name = 'Test';
+export_img.export_hydro_sampling_collection(region, region_name, scale);
 
-
-// Test export_climate_sampling_collection
-// Usage: export_climate_sampling_collection(region, region_name);
-export_img.export_climate_sampling_collection(vars.yukon, region_name);
 
 
 Map.addLayer(region);
