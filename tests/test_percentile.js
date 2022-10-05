@@ -9,6 +9,7 @@ var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 
@@ -16,8 +17,6 @@ var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var years = ee.List.sequence(2010, 2020);
 var months = ee.List.sequence(1, 12);
 var percentile_list = [15, 85];
-var p = palettes.crameri.vik[10];
-var cmi_viz = {min:-30, max:30, palette: p};
 
 
 // Load collection
@@ -42,10 +41,10 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 
 print('Antecedent means', ante_means);
 print('Percentile images', percentile_images);
-Map.addLayer(ante_means.select('CMI_ante3lag_mean'), cmi_viz, '2013-2015 CMI 3 year lag antecedent means', false);
-Map.addLayer(ante_means.select('CMI_ante3lag_mean').first(), cmi_viz, '2013 CMI 3 year lag antecedent means');
-Map.addLayer(percentile_images.select('CMI_ante3lag_mean_p15'), cmi_viz, '2013-2015 CMI 15th percentile');
-Map.addLayer(percentile_images.select('CMI_ante3lag_mean_p85'), cmi_viz, '2013-2015 CMI 85th percentile');
+Map.addLayer(ante_means.select('CMI_ante3lag_mean'), vars.cmi_viz, '2013-2015 CMI 3 year lag antecedent means', false);
+Map.addLayer(ante_means.select('CMI_ante3lag_mean').first(), vars.cmi_viz, '2013 CMI 3 year lag antecedent means');
+Map.addLayer(percentile_images.select('CMI_ante3lag_mean_p15'), vars.cmi_viz, '2013-2015 CMI 15th percentile');
+Map.addLayer(percentile_images.select('CMI_ante3lag_mean_p85'), vars.cmi_viz, '2013-2015 CMI 85th percentile');
 
 
 
