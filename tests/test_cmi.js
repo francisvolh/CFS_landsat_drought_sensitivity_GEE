@@ -7,7 +7,7 @@ Alec L. Robitaille
 // Load modules
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
-
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Load collection
@@ -21,4 +21,4 @@ var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
 // Usage: calc_CMI(img)
 var cmi_daymet = cmi.calc_CMI(daymet);
 print(cmi_daymet);
-Map.addLayer(cmi_daymet.select('CMI'), {min: -30, max: 30, palette: palettes.colorbrewer.RdBu[5]});
+Map.addLayer(cmi_daymet.select('CMI'), vars.cmi_viz);
