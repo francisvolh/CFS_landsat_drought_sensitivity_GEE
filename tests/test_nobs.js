@@ -46,13 +46,6 @@ var years = ee.List.sequence(min_year_daymet, max_year);
 var percentile_list = [percentile_low, percentile_high];
 var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
-// Palettes
-var p = palettes.crameri.vik[10];
-var cmi_viz = {min:-30, max:30, palette: p};
-var rel_viz = {min:-20, max:20, palette: p};
-var abs_viz = {min:-0.3, max:0.3, palette: p};
-
-
 
 
 // Processing
@@ -88,4 +81,4 @@ Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(vars.min_ba
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 0, max:6}, 'drought count', false);
 Map.addLayer(counts.select('NDVI_ante3mo_lte_p15_drought_count').gte(vars.min_drought_nobs), null, 'drought count gte ' + vars.min_drought_nobs);
 
-Map.addLayer(mask_counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), {min:-0.3, max:0.3, palette: palettes.crameri.vik[10]}, 'sensitivity');
+Map.addLayer(mask_counts.select('Abs_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'sensitivity');
