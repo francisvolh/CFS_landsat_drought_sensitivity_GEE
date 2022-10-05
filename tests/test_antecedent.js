@@ -28,4 +28,4 @@ var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 print(ante_means);
 Map.addLayer(ante_means.select('CMI_ante3yr_mean'), vars.cmi_viz, 'CMI ante 3 year');
-Map.addLayer(ante_means.filter(ee.Filter.eq('year', 2015)).select('CMI_ante2lag_mean'), cmi_viz, 'CMI ante 2 lag');
+Map.addLayer(ante_means.filter(ee.Filter.eq('year', 2015)).select('CMI_ante2lag_mean'), vars.cmi_viz, 'CMI ante 2 lag');
