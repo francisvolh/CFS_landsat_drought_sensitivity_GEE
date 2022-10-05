@@ -7,7 +7,7 @@ Alec L. Robitaille
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
-var vars = require('users/gena/packages:variables');
+var vars = require('users/robitalec/packages:variables');
 
 
 
