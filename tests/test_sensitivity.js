@@ -3,6 +3,8 @@ Testing: modules/sensitivity.js
 Alec L. Robitaille
 */
 
+
+
 // Load modules
 var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 var split = require('users/robitalec/CFS:modules/split_drought.js');
@@ -14,6 +16,8 @@ var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+
+
 
 // Variables
 var index_list = vars.index_list;
@@ -29,13 +33,6 @@ var months = vars.months;
 var years = ee.List.sequence(min_year_daymet, max_year);
 var percentile_list = [percentile_low, percentile_high];
 var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
-
-// Palettes
-var p = palettes.crameri.vik[10];
-var cmi_viz = {min:-30, max:30, palette: p};
-var rel_viz = {min:-20, max:20, palette: p};
-var abs_viz = {min:-0.3, max:0.3, palette: p};
-
 
 
 
@@ -60,11 +57,14 @@ var sens_relative = sensitivity.sensitivity_relative_cap(split_drought_wi, antec
 // Usage: sensitivity.sensitivity_absolute_cap(split_indices, antecedent_list, index_list)
 var sens_absolute = sensitivity.sensitivity_absolute_cap(split_drought_wi, antecedent_list, index_list);
 
+
+
 print('Absolute sensitivity', sens_absolute);
 print('Relative sensitivity', sens_relative);
+
 Map.centerObject(region);
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, 'CMI lte p15th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {min: -0.5, max:1}, 'mean NDVI drought lte 15th 3 month antecedent');
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, 'mean NDVI baseline wi p15-85 3 month antecedent', false);
-Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), rel_viz, 'relative drought sensitivity NDVI p15-85 3 month antecedent', false);
-Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), abs_viz, 'absolute drought sensitivity NDVI p15-85 3 month antecedent');
+Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), vars.rel_viz, 'relative drought sensitivity NDVI p15-85 3 month antecedent', false);
+Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'absolute drought sensitivity NDVI p15-85 3 month antecedent');
