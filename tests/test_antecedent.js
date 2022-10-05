@@ -7,14 +7,14 @@ Alec L. Robitaille
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
-var palettes = require('users/gena/packages:palettes');
+var vars = require('users/gena/packages:variables');
+
+
 
 // Set variables
 var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
-var p = palettes.crameri.vik[10];
-var cmi_viz = {min:-30, max:30, palette: p};
-
+var cmi_viz = vars.cmi_viz;
 
 // Load collection
 var monthly_daymet = daymet.monthly_daymet(years, months);
