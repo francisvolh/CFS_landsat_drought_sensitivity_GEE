@@ -59,4 +59,3 @@ Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], o
 var masked_ndvi = mask.apply_mask(ndvi);
 print('Masked NDVI', masked_ndvi);
 Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
-
