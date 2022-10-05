@@ -12,7 +12,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Set variables
-var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
+var region = ee.Geometry.Polygon([[[-122.87, 55.86], [-122.87, 54.98], [-121.87, 54.98], [-121.87, 55.86]]]);
 var scale = 30;
 var asset_folder = 'users/robitalec/CFS/2022-07-10';
 var drive_folder = 'Test-export-img-drive-from-asset';
