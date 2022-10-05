@@ -19,7 +19,6 @@ Alec L. Robitaille
 
 
 
-
 // Load modules
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var human = require('users/robitalec/CFS:modules/human.js');
