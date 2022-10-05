@@ -50,14 +50,6 @@ var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
-var count = split_drought_wi.reduce(ee.Reducer.count());
-print(count);
-Map.addLayer(region);
-Map.addLayer(ee.Image.constant(1), {palette: '#0083cc'});
-Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 5, max:21}, 'baseline count');
-Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10');
-Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 1, max:5}, 'drought count');
-Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3 ');
 
 
 // Test sensitivity_relative_cap
