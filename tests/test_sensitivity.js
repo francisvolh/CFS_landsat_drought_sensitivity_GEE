@@ -4,57 +4,59 @@ Alec L. Robitaille
 */
 
 // Load modules
-var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
 var split = require('users/robitalec/CFS:modules/split_drought.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
+var mask = require('users/robitalec/CFS:modules/mask.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var fire = require('users/robitalec/CFS:modules/fire.js');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
-// Set variables
-var min_year = 1985; var max_year = 2015;
-var years = ee.List.sequence(min_year, max_year);
-var months = ee.List.sequence(1, 12);
-var min_mm_dd = '07-01';
-var max_mm_dd = '07-31';
-var percentile_list = [15, 85];
-var index_list = ['NDVI', 'NBR'];
-var antecedent_list = ['3mo', '12mo', '5yr'];
+// Variables
+var index_list = vars.index_list;
+var antecedent_list = vars.ante_list;
+var min_year_daymet =  vars.min_year_daymet;
+var min_year_landsat =  vars.min_year_landsat;
+var max_year = vars.max_year;
+var min_mm_dd = vars.min_mm_dd;
+var max_mm_dd = vars.max_mm_dd;
+var percentile_low = vars.percentile_low;
+var percentile_high = vars.percentile_high;
+var months = vars.months;
+var years = ee.List.sequence(min_year_daymet, max_year);
+var percentile_list = [percentile_low, percentile_high];
+var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
+// Palettes
 var p = palettes.crameri.vik[10];
 var cmi_viz = {min:-30, max:30, palette: p};
 var rel_viz = {min:-20, max:20, palette: p};
 var abs_viz = {min:-0.3, max:0.3, palette: p};
 
-var geometry = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
 
 
 // Processing
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
-var indices_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
-var lc_mask = land_cover.get_lc_count_mask();
-indices_col = indices_col.map(function(img) {
-  return fire.mask_five_year_fires(img.updateMask(lc_mask));
-});
+var monthly_daymet = daymet.monthly_daymet(years, months);
+var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
+indices_col = mask.apply_mask(indices_col);
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-var percentile_images = percentile.get_percentile(ante_means, percentile_list); 
+ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
+var percentile_images = percentile.get_percentile(ante_means, percentile_list);
 var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
 var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
-var count = split_drought_wi.reduce(ee.Reducer.count())
-print(count)
-Map.addLayer(geometry)
-Map.addLayer(ee.Image.constant(1), {palette: '#0083cc'})
-Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 5, max:21}, 'baseline count')
-Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10')
-Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 1, max:5}, 'drought count')
-Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3 ')
+var count = split_drought_wi.reduce(ee.Reducer.count());
+print(count);
+Map.addLayer(region);
+Map.addLayer(ee.Image.constant(1), {palette: '#0083cc'});
+Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 5, max:21}, 'baseline count');
+Map.addLayer(count.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(10), null, 'baseline count gte 10');
+Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count'), {min: 1, max:5}, 'drought count');
+Map.addLayer(count.select('NDVI_ante3mo_lte_p15_drought_count').gte(3), null, 'drought count gte 3 ');
 
 
 // Test sensitivity_relative_cap
