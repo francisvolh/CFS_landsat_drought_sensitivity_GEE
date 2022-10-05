@@ -29,6 +29,7 @@ var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+var nobs = require('users/robitalec/CFS:modules/nobs.js');
 
 // Variables
 var index_list = vars.index_list;
@@ -80,7 +81,8 @@ var mask_counts = nobs.mask_nobs('Abs', counts, antecedent_list, index_list);
 print('Counts:', counts);
 print('Mask counts:', mask_counts);
 
-Map.addLayer(geometry, null, 'region');
+Map.centerObject(region);
+Map.addLayer(region, null, 'region');
 Map.addLayer(ee.Image.constant(1), {palette: '#113355'}, 'constant');
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count', false);
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(vars.min_baseline_nobs), null, 'baseline count gte ' + vars.min_baseline_nobs);
