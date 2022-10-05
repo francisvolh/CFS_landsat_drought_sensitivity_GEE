@@ -17,6 +17,12 @@ Variables
 Alec L. Robitaille
 */
 
+// Modules
+var palettes = require('users/gena/packages:palettes');
+
+
+
+// Variables
 exports.index_list = ['NDVI', 'NBR'];
 exports.ante_list = ['3mo', '12mo', '3yr', '1lag', '2lag', '3lag'];
 exports.min_year_landsat = 1985;
@@ -30,6 +36,14 @@ exports.months = ee.List.sequence(1, 12);
 exports.weeks = ee.List.sequence(1, 52);
 exports.min_drought_nobs = 3;
 exports.min_baseline_nobs = 21;
+
+
+
+// Palettes
+exports.p_diverging = palettes.crameri.vik[10];
+exports.cmi_viz = {min:-15, max:15, palette: p_diverging};
+exports.rel_viz = {min:-20, max:20, palette: p_diverging};
+exports.abs_viz = {min:-0.2, max:0.2, palette: p_diverging};
 
 
 
