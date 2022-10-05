@@ -82,7 +82,6 @@ print('Counts:', counts);
 print('Mask counts:', mask_counts);
 
 Map.centerObject(region);
-Map.addLayer(region, null, 'region');
 Map.addLayer(ee.Image.constant(1), {palette: '#113355'}, 'constant');
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count'), {min: 0, max:30}, 'baseline count', false);
 Map.addLayer(counts.select('NDVI_ante3mo_wi_p15_p85_base_count').gte(vars.min_baseline_nobs), null, 'baseline count gte ' + vars.min_baseline_nobs);
