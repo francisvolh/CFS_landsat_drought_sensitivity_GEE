@@ -18,5 +18,5 @@ var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregion
 
 // Test export_points_asset
 // Usage: export_points_asset(n_pts, ecoregions, region_name);
-var n_pts = 250;
-points.export_points_asset(250, ecoregions, region_name);
+var n_pts = 10;
+points.export_points_asset(n_pts, ecoregions, region_name);
