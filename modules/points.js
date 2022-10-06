@@ -14,7 +14,7 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 // Export points as asset
 var export_points_asset = function(n_pts, ecoregions, region_name) {
   var lc = land_cover.hermosilla_1984_2019
-    .map(utils.set_year)
+    .map(utils.set_year);
 
   lc = mask.apply_mask(lc)
     .mode();
