@@ -13,13 +13,14 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 
 // Export points as asset
 var export_points_asset = function(n_pts, ecoregions, region_name) {
-  var lc_masked = land_cover.hermosilla_1984_2019
+  var lc = land_cover.hermosilla_1984_2019
     .map(utils.set_year)
-    .map(mask.apply_mask)
+
+  lc = mask.apply_mask(lc)
     .mode();
 
   var points = ecoregions.map(function(ft) {
-    return stratified.stratified_sample(lc_masked, 'land_cover', 30, ft.geometry(), n_pts);
+    return stratified.stratified_sample(lc, 'land_cover', 30, ft.geometry(), n_pts);
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
