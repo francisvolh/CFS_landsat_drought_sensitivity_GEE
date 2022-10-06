@@ -17,7 +17,8 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
     .map(utils.set_year);
 
   lc = mask.apply_mask(lc)
-    .mode();
+    .mode()
+    .rename('land_cover');
 
   var points = ecoregions.map(function(ft) {
     return stratified.stratified_sample(lc, 'land_cover', 30, ft.geometry(), n_pts);
