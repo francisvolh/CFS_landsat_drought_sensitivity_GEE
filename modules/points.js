@@ -24,6 +24,6 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
 
   var today = new Date().toJSON().slice(0, 10);
   var filename = today + '_' + region_name + '_sampling_points_n' + n_pts;
-  Export.table.toAsset(points, filename, 'CFS/' + filename);
+  Export.table.toAsset(points, filename, 'Exports/' + filename);
 };
 exports.export_points_asset = export_points_asset;
