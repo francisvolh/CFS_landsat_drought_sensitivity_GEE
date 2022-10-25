@@ -71,14 +71,6 @@ exports.get_lc_count_mask = get_lc_count_mask;
 
 
 // Land cover transitions forest types <-> shrub types
-// 40  Bryoids
-// 50  Shrubs
-// 80  Wetland
-// 81  Wetland Treed
-// 100 Herbs
-// 210 Coniferous
-// 220 Broad Leaf
-// 230 Mixedwood
 var lc_transitions = function() {
     var lc_remapped = hermosilla_1984_2019
       .map(utils.set_year)
