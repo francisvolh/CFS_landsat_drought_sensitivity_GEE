@@ -69,6 +69,32 @@ var get_lc_count_mask = function() {
 exports.get_lc_count_mask = get_lc_count_mask;
 
 
+
+// Land cover transitions forest types <-> shrub types
+// 40  Bryoids
+// 50  Shrubs
+// 80  Wetland
+// 81  Wetland Treed
+// 100 Herbs
+// 210 Coniferous
+// 220 Broad Leaf
+// 230 Mixedwood
+var lc_transitions = function() {
+    var lc_remapped = hermosilla_1984_2019
+      .map(utils.set_year)
+      .map(mask_classes)
+      .remap([40, 50, 
+              80, 81,
+              100, 210, 220, 230],
+              [1, 1, 
+               2, 2, 
+               3, 3, 3, 3]);
+  var lc_transitions = lc_remapped.reduce(ee.Reducer.countDistinct()).eq(1);
+  
+  return lc_transitions;
+};
+
+
 // Add 2020
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
 var lc_2020 = lc_2019
