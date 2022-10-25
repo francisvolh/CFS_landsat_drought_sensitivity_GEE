@@ -41,7 +41,7 @@ var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '0
 // Test get_lc_count_mask
 // Usage: get_lc_count_mask()
 var lc_count_mask = land_cover.get_lc_count_mask();
-Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()');
+Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()', false);
 
 
 
@@ -54,7 +54,7 @@ Map.addLayer(img, {palette: '#7074ff'}, 'mask with get_lc_count_mask()');
 // Test lc_transitions
 // Usage: lc_transitions()
 var lc_transitions = land_cover.lc_transitions();
-Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()');
+Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()', false);
 
 
 
