@@ -21,6 +21,7 @@ var min_land_cover_mask = land_cover.get_lc_count_mask();
 var lc_transitions = land_cover.lc_transitions();
 
 var atemporal_mask = min_land_cover_mask
+  .updateMask(lc_transitions)
 	.updateMask(human_mask.unmask().not())
 	.updateMask(agriculture_mask.unmask().not())
 	.rename('atemporal_mask');
