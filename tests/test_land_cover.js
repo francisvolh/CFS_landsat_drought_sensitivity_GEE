@@ -1,7 +1,6 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -27,7 +26,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 
 // Variables
-var geometry =  ee.Geometry.Polygon([[[-124.68, 53.62], [-124.68, 52.70], [-122.43, 52.70], [-122.43, 53.62]]]);
+// var geometry = ee.Geometry.Polygon([[[-124.68, 53.62], [-124.68, 52.70], [-122.43, 52.70], [-122.43, 53.62]]]);
 
 
 
