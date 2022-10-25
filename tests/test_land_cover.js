@@ -35,6 +35,14 @@ Map.addLayer(img, null, 'mask with get_lc_count_mask()');
 
 
 
+// Test lc_transitions
+// Usage: lc_transitions()
+var lc_transitions = land_cover.lc_transitions();
+Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()');
+
+
+
+
 // Test mask_classes
 // Usage: mask_classes(lc_img)
 var masked_lc = land_cover.mask_classes(lc_2008);
