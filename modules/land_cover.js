@@ -84,6 +84,7 @@ var lc_transitions = function() {
                            3, 3, 3, 3],
                            0,
                            'land_cover');
+      });
   var lc_transitions = lc_remapped.reduce(ee.Reducer.countDistinct()).eq(1);
   
   return lc_transitions;
