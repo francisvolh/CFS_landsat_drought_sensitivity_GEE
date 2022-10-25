@@ -93,6 +93,7 @@ var lc_transitions = function() {
   
   return lc_transitions;
 };
+exports.lc_transitions = lc_transitions;
 
 
 // Add 2020
