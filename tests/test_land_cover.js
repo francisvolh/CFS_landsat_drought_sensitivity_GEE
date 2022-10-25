@@ -92,20 +92,20 @@ Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.
 // Test mask_land_cover_and_fire
 // Usage: mask_land_cover_and_fire(img)
 var indices_masked_lc_and_fire = indices_green_col.map(land_cover.zzz_mask_land_cover_and_fire);
-print(indices_masked_lc_and_fire);
-Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.zzz_mask_land_cover_and_fire(img)', false);
+// print(indices_masked_lc_and_fire);
+// Map.addLayer(indices_masked_lc_and_fire.select('NDVI'), null, 'land_cover.zzz_mask_land_cover_and_fire(img)', false);
 
 
 
 // Test mask_heterogeneous
 // Usage: mask_heterogeneous(img)
 var mask_hetero_lc = land_cover.mask_heterogeneous(lc_2008);
-Map.addLayer(lc_2008, {palette:'#abffbd'}, 'constant (lc)', false);
-Map.addLayer(mask_hetero_lc, {palette:'#000000'}, 'land_cover.mask_heterogeneous(img)', false);
+// Map.addLayer(lc_2008, {palette:'#abffbd'}, 'constant (lc)', false);
+// Map.addLayer(mask_hetero_lc, {palette:'#000000'}, 'land_cover.mask_heterogeneous(img)', false);
 
 
 
 // Test get_homogeneous_land_cover
 // Usage: get_homogeneous_land_cover()
-var lc_homogeneous = land_cover.get_homogeneous_land_cover();
-print(lc_homogeneous);
+// var lc_homogeneous = land_cover.get_homogeneous_land_cover();
+// print(lc_homogeneous);
