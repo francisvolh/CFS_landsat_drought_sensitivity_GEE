@@ -55,6 +55,7 @@ var lc_transitions = land_cover.lc_transitions();
 Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()');
 
 
+
 // Mask with lc_transitions()
 img = img.updateMask(lc_transitions);
 Map.addLayer(img, null, 'mask with get_lc_count_mask() and lc_transitions()');
