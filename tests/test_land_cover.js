@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-124.6807470703125, 53.62241679067491],
+          [-124.6807470703125, 52.703610485345784],
+          [-122.43129638671876, 52.703610485345784],
+          [-122.43129638671876, 53.62241679067491]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/land_cover.js
 Alec L. Robitaille
@@ -11,7 +25,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 
 
 // Variables
-var geometry =  ee.Geometry.Polygon([[[-113.61, 59.74], [-113.61, 57.14], [-107.22, 57.14], [-107.22, 59.74]]]);
+var geometry =  ee.Geometry.Polygon([[[-124.68, 53.62], [-124.68, 52.70], [-122.43, 52.70], [-122.43, 53.62]]]);
 
 
 
