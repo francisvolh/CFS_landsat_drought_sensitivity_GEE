@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -10,7 +11,8 @@ var geometry =
         [[[-124.6807470703125, 53.62241679067491],
           [-124.6807470703125, 52.703610485345784],
           [-122.43129638671876, 52.703610485345784],
-          [-122.43129638671876, 53.62241679067491]]], null, false);
+          [-122.43129638671876, 53.62241679067491]]], null, false),
+    imageVisParam = {"opacity":1,"bands":["random"],"palette":["7074ff"]};
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/land_cover.js
@@ -45,7 +47,7 @@ Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()');
 
 // Mask with get_lc_count_mask()
 var img = ee.Image.random().clip(geometry).updateMask(lc_count_mask);
-Map.addLayer(img, null, 'mask with get_lc_count_mask()');
+Map.addLayer(img, {palette: '#7074ff'}, 'mask with get_lc_count_mask()');
 
 
 
@@ -58,7 +60,7 @@ Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()');
 
 // Mask with lc_transitions()
 img = img.updateMask(lc_transitions);
-Map.addLayer(img, null, 'mask with get_lc_count_mask() and lc_transitions()');
+Map.addLayer(img, {palette: '#ff3939'}, 'mask with get_lc_count_mask() and lc_transitions()');
 
 
 
