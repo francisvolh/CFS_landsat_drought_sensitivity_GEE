@@ -35,7 +35,7 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
 var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '07-15', geometry);
-Map.addLayer(lc, null, 'raw land cover');
+Map.addLayer(lc, null, 'raw land cover', false);
 
 
 // Test get_lc_count_mask
