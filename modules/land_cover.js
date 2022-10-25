@@ -80,7 +80,8 @@ var lc_transitions = function() {
               100, 210, 220, 230],
               [1, 1, 
                2, 2, 
-               3, 3, 3, 3]);
+               3, 3, 3, 3],
+               'land_cover');
   var lc_transitions = lc_remapped.reduce(ee.Reducer.countDistinct()).eq(1);
   
   return lc_transitions;
