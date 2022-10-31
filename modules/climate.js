@@ -36,7 +36,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 var daymet = function() {
   var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year, vars.max_year, 'year'))
+  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_daymet, vars.max_year, 'year'))
                  .map(utils.set_date)
                  .map(utils.set_week)
                  .map(utils.set_year);
