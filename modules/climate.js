@@ -64,7 +64,7 @@ var climate_normals = function(bioclim_variables) {
 
   bioclim_normals = bioclim_normals
     .filter(ee.Filter.inList('bioclim_variable', bioclim_variables))
-    .filter(ee.Filter.date('1990-01-01','2020-12-31'))
+    .filterDate('1990-01-01','2020-12-31')
     .toBands()
     .rename(['TD_1990_2020_normals', 'MAT_1990_2020_normals']);
 
