@@ -34,56 +34,48 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-var daymet = function() {
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_daymet, vars.max_year, 'year'))
-                .map(utils.set_date)
-                .map(utils.set_week)
-                .map(utils.set_year);
 
-return daymet;
+var daymet = function() {
+  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
+  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_daymet, vars.max_year, 'year'))
+                  .map(utils.set_date)
+                  .map(utils.set_week)
+                  .map(utils.set_year);
+
+  return daymet;
 };
 exports.daymet = daymet;
 
 
-// TODO: monthly_daymet
 
 var weekly_daymet = function(daymet_col, year_list, week_list) {
-var reducer = ee.Reducer.min()
-  .combine(ee.Reducer.max(), null, true)
-  .combine(ee.Reducer.sum(), null, true);
-var agg_wk = utils.aggregrate_week(daymet_col, year_list, week_list, reducer);
-return agg_wk;
+  var reducer = ee.Reducer.min()
+    .combine(ee.Reducer.max(), null, true)
+    .combine(ee.Reducer.sum(), null, true);
+  var agg_wk = utils.aggregrate_week(daymet_col, year_list, week_list, reducer);
+  return agg_wk;
 
 };
 exports.weekly_daymet = weekly_daymet;
 
 
+
 var climate_normals = function(bioclim_variables) {
-var bioclim_normals = ee.ImageCollection("projects/sat-io/open-datasets/CMIP6-scenarios-NA/Climate-Normals_bioclim");
+  var bioclim_normals = ee.ImageCollection("projects/sat-io/open-datasets/CMIP6-scenarios-NA/Climate-Normals_bioclim");
 
-bioclim_normals = bioclim_normals
-  .filter(ee.Filter.inList('bioclim_variable', bioclim_variables))
-  .filter(ee.Filter.date('1990-01-01','2020-12-31'))
-  .toBands()
-  .rename(['TD_1990_2020_normals', 'MAT_1990_2020_normals']);
+  bioclim_normals = bioclim_normals
+    .filter(ee.Filter.inList('bioclim_variable', bioclim_variables))
+    .filter(ee.Filter.date('1990-01-01','2020-12-31'))
+    .toBands()
+    .rename(['TD_1990_2020_normals', 'MAT_1990_2020_normals']);
 
-return bioclim_normals;
+  return bioclim_normals;
 };
 exports.climate_normals = climate_normals;
 
 
 
 var sampling_collection = function() {
-var years = ee.List.sequence(vars.min_year_daymet, vars.max_year);
-var weekly = weekly_daymet(daymet(), years, vars.weeks);
-
-return ee.Image([
-  temp_annual_mean(weekly),
-  temp_annual_range(weekly),
-  prcp_annual(weekly)
-  ]);
+  return climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI']);
 };
 exports.sampling_collection = sampling_collection;
-
-
