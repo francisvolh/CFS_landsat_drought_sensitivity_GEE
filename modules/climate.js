@@ -75,7 +75,7 @@ exports.climate_normals = climate_normals;
 
 
 var sampling_collection = function() {
-var years = ee.List.sequence(vars.min_year, vars.max_year);
+var years = ee.List.sequence(vars.min_year_daymet, vars.max_year);
 var weekly = weekly_daymet(daymet(), years, vars.weeks);
 
 return ee.Image([
