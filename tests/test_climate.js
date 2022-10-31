@@ -30,7 +30,7 @@ print('Weekly daymet', week_daymet);
 // Usage: climate_normals(bioclim_variables);
 var climate_normals = climate.climate_normals(['TD', 'MAT']);
 print('Climate normals', climate_normals);
-
+Map.addLayer(climate_normals.select('TD_1990_2020_normals'));
 
 
 
