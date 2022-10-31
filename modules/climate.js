@@ -2,6 +2,8 @@
 Climate
 Alec L. Robitaille
 
+Daymet
+
 Thornton, M.M., R. Shrestha, Y. Wei, P.E. Thornton, S. Kao, and B.E. Wilson.
 {YEAR}. Daymet: Daily Surface Weather Data on a 1-km Grid for North America,
 Version 4. ORNL DAAC, Oak Ridge, Tennessee, USA
@@ -11,9 +13,18 @@ S. Kao, and B.E. Wilson. 2020. Daymet: Daily Surface Weather Data on a 1-km
 Grid for North America, Version 4. ORNL DAAC, Oak Ridge, Tennessee, USA.
 doi:10.3334/ORNLDAAC/1840
 
-
 Using ANUCLIM formulas
 https://fennerschool.anu.edu.au/files/anuclim61.pdf
+
+
+Climate NA
+
+Wang, T., A. Hamann, D. Spittlehouse, C. Carroll. 2016. Locally Downscaled and Spatially Customizable Climate Data
+for Historical and Future Periods for North America. PLoS One 11(6): e0156720.
+
+AdaptWest Project. 2021. Gridded current and projected climate data for North America at 1km resolution,
+generated using the ClimateNA v7.01 software (T. Wang et al., 2021). Available at adaptwest.databasin.org.
+
 
 */
 
@@ -48,50 +59,25 @@ var weekly_daymet = function(daymet_col, year_list, week_list) {
 exports.weekly_daymet = weekly_daymet;
 
 
+var climate_normals = function(bioclim_variables) {
+  var bioclim_normals = ee.ImageCollection("projects/sat-io/open-datasets/CMIP6-scenarios-NA/Climate-Normals_bioclim");
 
-var temp_annual_mean = function(weekly) {
-  var weekly_means = weekly.map(function(image) {
-    return image.select(['tmax_max'])
-                .add(image.select(['tmin_min']))
-                .divide(2)
-                .rename(['temp_annual_mean'])
-                .copyProperties(image);
-  });
+  bioclim_normals = bioclim_normals
+    .filter(ee.Filter.inList('bioclim_variable', bioclim_variables))
+    .filter(ee.Filter.date('1990-01-01','2020-12-31'))
+    .toBands()
+    .rename(['TD_1990_2020_normals', 'MAT_1990_2020_normals']);
 
-  var temp_ann_mean = weekly_means.mean();
-
-  return temp_ann_mean;
-};
-exports.temp_annual_mean = temp_annual_mean;
-
-
-
-var temp_annual_range = function(weekly) {
-  var weekly_max = weekly.select(['tmax_max']).max();
-  var weekly_min = weekly.select(['tmin_min']).min();
-
-  return ee.Image(weekly_max.subtract(weekly_min)
-                            .rename(['temp_annual_range'])
-                            .copyProperties(weekly_max));
-};
-exports.temp_annual_range = temp_annual_range;
-
-
-
-var prcp_annual = function(weekly) {
-  var weekly_sum = weekly.select(['prcp_sum']).sum();
-
-  return ee.Image(weekly_sum.rename(['prcp_annual'])
-                            .copyProperties(weekly));
-};
-exports.prcp_annual = prcp_annual;
+  return bioclim_normals;
+}
+exports.climate_normals = climate_normals;
 
 
 
 var sampling_collection = function() {
   var years = ee.List.sequence(vars.min_year, vars.max_year);
   var weekly = weekly_daymet(daymet(), years, vars.weeks);
-  
+
   return ee.Image([
     temp_annual_mean(weekly),
     temp_annual_range(weekly),
