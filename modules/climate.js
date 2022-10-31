@@ -69,7 +69,7 @@ var climate_normals = function(bioclim_variables) {
     .rename(['TD_1990_2020_normals', 'MAT_1990_2020_normals']);
 
   return bioclim_normals;
-}
+};
 exports.climate_normals = climate_normals;
 
 
