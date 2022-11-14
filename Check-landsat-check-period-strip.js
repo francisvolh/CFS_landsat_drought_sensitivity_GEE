@@ -15,13 +15,13 @@ var geometry =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Compare time period for stripping
-Based on Testing: modules/get_landsat.js
+Based on Testing: modules/landsat.js
 Alec L. Robitaille
 */
 
 
 // Load modules
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var palettes = require('users/gena/packages:palettes');
 
 // geeblend
@@ -33,10 +33,10 @@ var max_year = min_year + 1;
 
 
 
-var indices_july = get_landsat.get_indices_greenest(min_year, max_year, '07-01', '07-31', geometry).select('NDVI').first();
-var indices_june_july = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '07-31', geometry).select('NDVI').first();
-var indices_june_aug = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '08-31', geometry).select('NDVI').first();
-var indices_june_sep = get_landsat.get_indices_greenest(min_year, max_year, '06-01', '09-30', geometry).select('NDVI').first();
+var indices_july = landsat.indices_greenest(min_year, max_year, '07-01', '07-31', geometry).select('NDVI').first();
+var indices_june_july = landsat.indices_greenest(min_year, max_year, '06-01', '07-31', geometry).select('NDVI').first();
+var indices_june_aug = landsat.indices_greenest(min_year, max_year, '06-01', '08-31', geometry).select('NDVI').first();
+var indices_june_sep = landsat.indices_greenest(min_year, max_year, '06-01', '09-30', geometry).select('NDVI').first();
 
 
 // Map
