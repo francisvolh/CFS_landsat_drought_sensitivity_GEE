@@ -4,7 +4,7 @@ Alec L. Robitaille
 
 
 // Load modules
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 
 var calc_vci = function(images) {
@@ -32,7 +32,7 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
 
 
 // Get indices collection
-var indices_col = get_landsat.get_indices(1985, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
+var indices_col = landsat.indices(1985, 2019, '06-15', '07-15', geometry, ['NDVI', 'EVI']);
 
 // Test: calc_vci
 // Usage: calc_vci(images)

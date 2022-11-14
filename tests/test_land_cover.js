@@ -22,7 +22,7 @@ Alec L. Robitaille
 
 // Load modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 
 
@@ -34,20 +34,20 @@ var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
 // Load collection
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
-var indices_green_col = get_landsat.get_indices_greenest(2008, 2012, '06-15', '07-15', geometry);
+var indices_green_col = landsat.indices_greenest(2008, 2012, '06-15', '07-15', geometry);
 Map.addLayer(lc, null, 'raw land cover', false);
 
 
-// Test get_lc_count_mask
-// Usage: get_lc_count_mask()
-var lc_count_mask = land_cover.get_lc_count_mask();
-Map.addLayer(lc_count_mask, null, 'land_cover.get_lc_count_mask()', false);
+// Test lc_count_mask
+// Usage: lc_count_mask()
+var lc_count_mask = land_cover.lc_count_mask();
+Map.addLayer(lc_count_mask, null, 'land_cover.lc_count_mask()', false);
 
 
 
-// Mask with get_lc_count_mask()
+// Mask with lc_count_mask()
 var img = ee.Image.random().clip(geometry).updateMask(lc_count_mask);
-Map.addLayer(img, {palette: '#7074ff'}, 'mask with get_lc_count_mask()');
+Map.addLayer(img, {palette: '#7074ff'}, 'mask with lc_count_mask()');
 
 
 
@@ -60,7 +60,7 @@ Map.addLayer(lc_transitions, null, 'land_cover.lc_transitions()', false);
 
 // Mask with lc_transitions()
 img = img.updateMask(lc_transitions);
-Map.addLayer(img, {palette: '#ff3939'}, 'mask with get_lc_count_mask() and lc_transitions()');
+Map.addLayer(img, {palette: '#ff3939'}, 'mask with lc_count_mask() and lc_transitions()');
 
 
 
@@ -73,11 +73,11 @@ Map.addLayer(masked_lc, null, 'land_cover.mask_classes(img)', false);
 
 
 
-// Test get_land_cover
-// Usage: get_land_cover()
-var lc_collection = land_cover.get_land_cover();
+// Test land_cover
+// Usage: land_cover()
+var lc_collection = land_cover.land_cover();
 print(lc_collection);
-Map.addLayer(lc_collection, null, 'land_cover.get_land_cover()', false);
+Map.addLayer(lc_collection, null, 'land_cover.land_cover()', false);
 
 
 
@@ -105,7 +105,7 @@ var mask_hetero_lc = land_cover.mask_heterogeneous(lc_2008);
 
 
 
-// Test get_homogeneous_land_cover
-// Usage: get_homogeneous_land_cover()
-// var lc_homogeneous = land_cover.get_homogeneous_land_cover();
+// Test homogeneous_land_cover
+// Usage: homogeneous_land_cover()
+// var lc_homogeneous = land_cover.homogeneous_land_cover();
 // print(lc_homogeneous);

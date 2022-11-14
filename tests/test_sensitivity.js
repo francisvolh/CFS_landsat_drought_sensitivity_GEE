@@ -14,7 +14,7 @@ var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
@@ -38,13 +38,13 @@ var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87,
 
 // Processing
 var monthly_daymet = daymet.monthly_daymet(years, months);
-var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
+var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 indices_col = mask.apply_mask(indices_col);
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
-var percentile_images = percentile.get_percentile(ante_means, percentile_list);
-var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
+var percentile_images = percentile.percentile(ante_means, percentile_list);
+var percentile_masks = percentile.percentile_masks(ante_means, percentile_images);
 var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
 

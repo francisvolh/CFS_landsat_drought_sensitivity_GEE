@@ -16,8 +16,8 @@ var ecoregions = eco.ecoregions;
 var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 
-// Testing: get_eco_bands();
-var ecoreg_bands = eco.get_eco_bands();
+// Testing: eco_bands();
+var ecoreg_bands = eco.eco_bands();
 
 
 print('Ecoregions:', ecoregions);

@@ -33,9 +33,9 @@ ante_means = ante_means.filter(ee.Filter.gte('year', 2013));
 
 
 
-// Test get_percentile
-// Usage: get_percentile(images, percentile_list)
-var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+// Test percentile
+// Usage: percentile(images, percentile_list)
+var percentile_images = percentile.percentile(ante_means, percentile_list);
 
 
 
@@ -48,9 +48,9 @@ Map.addLayer(percentile_images.select('CMI_ante3lag_mean_p85'), vars.cmi_viz, '2
 
 
 
-// Test get_percentile_masks
-// Usage: get_percentile_masks(antecedent_images, percentile_images)
-var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
+// Test percentile_masks
+// Usage: percentile_masks(antecedent_images, percentile_images)
+var percentile_masks = percentile.percentile_masks(ante_means, percentile_images);
 print('Percentile masks', percentile_masks);
 Map.addLayer(percentile_masks.select('CMI_ante3lag_wi_p15_p85').first(), {min:0, max:1}, '2013 CMI wi 15th-85th 3 year lag antecedent');
 Map.addLayer(percentile_masks.select('CMI_ante3lag_lte_p15').first(), {min:0, max:1}, '2013 CMI lte 15th 3 year lag antecedent');
