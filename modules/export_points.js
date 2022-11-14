@@ -40,7 +40,7 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
   drought_sens = drought_sens
     .mosaic()
     .addBands([ee.Image.pixelLonLat(), 
-               eco.get_eco_bands()]);
+               eco.eco_bands()]);
   
 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);

@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var daymet = require('users/robitalec/CFS:modules/daymet.js');
@@ -33,7 +33,7 @@ var main_greenest = function(output, region) {
 
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
+  var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
   // Apply mask
   indices_col = mask.apply_mask(indices_col);
@@ -46,8 +46,8 @@ var main_greenest = function(output, region) {
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
   ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
 
-  var percentile_images = percentile.get_percentile(ante_means, percentile_list);
-  var percentile_masks = percentile.get_percentile_masks(ante_means, percentile_images);
+  var percentile_images = percentile.percentile(ante_means, percentile_list);
+  var percentile_masks = percentile.percentile_masks(ante_means, percentile_images);
   var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
 
   if (output == 'relative sensitivity') {
@@ -84,7 +84,7 @@ var zzz_main = function(output, region,
 
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
+  var indices_col = landsat.indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
   // Mask land cover and fires
   indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
@@ -94,7 +94,7 @@ var zzz_main = function(output, region,
 
   // Define drought
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-  var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+  var percentile_images = percentile.percentile(ante_means, percentile_list);
   var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought
@@ -127,7 +127,7 @@ var zzz_main_cap = function(output, region,
 
   // Collections
   var monthly_daymet = daymet.monthly_daymet(years, months);
-  var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
+  var indices_col = landsat.indices(min_year, max_year, min_mm_dd, max_mm_dd, region.geometry(), index_list);
 
   // Mask land cover and fires
   indices_col = indices_col.map(land_cover.mask_land_cover_and_fire);
@@ -137,7 +137,7 @@ var zzz_main_cap = function(output, region,
 
   // Define drought
   var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-  var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+  var percentile_images = percentile.percentile(ante_means, percentile_list);
   var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
   // Split vegetation index into baseline/drought

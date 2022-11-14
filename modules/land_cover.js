@@ -60,13 +60,13 @@ exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 // Get land cover count mask mask
-var get_lc_count_mask = function() {
+var lc_count_mask = function() {
   var lc_masked = hermosilla_1984_2019
     .map(utils.set_year)
     .map(mask_classes);
   return lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
 };
-exports.get_lc_count_mask = get_lc_count_mask;
+exports.lc_count_mask = lc_count_mask;
 
 
 
@@ -115,15 +115,15 @@ exports.mask_classes = mask_classes;
 
 
 // Get land cover collection
-var get_land_cover = function() {
+var land_cover = function() {
 	return hermosilla_1984_2019_plus_2020.map(utils.set_year).map(mask_classes);
 };
-exports.get_land_cover = get_land_cover;
+exports.land_cover = land_cover;
 
 
 
 // (Local) get land cover collection
-var lc = get_land_cover();
+var lc = land_cover();
 
 // Mask image with land cover
 var mask_land_cover = function(img) {
@@ -162,21 +162,21 @@ exports.mask_heterogeneous = mask_heterogeneous;
 
 
 // Get homogeneous land cover collection
-var get_homogeneous_land_cover = function() {
+var homogeneous_land_cover = function() {
 	return hermosilla_1984_2019_plus_2020
     .map(utils.set_year)
     .map(mask_heterogeneous)
     .map(mask_classes);
 };
-exports.get_homogeneous_land_cover = get_homogeneous_land_cover;
+exports.homogeneous_land_cover = homogeneous_land_cover;
 
 
 
 // Get focal mean band
-var get_lc_focal_mean = function() {
+var lc_focal_mean = function() {
   return hermosilla_1984_2019_plus_2020
     .reduce(ee.Reducer.mode())
     .focalMean(n_pixels, 'square', 'pixels')
     .updateMask(lc_and_fire.reduce(ee.Reducer.mode()).mask());
 };
-exports.get_lc_focal_mean = get_lc_focal_mean;
+exports.lc_focal_mean = lc_focal_mean;

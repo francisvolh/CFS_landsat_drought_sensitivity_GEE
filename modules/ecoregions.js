@@ -14,11 +14,11 @@ exports.non_arctic_ecoregions = non_arctic_ecoregions;
 
 
 
-var get_eco_bands = function() {
+var eco_bands = function() {
 	return ee.Image([
     ecoregions.reduceToImage(['ECOPROV'], ee.Reducer.first()).rename('ecoprovince'),
     ecoregions.reduceToImage(['ECOREGI'], ee.Reducer.first()).rename('ecoregion'),
     ecoregions.reduceToImage(['ECOZONE'], ee.Reducer.first()).rename('ecozone')
   ]);
 };
-exports.get_eco_bands = get_eco_bands;
+exports.eco_bands = eco_bands;

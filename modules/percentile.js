@@ -6,16 +6,16 @@ Alec L. Robitaille
 
 
 // Get percentile
-var get_percentile = function(images, percentile_list) {
+var percentile = function(images, percentile_list) {
 	return images.reduce(ee.Reducer.percentile(percentile_list));
 };
-exports.get_percentile = get_percentile;
+exports.percentile = percentile;
 
 
 
 // Compare percentile images for each antecedent period to each image's antecedent means
 // Cap at 85th percentile
-var get_percentile_masks = function(ante_images, percentile_images) {
+var percentile_masks = function(ante_images, percentile_images) {
 	var percentile_masks = ante_images.map(function(ante_img) {
     var out = ee.Image([
       ante_img.select('CMI_ante3mo_mean').lte(percentile_images.select('CMI_ante3mo_mean_p15'))
@@ -55,7 +55,7 @@ var get_percentile_masks = function(ante_images, percentile_images) {
 	});
 	return percentile_masks;
 };
-exports.get_percentile_masks = get_percentile_masks;
+exports.percentile_masks = percentile_masks;
 
 
 
