@@ -1,11 +1,11 @@
 /*
-Testing: modules/get_landsat.js
+Testing: modules/landsat.js
 Alec L. Robitaille
 */
 
 
 // Load modules
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Set variables
 var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
@@ -20,13 +20,13 @@ var max_mm_dd = '08-15';
 
 
 // Test indices collection
-// Usage: get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
-var indices_col = get_landsat.zzz_get_indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
+// Usage: landsat.indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_col = landsat.zzz_indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI', 'EVI']);
 print(indices_col);
 
 // Test indices collection
-// Usage: get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region)
-var indices_green_col = get_landsat.get_indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+// Usage: landsat.indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var indices_green_col = landsat.indices_greenest(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 print(indices_green_col);
 
 

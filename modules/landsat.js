@@ -23,7 +23,7 @@ var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 
 
 // Get indices, qualityMosaic on NDVI
-var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
+var indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   var years = ee.List.sequence(min_year, max_year).getInfo();
   
   return ee.ImageCollection(years.map(function(yr) {
@@ -49,12 +49,12 @@ var get_indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, re
   })).map(utils.set_year)
      .map(utils.add_year_band);
 };
-exports.get_indices_greenest = get_indices_greenest;
+exports.indices_greenest = indices_greenest;
 
 
 // ARCHIVE ---------------------------------------------------------------------------------------
 // Get collection of Landsat SR bands
-var zzz_get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
+var zzz_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   return(ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask)
               .map(utils.set_year)
               .map(function(img) {
@@ -63,10 +63,10 @@ var zzz_get_SR = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
                           .copyProperties(img);
               }));
 };
-exports.zzz_get_SR = zzz_get_SR;
+exports.zzz_SR = zzz_SR;
 
 // Get collection of spectral indices
-var zzz_get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
+var zzz_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region, indices) {
 	var collection = ltgee.buildSRcollection(min_year, max_year, min_mm_dd, max_mm_dd, region, mask);
 
 	return(ltgee.transformSRcollection(collection, indices)
@@ -78,4 +78,4 @@ var zzz_get_indices = function(min_year, max_year, min_mm_dd, max_mm_dd, region,
                           .copyProperties(img);
               }));
 };
-exports.zzz_get_indices = zzz_get_indices;
+exports.zzz_indices = zzz_indices;
