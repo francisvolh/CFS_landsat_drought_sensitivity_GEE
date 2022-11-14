@@ -15,7 +15,7 @@ var geometry =
           [-128.65907556424258, 68.27919277463084]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Load modules
-var climate = require('users/robitalec/CFS:modules/get_long_term_climate.js');
+var climate = require('users/robitalec/CFS:modules/long_term_climate.js');
 
 // Set variables
 var years = ee.List.sequence(1985, 2020);
@@ -29,8 +29,8 @@ ecoregions = ecoregions.filterBounds(geometry)
   
   
 
-// get_long_term_climate
-var long_climate = climate.get_long_term_climate(years)
+// long_term_climate
+var long_climate = climate.long_term_climate(years)
     .select(['tmean_mean', 'prcp_mean']);
 
 // var sample = ecoregions.map(function(ft) {

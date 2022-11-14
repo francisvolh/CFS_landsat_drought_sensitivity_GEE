@@ -15,13 +15,13 @@ var geometry =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Fixing Landsat striping
-Based on testing: modules/get_landsat.js
+Based on testing: modules/landsat.js
 Alec L. Robitaille
 */
 
 
 // Load modules
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Set variables
 var min_year = 1985;
@@ -31,13 +31,13 @@ var max_mm_dd = '08-15';
 
 
 // Test SR collection
-// Usage: get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
-var sr_col = get_landsat.get_SR(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
+// Usage: landsat.SR(min_year, max_year, min_mm_dd, max_mm_dd, region)
+var sr_col = landsat.SR(min_year, max_year, min_mm_dd, max_mm_dd, geometry);
 print(sr_col);
 
 // Test indices collection
-// Usage: get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
-var indices_col = get_landsat.get_indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI']);
+// Usage: landsat.indices(min_year, max_year, min_mm_dd, max_mm_dd, region, indices)
+var indices_col = landsat.indices(min_year, max_year, min_mm_dd, max_mm_dd, geometry, ['NDVI']);
 print(indices_col);
 
 // Map

@@ -2,8 +2,8 @@
 var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
 
 // -- Load modules
-// Load get_landsat module
-var get_landsat = require('users/robitalec/CFS:modules/get_landsat.js');
+// Load landsat module
+var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Load land cover module
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
@@ -17,8 +17,8 @@ var stratified = require('users/robitalec/CFS:modules/stratified.js');
 // Load CMI module
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 
-// Load get_daymet module
-var get_daymet = require('users/robitalec/CFS:modules/get_daymet.js');
+// Load daymet module
+var daymet = require('users/robitalec/CFS:modules/daymet.js');
 
 // Load percentile module
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
@@ -44,18 +44,18 @@ var percentile_list = [10, 20, 30];
 
 // -- Loop over regions, export task for each
 // Land cover
-var lc = land_cover.get_land_cover();
+var lc = land_cover.land_cover();
 lc = lc.map(fire.mask_five_year_fires);
 // TODO: fix this flex
 lc = lc.filter(ee.Filter.eq('year', 2005)).first();
 
 // Daymet
-var monthly_daymet = get_daymet.get_monthly_daymet(years, months);
+var monthly_daymet = daymet.monthly_daymet(years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
-var percentile_images = percentile.get_percentile(ante_means, percentile_list);
+var percentile_images = percentile.percentile(ante_means, percentile_list);
 var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 
 
@@ -64,7 +64,7 @@ var lt_percent = percentile.lt_percentile(ante_means, percentile_images);
 // var eco_ids = ecoregions.filterBounds(geometry).limit(2).aggregate_array('ECOREGI')
 
 var eco = ecoregions.first()
-var indices_col = get_landsat.get_indices(min_year, max_year, '07-01', '07-31', eco.geometry(), ['NDVI', 'EVI', 'NBR']);
+var indices_col = landsat.indices(min_year, max_year, '07-01', '07-31', eco.geometry(), ['NDVI', 'EVI', 'NBR']);
 var join = ee.Join.inner();
 
 indices_col = indices_col.map(function(img) {return img.set('system:time_start', ee.Date.fromYMD(img.get('year'), 07, 01).millis())})
