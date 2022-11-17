@@ -29,3 +29,21 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
   Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
 exports.export_points_asset = export_points_asset;
+
+
+// Export points by tile as asset
+var export_points_by_tile_asset = function(tiles, n_pts) {
+  var points = tiles.map(function(tile) {
+    return tile.sample({
+      scale: 30,
+      factor: 0.01,
+      geometries: true
+    }); 
+  }).flatten();
+
+  var today = new Date().toJSON().slice(0, 10);
+  var filename = today + '_tiles_sampling_points_1percent';
+  Export.table.toAsset(points, filename, 'CFS/' + filename);
+};
+exports.export_points_by_tile_asset = export_points_by_tile_asset;
+
