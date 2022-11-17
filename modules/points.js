@@ -42,7 +42,7 @@ var export_points_by_tile_asset = function(tiles, factor) {
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
-  var filename = today + '_tiles_sampling_points_' + factor * 100 + 'percent';
+  var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
   Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
 exports.export_points_by_tile_asset = export_points_by_tile_asset;
