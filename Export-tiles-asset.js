@@ -65,8 +65,7 @@ var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
 var scale = 30;
 
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada')
-  .filterBounds(region);
+var ecoregions = eco.non_arctic_ecoregions;
 
 
 
