@@ -33,36 +33,32 @@ points.export_points_by_tile_asset(tiles, factor);
 
 
 // Data -----------------------------------------------------------------------
-// Load ecoregions
-var ecoregions = eco.ecoregions;
-ecoregions = ecoregions.filterBounds(region);
-
 // Load points
-var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
+// var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
 
 
 
-// Sample ---------------------------------------------------------------------
-// Sensitivity
-export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
+// // Sample ---------------------------------------------------------------------
+// // Sensitivity
+// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
 
-// Soil
-export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
+// // Soil
+// export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
 
-// Vegetation
-export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
-
-
-
-// Hydro
-export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
-
-// Topo
-export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
-
-
-// Climate
+// // Vegetation
+// export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
 
 
 
-// Topo
+// // Hydro
+// export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
+
+// // Topo
+// export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
+
+
+// // Climate
+
+
+
+// // Topo
