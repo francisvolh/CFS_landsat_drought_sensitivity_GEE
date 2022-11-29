@@ -27,7 +27,7 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 
 // Points ---------------------------------------------------------------------
-var factor = 0.01;
+var factor = 0.001;
 var dir = 'users/robitalec/CFS/2022-11-19';
 var tiles = assets.collect_img_assets_in_dir(dir);
 print(tiles);
