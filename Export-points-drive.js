@@ -32,13 +32,6 @@ var dir = 'users/robitalec/CFS/2022-11-19';
 var tiles = assets.collect_img_assets_in_dir(dir);
 // points.export_points_by_tile_asset(tiles, factor);
 
-var points = tiles.map(function(tile) {
-  return tile.sample({
-    scale: 30,
-    factor: factor,
-    geometries: true
-  }); 
-}).flatten();
 
 // Data -----------------------------------------------------------------------
 // Load points
