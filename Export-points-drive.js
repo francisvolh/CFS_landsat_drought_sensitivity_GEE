@@ -11,13 +11,24 @@ Alec L. Robitaille
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
-
+var assets = require('users/robitalec/CFS:modules/assets.js');
 
 
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
 var region = vars.yukon;
 var region_name = 'Yukon';
+
+// Load ecoregions
+var non_arctic_ecoregions = eco.non_arctic_ecoregions;
+
+
+
+// Points ---------------------------------------------------------------------
+var factor = 0.01;
+var dir = 'users/robitalec/CFS/2022-11-29';
+var tiles = assets.collect_img_assets_in_dir(dir);
+points.export_points_by_tile_asset(tiles, factor);
 
 
 
@@ -41,14 +52,17 @@ export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
 // Vegetation
 export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
 
+
+
 // Hydro
 export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
 
 // Topo
 export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
 
+
 // Climate
-export_points.export_climate(points, 'sample-climate-' + region_name, 'Exports');
 
 
 
+// Topo
