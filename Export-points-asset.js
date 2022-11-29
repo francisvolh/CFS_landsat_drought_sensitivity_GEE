@@ -15,16 +15,13 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // Variables ------------------------------------------------------------------
-var drive_folder = 'Exports';
-var region = vars.yukon;
-var region_name = 'Yukon';
+var asset_folder = '2022-11-29';
 
 
 
 // Data -----------------------------------------------------------------------
 // Load ecoregions
-var ecoregions = eco.ecoregions;
-ecoregions = ecoregions.filterBounds(region);
+var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 // Load points
 var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
