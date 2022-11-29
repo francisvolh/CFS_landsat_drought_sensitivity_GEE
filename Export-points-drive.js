@@ -12,7 +12,7 @@ var export_points = require('users/robitalec/CFS:modules/export_points.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var assets = require('users/robitalec/CFS:modules/assets.js');
-var points = require('users/robitalec/CFS:modules/points.js')
+var points = require('users/robitalec/CFS:modules/points.js');
 
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
