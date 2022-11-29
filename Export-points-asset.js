@@ -27,25 +27,31 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
 
 
+// Points ---------------------------------------------------------------------
+var factor = 0.01;
+var dir = 'users/robitalec/CFS/2022-07-28';
+var tiles = assets.collect_img_assets_in_dir(dir);
+points.export_points_by_tile_asset(tiles, factor);
+
 
 // Sample ---------------------------------------------------------------------
 // Sensitivity
-export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
+// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
 
-// Soil
-export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
+// // Soil
+// export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
 
-// Vegetation
-export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
+// // Vegetation
+// export_points.export_vegetation(points, 'sample-vegetation-' + region_name, 'Exports');
 
-// Hydro
-export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
+// // Hydro
+// export_points.export_hydro(points, 'sample-hydro-' + region_name, drive_folder);
 
-// Topo
-export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
+// // Topo
+// export_points.export_topo(points, 'sample-topo-' + region_name, 'Exports');
 
-// Climate
-export_points.export_climate(points, 'sample-climate-' + region_name, 'Exports');
+// // Climate
+// export_points.export_climate(points, 'sample-climate-' + region_name, 'Exports');
 
 
 
