@@ -14,6 +14,8 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var assets = require('users/robitalec/CFS:modules/assets.js');
 var points = require('users/robitalec/CFS:modules/points.js');
 
+
+
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
 var region = vars.yukon;
