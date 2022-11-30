@@ -54,7 +54,6 @@ export_points.export_soil(points, 'sample-soil-' + points_name, 'Exports');
 export_points.export_vegetation(points, 'sample-vegetation-' + points_name, 'Exports');
 
 
-
 // Hydro
 export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
 
