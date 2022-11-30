@@ -46,7 +46,7 @@ var points_name = 'tiles_point1percent_0_50';
 
 // // Sample ---------------------------------------------------------------------
 // // Sensitivity
-export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
 
 // // Soil
 // export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
