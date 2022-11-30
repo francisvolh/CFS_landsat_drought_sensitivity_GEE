@@ -61,6 +61,3 @@ export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 
 // Climate
 
-
-
-// Topo
