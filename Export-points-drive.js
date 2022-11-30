@@ -38,8 +38,8 @@ points.export_points_by_tile_asset(tiles, factor);
 // var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_0_50');
 // var points_name = 'tiles_point1percent_0_50';
 
-var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_50_97');
-var points_name = 'tiles_point1percent_50_97';
+var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_0pt01');
+var points_name = 'tiles_0pt01';
 
 // Sample ---------------------------------------------------------------------
 // Sensitivity
