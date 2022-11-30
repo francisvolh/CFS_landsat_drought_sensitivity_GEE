@@ -19,7 +19,6 @@ var points = require('users/robitalec/CFS:modules/points.js');
 // Variables ------------------------------------------------------------------
 var drive_folder = 'Exports';
 var region = vars.yukon;
-var region_name = 'Yukon';
 
 // Load ecoregions
 var non_arctic_ecoregions = eco.non_arctic_ecoregions;
@@ -48,23 +47,23 @@ var points_name = 'tiles_point1percent_0_50';
 // Sensitivity
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
 
-// // Soil
-// export_points.export_soil(points, 'sample-soil-' + points_name, 'Exports');
+// Soil
+export_points.export_soil(points, 'sample-soil-' + points_name, 'Exports');
 
-// // Vegetation
-// export_points.export_vegetation(points, 'sample-vegetation-' + points_name, 'Exports');
-
-
-
-// // Hydro
-// export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
-
-// // Topo
-// export_points.export_topo(points, 'sample-topo-' + points_name, 'Exports');
-
-
-// // Climate
+// Vegetation
+export_points.export_vegetation(points, 'sample-vegetation-' + points_name, 'Exports');
 
 
 
-// // Topo
+// Hydro
+export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
+
+// Topo
+export_points.export_topo(points, 'sample-topo-' + points_name, 'Exports');
+
+
+// Climate
+
+
+
+// Topo
