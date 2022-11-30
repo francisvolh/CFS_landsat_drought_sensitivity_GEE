@@ -39,12 +39,14 @@ print(tiles);
 // Data -----------------------------------------------------------------------
 // Load points
 var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_0_50');
-// var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_50_97');
+var name = 'tiles_point1percent_0_50'
 
+// var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_50_97');
+var name = 'tiles_point1percent_50_97'
 
 // // Sample ---------------------------------------------------------------------
 // // Sensitivity
-// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + region_name, drive_folder);
 
 // // Soil
 // export_points.export_soil(points, 'sample-soil-' + region_name, 'Exports');
