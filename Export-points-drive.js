@@ -38,8 +38,8 @@ print(tiles);
 
 // Data -----------------------------------------------------------------------
 // Load points
-// var points = ee.FeatureCollection('users/robitalec/CFS/2022-07-29_Yukon_sampling_points_n250');
-
+var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_0_50');
+var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-29_sampling_points_tiles_point1percent_50_97');
 
 
 // // Sample ---------------------------------------------------------------------
