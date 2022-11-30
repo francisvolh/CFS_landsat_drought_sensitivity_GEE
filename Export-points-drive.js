@@ -32,7 +32,7 @@ var dir = 'users/robitalec/CFS/2022-11-19';
 var tiles = assets.collect_img_assets_in_dir(dir);
 print(tiles);
 // tiles = tiles.limit(50, null, true);
-tiles = tiles.limit(43, null, false);
+// tiles = tiles.limit(43, null, false);
 // points.export_points_by_tile_asset(tiles, factor);
 
 
