@@ -46,17 +46,17 @@ var points_name = 'tiles_0pt01';
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
 
 // Soil
-// export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
+export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
 
 // Vegetation
-// export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder);
+export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder);
 
 
 // Hydro
-// export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
+export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
 
 // Topo
-// export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
+export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 
 
 // Climate
