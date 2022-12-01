@@ -22,11 +22,11 @@ var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
 	
   var sampled = points.map(function(pt) {
-    return col.reduceRegion({
+    return ee.Feature(col.reduceRegion({
       reducer: ee.Reducer.mean(), 
       geometry: pt, 
       scale: 500
-    });
+    }));
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
