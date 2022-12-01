@@ -24,7 +24,7 @@ var export_hydro = function(points, drive_name, drive_folder) {
   var sampled = points.map(function(pt) {
     return ee.Feature(pt.geometry(), col.reduceRegion({
       reducer: ee.Reducer.mean(), 
-      geometry: pt, 
+      geometry: pt.geometry(), 
       scale: 500
     }));
   }).flatten();
