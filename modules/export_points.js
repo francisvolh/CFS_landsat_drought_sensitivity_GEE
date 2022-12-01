@@ -20,7 +20,6 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 // --- Sample -----------------------------------------------------------------
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
-	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	
   var sampled = points.map(function(pt) {
     col.reduceRegion({
