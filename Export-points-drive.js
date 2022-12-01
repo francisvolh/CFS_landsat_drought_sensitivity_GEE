@@ -60,4 +60,4 @@ export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 
 
 // Climate
-// TODO: add climate sample
+export_points.export_climaate(points, 'sample-climate-' + points_name, drive_folder);
