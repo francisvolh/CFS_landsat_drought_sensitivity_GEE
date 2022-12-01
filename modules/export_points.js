@@ -30,7 +30,7 @@ var export_hydro = function(points, drive_name, drive_folder) {
   }));//.flatten();
 
   var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+	Export.table.toDrive(sampled, today + '_' + drive_name, drive_folder);
 };
 exports.export_hydro = export_hydro;
 
