@@ -21,13 +21,13 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
 	
-  var sampled = points.map(function(pt) {
+  var sampled = ee.FeatureCollection(points.map(function(pt) {
     return ee.Feature(pt.geometry(), col.reduceRegion({
       reducer: ee.Reducer.mean(), 
       geometry: pt.geometry(), 
       scale: 500
     }));
-  });//.flatten();
+  }));//.flatten();
 
   var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
