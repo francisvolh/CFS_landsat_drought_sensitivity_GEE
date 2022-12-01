@@ -26,7 +26,7 @@ var export_hydro = function(points, drive_name, drive_folder) {
       reducer: ee.Reducer.mean(), 
       geometry: pt, 
       scale: 500
-    }).copyProperties(pt);
+    });
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
