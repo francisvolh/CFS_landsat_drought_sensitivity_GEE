@@ -51,13 +51,11 @@ export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
 // Vegetation
 export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder);
 
-
 // Hydro
 export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
 
 // Topo
 export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
-
 
 // Climate
 export_points.export_climaate(points, 'sample-climate-' + points_name, drive_folder);
