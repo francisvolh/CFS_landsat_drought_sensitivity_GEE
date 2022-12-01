@@ -1,10 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[-168.54997439051382, 71.83257848283961],
-          [-168.54997439051382, 38.21307697867719],
-          [-79.25309939051384, 38.21307697867719],
-          [-79.25309939051384, 71.83257848283961]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Get hydro variables
 Alec L. Robitaille
