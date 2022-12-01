@@ -21,6 +21,27 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
 	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
+	
+  var sampled = points.map(function(pt) {
+	  
+	})
+	
+	countriesTable.map(function(feature) {
+  return imagery.map(function(image) {
+    return ee.Feature(feature.geometry().centroid(100),
+        image.reduceRegion({
+          reducer: ee.Reducer.mean(),
+          geometry: feature.geometry(),
+          scale: 500
+        })).set({
+          time: image.date().millis(),
+          date: image.date().format()
+        }).copyProperties(feature);
+  });
+}).flatten();
+
+	
+	
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
