@@ -42,9 +42,6 @@ var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-30_sampling_point
 var points_name = 'tiles_0pt01';
 
 // Sample ---------------------------------------------------------------------
-// Sensitivity
-// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
-
 // Soil
 export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
 
@@ -59,3 +56,6 @@ export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 
 // Climate
 export_points.export_climaate(points, 'sample-climate-' + points_name, drive_folder);
+
+// Sensitivity
+// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
