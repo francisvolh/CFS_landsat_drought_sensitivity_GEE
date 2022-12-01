@@ -55,7 +55,7 @@ export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
 export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 
 // Climate
-export_points.export_climaate(points, 'sample-climate-' + points_name, drive_folder);
+export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder);
 
 // Sensitivity
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
