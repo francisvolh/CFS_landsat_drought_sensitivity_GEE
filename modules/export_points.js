@@ -89,7 +89,6 @@ exports.export_topo = export_topo;
 
 
 var export_climate = function(points, drive_name, drive_folder) {
-  console.log('warning: using asset collection');
   var col = climate.sampling_collection();
 	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
