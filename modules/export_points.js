@@ -23,26 +23,14 @@ var export_hydro = function(points, drive_name, drive_folder) {
 	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	
   var sampled = points.map(function(pt) {
-	  
-	})
-	
-	countriesTable.map(function(feature) {
-  return imagery.map(function(image) {
-    return ee.Feature(feature.geometry().centroid(100),
-        image.reduceRegion({
-          reducer: ee.Reducer.mean(),
-          geometry: feature.geometry(),
-          scale: 500
-        })).set({
-          time: image.date().millis(),
-          date: image.date().format()
-        }).copyProperties(feature);
-  });
-}).flatten();
+    col.reduceRegion({
+      reducer: ee.Reducer.mean(), 
+      geometry: pt, 
+      scale: 500
+    }).copyProperties(pt);
+  }).flatten();
 
-	
-	
-	var today = new Date().toJSON().slice(0, 10);
+  var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
 exports.export_hydro = export_hydro;
