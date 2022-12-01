@@ -41,6 +41,8 @@ print(tiles);
 var points = ee.FeatureCollection('users/robitalec/CFS/2022-11-30_sampling_points_tiles_0pt01percent');
 var points_name = 'tiles_0pt01';
 
+
+
 // Sample ---------------------------------------------------------------------
 // Soil
 export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
