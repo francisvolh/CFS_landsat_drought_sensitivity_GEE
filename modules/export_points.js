@@ -27,7 +27,7 @@ var export_hydro = function(points, drive_name, drive_folder) {
       geometry: pt.geometry(), 
       scale: 500
     }));
-  }));//.flatten();
+  }));
 
   var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(sampled, today + '_' + drive_name, drive_folder);
