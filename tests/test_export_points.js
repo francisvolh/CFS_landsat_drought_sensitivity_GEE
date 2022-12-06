@@ -59,3 +59,9 @@ export_points.export_topo(points, 'test-export-topo', 'Exports');
 // Test export_export_climate
 // Usage: export_climate(points, drive_name, drive_folder)
 export_points.export_climate(points, 'test-export-climate', 'Exports');
+
+
+
+// Test export_lc_and_ecoreg
+// Usage: export_lc_and_ecoreg(points, drive_name, drive_folder)
+export_points.export_lc_and_ecoreg(points, 'test-export-lc-ecoreg', 'Exports');
