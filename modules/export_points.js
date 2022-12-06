@@ -29,7 +29,7 @@ var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
   
   var ecoreg_bands = eco.eco_bands();
   
-  var sample_col = ecoreg_bands.addBands(lc);
+  var sample_col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
 
   var sampled = sample_col.reduceRegions({
     collection: points,
