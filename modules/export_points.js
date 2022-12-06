@@ -18,6 +18,32 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 
 
 // --- Sample -----------------------------------------------------------------
+var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
+  var lc = land_cover.hermosilla_1984_2019
+    .map(utils.set_year);
+  
+  lc = mask.apply_mask(lc)
+    .mode()
+    .rename('land_cover');
+  
+  var ecoreg_bands = eco.eco_bands();
+  
+  var sample_col = ecoreg_bands.addBands(lc);
+
+  var sampled = sample_col.reduceRegions({
+    collection: points,
+    reducer: ee.Reducer.mean(),
+    scale: 30
+  });
+
+  var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(sampled, today + '_' + drive_name, drive_folder);
+};
+exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
+
+
+
+
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
 	
