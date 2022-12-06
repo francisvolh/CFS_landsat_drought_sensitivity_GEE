@@ -15,6 +15,7 @@ var soil = require('users/robitalec/CFS:modules/soil.js');
 var topo = require('users/robitalec/CFS:modules/topo.js');
 var climate = require('users/robitalec/CFS:modules/climate.js');
 var utils = require('users/robitalec/CFS:modules/utils.js');
+var mask = require('users/robitalec/CFS:modules/mask.js');
 
 
 // --- Sample -----------------------------------------------------------------
