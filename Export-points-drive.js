@@ -62,5 +62,9 @@ export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
 // Climate
 export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder);
 
+// Lc, ecoreg, lon lat
+export_points.export_lc_and_ecoreg(points, 'sample-lc-ecoreg-' + points_name, drive_folder);
+
+
 // Sensitivity
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
