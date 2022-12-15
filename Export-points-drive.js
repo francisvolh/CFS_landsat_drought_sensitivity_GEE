@@ -26,11 +26,11 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 // Points ---------------------------------------------------------------------
 var factor = 0.0001;
 var dir = 'users/robitalec/CFS/2022-11-19';
-var tiles = assets.collect_img_assets_in_dir(dir);
-print(tiles);
-Map.addLayer(ee.FeatureCollection(tiles.map(function(tile){ 
-  return ee.Feature(ee.Geometry(tile.get('system:footprint')))
-})))
+// var tiles = assets.collect_img_assets_in_dir(dir);
+// print(tiles);
+// Map.addLayer(ee.FeatureCollection(tiles.map(function(tile){ 
+//   return ee.Feature(ee.Geometry(tile.get('system:footprint')))
+// })))
 // tiles = tiles.limit(50, null, true);
 // tiles = tiles.limit(43, null, false);
 // points.export_points_by_tile_asset(tiles, factor);
