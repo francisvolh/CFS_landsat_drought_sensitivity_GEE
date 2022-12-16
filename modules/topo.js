@@ -7,10 +7,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-142.37792536450635, 71.18411145276875],
-          [-142.37792536450635, 42.4151185743115],
-          [-51.586909739506346, 42.4151185743115],
-          [-51.586909739506346, 71.18411145276875]]], null, false);
+        [[[-141.36105414955242, 69.55317367824084],
+          [-141.36105414955242, 45.00255453918248],
+          [-49.77902289955242, 45.00255453918248],
+          [-49.77902289955242, 69.55317367824084]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Topo
@@ -83,11 +83,6 @@ exports.chili_srtm = chili_srtm;
 // https://developers.google.com/earth-engine/datasets/catalog/MERIT_DEM_v1_0_3
 // https://developers.google.com/earth-engine/datasets/catalog/JAXA_ALOS_AW3D30_V3_2
 // CHILI above is based on older version of JAXA ALOS DEM
-var geometry = ee.Geometry.Polygon(
-        [[[-142.377, 71.184],
-          [-142.377, 48.450],
-          [-99.0478, 48.450],
-          [-99.0478, 71.184]]]);
 var dem = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
   .filterBounds(geometry)
   .select(['DSM'])
