@@ -42,13 +42,6 @@ var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 
 
 // Get HAND
-var geometry =
-    ee.Geometry.Polygon(
-        [[[-142.37792536450635, 71.18411145276875],
-          [-142.37792536450635, 42.4151185743115],
-          [-51.586909739506346, 42.4151185743115],
-          [-51.586909739506346, 71.18411145276875]]], null, false);
-
 var hand = function(resolution, threshold) {
   if (resolution == 30 & threshold == 100) {
     // Note: image collection vs image
