@@ -33,9 +33,3 @@ var lc_p = palettes.crameri.bamako[25];
 
 Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc');
 Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity');
-
-
-// Notes
-// Relationship between distance to climate station/consider daymet inaccuracies
-// Haida Gwaii / 3 month NDVI
-// Cuts
