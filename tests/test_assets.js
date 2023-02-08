@@ -23,7 +23,7 @@ print(assets.list_assets_in_dir(dir));
 
 // Test delete_assets_in_dir
 // Usage: delete_assets_in_dir(dir);
-assets.delete_assets_in_dir(dir);
+// assets.delete_assets_in_dir(dir);
 
 
 // Test collect_img_assets_in_dir
