@@ -25,27 +25,26 @@ var mask = ['cloud', 'shadow', 'snow', 'water', 'waterplus'];
 // Get indices, qualityMosaic on NDVI
 var indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region) {
   var years = ee.List.sequence(min_year, max_year).getInfo();
-  
+
   return ee.ImageCollection(years.map(function(yr) {
     // Get and scale Landsat collection
     var collection = ltgee.getCombinedSRcollection(yr, min_mm_dd, max_mm_dd, region, mask);
-    
-    
-    // Calculate NDVI, NBR
+
+
+    // Calculate NDVI
     // Mask invalid pixels
     return collection.map(function(img) {
       img = img.addBands([
-        img.normalizedDifference(['B4', 'B3']).rename('NDVI'),  
-        img.normalizedDifference(['B4', 'B7']).rename('NBR')  
+        img.normalizedDifference(['B4', 'B3']).rename('NDVI')
       ]);
-      
+
       return img.mask(img.select('B1').neq(0)
                          .and(img.select('B2').neq(0))
                          .and(img.select('B3').neq(0))
                          .and(img.select('NDVI').lt(0.98)));
       }).qualityMosaic('NDVI')
         .set('system:time_start', ee.Date.fromYMD(yr, 07, 15).millis());
-    
+
   })).map(utils.set_year)
      .map(utils.add_year_band);
 };
