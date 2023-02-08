@@ -59,7 +59,6 @@ var min_year =  vars.min_year;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
-var region = vars.yukon;
 
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today;
