@@ -11,7 +11,7 @@ var assets = require('users/robitalec/CFS:modules/assets.js');
 
 
 // Variables
-var dir = 'users/robitalec/CFS/2022-07-28';
+var dir = 'users/robitalec/CFS/2022-11-19';
 
 
 
