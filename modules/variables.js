@@ -23,7 +23,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Variables
-exports.index_list = ['NDVI', 'NBR'];
+exports.index_list = ['NDVI'];
 exports.ante_list = ['3mo', '12mo', '3yr', '1lag', '2lag', '3lag'];
 exports.min_year_landsat = 1985;
 exports.min_year_daymet = 1980;
