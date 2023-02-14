@@ -125,7 +125,6 @@ var sampling_collection = function() {
   hand(30, 100),
   hand(90, 1000),
   chili_alos,
-  landforms_alos,
   topo_diversity_alos,
   tagee_terrain()
   ]);
