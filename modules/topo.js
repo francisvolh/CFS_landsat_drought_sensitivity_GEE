@@ -116,6 +116,8 @@ var tagee_viz = function(terrain, layer, region) {
     'elevation'
   );
 };
+exports.tagee_terrain = tagee_terrain;
+
 
 // Landforms
 // Bad mask instead of gaps filled with values
