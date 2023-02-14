@@ -78,10 +78,10 @@ exports.chili_srtm = chili_srtm;
 // https://developers.google.com/earth-engine/datasets/catalog/MERIT_DEM_v1_0_3
 // https://developers.google.com/earth-engine/datasets/catalog/JAXA_ALOS_AW3D30_V3_2
 // CHILI above is based on older version of JAXA ALOS DEM
-var dem = ee.Image("MERIT/DEM/v1_0_3")
-  // .filterBounds(geometry)
-  // .select(['DSM'])
-  // .mosaic();
+var dem = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
+  .filterBounds(geometry)
+  .select(['DSM'])
+  .mosaic();
 
 // TAGEE
 var smooth_dem = function(dem) {
