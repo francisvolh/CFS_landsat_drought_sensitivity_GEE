@@ -78,10 +78,11 @@ exports.chili_srtm = chili_srtm;
 // https://developers.google.com/earth-engine/datasets/catalog/MERIT_DEM_v1_0_3
 // var dem = ee.Image("MERIT/DEM/v1_0_3");
 
-var dem = ee.ImageCollection("projects/sat-io/open-datasets/GLO-30")
-dem = dem
-  .filterBounds(geometry)
-  .mosaic().setDefaultProjection(dem.first().projection())
+var dem = ee.Image('projects/sat-io/open-datasets/ASTER/GDEM');
+// var dem = ee.ImageCollection("projects/sat-io/open-datasets/GLO-30")
+// dem = dem
+//   .filterBounds(geometry)
+//   .mosaic().setDefaultProjection(dem.first().projection())
 
 // TAGEE
 var smooth_dem = function(dem) {
