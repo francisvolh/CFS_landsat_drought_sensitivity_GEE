@@ -49,6 +49,19 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 // Test TAGEE
 var terr_tagee = topo.tagee_terrain();
 print('Terrain TAGEE', terr_tagee);
+Map.addLayer(terr_tagee.select(['Elevation']), null, 'Terrain TAGEE: Elevation');
+Map.addLayer(terr_tagee.select(['Slope']), null, 'Terrain TAGEE: Slope');
+Map.addLayer(terr_tagee.select(['Aspect']), null, 'Terrain TAGEE: Aspect');
+Map.addLayer(terr_tagee.select(['Hillshade']), null, 'Terrain TAGEE: Hillshade');
+Map.addLayer(terr_tagee.select(['Northness']), null, 'Terrain TAGEE: Northness');
+Map.addLayer(terr_tagee.select(['Eastness']), null, 'Terrain TAGEE: Eastness');
+Map.addLayer(terr_tagee.select(['HorizontalCurvature']), null, 'Terrain TAGEE: HorizontalCurvature');
+Map.addLayer(terr_tagee.select(['VerticalCurvature']), null, 'Terrain TAGEE: VerticalCurvature');
+Map.addLayer(terr_tagee.select(['MeanCurvature']), null, 'Terrain TAGEE: MeanCurvature');
+Map.addLayer(terr_tagee.select(['GaussianCurvature']), null, 'Terrain TAGEE: GaussianCurvature');
+Map.addLayer(terr_tagee.select(['MinimalCurvature']), null, 'Terrain TAGEE: MinimalCurvature');
+Map.addLayer(terr_tagee.select(['MaximalCurvature']), null, 'Terrain TAGEE: MaximalCurvature');
+Map.addLayer(terr_tagee.select(['ShapeIndex']), null, 'Terrain TAGEE: ShapeIndex');
 
 
 
