@@ -113,7 +113,7 @@ var tagee_viz = function(terrain, band_name, region) {
     band_name, 
     'level2', 
     region, 
-    'elevation'
+    'inferno'
   );
 };
 exports.tagee_viz = tagee_viz;
