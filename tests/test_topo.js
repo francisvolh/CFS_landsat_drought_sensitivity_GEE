@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -58,7 +59,7 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 // Test TAGEE
 var terrain = topo.tagee_terrain();
 print('Terrain TAGEE', terrain);
-print(topo.tagee_viz(terrain, 'Elevation', geometry))
+Map.addLayer(topo.tagee_viz(terrain, 'Elevation', geometry), null, 'Elevation')
 
 // Map.addLayer(terr_tagee.select(['Elevation']), {min: 0, max: 1000}, 'Terrain TAGEE: Elevation');
 // Map.addLayer(terr_tagee.select(['Slope']), null, 'Terrain TAGEE: Slope');
