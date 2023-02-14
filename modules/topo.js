@@ -110,7 +110,7 @@ exports.tagee_terrain = tagee_terrain;
 var tagee_viz = function(terrain, band_name, region) {
   return tagee.makeVisualization({
     'result': terrain, 
-    'bandName': layer, 
+    'bandName': band_name, 
     'zoomLevel': 'level2', 
     'bbox': region, 
     'palette': 'elevation'
