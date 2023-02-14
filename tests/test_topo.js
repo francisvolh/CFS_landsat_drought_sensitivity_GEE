@@ -58,7 +58,7 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 // Test TAGEE
 var terrain = topo.tagee_terrain();
 print('Terrain TAGEE', terrain);
-Map.addLayer(topo.tagee_viz(terrain, 'Elevation', geometry), null, 'Elevation');
+print(topo.tagee_viz(terrain, 'Elevation', geometry))
 
 // Map.addLayer(terr_tagee.select(['Elevation']), {min: 0, max: 1000}, 'Terrain TAGEE: Elevation');
 // Map.addLayer(terr_tagee.select(['Slope']), null, 'Terrain TAGEE: Slope');
