@@ -116,7 +116,7 @@ var tagee_viz = function(terrain, layer, region) {
     'elevation'
   );
 };
-exports.tagee_terrain = tagee_terrain;
+exports.tagee_viz = tagee_viz;
 
 
 // Landforms
