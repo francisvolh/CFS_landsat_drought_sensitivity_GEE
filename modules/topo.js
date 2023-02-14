@@ -114,7 +114,7 @@ var tagee_viz = function(terrain, layer, region) {
     'zoomLevel': 'level2', 
     'bbox': region, 
     'palette': 'elevation'
-  );
+  )};
 };
 exports.tagee_viz = tagee_viz;
 
