@@ -108,12 +108,12 @@ exports.tagee_terrain = tagee_terrain;
 
 // Visualize TAGEE wrapper
 var tagee_viz = function(terrain, layer, region) {
-  return TAGEE.makeVisualization(
-    terrain, 
-    layer, 
-    'level2', 
-    region, 
-    'elevation'
+  return TAGEE.makeVisualization({
+    'result': terrain, 
+    'bandName': layer, 
+    'zoomLevel': 'level2', 
+    'bbox': region, 
+    'palette': 'elevation'
   );
 };
 exports.tagee_viz = tagee_viz;
