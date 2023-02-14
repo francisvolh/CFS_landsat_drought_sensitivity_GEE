@@ -28,6 +28,8 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. 
 ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
 
+https://github.com/zecojls/tagee/blob/master/TAGEE-functions.js
+
 CHILI, Topo diversity, Landforms
 Theobald, D. M., Harrison-Atlas, D., Monahan, W. B., & Albano, C. M. (2015). 
 Ecologically-relevant maps of landforms and physiographic diversity for climate adaptation planning. PloS one, 10(12),
