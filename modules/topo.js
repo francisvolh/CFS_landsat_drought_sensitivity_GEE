@@ -107,7 +107,7 @@ var tagee_terrain = function() {
 exports.tagee_terrain = tagee_terrain;
 
 // Visualize TAGEE wrapper
-var tagee_viz = function(terrain, layer, region) {
+var tagee_viz = function(terrain, band_name, region) {
   return tagee.makeVisualization({
     'result': terrain, 
     'bandName': layer, 
