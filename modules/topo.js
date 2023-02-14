@@ -106,7 +106,16 @@ var tagee_terrain = function() {
 };
 exports.tagee_terrain = tagee_terrain;
 
-
+// Visualize TAGEE wrapper
+var tagee_viz = function(terrain, layer, region) {
+  return TAGEE.makeVisualization(
+    terrain, 
+    layer, 
+    'level2', 
+    region, 
+    'elevation'
+  );
+};
 
 // Landforms
 // Bad mask instead of gaps filled with values
@@ -132,4 +141,5 @@ var sampling_collection = function() {
   ]);
 };
 exports.sampling_collection = sampling_collection;
+
 
