@@ -79,6 +79,7 @@ exports.chili_srtm = chili_srtm;
 // var dem = ee.Image("MERIT/DEM/v1_0_3");
 
 var dem = ee.Image('projects/sat-io/open-datasets/ASTER/GDEM');
+
 // var dem = ee.ImageCollection("projects/sat-io/open-datasets/GLO-30")
 // dem = dem
 //   .filterBounds(geometry)
