@@ -34,11 +34,6 @@ var chili = topo.chili_alos;
 print('CHILI', chili);
 Map.addLayer(chili, null, 'CHILI');
 
-// Test landforms
-var landforms = topo.landforms_alos;
-print('landforms', landforms);
-Map.addLayer(landforms, null, 'landforms');
-
 // Test topo_diversity
 var topo_diversity = topo.topo_diversity_alos;
 print('topo_diversity', topo_diversity);
@@ -49,7 +44,7 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 // Test TAGEE
 var terr_tagee = topo.tagee_terrain();
 print('Terrain TAGEE', terr_tagee);
-Map.addLayer(terr_tagee.select(['Elevation']), null, 'Terrain TAGEE: Elevation');
+Map.addLayer(terr_tagee.select(['Elevation']), {min: 0, max: 1000}, 'Terrain TAGEE: Elevation');
 Map.addLayer(terr_tagee.select(['Slope']), null, 'Terrain TAGEE: Slope');
 Map.addLayer(terr_tagee.select(['Aspect']), null, 'Terrain TAGEE: Aspect');
 Map.addLayer(terr_tagee.select(['Northness']), null, 'Terrain TAGEE: Northness');
