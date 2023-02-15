@@ -101,8 +101,8 @@ var smooth_dem = function(dem) {
 
 var smoothed_dem = smooth_dem(dem);
 
-var tagee_terrain = function() {
-  var terr = tagee.terrainAnalysis(tagee, smoothed_dem, geometry);
+var tagee_terrain = function(region = geometry) {
+  var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
   
   return terr.select([
     'Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
