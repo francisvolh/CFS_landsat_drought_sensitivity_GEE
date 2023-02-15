@@ -35,6 +35,11 @@ Theobald, D. M., Harrison-Atlas, D., Monahan, W. B., & Albano, C. M. (2015).
 Ecologically-relevant maps of landforms and physiographic diversity for climate adaptation planning. PloS one, 10(12),
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0143619
 
+FABDEM
+Hawker, Laurence, Peter Uhe, Luntadila Paulo, Jeison Sosa, James Savage, Christopher Sampson, and Jeffrey Neal. "A 30m global map of elevation with
+forests and buildings removed." Environmental Research Letters (2022).
+
+
 */
 
 
