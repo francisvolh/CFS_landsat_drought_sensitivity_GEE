@@ -101,7 +101,7 @@ var smooth_dem = function(dem) {
 
 var smoothed_dem = smooth_dem(dem);
 
-var tagee_terrain = function(region = geometry) {
+var tagee_terrain = function(region) {
   var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
   
   return terr.select([
@@ -143,7 +143,7 @@ var sampling_collection = function() {
   hand(90, 1000),
   chili_alos,
   topo_diversity_alos,
-  tagee_terrain()
+  tagee_terrain(geometry)
   ]);
 };
 exports.sampling_collection = sampling_collection;
