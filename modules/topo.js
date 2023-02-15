@@ -80,11 +80,10 @@ exports.chili_srtm = chili_srtm;
 
 
 // DEM
-var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
-dem = dem
+var dem = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
   .filterBounds(geometry)
-  .mosaic().setDefaultProjection(dem.first().projection());
-  
+  .select(['DSM'])
+  .mosaic();
 // TAGEE
 var smooth_dem = function(dem) {
   // From TAGEE docs
