@@ -82,11 +82,11 @@ exports.chili_srtm = chili_srtm;
 // DEM
 var dem = ee.Image("MERIT/DEM/v1_0_3");
 
-// var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
-// dem = dem
-//   .filterBounds(geometry)
-//   .mosaic().setDefaultProjection(dem.first().projection());
-  
+var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
+dem = dem
+  .filterBounds(geometry)
+  .mosaic()//.setDefaultProjection(dem.first().projection());
+
 // TAGEE
 var smooth_dem = function(dem) {
   // From TAGEE docs
