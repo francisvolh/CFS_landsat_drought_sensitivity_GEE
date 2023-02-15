@@ -68,7 +68,15 @@ print('Terrain TAGEE', terrain);
 // Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature', geometry), null, 'MinimalCurvature');
 Map.addLayer(topo.tagee_viz(terrain, 'MaximalCurvature', geometry), null, 'MaximalCurvature');
 // Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex', geometry), null, 'ShapeIndex');
+var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 
+Map.addLayer(tagee.makeVisualization(
+    terrain, 
+    'MaximalCurvature', 
+    'level2', 
+    geometry, 
+    'inferno'
+  ))
 
 
 // Test sampling_collection
