@@ -45,7 +45,7 @@ Map.addLayer(agriculture.agriculture_mask, {palette: '#44bf3c', opacity: 0.5}, '
 
 
 // Atemporal mask (without fire)
-Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
+// Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
 
 
 
@@ -58,6 +58,6 @@ Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], o
 
 // Testing: apply_mask
 // Usage: mask.apply_mask(images);
-var masked_ndvi = mask.apply_mask(ndvi);
-print('Masked NDVI', masked_ndvi);
-Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
+// var masked_ndvi = mask.apply_mask(ndvi);
+// print('Masked NDVI', masked_ndvi);
+// Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
