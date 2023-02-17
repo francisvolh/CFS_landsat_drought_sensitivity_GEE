@@ -14,7 +14,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Data
 // NDVI example
-var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '09-31', geometry);
+var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '09-31', Tegeometry);
 Map.addLayer(ndvi, {min: -0.2, max: 0.9}, 'NDVI 2010-2012', false);
 
 var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2015-01-01')).first();
@@ -42,3 +42,12 @@ Map.addLayer(harvest_year, {palette: ['#ffc0c0','#be0900'], min: 1985, max:2020,
 var harvest_any = anthro.harvest_any;
 print('Harvest mask (any)', harvest_any);
 Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)');
+
+
+
+
+// Test mask_harvest
+// Usage: anthro.mask_harvest;
+var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest);
+print('Mask harvest NDVI', mask_harvest_ndvi);
+Map.addLayer(mask_harvest_ndvi, {min: -0.2, max: 0.9, opacity: 0.8}, 'Mask harvest NDVI');
