@@ -22,7 +22,7 @@ var lc_transitions = land_cover.lc_transitions();
 
 var atemporal_mask = min_land_cover_mask
   .updateMask(lc_transitions)
-	.updateMask(wsa_mask.unmask().not())
+	.updateMask(wsa_mask.not())
 	.updateMask(agriculture_mask.unmask().not())
 	.rename('atemporal_mask');
 exports.atemporal_mask = atemporal_mask;
