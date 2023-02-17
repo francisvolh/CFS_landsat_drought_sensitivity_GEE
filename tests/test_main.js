@@ -22,6 +22,7 @@ Alec L. Robitaille
 var main = require('users/robitalec/CFS:modules/main.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
+var anthro = require('users/robitalec/CFS:modules/anthro.js');
 
 
 
@@ -31,6 +32,9 @@ var ndvi_viz = {min:0.3, max:0.85};
 // Map
 Map.centerObject(geometry);
 Map.setOptions('SATELLITE');
+Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
+Map.addLayer(anthro.harvest_year, {palette: ['#ffc0c0','#be0900', '#000000'], min: 1985, max:2020, opacity: 0.8}, 'Harvest year', false);
+Map.addLayer(anthro.harvest_any, {opacity: 0.3}, 'Harvest mask (any)', false);
 
 
 
