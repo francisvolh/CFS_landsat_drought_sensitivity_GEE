@@ -29,3 +29,35 @@ var zzz_mask_land_cover_and_fire = function(img) {
                .mask());
 };
 exports.zzz_mask_land_cover_and_fire = zzz_mask_land_cover_and_fire;
+
+
+
+// Mask heterogeneous
+var n_pixels = 1.5;
+var mask_heterogeneous = function(img) {
+  var foc_mean = img.focalMean(n_pixels, 'square', 'pixels');
+  return img.mask(img.eq(foc_mean));
+};
+exports.mask_heterogeneous = mask_heterogeneous;
+
+
+
+// Get homogeneous land cover collection
+var homogeneous_land_cover = function() {
+	return hermosilla_1984_2019_plus_2020
+    .map(utils.set_year)
+    .map(mask_heterogeneous)
+    .map(mask_classes);
+};
+exports.homogeneous_land_cover = homogeneous_land_cover;
+
+
+
+// Get focal mean band
+var lc_focal_mean = function() {
+  return hermosilla_1984_2019_plus_2020
+    .reduce(ee.Reducer.mode())
+    .focalMean(n_pixels, 'square', 'pixels')
+    .updateMask(lc_and_fire.reduce(ee.Reducer.mode()).mask());
+};
+exports.lc_focal_mean = lc_focal_mean;
