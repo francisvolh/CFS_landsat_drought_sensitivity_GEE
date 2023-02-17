@@ -22,3 +22,7 @@ data products for forest monitoring. International Journal of Digital Earth
 
 var wsa = ee.Image("DLR/WSF/WSF2015/v1");
 exports.world_settlement_area = wsa;
+
+
+var harvest = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020");
+exports.harvest = harvest;
