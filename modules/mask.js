@@ -32,6 +32,7 @@ exports.atemporal_mask = atemporal_mask;
 // Apply masks
 var apply_mask = function(images) {
 	return images.map(function(img) {
+	  // TODO: mask land cover temporal too
 		return fire.mask_five_year_fires(img.updateMask(atemporal_mask));
 	});
 };
