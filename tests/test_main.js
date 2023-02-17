@@ -1,7 +1,6 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -24,6 +23,8 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var anthro = require('users/robitalec/CFS:modules/anthro.js');
 var utils = require('users/robitalec/CFS:modules/utils.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+
 
 
 
@@ -62,7 +63,7 @@ var hermosilla_1984_2019 = ee.ImageCollection("projects/sat-io/open-datasets/CA_
 var lc_transitions = function() {
     var lc_remapped = hermosilla_1984_2019
       .map(utils.set_year)
-      .map(mask_classes)
+      .map(land_cover.mask_classes)
       .map(function(img) {
         return img.remap([40, 50, 
                           80, 81,
