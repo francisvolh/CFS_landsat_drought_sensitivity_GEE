@@ -21,7 +21,7 @@ Map.addLayer(lc_2015, null, 'Land cover 2015', false);
 // Usage: anthro.world_settlement_area;
 var world_settlement_area = anthro.world_settlement_area;
 print('World Settlement Area', world_settlement_area);
-Map.addLayer(world_settlement_area, {palette: '#CD6600', opacity: 0.8}, 'World Settlement Area');
+Map.addLayer(world_settlement_area, {palette: '#a16101', opacity: 0.8}, 'World Settlement Area');
 
 
 
@@ -36,4 +36,4 @@ Map.addLayer(harvest_year, {palette: ['#ffc0c0','#ff4545'], opacity: 0.8}, 'Harv
 // Usage: anthro.harvest_any;
 var harvest_any = anthro.harvest_any;
 print('Harvest mask (any)', harvest_any);
-Map.addLayer(harvest_any, {opacity: 0.8}, 'Harvest mask (any)');
+Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)');
