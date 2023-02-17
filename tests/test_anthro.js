@@ -29,7 +29,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Data
 // NDVI example
-var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '09-31', Tegeometry);
+var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '09-31', geometry);
 Map.addLayer(ndvi, {min: -0.2, max: 0.9}, 'NDVI 2010-2012', false);
 
 var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2015-01-01')).first();
