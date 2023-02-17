@@ -26,7 +26,7 @@ exports.atemporal_mask = atemporal_mask;
 
 
 // Apply masks
-var apply_mask = function(images) {
+var apply_masks = function(images) {
 	return images.map(function(img) {
     img = img.updateMask(atemporal_mask);
     img = fire.mask_five_year_fires(img);
@@ -34,4 +34,4 @@ var apply_mask = function(images) {
 		return img;
 	});
 };
-exports.apply_mask = apply_mask;
+exports.apply_masks = apply_masks;
