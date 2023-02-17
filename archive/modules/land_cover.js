@@ -72,3 +72,9 @@ var lc_count_mask = function() {
   return lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
 };
 exports.lc_count_mask = lc_count_mask;
+
+
+
+// Mask image with land cover and fire
+var lc_and_fire = lc.map(fire.mask_five_year_fires);
+exports.lc_and_fire = lc_and_fire;
