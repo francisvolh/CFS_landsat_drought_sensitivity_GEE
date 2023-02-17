@@ -34,7 +34,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 // Load collection
 var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 var lc_2008 = lc.filterDate('2008-01-01', '2009-01-01').first();
-var indices_green_col = landsat.indices_greenest(2008, 2012, '06-15', '07-15', geometry);
+var indices_green_col = landsat.indices_greenest(2008, 2012, '06-01', '09-30', geometry);
 Map.addLayer(lc, null, 'raw land cover', false);
 
 
@@ -59,6 +59,6 @@ Map.addLayer(lc_collection, null, 'land_cover.land_cover()', false);
 // Usage: mask_land_cover(img)
 var indices_masked_lc = indices_green_col.map(land_cover.mask_land_cover);
 print(indices_masked_lc);
-Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked fire areas', false);
-
+Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img) - where pink indicates masked areas', false);
+Map.addLayer(indices_masked_lc)
 
