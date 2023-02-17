@@ -1,17 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-136.21751476853268, 63.875723800342705],
-          [-136.21751476853268, 56.77224576663849],
-          [-106.5104835185327, 56.77224576663849],
-          [-106.5104835185327, 63.875723800342705]]], null, false);
+        [[[-141.31517101853268, 68.15211067897617],
+          [-141.31517101853268, 46.34117939716444],
+          [-52.897202268532695, 46.34117939716444],
+          [-52.897202268532695, 68.15211067897617]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/topo.js
