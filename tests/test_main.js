@@ -8,10 +8,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.73978380750106, 64.75408317982838],
-          [-140.73978380750106, 64.12125497975113],
-          [-138.7155528504698, 64.12125497975113],
-          [-138.7155528504698, 64.75408317982838]]], null, false);
+        [[[-129.70951037000103, 55.01366927692328],
+          [-129.70951037000103, 54.16385633338348],
+          [-127.68527941296978, 54.16385633338348],
+          [-127.68527941296978, 55.01366927692328]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
@@ -21,7 +21,7 @@ Alec L. Robitaille
 // Load modules
 var main = require('users/robitalec/CFS:modules/main.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
-
+var mask = require('users/robitalec/CFS:modules/mask.js');
 
 
 
