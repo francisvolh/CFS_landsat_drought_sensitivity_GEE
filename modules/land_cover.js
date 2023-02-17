@@ -100,7 +100,3 @@ var mask_land_cover = function(img) {
 			.mask());
 };
 exports.mask_land_cover = mask_land_cover;
-
-
-
-
