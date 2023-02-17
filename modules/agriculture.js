@@ -106,10 +106,10 @@ exports.masked_aci = masked_aci;
 
 
 
-var agriculture_mask = masked_aci
+var agriculture = masked_aci
 	.sum()
 	.neq(0)
 	.mask()
 	.rename('agriculture');
-exports.agriculture_mask = agriculture_mask;
+exports.agriculture = agriculture;
 
