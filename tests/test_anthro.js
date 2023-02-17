@@ -21,7 +21,7 @@ Map.addLayer(lc_2015, null, 'Land cover 2015', false);
 // Usage: anthro.world_settlement_area;
 var world_settlement_area = anthro.world_settlement_area;
 print('World Settlement Area', world_settlement_area);
-Map.addLayer(world_settlement_area, {palette: '#a16101', opacity: 0.8}, 'World Settlement Area');
+Map.addLayer(world_settlement_area, {palette: '#2635a1', opacity: 0.8}, 'World Settlement Area');
 
 
 
