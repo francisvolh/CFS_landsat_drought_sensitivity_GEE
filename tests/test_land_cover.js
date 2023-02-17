@@ -59,5 +59,5 @@ Map.addLayer(lc_collection, null, 'land_cover.land_cover()', false);
 // Usage: mask_land_cover(img)
 var indices_masked_lc = indices_green_col.map(land_cover.mask_land_cover);
 print(indices_masked_lc);
-Map.addLayer(indices_masked_lc.select('NDVI'), {palette:'#ffa18b'}, 'land_cover.mask_land_cover(img)', false);
+Map.addLayer(indices_masked_lc.select('NDVI'), {min: -0.2, max: 0.8}, 'land_cover.mask_land_cover(img)');
 
