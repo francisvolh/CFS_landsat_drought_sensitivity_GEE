@@ -50,7 +50,7 @@ Map.addLayer(agriculture.agriculture, {palette: ['#ffffff', '#44bf3c'], opacity:
 
 
 // Temporal mask: fire
-Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, 'Fires');
+// Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, 'Fires');
 
 
 
