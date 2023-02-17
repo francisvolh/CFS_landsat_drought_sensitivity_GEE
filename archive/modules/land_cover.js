@@ -61,3 +61,14 @@ var lc_focal_mean = function() {
     .updateMask(lc_and_fire.reduce(ee.Reducer.mode()).mask());
 };
 exports.lc_focal_mean = lc_focal_mean;
+
+
+
+// Get land cover count mask
+var lc_count_mask = function() {
+  var lc_masked = hermosilla_1984_2019
+    .map(utils.set_year)
+    .map(mask_classes);
+  return lc_masked.reduce(ee.Reducer.count()).eq(lc_masked.size());
+};
+exports.lc_count_mask = lc_count_mask;
