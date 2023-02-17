@@ -8,10 +8,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-115.68478921035074, 54.78768079642482],
-          [-115.68478921035074, 54.6373465157921],
-          [-115.1217398939445, 54.6373465157921],
-          [-115.1217398939445, 54.78768079642482]]], null, false);
+        [[[-115.742467433007, 55.0292618181801],
+          [-115.742467433007, 54.77302890691679],
+          [-115.19177773574137, 54.77302890691679],
+          [-115.19177773574137, 55.0292618181801]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/anthro.js
@@ -30,7 +30,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 // Data
 // NDVI example
 var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '08-31', geometry);
-Map.addLayer(ndvi, {min: -0.2, max: 0.9}, 'NDVI 2010-2012', false);
+Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI 2010-2012', false);
 
 var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2015-01-01')).first();
 Map.addLayer(lc_2015, null, 'Land cover 2015', false);
@@ -64,5 +64,5 @@ Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)');
 // Usage: anthro.mask_harvest_year;
 var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest_year);
 print('Mask harvest NDVI', mask_harvest_ndvi);
-Map.addLayer(harvest_year.gte(2010), {opacity: 0.3}, 'Harvest mask year 2010');
-Map.addLayer(mask_harvest_ndvi, {min: -0.2, max: 0.9, opacity: 0.8}, 'Mask harvest NDVI');
+Map.addLayer(harvest_year.eq(2011), {opacity: 0.8}, 'Harvest mask year 2010');
+Map.addLayer(mask_harvest_ndvi.select('NDVI'), {opacity: 0.8}, 'Mask harvest NDVI');
