@@ -23,3 +23,15 @@ var world_settlement_area = anthro.world_settlement_area;
 print('World Settlement Area', world_settlement_area);
 Map.addLayer(world_settlement_area, {palette: '#CD6600', opacity: 0.8}, 'World Settlement Area');
 
+
+
+// Test harvest
+// Usage: anthro.harvest;
+var harvest_year = anthro.harvest_year;
+print('Harvest year', harvest_year);
+Map.addLayer(harvest_year, {palette: ['#ffc0c0','#ff4545'], opacity: 0.8}, 'Harvest year');
+
+
+Map.addLayer(anthro.harvest_any, {opacity: 0.8}, 'Harvest');
+
+
