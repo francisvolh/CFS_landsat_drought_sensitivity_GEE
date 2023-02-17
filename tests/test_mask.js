@@ -44,7 +44,7 @@ Map.addLayer(agriculture.agriculture, {palette: ['#ffffff', '#44bf3c'], opacity:
 
 
 // Atemporal mask
-// Map.addLayer(mask.atemporal_mask, null, 'Atemporal mask', false);
+Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
 
 
 
