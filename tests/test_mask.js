@@ -48,9 +48,9 @@ Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
 
 
 
-// Temporal mask: fire
-// Map.addLayer(fire.five_year_fires(min_year), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, 'Fires');
-
+// Temporal mask: fire, harvest
+Map.addLayer(fire.five_year_fires(2011), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, '2011 fires');
+Map.addLayer(anthro.harvest_year().eq(2011), {palette: ['#ffffff', '#ff5e5e'], opacity: 0.5}, '2011 harvest');
 
 
 
