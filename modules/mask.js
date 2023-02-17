@@ -17,10 +17,8 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 // Get masks
 var world_settlement_area = anthro.world_settlement_area;
 var agriculture_mask = agriculture.agriculture_mask;
-var min_land_cover_mask = land_cover.lc_count_mask();
 
-var atemporal_mask = min_land_cover_mask
-	.updateMask(world_settlement_area.not())
+var atemporal_mask = world_settlement_area.not()
 	.updateMask(agriculture_mask.not())
 	.rename('atemporal_mask');
 exports.atemporal_mask = atemporal_mask;
