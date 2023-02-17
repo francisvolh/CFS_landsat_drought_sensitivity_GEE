@@ -46,8 +46,8 @@ Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)');
 
 
 
-// Test mask_harvest
-// Usage: anthro.mask_harvest;
-var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest);
+// Test mask_harvest_year
+// Usage: anthro.mask_harvest_year;
+var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest_year);
 print('Mask harvest NDVI', mask_harvest_ndvi);
 Map.addLayer(mask_harvest_ndvi, {min: -0.2, max: 0.9, opacity: 0.8}, 'Mask harvest NDVI');
