@@ -30,7 +30,7 @@ var harvest_year = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_H
   .unmask(9999);
 exports.harvest_year = harvest_year;
 
-var harvest_any = harvest_year.mask();
+var harvest_any = harvest_year.lt(9999);
 exports.harvest_any = harvest_any;
 
 var mask_harvest_year = function(img) {
