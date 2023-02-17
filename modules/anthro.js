@@ -31,12 +31,10 @@ exports.harvest_year = harvest_year;
 var harvest_any = harvest_year.mask();
 exports.harvest_any = harvest_any;
 
-var mask_harvest = function(img) {
+var mask_harvest_year = function(img) {
   var img_year = img.date().get('year');
   return img.updateMask(
-		harvest.lt(img_year - 1)()
-      .filter(ee.Filter.eq('year', img_year))
-			.first()
-			.mask());
+		harvest_year.gte(img_year)
+	);
 };
-exports.mask_harvest = mask_harvest;
+exports.mask_harvest_year = mask_harvest_year;
