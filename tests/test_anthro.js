@@ -25,13 +25,15 @@ Map.addLayer(world_settlement_area, {palette: '#CD6600', opacity: 0.8}, 'World S
 
 
 
-// Test harvest
-// Usage: anthro.harvest;
+// Test harvest_year
+// Usage: anthro.harvest_year;
 var harvest_year = anthro.harvest_year;
 print('Harvest year', harvest_year);
 Map.addLayer(harvest_year, {palette: ['#ffc0c0','#ff4545'], opacity: 0.8}, 'Harvest year');
 
 
-Map.addLayer(anthro.harvest_any, {opacity: 0.8}, 'Harvest');
-
-
+// Test harvest_any
+// Usage: anthro.harvest_any;
+var harvest_any = anthro.harvest_any;
+print('Harvest mask (any)', harvest_any);
+Map.addLayer(harvest_any, {opacity: 0.8}, 'Harvest mask (any)');
