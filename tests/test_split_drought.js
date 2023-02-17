@@ -40,7 +40,7 @@ var monthly_daymet = daymet.monthly_daymet(years, months);
 var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
 // Apply mask
-indices_col = mask.apply_mask(indices_col);
+indices_col = mask.apply_masks(indices_col);
 
 // CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
