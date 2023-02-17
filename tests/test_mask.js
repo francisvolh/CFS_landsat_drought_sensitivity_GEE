@@ -54,8 +54,8 @@ Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#ff5e5e'], opa
 
 
 
-// Testing: apply_mask
-// Usage: mask.apply_mask(images);
-var masked_ndvi = mask.apply_mask(ndvi);
+// Testing: apply_masks
+// Usage: mask.apply_masks(images);
+var masked_ndvi = mask.apply_masks(ndvi);
 print('Masked NDVI', masked_ndvi);
 Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
