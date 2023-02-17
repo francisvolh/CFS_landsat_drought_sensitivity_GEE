@@ -16,7 +16,7 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
   var lc = land_cover.hermosilla_1984_2019
     .map(utils.set_year);
 
-  lc = mask.apply_mask(lc)
+  lc = mask.apply_masks(lc)
     .mode()
     .rename('land_cover');
 
@@ -38,7 +38,7 @@ var export_points_by_tile_asset = function(tiles, factor) {
       scale: 30,
       factor: factor,
       geometries: true
-    }); 
+    });
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
