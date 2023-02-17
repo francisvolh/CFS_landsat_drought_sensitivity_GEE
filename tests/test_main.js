@@ -23,6 +23,7 @@ var main = require('users/robitalec/CFS:modules/main.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var anthro = require('users/robitalec/CFS:modules/anthro.js');
+var utils = require('users/robitalec/CFS:modules/utils.js');
 
 
 
