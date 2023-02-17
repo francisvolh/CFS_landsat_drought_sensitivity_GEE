@@ -1,7 +1,9 @@
 /*
-Human footprint mask
+Anthropogenic
 Alec L. Robitaille
 
+
+Human footprint mask
 Marconcini, M., Metz-Marconcini, A., Üreyen, S., Palacios-Lopez, D., Hanke, W.,
 Bachofer, F., Zeidler, J., Esch, T., Gorelick, N., Kakarla, A., Paganini, M.,
 Strano, E. (2020). Outlining where humans live, the World Settlement Footprint
