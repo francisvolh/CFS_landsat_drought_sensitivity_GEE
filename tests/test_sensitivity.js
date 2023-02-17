@@ -39,7 +39,7 @@ var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87,
 // Processing
 var monthly_daymet = daymet.monthly_daymet(years, months);
 var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
-indices_col = mask.apply_mask(indices_col);
+indices_col = mask.apply_masks(indices_col);
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
 ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
