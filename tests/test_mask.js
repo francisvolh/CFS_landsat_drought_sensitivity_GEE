@@ -38,6 +38,7 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 // Map land cover
 Map.addLayer(lc, null, 'Land cover');
 
+
 // Map anthro, agriculture masks
 Map.addLayer(ee.Image.constant(0), {palette: '#000000'}, 'Background');
 Map.addLayer(anthro.world_settlement_area, {palette: ['#000000', '#ccc848'], opacity: 0.3}, 'World Settlement Area');
