@@ -1,3 +1,18 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-115.68478921035074, 54.78768079642482],
+          [-115.68478921035074, 54.6373465157921],
+          [-115.1217398939445, 54.6373465157921],
+          [-115.1217398939445, 54.78768079642482]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/anthro.js
 Alec L. Robitaille
