@@ -18,3 +18,14 @@ var lc_transitions = function() {
   return lc_transitions;
 };
 exports.lc_transitions = lc_transitions;
+
+
+
+var zzz_mask_land_cover_and_fire = function(img) {
+  var img_year = img.date().get('year');
+  return img.updateMask(
+		lc_and_fire.filter(ee.Filter.eq('year', img_year))
+               .first()
+               .mask());
+};
+exports.zzz_mask_land_cover_and_fire = zzz_mask_land_cover_and_fire;
