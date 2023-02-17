@@ -31,8 +31,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 
 // Variables
 var img = ee.Image.constant(1);
-var min_year = 2010;
-var ndvi = landsat.indices_greenest(min_year, 2012, '07-01', '08-31', geometry);
+var ndvi = landsat.indices_greenest(2010, 2012, '06-01', '08-31', geometry);
 
 
 
