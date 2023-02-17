@@ -29,7 +29,7 @@ Map.addLayer(world_settlement_area, {palette: '#2635a1', opacity: 0.8}, 'World S
 // Usage: anthro.harvest_year;
 var harvest_year = anthro.harvest_year;
 print('Harvest year', harvest_year);
-Map.addLayer(harvest_year, {palette: ['#ffc0c0','#ff4545'], opacity: 0.8}, 'Harvest year');
+Map.addLayer(harvest_year, {palette: ['#ffc0c0','#be0900'], min: 1985, max:2020, opacity: 0.8}, 'Harvest year');
 
 
 // Test harvest_any
