@@ -34,8 +34,8 @@ Map.addLayer(masked_aci, null, 'Masked ACI', false);
 
 
 
-// Test agriculture_mask
-// Usage: agriculture.agriculture_mask
-var ag_mask = agriculture.agriculture_mask;
+// Test agriculture
+// Usage: agriculture.agriculture
+var ag_mask = agriculture.agriculture;
 print('Agriculture mask', ag_mask);
 Map.addLayer(ag_mask, null, 'Agriculture mask');
