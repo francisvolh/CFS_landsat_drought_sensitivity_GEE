@@ -83,20 +83,20 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var land_cover = function() {
-	return hermosilla_1984_2019_plus_2020.map(utils.set_year).map(mask_classes);
+	return hermosilla_1984_2019_plus_2020
+            .map(utils.set_year)
+            .map(mask_classes);
 };
 exports.land_cover = land_cover;
 
 
 
-// (Local) get land cover collection
-var lc = land_cover();
-
 // Mask image with land cover
 var mask_land_cover = function(img) {
   var img_year = img.date().get('year');
   return img.updateMask(
-		lc.filter(ee.Filter.eq('year', img_year))
+		land_cover()
+      .filter(ee.Filter.eq('year', img_year))
 			.first()
 			.mask());
 };
@@ -104,6 +104,4 @@ exports.mask_land_cover = mask_land_cover;
 
 
 
-// Mask image with land cover and fire
-var lc_and_fire = lc.map(fire.mask_five_year_fires);
-exports.lc_and_fire = lc_and_fire;
+
