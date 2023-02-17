@@ -58,25 +58,15 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 
 // Test TAGEE
 var terrain = topo.tagee_terrain(geometry);
-Map.addLayer(terrain.select('MaximalCurvature'))
 print('Terrain TAGEE', terrain);
-// Map.addLayer(topo.tagee_viz(terrain, 'Elevation', geometry), null, 'Elevation');
-// Map.addLayer(topo.tagee_viz(terrain, 'Slope', geometry), null, 'Slope');
-// Map.addLayer(topo.tagee_viz(terrain, 'Aspect', geometry), null, 'Aspect');
-// Map.addLayer(topo.tagee_viz(terrain, 'Northness', geometry), null, 'Northness');
-// Map.addLayer(topo.tagee_viz(terrain, 'Eastness', geometry), null, 'Eastness');
-// Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature', geometry), null, 'MinimalCurvature');
+Map.addLayer(topo.tagee_viz(terrain, 'Elevation', geometry), null, 'Elevation');
+Map.addLayer(topo.tagee_viz(terrain, 'Slope', geometry), null, 'Slope');
+Map.addLayer(topo.tagee_viz(terrain, 'Aspect', geometry), null, 'Aspect');
+Map.addLayer(topo.tagee_viz(terrain, 'Northness', geometry), null, 'Northness');
+Map.addLayer(topo.tagee_viz(terrain, 'Eastness', geometry), null, 'Eastness');
+Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature', geometry), null, 'MinimalCurvature');
 Map.addLayer(topo.tagee_viz(terrain, 'MaximalCurvature', geometry), null, 'MaximalCurvature');
-// Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex', geometry), null, 'ShapeIndex');
-var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
-
-Map.addLayer(tagee.makeVisualization(
-    terrain, 
-    'MaximalCurvature', 
-    'level2', 
-    geometry, 
-    'inferno'
-  ))
+Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex', geometry), null, 'ShapeIndex');
 
 
 // Test sampling_collection
