@@ -25,8 +25,11 @@ exports.world_settlement_area = world_settlement_area;
 
 
 
-var harvest = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020");
-exports.harvest = harvest;
+var harvest_year = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020");
+exports.harvest_year = harvest_year;
+
+var harvest_any = harvest_year.mask();
+exports.harvest_any = harvest_any;
 
 // var mask_harvest = function(img) {
 //   var img_year = img.date().get('year');
