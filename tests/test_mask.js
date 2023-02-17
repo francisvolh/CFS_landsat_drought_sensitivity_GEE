@@ -50,12 +50,12 @@ Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
 
 // Temporal mask: fire, harvest
 Map.addLayer(fire.five_year_fires(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 fires');
-Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#00000', '#ff5e5e'], opacity: 0.3}, '2011 harvest');
+Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 harvest');
 
 
 
 // Testing: apply_mask
 // Usage: mask.apply_mask(images);
-// var masked_ndvi = mask.apply_mask(ndvi);
-// print('Masked NDVI', masked_ndvi);
-// Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
+var masked_ndvi = mask.apply_mask(ndvi);
+print('Masked NDVI', masked_ndvi);
+Map.addLayer(masked_ndvi.select('NDVI'), null, 'Masked NDVI');
