@@ -36,7 +36,7 @@ var main_greenest = function(output, region) {
   var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
   // Apply mask
-  indices_col = mask.apply_mask(indices_col);
+  indices_col = mask.apply_masks(indices_col);
 
 
   // CMI
