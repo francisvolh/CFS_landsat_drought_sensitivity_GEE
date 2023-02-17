@@ -18,8 +18,8 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 var world_settlement_area = anthro.world_settlement_area;
 var agriculture = agriculture.agriculture;
 
-var atemporal_mask = world_settlement_area
-	.updateMask(agriculture)
+var atemporal_mask = world_settlement_area.or(agriculture)
+// 	.updateMask(agriculture)
 	.rename('atemporal_mask');
 exports.atemporal_mask = atemporal_mask;
 
