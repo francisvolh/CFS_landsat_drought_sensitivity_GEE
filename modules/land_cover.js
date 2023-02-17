@@ -59,7 +59,7 @@ exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 
-// Get land cover count mask mask
+// Get land cover count mask
 var lc_count_mask = function() {
   var lc_masked = hermosilla_1984_2019
     .map(utils.set_year)
