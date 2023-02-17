@@ -56,7 +56,7 @@ Map.addLayer(harvest_year, {palette: ['#ffc0c0','#be0900'], min: 1985, max:2020,
 // Usage: anthro.harvest_any;
 var harvest_any = anthro.harvest_any;
 print('Harvest mask (any)', harvest_any);
-Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)');
+Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)', false);
 
 
 
