@@ -39,7 +39,7 @@ var ndvi = landsat.indices_greenest(min_year, 2012, '07-01', '08-31', geometry);
 // Map anthro, agriculture, land cover masks
 Map.addLayer(ee.Image.constant(0), {palette: '#000000'}, 'Background');
 Map.addLayer(anthro.world_settlement_area, {palette: '#ccc848', opacity: 0.5}, 'World Settlement Area');
-Map.addLayer(agriculture.agriculture_mask, {palette: '#44bf3c', opacity: 0.5}, 'Agriculture');
+Map.addLayer(agriculture.agriculture, {palette: '#44bf3c', opacity: 0.5}, 'Agriculture');
 // Map.addLayer(land_cover.lc_count_mask().updateMask(land_cover.lc_count_mask().eq(0)), {palette: ['#945cd2', '#ffffff'], opacity: 0.5}, 'Land cover (min count)');
 // Map.addLayer(land_cover.lc_transitions(), null, 'Land cover transitions');
 
