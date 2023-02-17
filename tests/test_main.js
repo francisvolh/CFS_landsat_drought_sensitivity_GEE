@@ -12,10 +12,7 @@ var geometry =
           [-129.70951037000103, 54.16385633338348],
           [-127.68527941296978, 54.16385633338348],
           [-127.68527941296978, 55.01366927692328]]], null, false),
-    geometry2 = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Point([-128.71507601331157, 54.32903946310644]);
+    geometry2 = /* color: #d63000 */ee.Geometry.Point([-128.71507601331157, 54.32903946310644]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
@@ -28,7 +25,6 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var anthro = require('users/robitalec/CFS:modules/anthro.js');
 var utils = require('users/robitalec/CFS:modules/utils.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
 
 
@@ -63,28 +59,6 @@ print('absolute sensitivity'); print(main_absolute);
 Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3lag_p15_p85'), vars.abs_viz, 'absolute drought sensitivity NDVI p15-85  3 yr lag antecedent');
 
 
-var hermosilla_1984_2019 = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
-
-var lc_transitions = function() {
-    var lc_remapped = hermosilla_1984_2019
-      .map(utils.set_year)
-      .map(land_cover.mask_classes)
-      .map(function(img) {
-        return img.remap([40, 50, 
-                          80, 81,
-                          100, 210, 220, 230],
-                          [1, 1, 
-                           2, 2, 
-                           3, 3, 3, 3],
-                           0,
-                           'land_cover');
-      });
-  var lc_transitions = lc_remapped.reduce(ee.Reducer.countDistinct()).eq(1);
-  
-  return lc_transitions;
-};
-
-Map.addLayer(lc_transitions(), null, 'land_cover.lc_transitions()', false);
-
-Map.addLayer(anthro.harvest_any, {opacity: 0.3}, 'Harvest mask (any)', false);
+// Maskss
+Map.addLayer(anthro.harvest_any, {palette: ['ffffff','ff50ea'],opacity: 0.3}, 'Harvest mask (any)', false);
 Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
