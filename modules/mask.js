@@ -28,7 +28,10 @@ exports.atemporal_mask = atemporal_mask;
 // Apply masks
 var apply_mask = function(images) {
 	return images.map(function(img) {
-		return fire.mask_five_year_fires(img.updateMask(atemporal_mask));
+    img = img.updateMask(atemporal_mask);
+    img = fire.mask_five_year_fires(img);
+    img = anthro.mask_harvest_year(img);
+		return img;
 	});
 };
 exports.apply_mask = apply_mask;
