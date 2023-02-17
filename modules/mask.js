@@ -23,7 +23,7 @@ var lc_transitions = land_cover.lc_transitions();
 var atemporal_mask = min_land_cover_mask
   .updateMask(lc_transitions)
 	.updateMask(world_settlement_area.not())
-	.updateMask(agriculture_mask.unmask().not())
+	.updateMask(agriculture_mask.not())
 	.rename('atemporal_mask');
 exports.atemporal_mask = atemporal_mask;
 
