@@ -22,13 +22,13 @@ var mask = require('users/robitalec/CFS:modules/mask.js');
 var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
   var lc = land_cover.hermosilla_1984_2019
     .map(utils.set_year);
-  
-  lc = mask.apply_mask(lc)
+
+  lc = mask.apply_masks(lc)
     .mode()
     .rename('land_cover');
-  
+
   var ecoreg_bands = eco.eco_bands();
-  
+
   var sample_col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
 
   var sampled = sample_col.reduceRegions({
@@ -47,11 +47,11 @@ exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
 
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
-	
+
   var sampled = ee.FeatureCollection(points.map(function(pt) {
     return ee.Feature(pt.geometry(), col.reduceRegion({
-      reducer: ee.Reducer.mean(), 
-      geometry: pt.geometry(), 
+      reducer: ee.Reducer.mean(),
+      geometry: pt.geometry(),
       scale: 500
     }));
   }));
@@ -67,16 +67,16 @@ var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
   // (thanks Noel https://gis.stackexchange.com/a/428747/27076)
   var asset_path = "users/robitalec/CFS/2022-07-28";
   print('asset path: ', asset_path);
-  
+
   var assetList = ee.data.listAssets(asset_path)['assets']
                     .map(function(d) { return d.name });
   var drought_sens = ee.ImageCollection(assetList);
 
   drought_sens = drought_sens
     .mosaic()
-    .addBands([ee.Image.pixelLonLat(), 
+    .addBands([ee.Image.pixelLonLat(),
                eco.eco_bands()]);
-  
+
 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
@@ -130,7 +130,7 @@ var zzz_export_abs_sensitivity_cap = function(points, region, drive_name, drive_
 	var out = main.main_cap('absolute sensitivity', region, min_year, max_year, min_mm_dd, max_mm_dd, index_list, percentile_low, percentile_high, antecedent_list);
 
   out = out.addBands([ee.Image.pixelLonLat()]);
-  
+
 	var sampled = points.map(function(ft) {
     return out.reduceRegion(ft, ee.Reducer.mean(), 30);
 	}).flatten();
