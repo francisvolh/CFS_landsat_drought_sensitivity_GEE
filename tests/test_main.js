@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -10,7 +11,11 @@ var geometry =
         [[[-129.70951037000103, 55.01366927692328],
           [-129.70951037000103, 54.16385633338348],
           [-127.68527941296978, 54.16385633338348],
-          [-127.68527941296978, 55.01366927692328]]], null, false);
+          [-127.68527941296978, 55.01366927692328]]], null, false),
+    geometry2 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Point([-128.71507601331157, 54.32903946310644]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Testing: modules/main.js
