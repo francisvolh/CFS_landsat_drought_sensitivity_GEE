@@ -32,7 +32,7 @@ var harvest_any = harvest_year.mask();
 exports.harvest_any = harvest_any;
 
 var mask_harvest_year = function(img) {
-  var img_year = img.date().get('year').int();
+  var img_year = img.date().get('year');
   return img.updateMask(
 		harvest_year.gte(img_year)
 	);
