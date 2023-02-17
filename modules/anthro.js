@@ -28,12 +28,12 @@ exports.world_settlement_area = world_settlement_area;
 var harvest = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020");
 exports.harvest = harvest;
 
-var mask_harvest = function(img) {
-  var img_year = img.date().get('year');
-  return img.updateMask(
-		harvest.lt(img_year - 1)()
-      .filter(ee.Filter.eq('year', img_year))
-			.first()
-			.mask());
-};
-exports.mask_land_cover = mask_land_cover;
+// var mask_harvest = function(img) {
+//   var img_year = img.date().get('year');
+//   return img.updateMask(
+// 		harvest.lt(img_year - 1)()
+//       .filter(ee.Filter.eq('year', img_year))
+// 			.first()
+// 			.mask());
+// };
+// exports.mask_harvest = mask_harvest;
