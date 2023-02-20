@@ -22,7 +22,7 @@ var five_year_fires = function(yr) {
   var ymin5 = date.advance(-4, 'year').get('year');
 
   
-  if (ee.Number(max_NBAC_fires_year)< y) {
+  if (ee.Number(max_NBAC_fires_year) < y) {
     console.log('warning: image year beyond range of fire masks');
   } 
 
