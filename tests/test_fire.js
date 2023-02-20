@@ -25,7 +25,7 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 // Test five_year_fires
 // Usage: fire.five_year_fires(year)
-var five_year_fires = fire.five_year_fires(2021);
+var five_year_fires = fire.five_year_fires(2020);
 print(five_year_fires);
 Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']}, 'five_year_firest');
 
