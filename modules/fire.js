@@ -37,9 +37,10 @@ exports.five_year_fires = five_year_fires;
 var mask_five_year_fires = function(img) {
   var yr = img.get('year');
   
-  if (yr > )
-
-  var fire = five_year_fires(yr).eq(0);
-  return(img.updateMask(fire))
-};
+  if (yr > max_NBAC_fires_year) {
+    return(img);
+  } else {
+    var fire = five_year_fires(yr).eq(0);
+    return(img.updateMask(fire));
+  }
 exports.mask_five_year_fires = mask_five_year_fires;
