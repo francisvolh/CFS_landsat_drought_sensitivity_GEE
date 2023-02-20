@@ -21,6 +21,11 @@ var five_year_fires = function(yr) {
   // 5 years previous
   var ymin5 = date.advance(-4, 'year').get('year');
 
+  
+  if (y > max_NBAC_fires_year) {
+    console.log('warning: image year beyond range of fire masks');
+  } 
+
   // Filter fires within last 5 years
   // Reduce to any non zero = anywhere there is a fire
   // Result is 0 = no fire, 1 = fire
@@ -37,12 +42,7 @@ exports.five_year_fires = five_year_fires;
 var mask_five_year_fires = function(img) {
   var yr = img.get('year');
   
-  if (yr > max_NBAC_fires_year) {
-    console.log('warning: image year beyond range of fire masks');
-    return(img);
-  } else {
-    var fire = five_year_fires(yr).eq(0);
-    return(img.updateMask(fire));
-  }
+  var fire = five_year_fires(yr).eq(0);
+  return(img.updateMask(fire));
 };
 exports.mask_five_year_fires = mask_five_year_fires;
