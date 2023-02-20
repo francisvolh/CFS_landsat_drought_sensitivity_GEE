@@ -82,5 +82,5 @@ print('Masked NDVI', masked_ndvi);
 var ndvi_geo2 = landsat.indices_greenest(2010, 2012, '06-01', '08-31', geometry2);
 Map.addLayer(ndvi_geo2.select('NDVI'), {opacity: 0.5}, 'NDVI - geometry2');
 var masked_ndvi_geo2 = mask.apply_masks(ndvi_geo2);
-Map.addLayer(masked_ndvi.select('NDVI'), {opacity: 0.5}, 'Masked NDVI - geometry2');
+Map.addLayer(masked_ndvi_geo2.select('NDVI'), {opacity: 0.5}, 'Masked NDVI - geometry2');
 
