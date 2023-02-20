@@ -30,7 +30,7 @@ var apply_masks = function(images) {
     var masked_img = img.updateMask(atemporal_mask.not());
     masked_img = fire.mask_five_year_fires(masked_img);
     masked_img = anthro.mask_harvest_year(masked_img);
-    // masked_img = land_cover_
+    masked_img = land_cover.mask_classes(masked.img);
 		return masked_img;
 	});
 };
