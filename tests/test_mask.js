@@ -65,9 +65,9 @@ Map.addLayer(mask.atemporal_mask.not(), {opacity: 0.3}, 'Atemporal mask', false)
 
 
 // Temporal mask: fire, harvest
-// Map.addLayer(fire.five_year_fires(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 fires');
-// Map.addLayer(anthro.harvest_year, {palette: ['#ffc0c0','#be0900', '#000000'], min: 1985, max:2020, opacity: 0.8}, 'Harvest year', false);
-// Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#5eb5ff'], opacity: 0.3}, '2011 harvest');
+Map.addLayer(fire.five_year_fires(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 fires');
+Map.addLayer(anthro.harvest_year, {palette: ['#ffc0c0','#be0900', '#000000'], min: 1985, max:2020, opacity: 0.8}, 'Harvest year', false);
+Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#5eb5ff'], opacity: 0.3}, '2011 harvest');
 
 
 
@@ -75,10 +75,9 @@ Map.addLayer(mask.atemporal_mask.not(), {opacity: 0.3}, 'Atemporal mask', false)
 // Usage: mask.apply_masks(images);
 var masked_ndvi = mask.apply_masks(ndvi);
 print('Masked NDVI', masked_ndvi);
-// Map.addLayer(masked_ndvi.select('NDVI'), {opacity: 0.5}, 'Masked NDVI');
+Map.addLayer(masked_ndvi.select('NDVI'), {opacity: 0.5}, 'Masked NDVI');
 
 
-// Testing mask masks USA
 var ndvi_geo2 = landsat.indices_greenest(2010, 2012, '06-01', '08-31', geometry2);
 Map.addLayer(ndvi_geo2.select('NDVI'), {opacity: 0.5}, 'NDVI - geometry2', false);
 var masked_ndvi_geo2 = mask.apply_masks(ndvi_geo2);
