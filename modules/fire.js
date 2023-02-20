@@ -38,6 +38,7 @@ var mask_five_year_fires = function(img) {
   var yr = img.get('year');
   
   if (yr > max_NBAC_fires_year) {
+    console.log('warning: image year beyond range of fire masks');
     return(img);
   } else {
     var fire = five_year_fires(yr).eq(0);
