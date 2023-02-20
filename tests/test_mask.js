@@ -50,7 +50,6 @@ var lc = ee.ImageCollection("projects/sat-io/open-datasets/CA_FOREST_LC_VLCE2");
 
 // Map land cover
 Map.addLayer(lc, null, 'Land cover');
-Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2011)), null, 'Land cover - masked');
 
 // Map anthro, agriculture masks
 Map.addLayer(ee.Image.constant(0), {palette: '#000000'}, 'Background');
