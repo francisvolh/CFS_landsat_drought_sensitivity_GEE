@@ -27,10 +27,10 @@ exports.world_settlement_area = world_settlement_area;
 
 
 var harvest_year = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020")
-  .unmask(9999);
+  .unmask(0);
 exports.harvest_year = harvest_year;
 
-var harvest_any = harvest_year.lt(9999);
+var harvest_any = harvest_year.gt(0);
 exports.harvest_any = harvest_any;
 
 var mask_harvest_year = function(img) {
