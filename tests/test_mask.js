@@ -64,9 +64,9 @@ Map.addLayer(mask.atemporal_mask.not(), {opacity: 0.3}, 'Atemporal mask', false)
 
 
 // Temporal mask: fire, harvest
-Map.addLayer(fire.five_year_fires(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 fires');
+Map.addLayer(fire.five_year_fires(2011), {palette: ['#000000', '#ff5e5e'], opacity: 0.3}, '2011 fire mask');
 Map.addLayer(anthro.harvest_year, {palette: ['#ffc0c0','#be0900', '#000000'], min: 1985, max:2020, opacity: 0.8}, 'Harvest year', false);
-Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#5eb5ff'], opacity: 0.3}, '2011 harvest');
+Map.addLayer(anthro.harvest_year.eq(2011), {palette: ['#000000', '#5eb5ff'], opacity: 0.3}, '2011 harvest mask');
 Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2011)), null, '2011 land cover mask');
 
 
