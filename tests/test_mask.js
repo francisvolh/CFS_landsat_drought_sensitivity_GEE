@@ -53,9 +53,9 @@ Map.addLayer(lc, null, 'Land cover');
 Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2011)), null, 'Land cover - masked');
 
 // Map anthro, agriculture masks
-// Map.addLayer(ee.Image.constant(0), {palette: '#000000'}, 'Background');
-// Map.addLayer(anthro.world_settlement_area, {palette: ['#000000', '#ccc848'], opacity: 0.3}, 'World Settlement Area');
-// Map.addLayer(agriculture.agriculture, {palette: ['#000000', '#44bf3c'], opacity: 0.3}, 'Agriculture');
+Map.addLayer(ee.Image.constant(0), {palette: '#000000'}, 'Background');
+Map.addLayer(anthro.world_settlement_area, {palette: ['#000000', '#ccc848'], opacity: 0.3}, 'World Settlement Area');
+Map.addLayer(agriculture.agriculture, {palette: ['#000000', '#44bf3c'], opacity: 0.3}, 'Agriculture');
 
 
 // Atemporal mask
