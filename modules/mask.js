@@ -28,7 +28,7 @@ exports.atemporal_mask = atemporal_mask;
 var apply_masks = function(images) {
 	return images.map(function(img) {
     var masked_img = img.updateMask(atemporal_mask.not());
-    img = fire.mask_five_year_fires(img);
+    masked_img = fire.mask_five_year_fires(masked_img);
     // img = anthro.mask_harvest_year(img);
     // img = land_cover_
 		return masked_img;
