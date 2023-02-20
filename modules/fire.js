@@ -23,7 +23,7 @@ var five_year_fires = function(yr) {
 
   
   if (y > max_NBAC_fires_year) {
-    console.log(y + max_NBAC_fires_year + 'warning: image year beyond range of fire masks');
+    console.log('warning: image year beyond range of fire masks');
   } 
 
   // Filter fires within last 5 years
