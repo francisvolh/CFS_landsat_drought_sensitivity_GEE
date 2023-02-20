@@ -21,11 +21,6 @@ var five_year_fires = function(yr) {
   // 5 years previous
   var ymin5 = date.advance(-4, 'year').get('year');
 
-  
-  if (ee.Number(max_NBAC_fires_year) < y) {
-    console.log('warning: image year beyond range of fire masks');
-  } 
-
   // Filter fires within last 5 years
   // Reduce to any non zero = anywhere there is a fire
   // Result is 0 = no fire, 1 = fire
