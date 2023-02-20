@@ -43,4 +43,5 @@ var mask_five_year_fires = function(img) {
     var fire = five_year_fires(yr).eq(0);
     return(img.updateMask(fire));
   }
+};
 exports.mask_five_year_fires = mask_five_year_fires;
