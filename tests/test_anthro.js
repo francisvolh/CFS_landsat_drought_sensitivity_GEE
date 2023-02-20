@@ -32,8 +32,8 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var ndvi = landsat.indices_greenest(2019, 2021, '06-01', '08-31', geometry);
 Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI 2019-2021', false);
 
-var lc_2015 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first();
-Map.addLayer(lc_2015, null, 'Land cover 2015', false);
+var lc_2019 = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first();
+Map.addLayer(lc_2019, null, 'lc_2019', false);
 
 
 
