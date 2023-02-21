@@ -83,5 +83,5 @@ var lc_viz = lc.first()
   .visualize({
     palette: palettes.colorbrewer.Greys[9]
   });
-
+Map.addLayer(lc_viz, null, 'lc viz');
 Map.addLayer(blend.overlay(col_viz, lc_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and land cover');
