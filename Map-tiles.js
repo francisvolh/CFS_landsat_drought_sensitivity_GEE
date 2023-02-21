@@ -77,12 +77,3 @@ var hillshade_viz = hillshade.visualize({
 Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and hillshade');
-
-
-var lc_viz = lc.first()
-  .visualize({
-    palette: palettes.colorbrewer.Greys[9]
-  });
-Map.addLayer(lc_viz, null, 'lc viz', false);
-
-Map.addLayer(blend.multiply(col_viz, lc_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and land cover');
