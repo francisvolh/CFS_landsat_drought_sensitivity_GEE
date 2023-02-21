@@ -20,6 +20,7 @@ Alec L. Robitaille
 
 // Load modules
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
+var vars = require('users/robitalec/CFS:modules/vars.js');
 
 // Set variables
 var ante_list = vars.ante_list;
