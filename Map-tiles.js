@@ -46,7 +46,8 @@ var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
 
-Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc', false);
+var lc = land_cover.land_cover().filter(ee.Filter.eq('year', 2000))
+Map.addLayer(lc, {palette:lc_p}, 'lc', false);
 Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity');
 
 
@@ -78,7 +79,7 @@ Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:.1, max:.7});
 
 
-var lc_viz = land_cover.land_cover().filter(ee.Filter.eq('year', 2000))
+var lc_viz = lc
   .visualize({
     palette: palettes.crameri.bamako[25]
   });
