@@ -23,10 +23,10 @@ var geometry =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-127.03887179287499, 53.581348348560816],
-          [-127.03887179287499, 50.83570486910769],
-          [-121.67754366787499, 50.83570486910769],
-          [-121.67754366787499, 53.581348348560816]]], null, false);
+        [[[-140.17852023037497, 60.077388823750255],
+          [-140.17852023037497, 48.96788026303474],
+          [-114.86602023037499, 48.96788026303474],
+          [-114.86602023037499, 60.077388823750255]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var blend = require('users/jja/public:blend.js');
 
@@ -75,4 +75,4 @@ var hillshade_viz = hillshade.visualize({
 });
 Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
-Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:-41, max:163});
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:.1, max:.7});
