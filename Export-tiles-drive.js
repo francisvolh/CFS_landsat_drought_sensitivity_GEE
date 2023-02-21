@@ -29,7 +29,7 @@ var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var region = geometry;
-var scale = 1000;
+var scale = 500;
 
 var asset_folder = 'users/robitalec/CFS/2023-02-21';
 var drive_folder = '2023-02-21';
