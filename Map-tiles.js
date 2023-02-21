@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.MultiPoint(
+var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
         [[-122.87601510557185, 51.575257623159025],
          [-127.6908019425976, 59.8641849594477],
          [-127.96690934574258, 59.52208123280006],
@@ -13,7 +10,19 @@ var geometry =
          [-129.2204445293386, 65.44340868439454],
          [-127.61655341724074, 65.1980422796904],
          [-124.71727310440444, 63.99798235893234],
-         [-123.30840051221965, 63.47596387072551]]);
+         [-123.30840051221965, 63.47596387072551]]),
+    geometry2 = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-127.03887179287499, 53.581348348560816],
+          [-127.03887179287499, 50.83570486910769],
+          [-121.67754366787499, 50.83570486910769],
+          [-121.67754366787499, 53.581348348560816]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var blend = require('users/jja/public:blend.js');
 
@@ -45,7 +54,7 @@ var col_viz = col.visualize({
 
 var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 dem = dem
-  .filterBounds(geometry)
+  .filterBounds(geometry2)
   .mosaic()
   .setDefaultProjection(dem.first().projection());
 
