@@ -46,10 +46,13 @@ Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2000)), {palett
 Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity');
 
 
-var col_viz = col.visualize({
-  palette:p,
-  min: -0.2,
-  max: 0.2
+var col_viz = col
+  .filterBounds(geometry2)
+  .mosaic()
+  .visualize({
+    palette:p,
+    min: -0.2,
+    max: 0.2
 });
 
 var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
