@@ -30,7 +30,7 @@ var geometry =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var blend = require('users/jja/public:blend.js');
 
-Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.25}, 'constant');
+Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
@@ -48,7 +48,7 @@ var lc_p = palettes.crameri.bamako[25];
 
 var lc = land_cover.land_cover().filter(ee.Filter.eq('year', 22010))
 Map.addLayer(lc, {palette:lc_p}, 'lc', false);
-Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity');
+Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
 
 
 var col_viz = col
@@ -76,4 +76,4 @@ var hillshade_viz = hillshade.visualize({
 });
 // Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
-Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and hillshade');
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
