@@ -39,6 +39,7 @@ Map.addLayer(ee.Image.constant(1), {palette:'#000'});
 
 
 // Test main - index + antecedent means
+// TODO: remove extra args here
 // Usage: main_greenest(output, region, min_year, max_year, min_mm_dd, max_mm_dd, antecedent_list);
 var main_index_and_antecedent = main.main_greenest('vegetation index and antecedent means', geometry);
 print('veg index + antecedent means'); print(main_index_and_antecedent);
