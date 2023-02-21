@@ -19,7 +19,7 @@ Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.25}, 'constant');
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
-var assetList = ee.data.listAssets("users/robitalec/CFS/2023-02-17")['assets']
+var assetList = ee.data.listAssets("users/robitalec/CFS/2023-02-21")['assets']
                     .map(function(d) { return d.name });
 var col = ee.ImageCollection(assetList);
 
