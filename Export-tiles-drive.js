@@ -30,8 +30,8 @@ var max_mm_dd = vars.max_mm_dd;
 var region = geometry;
 var scale = 30;
 
-var asset_folder = 'users/robitalec/CFS/2022-07-10';
-var drive_folder = '2022-07-10';
+var asset_folder = 'users/robitalec/CFS/2023-02-21';
+var drive_folder = '2023-02-21';
 
 
 
