@@ -42,4 +42,4 @@ var tiles = tiler.getTilesForGeometry(region, 7);
 
 
 // Export drive from asset
-export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, scale);
+export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
