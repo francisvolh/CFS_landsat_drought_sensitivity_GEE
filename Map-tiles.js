@@ -15,6 +15,8 @@ var geometry =
          [-124.71727310440444, 63.99798235893234],
          [-123.30840051221965, 63.47596387072551]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
+var blend = require('users/jja/public:blend.js');
+
 Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.25}, 'constant');
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
@@ -33,3 +35,25 @@ var lc_p = palettes.crameri.bamako[25];
 
 Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc', false);
 Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity');
+
+
+var col_viz = col.visualize({
+  palette:p,
+  min: -0.2,
+  max: 0.2
+});
+
+var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
+dem = dem
+  .filterBounds(geometry)
+  .mosaic()
+  .setDefaultProjection(dem.first().projection());
+
+var hillshade_viz = ee.Terrain.hillshade(dem).visualize({
+  min:0, 
+  max:90, 
+  palette: ['#000000', '#ffffff'],
+  forceRgbOutput:true
+});
+
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:-41, max:163});
