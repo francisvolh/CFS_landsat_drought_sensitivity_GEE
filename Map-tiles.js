@@ -76,10 +76,10 @@ var hillshade_viz = hillshade.visualize({
 });
 Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
-Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:.1, max:.7});
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:0.1, max:0.7});
 
 
-var lc_viz = lc
+var lc_viz = lc.first().
   .visualize({
     palette: palettes.crameri.bamako[25]
   });
