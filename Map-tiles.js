@@ -81,7 +81,7 @@ Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.7});
 
 var lc_viz = lc.first()
   .visualize({
-    palette: palettes.Brewer.Greys[10]
+    palette: palettes.colorbrewer.Greys[9]
   });
 
 Map.addLayer(blend.overlay(col_viz, lc_viz), {min: 0.1, max: 0.7});
