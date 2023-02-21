@@ -69,9 +69,10 @@ var hillshade = ee.Terrain.hillshade(dem);
 Map.addLayer(hillshade, null, 'hillshade');
 var hillshade_viz = hillshade.visualize({
   min:0, 
-  max:90, 
+  max:250, 
   palette: ['#000000', '#ffffff'],
   forceRgbOutput:true
 });
+Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:-41, max:163});
