@@ -16,17 +16,16 @@ var geometry =
          [-123.30840051221965, 63.47596387072551]]),
     geometry2 = 
     /* color: #d63000 */
-    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-140.17852023037497, 60.077388823750255],
-          [-140.17852023037497, 48.96788026303474],
+        [[[-142.46367648037497, 70.02917912240703],
+          [-142.46367648037497, 48.96788026303474],
           [-114.86602023037499, 48.96788026303474],
-          [-114.86602023037499, 60.077388823750255]]], null, false);
+          [-114.86602023037499, 70.02917912240703]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var blend = require('users/jja/public:blend.js');
 
