@@ -65,7 +65,9 @@ dem = dem
   .mosaic()
   .setDefaultProjection(dem.first().projection());
 
-var hillshade_viz = ee.Terrain.hillshade(dem).visualize({
+var hillshade = ee.Terrain.hillshade(dem);
+Map.addLayer(hillshade, null, 'hillshade');
+var hillshade_viz = hillshade.visualize({
   min:0, 
   max:90, 
   palette: ['#000000', '#ffffff'],
