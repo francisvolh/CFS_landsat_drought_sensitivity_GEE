@@ -67,13 +67,13 @@ dem = dem
   .setDefaultProjection(dem.first().projection());
 
 var hillshade = ee.Terrain.hillshade(dem);
-Map.addLayer(hillshade, null, 'hillshade');
+// Map.addLayer(hillshade, null, 'hillshade');
 var hillshade_viz = hillshade.visualize({
   min:0, 
   max:250, 
   palette: ['#000000', '#ffffff'],
   forceRgbOutput:true
 });
-Map.addLayer(hillshade_viz, null, 'hillshade_viz');
+// Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and hillshade');
