@@ -76,7 +76,7 @@ var hillshade_viz = hillshade.visualize({
 });
 Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
-Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min:0.1, max:0.7});
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.7});
 
 
 var lc_viz = lc.first()
@@ -84,6 +84,4 @@ var lc_viz = lc.first()
     palette: palettes.crameri.bamako[25]
   });
 
-Map.addLayer(blend.overlay(col_viz, lc_viz), {min:.1, max:.7});
-
-Map.addLayer(land_cover.land_cover().filter(ee.Filter.eq('year', 2000)), {palette:lc_p}, 'lc', false);
+Map.addLayer(blend.overlay(col_viz, lc_viz), {min: 0.1, max: 0.7});
