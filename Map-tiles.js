@@ -85,4 +85,4 @@ var lc_viz = lc.first()
   });
 Map.addLayer(lc_viz, null, 'lc viz', false);
 
-Map.addLayer(blend.overlay(col_viz, lc_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and land cover');
+Map.addLayer(blend.multiply(col_viz, lc_viz), {min: 0.1, max: 0.7}, 'blend sensitivity and land cover');
