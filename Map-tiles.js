@@ -42,9 +42,7 @@ Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 
-var assetList = ee.data.listAssets("users/robitalec/CFS/2023-02-21")['assets']
-                    .map(function(d) { return d.name });
-var col = ee.ImageCollection(assetList);
+var col = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
 
 print('Band names', col.first().bandNames());
 col = col.select('Abs_sens_NDVI_ante12mo_p15_p85');
