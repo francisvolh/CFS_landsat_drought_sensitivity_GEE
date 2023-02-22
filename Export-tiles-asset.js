@@ -80,15 +80,11 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
-// tile_id_list = tile_id_list.slice(130, 140);
+tile_id_list = tile_id_list.slice(77, 77);
 
-// tile_id_list.evaluate(function(tile_ids) {
-//     tile_ids.forEach(function(tile_id) {
-//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-//       export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
-//     });
-// });
-
-var ft = tiles.filter(ee.Filter.eq('id', 123));
-export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + 123, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
-    
+tile_id_list.evaluate(function(tile_ids) {
+    tile_ids.forEach(function(tile_id) {
+      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft);
+    });
+});
