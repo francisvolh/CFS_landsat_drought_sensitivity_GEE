@@ -90,5 +90,5 @@ print(tile_id_list);
 // });
 
 var ft = tiles.filter(ee.Filter.eq('id', 123));
-export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
+export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + 123, asset_path, scale, ft, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
     
