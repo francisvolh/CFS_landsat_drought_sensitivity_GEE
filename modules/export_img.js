@@ -53,7 +53,7 @@ exports.export_img_drive_greenest = export_img_drive_greenest;
 // Export img drive from asset
 var export_img_drive_from_asset = function(asset_folder, bounds, drive_folder, scale) {
   // (thanks Noel https://gis.stackexchange.com/a/428747/27076)
-  var asset_list = ee.data.listAssets(asset_folder)['assets']
+  var asset_col = ee.data.listAssets(asset_folder)['assets']
     .map(function(asset) {
       return ee.Image(asset.name).set({'asset-name': asset.name});
   });
