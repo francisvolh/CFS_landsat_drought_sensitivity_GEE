@@ -29,6 +29,6 @@ var collect_img_assets_in_dir = function(dir) {
             return d.name;
         });
     return ee.ImageCollection(assetList);
-}
+};
 exports.collect_img_assets_in_dir = collect_img_assets_in_dir;
 
