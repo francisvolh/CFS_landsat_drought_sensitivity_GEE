@@ -61,7 +61,7 @@ var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 
 var today = new Date().toJSON().slice(0, 10);
-var asset_path = 'CFS/' + today + 'image_col/' + today;
+var asset_path = 'CFS/' + today + '_image_col/' + today;
 var scale = 30;
 
 var ecoregions = eco.non_arctic_ecoregions;
