@@ -52,7 +52,7 @@ var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
 
-var lc = land_cover.land_cover().filter(ee.Filter.eq('year', 22010))
+var lc = land_cover.land_cover().filter(ee.Filter.eq('year', 2010))
 Map.addLayer(lc, {palette:lc_p}, 'lc', false);
 Map.addLayer(col, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
 
