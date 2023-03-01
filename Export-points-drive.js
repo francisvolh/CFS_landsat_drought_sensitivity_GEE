@@ -51,6 +51,5 @@ export_points.export_climate(points, 'sample-climate-' + points_name, drive_fold
 // Lc, ecoreg, lon lat
 export_points.export_lc_and_ecoreg(points, 'sample-lc-ecoreg-' + points_name, drive_folder);
 
-
 // Sensitivity
-// export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
+export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
