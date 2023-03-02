@@ -85,4 +85,4 @@ var hillshade_viz = hillshade.visualize({
 
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
 
-Map.addLayer(soil.sampling_collection(), null, 'soil')
+Map.addLayer(soil.sampling_collection(), null, 'soil');
