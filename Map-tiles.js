@@ -41,6 +41,7 @@ var blend = require('users/jja/public:blend.js');
 Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
 
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var soil = require('users/robitalec/CFS:modules/soil.js');
 
 var col = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
 
@@ -83,3 +84,5 @@ var hillshade_viz = hillshade.visualize({
 // Map.addLayer(hillshade_viz, null, 'hillshade_viz');
 
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
+
+Map.addLayer(soil.sampling_collection(), null, 'soil')
