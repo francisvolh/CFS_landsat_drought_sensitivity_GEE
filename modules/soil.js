@@ -79,8 +79,7 @@ exports.peat_depth = peat_depth;
 var sampling_collection = function() {
   return ee.Image([
     soil_percent(),
-    soil_carbon(),
-    peat_depth()
+    soil_carbon()
     ]);
 };
 exports.sampling_collection = sampling_collection;
