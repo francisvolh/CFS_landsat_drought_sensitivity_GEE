@@ -24,13 +24,13 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 // Data -----------------------------------------------------------------------
 // Generate points
-var factor = 0.01;
+var factor = 0.050;
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 points.export_points_by_img_col_asset(col, factor);
 
 // Asset
-var points = ee.FeatureCollection('users/robitalec/CFS/2023-12-21_sampling_points_tiles_0pt01percent');
-var points_name = 'tiles_0pt01';
+// var points = ee.FeatureCollection('users/robitalec/CFS/2023-12-21_sampling_points_tiles_0pt01percent');
+// var points_name = 'tiles_0pt01';
 
 
 
