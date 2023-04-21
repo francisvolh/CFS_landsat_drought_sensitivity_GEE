@@ -31,10 +31,10 @@ var export_points_asset = function(n_pts, ecoregions, region_name) {
 exports.export_points_asset = export_points_asset;
 
 
-// Export points by tile as asset
-var export_points_by_tile_asset = function(tiles, factor) {
-  var points = tiles.map(function(tile) {
-    return tile.sample({
+// Export points by img in img col asset
+var export_points_by_img_col_asset = function(img_col, factor) {
+  var points = img_col.map(function(img) {
+    return img.sample({
       scale: 30,
       factor: factor,
       geometries: true
@@ -45,5 +45,5 @@ var export_points_by_tile_asset = function(tiles, factor) {
   var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
   Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
-exports.export_points_by_tile_asset = export_points_by_tile_asset;
+exports.export_points_by_img_col_asset = export_points_by_img_col_asset;
 
