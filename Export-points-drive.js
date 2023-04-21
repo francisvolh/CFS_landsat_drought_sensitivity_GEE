@@ -24,7 +24,7 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 // Data -----------------------------------------------------------------------
 // Generate points
-var factor = 0.050;
+var factor = 0.005;
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 points.export_points_by_img_col_asset(col, factor);
 
