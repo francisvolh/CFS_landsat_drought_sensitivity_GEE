@@ -29,7 +29,7 @@ var factor_char = '0pt5';
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 points.export_points_by_img_col_asset(col, factor, factor_char);
 
-Map.addlayer(points)
+// Map.addLayer(points)
 // Asset
 // var points = ee.FeatureCollection('users/robitalec/CFS/2023-12-21_sampling_points_tiles_0pt01percent');
 // var points_name = 'tiles_0pt01';
