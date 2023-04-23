@@ -45,7 +45,8 @@ var export_points_by_img_col_asset = function(img_col, factor) {
 
   var today = new Date().toJSON().slice(0, 10);
   var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
-  Export.table.toAsset(points.filter(ee.Filter.lt('random', 0.5)), filename, 'CFS/' + filename + '_half1');
-  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.5)), filename, 'CFS/' + filename + '_half2');
+  Export.table.toAsset(points.filter(ee.Filter.lt('random', 0.33)), filename, 'CFS/' + filename + '_third1');
+  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.33).and(ee.Filter.lt('random', .66))), filename, 'CFS/' + filename + '_third2');
+  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.66)), filename, 'CFS/' + filename + '_third3');
 };
 exports.export_points_by_img_col_asset = export_points_by_img_col_asset;
