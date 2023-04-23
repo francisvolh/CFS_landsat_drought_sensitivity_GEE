@@ -41,9 +41,11 @@ var export_points_by_img_col_asset = function(img_col, factor) {
     });
   }).flatten();
 
+  points = points.randomColumn()
+
   var today = new Date().toJSON().slice(0, 10);
   var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
-  Export.table.toAsset(points.randomColumn(ee.Filter.lt('random', 0.5)), filename, 'CFS/' + filename + '_half1');
-  Export.table.toAsset(points.randomColumn(ee.Filter.gte('random', 0.5)), filename, 'CFS/' + filename + '_half2');
+  Export.table.toAsset(points.filter(ee.Filter.lt('random', 0.5)), filename, 'CFS/' + filename + '_half1');
+  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.5)), filename, 'CFS/' + filename + '_half2');
 };
 exports.export_points_by_img_col_asset = export_points_by_img_col_asset;
