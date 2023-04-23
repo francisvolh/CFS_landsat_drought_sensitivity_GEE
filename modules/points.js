@@ -33,7 +33,7 @@ exports.export_points_asset = export_points_asset;
 
 // Export points by img in img col asset
 var export_points_by_img_col_asset = function(img_col, factor, factor_char) {
-  var points = img_col.map(function(img) {
+  var points = ee.ImageCollection(img_col).map(function(img) {
     return img.sample({
       scale: 30,
       factor: factor,
