@@ -32,7 +32,7 @@ exports.export_points_asset = export_points_asset;
 
 
 // Export points by img in img col asset
-var export_points_by_img_col_asset = function(img_col, factor) {
+var export_points_by_img_col_asset = function(img_col, factor, factor_char) {
   var points = img_col.map(function(img) {
     return img.sample({
       scale: 30,
@@ -44,9 +44,11 @@ var export_points_by_img_col_asset = function(img_col, factor) {
   points = points.randomColumn();
 
   var today = new Date().toJSON().slice(0, 10);
-  var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
-  Export.table.toAsset(points.filter(ee.Filter.lt('random', 0.33)), filename, 'CFS/' + filename + '_third1');
-  Export.table.toAsset(points.filter(ee.Filter.and(ee.Filter.gte('random', 0.33), ee.Filter.lt('random', .66))), filename, 'CFS/' + filename + '_third2');
-  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.66)), filename, 'CFS/' + filename + '_third3');
+  var filename = today + '_sampling_points_tiles_' + factor_char + 'percent';
+  
+  Export.table.toAsset(points.filter(ee.Filter.lt('random', 0.25)), filename, 'CFS/' + filename + '_quarter1');
+  Export.table.toAsset(points.filter(ee.Filter.and(ee.Filter.gte('random', 0.25), ee.Filter.lt('random', 0.50))), filename, 'CFS/' + filename + '_quarter2');
+  Export.table.toAsset(points.filter(ee.Filter.and(ee.Filter.gte('random', 0.50), ee.Filter.lt('random', 0.75))), filename, 'CFS/' + filename + '_quarter3');
+  Export.table.toAsset(points.filter(ee.Filter.gte('random', 0.75)), filename, 'CFS/' + filename + '_quarter4');
 };
 exports.export_points_by_img_col_asset = export_points_by_img_col_asset;
