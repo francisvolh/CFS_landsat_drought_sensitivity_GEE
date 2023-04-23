@@ -25,9 +25,16 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 // Data -----------------------------------------------------------------------
 // Generate points
 var factor = 0.005;
-var factor_char = '0pt5';
+var factor_char = '0pt5percent';
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
-points.export_points_by_img_col_asset(col, factor, factor_char);
+col = col.randomColumn();
+
+Export.table.toAsset(col.filter(ee.Filter.lt('random', 0.25)), filename, 'CFS/' + filename + '_quarter1');
+Export.table.toAsset(col.filter(ee.Filter.and(ee.Filter.gte('random', 0.25), ee.Filter.lt('random', 0.50))), filename, 'CFS/' + filename + '_quarter2');
+Export.table.toAsset(col.filter(ee.Filter.and(ee.Filter.gte('random', 0.50), ee.Filter.lt('random', 0.75))), filename, 'CFS/' + filename + '_quarter3');
+Export.table.toAsset(col.filter(ee.Filter.gte('random', 0.75)), filename, 'CFS/' + filename + '_quarter4');
+
+points.export_points_by_img_col_asset(col, factor, factor_char + '_quarter1');
 
 // Map.addLayer(points)
 // Asset
