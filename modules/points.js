@@ -41,7 +41,7 @@ var export_points_by_img_col_asset = function(img_col, factor) {
     });
   }).flatten();
 
-  points = points.randomColumn()
+  points = points.randomColumn();
 
   var today = new Date().toJSON().slice(0, 10);
   var filename = today + '_sampling_points_tiles_' + factor * 100 + 'percent';
