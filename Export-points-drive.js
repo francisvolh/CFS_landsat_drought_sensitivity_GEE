@@ -27,10 +27,11 @@ var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 var factor = 0.005;
 var factor_char = '0pt5percent';
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
-print(col.size());
 
-points.export_points_by_img_col_asset(col.limit(69), factor, factor_char + '_half1');
-points.export_points_by_img_col_asset(col.limit(-69), factor, factor_char + '_half2');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(0, 35)), factor, factor_char + '_quarter1');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(35, 70)), factor, factor_char + '_quarter2');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(70, 105)), factor, factor_char + '_quarter3');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(105, 140)), factor, factor_char + '_quarter4');
 
 // Map.addLayer(points)
 // Asset
