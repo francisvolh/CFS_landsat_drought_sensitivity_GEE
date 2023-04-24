@@ -63,19 +63,19 @@ exports.export_hydro = export_hydro;
 
 
 
-var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
-  var drought_sens = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
+// var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
+//   var drought_sens = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
 
-  drought_sens = drought_sens
-    .mosaic()
-    .addBands([ee.Image.pixelLonLat(),
-               eco.eco_bands()]);
+//   drought_sens = drought_sens
+//     .mosaic()
+//     .addBands([ee.Image.pixelLonLat(),
+//               eco.eco_bands()]);
 
-	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
-};
-exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
+// 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
+// 	var today = new Date().toJSON().slice(0, 10);
+// 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+// };
+// exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
 
 
 
