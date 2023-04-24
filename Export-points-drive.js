@@ -28,10 +28,13 @@ var factor = 0.005;
 var factor_char = '0pt5percent';
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 
-points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(0, 35)), factor, factor_char + '_quarter1');
-points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(35, 70)), factor, factor_char + '_quarter2');
-points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(70, 105)), factor, factor_char + '_quarter3');
-points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(105, 140)), factor, factor_char + '_quarter4');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(0, 20)), factor, factor_char + '_seven1');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(20, 40)), factor, factor_char + '_seven2');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(40, 60)), factor, factor_char + '_seven3');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(60, 80)), factor, factor_char + '_seven4');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(80, 100)), factor, factor_char + '_seven5');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(100, 120)), factor, factor_char + '_seven6');
+points.export_points_by_img_col_asset(ee.ImageCollection(col.toList(150).slice(120, 140)), factor, factor_char + '_seven7');
 
 // Map.addLayer(points)
 // Asset
