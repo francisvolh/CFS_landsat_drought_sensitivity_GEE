@@ -64,49 +64,49 @@ export_points.export_soil(points_6, 'sample-soil-' + points_6_name, drive_folder
 export_points.export_soil(points_7, 'sample-soil-' + points_7_name, drive_folder);
 
 // Vegetation
-export_points.export_vegetation(points_1, 'sample-vegetation-' + points_1_name, drive_folder);
-export_points.export_vegetation(points_2, 'sample-vegetation-' + points_2_name, drive_folder);
-export_points.export_vegetation(points_3, 'sample-vegetation-' + points_3_name, drive_folder);
-export_points.export_vegetation(points_4, 'sample-vegetation-' + points_4_name, drive_folder);
-export_points.export_vegetation(points_5, 'sample-vegetation-' + points_5_name, drive_folder);
-export_points.export_vegetation(points_6, 'sample-vegetation-' + points_6_name, drive_folder);
-export_points.export_vegetation(points_7, 'sample-vegetation-' + points_7_name, drive_folder);
+// export_points.export_vegetation(points_1, 'sample-vegetation-' + points_1_name, drive_folder);
+// export_points.export_vegetation(points_2, 'sample-vegetation-' + points_2_name, drive_folder);
+// export_points.export_vegetation(points_3, 'sample-vegetation-' + points_3_name, drive_folder);
+// export_points.export_vegetation(points_4, 'sample-vegetation-' + points_4_name, drive_folder);
+// export_points.export_vegetation(points_5, 'sample-vegetation-' + points_5_name, drive_folder);
+// export_points.export_vegetation(points_6, 'sample-vegetation-' + points_6_name, drive_folder);
+// export_points.export_vegetation(points_7, 'sample-vegetation-' + points_7_name, drive_folder);
 
 // Hydro
-export_points.export_hydro(points_1, 'sample-hydro-' + points_1_name, drive_folder);
-export_points.export_hydro(points_2, 'sample-hydro-' + points_2_name, drive_folder);
-export_points.export_hydro(points_3, 'sample-hydro-' + points_3_name, drive_folder);
-export_points.export_hydro(points_4, 'sample-hydro-' + points_4_name, drive_folder);
-export_points.export_hydro(points_5, 'sample-hydro-' + points_5_name, drive_folder);
-export_points.export_hydro(points_6, 'sample-hydro-' + points_6_name, drive_folder);
-export_points.export_hydro(points_7, 'sample-hydro-' + points_7_name, drive_folder);
+// export_points.export_hydro(points_1, 'sample-hydro-' + points_1_name, drive_folder);
+// export_points.export_hydro(points_2, 'sample-hydro-' + points_2_name, drive_folder);
+// export_points.export_hydro(points_3, 'sample-hydro-' + points_3_name, drive_folder);
+// export_points.export_hydro(points_4, 'sample-hydro-' + points_4_name, drive_folder);
+// export_points.export_hydro(points_5, 'sample-hydro-' + points_5_name, drive_folder);
+// export_points.export_hydro(points_6, 'sample-hydro-' + points_6_name, drive_folder);
+// export_points.export_hydro(points_7, 'sample-hydro-' + points_7_name, drive_folder);
 
 // Topo
-export_points.export_topo(points_1, 'sample-topo-' + points_1_name, drive_folder);
-export_points.export_topo(points_2, 'sample-topo-' + points_2_name, drive_folder);
-export_points.export_topo(points_3, 'sample-topo-' + points_3_name, drive_folder);
-export_points.export_topo(points_4, 'sample-topo-' + points_4_name, drive_folder);
-export_points.export_topo(points_5, 'sample-topo-' + points_5_name, drive_folder);
-export_points.export_topo(points_6, 'sample-topo-' + points_6_name, drive_folder);
-export_points.export_topo(points_7, 'sample-topo-' + points_7_name, drive_folder);
+// export_points.export_topo(points_1, 'sample-topo-' + points_1_name, drive_folder);
+// export_points.export_topo(points_2, 'sample-topo-' + points_2_name, drive_folder);
+// export_points.export_topo(points_3, 'sample-topo-' + points_3_name, drive_folder);
+// export_points.export_topo(points_4, 'sample-topo-' + points_4_name, drive_folder);
+// export_points.export_topo(points_5, 'sample-topo-' + points_5_name, drive_folder);
+// export_points.export_topo(points_6, 'sample-topo-' + points_6_name, drive_folder);
+// export_points.export_topo(points_7, 'sample-topo-' + points_7_name, drive_folder);
 
 // Climate
-export_points.export_climate(points_1, 'sample-climate-' + points_1_name, drive_folder);
-export_points.export_climate(points_2, 'sample-climate-' + points_2_name, drive_folder);
-export_points.export_climate(points_3, 'sample-climate-' + points_3_name, drive_folder);
-export_points.export_climate(points_4, 'sample-climate-' + points_4_name, drive_folder);
-export_points.export_climate(points_5, 'sample-climate-' + points_5_name, drive_folder);
-export_points.export_climate(points_6, 'sample-climate-' + points_6_name, drive_folder);
-export_points.export_climate(points_7, 'sample-climate-' + points_7_name, drive_folder);
+// export_points.export_climate(points_1, 'sample-climate-' + points_1_name, drive_folder);
+// export_points.export_climate(points_2, 'sample-climate-' + points_2_name, drive_folder);
+// export_points.export_climate(points_3, 'sample-climate-' + points_3_name, drive_folder);
+// export_points.export_climate(points_4, 'sample-climate-' + points_4_name, drive_folder);
+// export_points.export_climate(points_5, 'sample-climate-' + points_5_name, drive_folder);
+// export_points.export_climate(points_6, 'sample-climate-' + points_6_name, drive_folder);
+// export_points.export_climate(points_7, 'sample-climate-' + points_7_name, drive_folder);
 
 // Lc, ecoreg, lon lat
-export_points.export_lc_and_ecoreg(points_1, 'sample-lc-ecoreg-' + points_1_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_2, 'sample-lc-ecoreg-' + points_2_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_3, 'sample-lc-ecoreg-' + points_3_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_4, 'sample-lc-ecoreg-' + points_4_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_5, 'sample-lc-ecoreg-' + points_5_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_6, 'sample-lc-ecoreg-' + points_6_name, drive_folder);
-export_points.export_lc_and_ecoreg(points_7, 'sample-lc-ecoreg-' + points_7_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_1, 'sample-lc-ecoreg-' + points_1_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_2, 'sample-lc-ecoreg-' + points_2_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_3, 'sample-lc-ecoreg-' + points_3_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_4, 'sample-lc-ecoreg-' + points_4_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_5, 'sample-lc-ecoreg-' + points_5_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_6, 'sample-lc-ecoreg-' + points_6_name, drive_folder);
+// export_points.export_lc_and_ecoreg(points_7, 'sample-lc-ecoreg-' + points_7_name, drive_folder);
 
 // Sensitivity
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
