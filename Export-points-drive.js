@@ -55,13 +55,13 @@ var points_7_name = 'tiles_0pt5percent_seven7';
 
 // Sample ---------------------------------------------------------------------
 // Soil
-// export_points.export_soil(points_1, 'sample-soil-' + points_1_name, drive_folder);
-// export_points.export_soil(points_2, 'sample-soil-' + points_2_name, drive_folder);
-// export_points.export_soil(points_3, 'sample-soil-' + points_3_name, drive_folder);
-// export_points.export_soil(points_4, 'sample-soil-' + points_4_name, drive_folder);
-// export_points.export_soil(points_5, 'sample-soil-' + points_5_name, drive_folder);
-// export_points.export_soil(points_6, 'sample-soil-' + points_6_name, drive_folder);
-// export_points.export_soil(points_7, 'sample-soil-' + points_7_name, drive_folder);
+export_points.export_soil(points_1, 'sample-soil-' + points_1_name, drive_folder);
+export_points.export_soil(points_2, 'sample-soil-' + points_2_name, drive_folder);
+export_points.export_soil(points_3, 'sample-soil-' + points_3_name, drive_folder);
+export_points.export_soil(points_4, 'sample-soil-' + points_4_name, drive_folder);
+export_points.export_soil(points_5, 'sample-soil-' + points_5_name, drive_folder);
+export_points.export_soil(points_6, 'sample-soil-' + points_6_name, drive_folder);
+export_points.export_soil(points_7, 'sample-soil-' + points_7_name, drive_folder);
 
 // Vegetation
 export_points.export_vegetation(points_1, 'sample-vegetation-' + points_1_name, drive_folder);
