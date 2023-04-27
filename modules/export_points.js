@@ -18,7 +18,17 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 
 
-// --- Sample -----------------------------------------------------------------
+
+// Wrapper export function
+var export_to_drive = function(col, points, res, drive_name, drive_folder) {
+  var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
+	var today = new Date().toJSON().slice(0, 10);
+	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+};
+
+
+// Sample
+// Land cover and ecoregion
 var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
   var lc = land_cover.hermosilla_1984_2019
     .map(utils.set_year);
@@ -29,59 +39,27 @@ var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
 
   var ecoreg_bands = eco.eco_bands();
 
-  var sample_col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
-
-  var sampled = sample_col.reduceRegions({
-    collection: points,
-    reducer: ee.Reducer.mean(),
-    scale: 30
-  });
-
-  var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(sampled, today + '_' + drive_name, drive_folder);
+  var col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
+  
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
 
 
 
-
+// Hydro
 var export_hydro = function(points, drive_name, drive_folder) {
   var col = hydro.sampling_collection();
-
-  var sampled = ee.FeatureCollection(points.map(function(pt) {
-    return ee.Feature(pt.geometry(), col.reduceRegion({
-      reducer: ee.Reducer.mean(),
-      geometry: pt.geometry(),
-      scale: 500
-    }));
-  }));
-
-  var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(sampled, today + '_' + drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_hydro = export_hydro;
 
 
 
-// var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
-//   var drought_sens = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
-
-//   drought_sens = drought_sens
-//     .mosaic()
-//     .addBands([ee.Image.pixelLonLat(),
-//               eco.eco_bands()]);
-
-// 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
-// 	var today = new Date().toJSON().slice(0, 10);
-// 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
-// };
-// exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
-
-
 
 var export_vegetation = function(points, drive_name, drive_folder) {
   var col = vegetation.sampling_collection();
-	var sampled = points.map(function(ft){ return col.sample(ft.geometry(), 30)}).flatten();
+	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
@@ -91,7 +69,7 @@ exports.export_vegetation = export_vegetation;
 
 var export_soil = function(points, drive_name, drive_folder) {
   var col = soil.sampling_collection();
-	var sampled = points.map(function(ft){ return col.sample(ft.geometry(), 30)}).flatten();
+	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
@@ -116,4 +94,23 @@ var export_climate = function(points, drive_name, drive_folder) {
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
 exports.export_climate = export_climate;
+
+
+
+// Archive
+
+
+// var export_sensitivity_from_asset = function(points, drive_name, drive_folder) {
+//   var drought_sens = ee.ImageCollection("users/robitalec/CFS/2023-02-21/2023-02-21_image_col");
+
+//   drought_sens = drought_sens
+//     .mosaic()
+//     .addBands([ee.Image.pixelLonLat(),
+//               eco.eco_bands()]);
+
+// 	var sampled = drought_sens.reduceRegions(points, ee.Reducer.mean(), 30);
+// 	var today = new Date().toJSON().slice(0, 10);
+// 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+// };
+// exports.export_sensitivity_from_asset = export_sensitivity_from_asset;
 
