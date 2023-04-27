@@ -32,7 +32,7 @@ points.export_points_by_img_col_asset(col, factor, factor_char);
 
 // Asset
 var points = ee.FeatureCollection('users/robitalec/CFS/2023-04-27_sampling_points_tiles_0pt01');
-var points_name = 'tiles_0pt05';
+var points_name = 'tiles_0pt051';
 
 
 // Sample ---------------------------------------------------------------------
