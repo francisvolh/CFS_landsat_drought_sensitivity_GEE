@@ -56,12 +56,10 @@ exports.export_hydro = export_hydro;
 
 
 
-
+// Vegetation
 var export_vegetation = function(points, drive_name, drive_folder) {
   var col = vegetation.sampling_collection();
-	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_vegetation = export_vegetation;
 
@@ -69,9 +67,7 @@ exports.export_vegetation = export_vegetation;
 
 var export_soil = function(points, drive_name, drive_folder) {
   var col = soil.sampling_collection();
-	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_soil = export_soil;
 
@@ -79,9 +75,7 @@ exports.export_soil = export_soil;
 
 var export_topo = function(points, drive_name, drive_folder) {
   var col = topo.sampling_collection();
-	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_topo = export_topo;
 
@@ -89,9 +83,7 @@ exports.export_topo = export_topo;
 
 var export_climate = function(points, drive_name, drive_folder) {
   var col = climate.sampling_collection();
-	var sampled = col.reduceRegions(points, ee.Reducer.mean(), 30);
-	var today = new Date().toJSON().slice(0, 10);
-	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder);
 };
 exports.export_climate = export_climate;
 
