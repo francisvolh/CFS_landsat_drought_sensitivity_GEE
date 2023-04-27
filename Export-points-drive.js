@@ -64,13 +64,13 @@ var points_7_name = 'tiles_0pt5percent_seven7';
 // export_points.export_soil(points_7, 'sample-soil-' + points_7_name, drive_folder);
 
 // Vegetation
-// export_points.export_vegetation(points_1, 'sample-vegetation-' + points_1_name, drive_folder);
-// export_points.export_vegetation(points_2, 'sample-vegetation-' + points_2_name, drive_folder);
-// export_points.export_vegetation(points_3, 'sample-vegetation-' + points_3_name, drive_folder);
-// export_points.export_vegetation(points_4, 'sample-vegetation-' + points_4_name, drive_folder);
-// export_points.export_vegetation(points_5, 'sample-vegetation-' + points_5_name, drive_folder);
-// export_points.export_vegetation(points_6, 'sample-vegetation-' + points_6_name, drive_folder);
-// export_points.export_vegetation(points_7, 'sample-vegetation-' + points_7_name, drive_folder);
+export_points.export_vegetation(points_1, 'sample-vegetation-' + points_1_name, drive_folder);
+export_points.export_vegetation(points_2, 'sample-vegetation-' + points_2_name, drive_folder);
+export_points.export_vegetation(points_3, 'sample-vegetation-' + points_3_name, drive_folder);
+export_points.export_vegetation(points_4, 'sample-vegetation-' + points_4_name, drive_folder);
+export_points.export_vegetation(points_5, 'sample-vegetation-' + points_5_name, drive_folder);
+export_points.export_vegetation(points_6, 'sample-vegetation-' + points_6_name, drive_folder);
+export_points.export_vegetation(points_7, 'sample-vegetation-' + points_7_name, drive_folder);
 
 // Hydro
 // export_points.export_hydro(points_1, 'sample-hydro-' + points_1_name, drive_folder);
