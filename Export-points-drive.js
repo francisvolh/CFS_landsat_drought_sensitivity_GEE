@@ -37,22 +37,22 @@ var points_name = 'tiles_' + factor_char;
 
 // Sample ---------------------------------------------------------------------
 // Soil
-export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder);
+export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder, 'reduceRegions');
 
 // Vegetation
-export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder);
+export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder, 'reduceRegions');
 
 // Hydro
-export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder);
+export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder, 'reduceRegions');
 
 // Topo
-export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder);
+export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder, 'sample');
 
 // Climate
-export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder);
+export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder, 'reduceRegions');
 
 // Lc, ecoreg, lon lat
-export_points.export_lc_and_ecoreg(points, 'sample-lc_and_ecoreg-' + points_name, drive_folder);
+export_points.export_lc_and_ecoreg(points, 'sample-lc_and_ecoreg-' + points_name, drive_folder, 'reduceRegions');
 
 // Sensitivity
 // export_points.export_sensitivity_from_asset(points, 'sample-sensitivity-' + points_name, drive_folder);
