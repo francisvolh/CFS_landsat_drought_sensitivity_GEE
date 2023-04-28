@@ -132,7 +132,7 @@ var tagee_terrain = function(region) {
   var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
   
   return terr.select([
-    'Elevation', 'Slope', 'Northness', 'Eastness', 
+    'Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
     'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex']);
 };
 exports.tagee_terrain = tagee_terrain;
