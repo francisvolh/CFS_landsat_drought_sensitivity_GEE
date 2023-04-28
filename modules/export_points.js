@@ -33,7 +33,7 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
 
 // Sample
 // Land cover and ecoregion
-var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
+var export_lc_and_ecoreg = function(points, drive_name, drive_folder, type) {
   var lc = land_cover.hermosilla_1984_2019
     .map(utils.set_year);
 
@@ -45,25 +45,25 @@ var export_lc_and_ecoreg = function(points, drive_name, drive_folder) {
 
   var col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
   
-  export_to_drive(col, points, 30, drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
 
 
 
 // Hydro
-var export_hydro = function(points, drive_name, drive_folder) {
+var export_hydro = function(points, drive_name, drive_folder, type) {
   var col = hydro.sampling_collection();
-  export_to_drive(col, points, 30, drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_hydro = export_hydro;
 
 
 
 // Vegetation
-var export_vegetation = function(points, drive_name, drive_folder) {
+var export_vegetation = function(points, drive_name, drive_folder, type) {
   var col = vegetation.sampling_collection();
-  export_to_drive(col, points, 30, drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_vegetation = export_vegetation;
 
@@ -77,17 +77,17 @@ exports.export_soil = export_soil;
 
 
 
-var export_topo = function(points, drive_name, drive_folder) {
+var export_topo = function(points, drive_name, drive_folder, type) {
   var col = topo.sampling_collection();
-  export_to_drive(col, points, 30, drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_topo = export_topo;
 
 
 
-var export_climate = function(points, drive_name, drive_folder) {
+var export_climate = function(points, drive_name, drive_folder, type) {
   var col = climate.sampling_collection();
-  export_to_drive(col, points, 30, drive_name, drive_folder);
+  export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_climate = export_climate;
 
