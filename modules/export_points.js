@@ -21,9 +21,9 @@ var mask = require('users/robitalec/CFS:modules/mask.js');
 
 // Wrapper export function
 var export_to_drive = function(col, points, res, drive_name, drive_folder, type) {
-  if (type === 'reduceRegions') {
+  if (type == 'reduceRegions') {
     var sampled = col.reduceRegions(points, ee.Reducer.mean(), res);  
-  } else if (type === 'sample') {
+  } else {
   	var sampled = points.map(function(ft){return col.sample(ft, res)}).flatten();
   }
 	var today = new Date().toJSON().slice(0, 10);
