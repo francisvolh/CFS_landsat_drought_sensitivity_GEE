@@ -43,4 +43,7 @@ var tiles = tiler.getTilesForGeometry(region, 7);
 
 
 // Export drive from asset
-export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
+//export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
+Export.image.toDrive(ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col')
+  .filterBounds(region)
+  .mosaic(), '2023-05-11_img_col_2023-02-21_Yukon')
