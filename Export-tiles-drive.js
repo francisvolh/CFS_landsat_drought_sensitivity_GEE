@@ -47,4 +47,5 @@ var tiles = tiler.getTilesForGeometry(region, 7);
 Export.image.toDrive(ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col')
   .filterBounds(region)
   .select('Abs_sens_NDVI_ante3mo_p15_p85')
-  .mosaic(), '2023-05-11_img_col_2023-02-21_Yukon')
+  .mosaic()
+  .clip(region), '2023-05-11_img_col_2023-02-21_Yukon')
