@@ -68,7 +68,7 @@ var col_mosaic = col
     .mosaic();
 
 // Visualize
-var col_vis = col_mosaic.visualize({
+var col_viz = col_mosaic.visualize({
     palette:p,
     min: -0.2,
     max: 0.2
