@@ -118,10 +118,10 @@ select.setValue('12 month');
 
 
 var slider = ui.Slider(1984, 2019, null, 1);
-print(Map.layers())
+
 slider.onChange(function(value) {
-  var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
   Map.layers().reset([lc_map]);
+  var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
   Map.add(lc_map);
 });
 
