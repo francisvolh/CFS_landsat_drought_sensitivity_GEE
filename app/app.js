@@ -202,18 +202,13 @@ var hillshade_viz = hillshade.visualize({
 
 // Blend
 var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
+// Map.addLayer(blend_col_hillshade, {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
 
 
 
 // Map
 Map.setOptions('SATELLITE');
 Map.centerObject(col_mosaic);
-
-
-
-// Blend
-// Map.addLayer(blend_col_hillshade, {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
-
 
 
 
