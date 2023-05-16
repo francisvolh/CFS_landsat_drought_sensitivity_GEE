@@ -93,3 +93,8 @@ Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivit
 
 // Blend
 Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
+
+
+// UI
+var label = ui.Label('Cool label!');
+print(label);
