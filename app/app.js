@@ -133,7 +133,11 @@ var geometry =
          [-82.36204749703808, 50.895891472542445],
          [-82.03245765328808, 51.44695038807363],
          [-118.97187083856278, 60.46280833740384],
-         [-121.60858958856278, 59.806337471912194]]);
+         [-121.60858958856278, 59.806337471912194]]),
+    center = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Point([-102.64873046875, 57.29370715598494]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 App
@@ -208,7 +212,7 @@ var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
 
 // Map
 Map.setOptions('SATELLITE');
-Map.centerObject(col_mosaic);
+Map.centerObject(center, 4);
 
 
 
