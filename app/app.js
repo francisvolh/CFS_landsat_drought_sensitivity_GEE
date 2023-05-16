@@ -113,7 +113,7 @@ var ante = {
 var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
-    Map.addLayer(col.select(ante[key][0]));
+    Map.addLayer(col_mosaic.select(ante[key][0]));
   }
 });
 
