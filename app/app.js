@@ -142,9 +142,9 @@ slider.setValue(2000);
 var bandSelect = ui.Select({
   placeholder: 'Select a band...',
   onChange: function(value) {
-    var layer = ui.Map.Layer(imageSelect.getValue().select(value));
+    var layer = ui.Map.Layer(imageSelect.getValue().select(sampling_cols[value]));
     // Use set() instead of add() so the previous layer (if any) is overwritten.
-    Map.layers().set(0, layer);
+    Map_right.layers().set(0, layer);
   }
 });
 
@@ -157,7 +157,13 @@ var sampling_cols = {
     'climate': climate.sampling_collection()
   };
 var imageSelect = ui.Select({
-  items: Object.keys(sampling_cols),
+  items: [
+    {label: 'hydro', value: hydro.sampling_collection()},
+    {label: 'vegetation', value: vegetation.sampling_collection()},
+    {label: 'soil', value: topo.sampling_collection()},
+    {label: 'topo', value: topo.sampling_collection()},
+    {label: 'climate', value: climate.sampling_collection()}
+  ],
   placeholder: 'Select an image...',
   onChange: function(value) {
     // Asynchronously get the list of band names.
@@ -169,6 +175,19 @@ var imageSelect = ui.Select({
     });
   }
 });
+// var imageSelect = ui.Select({
+//   items: Object.keys(sampling_cols),
+//   placeholder: 'Select an image...',
+//   onChange: function(value) {
+//     // Asynchronously get the list of band names.
+//     sampling_cols[value].bandNames().evaluate(function(bands) {
+//       // Display the bands of the selected image.
+//       bandSelect.items().reset(bands);
+//       // Set the first band to the selected band.
+//       bandSelect.setValue(bandSelect.items().get(0));
+//     });
+//   }
+// });
 
 
 // - Panel left
@@ -192,6 +211,10 @@ panel_right.style().set({
 panel_right.add(ui.Label('Add covariate layers:'));
 panel_right.add(ui.Label('Land cover (year)'));
 panel_right.add(slider);
+// panel_right.add(imageSelect);
+print(imageSelect)
+// panel_right.add(bandSelect);
+print(bandSelect)
 Map_right.add(panel_right);
 
 
