@@ -118,7 +118,6 @@ var select = ui.Select({
   value: '3 month'
 });
 
-select.setValue('12 month');
 
 
 var slider = ui.Slider(1984, 2019, null, 1);
