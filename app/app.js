@@ -265,8 +265,7 @@ var bandSelect = ui.Select({
     });
     Map_right.layers().reset();
     stats.evaluate(function(x) {
-      print(x)
-      Map_right.addLayer(img, {min: x[1], max: x[2]}, value);
+      Map_right.addLayer(img, {min: x[value + '_p10'], max: x[value + '_p90']}, value);
     });
   }
 });
