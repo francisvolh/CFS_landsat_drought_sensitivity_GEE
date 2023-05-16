@@ -99,6 +99,10 @@ Map.setOptions('SATELLITE');
 
 
 // UI
+// - Map right
+var Map_right = ui.Map();
+
+// - Antecedent select
 var ante = {
   '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
   '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
@@ -116,24 +120,52 @@ var select = ui.Select({
     Map.add(col_map);
   }
 });
+select.setValue('12 month');
 
+// - Land cover slider
 var slider = ui.Slider(1984, 2019, null, 1);
 
 slider.onChange(function(value) {
   var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
-  Map.add(lc_map);
+  Map_right.add(lc_map);
 });
+slider.setValue(2000);
 
-
-var panel = ui.Panel();
-panel.style().set({
+// - Panel left
+var panel_left = ui.Panel();
+panel_left.style().set({
   width: '200px',
-  position: 'bottom-left'
+  position: 'top-left'
 });
 
-panel.add(ui.Label('Select antecedent period:'));
-panel.add(select);
-panel.add(ui.Label('Land cover year:'));
-panel.add(slider);
-Map.add(panel);
+panel_left.add(ui.Label('Antecedent period:'));
+panel_left.add(select);
+Map.add(panel_left);
 
+// - Panel right
+var panel_right = ui.Panel();
+panel_right.style().set({
+  width: '200px',
+  position: 'top-right'
+});
+
+panel_right.add(ui.Label('Land cover year:'));
+panel_right.add(slider);
+Map_right.add(panel_right);
+
+
+// Link the left map (default) to the right map 
+var linker = ui.Map.Linker([ui.root.widgets().get(0), Map_right]);
+
+
+// Create a SplitPanel which holds the linked maps side-by-side.
+var splitPanel = ui.SplitPanel({
+  firstPanel: linker.get(0),
+  secondPanel: linker.get(1),
+  orientation: 'horizontal',
+  wipe: false,
+  style: {stretch: 'both'}
+});
+
+// Set the SplitPanel as the only thing in root.
+ui.root.widgets().reset([splitPanel]);
