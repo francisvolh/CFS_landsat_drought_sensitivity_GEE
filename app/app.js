@@ -66,6 +66,7 @@ var hillshade = ee.Terrain.hillshade(dem_mosaic);
 var col_mosaic = col
     //.filterBounds(geometry)
     .mosaic();
+print(col_mosaic.bandNames())
 
 // Visualize
 var col_viz = col_mosaic.visualize({
@@ -81,20 +82,42 @@ var hillshade_viz = hillshade.visualize({
     forceRgbOutput:true
   });
   
+// Blend
+var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
+
 
 // Map
-Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
+Map.setOptions('SATELLITE');
 
 Map.addLayer(lc_filter, {palette:lc_p}, 'lc', false);
 
-
-Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
+//Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
 
 
 // Blend
-Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
+// Map.addLayer(blend_col_hillshade, {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
 
 
 // UI
-var label = ui.Label('Cool label!');
-print(label);
+
+
+var ante = {
+  '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
+  '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
+  '3 year': ['Abs_sens_NDVI_ante3yr_p15_p85'],
+  '1 year lag': ['Abs_sens_NDVI_ante1lag_p15_p85'],
+  '2 year lag': ['Abs_sens_NDVI_ante2lag_p15_p85'],
+  '3 year lag': ['Abs_sens_NDVI_ante3lag_p15_p85']
+};
+
+var select = ui.Select({
+  items: Object.keys(ante),
+  onChange: function(key) {
+    Map.addLayer(col.select(ante[key][0]));
+  }
+});
+
+// Set a place holder.
+select.setPlaceholder('Select antecedent period...');
+
+print(select);
