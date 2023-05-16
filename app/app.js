@@ -111,21 +111,19 @@ var ante = {
 var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
-    Map.layers().reset([col_map]);
+    Map.layers().reset();
     var col_map = ui.Map.Layer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2}, key);
     Map.add(col_map);
   }
 });
 
-
-
 var slider = ui.Slider(1984, 2019, null, 1);
 
 slider.onChange(function(value) {
-  Map.layers().reset([lc_map]);
   var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
   Map.add(lc_map);
 });
+
 
 var panel = ui.Panel();
 panel.style().set({
