@@ -117,14 +117,20 @@ var select = ui.Select({
 select.setValue('12 month');
 
 
-
 var slider = ui.Slider(1984, 2019, null, 1);
-
+print(Map.layers())
 slider.onChange(function(value) {
-  Map.addLayer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover:' + value);
+  var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
+  Map.layers().reset([lc_map]);
+  Map.add(lc_map);
 });
 
 var panel = ui.Panel();
+panel.style().set({
+  width: '200px',
+  position: 'bottom-left'
+});
+
 panel.add(ui.Label('Select antecedent period:'))
 panel.add(select);
 panel.add(ui.Label('Land cover year:'))
