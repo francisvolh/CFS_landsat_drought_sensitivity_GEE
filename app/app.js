@@ -50,8 +50,8 @@ var lc_p = palettes.crameri.bamako[25];
 
 
 // Options
-print('Band names', col.first().bandNames());
-col = col.select('Abs_sens_NDVI_ante12mo_p15_p85');
+// print('Band names', col.first().bandNames());
+// col = col.select('Abs_sens_NDVI_ante12mo_p15_p85');
 
 // Process
 var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
@@ -102,22 +102,25 @@ Map.addLayer(lc_filter, {palette:lc_p}, 'lc', false);
 
 
 var ante = {
-  '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
-  '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
-  '3 year': ['Abs_sens_NDVI_ante3yr_p15_p85'],
-  '1 year lag': ['Abs_sens_NDVI_ante1lag_p15_p85'],
-  '2 year lag': ['Abs_sens_NDVI_ante2lag_p15_p85'],
-  '3 year lag': ['Abs_sens_NDVI_ante3lag_p15_p85']
+  '3 month antecedent': ['Abs_sens_NDVI_ante3mo_p15_p85'],
+  '12 month antecedent': ['Abs_sens_NDVI_ante12mo_p15_p85'],
+  '3 year antecedent': ['Abs_sens_NDVI_ante3yr_p15_p85'],
+  '1 year lag antecedent': ['Abs_sens_NDVI_ante1lag_p15_p85'],
+  '2 year lag antecedent': ['Abs_sens_NDVI_ante2lag_p15_p85'],
+  '3 year lag antecedent': ['Abs_sens_NDVI_ante3lag_p15_p85']
 };
+
+
 
 var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
-    Map.addLayer(col_mosaic.select(ante[key][0]));
-  }
+    Map.addLayer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2});
+  },
+  value: '3 month antecedent'
 });
 
-// Set a place holder.
-select.setPlaceholder('Select antecedent period...');
+select.setValue('12 month antecedent');
+
 
 print(select);
