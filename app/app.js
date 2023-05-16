@@ -28,11 +28,11 @@ Alec L. Robitaille
 */
 
 
+
 // Modules
 var blend = require('users/jja/public:blend.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var palettes = require('users/gena/packages:palettes');
-
 
 
 
@@ -42,10 +42,10 @@ var lc = land_cover.land_cover();
 var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 
 
+
 // Palettes
 var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
-
 
 
 
@@ -60,9 +60,9 @@ var dem_mosaic = dem
 var hillshade = ee.Terrain.hillshade(dem_mosaic);
 
 var col_mosaic = col
-    //.filterBounds(geometry)
     .mosaic();
-print(col_mosaic.bandNames())
+
+
 
 // Visualize
 var col_viz = col_mosaic.visualize({
@@ -77,24 +77,28 @@ var hillshade_viz = hillshade.visualize({
     palette: ['#000000', '#ffffff'],
     forceRgbOutput:true
   });
-  
+
+
+
 // Blend
 var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
+
 
 
 // Map
 Map.setOptions('SATELLITE');
 
-
 //Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
+
 
 
 // Blend
 // Map.addLayer(blend_col_hillshade, {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
 
 
-// UI
 
+
+// UI
 var ante = {
   '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
   '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
@@ -103,8 +107,6 @@ var ante = {
   '2 year lag': ['Abs_sens_NDVI_ante2lag_p15_p85'],
   '3 year lag': ['Abs_sens_NDVI_ante3lag_p15_p85']
 };
-
-
 
 var select = ui.Select({
   items: Object.keys(ante),
@@ -133,9 +135,9 @@ panel.style().set({
   position: 'bottom-left'
 });
 
-panel.add(ui.Label('Select antecedent period:'))
+panel.add(ui.Label('Select antecedent period:'));
 panel.add(select);
-panel.add(ui.Label('Land cover year:'))
+panel.add(ui.Label('Land cover year:'));
 panel.add(slider);
 Map.add(panel);
 
