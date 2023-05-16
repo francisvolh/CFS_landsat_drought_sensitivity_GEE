@@ -238,7 +238,7 @@ select.setValue('12 month');
 
 // - Band select
 var bandSelect = ui.Select({
-  placeholder: 'Select a band...',
+  placeholder: 'Select a covariate...',
   onChange: function(value) {
     var img = imageSelect.getValue().select(value);
     var stats = img.reduceRegion({
@@ -262,7 +262,7 @@ var imageSelect = ui.Select({
     {label: 'topo', value: topo.sampling_collection()},
     {label: 'climate', value: climate.sampling_collection()}
   ],
-  placeholder: 'Select an image...',
+  placeholder: 'Select a list of covariates...',
   onChange: function(value) {
     value.bandNames().evaluate(function(bands) {
       bandSelect.items().reset(bands);
@@ -278,7 +278,7 @@ panel_left.style().set({
   position: 'top-left'
 });
 
-panel_left.add(ui.Label('Antecedent period:'));
+panel_left.add(ui.Label('1. Antecedent period:'));
 panel_left.add(select);
 // Adapted from palettes.showPalette to fit into panel
 var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
@@ -295,7 +295,7 @@ panel_right.style().set({
   position: 'top-right'
 });
 
-panel_right.add(ui.Label('Add covariate layers:'));
+panel_right.add(ui.Label('2. Add covariate layers:'));
 panel_right.add(imageSelect);
 panel_right.add(bandSelect);
 Map_right.add(panel_right);
