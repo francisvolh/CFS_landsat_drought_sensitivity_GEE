@@ -149,14 +149,15 @@ var bandSelect = ui.Select({
 });
 
 // Make a drop down menu of images.
-var imageSelect = ui.Select({
-  items: {
+var sampling_cols = {
     'hydro': hydro.sampling_collection(),
     'vegetation': vegetation.sampling_collection(),
     'soil': soil.sampling_collection(),
     'topo': topo.sampling_collection(),
     'climate': climate.sampling_collection()
-  },
+  };
+var imageSelect = ui.Select({
+  items: Object.keys(sampling_cols),
   placeholder: 'Select an image...',
   onChange: function(value) {
     // Asynchronously get the list of band names.
