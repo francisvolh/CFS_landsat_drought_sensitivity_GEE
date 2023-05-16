@@ -151,7 +151,7 @@ var bandSelect = ui.Select({
     });
     Map_right.layers().reset();
     stats.evaluate(function(x) {
-      Map_right.addLayer(img, {min: x[1], max: x[2]});
+      Map_right.addLayer(img, {min: x[1], max: x[2]}, value);
     });
   }
 });
