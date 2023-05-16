@@ -143,9 +143,16 @@ select.setValue('12 month');
 var bandSelect = ui.Select({
   placeholder: 'Select a band...',
   onChange: function(value) {
-    var layer = ui.Map.Layer(imageSelect.getValue().select(value));
-    // Use set() instead of add() so the previous layer (if any) is overwritten.
-    Map_right.layers().set(0, layer);
+    var img = imageSelect.getValue().select(value);
+    var stats = img.reduceRegion({
+      reducer: ee.Reducer.minMax(),
+      geometry : geometry,
+      bestEffort: true
+    });
+    Map_right.layers().reset();
+    stats.evaluate(function(x) {
+      Map_right.addLayer(img.select(1), {min: x[1], max: x[2]});
+    });
   }
 });
 
