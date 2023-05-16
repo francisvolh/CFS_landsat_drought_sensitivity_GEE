@@ -38,9 +38,7 @@ var palettes = require('users/gena/packages:palettes');
 
 // Data
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
-
 var lc = land_cover.land_cover();
-
 var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 
 
@@ -49,9 +47,7 @@ var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
 
 
-// Options
-// print('Band names', col.first().bandNames());
-// col = col.select('Abs_sens_NDVI_ante12mo_p15_p85');
+
 
 // Process
 var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
@@ -89,7 +85,6 @@ var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
 // Map
 Map.setOptions('SATELLITE');
 
-Map.addLayer(lc_filter, {palette:lc_p}, 'lc', false);
 
 //Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
 
@@ -124,3 +119,13 @@ select.setValue('12 month antecedent');
 
 
 print(select);
+
+var slider = ui.Slider(1984, 2019, null, 1);
+
+slider.onChange(function(value) {
+  Map.addLayer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover:' + value);
+});
+
+print(slider)
+
+
