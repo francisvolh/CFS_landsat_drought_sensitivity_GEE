@@ -134,10 +134,7 @@ var geometry =
          [-82.03245765328808, 51.44695038807363],
          [-118.97187083856278, 60.46280833740384],
          [-121.60858958856278, 59.806337471912194]]),
-    center = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Point([-102.64873046875, 57.29370715598494]);
+    center = /* color: #d63000 */ee.Geometry.Point([-101.85771484375, 63.91066619210739]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 App
