@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #98ff00 */ee.Geometry.Polygon(
+var geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-142.55499390153335, 70.03530462152891],
           [-141.28886260033715, 59.73133485522378],
           [-132.97491577653335, 51.53555252654365],
@@ -131,7 +134,10 @@ var geometry = /* color: #98ff00 */ee.Geometry.Polygon(
          [-82.03245765328808, 51.44695038807363],
          [-118.97187083856278, 60.46280833740384],
          [-121.60858958856278, 59.806337471912194]]),
-    center = /* color: #d63000 */ee.Geometry.Point([-102.64873046875, 70.85357417781019]);
+    center = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Point([-102.64873046875, 70.85357417781019]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 App
