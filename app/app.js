@@ -105,6 +105,7 @@ Map.setOptions('SATELLITE');
 
 
 // UI
+// Adapted from EE docs
 // - Map right
 var Map_right = ui.Map();
 
@@ -129,33 +130,26 @@ var select = ui.Select({
 select.setValue('12 month');
 
 // - Land cover slider
-var slider = ui.Slider(1984, 2019, null, 1);
+// var slider = ui.Slider(1984, 2019, null, 1);
 
-slider.onChange(function(value) {
-  var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
-  Map_right.add(lc_map);
-});
-slider.setValue(2000);
+// slider.onChange(function(value) {
+//   var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
+//   Map_right.add(lc_map);
+// });
+// slider.setValue(2000);
 
 // - Band and image selector
 // Make a drop-down menu of bands.
 var bandSelect = ui.Select({
   placeholder: 'Select a band...',
   onChange: function(value) {
-    var layer = ui.Map.Layer(imageSelect.getValue().select(sampling_cols[value]));
+    var layer = ui.Map.Layer(imageSelect.getValue().select(value));
     // Use set() instead of add() so the previous layer (if any) is overwritten.
     Map_right.layers().set(0, layer);
   }
 });
 
 // Make a drop down menu of images.
-var sampling_cols = {
-    'hydro': hydro.sampling_collection(),
-    'vegetation': vegetation.sampling_collection(),
-    'soil': soil.sampling_collection(),
-    'topo': topo.sampling_collection(),
-    'climate': climate.sampling_collection()
-  };
 var imageSelect = ui.Select({
   items: [
     {label: 'hydro', value: hydro.sampling_collection()},
@@ -175,19 +169,6 @@ var imageSelect = ui.Select({
     });
   }
 });
-// var imageSelect = ui.Select({
-//   items: Object.keys(sampling_cols),
-//   placeholder: 'Select an image...',
-//   onChange: function(value) {
-//     // Asynchronously get the list of band names.
-//     sampling_cols[value].bandNames().evaluate(function(bands) {
-//       // Display the bands of the selected image.
-//       bandSelect.items().reset(bands);
-//       // Set the first band to the selected band.
-//       bandSelect.setValue(bandSelect.items().get(0));
-//     });
-//   }
-// });
 
 
 // - Panel left
@@ -209,12 +190,10 @@ panel_right.style().set({
 });
 
 panel_right.add(ui.Label('Add covariate layers:'));
-panel_right.add(ui.Label('Land cover (year)'));
-panel_right.add(slider);
-// panel_right.add(imageSelect);
-print(imageSelect)
-// panel_right.add(bandSelect);
-print(bandSelect)
+// panel_right.add(ui.Label('Land cover (year)'));
+// panel_right.add(slider);
+panel_right.add(imageSelect);
+panel_right.add(bandSelect);
 Map_right.add(panel_right);
 
 
