@@ -243,17 +243,7 @@ var select = ui.Select({
 });
 select.setValue('12 month');
 
-// - Land cover slider
-// var slider = ui.Slider(1984, 2019, null, 1);
-
-// slider.onChange(function(value) {
-//   var lc_map = ui.Map.Layer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover ' + value);
-//   Map_right.add(lc_map);
-// });
-// slider.setValue(2000);
-
-// - Band and image selector
-// Make a drop-down menu of bands.
+// - Band select
 var bandSelect = ui.Select({
   placeholder: 'Select a band...',
   onChange: function(value) {
@@ -270,7 +260,7 @@ var bandSelect = ui.Select({
   }
 });
 
-// Make a drop down menu of images.
+// - Image select
 var imageSelect = ui.Select({
   items: [
     {label: 'hydro', value: hydro.sampling_collection()},
@@ -281,16 +271,12 @@ var imageSelect = ui.Select({
   ],
   placeholder: 'Select an image...',
   onChange: function(value) {
-    // Asynchronously get the list of band names.
     value.bandNames().evaluate(function(bands) {
-      // Display the bands of the selected image.
       bandSelect.items().reset(bands);
-      // Set the first band to the selected band.
       bandSelect.setValue(bandSelect.items().get(0));
     });
   }
 });
-
 
 // - Panel left
 var panel_left = ui.Panel();
@@ -311,18 +297,14 @@ panel_right.style().set({
 });
 
 panel_right.add(ui.Label('Add covariate layers:'));
-// panel_right.add(ui.Label('Land cover (year)'));
-// panel_right.add(slider);
 panel_right.add(imageSelect);
 panel_right.add(bandSelect);
 Map_right.add(panel_right);
 
 
-// Link the left map (default) to the right map 
+// - Linker
 var linker = ui.Map.Linker([ui.root.widgets().get(0), Map_right]);
 
-
-// Create a SplitPanel which holds the linked maps side-by-side.
 var splitPanel = ui.SplitPanel({
   firstPanel: linker.get(0),
   secondPanel: linker.get(1),
@@ -331,5 +313,4 @@ var splitPanel = ui.SplitPanel({
   style: {stretch: 'both'}
 });
 
-// Set the SplitPanel as the only thing in root.
 ui.root.widgets().reset([splitPanel]);
