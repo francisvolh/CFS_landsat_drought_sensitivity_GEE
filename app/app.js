@@ -207,8 +207,7 @@ var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
 
 // Map
 Map.setOptions('SATELLITE');
-
-//Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
+Map.centerObject(col_mosaic);
 
 
 
