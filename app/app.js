@@ -148,16 +148,17 @@ Alec L. Robitaille
 
 
 // Modules
-var blend = require('users/jja/public:blend.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var palettes = require('users/gena/packages:palettes');
-
 var hydro = require('users/robitalec/CFS:modules/hydro.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
 var soil = require('users/robitalec/CFS:modules/soil.js');
 var topo = require('users/robitalec/CFS:modules/topo.js');
 var climate = require('users/robitalec/CFS:modules/climate.js');
+
+var blend = require('users/jja/public:blend.js');
+var palettes = require('users/gena/packages:palettes');
+
 
 
 // Data
@@ -285,6 +286,12 @@ panel_left.style().set({
 
 panel_left.add(ui.Label('Antecedent period:'));
 panel_left.add(select);
+// Adapted from palettes.showPalette to fit into panel
+var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
+  .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
+  .visualize({min: 0, max: 100, palette: p}));
+panel_left.add(ui.Label('-2...................0...................2'));
+panel_left.add(img_thumb);
 Map.add(panel_left);
 
 // - Panel right
