@@ -109,7 +109,9 @@ var ante = {
 var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
-    Map.addLayer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2}, key);
+    Map.layers().reset([col]);
+    var col_map = ui.Map.Layer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2}, key);
+    Map.add(col_map);
   },
   value: '3 month'
 });
