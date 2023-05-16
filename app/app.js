@@ -149,7 +149,8 @@ panel_right.style().set({
   position: 'top-right'
 });
 
-panel_right.add(ui.Label('Land cover year:'));
+panel_right.add(ui.Label('Add covariate layers:'));
+panel_right.add(ui.Label('Land cover (year)'));
 panel_right.add(slider);
 Map_right.add(panel_right);
 
