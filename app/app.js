@@ -95,14 +95,13 @@ Map.setOptions('SATELLITE');
 
 // UI
 
-
 var ante = {
-  '3 month antecedent': ['Abs_sens_NDVI_ante3mo_p15_p85'],
-  '12 month antecedent': ['Abs_sens_NDVI_ante12mo_p15_p85'],
-  '3 year antecedent': ['Abs_sens_NDVI_ante3yr_p15_p85'],
-  '1 year lag antecedent': ['Abs_sens_NDVI_ante1lag_p15_p85'],
-  '2 year lag antecedent': ['Abs_sens_NDVI_ante2lag_p15_p85'],
-  '3 year lag antecedent': ['Abs_sens_NDVI_ante3lag_p15_p85']
+  '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
+  '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
+  '3 year': ['Abs_sens_NDVI_ante3yr_p15_p85'],
+  '1 year lag': ['Abs_sens_NDVI_ante1lag_p15_p85'],
+  '2 year lag': ['Abs_sens_NDVI_ante2lag_p15_p85'],
+  '3 year lag': ['Abs_sens_NDVI_ante3lag_p15_p85']
 };
 
 
@@ -110,15 +109,14 @@ var ante = {
 var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
-    Map.addLayer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2});
+    Map.addLayer(col_mosaic.select(ante[key][0]), {palette: p, min: -0.2, max: 0.2}, key);
   },
-  value: '3 month antecedent'
+  value: '3 month'
 });
 
-select.setValue('12 month antecedent');
+select.setValue('12 month');
 
 
-print(select);
 
 var slider = ui.Slider(1984, 2019, null, 1);
 
@@ -126,6 +124,10 @@ slider.onChange(function(value) {
   Map.addLayer(lc.filter(ee.Filter.eq('year', value)), {palette:lc_p}, 'land cover:' + value);
 });
 
-print(slider)
-
+var panel = ui.Panel();
+panel.add(ui.Label('Select antecedent period:'))
+panel.add(select);
+panel.add(ui.Label('Land cover year:'))
+panel.add(slider);
+Map.add(panel);
 
