@@ -192,7 +192,7 @@ panel_right.style().set({
 panel_right.add(ui.Label('Add covariate layers:'));
 panel_right.add(ui.Label('Land cover (year)'));
 panel_right.add(slider);
-sampling_collection.add(panel_right);
+Map_right.add(panel_right);
 
 
 // Link the left map (default) to the right map 
