@@ -34,6 +34,12 @@ var blend = require('users/jja/public:blend.js');
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var palettes = require('users/gena/packages:palettes');
 
+var hydro = require('users/robitalec/CFS:modules/hydro.js');
+var eco = require('users/robitalec/CFS:modules/ecoregions.js');
+var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
+var soil = require('users/robitalec/CFS:modules/soil.js');
+var topo = require('users/robitalec/CFS:modules/topo.js');
+var climate = require('users/robitalec/CFS:modules/climate.js');
 
 
 // Data
@@ -130,6 +136,39 @@ slider.onChange(function(value) {
   Map_right.add(lc_map);
 });
 slider.setValue(2000);
+
+// - Band and image selector
+// Make a drop-down menu of bands.
+var bandSelect = ui.Select({
+  placeholder: 'Select a band...',
+  onChange: function(value) {
+    var layer = ui.Map.Layer(imageSelect.getValue().select(value));
+    // Use set() instead of add() so the previous layer (if any) is overwritten.
+    Map.layers().set(0, layer);
+  }
+});
+
+// Make a drop down menu of images.
+var imageSelect = ui.Select({
+  items: {
+    'hydro': hydro.samplingcollection(),
+    'vegetation': vegetation.samplingcollection(),
+    'soil': soil.samplingcollection(),
+    'topo': topo.samplingcollection(),
+    'climate': climate.samplingcollection()
+  },
+  placeholder: 'Select an image...',
+  onChange: function(value) {
+    // Asynchronously get the list of band names.
+    value.bandNames().evaluate(function(bands) {
+      // Display the bands of the selected image.
+      bandSelect.items().reset(bands);
+      // Set the first band to the selected band.
+      bandSelect.setValue(bandSelect.items().get(0));
+    });
+  }
+});
+
 
 // - Panel left
 var panel_left = ui.Panel();
