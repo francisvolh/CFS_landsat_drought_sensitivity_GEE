@@ -151,11 +151,11 @@ var bandSelect = ui.Select({
 // Make a drop down menu of images.
 var imageSelect = ui.Select({
   items: {
-    'hydro': hydro.samplingcollection(),
-    'vegetation': vegetation.samplingcollection(),
-    'soil': soil.samplingcollection(),
-    'topo': topo.samplingcollection(),
-    'climate': climate.samplingcollection()
+    'hydro': hydro.sampling_collection(),
+    'vegetation': vegetation.sampling_collection(),
+    'soil': soil.sampling_collection(),
+    'topo': topo.sampling_collection(),
+    'climate': climate.sampling_collection()
   },
   placeholder: 'Select an image...',
   onChange: function(value) {
@@ -191,7 +191,7 @@ panel_right.style().set({
 panel_right.add(ui.Label('Add covariate layers:'));
 panel_right.add(ui.Label('Land cover (year)'));
 panel_right.add(slider);
-Map_right.add(panel_right);
+sampling_collection.add(panel_right);
 
 
 // Link the left map (default) to the right map 
