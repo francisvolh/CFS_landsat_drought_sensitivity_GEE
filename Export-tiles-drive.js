@@ -40,8 +40,8 @@ var tiles = col.filterBounds(region).toList(999)
 // print(tiles)
 // print(ee.Image(tiles.toList(999).get(0)))
 Export.image.toDrive({
-  image: ee.Image(tiles.get(0)), 
-  description: '2023-05-18_Sens_tile_0_2023-02-21',
+  image: ee.Image(tiles.get(2)), 
+  description: '2023-05-18_Sens_tile_2_2023-02-21',
   scale: scale,
   folder: drive_folder,
   maxPixels: 200000000
