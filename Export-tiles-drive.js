@@ -29,23 +29,31 @@ var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var region = geometry;
-var scale = 500;
+var scale = 30;
 
-var asset_folder = 'users/robitalec/CFS/2023-02-21';
-var drive_folder = '2023-02-21';
-
-
-
-// Get tiles
-var tiler = require('users/gena/packages:tiler');
-var tiles = tiler.getTilesForGeometry(region, 7);
+var path = 'users/robitalec/CFS/2023-02-21';
+var col = ee.ImageCollection(path);
+var drive_folder = 'Exports';
 
 
+
+var tiles = col.map(function(tile) {
+  var out = ee.Image(tile);
+
+  Export.image.toDrive({
+    image: out,
+    description: path.split('/').reverse()[0],
+    folder: drive_folder,
+    scale: scale,
+    maxPixels: 200000000
+  });
+  return out;
+});
 
 // Export drive from asset
-//export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
-Export.image.toDrive(ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col')
-  .filterBounds(region)
-  .select('Abs_sens_NDVI_ante3mo_p15_p85')
-  .mosaic()
-  .clip(region), '2023-05-11_img_col_2023-02-21_Yukon')
+// export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
+// Export.image.toDrive(ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col')
+//   .filterBounds(region)
+//   .select('Abs_sens_NDVI_ante3mo_p15_p85')
+//   .mosaic()
+//   .clip(region), '2023-05-11_img_col_2023-02-21_Yukon')
