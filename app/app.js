@@ -265,7 +265,7 @@ var imageSelect = ui.Select({
   items: [
     {label: 'hydro', value: hydro.sampling_collection()},
     {label: 'vegetation', value: vegetation.sampling_collection()},
-    {label: 'soil', value: topo.sampling_collection()},
+    {label: 'soil', value: soil.sampling_collection()},
     {label: 'topo', value: topo.sampling_collection()},
     {label: 'climate', value: climate.sampling_collection()}
   ],
