@@ -31,24 +31,23 @@ var max_mm_dd = vars.max_mm_dd;
 var region = geometry;
 var scale = 30;
 
-var path = 'users/robitalec/CFS/2023-02-21';
+var path = 'users/robitalec/CFS/2023-02-21/2023-02-21_image_col';
 var col = ee.ImageCollection(path);
 var drive_folder = 'Exports';
 
 
+var tiles = col.filterBounds(region).toList(999)
+// print(tiles)
+// print(ee.Image(tiles.toList(999).get(0)))
+Export.image.toDrive({
+  image: ee.Image(tiles.get(0)), 
+  description: '2023-05-18_Sens_tile_0_2023-02-21',
+  scale: scale,
+  folder: drive_folder,
+  maxPixels: 200000000
+})
 
-var tiles = col.map(function(tile) {
-  var out = ee.Image(tile);
-
-  Export.image.toDrive({
-    image: out,
-    description: path.split('/').reverse()[0],
-    folder: drive_folder,
-    scale: scale,
-    maxPixels: 200000000
-  });
-  return out;
-});
+// ? Export.image.toDrive(image, description, folder, fileNamePrefix, dimensions, region, scale, crs, crsTransform, maxPixels, shardSize, fileDimensions, skipEmptyTiles, fileFormat, formatOptions) 
 
 // Export drive from asset
 // export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
