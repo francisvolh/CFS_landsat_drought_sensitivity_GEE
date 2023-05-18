@@ -172,6 +172,7 @@ var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
 
+var p_not_grey = palettes.crameri.imola[25];
 
 
 // Process
@@ -254,7 +255,7 @@ var bandSelect = ui.Select({
     });
     Map_right.layers().reset();
     stats.evaluate(function(x) {
-      Map_right.addLayer(img, {min: x[value + '_p10'], max: x[value + '_p90']}, value);
+      Map_right.addLayer(img, {min: x[value + '_p10'], max: x[value + '_p90'], palette: p_not_grey}, value);
     });
   }
 });
