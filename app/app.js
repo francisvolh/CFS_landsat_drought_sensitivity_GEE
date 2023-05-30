@@ -263,7 +263,7 @@ panel_right_bottom.style().set({
 
 var panel_right_left_bottom = ui.Panel();
 panel_right_left_bottom.style().set({
-  width: '500px',
+  width: '400px',
   position: 'bottom-right'
 });
 
