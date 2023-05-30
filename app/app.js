@@ -249,6 +249,22 @@ var select = ui.Select({
 });
 select.setValue('12 month');
 
+// - Panel right
+var panel_right = ui.Panel();
+panel_right.style().set({
+  width: '200px',
+  position: 'top-right'
+});
+
+var panel_right_bottom = ui.Panel();
+panel_right_bottom.style().set({
+  width: '200px',
+  position: 'bottom-right'
+});
+
+panel_right.add(ui.Label('2. Add covariate layers:'));
+
+
 // - Band select
 var bandSelect = ui.Select({
   placeholder: 'Select a covariate...',
@@ -260,8 +276,16 @@ var bandSelect = ui.Select({
       bestEffort: true
     });
     Map_right.layers().reset();
+    panel_right_bottom.clear();
     stats.evaluate(function(x) {
       Map_right.addLayer(img, {min: x[value + '_p10'], max: x[value + '_p90'], palette: p_not_grey}, value);
+      
+      var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
+        .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
+        .visualize({min: 0, max: 100, palette: p_not_grey}));
+      panel_right_bottom.add(ui.Label(value));
+      panel_right_bottom.add(ui.Label((x[value + '_p10']).toFixed(1) + ' _________________ ' + (x[value + '_p90']).toFixed(1)));
+      panel_right_bottom.add(img_thumb);
     });
   }
 });
@@ -291,27 +315,29 @@ panel_left.style().set({
   position: 'top-left'
 });
 
+var panel_left_bottom = ui.Panel();
+panel_left_bottom.style().set({
+  width: '200px',
+  position: 'bottom-left'
+});
+
+
 panel_left.add(ui.Label('1. Antecedent period:'));
 panel_left.add(select);
 // Adapted from palettes.showPalette to fit into panel
 var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
   .visualize({min: 0, max: 100, palette: p}));
-panel_left.add(ui.Label('-2...................0...................2'));
-panel_left.add(img_thumb);
+panel_left_bottom.add(ui.Label('-2 __________ 0 __________ 2'));
+panel_left_bottom.add(img_thumb);
 Map.add(panel_left);
+Map.add(panel_left_bottom);
 
-// - Panel right
-var panel_right = ui.Panel();
-panel_right.style().set({
-  width: '200px',
-  position: 'top-right'
-});
 
-panel_right.add(ui.Label('2. Add covariate layers:'));
 panel_right.add(imageSelect);
 panel_right.add(bandSelect);
 Map_right.add(panel_right);
+Map_right.add(panel_right_bottom);
 
 
 // - Linker
