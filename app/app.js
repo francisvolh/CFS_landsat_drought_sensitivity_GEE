@@ -283,7 +283,7 @@ var bandSelect = ui.Select({
         .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
         .visualize({min: 0, max: 100, palette: p_not_grey}));
       panel_right_bottom.add(ui.Label(value));
-      panel_right_bottom.add(ui.Label((x[value + '_p10']).toFixed(1) + ' _________________ ' + (x[value + '_p90']).toFixed(1)));
+      panel_right_bottom.add(ui.Label((x[value + '_p10']).toFixed(1) + ' ____________ ' + (x[value + '_p90']).toFixed(1)));
       panel_right_bottom.add(img_thumb);
     });
   }
