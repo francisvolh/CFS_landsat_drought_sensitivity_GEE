@@ -336,9 +336,10 @@ var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .visualize({min: 0, max: 100, palette: p}));
 panel_left_bottom.add(ui.Label('-2 __________ 0 __________ 2'));
 panel_left_bottom.add(img_thumb);
-panel_left_left.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'))
+panel_left_left_bottom.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'));
 Map.add(panel_left);
 Map.add(panel_left_bottom);
+Map.add(panel_left_left_bottom);
 
 
 panel_right.add(imageSelect);
