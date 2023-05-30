@@ -137,7 +137,7 @@ var geometry =
     center = 
     /* color: #d63000 */
     /* shown: false */
-    ee.Geometry.Point([-102.64873046875, 70.85357417781019]);
+    ee.Geometry.Point([-104.75810546875, 58.185009892379]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 App
@@ -213,8 +213,8 @@ var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
 
 
 // Map
+Map.setCenter(-104.76, 58.18, 3);
 Map.setOptions('SATELLITE');
-Map.centerObject(center, 4);
 
 
 
