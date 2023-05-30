@@ -264,7 +264,7 @@ panel_right_bottom.style().set({
 var panel_right_left_bottom = ui.Panel();
 panel_right_left_bottom.style().set({
   width: '400px',
-  position: 'bottom-right'
+  position: 'bottom-left'
 });
 
 panel_right.add(ui.Label('2. Add covariate layers:'));
