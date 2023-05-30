@@ -320,6 +320,13 @@ panel_left_bottom.style().set({
   position: 'bottom-left'
 });
 
+var panel_left_left_bottom = ui.Panel();
+panel_left_bottom.style().set({
+  width: '200px',
+  position: 'bottom-right'
+});
+
+
 
 panel_left.add(ui.Label('1. Antecedent period:'));
 panel_left.add(select);
@@ -329,6 +336,7 @@ var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .visualize({min: 0, max: 100, palette: p}));
 panel_left_bottom.add(ui.Label('-2 __________ 0 __________ 2'));
 panel_left_bottom.add(img_thumb);
+panel_left_left.add(ui.Label('Diana Stralberg, Alec Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'))
 Map.add(panel_left);
 Map.add(panel_left_bottom);
 
