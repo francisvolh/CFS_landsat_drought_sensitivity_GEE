@@ -80,7 +80,7 @@ var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level'
 Map.addLayer(tagee_srtm.select('MaximalCurvature'), null, 'MaximalCurvature Raw SRTM', false);
 Map.addLayer(tagee_fab.select('MaximalCurvature'), null, 'MaximalCurvature Raw FAB', false);
 Map.addLayer(viz_max_srtm, {}, 'MaximalCurvature SRTM', false);
-Map.addLayer(viz_max_fab, {}, 'MeanCurvature FAB');
+Map.addLayer(viz_max_fab, {}, 'MaximalCurvature FAB');
 
 // Match the zoom level to the visualization level above
 Map.setZoom(zoom);
