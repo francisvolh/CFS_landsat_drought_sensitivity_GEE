@@ -73,7 +73,7 @@ var tagee_fab = TAGEE.terrainAnalysis(TAGEE, smooth_fab, bbox).updateMask(waterM
 
 
 // Visualization
-var zoom = 12;
+var zoom = 6;
 var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, 'MaximalCurvature', 'level' + zoom, bbox, 'inferno');
 var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level' + zoom, bbox, 'inferno');
 
