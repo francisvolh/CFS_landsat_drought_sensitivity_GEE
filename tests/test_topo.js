@@ -60,7 +60,7 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 var terrain = topo.tagee_terrain(geometry);
 print('Terrain TAGEE', terrain);
 
-var zoom = 7;
+var zoom = 4;
 Map.addLayer(topo.tagee_viz(terrain, 'Elevation', zoom, geometry), null, 'Elevation');
 Map.addLayer(topo.tagee_viz(terrain, 'Slope', zoom, geometry), null, 'Slope');
 Map.addLayer(topo.tagee_viz(terrain, 'Aspect', zoom, geometry), null, 'Aspect');
