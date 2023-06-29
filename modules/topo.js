@@ -138,11 +138,12 @@ var tagee_terrain = function(region) {
 exports.tagee_terrain = tagee_terrain;
 
 // Visualize TAGEE wrapper
-var tagee_viz = function(terrain, band_name, region) {
+var tagee_viz = function(terrain, band_name, zoom, region) {
+  Map.setZoom(zoom);
   return tagee.makeVisualization(
     terrain, 
     band_name, 
-    'level2', 
+    'level' + zoom, 
     region, 
     'inferno'
   );
