@@ -73,14 +73,15 @@ var tagee_fab = TAGEE.terrainAnalysis(TAGEE, smooth_fab, bbox).updateMask(waterM
 
 
 // Visualization
-var zoom = 6;
-var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, 'MaximalCurvature', 'level' + zoom, bbox, 'inferno');
-var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level' + zoom, bbox, 'inferno');
+var zoom = 12;
+var variable = 'Slope';
+var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, variable, 'level' + zoom, bbox, 'inferno');
+var viz_max_fab = TAGEE.makeVisualization(tagee_fab, variable, 'level' + zoom, bbox, 'inferno');
 
-Map.addLayer(tagee_srtm.select('MaximalCurvature'), null, 'MaximalCurvature Raw SRTM', false);
-Map.addLayer(tagee_fab.select('MaximalCurvature'), null, 'MaximalCurvature Raw FAB', false);
-Map.addLayer(viz_max_srtm, {}, 'MaximalCurvature SRTM', false);
-Map.addLayer(viz_max_fab, {}, 'MaximalCurvature FAB');
+Map.addLayer(tagee_srtm.select(variable), null, variable + ' Raw SRTM', false);
+Map.addLayer(tagee_fab.select(variable), null, variable + ' Raw FAB', false);
+Map.addLayer(viz_max_srtm, {}, variable + ' SRTM', false);
+Map.addLayer(viz_max_fab, {}, variable + ' FAB');
 
 // Match the zoom level to the visualization level above
 Map.setZoom(zoom);
