@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
+var bbox = 
     /* color: #d63000 */
     /* shown: false */
     /* displayProperties: [
@@ -13,22 +13,18 @@ var geometry =
           [-108.91481220797588, 48.217369784263724],
           [-108.91481220797588, 68.33032889758721]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-// Double checking TAGEE
+// Checking TAGEE
 // Alec L. Robitaille
 
+// Based on example from TAGEE docs
+// https://github.com/zecojls/tagee#minimal-reproducible-example
 
-// 
+
 
 // Importing module
-
 var TAGEE = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 
-// World bounding box
-
-var bbox = geometry;
-
 // Water mask
-
 var hansen_2016 = ee.Image('UMD/hansen/global_forest_change_2016_v1_4').select('datamask');
 var hansen_2016_wbodies = hansen_2016.neq(1).eq(0);
 var waterMask = hansen_2016.updateMask(hansen_2016_wbodies);
@@ -36,7 +32,7 @@ var waterMask = hansen_2016.updateMask(hansen_2016_wbodies);
 
 // SRTM 30 m -----------------------------------------------------------------
 // Loading SRTM 30 m
-var demSRTM = ee.Image('USGS/SRTMGL1_003').clip(bbox).rename('DEM');
+var dem_srtm = ee.Image('USGS/SRTMGL1_003').clip(bbox).rename('SRTM');
 
 // Smoothing filter.
 var gaussianFilter = ee.Kernel.gaussian({
@@ -44,30 +40,26 @@ var gaussianFilter = ee.Kernel.gaussian({
 });
 
 // Smoothing the DEM with the gaussian kernel.
-var demSRTM = demSRTM.convolve(gaussianFilter).resample("bilinear");
+var smooth_srtm = dem_srtm.convolve(gaussianFilter).resample("bilinear");
 
 
 // FABDEM -----------------------------------------------------------------
-var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
-dem = dem
-  .filterBounds(geometry)
+var dem_fab = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
+dem_fab = dem_fab
+  .filterBounds(bbox)
   .mosaic()
-  .setDefaultProjection(dem.first().projection());
-
-// Smoothing filter
-var gaussianFilter = ee.Kernel.gaussian({
-  radius: 3, sigma: 2, units: 'pixels', normalize: true
-});
+  .setDefaultProjection(dem_fab.first().projection())
+  .rename('FABDEM');
 
 // Smoothing the DEM with the gaussian kernel
-var smoothed_dem = dem.convolve(gaussianFilter).resample("bilinear");
+var smooth_fab = dem_fab.convolve(gaussianFilter).resample("bilinear");
 
 
 // Compare DEMs
-Map.addLayer(demSRTM, null, 'SRTM', false);
-Map.addLayer(smoothed_dem, null, 'FABDEM', false);
+Map.addLayer(smooth_srtm, null, 'SRTM', false);
+Map.addLayer(smooth_fab, null, 'FABDEM', false);
 
-Map.addLayer(demSRTM.subtract(smoothed_dem).abs(), null, 'difference SRTM - FABDEM')
+Map.addLayer(smooth_srtm.subtract(smooth_fab).abs(), null, 'difference SRTM - FABDEM');
 
 
 
