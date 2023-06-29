@@ -8,10 +8,10 @@ var bbox =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-144.24684345797587, 68.33032889758721],
-          [-144.24684345797587, 48.217369784263724],
-          [-108.91481220797588, 48.217369784263724],
-          [-108.91481220797588, 68.33032889758721]]], null, false);
+        [[[-142.70462583604083, 70.37745245284577],
+          [-142.70462583604083, 49.49589802117177],
+          [-87.68509458604083, 49.49589802117177],
+          [-87.68509458604083, 70.37745245284577]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Checking TAGEE
 // Alec L. Robitaille
@@ -30,7 +30,8 @@ var hansen_2016_wbodies = hansen_2016.neq(1).eq(0);
 var waterMask = hansen_2016.updateMask(hansen_2016_wbodies);
 
 
-// SRTM 30 m -----------------------------------------------------------------
+// === Compare smoothed DEMs 
+// SRTM 30 m
 // Loading SRTM 30 m
 var dem_srtm = ee.Image('USGS/SRTMGL1_003').clip(bbox).rename('SRTM');
 
@@ -43,7 +44,7 @@ var gaussianFilter = ee.Kernel.gaussian({
 var smooth_srtm = dem_srtm.convolve(gaussianFilter).resample("bilinear");
 
 
-// FABDEM -----------------------------------------------------------------
+// FABDEM
 var dem_fab = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 dem_fab = dem_fab
   .filterBounds(bbox)
@@ -59,22 +60,23 @@ var smooth_fab = dem_fab.convolve(gaussianFilter).resample("bilinear");
 Map.addLayer(smooth_srtm, null, 'SRTM', false);
 Map.addLayer(smooth_fab, null, 'FABDEM', false);
 
-Map.addLayer(smooth_srtm.subtract(smooth_fab).abs(), null, 'difference SRTM - FABDEM');
+var vis_dif_dem = {min:-50, max:50, palette:["ff0404","ffffff","004eff"]};
+Map.addLayer(smooth_srtm.subtract(smooth_fab), vis_dif_dem, 'difference SRTM - FABDEM');
+
+// Recall: FABDEM = forests and buildings removed dem
+// https://www.fathom.global/product/fabdem/
 
 
+// === Compare TAGEE results 
+var tagee_srtm = TAGEE.terrainAnalysis(TAGEE, smooth_srtm, bbox).updateMask(waterMask);
+var tagee_fab = TAGEE.terrainAnalysis(TAGEE, smooth_fab, bbox).updateMask(waterMask);
 
 
+// Visualization
+var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, 'MaximalCurvature', 'level2', bbox, 'inferno');
+var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level2', bbox, 'inferno');
 
-// // Terrain analysis
-
-// var DEMAttributes = TAGEE.terrainAnalysis(TAGEE, demSRTM, bbox).updateMask(waterMask);
-// print(DEMAttributes.bandNames(), 'Parameters of Terrain');
-
-// // Visualization
-
-// var vizVC = TAGEE.makeVisualization(DEMAttributes, 'MaximalCurvature', 'level2', bbox, 'rainbow');
-// var vizVCmean = TAGEE.makeVisualization(DEMAttributes, 'MeanCurvature', 'level2', bbox, 'rainbow');
-// Map.addLayer(DEMAttributes.select('MaximalCurvature'))
-// Map.addLayer(vizVC, {}, 'MaximalCurvature');
-// Map.addLayer(vizVCmean, {}, 'MeanCurvature');
-// Map.setCenter(0,0,2);
+Map.addLayer(tagee_srtm.select('MaximalCurvature'), null, 'MaximalCurvature Raw SRTM', false);
+Map.addLayer(tagee_fab.select('MaximalCurvature'), null, 'MaximalCurvature Raw FAB', false);
+Map.addLayer(viz_max_srtm, {}, 'MaximalCurvature SRTM');
+Map.addLayer(viz_max_fab, {}, 'MeanCurvature FAB');
