@@ -73,10 +73,11 @@ var tagee_fab = TAGEE.terrainAnalysis(TAGEE, smooth_fab, bbox).updateMask(waterM
 
 
 // Visualization
-var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, 'MaximalCurvature', 'level2', bbox, 'inferno');
-var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level2', bbox, 'inferno');
+var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, 'MaximalCurvature', 'level6', bbox, 'inferno');
+var viz_max_fab = TAGEE.makeVisualization(tagee_fab, 'MaximalCurvature', 'level6', bbox, 'inferno');
 
 Map.addLayer(tagee_srtm.select('MaximalCurvature'), null, 'MaximalCurvature Raw SRTM', false);
 Map.addLayer(tagee_fab.select('MaximalCurvature'), null, 'MaximalCurvature Raw FAB', false);
-Map.addLayer(viz_max_srtm, {}, 'MaximalCurvature SRTM');
+Map.addLayer(viz_max_srtm, {}, 'MaximalCurvature SRTM', false);
 Map.addLayer(viz_max_fab, {}, 'MeanCurvature FAB');
+Map.setZoom(6)
