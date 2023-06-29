@@ -8,10 +8,10 @@ var bbox =
       }
     ] */
     ee.Geometry.Polygon(
-        [[[-142.70462583604083, 70.37745245284577],
-          [-142.70462583604083, 49.49589802117177],
-          [-87.68509458604083, 49.49589802117177],
-          [-87.68509458604083, 70.37745245284577]]], null, false);
+        [[[-127.14798521104083, 59.8000328817324],
+          [-127.14798521104083, 55.62732098445],
+          [-119.85306333604082, 55.62732098445],
+          [-119.85306333604082, 59.8000328817324]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Checking TAGEE
 // Alec L. Robitaille
@@ -19,7 +19,7 @@ var bbox =
 // Based on example from TAGEE docs
 // https://github.com/zecojls/tagee#minimal-reproducible-example
 
-
+// Note adjust bbox to local area for visualizing within 5-95% range
 
 // Importing module
 var TAGEE = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
@@ -30,7 +30,7 @@ var hansen_2016_wbodies = hansen_2016.neq(1).eq(0);
 var waterMask = hansen_2016.updateMask(hansen_2016_wbodies);
 
 
-// === Compare smoothed DEMs 
+// === Compare smoothed DEMs
 // SRTM 30 m
 // Loading SRTM 30 m
 var dem_srtm = ee.Image('USGS/SRTMGL1_003').clip(bbox).rename('SRTM');
@@ -67,14 +67,14 @@ Map.addLayer(smooth_srtm.subtract(smooth_fab), vis_dif_dem, 'difference SRTM - F
 // https://www.fathom.global/product/fabdem/
 
 
-// === Compare TAGEE results 
+// === Compare TAGEE results
 var tagee_srtm = TAGEE.terrainAnalysis(TAGEE, smooth_srtm, bbox).updateMask(waterMask);
 var tagee_fab = TAGEE.terrainAnalysis(TAGEE, smooth_fab, bbox).updateMask(waterMask);
 
 
 // Visualization
 var zoom = 12;
-var variable = 'Slope';
+var variable = 'MaximalCurvature';
 var viz_max_srtm = TAGEE.makeVisualization(tagee_srtm, variable, 'level' + zoom, bbox, 'inferno');
 var viz_max_fab = TAGEE.makeVisualization(tagee_fab, variable, 'level' + zoom, bbox, 'inferno');
 
