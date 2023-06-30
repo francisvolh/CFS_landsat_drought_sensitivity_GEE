@@ -246,7 +246,7 @@ var select = ui.Select({
     Map.add(col_map);
   }
 });
-select.setValue('12 month');
+select.setValue('3 year');
 
 // - Panel right
 var panel_right = ui.Panel();
