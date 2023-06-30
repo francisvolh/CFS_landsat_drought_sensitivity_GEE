@@ -296,7 +296,7 @@ var bandSelect = ui.Select({
   onChange: function(value) {
     var img = imageSelect.getValue().select(value);
     var stats = img.reduceRegion({
-      reducer: ee.Reducer.percentile([10, 95]),
+      reducer: ee.Reducer.percentile([5, 95]),
       geometry : sample,
       scale: level_scale.get(Map_right.getZoom()),
       bestEffort: true
@@ -305,13 +305,13 @@ var bandSelect = ui.Select({
     Map_right.layers().reset();
     panel_right_bottom.clear();
     stats.evaluate(function(x) {
-      Map_right.addLayer(img, {min: x[value + '_p10'], max: x[value + '_p95'], palette: p_not_grey}, value);
+      Map_right.addLayer(img, {min: x[value + '_p5'], max: x[value + '_p95'], palette: p_not_grey}, value);
       
       var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
         .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
         .visualize({min: 0, max: 100, palette: p_not_grey}));
       panel_right_bottom.add(ui.Label(value));
-      panel_right_bottom.add(ui.Label((x[value + '_p10']).toFixed(1) + ' ____________ ' + (x[value + '_p95']).toFixed(1)));
+      panel_right_bottom.add(ui.Label((x[value + '_p5']).toFixed(1) + ' ____________ ' + (x[value + '_p95']).toFixed(1)));
       panel_right_bottom.add(img_thumb);
     });
   }
