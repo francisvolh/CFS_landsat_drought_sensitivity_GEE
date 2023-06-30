@@ -276,7 +276,7 @@ var bandSelect = ui.Select({
   onChange: function(value) {
     var img = imageSelect.getValue().select(value);
     var stats = img.reduceRegion({
-      reducer: ee.Reducer.percentile([10, 90]),
+      reducer: ee.Reducer.percentile([5, 95]),
       geometry : sample,
       bestEffort: true
     });
