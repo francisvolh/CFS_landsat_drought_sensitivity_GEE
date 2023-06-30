@@ -297,7 +297,7 @@ var bandSelect = ui.Select({
     var img = imageSelect.getValue().select(value);
     var stats = img.reduceRegion({
       reducer: ee.Reducer.percentile([5, 95]),
-      geometry : sample,
+      geometry : Map_right.getBounds(),
       scale: level_scale.get(Map_right.getZoom()),
       bestEffort: true
     });
