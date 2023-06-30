@@ -272,7 +272,7 @@ panel_right.add(ui.Label('2. Add covariate layers:'));
 
 // - Band select
 // Zoom level-scale adapted from TAGEE make viz
-var levelsDic = ee.Dictionary({
+var level_scale = ee.List({
   0: {'scale': 157000},
   1: {'scale': 78000},
   2: {'scale': 39000},
@@ -298,7 +298,7 @@ var bandSelect = ui.Select({
     var stats = img.reduceRegion({
       reducer: ee.Reducer.percentile([10, 95]),
       geometry : sample,
-      scale: ee.Dictionary(levelsDic.get(Map_right.getZoom())),
+      scale: level_scale.get(Map_right.getZoom()),
       bestEffort: true
     });
     print(stats)
