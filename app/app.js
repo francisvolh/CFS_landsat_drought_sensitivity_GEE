@@ -301,7 +301,6 @@ var bandSelect = ui.Select({
       scale: level_scale.get(Map_right.getZoom()),
       bestEffort: true
     });
-    print(stats)
     Map_right.layers().reset();
     panel_right_bottom.clear();
     stats.evaluate(function(x) {
