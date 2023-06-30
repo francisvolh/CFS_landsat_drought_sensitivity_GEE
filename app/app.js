@@ -290,6 +290,7 @@ var levelsDic = ee.Dictionary({
   '14': {'scale': 10},
   '15': {'scale': 5}
 });
+
 var bandSelect = ui.Select({
   placeholder: 'Select a covariate...',
   onChange: function(value) {
