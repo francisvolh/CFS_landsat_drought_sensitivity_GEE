@@ -271,6 +271,25 @@ panel_right.add(ui.Label('2. Add covariate layers:'));
 
 
 // - Band select
+// Zoom level-scale adapted from TAGEE make viz
+var levelsDic = ee.Dictionary({
+  '0': {'scale': 157000},
+  '1': {'scale': 78000},
+  '2': {'scale': 39000},
+  '3': {'scale': 20000},
+  '4': {'scale': 10000},
+  '5': {'scale': 5000},
+  '6': {'scale': 2000},
+  '7': {'scale': 1000},
+  '8': {'scale': 611},
+  '9': {'scale': 306},
+  '10': {'scale': 153},
+  '11': {'scale': 76},
+  '12': {'scale': 38},
+  '13': {'scale': 19},
+  '14': {'scale': 10},
+  '15': {'scale': 5}
+});
 var bandSelect = ui.Select({
   placeholder: 'Select a covariate...',
   onChange: function(value) {
