@@ -154,7 +154,7 @@ var zzz_main_cap = function(output, region,
     joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
     return joined;
   } else {
-    alert("output not one of 'relative sensitivity', 'absolute sensitivity', or 'vegetation index and antecedent means'");
+    throw new Error("output not one of 'relative sensitivity', 'absolute sensitivity', or 'vegetation index and antecedent means'");
   }
 
 };
