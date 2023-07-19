@@ -66,7 +66,7 @@ var scale = 30;
 
 var ecoregions = eco.non_arctic_ecoregions;
 
-var output = 'relative-sensitivity';
+var output = 'relative sensitivity';
 var output_prefix = 'Rel_p15_p85';
 
 
