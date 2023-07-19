@@ -153,10 +153,7 @@ var zzz_main_cap = function(output, region,
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
     joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
     return joined;
-  } else {
-    throw new Error("output not one of 'relative sensitivity', 'absolute sensitivity', or 'vegetation index and antecedent means'");
-  }
-
+  } 
 };
 exports.zzz_main_cap = zzz_main_cap;
 
