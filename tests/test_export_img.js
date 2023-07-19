@@ -27,7 +27,7 @@ var output = 'absolute sensitivity';
 
 // Test export_img_drive_greenest
 // Usage: export_img_drive_greenest(output, drive_name, drive_folder, scale, region)
-export_img.export_img_drive_greenest(output, 'test-export-drive-greenest', 'CFS', drive_folder, scale, region);
+export_img.export_img_drive_greenest(output, 'test-export-drive-greenest', drive_folder, scale, region);
 
 
 
