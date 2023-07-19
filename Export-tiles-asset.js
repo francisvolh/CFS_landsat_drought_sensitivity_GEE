@@ -66,6 +66,8 @@ var scale = 30;
 
 var ecoregions = eco.non_arctic_ecoregions;
 
+var output = 'relative-sensitivity';
+var output_prefix = 'Rel_p15_p85';
 
 
 // Get tiles
@@ -85,6 +87,6 @@ tile_id_list = tile_id_list.slice(77, 78);
 tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_greenest('Abs_p15_p85' + '_' + tile_id, asset_path, scale, ft);
+      export_img.export_img_asset_greenest(output, output_prefix + '_' + tile_id, asset_path, scale, ft);
     });
 });
