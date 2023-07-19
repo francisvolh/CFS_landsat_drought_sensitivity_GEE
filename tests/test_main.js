@@ -62,7 +62,8 @@ Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3yr_p15_p85'), vars.abs_viz
 
 
 // Test error if output not one of options
-var main_absolute = main.main_greenest('testing for error', geometry);
+var main_test_error = main.main_greenest('testing for error', geometry);
+print(main_test_error);
 
 
 // Masks
