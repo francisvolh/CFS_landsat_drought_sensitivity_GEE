@@ -17,10 +17,10 @@ var scale = 30;
 var asset_folder = 'users/robitalec/CFS';
 var drive_folder = 'Test-export-img-drive-from-asset';
 
-
+var output = 'absolute sensitivity';
 
 // Test export_img_asset_greenest
-// Usage: export_img_asset_greenest(asset_name, asset_path, scale, region)
+// Usage: export_img_asset_greenest(output, asset_name, asset_path, scale, region)
 export_img.export_img_asset_greenest('test-export-asset-greenest', 'CFS', scale, region);
 
 
