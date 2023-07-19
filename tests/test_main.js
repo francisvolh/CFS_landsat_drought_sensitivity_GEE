@@ -61,6 +61,12 @@ Map.addLayer(main_absolute.select('Abs_sens_NDVI_ante3yr_p15_p85'), vars.abs_viz
 
 
 
+// Test error if output not one of options
+var main_test_error = main.main_greenest('testing for error', geometry);
+print(main_test_error);
+
+
+
 // Masks
 Map.addLayer(anthro.harvest_any, {palette: ['ffffff','ff50ea'],opacity: 0.3}, 'Harvest mask (any)', false);
 Map.addLayer(mask.atemporal_mask, {opacity: 0.3}, 'Atemporal mask', false);
