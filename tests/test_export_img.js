@@ -21,7 +21,7 @@ var output = 'absolute sensitivity';
 
 // Test export_img_asset_greenest
 // Usage: export_img_asset_greenest(output, asset_name, asset_path, scale, region)
-export_img.export_img_asset_greenest(output, 'test-export-asset-greenest', 'CFS', scale, region);
+// export_img.export_img_asset_greenest(output, 'test-export-asset-greenest', 'CFS', scale, region);
 
 
 
@@ -33,7 +33,7 @@ export_img.export_img_drive_greenest(output, 'test-export-drive-greenest', 'CFS'
 
 // Test export_img_drive_from_asset
 // Usage: export_img_drive_from_asset(asset_folder, bounds, drive_folder, scale)
-export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
+// export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
 
 
 
