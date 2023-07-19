@@ -26,8 +26,8 @@ export_img.export_img_asset_greenest(output, 'test-export-asset-greenest', 'CFS'
 
 
 // Test export_img_drive_greenest
-// Usage: export_img_drive_greenest(drive_name, drive_path, scale, region)
-export_img.export_img_drive_greenest('test-export-drive-greenest', 'CFS', scale, region);
+// Usage: export_img_drive_greenest(output, drive_name, drive_path, scale, region)
+export_img.export_img_drive_greenest(output, 'test-export-drive-greenest', 'CFS', scale, region);
 
 
 
