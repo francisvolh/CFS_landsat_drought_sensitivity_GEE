@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPoint(
         [[-122.87601510557185, 51.575257623159025],
          [-127.6908019425976, 59.8641849594477],
          [-127.96690934574258, 59.52208123280006],
@@ -11,7 +14,10 @@ var geometry = /* color: #d63000 */ee.Geometry.MultiPoint(
          [-127.61655341724074, 65.1980422796904],
          [-124.71727310440444, 63.99798235893234],
          [-123.30840051221965, 63.47596387072551]]),
-    geometry2 = /* color: #98ff00 */ee.Geometry.Polygon(
+    geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-142.55499390153335, 70.03530462152891],
           [-141.28886260033715, 59.73133485522378],
           [-132.97491577653335, 51.53555252654365],
