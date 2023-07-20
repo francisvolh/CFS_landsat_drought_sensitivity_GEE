@@ -343,7 +343,7 @@ panel_left.style().set({
 
 var panel_left_bottom = ui.Panel();
 panel_left_bottom.style().set({
-  width: '200px',
+  width: '250px',
   position: 'bottom-left'
 });
 
@@ -357,7 +357,9 @@ panel_left.add(select);
 var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
   .visualize({min: 0, max: 100, palette: p}));
-panel_left_bottom.add(ui.Label('-2 __________ 0 __________ 2'));
+panel_left_bottom.add(ui.Label('Drought sensitivity ='));
+panel_left_bottom.add(ui.Label('NDVI [baseline] - NDVI [drought]'));
+panel_left_bottom.add(ui.Label('-2 ____________ 0 ____________ 2'));
 panel_left_bottom.add(img_thumb);
 Map.add(panel_left);
 Map.add(panel_left_bottom);
