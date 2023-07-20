@@ -103,7 +103,7 @@ Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
 Map.addLayer(lc_filter, {palette:lc_p}, 'lc', false);
 
 
-Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute sensitivity', false);
+Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'sensitivity', false);
 
 
 // Blend
