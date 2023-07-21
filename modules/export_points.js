@@ -24,7 +24,7 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
   if (type == 'reduceRegions') {
     var sampled = col.reduceRegions(points, ee.Reducer.mean(), res);  
   } else if (type == 'sample') {
-  	var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
+    var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
   } else {
     throw new Error("type not one of 'reduceRegions', or 'sample'");
   }
