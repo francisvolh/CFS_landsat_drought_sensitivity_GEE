@@ -65,5 +65,3 @@ daymet = daymet
 // Usage: aggregrate_week(images, year_list, week_list, reducer);
 var agg_wk = utils.aggregrate_week(daymet, year_list, week_list, reducer);
 print('Aggregate week', agg_wk);
-
-
