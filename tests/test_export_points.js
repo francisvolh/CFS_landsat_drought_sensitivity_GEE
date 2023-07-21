@@ -31,37 +31,38 @@ var geometry = ee.Geometry.Polygon(
           [-137.053, 63.642]]]);
 var points = ee.FeatureCollection.randomPoints(geometry, 10);
 
+var type = 'sample'
 
 // Test export_hydro
-// Usage: export_hydro(points, drive_name, drive_folder)
-export_points.export_hydro(points, 'test-export-hydro', 'Exports');
+// Usage: export_hydro(points, drive_name, drive_folder, type)
+export_points.export_hydro(points, 'test-export-hydro', 'Exports', type);
 
 
 
 // Test export_vegetation
 // Usage: export_vegetation(points, drive_name, drive_folder)
-export_points.export_vegetation(points, 'test-export-vegetation', 'Exports');
+export_points.export_vegetation(points, 'test-export-vegetation', 'Exports', type);
 
 
 
 // Test export_soil
 // Usage: export_soil(points, drive_name, drive_folder)
-export_points.export_soil(points, 'test-export-soil', 'Exports');
+export_points.export_soil(points, 'test-export-soil', 'Exports', type);
 
 
 
 // Test export_topo
-// Usage: export_topo(points, drive_name, drive_folder)
-export_points.export_topo(points, 'test-export-topo', 'Exports');
+// Usage: export_topo(points, drive_name, drive_folder, type)
+export_points.export_topo(points, 'test-export-topo', 'Exports', type);
 
 
 
 // Test export_export_climate
-// Usage: export_climate(points, drive_name, drive_folder)
-export_points.export_climate(points, 'test-export-climate', 'Exports');
+// Usage: export_climate(points, drive_name, drive_folder, type)
+export_points.export_climate(points, 'test-export-climate', 'Exports', type);
 
 
 
 // Test export_lc_and_ecoreg
-// Usage: export_lc_and_ecoreg(points, drive_name, drive_folder)
-export_points.export_lc_and_ecoreg(points, 'test-export-lc-ecoreg', 'Exports');
+// Usage: export_lc_and_ecoreg(points, drive_name, drive_folder, type)
+export_points.export_lc_and_ecoreg(points, 'test-export-lc-ecoreg', 'Exports', type);
