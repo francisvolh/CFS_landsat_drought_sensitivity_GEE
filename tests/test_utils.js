@@ -15,9 +15,15 @@ var daymet = climate.daymet
   
 var year_list = ee.List.sequence(2000, 2002);
 var month_list = ee.List.sequence(1, 12);
-var week_list = ee.List.sequence(1, 5);
+var week_list = ee.List.sequence(10, 15);
 
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
+
+// Prepare
+daymet = daymet
+  .map(utils.set_year)
+  .map(utils.set_week);
 
 
 // Test set_year
