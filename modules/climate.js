@@ -34,9 +34,9 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 
-var daymet = function() {
-  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
+var get_daymet = function() {
   daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_daymet, vars.max_year, 'year'))
                   .map(utils.set_date)
                   .map(utils.set_week)
@@ -60,9 +60,7 @@ exports.weekly_daymet = weekly_daymet;
 
 
 
-var monthly_daymet = function(daymet_col, year_list, month_list) {
-  var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-
+var monthly_daymet = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
