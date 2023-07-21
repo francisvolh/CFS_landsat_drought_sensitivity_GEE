@@ -44,7 +44,7 @@ var get_daymet = function() {
 
   return daymet;
 };
-exports.daymet = daymet;
+exports.get_daymet = get_daymet;
 
 
 
