@@ -60,6 +60,14 @@ exports.weekly_daymet = weekly_daymet;
 
 
 
+var monthly_daymet = function(year_list, month_list) {
+	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
+							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
+};
+exports.monthly_daymet = monthly_daymet;
+
+
+
 var climate_normals = function(bioclim_variables) {
   var bioclim_normals = ee.ImageCollection("projects/sat-io/open-datasets/CMIP6-scenarios-NA/Climate-Normals_bioclim");
 
