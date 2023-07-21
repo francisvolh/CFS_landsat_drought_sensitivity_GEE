@@ -61,6 +61,8 @@ exports.weekly_daymet = weekly_daymet;
 
 
 var monthly_daymet = function(year_list, month_list) {
+  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
 							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
