@@ -17,7 +17,7 @@ var months = ee.List.sequence(1, 12);
 
 // Load collection
 var daymet = climate.daymet;
-var monthly_daymet = climate.monthly_daymet(daymet, years, months);
+var monthly_daymet = climate.monthly_daymet(years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
