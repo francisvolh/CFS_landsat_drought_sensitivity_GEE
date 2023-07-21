@@ -23,8 +23,10 @@ var mask = require('users/robitalec/CFS:modules/mask.js');
 var export_to_drive = function(col, points, res, drive_name, drive_folder, type) {
   if (type == 'reduceRegions') {
     var sampled = col.reduceRegions(points, ee.Reducer.mean(), res);  
-  } else {
+  } else if (type == 'sample') {
   	var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
+  } else {
+    throw new Error("type not one of 'reduceRegions', or 'sample'");
   }
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
