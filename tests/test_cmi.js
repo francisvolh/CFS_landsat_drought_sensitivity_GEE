@@ -7,11 +7,12 @@ Alec L. Robitaille
 // Load modules
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
+var climate = require('users/gena/packages:climate.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Load collection
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4")
+var daymet = climate.daymet
     .filterDate('2015-07-01', '2015-07-30')
     .mean();
 
