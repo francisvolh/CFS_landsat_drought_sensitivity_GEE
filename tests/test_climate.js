@@ -41,7 +41,7 @@ Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500}, 'monthly_daymet');
 // Usage: climate_normals(bioclim_variables);
 var climate_normals = climate.climate_normals(['TD', 'MAT']);
 print('Climate normals', climate_normals);
-Map.addLayer(climate_normals.select('TD'), {min: -12, max: 12}, 'climate_normals');
+Map.addLayer(climate_normals.select('Normal_1991_2020_TD_b1'), {min: -12, max: 12}, 'climate_normals');
 
 
 
