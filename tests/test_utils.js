@@ -15,7 +15,7 @@ var daymet = climate.daymet
   
 var year_list = ee.List.sequence(2000, 2002);
 var month_list = ee.List.sequence(1, 12);
-var week_list = ee.List.sequence(20, 25);
+var week_list = ee.List.sequence(1, 5);
 
 var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
@@ -57,7 +57,7 @@ var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 // Test aggregrate_week
 // Usage: aggregrate_week(images, year_list, week_list, reducer);
-var agg_wk = utils.aggregrate_week(daymet, year_list, reducer);
+var agg_wk = utils.aggregrate_week(daymet, year_list, week_list, reducer);
 print('Aggregate week', agg_wk);
 
 
