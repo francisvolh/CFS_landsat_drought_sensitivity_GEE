@@ -26,6 +26,14 @@ print('Weekly daymet', week_daymet);
 
 
 
+// Test monthly_daymet
+// Usage: monthly_daymet(year_list, month_list)
+var monthly_daymet = daymet.monthly_daymet(years, months);
+print('Monthly daymet', monthly_daymet);
+Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
+
+
+
 // Test climate_normals
 // Usage: climate_normals(bioclim_variables);
 var climate_normals = climate.climate_normals(['TD', 'MAT']);
