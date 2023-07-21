@@ -12,6 +12,7 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 var img = ee.Image.constant(1).set('system:time_start', ee.Date.fromYMD(2020, 1, 1).millis());
 var daymet = climate.daymet
   .filter(ee.Filter.date('2000-01-01', '2003-01-01'));
+  
 var year_list = ee.List.sequence(2000, 2002);
 var month_list = ee.List.sequence(1, 12);
 var week_list = ee.List.sequence(20, 25);
