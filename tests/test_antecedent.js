@@ -6,7 +6,7 @@ Alec L. Robitaille
 // Load modules
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var daymet = require('users/robitalec/CFS:modules/daymet.js');
+var climate = require('users/robitalec/CFS:modules/climate.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
@@ -16,7 +16,8 @@ var years = ee.List.sequence(2010, 2015);
 var months = ee.List.sequence(1, 12);
 
 // Load collection
-var monthly_daymet = daymet.monthly_daymet(years, months);
+var daymet = climate.daymet();
+var monthly_daymet = climate.monthly_daymet(daymet, years, months);
 
 // Calculate CMI
 var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
