@@ -30,7 +30,7 @@ print('Weekly daymet', week_daymet);
 // Usage: monthly_daymet(daymet_col, year_list, month_list)
 var monthly_daymet = climate.monthly_daymet(daymet, year_list, month_list);
 print('Monthly daymet', monthly_daymet);
-Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
+Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500}, 'monthly_daymet');
 
 
 
@@ -38,7 +38,7 @@ Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500});
 // Usage: climate_normals(bioclim_variables);
 var climate_normals = climate.climate_normals(['TD', 'MAT']);
 print('Climate normals', climate_normals);
-Map.addLayer(climate_normals.select('TD'), {min: -12, max: 12});
+Map.addLayer(climate_normals.select('TD'), {min: -12, max: 12}, 'climate_normals');
 
 
 
