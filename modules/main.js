@@ -32,7 +32,7 @@ var main_greenest = function(output, region) {
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
-  var monthly_daymet = climate.monthly_daymet(years, months);
+  var daymet = climate.daymet();
   var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
   // Apply mask
@@ -40,6 +40,7 @@ var main_greenest = function(output, region) {
 
 
   // CMI
+  var monthly_daymet = climate.monthly_daymet(daymet, years, months);
   var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
 
   // Drought/baseline
