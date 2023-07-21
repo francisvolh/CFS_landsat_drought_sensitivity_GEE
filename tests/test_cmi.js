@@ -7,7 +7,7 @@ Alec L. Robitaille
 // Load modules
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
 var palettes = require('users/gena/packages:palettes');
-var climate = require('users/gena/packages:climate.js');
+var climate = require('users/robitalec/CFS:modules/climate.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
