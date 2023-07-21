@@ -30,7 +30,7 @@ print('Weekly daymet', week_daymet);
 
 
 // Test monthly_daymet
-// Usage: monthly_daymet(daymet_col, year_list, month_list)
+// Usage: monthly_daymet(year_list, month_list)
 var monthly_daymet = climate.monthly_daymet(year_list, month_list);
 print('Monthly daymet', monthly_daymet);
 Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500}, 'monthly_daymet');
