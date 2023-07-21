@@ -36,8 +36,7 @@ var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87,
 
 
 // Collections
-var daymet = climate.daymet();
-var monthly_daymet = climate.monthly_daymet(daymet, years, months);
+var monthly_daymet = climate.monthly_daymet(years, months);
 var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
 // Apply mask
