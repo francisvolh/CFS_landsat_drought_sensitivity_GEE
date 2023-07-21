@@ -35,7 +35,7 @@ Map.addLayer(strat);
 
 // Test stratified_sample for modal class
 // Usage: stratified.stratified_sample(img, band, scale, region, n_pts)
-var lc_modal = land_cover.lc_and_fire.reduce(ee.Reducer.mode());
+var lc_modal = land_cover.land_cover().reduce(ee.Reducer.mode());
 var strat = stratified.stratified_sample(lc_modal, 'land_cover_mode', 30, geometry, 50);
 print(strat);
 Map.addLayer(strat);
