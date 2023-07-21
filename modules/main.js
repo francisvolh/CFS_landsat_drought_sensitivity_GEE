@@ -7,7 +7,7 @@ Alec L. Robitaille
 var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
-var daymet = require('users/robitalec/CFS:modules/daymet.js');
+var climate = require('users/robitalec/CFS:modules/climate.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
 var split = require('users/robitalec/CFS:modules/split_drought.js');
@@ -32,7 +32,7 @@ var main_greenest = function(output, region) {
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
-  var monthly_daymet = daymet.monthly_daymet(years, months);
+  var monthly_daymet = climate.monthly_daymet(years, months);
   var indices_col = landsat.indices_greenest(min_year_landsat, max_year, min_mm_dd, max_mm_dd, region);
 
   // Apply mask
