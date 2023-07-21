@@ -31,7 +31,7 @@ var geometry = ee.Geometry.Polygon(
           [-137.053, 63.642]]]);
 var points = ee.FeatureCollection.randomPoints(geometry, 10);
 
-var type = 'sample'
+var type = 'sample';
 
 // Test export_hydro
 // Usage: export_hydro(points, drive_name, drive_folder, type)
