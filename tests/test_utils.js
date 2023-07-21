@@ -28,36 +28,35 @@ daymet = daymet
 
 // Test set_year
 // Usage: utils.set_year(image)
-// img = utils.set_year(img);
-// print('Set year', img);
+img = utils.set_year(img);
+print('Set year', img);
 
 
 
 // Test add_year_band
 // Usage: utils.add_year_band(image)
-// img = utils.add_year_band(img);
-// Map.addLayer(img.select('year'));
+img = utils.add_year_band(img);
+Map.addLayer(img.select('year'));
 
 
 
 // Test aggregate_month_year
 // Usage: aggregate_month_year(images, year_list, month_list, reducer);
-// var agg_month_year = utils.aggregate_month_year(daymet, year_list, month_list, reducer);
-// print('Aggregate month year', agg_month_year);
+var agg_month_year = utils.aggregate_month_year(daymet, year_list, month_list, reducer);
+print('Aggregate month year', agg_month_year);
 
 
 
 // Test aggregrate_year
 // Usage: aggregrate_year(images, year_list, reducer);
-// var agg_year = utils.aggregrate_year(daymet, year_list, reducer);
-// print('Aggregate year', agg_year);
+// var agg_year = util/ar', agg_year);
 
 
 
 // Test set_week
 // Usage: set_week(images);
-// var test_week = daymet.map(utils.set_week);
-// print('Set week', test_week);
+var test_week = daymet.map(utils.set_week);
+print('Set week', test_week);
 
 
 
