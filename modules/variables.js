@@ -81,8 +81,4 @@ exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
 // TODO: filter in list
 var yt_to_mb_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
                    'British Columbia', 'Alberta', 'Manitoba'];
-exports.yt_to_mb = ee.Geometry.Polygon(
-   [[[-140.61272043854052, 69.60272090467828],
-          [-140.61272043854052, 43.912011140261754],
-          [-91.21818918854052, 43.912011140261754],
-          [-91.21818918854052, 69.60272090467828]]]);
+exports.yt_to_mb = bounds.filter(ee.Filter.inList('placeName', yt_to_mb_ls));
