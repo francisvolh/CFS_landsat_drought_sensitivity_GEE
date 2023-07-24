@@ -78,7 +78,6 @@ exports.western_can = ee.Geometry.Polygon(
 exports.bc = bounds.filter(ee.Filter.eq('placeName', 'British Columbia'));
 exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
 
-// TODO: filter in list
 var yt_to_mb_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
                    'British Columbia', 'Alberta', 'Manitoba'];
 exports.yt_to_mb = bounds.filter(ee.Filter.inList('placeName', yt_to_mb_ls));
