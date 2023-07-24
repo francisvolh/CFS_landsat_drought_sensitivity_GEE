@@ -63,21 +63,9 @@ exports.dawson = ee.Geometry.Polygon(
 	[-137.86706931880778, 63.10300863803273],
 	[-137.86706931880778, 64.89866428936777]]]);
 
-exports.western_can = ee.Geometry.Polygon(
-	[[[-141.4430528814123, 68.27919277463084],
-	[-141.13300806589254, 64.04137893026935],
-	[-139.73426050644431, 60.04815657459371],
-	[-126.34684688322079, 49.10211106287488],
-  [-108.90484061318891, 49.055202844054236],
-  [-91.79138600476233, 48.67346079998252],
-  [-95.41638550817073, 59.939877470328504],
-  [-99.80739862269407, 62.42033801780019],
-  [-108.28910573882132, 65.53581583394379],
-  [-128.65907556424258, 68.27919277463084]]]);
-
 exports.bc = bounds.filter(ee.Filter.eq('placeName', 'British Columbia'));
 exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
 
-var yt_to_mb_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
+var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
                    'British Columbia', 'Alberta', 'Manitoba'];
-exports.yt_to_mb = bounds.filter(ee.Filter.inList('placeName', yt_to_mb_ls));
+exports.western_can = bounds.filter(ee.Filter.inList('placeName', yt_to_mb_ls));
