@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -78,6 +79,8 @@ exports.bc = bounds.filter(ee.Filter.eq('placeName', 'British Columbia'));
 exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
 
 // TODO: filter in list
+var yt_to_mb_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
+                   'British Columbia', 'Alberta', 'Manitoba'];
 exports.yt_to_mb = ee.Geometry.Polygon(
    [[[-140.61272043854052, 69.60272090467828],
           [-140.61272043854052, 43.912011140261754],
