@@ -67,5 +67,5 @@ exports.bc = bounds.filter(ee.Filter.eq('placeName', 'British Columbia'));
 exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
 
 var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
-                   'British Columbia', 'Alberta', 'Manitoba'];
+                      'British Columbia', 'Alberta', 'Manitoba'];
 exports.western_can = bounds.filter(ee.Filter.inList('placeName', western_can_ls));
