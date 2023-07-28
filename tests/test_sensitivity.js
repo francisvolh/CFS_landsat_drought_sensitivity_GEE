@@ -53,6 +53,10 @@ var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, ant
 // Usage: sensitivity.sensitivity_relative_cap(split_indices, antecedent_list, index_list)
 var sens_relative = sensitivity.sensitivity_relative_cap(split_drought_wi, antecedent_list, index_list);
 
+// Test sensitivity_nd_cap
+// Usage: sensitivity.sensitivity_nd_cap(split_indices, antecedent_list, index_list)
+var sens_nd = sensitivity.sensitivity_nd_cap(split_drought_wi, antecedent_list, index_list);
+
 // Test sensitivity_absolute_cap
 // Usage: sensitivity.sensitivity_absolute_cap(split_indices, antecedent_list, index_list)
 var sens_absolute = sensitivity.sensitivity_absolute_cap(split_drought_wi, antecedent_list, index_list);
@@ -61,6 +65,7 @@ var sens_absolute = sensitivity.sensitivity_absolute_cap(split_drought_wi, antec
 
 print('Absolute sensitivity', sens_absolute);
 print('Relative sensitivity', sens_relative);
+print('Normalized difference sensitivity', sens_nd);
 
 Map.centerObject(region);
 Map.addLayer(percentile_masks.select('CMI_ante3mo_lte_p15').first(), {min:0, max:1}, 'CMI lte p15th 3 month antecedent');
@@ -68,3 +73,4 @@ Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {m
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, 'mean NDVI baseline wi p15-85 3 month antecedent', false);
 Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), vars.rel_viz, 'relative drought sensitivity NDVI p15-85 3 month antecedent', false);
 Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'absolute drought sensitivity NDVI p15-85 3 month antecedent');
+Map.addLayer(sens_absolute.select('ND_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'normalized difference drought sensitivity NDVI p15-85 3 month antecedent');
