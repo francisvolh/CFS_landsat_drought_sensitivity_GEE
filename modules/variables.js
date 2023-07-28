@@ -63,9 +63,9 @@ exports.dawson = ee.Geometry.Polygon(
 	[-137.86706931880778, 63.10300863803273],
 	[-137.86706931880778, 64.89866428936777]]]);
 
-exports.bc = bounds.filter(ee.Filter.eq('placeName', 'British Columbia')).geometry();
-exports.yukon = bounds.filter(ee.Filter.eq('placeName', 'Yukon'));
+exports.bc = bounds.filter(ee.Filter.eq('shapeName', 'British Columbia')).geometry();
+exports.yukon = bounds.filter(ee.Filter.eq('shapeName', 'Yukon'));
 
 var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
                       'British Columbia', 'Alberta', 'Manitoba'];
-exports.western_can = bounds.filter(ee.Filter.inList('placeName', western_can_ls));
+exports.western_can = bounds.filter(ee.Filter.inList('shapeName', western_can_ls));
