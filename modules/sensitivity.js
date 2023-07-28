@@ -49,7 +49,7 @@ var sensitivity_relative_cap = function(split_indices, antecedent_list, index_li
 exports.sensitivity_relative_cap = sensitivity_relative_cap;
 
 
-var sensitivity_normdiff_cap = function(split_indices, antecedent_list, index_list) {
+var sensitivity_nd_cap = function(split_indices, antecedent_list, index_list) {
 	var means = split_indices.mean();
   return ee.Image(antecedent_list.map(function(antecedent_period) {
       return index_list.map(function(index) {
