@@ -65,13 +65,12 @@ var main_greenest = function(output, region) {
     var joined = join.apply(indices_col, ante_means, ee.Filter.equals({leftField: 'year', rightField: 'year'}));
     joined = ee.ImageCollection(joined.map(function(img) {return ee.Image.cat(img.get('primary'), img.get('secondary'))}));
     return joined;
-  }  else {
-    throw new Error("output not one of 'relative sensitivity', 'absolute sensitivity', or 'vegetation index and antecedent means'");
-  }
+  } else if (output == 'normalized difference sensitivity') {
+    var sens_nd = sensitivity.sensitivity_nd_cap(split_drought_wi, antecedent_list, index_list);
 
+    var counts_nd = nobs.count_nobs(split_drought_wi, sens_nd);
+    return nobs.mask_nobs('ND', counts_nd, antecedent_list, index_list);
+  }
 
 };
 exports.main_greenest = main_greenest;
-
-
-
