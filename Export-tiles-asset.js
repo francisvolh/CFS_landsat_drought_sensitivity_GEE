@@ -67,7 +67,7 @@ var scale = 30;
 var ecoregions = eco.non_arctic_ecoregions;
 
 var output = 'normalized difference sensitivity';
-var output_prefix = 'Rel_p15_p85';
+var output_prefix = 'ND_p15_p85';
 
 
 // Get tiles
