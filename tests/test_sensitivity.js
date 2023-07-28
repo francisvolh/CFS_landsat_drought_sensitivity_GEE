@@ -73,4 +73,4 @@ Map.addLayer(split_drought_wi.select('NDVI_ante3mo_lte_p15_drought').mean(),  {m
 Map.addLayer(split_drought_wi.select('NDVI_ante3mo_wi_p15_p85_base').mean(),  {min: -0.5, max:1}, 'mean NDVI baseline wi p15-85 3 month antecedent', false);
 Map.addLayer(sens_relative.select('Rel_sens_NDVI_ante3mo_p15_p85'), vars.rel_viz, 'relative drought sensitivity NDVI p15-85 3 month antecedent', false);
 Map.addLayer(sens_absolute.select('Abs_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'absolute drought sensitivity NDVI p15-85 3 month antecedent');
-Map.addLayer(sens_absolute.select('ND_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'normalized difference drought sensitivity NDVI p15-85 3 month antecedent');
+Map.addLayer(sens_nd.select('ND_sens_NDVI_ante3mo_p15_p85'), vars.abs_viz, 'normalized difference drought sensitivity NDVI p15-85 3 month antecedent');
