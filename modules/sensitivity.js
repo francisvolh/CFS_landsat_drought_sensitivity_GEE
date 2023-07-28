@@ -66,5 +66,5 @@ var sensitivity_nd_cap = function(split_indices, antecedent_list, index_list) {
     })
   );
 };
-exports.sensitivity_normdiff_cap = sensitivity_normdiff_cap;
+exports.sensitivity_nd_cap = sensitivity_nd_cap;
 
