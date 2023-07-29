@@ -16,6 +16,12 @@ var dem_mosaic = dem
   .setDefaultProjection(dem.first().projection());
 
 var hillshade = ee.Terrain.hillshade(dem_mosaic);
+var hillshade_viz = hillshade.visualize({
+    min:0,
+    max:250,
+    palette: ['#000000', '#ffffff'],
+    forceRgbOutput:true
+  });
 
 
 // Palettes
