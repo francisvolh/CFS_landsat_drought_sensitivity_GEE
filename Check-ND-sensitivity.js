@@ -83,7 +83,7 @@ select.setValue('3 year');
 
 // Title 
 var title_left = ui.Textbox(null, 'Absolute sensitivity');
-var title_right = ui.Textbox(null, 'Normalized difference sensitivity');
+var title_right = ui.Textbox(null, 'Normalized difference');
 Map.add(title_left);
 Map_right.add(title_right);
 
