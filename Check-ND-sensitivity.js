@@ -1,5 +1,6 @@
 // Modules
 var palettes = require('users/gena/packages:palettes');
+var blend = require('users/jja/public:blend.js');
 
 
 
@@ -7,6 +8,14 @@ var palettes = require('users/gena/packages:palettes');
 // Data
 var col_nd = ee.ImageCollection('users/robitalec/CFS/2023-07-28/2023-07-28_image_col');
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
+var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
+
+var dem_mosaic = dem
+  .filterBounds(col_nd.geometry())
+  .mosaic()
+  .setDefaultProjection(dem.first().projection());
+
+var hillshade = ee.Terrain.hillshade(dem_mosaic);
 
 
 // Palettes
@@ -40,6 +49,9 @@ var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
     Map.layers().reset();
+    Map_right.layers().reset();
+    
+    // Left
     var sens_viz = col_mosaic.select(ante[key][0]).visualize({
       palette: p,
       min: -0.2,
@@ -47,17 +59,27 @@ var select = ui.Select({
     });
     var blend_col_hillshade = blend.multiply(sens_viz, hillshade_viz);
     var col_map = ui.Map.Layer(blend_col_hillshade, null, key);
+    
+    // Right
+    var sens_viz_nd = col_nd.select(ante[key][0]).visualize({
+      palette: p,
+      min: -0.2,
+      max: 0.2
+    });
+    var blend_col_nd_hillshade = blend.multiply(sens_viz_nd, hillshade_viz);
+    var col_nd_map = ui.Map.Layer(blend_col_nd_hillshade, null, key);
     Map.add(col_map);
+    Map_right.add(col_nd_map);
   }
 });
 select.setValue('3 year');
 
-panel_left.add(ui.Label('1. Antecedent period:'));
+panel_left.add(ui.Label('Select antecedent period:'));
 panel_left.add(select);
 
 
-Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute 12mo', false);
-Map.addLayer(col_nd, {palette: p, min: -0.2, max: 0.2}, 'norm diff 12mo');
+// Map.addLayer(col_mosaic, {palette: p, min: -0.2, max: 0.2}, 'absolute 12mo', false);
+// Map.addLayer(col_nd, {palette: p, min: -0.2, max: 0.2}, 'norm diff 12mo');
 
 
 
