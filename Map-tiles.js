@@ -37,7 +37,7 @@ var geometry =
           [-131.21710327653335, 69.08395110419174]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-App
+Map tiles
 Alec L. Robitaille
 
 */
@@ -52,7 +52,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data
-var col = ee.ImageCollection('users/robitalec/CFS/2023-07-19/2023-07-19_image_col');
+var col = ee.ImageCollection('users/robitalec/CFS/2023-07-28/2023-07-28_image_col');
 
 var lc = land_cover.land_cover();
 
@@ -66,7 +66,7 @@ var lc_p = palettes.crameri.bamako[25];
 
 // Options
 print('Band names', col.first().bandNames());
-col = col.select('Rel_sens_NDVI_ante12mo_p15_p85');
+col = col.select('ND_sens_NDVI_ante12mo_p15_p85');
 
 // Process
 var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
