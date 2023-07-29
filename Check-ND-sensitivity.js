@@ -26,6 +26,7 @@ var hillshade_viz = hillshade.visualize({
 
 // Palettes
 var p = palettes.crameri.vik[10];
+var cork = palettes.crameri.cork[10];
 
 // Options
 // print('Band names (Abs/rel)', col.first().bandNames());
@@ -83,7 +84,7 @@ select.setValue('3 year');
 
 // Title 
 var title_left = ui.Textbox(null, 'Absolute sensitivity');
-var title_right = ui.Textbox(null, 'Normalized difference');
+var title_right = ui.Textbox(null, 'Normalized difference sensitivity');
 Map.add(title_left);
 Map_right.add(title_right);
 
@@ -120,5 +121,6 @@ Map_right.setOptions('SATELLITE');
 ui.root.widgets().reset([splitPanel]);
 
 
-
-
+Map.addLayer(col_mosaic
+  .select('Abs_sens_NDVI_ante12mo_p15_p85')
+  .subtract(col_nd.mosaic().select('ND_sens_NDVI_ante3mo_p15_p85')), {min:-0.1, max:0.1, palette: cork}, 'abs (12mo) - ND (12mo)', false);
