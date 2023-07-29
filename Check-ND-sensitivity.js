@@ -26,7 +26,8 @@ var hillshade_viz = hillshade.visualize({
 
 // Palettes
 var p = palettes.crameri.vik[10];
-var cork = palettes.crameri.cork[10];
+// var p_diff = palettes.crameri.oslo[10].reverse();
+var p_diff = palettes.crameri.broc[25];
 
 // Options
 // print('Band names (Abs/rel)', col.first().bandNames());
@@ -122,5 +123,5 @@ ui.root.widgets().reset([splitPanel]);
 
 
 Map.addLayer(col_mosaic
-  .select('Abs_sens_NDVI_ante12mo_p15_p85')
-  .subtract(col_nd.mosaic().select('ND_sens_NDVI_ante3mo_p15_p85')), {min:-0.1, max:0.1, palette: cork}, 'abs (12mo) - ND (12mo) [neg blue - pos green]', false);
+  .select('Abs_sens_NDVI_ante12mo_p15_p85').abs()
+  .subtract(col_nd.mosaic().select('ND_sens_NDVI_ante3mo_p15_p85').abs()), {min:-.1, max:0.1, palette: p_diff}, 'abs(abs_sens) - abs(ND_sens) [-0.1 blue to 0.1 yellowgreen]', false);
