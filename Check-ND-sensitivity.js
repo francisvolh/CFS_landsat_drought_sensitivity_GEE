@@ -80,11 +80,19 @@ var select = ui.Select({
 });
 select.setValue('3 year');
 
+
+// Title 
+var title_left = ui.Textbox(null, 'Absolute sensitivity');
+var title_right = ui.Textbox(null, 'Normalized difference sensitivity');
+Map.add(title_left);
+Map_right.add(title_right);
+
+
 // - Panel left
 var panel_left = ui.Panel();
 panel_left.style().set({
   width: '200px',
-  position: 'top-left'
+  position: 'bottom-left'
 });
 
 
@@ -103,6 +111,11 @@ var splitPanel = ui.SplitPanel({
   wipe: false,
   style: {stretch: 'both'}
 });
+
+// Map
+Map.setCenter(-126.76, 57.18, 5);
+Map.setOptions('SATELLITE');
+Map_right.setOptions('SATELLITE');
 
 ui.root.widgets().reset([splitPanel]);
 
