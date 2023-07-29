@@ -123,5 +123,5 @@ ui.root.widgets().reset([splitPanel]);
 
 
 Map.addLayer(col_mosaic
-  .select('Abs_sens_NDVI_ante12mo_p15_p85').abs()
-  .subtract(col_nd.mosaic().select('ND_sens_NDVI_ante3mo_p15_p85').abs()), {min:-.1, max:0.1, palette: p_diff}, 'abs(abs_sens) - abs(ND_sens) [-0.1 blue to 0.1 yellowgreen]', false);
+  .select('Abs_sens_NDVI_ante12mo_p15_p85')
+  .subtract(col_nd.mosaic().select('ND_sens_NDVI_ante3mo_p15_p85')), {min:-.1, max:0.1, palette: p_diff}, 'abs_sens - ND_sens [-0.1 blue to 0.1 yellowgreen]', false);
