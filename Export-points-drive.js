@@ -60,4 +60,4 @@ points = points.filterBounds(bc_ecoregions);
 // export_points.export_lc_and_ecoreg(points, 'sample-lc_and_ecoreg-' + points_name, drive_folder, 'reduceRegions');
 
 // Sensitivity
-export_points.export_to_drive(points, 'sample-sensitivity-' + points_name, drive_folder);
+export_points.export_to_drive(sens, points, 30, 'sample-sensitivity-' + points_name, drive_folder, 'reduceRegions');
