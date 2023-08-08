@@ -31,7 +31,7 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
 };
-
+exports.export_to_drive = export_to_drive;
 
 // Sample
 // Land cover and ecoregion
