@@ -37,7 +37,8 @@ var points_name = 'tiles_' + factor_char;
 
 var bc_ecoregions = non_arctic_ecoregions.filterBounds(vars.bc);
 var sens = ee.ImageCollection('users/robitalec/CFS/2023-07-28/2023-07-28_image_col')
-  .filterBounds(bc_ecoregions);
+  .filterBounds(bc_ecoregions)
+  .mosaic();
 points = points.filterBounds(bc_ecoregions);
 
 
