@@ -60,7 +60,8 @@ exports.forest_age = forest_age;
 var sampling_collection = function() {
   return ee.Image([
     canopy_height(),
-    forest_carbon()
+    forest_carbon(),
+    forest_age()
   ]);
 };
 exports.sampling_collection = sampling_collection;
