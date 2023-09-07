@@ -41,7 +41,7 @@ Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
 
 // Test prop_five_year_fires
 // Usage: fire.prop_five_year_fires(year, focal_dist)
-var prop_five_year_fires = fire.prop_five_year_fires(2020, 5000);
+var prop_five_year_fires = fire.prop_five_year_fires(2020, 500);
 print(prop_five_year_fires);
 Map.addLayer(prop_five_year_fires, null, 'prop_five_year_fires');
 
