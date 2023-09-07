@@ -41,12 +41,13 @@ Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
 
 // Test prop_five_year_fires
 // Usage: fire.prop_five_year_fires(year, focal_dist)
-var prop_five_year_fires = fire.prop_five_year_fires(2020, 500);
+var focal_dist = 1e3;
+var prop_five_year_fires = fire.prop_five_year_fires(2020, focal_dist);
 print(prop_five_year_fires);
 Map.addLayer(prop_five_year_fires, null, 'prop_five_year_fires');
 
 // Test prop_all_five_year_fires
 // Usage: fire.prop_all_five_year_fires(focal_dist)
-var prop_all_five_year_fires = fire.prop_all_five_year_fires(500);
+var prop_all_five_year_fires = fire.prop_all_five_year_fires(focal_dist);
 print(prop_all_five_year_fires);
 Map.addLayer(prop_all_five_year_fires, null, 'prop_all_five_year_fires');
