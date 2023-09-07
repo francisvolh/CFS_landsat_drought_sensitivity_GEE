@@ -65,7 +65,7 @@ var prop_all_five_year_fires = function(focal_dist) {
               .focalMean(focal_dist, null, 'meters');
   });
   
-  return five_fires.reduce(ee.Reducer.sum());
+  return ee.ImageCollection(five_fires).reduce(ee.Reducer.sum());
 };
 exports.prop_all_five_year_fires = prop_all_five_year_fires;
 
