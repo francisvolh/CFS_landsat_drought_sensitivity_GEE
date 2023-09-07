@@ -12,6 +12,8 @@ https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 */
 
 
+
+
 var canopy_height = function() {
   var ch = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/ch");
   
