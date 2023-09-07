@@ -9,6 +9,13 @@ Large soil carbon storage in terrestrial ecosystems of Canada.
 Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213
 
 https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
+
+
+Maltman, J.C., Hermosilla, T., Wulder, M.A., Coops, N.C., White, J.C., 2023. Estimating and mapping forest age across Canada’s forested ecosystems.
+Remote Sensing of Environment 290, 113529.
+
+https://gee-community-catalog.org/projects/ca_fa/
+
 */
 
 
@@ -40,6 +47,14 @@ var forest_carbon = function() {
 };
 exports.forest_carbon = forest_carbon;
 
+
+
+var forest_age = function() {
+  var age = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_forest_age_2019")
+      .select(['b1'], ['CA_forest_age']);
+  return age;
+};
+exports.forest_age = forest_age;
 
 
 var sampling_collection = function() {
