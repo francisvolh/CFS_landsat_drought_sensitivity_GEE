@@ -48,3 +48,5 @@ var prop_five_year_fires = function(yr, focal_dist) {
   return five_fires.focalMean(focal_dist, null, 'meters')
                    .rename('prop_five_year_fires_' + focal_dist);
 };
+exports.prop_five_year_fires = prop_five_year_fires;
+
