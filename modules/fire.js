@@ -42,7 +42,8 @@ var mask_five_year_fires = function(img) {
 exports.mask_five_year_fires = mask_five_year_fires;
 
 
-// Proportion five year firest
+
+// Proportion five year fires
 var prop_five_year_fires = function(yr, focal_dist) {
   var five_fires = five_year_fires(yr);
   return five_fires.focalMean(focal_dist, null, 'meters')
