@@ -6,6 +6,10 @@ https://cwfis.cfs.nrcan.gc.ca/datamart
 https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/nbac_2020_r9_20210810.shp.pdf
 */
 
+// Load modules
+var vars = require('users/robitalec/CFS:modules/variables.js');
+
+
 // Load NBAC fire polygons
 var NBAC_fires = ee.FeatureCollection("users/robitalec/CFS/nbac_combined_1986_to_2020_20210810_and_2021_20220624");
 
@@ -50,4 +54,18 @@ var prop_five_year_fires = function(yr, focal_dist) {
                    .rename('prop_five_year_fires_' + focal_dist);
 };
 exports.prop_five_year_fires = prop_five_year_fires;
+
+
+// Proportion five year fires
+var prop_all_five_year_fires = function(focal_dist) {
+  var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
+  
+  var five_fires = year_list.map(function(yr) {
+    return five_year_fires(yr)
+              .focalMean(focal_dist, null, 'meters');
+  });
+  
+  return five_fires.reduce(ee.Reducer.sum());
+};
+exports.prop_all_five_year_fires = prop_all_five_year_fires;
 
