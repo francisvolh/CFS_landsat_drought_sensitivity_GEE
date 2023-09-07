@@ -36,3 +36,17 @@ var img = ee.Image.random().clip(geometry).set('year', 2020);
 var mask_five_year_fires = fire.mask_five_year_fires(img);
 print(mask_five_year_fires);
 Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
+
+
+
+// Test prop_five_year_fires
+// Usage: fire.prop_five_year_fires(year)
+var prop_five_year_fires = fire.prop_five_year_fires(2020);
+print(prop_five_year_fires);
+Map.addLayer(prop_five_year_fires, null, 'prop_five_year_fires');
+
+// Test prop_all_five_year_fires
+// Usage: fire.prop_all_five_year_fires(focal_dist)
+var prop_all_five_year_fires = fire.prop_all_five_year_fires(500);
+print(prop_all_five_year_fires);
+Map.addLayer(prop_all_five_year_fires, null, 'prop_all_five_year_fires');
