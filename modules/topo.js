@@ -31,7 +31,11 @@ forests and buildings removed." Environmental Research Letters (2022).
 
 // Modules
 var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
+
+// Geometry
+var geometry = vars.canada;
 
 
 // Get HAND
