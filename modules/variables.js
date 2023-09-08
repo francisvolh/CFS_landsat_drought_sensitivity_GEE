@@ -56,6 +56,10 @@ exports.abs_viz = {min:-0.2, max:0.2, palette: p_diverging};
 
 // Geometries
 var bounds = ee.FeatureCollection('projects/earthengine-legacy/assets/projects/sat-io/open-datasets/geoboundaries/CGAZ_ADM1');
+var bounds_adm0 = ee.FeatureCollection('projects/earthengine-legacy/assets/projects/sat-io/open-datasets/geoboundaries/CGAZ_ADM0');
+
+
+exports.canada = bounds_adm0.filter(ee.Filter.eq('shapeName', 'Canada'));
 
 exports.dawson = ee.Geometry.Polygon(
 	[[[-140.98169334224528, 64.89866428936777],
