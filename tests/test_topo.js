@@ -25,6 +25,7 @@ var topo = require('users/robitalec/CFS:modules/topo.js');
 // Palette
 var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.lajolla[50];
+var p_lapaz = palettes.crameri.lapaz[10];
 
 
 
@@ -70,6 +71,16 @@ Map.addLayer(topo.tagee_viz(terrain, 'Eastness_radius_' + radius, zoom, geometry
 Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature_radius_' + radius, zoom, geometry), null, 'MinimalCurvature_radius_' + radius);
 Map.addLayer(topo.tagee_viz(terrain, 'MaximalCurvature_radius_' + radius, zoom, geometry), null, 'MaximalCurvature_radius_' + radius);
 Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex_radius_' + radius, zoom, geometry), null, 'ShapeIndex_radius_' + radius);
+
+
+
+// Test Geomorpho90
+var geomorpho = topo.geomorpho;
+print('Geomorpho90', geomorpho);
+
+Map.addLayer(geomorpho, {band: 'geom', min: 1, max: 10, palette: p_lapaz}, 'geom');
+
+
 
 
 // Test sampling_collection
