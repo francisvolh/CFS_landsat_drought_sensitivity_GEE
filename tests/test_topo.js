@@ -78,7 +78,7 @@ Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex_radius_' + radius, zoom, geomet
 var geomorpho = topo.geomorpho;
 print('Geomorpho90', geomorpho);
 
-Map.addLayer(geomorpho, {band: 'geom', min: 1, max: 10, palette: p_lapaz}, 'geom');
+Map.addLayer(geomorpho.select('geom'), {min: 1, max: 10, palette: p_lapaz}, 'geom');
 
 
 
