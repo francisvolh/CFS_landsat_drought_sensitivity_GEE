@@ -172,7 +172,7 @@ var geomorpho = ee.Image([
   geom, slope, eastness, northness, convergence, spi, 
   cti, dx, dy, dxx, dxy, dyy, roughness, tri, tpi, rough_magnitude
   ]);
-  
+exports.geomorpho = geomorpho;
 
 
 // Get sampling collection
