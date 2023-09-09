@@ -8,7 +8,6 @@ Donchyts, Gennadii, Hessel Winsemius, Jaap Schellekens, Tyler Erickson, Hongkai 
 "Global 30m Height Above the Nearest Drainage (HAND)", Geophysical Research Abstracts, 
 Vol. 18, EGU2016-17445-3, 2016, EGU General Assembly (2016).
 
-
 TAGEE
 Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Rizzo, R.; Demattê, J.A.M. 
 Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. 
@@ -24,6 +23,11 @@ https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0143619
 FABDEM
 Hawker, Laurence, Peter Uhe, Luntadila Paulo, Jeison Sosa, James Savage, Christopher Sampson, and Jeffrey Neal. "A 30m global map of elevation with
 forests and buildings removed." Environmental Research Letters (2022).
+
+Geomorpho90m
+Amatulli, Giuseppe, Daniel McInerney, Tushar Sethi, Peter Strobl, and Sami Domisch. "Geomorpho90m, empirical evaluation and accuracy assessment of global high-resolution geomorphometric layers." Scientific Data 7, no. 1 (2020): 1-18.
+
+https://gee-community-catalog.org/projects/geomorpho90/
 
 
 */
@@ -128,6 +132,47 @@ var topo_diversity_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity")
   .rename(['topo_diversity_alos']);
 exports.topo_diversity_alos = topo_diversity_alos;
 
+
+// Geomorpho90m
+var geom = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/geom')
+  .filterBounds(geometry).mosaic().rename('geom');
+var slope = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/slope')
+  .filterBounds(geometry).mosaic().rename('slope');
+var eastness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/eastness')
+  .filterBounds(geometry).mosaic().rename('eastness');
+var northness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/northness')
+  .filterBounds(geometry).mosaic().rename('northness');
+var convergence = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/convergence')
+  .filterBounds(geometry).mosaic().rename('convergence');
+var spi = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/spi')
+  .filterBounds(geometry).mosaic().rename('spi');
+var cti = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/cti')
+  .filterBounds(geometry).mosaic().rename('cti');
+var dx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dx')
+  .filterBounds(geometry).mosaic().rename('dx');
+var dy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dy')
+  .filterBounds(geometry).mosaic().rename('dy');
+var dxx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxx')
+  .filterBounds(geometry).mosaic().rename('dxx');
+var dxy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxy')
+  .filterBounds(geometry).mosaic().rename('dxy');
+var dyy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dyy')
+  .filterBounds(geometry).mosaic().rename('dyy');
+var roughness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/roughness')
+  .filterBounds(geometry).mosaic().rename('roughness');
+var tri = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/tri')
+  .filterBounds(geometry).mosaic().rename('tri');
+var tpi = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/tpi')
+  .filterBounds(geometry).mosaic().rename('tpi');
+var rough_magnitude = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/rough-magnitude')
+  .filterBounds(geometry).mosaic().rename('rough-magnitude');
+
+
+var geomorpho = ee.Image([
+  geom, slope, eastness, northness, convergence, spi, 
+  cti, dx, dy, dxx, dxy, dyy, roughness, tri, tpi, rough_magnitude
+  ]);
+  
 
 
 // Get sampling collection
