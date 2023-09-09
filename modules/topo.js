@@ -95,7 +95,12 @@ var tagee_terrain = function(region, radius) {
   
   return terr.select([
     'Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
-    'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex']);
+    'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex'],
+    [
+    'Elevation_radius_' + radius, 'Slope_radius_' + radius, 'Aspect_radius_' + radius, 
+    'Northness_radius_' + radius, 'Eastness_radius_' + radius, 
+    'MinimalCurvature_radius_' + radius, 'MaximalCurvature_radius_' + radius, 
+    'ShapeIndex_radius_' + radius]);
 };
 exports.tagee_terrain = tagee_terrain;
 
@@ -133,7 +138,7 @@ var sampling_collection = function() {
   hand(90, 1000),
   chili_alos,
   topo_diversity_alos,
-  tagee_terrain(geometry)
+  tagee_terrain(geometry, 3)
   ]);
 };
 exports.sampling_collection = sampling_collection;
