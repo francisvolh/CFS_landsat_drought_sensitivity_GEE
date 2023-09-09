@@ -77,20 +77,20 @@ dem = dem
   .setDefaultProjection(dem.first().projection());
 
 // TAGEE
-var smooth_dem = function(dem) {
+var smooth_dem = function(dem, radius) {
   // From TAGEE docs
   // Smoothing filter
   var gaussianFilter = ee.Kernel.gaussian({
-    radius: 3, sigma: 2, units: 'pixels', normalize: true
+    radius: radius, sigma: 2, units: 'pixels', normalize: true
   });
   
   // Smoothing the DEM with the gaussian kernel
   return dem.convolve(gaussianFilter).resample("bilinear");
 };
 
-var smoothed_dem = smooth_dem(dem);
 
-var tagee_terrain = function(region) {
+var tagee_terrain = function(region, radius) {
+  var smoothed_dem = smooth_dem(dem, radius);  
   var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
   
   return terr.select([
