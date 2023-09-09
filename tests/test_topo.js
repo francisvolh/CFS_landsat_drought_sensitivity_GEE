@@ -63,14 +63,14 @@ var terrain = topo.tagee_terrain(geometry, radius);
 print('Terrain TAGEE', terrain);
 
 var zoom = 4;
-Map.addLayer(topo.tagee_viz(terrain, 'Elevation_radius_' + radius, zoom, geometry), null, 'Elevation_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'Slope_radius_' + radius, zoom, geometry), null, 'Slope_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'Aspect_radius_' + radius, zoom, geometry), null, 'Aspect_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'Northness_radius_' + radius, zoom, geometry), null, 'Northness_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'Eastness_radius_' + radius, zoom, geometry), null, 'Eastness_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature_radius_' + radius, zoom, geometry), null, 'MinimalCurvature_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'MaximalCurvature_radius_' + radius, zoom, geometry), null, 'MaximalCurvature_radius_' + radius);
-Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex_radius_' + radius, zoom, geometry), null, 'ShapeIndex_radius_' + radius);
+Map.addLayer(topo.tagee_viz(terrain, 'Elevation_radius_' + radius, zoom, geometry), null, 'Elevation_radius_' + radius, true);
+Map.addLayer(topo.tagee_viz(terrain, 'Slope_radius_' + radius, zoom, geometry), null, 'Slope_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'Aspect_radius_' + radius, zoom, geometry), null, 'Aspect_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'Northness_radius_' + radius, zoom, geometry), null, 'Northness_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'Eastness_radius_' + radius, zoom, geometry), null, 'Eastness_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'MinimalCurvature_radius_' + radius, zoom, geometry), null, 'MinimalCurvature_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'MaximalCurvature_radius_' + radius, zoom, geometry), null, 'MaximalCurvature_radius_' + radius, false);
+Map.addLayer(topo.tagee_viz(terrain, 'ShapeIndex_radius_' + radius, zoom, geometry), null, 'ShapeIndex_radius_' + radius, false);
 
 
 
