@@ -93,14 +93,13 @@ var tagee_terrain = function(region, radius) {
   var smoothed_dem = smooth_dem(dem, radius);  
   var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
   
-  return terr.select([
-    'Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
-    'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex'],
-    [
-    'Elevation_radius_' + radius, 'Slope_radius_' + radius, 'Aspect_radius_' + radius, 
-    'Northness_radius_' + radius, 'Eastness_radius_' + radius, 
-    'MinimalCurvature_radius_' + radius, 'MaximalCurvature_radius_' + radius, 
-    'ShapeIndex_radius_' + radius]);
+  return terr.select(
+    ['Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
+     'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex'],
+    ['Elevation_radius_' + radius, 'Slope_radius_' + radius, 'Aspect_radius_' + radius, 
+     'Northness_radius_' + radius, 'Eastness_radius_' + radius, 
+     'MinimalCurvature_radius_' + radius, 'MaximalCurvature_radius_' + radius, 
+     'ShapeIndex_radius_' + radius]);
 };
 exports.tagee_terrain = tagee_terrain;
 
