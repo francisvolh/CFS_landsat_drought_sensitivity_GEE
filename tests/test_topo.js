@@ -57,7 +57,8 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 
 
 // Test TAGEE
-var terrain = topo.tagee_terrain(geometry);
+var radius = 3;
+var terrain = topo.tagee_terrain(geometry, radius);
 print('Terrain TAGEE', terrain);
 
 var zoom = 4;
