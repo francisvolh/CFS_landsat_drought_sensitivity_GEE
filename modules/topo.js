@@ -77,11 +77,11 @@ dem = dem
   .setDefaultProjection(dem.first().projection());
 
 // TAGEE
-var smooth_dem = function(dem, rad) {
+var smooth_dem = function(dem, radius) {
   // From TAGEE docs
   // Smoothing filter
   var gaussianFilter = ee.Kernel.gaussian({
-    radius: rad, sigma: 2, units: 'pixels', normalize: true
+    radius: radius, sigma: 2, units: 'pixels', normalize: true
   });
   
   // Smoothing the DEM with the gaussian kernel
