@@ -83,7 +83,7 @@ var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
 // Map.addLayer(tiles)
-var sub_tile_id_list = tile_id_list.slice(40, 50);
+var sub_tile_id_list = tile_id_list.slice(50, 60);
 
 sub_tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
