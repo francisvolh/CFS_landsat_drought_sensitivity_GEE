@@ -71,10 +71,8 @@ var output_prefix = 'ND_p15_p85';
 
 
 // Get tiles
-var sub_ecoregions = ecoregions;
-
 var tiler = require('users/gena/packages:tiler');
-var tiles = tiler.getTilesForGeometry(sub_ecoregions.geometry(), 6.3);
+var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 
 
 
