@@ -82,7 +82,7 @@ tiles = tiles.map(function(ft) {return ft.set('id', ft.get('system:index'))});
 var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
-Map.addLayer(tiles)
+// Map.addLayer(tiles)
 // var sub_tile_id_list = tile_id_list.slice(30, 40);
 
 // sub_tile_id_list.evaluate(function(tile_ids) {
