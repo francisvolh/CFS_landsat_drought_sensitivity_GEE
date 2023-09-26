@@ -11,8 +11,7 @@ var assets = require('users/robitalec/CFS:modules/assets.js');
 
 
 // Variables
-var dir = 'users/robitalec/CFS/2023-07-19/2023-07-19_image_col';
-
+var dir = 'users/robitalec/CFS/2023-02-21/2023-02-21_image_col';
 
 
 // Test list_assets_in_dir
