@@ -85,8 +85,8 @@ var col_mosaic = col
 // Visualize
 var col_viz = col_mosaic.visualize({
     palette:p,
-    min: -20,
-    max: 20
+    min: -.2,
+    max: .2
 });
 
 var hillshade_viz = hillshade.visualize({
@@ -95,7 +95,7 @@ var hillshade_viz = hillshade.visualize({
     palette: ['#000000', '#ffffff'],
     forceRgbOutput:true
   });
-  
+
 
 // Map
 Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
