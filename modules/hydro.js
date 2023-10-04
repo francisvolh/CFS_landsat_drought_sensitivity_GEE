@@ -43,9 +43,9 @@ exports.distance_permanent_snow = distance_permanent_snow;
 
 
 // Water
-var water = land_cover.hermosilla_1984_2019
-                .reduce(ee.Reducer.mode())
-                .eq(20);
+var water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater")
+  .select('max_extent')
+  .eq(1);
 exports.water = water;
 
 // Proportion water
@@ -72,7 +72,7 @@ var distance_major_lakes = function(min_lake_area) {
     .filter(ee.Filter.eq('Continent', 'North America'))
     .filter(ee.Filter.eq('Country', 'Canada'))
     .filter(ee.Filter.gt('Lake_area', min_lake_area));
-  
+
   return lake_poly.distance()
                   .rename('distance_lake_gt_' + min_lake_area + '_sq_km')
                   .updateMask(lake_poly.reduceToImage(['Lake_area'], ee.Reducer.anyNonZero()).not());
