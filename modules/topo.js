@@ -120,7 +120,5 @@ var sampling_collection = function() {
   geomorpho
   ]);
 };
-sampling_collection = sampling_collection.map(function(img) {
-  return img.updateMask(hydro.water.not());
-});
+sampling_collection = sampling_collection.updateMask(hydro.water.not());
 exports.sampling_collection = sampling_collection;
