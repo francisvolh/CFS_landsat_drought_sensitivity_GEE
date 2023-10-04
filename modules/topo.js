@@ -90,12 +90,8 @@ var dx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dx')
   .filterBounds(geometry).mosaic().rename('dx');
 var dy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dy')
   .filterBounds(geometry).mosaic().rename('dy');
-var dxx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxx')
-  .filterBounds(geometry).mosaic().rename('dxx');
-var dyy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dyy')
-  .filterBounds(geometry).mosaic().rename('dyy');
-var roughness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/roughness')
-  .filterBounds(geometry).mosaic().rename('roughness');
+var dxy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxy')
+  .filterBounds(geometry).mosaic().rename('dxy');
 var tri = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/tri')
   .filterBounds(geometry).mosaic().rename('tri');
 var tpi = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/tpi')
@@ -107,11 +103,10 @@ var geom = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/geom')
 
 var geomorpho = ee.Image([
   slope, eastness, northness, convergence, cti, dx, dy,
-  dxx, dyy, 
-  tri, roughness, tpi, rough_magnitude,
+  dxy, 
+  tri, tpi, rough_magnitude,
   geom
   ]);
-geomorpho = geomorpho.updateMask(hydro.water.not());
 exports.geomorpho = geomorpho;
 
 
@@ -125,4 +120,7 @@ var sampling_collection = function() {
   geomorpho
   ]);
 };
+sampling_collection = sample_collection.map(function(img) {
+  return img.updateMask(hydro.water.not());
+})
 exports.sampling_collection = sampling_collection;
