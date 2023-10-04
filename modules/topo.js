@@ -111,7 +111,7 @@ var geomorpho = ee.Image([
   tri, roughness, tpi, rough_magnitude,
   geom
   ]);
-geomorpho = geomorpho.updateMask(geomorpho.mask().and(hydro.water));
+geomorpho = geomorpho.updateMask(hydro.water.not());
 exports.geomorpho = geomorpho;
 
 
