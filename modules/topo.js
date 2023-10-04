@@ -125,5 +125,3 @@ var sampling_collection = function() {
   ]);
 };
 exports.sampling_collection = sampling_collection;
-
-
