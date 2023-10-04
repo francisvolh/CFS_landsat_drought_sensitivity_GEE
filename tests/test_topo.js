@@ -68,9 +68,7 @@ Map.addLayer(geomorpho.select('convergence'), {min: -50, max: 10, palette: p}, '
 Map.addLayer(geomorpho.select('cti'), {min: -5, max: 5, palette: p}, 'cti', false);
 Map.addLayer(geomorpho.select('dx'), {min: -0.5, max: 0.5, palette: p}, 'dx', false);
 Map.addLayer(geomorpho.select('dy'), {min: -0.5, max: 0.5, palette: p}, 'dy', false);
-Map.addLayer(geomorpho.select('dxx'), {min: -0.05, max: 0.05, palette: p}, 'dxx', false);
-Map.addLayer(geomorpho.select('dyy'), {min: -0.05, max: 0.05, palette: p}, 'dyy', false);
-Map.addLayer(geomorpho.select('roughness'), {min: 0, max: 200, palette: p}, 'roughness', true);
+Map.addLayer(geomorpho.select('dxy'), {min: -0.05, max: 0.05, palette: p}, 'dxy', false);
 Map.addLayer(geomorpho.select('tri'), {min: 0, max: 60, palette: p}, 'tri', true);
 Map.addLayer(geomorpho.select('rough-magnitude'), {min: 0, max: 30, palette: p}, 'rough-magnitude', false);
 Map.addLayer(geomorpho.select('tpi'), {min: -4, max: 4, palette: p}, 'tpi', true);
