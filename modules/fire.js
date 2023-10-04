@@ -51,11 +51,11 @@ exports.mask_five_year_fires = mask_five_year_fires;
 var sum_burned_buffer = function(yr, focal_dist) {
   var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
   
-  var five_fires = year_list.map(function(yr) {
+  var five_fires = ee.ImageCollection(year_list.map(function(yr) {
     return five_year_fires(yr)
               .focalMean(focal_dist, null, 'meters');
-  });
+  }));
   
-  return ee.ImageCollection(five_fires).reduce(ee.Reducer.sum());
+  return five_fires.reduce(ee.Reducer.sum()).rename('sum_burned_' + focal_dist + '_m');
 };
 exports.sum_burned_buffer = sum_burned_buffer;
