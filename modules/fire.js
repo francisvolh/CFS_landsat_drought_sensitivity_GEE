@@ -47,17 +47,8 @@ exports.mask_five_year_fires = mask_five_year_fires;
 
 
 
-// Proportion five year fires
-var prop_five_year_fires = function(yr, focal_dist) {
-  var five_fires = five_year_fires(yr);
-  return five_fires.focalMean(focal_dist, null, 'meters')
-                   .rename('prop_five_year_fires_' + focal_dist);
-};
-exports.prop_five_year_fires = prop_five_year_fires;
-
-
-// Proportion five year fires
-var prop_all_five_year_fires = function(focal_dist) {
+// Sum of burned buffer
+var sum_burned_buffer = function(yr, focal_dist) {
   var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
   
   var five_fires = year_list.map(function(yr) {
@@ -67,5 +58,4 @@ var prop_all_five_year_fires = function(focal_dist) {
   
   return ee.ImageCollection(five_fires).reduce(ee.Reducer.sum());
 };
-exports.prop_all_five_year_fires = prop_all_five_year_fires;
-
+exports.sum_burned_buffer = sum_burned_buffer;
