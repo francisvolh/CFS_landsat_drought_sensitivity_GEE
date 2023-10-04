@@ -39,15 +39,9 @@ Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
 
 
 
-// Test prop_five_year_fires
-// Usage: fire.prop_five_year_fires(year, focal_dist)
+// Test sum_burned_buffer
+// Usage: fire.sum_burned_buffer(focal_dist)
 var focal_dist = 1e3;
-var prop_five_year_fires = fire.prop_five_year_fires(2020, focal_dist);
-print(prop_five_year_fires);
-Map.addLayer(prop_five_year_fires, null, 'prop_five_year_fires');
-
-// Test prop_all_five_year_fires
-// Usage: fire.prop_all_five_year_fires(focal_dist)
-var prop_all_five_year_fires = fire.prop_all_five_year_fires(focal_dist);
-print(prop_all_five_year_fires);
-Map.addLayer(prop_all_five_year_fires, null, 'prop_all_five_year_fires');
+var sum_burned_buffer = fire.sum_burned_buffer(focal_dist);
+print(sum_burned_buffer);
+Map.addLayer(sum_burned_buffer, null, 'sum_burned_buffer');
