@@ -34,8 +34,8 @@ https://gee-community-catalog.org/projects/geomorpho90/
 
 
 // Modules
-var tagee = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 var vars = require('users/robitalec/CFS:modules/variables.js');
+var hydro = require('users/robitalec/CFS:modules/hydro.js');
 
 
 // Geometry
@@ -111,6 +111,7 @@ var geomorpho = ee.Image([
   tri, roughness, tpi, rough_magnitude,
   geom
   ]);
+geomorpho = geomorpho.updateMask(geomorpho.mask().and(hydro.water));
 exports.geomorpho = geomorpho;
 
 
