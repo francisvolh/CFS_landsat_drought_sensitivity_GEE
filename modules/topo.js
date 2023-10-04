@@ -122,5 +122,5 @@ var sampling_collection = function() {
 };
 sampling_collection = sample_collection.map(function(img) {
   return img.updateMask(hydro.water.not());
-})
+});
 exports.sampling_collection = sampling_collection;
