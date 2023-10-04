@@ -69,60 +69,6 @@ exports.chili_srtm = chili_srtm;
 
 
 
-// DEM
-var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
-dem = dem
-  .filterBounds(geometry)
-  .mosaic()
-  .setDefaultProjection(dem.first().projection());
-
-// TAGEE
-var smooth_dem = function(dem, radius) {
-  // From TAGEE docs
-  // Smoothing filter
-  var gaussianFilter = ee.Kernel.gaussian({
-    radius: radius, sigma: 2, units: 'pixels', normalize: true
-  });
-  
-  // Smoothing the DEM with the gaussian kernel
-  return dem.convolve(gaussianFilter).resample("bilinear");
-};
-
-
-var tagee_terrain = function(region, radius) {
-  var smoothed_dem = smooth_dem(dem, radius);  
-  var terr = tagee.terrainAnalysis(tagee, smoothed_dem, region);
-  
-  return terr.select(
-    ['Elevation', 'Slope', 'Aspect', 'Northness', 'Eastness', 
-     'MinimalCurvature', 'MaximalCurvature', 'ShapeIndex'],
-    ['Elevation_radius_' + radius, 'Slope_radius_' + radius, 'Aspect_radius_' + radius, 
-     'Northness_radius_' + radius, 'Eastness_radius_' + radius, 
-     'MinimalCurvature_radius_' + radius, 'MaximalCurvature_radius_' + radius, 
-     'ShapeIndex_radius_' + radius]);
-};
-exports.tagee_terrain = tagee_terrain;
-
-// Visualize TAGEE wrapper
-var tagee_viz = function(terrain, band_name, zoom, region) {
-  Map.setZoom(zoom);
-  return tagee.makeVisualization(
-    terrain, 
-    band_name, 
-    'level' + zoom, 
-    region, 
-    'inferno'
-  );
-};
-exports.tagee_viz = tagee_viz;
-
-
-// Landforms
-// Bad mask instead of gaps filled with values
-// var landforms_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_landforms") 
-//   .rename(['landforms_alos']);
-// exports.landforms_alos = landforms_alos;
-
 // Topographic diversity
 var topo_diversity_alos = ee.Image("CSP/ERGo/1_0/Global/ALOS_topoDiversity") 
   .rename(['topo_diversity_alos']);
@@ -130,8 +76,6 @@ exports.topo_diversity_alos = topo_diversity_alos;
 
 
 // Geomorpho90m
-var geom = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/geom')
-  .filterBounds(geometry).mosaic().rename('geom');
 var slope = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/slope')
   .filterBounds(geometry).mosaic().rename('slope');
 var eastness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/eastness')
@@ -140,8 +84,6 @@ var northness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/n
   .filterBounds(geometry).mosaic().rename('northness');
 var convergence = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/convergence')
   .filterBounds(geometry).mosaic().rename('convergence');
-var spi = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/spi')
-  .filterBounds(geometry).mosaic().rename('spi');
 var cti = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/cti')
   .filterBounds(geometry).mosaic().rename('cti');
 var dx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dx')
@@ -150,8 +92,6 @@ var dy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dy')
   .filterBounds(geometry).mosaic().rename('dy');
 var dxx = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxx')
   .filterBounds(geometry).mosaic().rename('dxx');
-var dxy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dxy')
-  .filterBounds(geometry).mosaic().rename('dxy');
 var dyy = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/dyy')
   .filterBounds(geometry).mosaic().rename('dyy');
 var roughness = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/roughness')
@@ -162,11 +102,14 @@ var tpi = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/tpi')
   .filterBounds(geometry).mosaic().rename('tpi');
 var rough_magnitude = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/rough-magnitude')
   .filterBounds(geometry).mosaic().rename('rough-magnitude');
-
+var geom = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/geom')
+  .filterBounds(geometry).mosaic().rename('geom');
 
 var geomorpho = ee.Image([
-  geom, slope, eastness, northness, convergence, spi, 
-  cti, dx, dy, dxx, dxy, dyy, roughness, tri, tpi, rough_magnitude
+  slope, eastness, northness, convergence, dx, dy,
+  dxx, dyy, 
+  tri, roughness, tpi, rough_magnitude,
+  geom
   ]);
 exports.geomorpho = geomorpho;
 
@@ -178,7 +121,7 @@ var sampling_collection = function() {
   hand(90, 1000),
   chili_alos,
   topo_diversity_alos,
-  tagee_terrain(geometry, 3)
+  geomorpho
   ]);
 };
 exports.sampling_collection = sampling_collection;
