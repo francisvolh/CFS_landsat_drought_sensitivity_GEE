@@ -69,10 +69,6 @@ exports.chili_srtm = chili_srtm;
 
 
 
-// CTI
-
-
-
 // DEM
 var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
 dem = dem
