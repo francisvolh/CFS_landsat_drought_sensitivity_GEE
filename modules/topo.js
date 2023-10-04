@@ -106,7 +106,7 @@ var geom = ee.ImageCollection('projects/sat-io/open-datasets/Geomorpho90m/geom')
   .filterBounds(geometry).mosaic().rename('geom');
 
 var geomorpho = ee.Image([
-  slope, eastness, northness, convergence, dx, dy,
+  slope, eastness, northness, convergence, cti, dx, dy,
   dxx, dyy, 
   tri, roughness, tpi, rough_magnitude,
   geom
