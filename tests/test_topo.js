@@ -61,22 +61,20 @@ Map.addLayer(topo_diversity, null, 'topo_diversity');
 var geomorpho = topo.geomorpho;
 print('Geomorpho90', geomorpho);
 
-Map.addLayer(geomorpho.select('geom'), {min: 1, max: 10, palette: p_lapaz}, 'geom', true);
 Map.addLayer(geomorpho.select('slope'), {min: 0, max: 40, palette: p}, 'slope', false);
 Map.addLayer(geomorpho.select('eastness'), {min: -0.5, max: 0.5, palette: p}, 'eastness', false);
 Map.addLayer(geomorpho.select('northness'), {min: -0.5, max: 0.5, palette: p}, 'northness', false);
 Map.addLayer(geomorpho.select('convergence'), {min: -50, max: 10, palette: p}, 'convergence', false);
-Map.addLayer(geomorpho.select('spi'), {min: 0, max: 250, palette: p}, 'spi', true);
 Map.addLayer(geomorpho.select('cti'), {min: -5, max: 5, palette: p}, 'cti', false);
 Map.addLayer(geomorpho.select('dx'), {min: -0.5, max: 0.5, palette: p}, 'dx', false);
 Map.addLayer(geomorpho.select('dy'), {min: -0.5, max: 0.5, palette: p}, 'dy', false);
 Map.addLayer(geomorpho.select('dxx'), {min: -0.05, max: 0.05, palette: p}, 'dxx', false);
-Map.addLayer(geomorpho.select('dxy'), {min: -0.05, max: 0.05, palette: p}, 'dxy', false);
 Map.addLayer(geomorpho.select('dyy'), {min: -0.05, max: 0.05, palette: p}, 'dyy', false);
 Map.addLayer(geomorpho.select('roughness'), {min: 0, max: 200, palette: p}, 'roughness', true);
 Map.addLayer(geomorpho.select('tri'), {min: 0, max: 60, palette: p}, 'tri', true);
-Map.addLayer(geomorpho.select('tpi'), {min: -4, max: 4, palette: p}, 'tpi', true);
 Map.addLayer(geomorpho.select('rough-magnitude'), {min: 0, max: 30, palette: p}, 'rough-magnitude', false);
+Map.addLayer(geomorpho.select('tpi'), {min: -4, max: 4, palette: p}, 'tpi', true);
+Map.addLayer(geomorpho.select('geom'), {min: 1, max: 10, palette: p_lapaz}, 'geom', true);
 
 
 
