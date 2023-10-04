@@ -79,6 +79,6 @@ Map.addLayer(geomorpho.select('geom'), {min: 1, max: 10, palette: p_lapaz}, 'geo
 
 
 // Test sampling_collection
-// Usage: sampling_collection();
-var col = topo.sampling_collection();
+// Usage: sampling_collection;
+var col = topo.sampling_collection;
 print('Sampling collection', col);
