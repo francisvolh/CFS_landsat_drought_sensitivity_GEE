@@ -62,6 +62,6 @@ var sum_burned_buffer = function(focal_dist) {
   return focal_prop_fires.reduce(ee.Reducer.sum())
                    .rename('sum_burned_' + focal_dist + '_m')
                    .divide(year_list.length())
-                   .updateMask(vars.canada.reduceToImage(ee.Reducer.anyNonZero()));
+                   .updateMask(vars.canada.reduceToImage('system:index', ee.Reducer.anyNonZero()));
 };
 exports.sum_burned_buffer = sum_burned_buffer;
