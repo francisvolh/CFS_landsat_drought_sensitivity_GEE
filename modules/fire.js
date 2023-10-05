@@ -56,6 +56,7 @@ var sum_burned_buffer = function(yr, focal_dist) {
               .focalMean(focal_dist, null, 'meters');
   }));
   
-  return five_fires.reduce(ee.Reducer.sum()).rename('sum_burned_' + focal_dist + '_m');
+  return five_fires.reduce(ee.Reducer.sum()).rename('sum_burned_' + focal_dist + '_m')
+                   .divide(year_list.length());
 };
 exports.sum_burned_buffer = sum_burned_buffer;
