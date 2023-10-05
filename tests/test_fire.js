@@ -41,7 +41,7 @@ Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
 
 // Test sum_burned_buffer
 // Usage: fire.sum_burned_buffer(focal_dist)
-var focal_dist = 1000;
+var focal_dist = 500;
 var sum_burned_buffer = fire.sum_burned_buffer(focal_dist);
-print(sum_burned_buffer);
+print('Sum burned buffer', sum_burned_buffer);
 Map.addLayer(sum_burned_buffer, null, 'sum_burned_buffer');
