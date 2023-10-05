@@ -51,12 +51,15 @@ exports.mask_five_year_fires = mask_five_year_fires;
 var sum_burned_buffer = function(focal_dist) {
   var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
   
-  var five_fires = ee.ImageCollection(year_list.map(function(yr) {
-    return five_year_fires(yr)
-              .focalMean(focal_dist, null, 'meters');
-  }));
-  
-  return five_fires.reduce(ee.Reducer.sum())
+  var prop_fires = ee.ImageCollection(year_list.map(function(yr) {
+    return ee.Image([
+      NBAC_fires.filter(ee.Filter.eq('YEAR', y))
+                .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
+      ])
+    }));
+  var focal_prop_fires = prop_fires.focalMean(focal_dist, null, 'meters');
+    
+  return focal_prop_fires.reduce(ee.Reducer.sum())
                    .rename('sum_burned_' + focal_dist + '_m')
                    .divide(year_list.length());
 };
