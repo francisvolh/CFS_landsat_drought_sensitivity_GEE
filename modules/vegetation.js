@@ -61,7 +61,8 @@ var sampling_collection = function() {
   return ee.Image([
     canopy_height(),
     forest_carbon(),
-    forest_age()
+    forest_age(),
+    fire.sum_burned_buffer(500)
   ]);
 };
 exports.sampling_collection = sampling_collection;
