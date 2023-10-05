@@ -53,9 +53,9 @@ var sum_burned_buffer = function(focal_dist) {
   
   var prop_fires = ee.ImageCollection(year_list.map(function(yr) {
     return ee.Image([
-      NBAC_fires.filter(ee.Filter.eq('YEAR', y))
+      NBAC_fires.filter(ee.Filter.eq('YEAR', yr))
                 .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
-      ])
+      ]);
     }));
   var focal_prop_fires = prop_fires.focalMean(focal_dist, null, 'meters');
     
