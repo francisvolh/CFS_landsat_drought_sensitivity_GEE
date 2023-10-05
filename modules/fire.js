@@ -48,7 +48,7 @@ exports.mask_five_year_fires = mask_five_year_fires;
 
 
 // Sum of burned buffer
-var sum_burned_buffer = function(yr, focal_dist) {
+var sum_burned_buffer = function(focal_dist) {
   var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
   
   var five_fires = ee.ImageCollection(year_list.map(function(yr) {
@@ -56,7 +56,8 @@ var sum_burned_buffer = function(yr, focal_dist) {
               .focalMean(focal_dist, null, 'meters');
   }));
   
-  return five_fires.reduce(ee.Reducer.sum()).rename('sum_burned_' + focal_dist + '_m')
+  return five_fires.reduce(ee.Reducer.sum())
+                   .rename('sum_burned_' + focal_dist + '_m')
                    .divide(year_list.length());
 };
 exports.sum_burned_buffer = sum_burned_buffer;
