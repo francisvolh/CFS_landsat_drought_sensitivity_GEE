@@ -18,6 +18,8 @@ https://gee-community-catalog.org/projects/ca_fa/
 
 */
 
+// Load modules
+var fire = require('users/robitalec/CFS:modules/fire.js');
 
 
 
