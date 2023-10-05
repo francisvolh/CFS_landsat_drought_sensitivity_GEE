@@ -61,6 +61,7 @@ var sum_burned_buffer = function(focal_dist) {
     
   return focal_prop_fires.reduce(ee.Reducer.sum())
                    .rename('sum_burned_' + focal_dist + '_m')
-                   .divide(year_list.length());
+                   .divide(year_list.length())
+                   .updateMask(NBAC_fires.mask());
 };
 exports.sum_burned_buffer = sum_burned_buffer;
