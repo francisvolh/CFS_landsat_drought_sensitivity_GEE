@@ -51,11 +51,11 @@ export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder, 
 export_points.export_topo(points, 'sample-topo-' + points_name, drive_folder, 'sample');
 
 // Climate
-export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder, 'reduceRegions');
+// export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder, 'reduceRegions');
 
 // Lc, ecoreg, lon lat
-export_points.export_lc_and_ecoreg(points, 'sample-lc_and_ecoreg-' + points_name, drive_folder, 'reduceRegions');
+// export_points.export_lc_and_ecoreg(points, 'sample-lc_and_ecoreg-' + points_name, drive_folder, 'reduceRegions');
 
 // Sensitivity
-sens = sens.mosaic();
-export_points.export_to_drive(sens, points, 30, 'sample-sensitivity-' + points_name, drive_folder, 'reduceRegions');
+// sens = sens.mosaic();
+// export_points.export_to_drive(sens, points, 30, 'sample-sensitivity-' + points_name, drive_folder, 'reduceRegions');
