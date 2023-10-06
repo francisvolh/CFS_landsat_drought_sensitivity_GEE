@@ -114,9 +114,6 @@ exports.geomorpho = geomorpho;
 var sampling_collection = ee.Image([
   hand(30, 100),
   hand(90, 1000),
-  chili_alos,
-  topo_diversity_alos,
   geomorpho
 ]);
-sampling_collection = sampling_collection.updateMask(hydro.water.not());
 exports.sampling_collection = sampling_collection;
