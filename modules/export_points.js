@@ -80,7 +80,7 @@ exports.export_soil = export_soil;
 
 
 var export_topo = function(points, drive_name, drive_folder, type) {
-  var col = topo.sampling_collection();
+  var col = topo.sampling_collection;
   export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_topo = export_topo;
