@@ -10,10 +10,10 @@ Alec L. Robitaille
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
-var assets = require('users/robitalec/CFS:modules/assets.js');
 var points = require('users/robitalec/CFS:modules/points.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
 
+var assets = require('users/robitalec/CFS:modules/assets.js');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Variables ------------------------------------------------------------------
@@ -22,24 +22,22 @@ var drive_folder = 'Exports';
 // Load ecoregions
 var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
+var sens = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
 
-// Data -----------------------------------------------------------------------
+
+// Points ---------------------------------------------------------------------
 // Generate points
 var factor = 0.0001;
 var factor_char = '0pt01';
-var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 
-// points.export_points_by_img_col_asset(col, factor, factor_char);
+
+points.export_points_by_img_col_asset(sens, factor, factor_char);
+sens = sens.mosaic();
 
 // Asset
-var points = ee.FeatureCollection('users/robitalec/CFS/2023-04-27_sampling_points_tiles_0pt01');
+var points = ee.FeatureCollection('users/robitalec/CFS/2023-09-26_sampling_points_tiles_0pt01');
 var points_name = 'tiles_' + factor_char;
 
-var bc_ecoregions = non_arctic_ecoregions.filterBounds(vars.bc);
-var sens = ee.ImageCollection('users/robitalec/CFS/2023-07-28/2023-07-28_image_col')
-  .filterBounds(bc_ecoregions)
-  .mosaic();
-points = points.filterBounds(bc_ecoregions);
 
 
 // Sample ---------------------------------------------------------------------
