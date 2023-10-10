@@ -33,6 +33,8 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
 };
 exports.export_to_drive = export_to_drive;
 
+
+
 // Sample
 // Land cover and ecoregion
 var export_lc_and_ecoreg = function(points, drive_name, drive_folder, type) {
