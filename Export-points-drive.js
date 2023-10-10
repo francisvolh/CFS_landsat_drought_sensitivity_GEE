@@ -42,7 +42,7 @@ var points_name = 'tiles_' + factor_char;
 export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder, 'reduceRegions');
 
 // Vegetation, sum proportion burned
-export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder, 'reduceRegions');
+export_points.export_vegetation(points, 'sample-vegetation-' + points_name, drive_folder, 'sample');
 
 // Hydro
 export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder, 'reduceRegions');
