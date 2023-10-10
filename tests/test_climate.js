@@ -17,15 +17,15 @@ var daymet = climate.daymet;
 
 // Test daymet
 // Usage: get_daymet();
-var got_daymet = climate.get_daymet();
+var get_daymet = climate.get_daymet();
 print('Daymet (limit 5)', got_daymet.limit(5));
 
 
 
 // Test weekly_daymet
 // Usage: weekly_daymet(daymet_col, year_list, week_list);
-var week_daymet = climate.weekly_daymet(daymet, year_list, week_list);
-print('Weekly daymet', week_daymet);
+// var week_daymet = climate.weekly_daymet(daymet, year_list, week_list);
+// print('Weekly daymet', week_daymet);
 
 
 
