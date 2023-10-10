@@ -85,7 +85,5 @@ exports.climate_normals = climate_normals;
 
 
 
-var sampling_collection = function() {
-  return climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI']);
-};
+var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI']);
 exports.sampling_collection = sampling_collection;
