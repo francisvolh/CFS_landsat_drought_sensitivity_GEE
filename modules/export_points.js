@@ -64,7 +64,7 @@ exports.export_hydro = export_hydro;
 
 // Vegetation
 var export_vegetation = function(points, drive_name, drive_folder, type) {
-  var col = vegetation.sampling_collection();
+  var col = vegetation.sampling_collection;
   export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_vegetation = export_vegetation;
@@ -72,8 +72,8 @@ exports.export_vegetation = export_vegetation;
 
 
 var export_soil = function(points, drive_name, drive_folder, type) {
-  var col = soil.sampling_collection();
-  export_to_drive(col, points, 30, drive_name, drive_folder, type);
+  var col = soil.sampling_collection;
+  export_to_drive(col, points, 250, drive_name, drive_folder, type);
 };
 exports.export_soil = export_soil;
 
