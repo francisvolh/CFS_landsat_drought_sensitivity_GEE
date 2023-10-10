@@ -112,7 +112,6 @@ exports.geomorpho = geomorpho;
 
 // Get sampling collection
 var sampling_collection = ee.Image([
-  hand(30, 100),
   hand(90, 1000),
   geomorpho
 ]);
