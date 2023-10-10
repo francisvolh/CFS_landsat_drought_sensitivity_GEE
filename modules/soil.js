@@ -14,9 +14,9 @@ silt 	Proportion of silt particles (≥ 0.002 mm and ≤ 0.05 mm) in the fine ea
 
 
 
-Sothe, C., Gonsamo, A., Arabian, J., Kurz, W. A., Finkelstein, S. A., & Snider, J. (2022). 
-Large soil carbon storage in terrestrial ecosystems of Canada. 
-Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213 
+Sothe, C., Gonsamo, A., Arabian, J., Kurz, W. A., Finkelstein, S. A., & Snider, J. (2022).
+Large soil carbon storage in terrestrial ecosystems of Canada.
+Global Biogeochemical Cycles, 36, e2021GB007213. https://doi.org/10.1029/2021GB007213
 
 https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 
@@ -52,10 +52,8 @@ exports.soil_carbon = soil_carbon;
 
 
 
-var sampling_collection = function() {
-  return ee.Image([
-    soil_percent(),
-    soil_carbon()
-    ]);
-};
+var sampling_collection = ee.Image([
+  soil_percent(),
+  soil_carbon()
+]);
 exports.sampling_collection = sampling_collection;
