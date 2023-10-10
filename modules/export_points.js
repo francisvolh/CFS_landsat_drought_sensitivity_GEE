@@ -3,11 +3,8 @@ Export points
 Alec L. Robitaille
 */
 
-
-
+// Modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var main = require('users/robitalec/CFS:modules/main.js');
-var stratified = require('users/robitalec/CFS:modules/stratified.js');
 var hydro = require('users/robitalec/CFS:modules/hydro.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
@@ -73,6 +70,7 @@ exports.export_vegetation = export_vegetation;
 
 
 
+// Soil
 var export_soil = function(points, drive_name, drive_folder, type) {
   var col = soil.sampling_collection;
   export_to_drive(col, points, 250, drive_name, drive_folder, type);
@@ -81,6 +79,7 @@ exports.export_soil = export_soil;
 
 
 
+// Topo
 var export_topo = function(points, drive_name, drive_folder, type) {
   var col = topo.sampling_collection;
   export_to_drive(col, points, 90, drive_name, drive_folder, type);
@@ -89,6 +88,7 @@ exports.export_topo = export_topo;
 
 
 
+// Climate
 var export_climate = function(points, drive_name, drive_folder, type) {
   var col = climate.sampling_collection;
   export_to_drive(col, points, 30, drive_name, drive_folder, type);
