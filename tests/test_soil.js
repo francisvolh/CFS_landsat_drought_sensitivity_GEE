@@ -25,8 +25,8 @@ Map.addLayer(soil_carbon, {min: 0, max: 350}, 'soil carbon');
 
 
 
-// Test sampling_collection();
-// Usage: sampling_collection();
-var sampling_collection = soil.sampling_collection();
+// Test sampling_collection;
+// Usage: sampling_collection;
+var sampling_collection = soil.sampling_collection;
 print('Sampling collection', sampling_collection);
 
