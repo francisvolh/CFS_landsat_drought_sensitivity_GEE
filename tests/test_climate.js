@@ -18,7 +18,7 @@ var daymet = climate.daymet;
 // Test daymet
 // Usage: get_daymet();
 var get_daymet = climate.get_daymet();
-print('Daymet (limit 5)', got_daymet.limit(5));
+print('Daymet (limit 5)', get_daymet.limit(5));
 
 
 
