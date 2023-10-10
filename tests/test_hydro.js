@@ -6,9 +6,11 @@ Alec L. Robitaille
 
 // Load modules
 var hydro = require('users/robitalec/CFS:modules/hydro.js');
+var palettes = require('users/gena/packages:palettes');
+
+
 
 // Palette
-var palettes = require('users/gena/packages:palettes');
 var p = palettes.crameri.lajolla[50];
 
 
@@ -35,15 +37,15 @@ Map.addLayer(dist_perm_snow, {min: 0, max:7.5e3}, 'distance permanent snow');
 
 // Test proportion_water
 var prop_water_5000 = hydro.proportion_water(5000);
-print('Proportion water lc 5000:', prop_water_5000);
-Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water lc 5000');
+print('Proportion water 5000:', prop_water_5000);
+Map.addLayer(prop_water_5000, {min:0, max:1}, 'prop water 5000');
 
 
 
-// Test distance_water_lc
-var dist_water_lc = hydro.distance_water_lc();
-print('Distance water lc:', dist_water_lc);
-Map.addLayer(dist_water_lc, {min: 0, max: 10e3}, 'distance water lc');
+// Test distance_water
+var dist_water = hydro.distance_water();
+print('Distance water:', dist_water);
+Map.addLayer(dist_water, {min: 0, max: 10e3}, 'distance water');
 
 
 
@@ -60,5 +62,5 @@ Map.addLayer(dist_major_lake_1000, {min:0, max:10000}, 'dist lakes > 1000 sq km'
 
 
 // Test sampling_collection
-var col = hydro.sampling_collection();
+var col = hydro.sampling_collection;
 print('Sampling collection:', col);
