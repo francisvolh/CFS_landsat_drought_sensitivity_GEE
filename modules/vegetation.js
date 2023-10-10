@@ -23,6 +23,7 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 
 
+// Canopy height
 var canopy_height = function() {
   var ch = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/ch");
   
@@ -38,6 +39,7 @@ exports.canopy_height = canopy_height;
 
 
 
+// Forest carbon
 var forest_carbon = function() {
   console.log('warning: Sothe forest carbon data may be out of date');
   var fc = ee.ImageCollection("projects/sat-io/open-datasets/carbon_stocks_ca/fc")
@@ -51,6 +53,7 @@ exports.forest_carbon = forest_carbon;
 
 
 
+// Forest age
 var forest_age = function() {
   var age = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_forest_age_2019")
       .select(['b1'], ['CA_forest_age']);
@@ -59,12 +62,12 @@ var forest_age = function() {
 exports.forest_age = forest_age;
 
 
-var sampling_collection = function() {
-  return ee.Image([
-    canopy_height(),
-    forest_carbon(),
-    forest_age(),
-    fire.sum_burned_buffer(500)
-  ]);
-};
+
+// Sampling collection
+var sampling_collection = ee.Image([
+  canopy_height(),
+  forest_carbon(),
+  forest_age(),
+  fire.sum_burned_buffer(500)
+]);
 exports.sampling_collection = sampling_collection;
