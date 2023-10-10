@@ -55,12 +55,12 @@ var proportion_water = function(focal_dist) {
 };
 exports.proportion_water = proportion_water;
 
-// Distance water lc
-var distance_water_lc = function() {
+// Distance water 
+var distance_water = function() {
   return water.distance(ee.Kernel.euclidean(7.5e3, 'meters'))
-              .rename('distance_water_lc');
+              .rename('distance_water');
 };
-exports.distance_water_lc = distance_water_lc;
+exports.distance_water = distance_water;
 
 
 
@@ -82,13 +82,8 @@ exports.distance_major_lakes = distance_major_lakes;
 
 
 // Get sampling collection
-var sampling_collection = function() {
-  return ee.Image([
-  proportion_permanent_snow(1000),
-  proportion_water(1000),
-  proportion_water(300),
-  distance_water_lc(),
+var sampling_collection = ee.Image([
+  distance_water(),
   distance_major_lakes(50)
-  ]);
-};
+]);
 exports.sampling_collection = sampling_collection;
