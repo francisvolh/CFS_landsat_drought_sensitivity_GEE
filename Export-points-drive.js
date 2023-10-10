@@ -40,8 +40,8 @@ var points_name = 'tiles_' + factor_char;
 // Sample ---------------------------------------------------------------------
 // Split points
 points = points.randomColumn();
-points_first = points.filter(ee.Filter.lte('random', 0.5));
-points_second = points.filter(ee.Filter.gt('random', 0.5));
+var points_first = points.filter(ee.Filter.lte('random', 0.5));
+var points_second = points.filter(ee.Filter.gt('random', 0.5));
 
 
 // Soil
