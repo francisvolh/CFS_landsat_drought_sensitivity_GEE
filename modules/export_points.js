@@ -55,7 +55,7 @@ exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
 
 // Hydro
 var export_hydro = function(points, drive_name, drive_folder, type) {
-  var col = hydro.sampling_collection();
+  var col = hydro.sampling_collection;
   export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_hydro = export_hydro;
@@ -88,7 +88,7 @@ exports.export_topo = export_topo;
 
 
 var export_climate = function(points, drive_name, drive_folder, type) {
-  var col = climate.sampling_collection();
+  var col = climate.sampling_collection;
   export_to_drive(col, points, 30, drive_name, drive_folder, type);
 };
 exports.export_climate = export_climate;
