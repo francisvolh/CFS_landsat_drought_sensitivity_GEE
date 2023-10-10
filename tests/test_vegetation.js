@@ -34,7 +34,7 @@ Map.addLayer(forest_age, {min: 0, max: 151}, 'forest_age');
 
 
 
-// Test sampling_collection();
-// Usage: sampling_collection();
-var col = vegetation.sampling_collection();
+// Test sampling_collection;
+// Usage: sampling_collection;
+var col = vegetation.sampling_collection;
 print('Sampling collection', col);
