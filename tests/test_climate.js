@@ -46,6 +46,6 @@ Map.addLayer(climate_normals.select('Normal_1991_2020_TD_b1'), {min: -50, max: 5
 
 
 // Test sampling_collection
-// Usage: sampling_collection();
-var col = climate.sampling_collection();
+// Usage: climate.sampling_collection;
+var col = climate.sampling_collection;
 print('Sampling collection', col);
