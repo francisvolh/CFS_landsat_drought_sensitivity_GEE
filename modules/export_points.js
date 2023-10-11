@@ -14,7 +14,7 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 var utils = require('users/robitalec/CFS:modules/utils.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
 
-
+ 
 
 // Wrapper export function
 var export_to_drive = function(col, points, res, drive_name, drive_folder, type) {
@@ -22,6 +22,13 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
     var sampled = col.reduceRegions(points, ee.Reducer.mean(), res);  
   } else if (type == 'sample') {
     var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
+  } else if (type == 'getRegion') {
+    var values = col.getRegion(points, res)
+    var keys = values.get(0)
+    var sampled = values.slice(1).map(function(o) {
+      var properties = ee.Dictionary.fromLists(keys, o)
+      return ee.Feature(null, properties)
+    })
   } else {
     throw new Error("type not one of 'reduceRegions', or 'sample'");
   }
