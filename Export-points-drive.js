@@ -41,8 +41,8 @@ var points_name = 'tiles_' + factor_char;
 // Split points
 points = points.randomColumn();
 var points_first = points.filter(ee.Filter.lte('random', 0.25));
-var points_second = points.filter(ee.Filter.gt('random', 0.25).and(ee.Filter.lte('random', 0.5)));
-var points_third = points.filter(ee.Filter.gt('random', 0.5).and(ee.Filter.lte('random', 0.75)));
+var points_second = points.filter(ee.Filter.and(ee.Filter.gt('random', 0.25), ee.Filter.lte('random', 0.5)));
+var points_third = points.filter(ee.Filter.and(ee.Filter.gt('random', 0.5), ee.Filter.lte('random', 0.75)));
 var points_fourth = points.filter(ee.Filter.gt('random', 0.75));
 
 
