@@ -23,7 +23,7 @@ var export_to_drive = function(col, points, res, drive_name, drive_folder, type)
   } else if (type == 'sample') {
     var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
   } else if (type == 'getRegion') {
-    var values = ee.Image.Collection(col).getRegion(points, res)
+    var values = ee.ImageCollection(col).getRegion(points, res)
     var keys = values.get(0)
     var sampled = values.slice(1).map(function(o) {
       var properties = ee.Dictionary.fromLists(keys, o)
