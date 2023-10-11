@@ -62,6 +62,10 @@ export_points.export_hydro(points, 'sample-hydro-' + points_name, drive_folder, 
 // Topo
 export_points.export_topo(points_first, 'sample-topo-' + points_name + '-1', drive_folder, 'sample');
 export_points.export_topo(points_second, 'sample-topo-' + points_name + '-2', drive_folder, 'sample');
+export_points.export_topo(points_third, 'sample-topo-' + points_name + '-3', drive_folder, 'sample');
+export_points.export_topo(points_fourth, 'sample-topo-' + points_name + '-4', drive_folder, 'sample');
+
+
 
 // Climate
 export_points.export_climate(points, 'sample-climate-' + points_name, drive_folder, 'reduceRegions');
