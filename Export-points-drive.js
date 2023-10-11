@@ -50,10 +50,10 @@ var points_fourth = points.filter(ee.Filter.gt('random', 0.75));
 export_points.export_soil(points, 'sample-soil-' + points_name, drive_folder, 'reduceRegions');
 
 // Vegetation, sum proportion burned
-export_points.export_vegetation(points_first, 'sample-vegetation-' + points_name + '-1', drive_folder, 'reduceRegions');
-export_points.export_vegetation(points_second, 'sample-vegetation-' + points_name + '-2', drive_folder, 'reduceRegions');
-export_points.export_vegetation(points_third, 'sample-vegetation-' + points_name + '-3', drive_folder, 'reduceRegions');
-export_points.export_vegetation(points_fourth, 'sample-vegetation-' + points_name + '-4', drive_folder, 'reduceRegions');
+export_points.export_vegetation(points_first, 'sample-vegetation-' + points_name + '-1', drive_folder, 'sample');
+export_points.export_vegetation(points_second, 'sample-vegetation-' + points_name + '-2', drive_folder, 'sample');
+export_points.export_vegetation(points_third, 'sample-vegetation-' + points_name + '-3', drive_folder, 'sample');
+export_points.export_vegetation(points_fourth, 'sample-vegetation-' + points_name + '-4', drive_folder, 'sample');
 
 
 // Hydro
