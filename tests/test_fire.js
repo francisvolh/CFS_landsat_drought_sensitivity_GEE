@@ -26,22 +26,22 @@ var fire = require('users/robitalec/CFS:modules/fire.js');
 
 // Test five_year_fires
 // Usage: fire.five_year_fires(year)
-var five_year_fires = fire.five_year_fires(2020);
-print('Five year fires', five_year_fires);
-Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']}, 'five_year_fires');
+// var five_year_fires = fire.five_year_fires(2020);
+// print('Five year fires', five_year_fires);
+// Map.addLayer(five_year_fires, {min:0, max:1, palette: ['000000', 'ffc781']}, 'five_year_fires');
 
 // Test mask_five_year_fires
 // Usage: fire.mask_five_year_fires(img)
-var img = ee.Image.random().clip(geometry).set('year', 2020);
-var mask_five_year_fires = fire.mask_five_year_fires(img);
-print('Mask five year fires', mask_five_year_fires);
-Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
+// var img = ee.Image.random().clip(geometry).set('year', 2020);
+// var mask_five_year_fires = fire.mask_five_year_fires(img);
+// print('Mask five year fires', mask_five_year_fires);
+// Map.addLayer(mask_five_year_fires, null, 'mask_five_year_fires');
 
 
 
-// Test sum_burned_buffer
-// Usage: fire.sum_burned_buffer(focal_dist)
+// Test prop_burned_buffer
+// Usage: fire.prop_burned_buffer(focal_dist)
 var focal_dist = 500;
-var sum_burned_buffer = fire.sum_burned_buffer(focal_dist);
-print('Sum burned buffer', sum_burned_buffer);
-Map.addLayer(sum_burned_buffer, null, 'sum_burned_buffer');
+var prop_burned_buffer = fire.prop_burned_buffer(focal_dist);
+print('Proportion burned in buffer', prop_burned_buffer);
+Map.addLayer(prop_burned_buffer, null, 'prop_burned_buffer');
