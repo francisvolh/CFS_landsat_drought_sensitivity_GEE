@@ -62,6 +62,6 @@ var prop_burned_buffer = function(focal_dist) {
   return focal_prop_fires
     .reduce(ee.Reducer.mean())
     .focalMean(focal_dist, null, 'meters')
-    .rename('mean_burned_' + focal_dist + '_m');
+    .rename('prop_burned_' + focal_dist + '_m');
 };
 exports.prop_burned_buffer = prop_burned_buffer;
