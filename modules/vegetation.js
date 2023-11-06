@@ -67,6 +67,6 @@ exports.forest_age = forest_age;
 var sampling_collection = ee.Image([
   canopy_height().select(['ch_95perc_height_250m']),
   forest_age(),
-  fire.sum_burned_buffer(500)
+  fire.prop_burned_buffer(500)
 ]);
 exports.sampling_collection = sampling_collection;
