@@ -56,7 +56,7 @@ var prop_burned_buffer = function(focal_dist) {
       NBAC_fires.filter(ee.Filter.eq('YEAR', yr))
                 .reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
       ]);
-    return fires.focalMean(focal_dist, null, 'meters');
+    return fires;
     }));
     
   return focal_prop_fires.reduce(ee.Reducer.mean())
