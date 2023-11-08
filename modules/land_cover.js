@@ -104,7 +104,7 @@ exports.mask_land_cover = mask_land_cover;
 
 
 // Land cover mode
-var lc = hermosilla_1984_2019
+var mode_land_cover = hermosilla_1984_2019
 	.mode()
 	.rename('mode_land_cover');
 exports.mode_land_cover = mode_land_cover;
