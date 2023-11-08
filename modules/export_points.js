@@ -17,20 +17,20 @@ var mask = require('users/robitalec/CFS:modules/mask.js');
  
 
 // Wrapper export function
-var export_to_drive = function(col, points, res, drive_name, drive_folder, type) {
+var export_to_drive = function(img, points, res, drive_name, drive_folder, type) {
   if (type == 'reduceRegions') {
-    var sampled = col.reduceRegions(points, ee.Reducer.mean(), res);  
+    var sampled = img.reduceRegions(points, ee.Reducer.mean(), res);  
   } else if (type == 'sample') {
-    var sampled = points.map(function(ft){return col.sample(ft.geometry(), res)}).flatten();
+    var sampled = points.map(function(ft){return img.sample(ft.geometry(), res)}).flatten();
   } else if (type == 'getRegion') {
-    var values = ee.ImageCollection(col).getRegion(points, res)
+    var values = ee.ImageCollection(img).getRegion(points, res)
     var keys = values.get(0)
     var sampled = values.slice(1).map(function(o) {
       var properties = ee.Dictionary.fromLists(keys, o)
       return ee.Feature(null, properties)
     })
   } else {
-    throw new Error("type not one of 'reduceRegions', or 'sample'");
+    throw new Error("type not one of 'reduceRegions', 'getRegion', or 'sample'");
   }
 	var today = new Date().toJSON().slice(0, 10);
 	Export.table.toDrive(ee.FeatureCollection(sampled), today + '_' + drive_name, drive_folder);
@@ -39,65 +39,53 @@ exports.export_to_drive = export_to_drive;
 
 
 
-// Sample
-// Land cover and ecoregion
-var export_lc_and_ecoreg = function(points, drive_name, drive_folder, type) {
-  var lc = land_cover.hermosilla_1984_2019
-    .map(utils.set_year);
+// Get covariate bands
+var ecoreg_bands = eco.eco_bands();
+var lonlat = ee.Image.pixelLonLat();
+var lc_mode = land_cover.mode_land_cover; // 30
+var hydro_col = hydro.sampling_collection; // 30
+var veg_col = vegetation.sampling_collection; // 30
+var soil_col = soil.sampling_collection; // 250
+var topo_col = topo.sampling_collection; // 90
+var climate_col = climate.sampling_collection; // 1000
 
-  lc = mask.apply_masks(lc)
-    .mode()
-    .rename('land_cover');
-
-  var ecoreg_bands = eco.eco_bands();
-
-  var col = ecoreg_bands.addBands([lc, ee.Image.pixelLonLat()]);
-  
-  export_to_drive(col, points, 30, drive_name, drive_folder, type);
-};
-exports.export_lc_and_ecoreg = export_lc_and_ecoreg;
-
-
-
-// Hydro
-var export_hydro = function(points, drive_name, drive_folder, type) {
-  var col = hydro.sampling_collection;
-  export_to_drive(col, points, 30, drive_name, drive_folder, type);
-};
-exports.export_hydro = export_hydro;
+var covariates = ee.Image([
+  lc_mode,
+  ecoreg_bands,
+  lonlat,
+  hydro_col,
+  veg_col,
+  soil_col,
+  topo_col,
+  climate_col
+])
+exports.covariates = covariates;
 
 
 
-// Vegetation
-var export_vegetation = function(points, drive_name, drive_folder, type) {
-  var col = vegetation.sampling_collection;
-  export_to_drive(col, points, 30, drive_name, drive_folder, type);
-};
-exports.export_vegetation = export_vegetation;
+// Get band, resolution dictionary
+var band_list = covariates.bandNames();
+
+var res_list = [
+  30, 30, 30, 30, 30, 30, 30, 30, 
+  250, 
+  30, 30, 
+  250, 250, 250, 250, 
+  90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 
+  1000, 1000, 1000, 1000, 1000
+];
+
+var res_dict = ee.Dictionary.fromLists(band_list, res_list);
+exports.res_dict = res_dict;
 
 
-
-// Soil
-var export_soil = function(points, drive_name, drive_folder, type) {
-  var col = soil.sampling_collection;
-  export_to_drive(col, points, 250, drive_name, drive_folder, type);
-};
-exports.export_soil = export_soil;
-
-
-
-// Topo
-var export_topo = function(points, drive_name, drive_folder, type) {
-  var col = topo.sampling_collection;
-  export_to_drive(col, points, 90, drive_name, drive_folder, type);
-};
-exports.export_topo = export_topo;
-
-
-
-// Climate
-var export_climate = function(points, drive_name, drive_folder, type) {
-  var col = climate.sampling_collection;
-  export_to_drive(col, points, 30, drive_name, drive_folder, type);
-};
-exports.export_climate = export_climate;
+// Sample covariates
+var sample_covariates = function(points, covariates, res_dict, drive_folder, type) {
+  covariates.bandNames().evaluate(function(bands) {
+      bands.forEach(function(band) {
+        var res = res_dict.get(band);
+        export_to_drive(all.select(band), points, res, 'sample-' + band, drive_folder, type)
+      });
+  });
+}
+exports.sample_covariates = sample_covariates;
