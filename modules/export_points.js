@@ -23,12 +23,12 @@ var export_to_drive = function(img, points, res, drive_name, drive_folder, type)
   } else if (type == 'sample') {
     var sampled = points.map(function(ft){return img.sample(ft.geometry(), res)}).flatten();
   } else if (type == 'getRegion') {
-    var values = ee.ImageCollection(img).getRegion(points, res)
-    var keys = values.get(0)
+    var values = ee.ImageCollection(img).getRegion(points, res);
+    var keys = values.get(0);
     var sampled = values.slice(1).map(function(o) {
-      var properties = ee.Dictionary.fromLists(keys, o)
+      var properties = ee.Dictionary.fromLists(keys, o);
       return ee.Feature(null, properties)
-    })
+    });
   } else {
     throw new Error("type not one of 'reduceRegions', 'getRegion', or 'sample'");
   }
