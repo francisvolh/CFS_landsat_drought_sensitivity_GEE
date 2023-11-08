@@ -84,7 +84,7 @@ var sample_covariates = function(points, covariates, res_dict, drive_folder, typ
   covariates.bandNames().evaluate(function(bands) {
       bands.forEach(function(band) {
         var res = res_dict.get(band);
-        export_to_drive(all.select(band), points, res, 'sample-' + band, drive_folder, type);
+        export_to_drive(covariates.select(band), points, res, 'sample-' + band, drive_folder, type);
       });
   });
 };
