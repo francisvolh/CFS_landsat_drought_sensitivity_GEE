@@ -35,14 +35,14 @@ var type = 'reduceRegions';
 
 // Test covariates
 // Usage: covariates
-var covariates = export_points.covariates
+var covariates = export_points.covariates;
 print(covariates);
 
 
 
 // Test res_dict
 // Usage: res_dict
-var res_dict = export_points.res_dict
+var res_dict = export_points.res_dict;
 print(res_dict);
 
 
