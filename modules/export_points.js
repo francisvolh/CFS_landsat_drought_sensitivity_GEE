@@ -27,7 +27,7 @@ var export_to_drive = function(img, points, res, drive_name, drive_folder, type)
     var keys = values.get(0);
     var sampled = values.slice(1).map(function(o) {
       var properties = ee.Dictionary.fromLists(keys, o);
-      return ee.Feature(null, properties)
+      return ee.Feature(null, properties);
     });
   } else {
     throw new Error("type not one of 'reduceRegions', 'getRegion', or 'sample'");
@@ -58,7 +58,7 @@ var covariates = ee.Image([
   soil_col,
   topo_col,
   climate_col
-])
+]);
 exports.covariates = covariates;
 
 
@@ -84,8 +84,8 @@ var sample_covariates = function(points, covariates, res_dict, drive_folder, typ
   covariates.bandNames().evaluate(function(bands) {
       bands.forEach(function(band) {
         var res = res_dict.get(band);
-        export_to_drive(all.select(band), points, res, 'sample-' + band, drive_folder, type)
+        export_to_drive(all.select(band), points, res, 'sample-' + band, drive_folder, type);
       });
   });
-}
+};
 exports.sample_covariates = sample_covariates;
