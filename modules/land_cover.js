@@ -48,7 +48,6 @@ DOI: https://doi.org/10.1016/j.rse.2022.112780 [Open Access]
 
 // Modules
 var utils = require('users/robitalec/CFS:modules/utils.js');
-var mask = require('users/robitalec/CFS:modules/mask.js');
 
 
 
