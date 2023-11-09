@@ -328,8 +328,6 @@ panel_left_bottom.style().set({
 
 
 
-
-
 panel_left.add(ui.Label('1. Antecedent period:'));
 panel_left.add(select);
 // Adapted from palettes.showPalette to fit into panel
@@ -337,7 +335,8 @@ var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
   .visualize({min: 0, max: 100, palette: p}));
 panel_left_bottom.add(ui.Label('Drought sensitivity ='));
-panel_left_bottom.add(ui.Label('NDVI [baseline] - NDVI [drought]'));
+panel_left_bottom.add(ui.Label('(NDVI [baseline] - NDVI [drought]) / '));
+panel_left_bottom.add(ui.Label('(NDVI [baseline] + NDVI [drought])'));
 panel_left_bottom.add(ui.Label('-2 ____________ 0 ____________ 2'));
 panel_left_bottom.add(img_thumb);
 Map.add(panel_left);
