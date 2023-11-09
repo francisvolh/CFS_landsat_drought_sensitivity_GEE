@@ -160,7 +160,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data
-var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
+var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
 var lc = land_cover.land_cover();
 var dem = ee.Image("MERIT/DEM/v1_0_3");
 
@@ -206,12 +206,9 @@ var Map_right = ui.Map();
 
 // - Antecedent select
 var ante = {
-  '3 month': ['Abs_sens_NDVI_ante3mo_p15_p85'],
-  '12 month': ['Abs_sens_NDVI_ante12mo_p15_p85'],
-  '3 year': ['Abs_sens_NDVI_ante3yr_p15_p85'],
-  '1 year lag': ['Abs_sens_NDVI_ante1lag_p15_p85'],
-  '2 year lag': ['Abs_sens_NDVI_ante2lag_p15_p85'],
-  '3 year lag': ['Abs_sens_NDVI_ante3lag_p15_p85']
+  '3 month': ['ND_sens_NDVI_ante3mo_p15_p85'],
+  '12 month': ['ND_sens_NDVI_ante12mo_p15_p85'],
+  '3 year': ['ND_sens_NDVI_ante3yr_p15_p85']
 };
 
 var select = ui.Select({
