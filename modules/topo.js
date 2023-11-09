@@ -52,7 +52,7 @@ var hand = function(resolution, threshold) {
     return ee.Image("users/gena/GlobalHAND/30m/hand-1000").select(['b1'], ['hand_30_1000']);
   } else if (resolution == 90 & threshold == 1000) {
     var hand_90_1000 = ee.Image("users/gena/GlobalHAND/90m-global/hand-1000").select(['b1'], ['hand_90_1000']);
-    return hand_90_1000.updateMask(hand_90_1000.lt(0));
+    return hand_90_1000.updateMask(hand_90_1000.gte(0));
   }
 };
 exports.hand = hand;
