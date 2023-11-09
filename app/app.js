@@ -337,7 +337,7 @@ var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
 panel_left_bottom.add(ui.Label('Drought sensitivity ='));
 panel_left_bottom.add(ui.Label('(NDVI [baseline] - NDVI [drought]) / '));
 panel_left_bottom.add(ui.Label('(NDVI [baseline] + NDVI [drought])'));
-panel_left_bottom.add(ui.Label('-2 ____________ 0 ____________ 2'));
+panel_left_bottom.add(ui.Label('-0.2 ____________ 0 ____________ 0.2'));
 panel_left_bottom.add(img_thumb);
 Map.add(panel_left);
 Map.add(panel_left_bottom);
