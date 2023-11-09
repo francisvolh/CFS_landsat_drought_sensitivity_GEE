@@ -83,7 +83,7 @@ exports.distance_major_lakes = distance_major_lakes;
 
 // Get sampling collection
 var sampling_collection = ee.Image([
-  distance_water(),
-  distance_major_lakes(50)
+  proportion_permanent_snow(),
+  proportion_water()
 ]);
 exports.sampling_collection = sampling_collection;
