@@ -145,8 +145,6 @@ Alec L. Robitaille
 
 */
 
-
-
 // Modules
 var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var hydro = require('users/robitalec/CFS:modules/hydro.js');
@@ -162,28 +160,23 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data
-var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
+var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 var lc = land_cover.land_cover();
-var dem = ee.ImageCollection("projects/sat-io/open-datasets/FABDEM");
+var dem = ee.Image("MERIT/DEM/v1_0_3");
 
 
 
 // Palettes
 var p = palettes.crameri.vik[10];
 var lc_p = palettes.crameri.bamako[25];
-
 var p_not_grey = palettes.crameri.imola[25];
+
 
 
 // Process
 var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
 
-var dem_mosaic = dem
-  .filterBounds(geometry)
-  .mosaic()
-  .setDefaultProjection(dem.first().projection());
-
-var hillshade = ee.Terrain.hillshade(dem_mosaic);
+var hillshade = ee.Terrain.hillshade(dem);
 
 var col_mosaic = col
     .mosaic();
@@ -191,23 +184,12 @@ var col_mosaic = col
 
 
 // Visualize
-var col_viz = col_mosaic.visualize({
-    palette: p,
-    min: -0.2,
-    max: 0.2
-});
-
 var hillshade_viz = hillshade.visualize({
     min:0,
     max:250,
     palette: ['#000000', '#ffffff'],
     forceRgbOutput:true
   });
-
-
-
-// Blend
-var blend_col_hillshade = blend.multiply(col_viz, hillshade_viz);
 
 
 
@@ -305,7 +287,7 @@ var bandSelect = ui.Select({
     panel_right_bottom.clear();
     stats.evaluate(function(x) {
       Map_right.addLayer(img, {min: x[value + '_p5'], max: x[value + '_p95'], palette: p_not_grey}, value);
-      
+
       var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
         .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
         .visualize({min: 0, max: 100, palette: p_not_grey}));
@@ -367,7 +349,7 @@ Map.add(panel_left_bottom);
 
 panel_right.add(imageSelect);
 panel_right.add(bandSelect);
-panel_right.add(ui.Label('Covariate descriptions', null, 'https://docs.google.com/spreadsheets/d/1kPFTotCdNekGtq771qFAhu1y-mLa4cBonkm99f6civA/edit#gid=24325081'));
+panel_right.add(ui.Label('Covariate descriptions', null, 'https://docs.google.com/spreadsheets/d/1kPFTotCdNekGtq771qFAhu1y-mLa4cBonkm99f6civA/edit#gid=1308651562'));
 panel_right_left_bottom.add(ui.Label('Drought sensitivity refugia'));
 panel_right_left_bottom.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'));
 panel_right_left_bottom.add(ui.Label('Canadian Forest Service / Natural Resources Canada / Government of Canada'));
