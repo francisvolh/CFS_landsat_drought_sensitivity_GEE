@@ -12,6 +12,7 @@ clay 	Proportion of clay particles (< 0.002 mm) in the fine earth fraction 	g/kg
 sand 	Proportion of sand particles (> 0.05 mm) in the fine earth fraction 	g/kg 	10 	g/100g (%) 	sand_mean
 silt 	Proportion of silt particles (≥ 0.002 mm and ≤ 0.05 mm) in the fine earth fraction 	g/kg 	10 	g/100g (%) 	silt_mean
 
+de Sousa, L., Poggio, L., Batjes, N.H., Heuvelink, G.B.M., Kempen, B., Ribeiro, E., Rossiter, D. SoilGrids 2.0: producing quality-assessed soil information for the globe. Under submission to SOIL
 
 
 Sothe, C., Gonsamo, A., Arabian, J., Kurz, W. A., Finkelstein, S. A., & Snider, J. (2022).
