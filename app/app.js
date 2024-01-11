@@ -302,7 +302,8 @@ var imageSelect = ui.Select({
     {label: 'vegetation', value: vegetation.sampling_collection},
     {label: 'soil', value: soil.sampling_collection},
     {label: 'topo', value: topo.sampling_collection},
-    {label: 'climate', value: climate.sampling_collection}
+    {label: 'climate', value: climate.sampling_collection},
+    {label: 'land cover', value: lc_filter}
   ],
   placeholder: 'Select a list of covariates...',
   onChange: function(value) {
@@ -325,6 +326,8 @@ panel_left_bottom.style().set({
   width: '250px',
   position: 'bottom-left'
 });
+
+
 
 
 
