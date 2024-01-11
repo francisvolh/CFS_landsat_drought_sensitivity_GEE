@@ -112,8 +112,5 @@ exports.geomorpho = geomorpho;
 
 
 // Get sampling collection
-var sampling_collection = ee.Image([
-  hand(90, 1000),
-  geomorpho
-]);
+var sampling_collection = geomorpho.addBands([hand(90, 1000)]);
 exports.sampling_collection = sampling_collection;
