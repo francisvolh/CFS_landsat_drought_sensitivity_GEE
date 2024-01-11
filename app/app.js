@@ -157,7 +157,6 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 var blend = require('users/jja/public:blend.js');
 var palettes = require('users/gena/packages:palettes');
 
-print(vegetation.sampling_collection)
 
 // Data
 var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
@@ -300,7 +299,7 @@ var imageSelect = ui.Select({
   items: [
     {label: 'hydro', value: hydro.sampling_collection},
     // Temporary fix: slice off prop burned since 500 m breaking when zoomed out
-    {label: 'vegetation', value: vegetation.sampling_collection.slice(1, 3)},
+    {label: 'vegetation', value: vegetation.sampling_collection.slice(0, 2)},
     {label: 'soil', value: soil.sampling_collection},
     {label: 'topo', value: topo.sampling_collection},
     {label: 'climate', value: climate.sampling_collection},
