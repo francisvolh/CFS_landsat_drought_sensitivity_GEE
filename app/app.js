@@ -174,7 +174,7 @@ var p_not_grey = palettes.crameri.imola[25];
 
 
 // Process
-var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
+var lc_filter = ee.Image(lc.filter(ee.Filter.eq('year', 2010)));
 
 var hillshade = ee.Terrain.hillshade(dem);
 
