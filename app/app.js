@@ -158,7 +158,6 @@ var blend = require('users/jja/public:blend.js');
 var palettes = require('users/gena/packages:palettes');
 
 
-
 // Data
 var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
 var lc = land_cover.land_cover();
