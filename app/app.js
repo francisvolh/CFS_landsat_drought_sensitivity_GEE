@@ -174,7 +174,7 @@ var p_not_grey = palettes.crameri.imola[25];
 
 
 // Process
-var lc_filter = ee.Image(lc.filter(ee.Filter.eq('year', 2010)));
+var lc_filter = lc.filter(ee.Filter.eq('year', 2000)).first();
 
 var hillshade = ee.Terrain.hillshade(dem);
 
@@ -303,7 +303,7 @@ var imageSelect = ui.Select({
     {label: 'soil', value: soil.sampling_collection},
     {label: 'topo', value: topo.sampling_collection},
     {label: 'climate', value: climate.sampling_collection},
-    {label: 'land cover', value: lc_filter}
+    {label: 'land cover (2000)', value: lc_filter}
   ],
   placeholder: 'Select a list of covariates...',
   onChange: function(value) {
