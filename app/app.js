@@ -299,7 +299,7 @@ var imageSelect = ui.Select({
   items: [
     {label: 'hydro', value: hydro.sampling_collection},
     // Temporary fix: slice off prop burned since 500 m breaking when zoomed out
-    {label: 'vegetation', value: vegetation.sampling_collection.slice(0, 2)},
+    {label: 'vegetation', value: vegetation.sampling_collection.select(0,1)},
     {label: 'soil', value: soil.sampling_collection},
     {label: 'topo', value: topo.sampling_collection},
     {label: 'climate', value: climate.sampling_collection},
