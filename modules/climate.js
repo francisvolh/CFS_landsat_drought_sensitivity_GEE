@@ -34,7 +34,8 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
+// var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
+var daymet = ee.ImageCollection("ECMWF/ERA5/DAILY")
 exports.daymet = daymet;
 
 var get_daymet = function() {
@@ -65,7 +66,7 @@ var monthly_daymet = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
-							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
+							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 'total_precipitation_sum'], ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_daymet = monthly_daymet;
 
