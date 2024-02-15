@@ -31,7 +31,7 @@ var palettes = require('users/gena/packages:palettes');
 
 // Variables
 exports.index_list = ['NDVI'];
-exports.ante_list = ['3mo', '12mo', '3yr'];//, '1lag', '2lag', '3lag'];
+exports.ante_list = ['3mo', '12mo', '3yr'];
 exports.min_year_landsat = 1985;
 exports.min_year_climate = 1980;
 exports.max_year = 2020;
