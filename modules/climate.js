@@ -64,25 +64,23 @@ exports.get_daymet = get_daymet;
 
 
 
-var weekly_daymet = function(daymet_col, year_list, week_list) {
-  var reducer = ee.Reducer.min()
-    .combine(ee.Reducer.max(), null, true)
-    .combine(ee.Reducer.sum(), null, true);
-  var agg_wk = utils.aggregrate_week(daymet_col, year_list, week_list, reducer);
-  return agg_wk;
-
-};
-exports.weekly_daymet = weekly_daymet;
-
-
-
 var monthly_daymet = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
-							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 'total_precipitation_sum'], ['tmin', 'tmax', 'prcp']);
+							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_daymet = monthly_daymet;
+
+var monthly_era5 = function(year_list, month_list) {
+  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
+	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
+							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 
+                       'total_precipitation_sum'], 
+                      ['tmin', 'tmax', 'prcp']);
+};
+exports.monthly_era5 = monthly_era5;
 
 
 
