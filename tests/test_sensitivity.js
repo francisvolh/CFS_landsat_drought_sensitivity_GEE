@@ -22,7 +22,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 // Variables
 var index_list = vars.index_list;
 var antecedent_list = vars.ante_list;
-var min_year_daymet =  vars.min_year_daymet;
+var min_year_climate =  vars.min_year_climate;
 var min_year_landsat =  vars.min_year_landsat;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
@@ -30,7 +30,7 @@ var max_mm_dd = vars.max_mm_dd;
 var percentile_low = vars.percentile_low;
 var percentile_high = vars.percentile_high;
 var months = vars.months;
-var years = ee.List.sequence(min_year_daymet, max_year);
+var years = ee.List.sequence(min_year_climate, max_year);
 var percentile_list = [percentile_low, percentile_high];
 var region = ee.Geometry.Polygon([[[-125.87, 56.86], [-125.87, 54.98], [-121.87, 54.98], [-121.87, 56.86]]]);
 
