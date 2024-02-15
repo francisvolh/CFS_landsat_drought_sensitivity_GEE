@@ -34,7 +34,7 @@ https://gee-community-catalog.org/projects/aogcm_cmip6/
 var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
-
+// Note: ERA5 measures precipitation in m
 var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
 exports.era5 = era5;
 
@@ -48,7 +48,7 @@ var get_era5 = function() {
 };
 exports.get_era5 = get_era5;
 
-
+// Note: Daymet measures precipitation in mm
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 exports.daymet = daymet;
 
