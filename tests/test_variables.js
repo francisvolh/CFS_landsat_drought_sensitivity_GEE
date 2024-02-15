@@ -12,7 +12,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 print('---- Variables -------------------------- ');
 print('Index list:', vars.index_list);
 print('Antecedent list:', vars.ante_list);
-print('Min year daymet:', vars.min_year_climate);
+print('Min year climate:', vars.min_year_climate);
 print('Min year landsat:', vars.min_year_landsat);
 print('Max year:', vars.max_year);
 print('Min month day:', vars.min_mm_dd);
