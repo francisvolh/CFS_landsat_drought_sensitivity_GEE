@@ -12,7 +12,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 print('---- Variables -------------------------- ');
 print('Index list:', vars.index_list);
 print('Antecedent list:', vars.ante_list);
-print('Min year daymet:', vars.min_year_daymet);
+print('Min year daymet:', vars.min_year_climate);
 print('Min year landsat:', vars.min_year_landsat);
 print('Max year:', vars.max_year);
 print('Min month day:', vars.min_mm_dd);
@@ -32,7 +32,7 @@ print('Absolute viz:', vars.abs_viz);
 // Assign
 var index_list = vars.index_list;
 var ante_list = vars.ante_list;
-var min_year_daymet =  vars.min_year_daymet;
+var min_year_climate =  vars.min_year_climate;
 var min_year_landsat =  vars.min_year_landsat;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
@@ -46,6 +46,7 @@ var min_baseline_nobs = vars.min_baseline_nobs;
 var cmi_viz = vars.cmi_viz;
 var rel_viz = vars.rel_viz;
 var abs_viz = vars.abs_viz;
+
 
 
 // Map
