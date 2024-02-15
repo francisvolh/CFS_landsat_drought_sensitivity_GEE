@@ -77,8 +77,8 @@ var monthly_era5 = function(year_list, month_list) {
 
 	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
 							.select(['minimum_2m_air_temperature_mean', 
-							         'maximum_2m_air_temperature_mean', 
-                       'total_precipitation_sum'], 
+                      'maximum_2m_air_temperature_mean',
+                      'total_precipitation_sum'], 
                       ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_era5 = monthly_era5;
