@@ -25,6 +25,7 @@ for Historical and Future Periods for North America. PLoS One 11(6): e0156720.
 AdaptWest Project. 2021. Gridded current and projected climate data for North America at 1km resolution,
 generated using the ClimateNA v7.01 software (T. Wang et al., 2021). Available at adaptwest.databasin.org.
 
+https://gee-community-catalog.org/projects/aogcm_cmip6/
 
 */
 
@@ -34,12 +35,25 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-// var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-var daymet = ee.ImageCollection("ECMWF/ERA5/DAILY")
+var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
+exports.era5 = era5;
+
+var get_era5 = function() {
+  era5 = era5.filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
+                  .map(utils.set_date)
+                  .map(utils.set_week)
+                  .map(utils.set_year);
+
+  return era5;
+};
+exports.get_era5 = get_era5;
+
+
+var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 exports.daymet = daymet;
 
 var get_daymet = function() {
-  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_daymet, vars.max_year, 'year'))
+  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
                   .map(utils.set_date)
                   .map(utils.set_week)
                   .map(utils.set_year);
