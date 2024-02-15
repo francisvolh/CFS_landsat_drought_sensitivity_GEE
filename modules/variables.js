@@ -33,7 +33,7 @@ var palettes = require('users/gena/packages:palettes');
 exports.index_list = ['NDVI'];
 exports.ante_list = ['3mo', '12mo', '3yr'];//, '1lag', '2lag', '3lag'];
 exports.min_year_landsat = 1985;
-exports.min_year_daymet = 1980;
+exports.min_year_climate = 1980;
 exports.max_year = 2020;
 exports.min_mm_dd = '06-01';
 exports.max_mm_dd = '09-30';
@@ -70,6 +70,6 @@ exports.dawson = ee.Geometry.Polygon(
 exports.bc = bounds.filter(ee.Filter.eq('shapeName', 'British Columbia')).geometry();
 exports.yukon = bounds.filter(ee.Filter.eq('shapeName', 'Yukon'));
 
-var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut', 
+var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut',
                       'British Columbia', 'Alberta', 'Manitoba', 'Saskatchewan'];
 exports.western_can = bounds.filter(ee.Filter.inList('shapeName', western_can_ls));
