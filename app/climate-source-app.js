@@ -30,11 +30,13 @@ era5 = era5.map(cmi_era5.calc_CMI_ERA5).first();
 
 
 // Palettes
-var p = palettes.crameri.imola[25];
+var pal_cont = palettes.crameri.imola[25];
+var pal_div = palettes.crameri.vik[25];
 
 
 
 // Map
+Map.setCenter(-104.76, 58.18, 3);
 var Map_right = ui.Map();
 
 var water_land = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE").first().mask();
@@ -49,22 +51,22 @@ var water_land_viz_left = ui.Map.Layer(water_land);
 var k_to_c = 273.15;
 var min_prcp = 0;
 var max_prcp = 500;
-var min_t = -20;
+var min_t = -25;
 var max_t = 25;
 var min_cmi = -30;
 var max_cmi = 30;
 var era5_dict = {
-  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000],
-  'Monthly tmin mean': ['tmin', min_t + k_to_c, max_t + k_to_c],
-  'Monthly tmax mean': ['tmax', min_t + k_to_c, max_t + k_to_c],
-  'CMI': ['CMI', min_cmi, max_cmi]
+  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000, pal_cont],
+  'Monthly tmin mean': ['tmin', min_t + k_to_c, max_t + k_to_c, pal_div],
+  'Monthly tmax mean': ['tmax', min_t + k_to_c, max_t + k_to_c, pal_div],
+  'CMI': ['CMI', min_cmi, max_cmi, pal_div]
 };
 
 var daymet_dict = {
-  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp],
-  'Monthly tmin mean': ['tmin', min_t, max_t],
-  'Monthly tmax mean': ['tmax', min_t, max_t],
-  'CMI': ['CMI', min_cmi, max_cmi]
+  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp, pal_cont],
+  'Monthly tmin mean': ['tmin', min_t, max_t, pal_div],
+  'Monthly tmax mean': ['tmax', min_t, max_t, pal_div],
+  'CMI': ['CMI', min_cmi, max_cmi, pal_div]
 };
 
 
@@ -74,11 +76,10 @@ var era5_select = ui.Select({
   items: Object.keys(era5_dict),
   onChange: function(key) {
     Map.layers().reset();
-    Map.setCenter(-104.76, 58.18, 3);
     var era5_viz = {
-      palette: p,
       min: era5_dict[key][1],
-      max: era5_dict[key][2]
+      max: era5_dict[key][2],
+      palette: era5_dict[key][3]
     };
     var era5_map = ui.Map.Layer(era5.select(era5_dict[key][0]), era5_viz, key);
     Map.add(era5_map);
@@ -92,9 +93,9 @@ var daymet_select = ui.Select({
   onChange: function(key) {
     Map_right.layers().reset();
     var daymet_viz = {
-      palette: p,
       min: daymet_dict[key][1],
-      max: daymet_dict[key][2]
+      max: daymet_dict[key][2],
+      palette: daymet_dict[key][3]
     };
     var daymet_map = ui.Map.Layer(daymet.select(daymet_dict[key][0]), daymet_viz, key);
     Map_right.add(daymet_map);
