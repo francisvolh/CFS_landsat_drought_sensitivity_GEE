@@ -119,7 +119,7 @@ var era5_select = ui.Select({
       reducer: ee.Reducer.mean(),
       band: era5_dict[key][0]
     }).setOptions({"colors": ["black"]});
-
+    panel_left_bottom.clear();
     panel_left_bottom.add(chart);
   }
 });
@@ -144,7 +144,7 @@ var daymet_select = ui.Select({
       reducer: ee.Reducer.mean(),
       band: daymet_dict[key][0]
     }).setOptions({"colors": ["black"]});
-
+    panel_right_bottom.clear();
     panel_right_bottom.add(chart);
   }
 });
