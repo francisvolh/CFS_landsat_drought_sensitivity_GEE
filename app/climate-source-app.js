@@ -21,7 +21,7 @@ var seed = Math.floor(Math.random() * 10);
 var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
 var n_pts = 10;
 var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
-
+var chart_scale = 5e3;
 
 
 // Data
@@ -119,13 +119,13 @@ var era5_select = ui.Select({
       imageCollection: era5,
       regions: points,
       reducer: ee.Reducer.mean(),
+      scale: 5e3,
       band: era5_dict[key][0]
     }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key][1], max: era5_dict[key][2]}}});
     panel_left_bottom.add(chart);
     Map.add(ui.Map.Layer(points));
   }
 });
-era5_select.setValue('Monthly tmin mean');
 
 var daymet_select = ui.Select({
   items: Object.keys(daymet_dict),
@@ -145,13 +145,13 @@ var daymet_select = ui.Select({
       imageCollection: daymet,
       regions: points,
       reducer: ee.Reducer.mean(),
+      scale: 5e3,
       band: daymet_dict[key][0]
     }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key][1], max: daymet_dict[key][2]}}});
     panel_right_bottom.add(chart);
     Map_right.add(ui.Map.Layer(points));
   }
 });
-daymet_select.setValue('Monthly tmin mean');
 
 
 
