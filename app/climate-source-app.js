@@ -145,219 +145,112 @@ Alec L. Robitaille
  
 */
 
-// Modules
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var hydro = require('users/robitalec/CFS:modules/hydro.js');
-var eco = require('users/robitalec/CFS:modules/ecoregions.js');
-var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
-var soil = require('users/robitalec/CFS:modules/soil.js');
-var topo = require('users/robitalec/CFS:modules/topo.js');
-var climate = require('users/robitalec/CFS:modules/climate.js');
 
-var blend = require('users/jja/public:blend.js');
+
+// Modules
+var climate = require('users/robitalec/CFS:modules/climate.js');
 var palettes = require('users/gena/packages:palettes');
 
 
+
+// Variables
+var year_list = ee.List.sequence(2002, 2002);
+var month_list = ee.List.sequence(5, 5);
+
+
+
 // Data
-var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
-var lc = land_cover.land_cover();
-var dem = ee.Image("MERIT/DEM/v1_0_3");
+// TODO: temporary monthly
+var daymet = climate.monthly_daymet(year_list, month_list).first();
+var era5 = climate.monthly_era5(year_list, month_list).first();
 
 
 
 // Palettes
-var p = palettes.crameri.vik[10];
-var lc_p = palettes.crameri.bamako[25];
-var p_not_grey = palettes.crameri.imola[25];
-
-
-
-// Process
-var lc_filter = lc.filter(ee.Filter.eq('year', 2000)).first();
-
-var hillshade = ee.Terrain.hillshade(dem);
-
-var col_mosaic = col
-    .mosaic();
-
-
-
-// Visualize
-var hillshade_viz = hillshade.visualize({
-    min:0,
-    max:250,
-    palette: ['#000000', '#ffffff'],
-    forceRgbOutput:true
-  });
+var p = palettes.crameri.imola[25];
 
 
 
 // Map
 Map.setCenter(-104.76, 58.18, 3);
 Map.setOptions('SATELLITE');
-
-
-
-// UI
-// Adapted from EE docs
-// - Map right
 var Map_right = ui.Map();
 
-// - Antecedent select
-var ante = {
-  '3 month': ['ND_sens_NDVI_ante3mo_p15_p85'],
-  '12 month': ['ND_sens_NDVI_ante12mo_p15_p85'],
-  '3 year': ['ND_sens_NDVI_ante3yr_p15_p85']
+
+
+// Band dict
+var era5_dict = {
+  'Monthly precipitation sum': ['prcp', 0, 500 / 1000],
+  'Monthly tmin mean': ['tmin', 250, 280],
+  'Monthly tmax mean': ['tmax', 270, 300],
 };
 
-var select = ui.Select({
-  items: Object.keys(ante),
+var daymet_dict = {
+  'Monthly precipitation sum': ['prcp', 0, 500],
+  'Monthly tmin mean': ['tmin', 250, 280],
+  'Monthly tmax mean': ['tmax', 270, 300],
+};
+
+
+
+// Band select
+var era5_select = ui.Select({
+  items: Object.keys(era5_dict),
   onChange: function(key) {
     Map.layers().reset();
-    var sens_viz = col_mosaic.select(ante[key][0]).visualize({
+    var era5_viz = era5.select(era5_dict[key][0]).visualize({
       palette: p,
-      min: -0.2,
-      max: 0.2
+      min: era5_dict[key][1],
+      max: era5_dict[key][2]
     });
-    var blend_col_hillshade = blend.multiply(sens_viz, hillshade_viz);
-    var col_map = ui.Map.Layer(blend_col_hillshade, null, key);
-    Map.add(col_map);
+    var era5_map = ui.Map.Layer(era5_viz, null, key);
+    Map.add(era5_map);
   }
 });
-select.setValue('3 year');
 
-// - Panel right
+var daymet_select = ui.Select({
+  items: Object.keys(daymet_dict),
+  onChange: function(key) {
+    Map.layers().reset();
+    var daymet_viz = daymet.select(daymet_dict[key][0]).visualize({
+      palette: p,
+      min: daymet_dict[key][1],
+      max: daymet_dict[key][2]
+    });
+    var daymet_map = ui.Map.Layer(daymet_viz, null, key);
+    Map_right.add(daymet_map);
+  }
+});
+
+
+
+// Panels 
 var panel_right = ui.Panel();
+var panel_left = ui.Panel();
+
 panel_right.style().set({
   width: '200px',
   position: 'top-right'
 });
-
-var panel_right_bottom = ui.Panel();
-panel_right_bottom.style().set({
-  width: '200px',
-  position: 'bottom-right'
-});
-
-var panel_right_left_bottom = ui.Panel();
-panel_right_left_bottom.style().set({
-  width: '400px',
-  position: 'bottom-left'
-});
-
-panel_right.add(ui.Label('2. Add covariate layers:'));
-
-
-// - Band select
-// Zoom level-scale adapted from TAGEE make viz
-var level_scale = ee.List([
-  157000,
-  78000,
-  39000,
-  20000,
-  10000,
-  5000,
-  2000,
-  1000,
-  611,
-  306,
-  153,
-  76,
-  38,
-  19,
-  10,
-  5
-]);
-
-var bandSelect = ui.Select({
-  placeholder: 'Select a covariate...',
-  onChange: function(value) {
-    var img = imageSelect.getValue().select(value);
-    var stats = img.reduceRegion({
-      reducer: ee.Reducer.percentile([5, 95]),
-      geometry : ee.Geometry.Rectangle(Map_right.getBounds()),
-      scale: level_scale.get(Map_right.getZoom()),
-      bestEffort: true
-    });
-    Map_right.layers().reset();
-    panel_right_bottom.clear();
-    stats.evaluate(function(x) {
-      Map_right.addLayer(img, {min: x[value + '_p5'], max: x[value + '_p95'], palette: p_not_grey}, value);
-
-      var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
-        .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
-        .visualize({min: 0, max: 100, palette: p_not_grey}));
-      panel_right_bottom.add(ui.Label(value));
-      panel_right_bottom.add(ui.Label((x[value + '_p5']).toFixed(1) + ' ____________ ' + (x[value + '_p95']).toFixed(1)));
-      panel_right_bottom.add(img_thumb);
-    });
-  }
-});
-
-// - Image select
-var imageSelect = ui.Select({
-  items: [
-    {label: 'hydro', value: hydro.sampling_collection},
-    // Temporary fix: slice off prop burned since 500 m breaking when zoomed out
-    {label: 'vegetation', value: vegetation.sampling_collection.select(0,1)},
-    {label: 'soil', value: soil.sampling_collection},
-    {label: 'topo', value: topo.sampling_collection},
-    {label: 'climate', value: climate.sampling_collection},
-    {label: 'land cover (2000)', value: lc_filter}
-  ],
-  placeholder: 'Select a list of covariates...',
-  onChange: function(value) {
-    value.bandNames().evaluate(function(bands) {
-      bandSelect.items().reset(bands);
-      bandSelect.setValue(bandSelect.items().get(0));
-    });
-  }
-});
-
-// - Panel left
-var panel_left = ui.Panel();
 panel_left.style().set({
   width: '200px',
   position: 'top-left'
 });
 
-var panel_left_bottom = ui.Panel();
-panel_left_bottom.style().set({
-  width: '250px',
-  position: 'bottom-left'
-});
+panel_right.add(ui.Label('Select Daymet band:'));
+panel_right.add(daymet_select);
+
+panel_left.add(ui.Label('Select ERA5 band:'));
+panel_left.add(era5_select);
 
 
 
-
-
-panel_left.add(ui.Label('1. Antecedent period:'));
-panel_left.add(select);
-// Adapted from palettes.showPalette to fit into panel
-var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
-  .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
-  .visualize({min: 0, max: 100, palette: p}));
-panel_left_bottom.add(ui.Label('Drought sensitivity ='));
-panel_left_bottom.add(ui.Label('(NDVI [baseline] - NDVI [drought]) / '));
-panel_left_bottom.add(ui.Label('(NDVI [baseline] + NDVI [drought])'));
-panel_left_bottom.add(ui.Label('-0.2 ____________ 0 ____________ 0.2'));
-panel_left_bottom.add(img_thumb);
-Map.add(panel_left);
-Map.add(panel_left_bottom);
-
-
-panel_right.add(imageSelect);
-panel_right.add(bandSelect);
-panel_right.add(ui.Label('Covariate descriptions', null, 'https://docs.google.com/spreadsheets/d/1kPFTotCdNekGtq771qFAhu1y-mLa4cBonkm99f6civA/edit#gid=1308651562'));
-panel_right_left_bottom.add(ui.Label('Drought sensitivity refugia'));
-panel_right_left_bottom.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'));
-panel_right_left_bottom.add(ui.Label('Canadian Forest Service / Natural Resources Canada / Government of Canada'));
 Map_right.add(panel_right);
-Map_right.add(panel_right_bottom);
-Map_right.add(panel_right_left_bottom);
+Map.add(panel_left);
 
 
-// - Linker
+
+// Linker
 var linker = ui.Map.Linker([ui.root.widgets().get(0), Map_right]);
 
 var splitPanel = ui.SplitPanel({
