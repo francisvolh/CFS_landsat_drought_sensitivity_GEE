@@ -16,8 +16,8 @@ var palettes = require('users/gena/packages:palettes');
 
 // Variables
 var year_list = ee.List.sequence(2002, 2002);
-var month_list = ee.List.sequence(5, 5);
-var seed = 10//Math.floor(Math.random() * 10);
+var month_list = ee.List.sequence(5, 10);
+var seed = Math.floor(Math.random() * 10);
 var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
 var n_pts = 10;
 var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
@@ -58,6 +58,7 @@ var min_t = -25;
 var max_t = 25;
 var min_cmi = -30;
 var max_cmi = 30;
+
 var era5_dict = {
   'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000, pal_cont],
   'Monthly tmin mean': ['tmin', min_t + k_to_c, max_t + k_to_c, pal_div],
@@ -119,7 +120,7 @@ var era5_select = ui.Select({
       regions: points,
       reducer: ee.Reducer.mean(),
       band: era5_dict[key][0]
-    }).setOptions({"colors": ["black"]});
+    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {minValue:-30, maxValue: 30}}});
     panel_left_bottom.add(chart);
     Map.add(ui.Map.Layer(points));
   }
@@ -139,13 +140,13 @@ var daymet_select = ui.Select({
     Map_right.add(daymet_map);
     Map_right.add(water_land_viz_left);
 
+    panel_right_bottom.clear();
     var chart = ui.Chart.image.seriesByRegion({ 
-      panel_right_bottom.clear();
       imageCollection: daymet,
       regions: points,
       reducer: ee.Reducer.mean(),
       band: daymet_dict[key][0]
-    }).setOptions({"colors": ["black"]});
+    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {minValue:-30, maxValue: 30}}});
     panel_right_bottom.add(chart);
     Map_right.add(ui.Map.Layer(points));
   }
