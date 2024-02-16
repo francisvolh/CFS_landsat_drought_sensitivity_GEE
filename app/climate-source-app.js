@@ -97,12 +97,6 @@ panel_left_bottom.style().set({
   position: 'bottom-left'
 });
 
-panel_right.add(ui.Label('Select Daymet band:'));
-panel_right.add(daymet_select);
-
-panel_left.add(ui.Label('Select ERA5 band:'));
-panel_left.add(era5_select);
-
 
 
 // Band select
@@ -124,9 +118,9 @@ var era5_select = ui.Select({
       regions: points,
       reducer: ee.Reducer.mean(),
       band: era5_dict[key][0]
-    }).setOptions({"colors": ["black"]})
+    }).setOptions({"colors": ["black"]});
 
-    panel_left_bottom.add(chart)
+    panel_left_bottom.add(chart);
   }
 });
 era5_select.setValue('CMI');
@@ -149,24 +143,26 @@ var daymet_select = ui.Select({
       regions: points,
       reducer: ee.Reducer.mean(),
       band: daymet_dict[key][0]
-    }).setOptions({"colors": ["black"]})
+    }).setOptions({"colors": ["black"]});
 
-    panel_left_bottom.add(chart)
+    panel_right_bottom.add(chart);
   }
 });
 daymet_select.setValue('CMI');
 
 
 
+// Fill, position panels
+panel_right.add(ui.Label('Select Daymet band:'));
+panel_right.add(daymet_select);
 
-
-
-
-
-
+panel_left.add(ui.Label('Select ERA5 band:'));
+panel_left.add(era5_select);
 
 Map_right.add(panel_right);
+Map_right.add(panel_right_bottom);
 Map.add(panel_left);
+Map.add(panel_left_bottom);
 
 
 
