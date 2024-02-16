@@ -35,8 +35,8 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-// var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
-var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
+var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
+// var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
 exports.era5 = era5;
 
 var get_era5 = function() {
