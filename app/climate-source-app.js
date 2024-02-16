@@ -85,7 +85,7 @@ panel_right.style().set({
   position: 'top-right'
 });
 panel_right_bottom.style().set({
-  width: '200px',
+  width: '400px',
   position: 'bottom-right'
 });
 panel_left.style().set({
@@ -93,7 +93,7 @@ panel_left.style().set({
   position: 'top-left'
 });
 panel_left_bottom.style().set({
-  width: '200px',
+  width: '400px',
   position: 'bottom-left'
 });
 
@@ -113,15 +113,15 @@ var era5_select = ui.Select({
     Map.add(era5_map);
     Map.add(water_land_viz_right);
 
+    panel_left_bottom.clear();
     var chart = ui.Chart.image.seriesByRegion({ 
       imageCollection: era5,
       regions: points,
       reducer: ee.Reducer.mean(),
       band: era5_dict[key][0]
     }).setOptions({"colors": ["black"]});
-    panel_left_bottom.clear();
     panel_left_bottom.add(chart);
-    Map.add(ui.Map.layer(points));
+    Map.add(ui.Map.Layer(points));
   }
 });
 era5_select.setValue('CMI');
@@ -140,14 +140,14 @@ var daymet_select = ui.Select({
     Map_right.add(water_land_viz_left);
 
     var chart = ui.Chart.image.seriesByRegion({ 
+      panel_right_bottom.clear();
       imageCollection: daymet,
       regions: points,
       reducer: ee.Reducer.mean(),
       band: daymet_dict[key][0]
     }).setOptions({"colors": ["black"]});
-    panel_right_bottom.clear();
     panel_right_bottom.add(chart);
-    Map_right.add(ui.Map.layer(points));
+    Map_right.add(ui.Map.Layer(points));
   }
 });
 daymet_select.setValue('CMI');
