@@ -179,7 +179,7 @@ var Map_right = ui.Map();
 
 
 // Band dict
-var k_to_c = -273.15;
+var k_to_c = 273.15;
 var min_prcp = 0;
 var max_prcp = 500;
 var min_t = 250;
