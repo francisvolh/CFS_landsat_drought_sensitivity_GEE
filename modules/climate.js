@@ -34,8 +34,9 @@ https://gee-community-catalog.org/projects/aogcm_cmip6/
 var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
-// Note: ERA5 measures precipitation in m
-var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
+
+// var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
+var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
 exports.era5 = era5;
 
 var get_era5 = function() {
@@ -48,7 +49,7 @@ var get_era5 = function() {
 };
 exports.get_era5 = get_era5;
 
-// Note: Daymet measures precipitation in mm
+
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
 exports.daymet = daymet;
 
@@ -76,9 +77,8 @@ var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
-							.select(['minimum_2m_air_temperature_mean', 
-                      'maximum_2m_air_temperature_mean',
-                      'total_precipitation_sum'], 
+							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 
+                       'total_precipitation_sum'], 
                       ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_era5 = monthly_era5;
