@@ -16,15 +16,7 @@ var palettes = require('users/gena/packages:palettes');
 
 // Variables
 var month_list = ee.List.sequence(5, 10);
-var seed = Math.floor(Math.random() * 10);
 var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
-var n_pts = 10;
-var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
-
-
-
-// Data
-
 
 
 
@@ -72,30 +64,20 @@ var daymet_dict = {
 
 
 // Panels 
-var panel_right_select = ui.Panel();
 var panel_right_chart = ui.Panel();
-var panel_left_select = ui.Panel();
 var panel_left_chart = ui.Panel();
 var panel_middle_bottom = ui.Panel();
 
-panel_right_select.style().set({
-  width: '200px',
-  position: 'bottom-right'
-});
 panel_right_chart.style().set({
   width: '400px',
   position: 'bottom-right'
-});
-panel_left_select.style().set({
-  width: '200px',
-  position: 'bottom-left'
 });
 panel_left_chart.style().set({
   width: '400px',
   position: 'bottom-left'
 });
 panel_middle_bottom.style().set({
-  width: '400px',
+  width: '200px',
   position: 'bottom-left'
 });
 
@@ -108,11 +90,19 @@ era5_select.setValue('CMI');
 var daymet_select = ui.Select({items: Object.keys(daymet_dict)});
 daymet_select.setValue('CMI');
 
-
-
 // Year slider
-var year_slider =  ui.Slider(1980, 2022, 2000, 1, function(yr) {
-  var year_list = ee.List.sequence(yr, yr);
+var year_slider =  ui.Slider(1980, 2022, 2000, 1);
+
+// N points slider
+var n_pts_slider = ui.Slider(10, 100, 10, 5); 
+
+// Generate button
+var generate_button = ui.Button('Sample points', function() {
+  var seed = Math.floor(Math.random() * 10);
+  var n_pts = n_pts_slider.getValue();
+  var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
+
+  var year_list = ee.List.sequence(year_slider.getValue(), year_slider.getValue());
   var daymet = climate.monthly_daymet(year_list, month_list);
   daymet = daymet.map(cmi.calc_CMI);
   var era5 = climate.monthly_era5(year_list, month_list);
@@ -138,7 +128,8 @@ var year_slider =  ui.Slider(1980, 2022, 2000, 1, function(yr) {
     regions: points,
     reducer: ee.Reducer.mean(),
     band: daymet_dict[key_daymet][0]
-  }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
+  }).setOptions({"title":year_slider.getValue() + ' - ' + 'Daymet', "colors": ["black"], 
+                 "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
   panel_right_chart.add(chart);
   Map_right.add(ui.Map.Layer(points));
 
@@ -159,25 +150,27 @@ var year_slider =  ui.Slider(1980, 2022, 2000, 1, function(yr) {
     regions: points,
     reducer: ee.Reducer.mean(),
     band: era5_dict[key_era5][0]
-  }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key_era5][1], max: era5_dict[key_era5][2]}}});
+  }).setOptions({"title":year_slider.getValue() + ' - ' + 'ERA5', "colors": ["black"], 
+                 "vAxis": {viewWindow: {min:era5_dict[key_era5][1], max: era5_dict[key_era5][2]}}});
   panel_left_chart.add(chart);
   Map.add(ui.Map.Layer(points));
-});
+}) 
 
 
 // Fill, position panels
-panel_right_select.add(ui.Label('Select Daymet band:'));
-panel_right_select.add(daymet_select);
+panel_middle_bottom.add(ui.Label('Select ERA5 band:'));
+panel_middle_bottom.add(era5_select);
+panel_middle_bottom.add(ui.Label('Select Daymet band:'));
+panel_middle_bottom.add(daymet_select);
+panel_middle_bottom.add(ui.Label('Select year:'));
 panel_middle_bottom.add(year_slider);
-
-panel_left_select.add(ui.Label('Select ERA5 band:'));
-panel_left_select.add(era5_select);
+panel_middle_bottom.add(ui.Label('Select number of points:'));
+panel_middle_bottom.add(n_pts_slider);
+panel_middle_bottom.add(generate_button);
 
 Map_right.add(panel_right_chart);
-Map_right.add(panel_right_select);
 Map_right.add(panel_middle_bottom);
 Map.add(panel_left_chart);
-Map.add(panel_left_select);
 
 
 
