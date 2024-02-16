@@ -35,7 +35,6 @@ var p = palettes.crameri.imola[25];
 
 
 // Map
-Map.setCenter(-104.76, 58.18, 3);
 var Map_right = ui.Map();
 
 var water_land = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE").first().mask();
@@ -75,6 +74,7 @@ var era5_select = ui.Select({
   items: Object.keys(era5_dict),
   onChange: function(key) {
     Map.layers().reset();
+    Map.setCenter(-104.76, 58.18, 3);
     var era5_viz = {
       palette: p,
       min: era5_dict[key][1],
