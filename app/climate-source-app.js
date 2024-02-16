@@ -175,8 +175,7 @@ var p = palettes.crameri.imola[25];
 Map.setCenter(-104.76, 58.18, 3);
 var Map_right = ui.Map();
 
-var water_land = ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24')
-  .select('water_mask');
+var water_land = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE").first().mask();
 water_land = water_land
   .mask(water_land.eq(1));
 var water_land_viz_right = ui.Map.Layer(water_land);
