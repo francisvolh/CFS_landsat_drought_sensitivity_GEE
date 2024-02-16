@@ -22,9 +22,9 @@ var month_list = ee.List.sequence(5, 5);
 // Data
 // TODO: temporary first()
 var daymet = climate.monthly_daymet(year_list, month_list);
-var cmi_daymet = daymet.map(cmi.calc_CMI).first();
+daymet = daymet.map(cmi.calc_CMI).first();
 var era5 = climate.monthly_era5(year_list, month_list);
-var cmi_era5 = era5.map(cmi.calc_CMI).first();
+era5 = era5.map(cmi.calc_CMI).first();
 
 
 
