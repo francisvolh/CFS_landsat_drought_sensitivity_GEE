@@ -176,8 +176,11 @@ Map.setCenter(-104.76, 58.18, 3);
 Map.setOptions('SATELLITE');
 var Map_right = ui.Map();
 
-var water_land = ui.Map.Layer(ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24')
-  .select('water_mask'), {min: 0, max: 1, palette: ['fff', '000'], opacity: 0.2});
+var water_land = ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24')
+  .select('water_mask');
+water_land = water_land
+  .mask(water_land.eq(1));
+var water_land_viz = ui.Map.Layer(water_land);
 
 
 
@@ -212,7 +215,7 @@ var era5_select = ui.Select({
     };
     var era5_map = ui.Map.Layer(era5.select(era5_dict[key][0]), era5_viz, key);
     Map.add(era5_map);
-    Map.add(water_land);
+    Map.add(water_land_viz);
 
   }
 });
@@ -228,7 +231,7 @@ var daymet_select = ui.Select({
     };
     var daymet_map = ui.Map.Layer(daymet.select(daymet_dict[key][0]), daymet_viz, key);
     Map_right.add(daymet_map);
-    Map_right.add(water_land);
+    Map_right.add(water_land_viz);
   }
 });
 
