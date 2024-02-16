@@ -121,6 +121,7 @@ var era5_select = ui.Select({
     }).setOptions({"colors": ["black"]});
     panel_left_bottom.clear();
     panel_left_bottom.add(chart);
+    Map.add(ui.Map.layer(points));
   }
 });
 era5_select.setValue('CMI');
@@ -146,6 +147,7 @@ var daymet_select = ui.Select({
     }).setOptions({"colors": ["black"]});
     panel_right_bottom.clear();
     panel_right_bottom.add(chart);
+    Map_right.add(ui.Map.layer(points));
   }
 });
 daymet_select.setValue('CMI');
