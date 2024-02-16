@@ -1,7 +1,20 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-119.6574609375, 63.517238915030305],
+          [-119.6574609375, 51.35535071053716],
+          [-87.4894921875, 51.35535071053716],
+          [-87.4894921875, 63.517238915030305]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Climate source comparison app
 Alec L. Robitaille
- 
 */
 
 
