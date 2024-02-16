@@ -7,8 +7,8 @@ Temperature: K
 Precipitation: m
 
 Conversion to expected units
-Temperature: K - 273.15
-Precipitation: m / 1000
+Temperature: K - 273.15 = C
+Precipitation: m * 1000 = mm
 */
 
 var conv_k_to_c = 273.15;
@@ -90,7 +90,7 @@ var calc_CMI_band = function(img) {
   return img.addBands(
     img.expression(
     '1.0 * (PREC - PET) / 10', {
-      'PREC': img.select('prcp').divide(conv_m_to_mm),
+      'PREC': img.select('prcp').multiply(conv_m_to_mm),
       'PET': img.select('PET')
     }).rename('CMI'));
 };
