@@ -47,7 +47,7 @@ var get_era5 = function() {
         img.select('minimum_2m_air_temperature').subtract(273.15).rename('tmin'),
         img.select('maximum_2m_air_temperature').subtract(273.15).rename('tmax'),
         img.select('total_precipitation').multiply(1000).rename('prcp')
-      ]);
+      ]).copyProperties(img);
     })
     .map(utils.set_date)
     .map(utils.set_week)
