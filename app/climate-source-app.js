@@ -17,15 +17,18 @@ var palettes = require('users/gena/packages:palettes');
 // Variables
 var year_list = ee.List.sequence(2002, 2002);
 var month_list = ee.List.sequence(5, 5);
+var seed = 10//Math.floor(Math.random() * 10);
+var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
+var n_pts = 10;
+var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
 
 
 
 // Data
-// TODO: temporary first()
 var daymet = climate.monthly_daymet(year_list, month_list);
-daymet = daymet.map(cmi.calc_CMI).first();
+daymet = daymet.map(cmi.calc_CMI);
 var era5 = climate.monthly_era5(year_list, month_list);
-era5 = era5.map(cmi_era5.calc_CMI_ERA5).first();
+era5 = era5.map(cmi_era5.calc_CMI_ERA5);
 
 
 
@@ -71,6 +74,37 @@ var daymet_dict = {
 
 
 
+// Panels 
+var panel_right = ui.Panel();
+var panel_right_bottom = ui.Panel();
+var panel_left = ui.Panel();
+var panel_left_bottom = ui.Panel();
+
+panel_right.style().set({
+  width: '200px',
+  position: 'top-right'
+});
+panel_right_bottom.style().set({
+  width: '200px',
+  position: 'bottom-right'
+});
+panel_left.style().set({
+  width: '200px',
+  position: 'top-left'
+});
+panel_left_bottom.style().set({
+  width: '200px',
+  position: 'bottom-left'
+});
+
+panel_right.add(ui.Label('Select Daymet band:'));
+panel_right.add(daymet_select);
+
+panel_left.add(ui.Label('Select ERA5 band:'));
+panel_left.add(era5_select);
+
+
+
 // Band select
 var era5_select = ui.Select({
   items: Object.keys(era5_dict),
@@ -81,9 +115,18 @@ var era5_select = ui.Select({
       max: era5_dict[key][2],
       palette: era5_dict[key][3]
     };
-    var era5_map = ui.Map.Layer(era5.select(era5_dict[key][0]), era5_viz, key);
+    var era5_map = ui.Map.Layer(era5.first().select(era5_dict[key][0]), era5_viz, key);
     Map.add(era5_map);
     Map.add(water_land_viz_right);
+
+    var chart = ui.Chart.image.seriesByRegion({ 
+      imageCollection: era5,
+      regions: points,
+      reducer: ee.Reducer.mean(),
+      band: era5_dict[key][0]
+    }).setOptions({"colors": ["black"]})
+
+    panel_left_bottom.add(chart)
   }
 });
 era5_select.setValue('CMI');
@@ -97,32 +140,28 @@ var daymet_select = ui.Select({
       max: daymet_dict[key][2],
       palette: daymet_dict[key][3]
     };
-    var daymet_map = ui.Map.Layer(daymet.select(daymet_dict[key][0]), daymet_viz, key);
+    var daymet_map = ui.Map.Layer(daymet.first().select(daymet_dict[key][0]), daymet_viz, key);
     Map_right.add(daymet_map);
     Map_right.add(water_land_viz_left);
+
+    var chart = ui.Chart.image.seriesByRegion({ 
+      imageCollection: daymet,
+      regions: points,
+      reducer: ee.Reducer.mean(),
+      band: daymet_dict[key][0]
+    }).setOptions({"colors": ["black"]})
+
+    panel_left_bottom.add(chart)
   }
 });
 daymet_select.setValue('CMI');
 
 
-// Panels 
-var panel_right = ui.Panel();
-var panel_left = ui.Panel();
 
-panel_right.style().set({
-  width: '200px',
-  position: 'top-right'
-});
-panel_left.style().set({
-  width: '200px',
-  position: 'top-left'
-});
 
-panel_right.add(ui.Label('Select Daymet band:'));
-panel_right.add(daymet_select);
 
-panel_left.add(ui.Label('Select ERA5 band:'));
-panel_left.add(era5_select);
+
+
 
 
 
