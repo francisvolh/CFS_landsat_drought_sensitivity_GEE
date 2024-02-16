@@ -9,6 +9,7 @@ Alec L. Robitaille
 // Modules
 var climate = require('users/robitalec/CFS:modules/climate.js');
 var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmi_era5 = require('users/robitalec/CFS:modules/cmi_era5.js');
 var palettes = require('users/gena/packages:palettes');
 
 
@@ -24,7 +25,7 @@ var month_list = ee.List.sequence(5, 5);
 var daymet = climate.monthly_daymet(year_list, month_list);
 daymet = daymet.map(cmi.calc_CMI).first();
 var era5 = climate.monthly_era5(year_list, month_list);
-era5 = era5.map(cmi.calc_CMI).first();
+era5 = era5.map(cmi_era5.calc_CMI_ERA5).first();
 
 
 
