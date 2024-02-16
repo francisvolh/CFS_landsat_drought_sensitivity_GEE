@@ -140,7 +140,7 @@ var geometry =
     ee.Geometry.Point([-104.75810546875, 58.185009892379]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-App
+Climate source comparison app
 Alec L. Robitaille
  
 */
@@ -211,7 +211,7 @@ var era5_select = ui.Select({
 var daymet_select = ui.Select({
   items: Object.keys(daymet_dict),
   onChange: function(key) {
-    Map.layers().reset();
+    Map_right.layers().reset();
     var daymet_viz = daymet.select(daymet_dict[key][0]).visualize({
       palette: p,
       min: daymet_dict[key][1],
