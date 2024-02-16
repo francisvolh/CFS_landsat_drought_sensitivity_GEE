@@ -177,7 +177,7 @@ var generate_button = ui.Button('Sample points', function() {
     reducer: ee.Reducer.mean(),
     band: daymet_dict[key_daymet][0]
   }).setOptions({"title":year_slider.getValue() + ' - ' + 'Daymet', "colors": ["black"], 
-                 "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1] + 5, max: daymet_dict[key_daymet][2] - 5}}});
+                 "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
   panel_right_chart.add(chart);
   Map_right.add(ui.Map.Layer(points));
 
@@ -199,7 +199,7 @@ var generate_button = ui.Button('Sample points', function() {
     reducer: ee.Reducer.mean(),
     band: era5_dict[key_era5][0]
   }).setOptions({"title":year_slider.getValue() + ' - ' + 'ERA5', "colors": ["black"], 
-                 "vAxis": {viewWindow: {min:era5_dict[key_era5][1] + 5, max: era5_dict[key_era5][2] - 5}}});
+                 "vAxis": {viewWindow: {min:era5_dict[key_era5][1], max: era5_dict[key_era5][2]}}});
   panel_left_chart.add(chart);
   Map.add(ui.Map.Layer(points));
 }) 
