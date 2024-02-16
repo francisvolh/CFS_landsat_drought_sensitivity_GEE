@@ -15,6 +15,7 @@ var geometry =
 /*
 Climate source comparison app
 Alec L. Robitaille
+ 
 */
 
 
@@ -79,6 +80,7 @@ var daymet_dict = {
 var era5_select = ui.Select({
   items: Object.keys(era5_dict),
   onChange: function(key) {
+    Map.layers().reset();
     var era5_viz = {
       palette: p,
       min: era5_dict[key][1],
@@ -87,7 +89,6 @@ var era5_select = ui.Select({
     var era5_map = ui.Map.Layer(era5.select(era5_dict[key][0]), era5_viz, key);
     Map.add(era5_map);
     Map.add(water_land_viz_right);
-
   }
 });
 
