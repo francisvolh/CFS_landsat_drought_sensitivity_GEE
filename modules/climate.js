@@ -82,7 +82,7 @@ var monthly_era5 = function(year_list, month_list) {
     return ee.Image([
       img.select('minimum_2m_air_temperature_mean').subtract(273.15).rename('tmin'),
       img.select('maximum_2m_air_temperature_mean').subtract(273.15).rename('tmax'),
-      img.select('total_precipitation_sum').divide(1000).rename('prcp')
+      img.select('total_precipitation_sum').multiply(1000).rename('prcp')
     ]);
   });
 };
