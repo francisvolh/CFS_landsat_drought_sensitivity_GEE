@@ -44,9 +44,9 @@ var get_era5 = function() {
     .filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
     .map(function(img) {
       return ee.Image([
-        img.select('minimum_2m_air_temperature_mean').subtract(273.15).rename('tmin'),
-        img.select('maximum_2m_air_temperature_mean').subtract(273.15).rename('tmax'),
-        img.select('total_precipitation_sum').multiply(1000).rename('prcp')
+        img.select('minimum_2m_air_temperature').subtract(273.15).rename('tmin'),
+        img.select('maximum_2m_air_temperature').subtract(273.15).rename('tmax'),
+        img.select('total_precipitation').multiply(1000).rename('prcp')
       ])
     })
     .map(utils.set_date)
