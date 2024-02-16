@@ -80,8 +80,8 @@ var monthly_era5 = function(year_list, month_list) {
 
   return agg_mon_yr.map(function(img) {
     return ee.Image([
-      img.select('minimum_2m_air_temperature_mean').add(273.15).rename('tmin'),
-      img.select('maximum_2m_air_temperature_mean').add(273.15).rename('tmax'),
+      img.select('minimum_2m_air_temperature_mean').subtract(273.15).rename('tmin'),
+      img.select('maximum_2m_air_temperature_mean').subtract(273.15).rename('tmax'),
       img.select('total_precipitation_sum').divide(1000).rename('prcp')
     ]);
   });
