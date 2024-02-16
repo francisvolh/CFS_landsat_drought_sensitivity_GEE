@@ -119,7 +119,7 @@ var era5_select = ui.Select({
       imageCollection: era5,
       regions: points,
       reducer: ee.Reducer.mean(),
-      scale: 5e3,
+      scale: chart_scale,
       band: era5_dict[key][0]
     }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key][1], max: era5_dict[key][2]}}});
     panel_left_bottom.add(chart);
@@ -145,7 +145,7 @@ var daymet_select = ui.Select({
       imageCollection: daymet,
       regions: points,
       reducer: ee.Reducer.mean(),
-      scale: 5e3,
+      scale: chart_scale,
       band: daymet_dict[key][0]
     }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key][1], max: daymet_dict[key][2]}}});
     panel_right_bottom.add(chart);
