@@ -160,7 +160,7 @@ var month_list = ee.List.sequence(5, 5);
 
 
 // Data
-// TODO: temporary monthly
+// TODO: temporary first()
 var daymet = climate.monthly_daymet(year_list, month_list).first();
 var era5 = climate.monthly_era5(year_list, month_list).first();
 
@@ -179,16 +179,20 @@ var Map_right = ui.Map();
 
 
 // Band dict
+var min_prcp = 0;
+var max_prcp = 500;
+var min_t = 250;
+var max_t = 300;
 var era5_dict = {
-  'Monthly precipitation sum': ['prcp', 0, 500 / 1000],
-  'Monthly tmin mean': ['tmin', 250, 280],
-  'Monthly tmax mean': ['tmax', 270, 300],
+  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000],
+  'Monthly tmin mean': ['tmin', min_t, max_t],
+  'Monthly tmax mean': ['tmax', min_t, max_t],
 };
 
 var daymet_dict = {
-  'Monthly precipitation sum': ['prcp', 0, 500],
-  'Monthly tmin mean': ['tmin', 250, 280],
-  'Monthly tmax mean': ['tmax', 270, 300],
+  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp],
+  'Monthly tmin mean': ['tmin', min_t, max_t],
+  'Monthly tmax mean': ['tmax', min_t, max_t],
 };
 
 
@@ -197,13 +201,12 @@ var daymet_dict = {
 var era5_select = ui.Select({
   items: Object.keys(era5_dict),
   onChange: function(key) {
-    Map.layers().reset();
-    var era5_viz = era5.select(era5_dict[key][0]).visualize({
+    var era5_viz = {
       palette: p,
       min: era5_dict[key][1],
       max: era5_dict[key][2]
-    });
-    var era5_map = ui.Map.Layer(era5_viz, null, key);
+    };
+    var era5_map = ui.Map.Layer(era5.select(era5_dict[key][0]), era5_viz, key);
     Map.add(era5_map);
   }
 });
@@ -212,12 +215,12 @@ var daymet_select = ui.Select({
   items: Object.keys(daymet_dict),
   onChange: function(key) {
     Map_right.layers().reset();
-    var daymet_viz = daymet.select(daymet_dict[key][0]).visualize({
+    var daymet_viz = {
       palette: p,
       min: daymet_dict[key][1],
       max: daymet_dict[key][2]
-    });
-    var daymet_map = ui.Map.Layer(daymet_viz, null, key);
+    };
+    var daymet_map = ui.Map.Layer(daymet.select(daymet_dict[key][0]), daymet_viz, key);
     Map_right.add(daymet_map);
   }
 });
