@@ -85,6 +85,7 @@ var era5_select = ui.Select({
     Map.add(water_land_viz_right);
   }
 });
+era5_select.setValue('CMI');
 
 var daymet_select = ui.Select({
   items: Object.keys(daymet_dict),
@@ -100,7 +101,7 @@ var daymet_select = ui.Select({
     Map_right.add(water_land_viz_left);
   }
 });
-
+daymet_select.setValue('CMI');
 
 
 // Panels 
