@@ -76,10 +76,15 @@ exports.monthly_daymet = monthly_daymet;
 var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
-	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
-							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 
-                       'total_precipitation_sum'], 
-                      ['tmin', 'tmax', 'prcp']);
+  var agg_mon_yr = utils.aggregate_month_year(era5, year_list, month_list, reducer);
+
+  return agg_mon_yr.map(function(img) {
+    return ee.Image([
+      img.select('minimum_2m_air_temperature_mean').add(273.15).rename('tmin'),
+      img.select('maximum_2m_air_temperature_mean').add(273.15).rename('tmax'),
+      img.select('total_precipitation_sum').divide(1000).rename('prcp')
+    ])
+  })
 };
 exports.monthly_era5 = monthly_era5;
 
