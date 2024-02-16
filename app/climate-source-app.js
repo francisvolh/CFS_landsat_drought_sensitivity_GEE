@@ -15,20 +15,16 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Variables
-var year_list = ee.List.sequence(2006, 2006);
 var month_list = ee.List.sequence(5, 10);
 var seed = Math.floor(Math.random() * 10);
 var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
 var n_pts = 10;
 var points = ee.FeatureCollection.randomPoints(geometry, n_pts, seed);
-var chart_scale = 5e3;
+
 
 
 // Data
-var daymet = climate.monthly_daymet(year_list, month_list);
-daymet = daymet.map(cmi.calc_CMI);
-var era5 = climate.monthly_era5(year_list, month_list);
-era5 = era5.map(cmi_era5.calc_CMI_ERA5);
+
 
 
 
@@ -76,24 +72,29 @@ var daymet_dict = {
 
 
 // Panels 
-var panel_right = ui.Panel();
-var panel_right_bottom = ui.Panel();
-var panel_left = ui.Panel();
-var panel_left_bottom = ui.Panel();
+var panel_right_select = ui.Panel();
+var panel_right_chart = ui.Panel();
+var panel_left_select = ui.Panel();
+var panel_left_chart = ui.Panel();
+var panel_middle_bottom = ui.Panel();
 
-panel_right.style().set({
+panel_right_select.style().set({
   width: '200px',
-  position: 'top-right'
+  position: 'bottom-right'
 });
-panel_right_bottom.style().set({
+panel_right_chart.style().set({
   width: '400px',
   position: 'bottom-right'
 });
-panel_left.style().set({
+panel_left_select.style().set({
   width: '200px',
-  position: 'top-left'
+  position: 'bottom-left'
 });
-panel_left_bottom.style().set({
+panel_left_chart.style().set({
+  width: '400px',
+  position: 'bottom-left'
+});
+panel_middle_bottom.style().set({
   width: '400px',
   position: 'bottom-left'
 });
@@ -101,71 +102,82 @@ panel_left_bottom.style().set({
 
 
 // Band select
-var era5_select = ui.Select({
-  items: Object.keys(era5_dict),
-  onChange: function(key) {
-    Map.layers().reset();
-    var era5_viz = {
-      min: era5_dict[key][1],
-      max: era5_dict[key][2],
-      palette: era5_dict[key][3]
-    };
-    var era5_map = ui.Map.Layer(era5.first().select(era5_dict[key][0]), era5_viz, key);
-    Map.add(era5_map);
-    Map.add(water_land_viz_right);
+var era5_select = ui.Select({items: Object.keys(era5_dict)});
+era5_select.setValue('CMI');
 
-    panel_left_bottom.clear();
-    var chart = ui.Chart.image.seriesByRegion({ 
-      imageCollection: era5,
-      regions: points,
-      reducer: ee.Reducer.mean(),
-      scale: chart_scale,
-      band: era5_dict[key][0]
-    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key][1], max: era5_dict[key][2]}}});
-    panel_left_bottom.add(chart);
-    Map.add(ui.Map.Layer(points));
-  }
+var daymet_select = ui.Select({items: Object.keys(daymet_dict)});
+daymet_select.setValue('CMI');
+
+
+
+// Year slider
+var year_slider =  ui.Slider(1980, 2022, 2000, 1, function(yr) {
+  var year_list = ee.List.sequence(yr, yr);
+  var daymet = climate.monthly_daymet(year_list, month_list);
+  daymet = daymet.map(cmi.calc_CMI);
+  var era5 = climate.monthly_era5(year_list, month_list);
+  era5 = era5.map(cmi_era5.calc_CMI_ERA5);
+
+  var key_daymet = daymet_select.getValue();
+  var key_era5 = era5_select.getValue();
+
+  // Daymet
+  Map_right.layers().reset();
+  var daymet_viz = {
+    min: daymet_dict[key_daymet][1],
+    max: daymet_dict[key_daymet][2],
+    palette: daymet_dict[key_daymet][3]
+  };
+  var daymet_map = ui.Map.Layer(daymet.first().select(daymet_dict[key_daymet][0]), daymet_viz, key_daymet);
+  Map_right.add(daymet_map);
+  Map_right.add(water_land_viz_left);
+
+  panel_right_chart.clear();
+  var chart = ui.Chart.image.seriesByRegion({ 
+    imageCollection: daymet,
+    regions: points,
+    reducer: ee.Reducer.mean(),
+    band: daymet_dict[key_daymet][0]
+  }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
+  panel_right_chart.add(chart);
+  Map_right.add(ui.Map.Layer(points));
+
+  // ERA5
+  Map.layers().reset();
+  var era5_viz = {
+    min: era5_dict[key_era5][1],
+    max: era5_dict[key_era5][2],
+    palette: era5_dict[key_era5][3]
+  };
+  var era5_map = ui.Map.Layer(era5.first().select(era5_dict[key_era5][0]), era5_viz, key_era5);
+  Map.add(era5_map);
+  Map.add(water_land_viz_right);
+
+  panel_left_chart.clear();
+  var chart = ui.Chart.image.seriesByRegion({ 
+    imageCollection: era5,
+    regions: points,
+    reducer: ee.Reducer.mean(),
+    band: era5_dict[key_era5][0]
+  }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key_era5][1], max: era5_dict[key_era5][2]}}});
+  panel_left_chart.add(chart);
+  Map.add(ui.Map.Layer(points));
 });
-
-var daymet_select = ui.Select({
-  items: Object.keys(daymet_dict),
-  onChange: function(key) {
-    Map_right.layers().reset();
-    var daymet_viz = {
-      min: daymet_dict[key][1],
-      max: daymet_dict[key][2],
-      palette: daymet_dict[key][3]
-    };
-    var daymet_map = ui.Map.Layer(daymet.first().select(daymet_dict[key][0]), daymet_viz, key);
-    Map_right.add(daymet_map);
-    Map_right.add(water_land_viz_left);
-
-    panel_right_bottom.clear();
-    var chart = ui.Chart.image.seriesByRegion({ 
-      imageCollection: daymet,
-      regions: points,
-      reducer: ee.Reducer.mean(),
-      scale: chart_scale,
-      band: daymet_dict[key][0]
-    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key][1], max: daymet_dict[key][2]}}});
-    panel_right_bottom.add(chart);
-    Map_right.add(ui.Map.Layer(points));
-  }
-});
-
 
 
 // Fill, position panels
-panel_right.add(ui.Label('Select Daymet band:'));
-panel_right.add(daymet_select);
+panel_right_select.add(ui.Label('Select Daymet band:'));
+panel_right_select.add(daymet_select);
+panel_middle_bottom.add(year_slider);
 
-panel_left.add(ui.Label('Select ERA5 band:'));
-panel_left.add(era5_select);
+panel_left_select.add(ui.Label('Select ERA5 band:'));
+panel_left_select.add(era5_select);
 
-Map_right.add(panel_right);
-Map_right.add(panel_right_bottom);
-Map.add(panel_left);
-Map.add(panel_left_bottom);
+Map_right.add(panel_right_chart);
+Map_right.add(panel_right_select);
+Map_right.add(panel_middle_bottom);
+Map.add(panel_left_chart);
+Map.add(panel_left_select);
 
 
 
