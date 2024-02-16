@@ -43,13 +43,13 @@ var water_land_viz_left = ui.Map.Layer(water_land);
 
 
 // Band dict
-var k_to_c = 273.15;
+var k_to_c = 0//273.15;
 var min_prcp = 0;
 var max_prcp = 500;
 var min_t = -20;
 var max_t = 25;
 var era5_dict = {
-  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000],
+  'Monthly precipitation sum': ['prcp', min_prcp, max_prcp],
   'Monthly tmin mean': ['tmin', min_t + k_to_c, max_t + k_to_c],
   'Monthly tmax mean': ['tmax', min_t + k_to_c, max_t + k_to_c],
 };
