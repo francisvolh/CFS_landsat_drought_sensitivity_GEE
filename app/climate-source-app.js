@@ -52,8 +52,8 @@ var min_prcp = 0;
 var max_prcp = 500;
 var min_t = -20;
 var max_t = 25;
-var min_cmi = 0;
-var max_cmi = 100;
+var min_cmi = -30;
+var max_cmi = 30;
 var era5_dict = {
   'Monthly precipitation sum': ['prcp', min_prcp, max_prcp / 1000],
   'Monthly tmin mean': ['tmin', min_t + k_to_c, max_t + k_to_c],
