@@ -125,7 +125,7 @@ var era5_select = ui.Select({
     Map.add(ui.Map.Layer(points));
   }
 });
-era5_select.setValue('CMI');
+era5_select.setValue('Monthly tmin mean');
 
 var daymet_select = ui.Select({
   items: Object.keys(daymet_dict),
@@ -151,7 +151,7 @@ var daymet_select = ui.Select({
     Map_right.add(ui.Map.Layer(points));
   }
 });
-daymet_select.setValue('CMI');
+daymet_select.setValue('Monthly tmin mean');
 
 
 
