@@ -15,7 +15,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Variables
-var year_list = ee.List.sequence(2002, 2002);
+var year_list = ee.List.sequence(2006, 2006);
 var month_list = ee.List.sequence(5, 10);
 var seed = Math.floor(Math.random() * 10);
 var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.73, 59.83], [-96.73, 67.02]]]);
@@ -120,7 +120,7 @@ var era5_select = ui.Select({
       regions: points,
       reducer: ee.Reducer.mean(),
       band: era5_dict[key][0]
-    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {minValue:-30, maxValue: 30}}});
+    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:era5_dict[key][1], max: era5_dict[key][2]}}});
     panel_left_bottom.add(chart);
     Map.add(ui.Map.Layer(points));
   }
@@ -146,7 +146,7 @@ var daymet_select = ui.Select({
       regions: points,
       reducer: ee.Reducer.mean(),
       band: daymet_dict[key][0]
-    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {minValue:-30, maxValue: 30}}});
+    }).setOptions({"colors": ["black"], "vAxis": {viewWindow: {min:daymet_dict[key][1], max: daymet_dict[key][2]}}});
     panel_right_bottom.add(chart);
     Map_right.add(ui.Map.Layer(points));
   }
