@@ -177,7 +177,7 @@ var Map_right = ui.Map();
 
 var water_land = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE").first().mask();
 water_land = water_land
-  .mask(water_land.eq(1));
+  .mask(water_land.eq(0));
 var water_land_viz_right = ui.Map.Layer(water_land);
 var water_land_viz_left = ui.Map.Layer(water_land);
 
