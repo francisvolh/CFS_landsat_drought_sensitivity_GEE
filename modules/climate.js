@@ -40,18 +40,10 @@ var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
 exports.era5 = era5;
 
 var get_era5 = function() {
-  era5 = era5
-    .filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
-    .map(function(img) {
-      return ee.Image([
-        img.select('minimum_2m_air_temperature').subtract(273.15).rename('tmin'),
-        img.select('maximum_2m_air_temperature').subtract(273.15).rename('tmax'),
-        img.select('total_precipitation').multiply(1000).rename('prcp')
-      ]).copyProperties(img);
-    })
-    .map(utils.set_date)
-    .map(utils.set_week)
-    .map(utils.set_year);
+  era5 = era5.filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
+                  .map(utils.set_date)
+                  .map(utils.set_week)
+                  .map(utils.set_year);
 
   return era5;
 };
@@ -84,8 +76,10 @@ exports.monthly_daymet = monthly_daymet;
 var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
-  return utils.aggregate_month_year(get_era5(), year_list, month_list, reducer)
-              .select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
+	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
+							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 
+                       'total_precipitation_sum'], 
+                      ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_era5 = monthly_era5;
 
