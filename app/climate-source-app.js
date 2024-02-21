@@ -70,7 +70,7 @@ var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.
 
 // Palettes
 var pal_cont = palettes.crameri.imola[25];
-var pal_div = palettes.crameri.vik[25];
+var pal_div = palettes.crameri.vik[25].reverse();
 
 
 
