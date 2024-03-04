@@ -174,7 +174,7 @@ var generate_button = ui.Button('Sample points', function() {
   panel_right_chart.add(chart);
 
   var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
-  .clip(ee.Geometry.Rectangle({coords: [[-30, 0], [30, 7]], geodesic: false}))
+  .clip(ee.Geometry.Rectangle({coords: [[daymet_dict[key_daymet][1], 0], [daymet_dict[key_daymet][2], 7]], geodesic: false}))
   .visualize({min: daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2], palette: daymet_dict[key_daymet][3]}));
   panel_right_chart.add(ui.Label((daymet_dict[key_daymet][1]).toFixed(1) + ' _____________ 0 _____________ ' + (daymet_dict[key_daymet][2]).toFixed(1)));
   panel_right_chart.add(img_thumb);
@@ -202,7 +202,7 @@ var generate_button = ui.Button('Sample points', function() {
   panel_left_chart.add(chart);
 
   var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
-  .clip(ee.Geometry.Rectangle({coords: [[-30, 0], [30, 7]], geodesic: false}))
+  .clip(ee.Geometry.Rectangle({coords: [[era5_dict[key_era5][1], 0], [era5_dict[key_era5][2], 7]], geodesic: false}))
   .visualize({min: era5_dict[key_era5][1], max: era5_dict[key_era5][2], palette: era5_dict[key_era5][3]}));
   panel_left_chart.add(ui.Label((era5_dict[key_era5][1]).toFixed(1) + ' _____________ 0 _____________ ' + (era5_dict[key_era5][2]).toFixed(1)));
   panel_left_chart.add(img_thumb);
