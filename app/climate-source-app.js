@@ -70,19 +70,13 @@ var geometry = ee.Geometry.Polygon([[[-136.198, 67.02], [-136.198, 59.83], [-96.
 
 // Palettes
 var pal_cont = palettes.crameri.imola[25];
-var pal_div = palettes.crameri.vik[25].reverse();
+var pal_div = palettes.crameri.vik[25];
 
 
 
 // Map
 Map.setCenter(-104.76, 58.18, 3);
 var Map_right = ui.Map();
-
-var water_land = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE").first().mask();
-water_land = water_land
-  .mask(water_land.eq(0));
-var water_land_viz_right = ui.Map.Layer(water_land);
-var water_land_viz_left = ui.Map.Layer(water_land);
 
 
 
@@ -168,7 +162,6 @@ var generate_button = ui.Button('Sample points', function() {
   };
   var daymet_map = ui.Map.Layer(daymet.first().select(daymet_dict[key_daymet][0]), daymet_viz, key_daymet);
   Map_right.add(daymet_map);
-  Map_right.add(water_land_viz_left);
 
   panel_right_chart.clear();
   var chart = ui.Chart.image.seriesByRegion({ 
@@ -190,7 +183,6 @@ var generate_button = ui.Button('Sample points', function() {
   };
   var era5_map = ui.Map.Layer(era5.first().select(era5_dict[key_era5][0]), era5_viz, key_era5);
   Map.add(era5_map);
-  Map.add(water_land_viz_right);
 
   panel_left_chart.clear();
   var chart = ui.Chart.image.seriesByRegion({ 
