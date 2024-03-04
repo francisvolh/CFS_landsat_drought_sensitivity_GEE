@@ -172,6 +172,13 @@ var generate_button = ui.Button('Sample points', function() {
   }).setOptions({"title":year_slider.getValue() + ' - ' + 'Daymet', "colors": ["black"], 
                  "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
   panel_right_chart.add(chart);
+
+  var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
+  .clip(ee.Geometry.Rectangle({ coords: [[0, 0], [100, 7]], geodesic: false }))
+  .visualize({min: daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2], palette: daymet_dict[key_daymet][3]}));
+  panel_right_chart.add(ui.Label(value));
+  panel_right_chart.add(ui.Label((daymet_dict[key_daymet][1]).toFixed(1) + ' ____________ ' + (daymet_dict[key_daymet][2]).toFixed(1)));
+  panel_right_chart.add(img_thumb);
   Map_right.add(ui.Map.Layer(points));
 
   // ERA5
