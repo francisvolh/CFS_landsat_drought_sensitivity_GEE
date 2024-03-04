@@ -173,7 +173,7 @@ var generate_button = ui.Button('Sample points', function() {
                  "vAxis": {viewWindow: {min:daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2]}}});
   panel_right_chart.add(chart);
 
-  var h = (daymet_dict[key_daymet][1] - daymet_dict[key_daymet][2]) / 10
+  var h = (daymet_dict[key_daymet][1] - daymet_dict[key_daymet][2]) / 1000
   var img_thumb = ui.Thumbnail(ee.Image.pixelLonLat().select(0)
   .clip(ee.Geometry.Rectangle({coords: [[daymet_dict[key_daymet][1], 0], [daymet_dict[key_daymet][2], h]], geodesic: false}))
   .visualize({min: daymet_dict[key_daymet][1], max: daymet_dict[key_daymet][2], palette: daymet_dict[key_daymet][3]}));
