@@ -35,8 +35,7 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-var era5 = ee.ImageCollection("ECMWF/ERA5/DAILY");
-// var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
+var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
 exports.era5 = era5;
 
 var get_era5 = function() {
@@ -77,7 +76,7 @@ var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
-							.select(['minimum_2m_air_temperature_mean', 'maximum_2m_air_temperature_mean', 
+							.select(['temperature_2m_min', 'temperature_2m_max', 
                        'total_precipitation_sum'], 
                       ['tmin', 'tmax', 'prcp']);
 };
