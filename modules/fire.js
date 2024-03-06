@@ -11,7 +11,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Load NBAC fire polygons
-var NBAC_fires = ee.FeatureCollection("users/robitalec/CFS/nbac_combined_1986_to_2020_20210810_and_2021_20220624");
+var NBAC_fires = ee.FeatureCollection('users/robitalec/CFS/nbac_1986_to_2022_20230630');
 
 
 // Generate fire masks from NBAC - any fire in preceeding 5 years
@@ -31,7 +31,7 @@ var five_year_fires = function(yr) {
     NBAC_fires.filter(ee.Filter.rangeContains('YEAR', ymin5, y))
 							.reduceToImage(['YEAR'], ee.Reducer.anyNonZero())
 							.rename('fire-in-last-5-years')
-    ]).set('year', yr); 
+    ]).set('year', yr);
 };
 exports.five_year_fires = five_year_fires;
 
@@ -39,7 +39,7 @@ exports.five_year_fires = five_year_fires;
 // Mask fires
 var mask_five_year_fires = function(img) {
   var yr = img.get('year');
-  
+
   var fire = five_year_fires(yr).eq(0);
   return(img.updateMask(fire));
 };
@@ -50,7 +50,7 @@ exports.mask_five_year_fires = mask_five_year_fires;
 // Proportion of buffer burned
 var prop_burned_buffer = function(focal_dist) {
   var year_list  = ee.List.sequence(vars.min_year_landsat, vars.max_year);
-  
+
   var focal_prop_fires = ee.ImageCollection(year_list.map(function(yr) {
     var fires = ee.Image([
       NBAC_fires.filter(ee.Filter.eq('YEAR', yr))
@@ -58,7 +58,7 @@ var prop_burned_buffer = function(focal_dist) {
       ]);
     return fires;
     }));
-    
+
   return focal_prop_fires
     .reduce(ee.Reducer.mean())
     .focalMean(focal_dist, null, 'meters')
