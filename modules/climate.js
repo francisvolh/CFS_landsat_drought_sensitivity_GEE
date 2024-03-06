@@ -83,8 +83,8 @@ var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
 
 	return utils.aggregate_month_year(era5, year_list, month_list, reducer)
-							.select(['temperature_2m_min_mean', 'temperature_2m_max_mean', 'total_precipitation_sum_sum'],
-                      ['tmin', 'tmax', 'prcp']);
+						// 	.select(['temperature_2m_min_mean', 'temperature_2m_max_mean', 'total_precipitation_sum_sum'],
+      //                 ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_era5 = monthly_era5;
 
