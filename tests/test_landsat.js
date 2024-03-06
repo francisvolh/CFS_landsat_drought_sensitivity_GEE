@@ -12,8 +12,8 @@ var geometry = ee.Geometry.Polygon([[[-107.279, 59.673], [-107.279, 58.941],
                                     [-105.988, 58.941], [-105.988, 59.673]]]);
 
 
-var min_year = 2011;
-var max_year = 2021;
+var min_year = 2012;
+var max_year = 2022;
 var min_mm_dd = '06-01';
 var max_mm_dd = '08-15';
 
