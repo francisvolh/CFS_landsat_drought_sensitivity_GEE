@@ -8,7 +8,7 @@ Alec L. Robitaille
 var climate = require('users/robitalec/CFS:modules/climate.js');
 
 // Set variables
-var year_list = ee.List.sequence(2002, 2002);
+var year_list = ee.List.sequence(2002, 2022);
 var week_list = ee.List.sequence(23, 25);
 var month_list = ee.List.sequence(5, 7);
 
