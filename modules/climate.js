@@ -2,6 +2,13 @@
 Climate
 Alec L. Robitaille
 
+
+ERA5 
+
+Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. 
+Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (<date of access>), 
+doi:10.24381/cds.68d2bb30
+
 Daymet
 
 Thornton, M.M., R. Shrestha, Y. Wei, P.E. Thornton, S. Kao, and B.E. Wilson.
