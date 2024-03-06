@@ -2,8 +2,8 @@
 Fire masks from NBAC fire data
 Alec L. Robitaille
 
-https://cwfis.cfs.nrcan.gc.ca/datamart
-https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/nbac_2020_r9_20210810.shp.pdf
+https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac
+https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/
 */
 
 // Load modules
