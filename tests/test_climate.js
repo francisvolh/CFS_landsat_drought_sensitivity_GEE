@@ -10,7 +10,7 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 // Set variables
 var year_list = ee.List.sequence(2012, 2022);
 var week_list = ee.List.sequence(23, 25);
-var month_list = ee.List.sequence(5, 7);
+var month_list = ee.List.sequence(6, 7);
 
 // Daymet
 var daymet = climate.daymet;
