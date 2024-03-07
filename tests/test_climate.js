@@ -8,14 +8,13 @@ Alec L. Robitaille
 var climate = require('users/robitalec/CFS:modules/climate.js');
 
 // Set variables
-var year_list = ee.List.sequence(2020, 2022);
+var year_list = ee.List.sequence(2021, 2022);
 var week_list = ee.List.sequence(23, 25);
 var month_list = ee.List.sequence(6, 7);
 
 // Daymet
 var daymet = climate.daymet;
 var era5 = climate.era5;
-print(era5.filterDate('2020-06-01', '2020-08-01'))
 
 // Test daymet
 // Usage: get_daymet();
