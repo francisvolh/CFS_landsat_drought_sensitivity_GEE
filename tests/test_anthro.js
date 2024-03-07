@@ -32,8 +32,7 @@ var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var min_yr = 2020;
 var max_yr = 2022;
 var ndvi = landsat.indices_greenest(min_yr, max_yr, '06-01', '08-31', geometry);
-Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI ', + min_yr + '-' + max_yr, false);
-
+Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI ' + min_yr + '-' + max_yr, false);
 var lc = land_cover.hermosilla_1984_2019.filter(ee.Filter.date(min_yr + '-01-01')).first();
 Map.addLayer(lc, null, 'Land cover ' + min_yr, false);
 
