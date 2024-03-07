@@ -25,18 +25,19 @@ var world_settlement_area = ee.Image("DLR/WSF/WSF2015/v1")
 exports.world_settlement_area = world_settlement_area;
 
 
-
+var unmask_value = 9999;
 var harvest_year = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020")
-  .unmask(9999);
+  .unmask(unmask_value);
 exports.harvest_year = harvest_year;
 
-var harvest_any = harvest_year.lt(9999);
+var harvest_any = harvest_year.lt(unmask_value);
 exports.harvest_any = harvest_any;
 
 var mask_harvest_year = function(img) {
   var img_year = img.date().get('year');
   return img.updateMask(
-		harvest_year.gt(img_year)
+		harvest_year.gt(img_year).and(
+		  harvest_year.lt(unmask_value))
 	);
 };
 exports.mask_harvest_year = mask_harvest_year;
