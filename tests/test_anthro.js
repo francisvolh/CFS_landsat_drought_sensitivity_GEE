@@ -34,7 +34,7 @@ var max_yr = 2022;
 var ndvi = landsat.indices_greenest(min_yr, max_yr, '06-01', '08-31', geometry);
 Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI ', + min_yr + '-' + max_yr, false);
 
-var lc = land_cover.hermosilla_1984_2019.filter(ee.Filter.date('2015-01-01')).first();
+var lc = land_cover.hermosilla_1984_2019.filter(ee.Filter.date(min_yr + '-01-01')).first();
 Map.addLayer(lc, null, 'Land cover ' + min_yr, false);
 
 
@@ -66,6 +66,5 @@ Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)', false);
 // Usage: anthro.mask_harvest_year;
 var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest_year);
 print('Mask harvest NDVI', mask_harvest_ndvi);
-var yr = 2020;
-Map.addLayer(harvest_year.eq(yr), {opacity: 0.8}, 'Harvest mask year ' + yr, false);
+Map.addLayer(harvest_year.eq(min_yr), {opacity: 0.8}, 'Harvest mask year ' + min_yr, false);
 Map.addLayer(mask_harvest_ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'Mask harvest NDVI');
