@@ -42,8 +42,7 @@ exports.harvest_any = harvest_any;
 var mask_harvest_year = function(img) {
   var img_year = img.date().get('year');
   return img.updateMask(
-		harvest_year.gt(img_year).and(
-      harvest_year.lt(unmask_value))
+		harvest_year.gt(img_year)
 	);
 };
 exports.mask_harvest_year = mask_harvest_year;
