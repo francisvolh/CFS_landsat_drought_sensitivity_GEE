@@ -18,14 +18,20 @@ data products for forest monitoring. International Journal of Digital Earth
 
 */
 
+// Modules
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
+
+// World Settlement Area
 var world_settlement_area = ee.Image("DLR/WSF/WSF2015/v1")
   .mask();
 exports.world_settlement_area = world_settlement_area;
 
 
-var unmask_value = 9999;
+
+// Harvest
+var unmask_value = vars.max_year + 1;
 var harvest_year = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Harvest_1985-2020")
   .unmask(unmask_value);
 exports.harvest_year = harvest_year;
