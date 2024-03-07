@@ -40,7 +40,7 @@ Map.addLayer(ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'NDVI ' + min_yr + '-' 
 // Usage: anthro.world_settlement_area;
 var world_settlement_area = anthro.world_settlement_area;
 print('World Settlement Area', world_settlement_area);
-Map.addLayer(world_settlement_area, {palette: '#2635a1', opacity: 0.8}, 'World Settlement Area');
+Map.addLayer(world_settlement_area, {palette: ['#2635a1', '#ffffff'], opacity: 0.8}, 'World Settlement Area');
 
 
 
@@ -64,4 +64,5 @@ Map.addLayer(harvest_any, {opacity: 0.3}, 'Harvest mask (any)', false);
 var mask_harvest_ndvi = ndvi.map(anthro.mask_harvest_year);
 print('Mask harvest NDVI', mask_harvest_ndvi);
 Map.addLayer(harvest_year.eq(min_yr), {opacity: 0.8}, 'Harvest mask year ' + min_yr, false);
+Map.addLayer(harvest_year.eq(max_yr), {opacity: 0.8}, 'Harvest mask year ' + max_yr, false);
 Map.addLayer(mask_harvest_ndvi.select('NDVI'), {min: -0.2, max: 0.9}, 'Mask harvest NDVI');
