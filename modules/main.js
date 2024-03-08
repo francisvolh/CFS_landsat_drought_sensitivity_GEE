@@ -6,7 +6,7 @@ Alec L. Robitaille
 // Load modules
 var landsat = require('users/robitalec/CFS:modules/landsat.js');
 var mask = require('users/robitalec/CFS:modules/mask.js');
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmi_era5 = require('users/robitalec/CFS:modules/cmi_era5.js');
 var climate = require('users/robitalec/CFS:modules/climate.js');
 var percentile = require('users/robitalec/CFS:modules/percentile.js');
 var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
@@ -39,11 +39,11 @@ var main_greenest = function(output, region) {
 
 
   // CMI
-  var monthly_daymet = climate.monthly_daymet(years, months);
-  var cmi_daymet = monthly_daymet.map(cmi.calc_CMI);
+  var monthly_era5 = climate.monthly_era5(years, months);
+  var cmi_era5 = monthly_era5.map(cmi_era5.cmi_era5);
 
   // Drought/baseline
-  var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+  var ante_means = antecedent.antecedent_means(cmi_era5, 'CMI', years);
   ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
 
   var percentile_images = percentile.percentile(ante_means, percentile_list);
