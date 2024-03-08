@@ -40,7 +40,7 @@ var main_greenest = function(output, region) {
 
   // CMI
   var monthly_era5 = climate.monthly_era5(years, months);
-  var cmi = monthly_era5.map(cmi_era5.cmi_era5);
+  var cmi = monthly_era5.map(cmi_era5.calc_CMI_ERA5);
 
   // Drought/baseline
   var ante_means = antecedent.antecedent_means(cmi, 'CMI', years);
