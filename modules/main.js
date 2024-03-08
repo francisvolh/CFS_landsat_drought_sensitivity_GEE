@@ -40,10 +40,10 @@ var main_greenest = function(output, region) {
 
   // CMI
   var monthly_era5 = climate.monthly_era5(years, months);
-  var cmi_era5 = monthly_era5.map(cmi_era5.cmi_era5);
+  var cmi = monthly_era5.map(cmi_era5.cmi_era5);
 
   // Drought/baseline
-  var ante_means = antecedent.antecedent_means(cmi_era5, 'CMI', years);
+  var ante_means = antecedent.antecedent_means(cmi, 'CMI', years);
   ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
 
   var percentile_images = percentile.percentile(ante_means, percentile_list);
