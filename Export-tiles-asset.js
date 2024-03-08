@@ -83,10 +83,10 @@ var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
 Map.addLayer(tiles)
-var sub_tile_id_list = tile_id_list.slice(40, 51);
-sub_tile_id_list.evaluate(function(tile_ids) {
-    tile_ids.forEach(function(tile_id) {
-      var ft = tiles.filter(ee.Filter.eq('id', tile_id));
-      export_img.export_img_asset_greenest(output, output_prefix + '_' + tile_id, asset_path, scale, ft);
-    });
-});
+// var sub_tile_id_list = tile_id_list.slice(41, 51);
+// sub_tile_id_list.evaluate(function(tile_ids) {
+//     tile_ids.forEach(function(tile_id) {
+//       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
+//       export_img.export_img_asset_greenest(output, output_prefix + '_' + tile_id, asset_path, scale, ft);
+//     });
+// });
