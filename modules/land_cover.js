@@ -58,13 +58,24 @@ exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 
-// Add 2020
+// Add 2020-2022
 var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
 var lc_2020 = lc_2019
   .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
   .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis());
-var hermosilla_1984_2019_plus_2020 = ee.ImageCollection(hermosilla_1984_2019.toList(50).add(lc_2020));
-exports.hermosilla_1984_2019_plus_2020 = hermosilla_1984_2019_plus_2020;
+var lc_2021 = lc_2019
+  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(2, 'year').millis())
+  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(2, 'year').millis());
+var lc_2022 = lc_2019
+  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(3, 'year').millis())
+  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(3, 'year').millis());
+var hermosilla_1984_2019_extended = ee.ImageCollection(hermosilla_1984_2019
+	.toList(50)
+	.add(lc_2020)
+	.add(lc_2021)
+	.add(lc_2022)
+);
+exports.hermosilla_1984_2019_extended = hermosilla_1984_2019_extended;
 
 
 
@@ -82,7 +93,7 @@ exports.mask_classes = mask_classes;
 
 // Get land cover collection
 var land_cover = function() {
-	return hermosilla_1984_2019_plus_2020
+	return hermosilla_1984_2019_extended
             .map(utils.set_year)
             .map(mask_classes);
 };
