@@ -35,12 +35,14 @@ exports.ante_list = ['3mo', '12mo', '3yr'];
 exports.min_year_landsat = 1985;
 exports.min_year_climate = 1980;
 exports.max_year = 2022;
+exports.min_month_climate = 1;
+exports.max_month_climate = 12;
+exports.months = ee.List.sequence(min_month_climate, max_month_climate);
+exports.weeks = ee.List.sequence(1, 52);
 exports.min_mm_dd = '06-01';
 exports.max_mm_dd = '09-30';
 exports.percentile_low = 15;
 exports.percentile_high = 85;
-exports.months = ee.List.sequence(1, 12);
-exports.weeks = ee.List.sequence(1, 52);
 exports.min_drought_nobs = 3;
 exports.min_baseline_nobs = 21;
 
