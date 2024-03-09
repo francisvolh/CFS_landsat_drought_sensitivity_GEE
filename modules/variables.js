@@ -34,7 +34,7 @@ exports.index_list = ['NDVI'];
 exports.ante_list = ['3mo', '12mo', '3yr'];
 exports.min_year_landsat = 1985;
 exports.min_year_climate = 1980;
-exports.max_year = 1985;
+exports.max_year = 2022;
 var min_month_climate = 1;
 exports.min_month_climate = min_month_climate;
 var max_month_climate = 12;
@@ -45,8 +45,8 @@ exports.min_mm_dd = '06-01';
 exports.max_mm_dd = '09-30';
 exports.percentile_low = 15;
 exports.percentile_high = 85;
-exports.min_drought_nobs = 1;
-exports.min_baseline_nobs = 1;
+exports.min_drought_nobs = 3;
+exports.min_baseline_nobs = 21;
 
 
 
