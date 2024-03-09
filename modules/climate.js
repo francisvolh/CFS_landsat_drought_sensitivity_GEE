@@ -3,10 +3,10 @@ Climate
 Alec L. Robitaille
 
 
-ERA5 
+ERA5
 
-Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. 
-Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (<date of access>), 
+Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present.
+Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (<date of access>),
 doi:10.24381/cds.68d2bb30
 
 Daymet
@@ -42,18 +42,17 @@ var utils = require('users/robitalec/CFS:modules/utils.js');
 var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
-var era5 = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
-exports.era5 = era5;
+var era5_daily = ee.ImageCollection("ECMWF/ERA5_LAND/DAILY_AGGR");
+exports.era5_daily = era5_daily;
 
-var get_era5 = function() {
-  era5 = era5.filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
-                  .map(utils.set_date)
-                  .map(utils.set_week)
-                  .map(utils.set_year);
-
-  return era5;
+var get_era5_daily = function() {
+  return era5_daily
+    .filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
+    .map(utils.set_date)
+    .map(utils.set_week)
+    .map(utils.set_year);
 };
-exports.get_era5 = get_era5;
+exports.get_era5_daily = get_era5_daily;
 
 
 var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
@@ -79,12 +78,16 @@ var monthly_daymet = function(year_list, month_list) {
 };
 exports.monthly_daymet = monthly_daymet;
 
-var monthly_era5 = function(year_list, month_list) {
-  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+var monthly_era5 = function(min_year, max_year, min_month, max_month) {
+  var era5_monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY_AGGR");
 
-	return utils.aggregate_month_year(get_era5(), year_list, month_list, reducer)
-							.select(['temperature_2m_min_mean', 'temperature_2m_max_mean', 'total_precipitation_sum_sum'],
-                      ['tmin', 'tmax', 'prcp']);
+  era5_monthly
+    .filter(ee.Filter.calendarRange(min_year, max_year, 'year'))
+    .filter(ee.Filter.calendarRange(min_month, max_month, 'month'))
+    .select(['temperature_2m_min', 'temperature_2m_max', 'total_precipitation_sum'],
+            ['tmin', 'tmax', 'prcp'])
+    .map(utils.set_year)
+    .map(utils.set_date);
 };
 exports.monthly_era5 = monthly_era5;
 
