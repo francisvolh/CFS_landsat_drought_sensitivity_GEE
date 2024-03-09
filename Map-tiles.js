@@ -13,7 +13,7 @@ var palettes = require('users/gena/packages:palettes');
 
 
 // Data
-var col = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
+var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
 var lc = land_cover.land_cover();
 var dem = ee.Image("MERIT/DEM/v1_0_3");
 
