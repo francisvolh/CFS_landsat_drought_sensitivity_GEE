@@ -20,39 +20,15 @@ Alec L. Robitaille
 
 // Load modules
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
 
 // Set variables
-var ante_list = vars.ante_list;
-var min_year =  vars.min_year;
-var max_year = vars.max_year;
-var min_mm_dd = vars.min_mm_dd;
-var max_mm_dd = vars.max_mm_dd;
-var region = geometry;
+var region = vars.yukon;
 var scale = 30;
 
-var path = 'users/robitalec/CFS/2023-02-21/2023-02-21_image_col';
-var col = ee.ImageCollection(path);
-var drive_folder = 'Exports';
+var asset_folder = 'users/robitalec/CFS/2022-07-10';
+var drive_folder = '2022-07-10';
 
 
-var tiles = col.filterBounds(region).toList(999)
-// print(tiles)
-// print(ee.Image(tiles.toList(999).get(0)))
-Export.image.toDrive({
-  image: ee.Image(tiles.get(9)), 
-  description: '2023-05-18_Sens_tile_9_2023-02-21',
-  scale: scale,
-  folder: drive_folder,
-  maxPixels: 200000000
-})
-
-// ? Export.image.toDrive(image, description, folder, fileNamePrefix, dimensions, region, scale, crs, crsTransform, maxPixels, shardSize, fileDimensions, skipEmptyTiles, fileFormat, formatOptions) 
 
 // Export drive from asset
-// export_img.export_img_drive_from_asset(asset_folder, region, drive_folder, scale);
-// Export.image.toDrive(ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col')
-//   .filterBounds(region)
-//   .select('Abs_sens_NDVI_ante3mo_p15_p85')
-//   .mosaic()
-//   .clip(region), '2023-05-11_img_col_2023-02-21_Yukon')
+export_img.export_img_drive_from_asset(asset_folder, geometry_yt, drive_folder, scale);
