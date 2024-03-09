@@ -23,12 +23,13 @@ var main_greenest = function(output, region) {
 	var min_year_climate =  vars.min_year_climate;
 	var min_year_landsat =  vars.min_year_landsat;
 	var max_year = vars.max_year;
+  var min_month_climate = vars.min_month_climate;
+  var max_month_climate = vars.max_month_climate;
+  var years = ee.List.sequence(min_year_climate, max_year);
 	var min_mm_dd = vars.min_mm_dd;
 	var max_mm_dd = vars.max_mm_dd;
 	var percentile_low = vars.percentile_low;
 	var percentile_high = vars.percentile_high;
-	var months = vars.months;
-  var years = ee.List.sequence(min_year_climate, max_year);
   var percentile_list = [percentile_low, percentile_high];
 
   // Collections
@@ -39,7 +40,7 @@ var main_greenest = function(output, region) {
 
 
   // CMI
-  var monthly_era5 = climate.monthly_era5(years, months);
+  var monthly_era5 = climate.monthly_era5(min_year_climate, max_year, min_month_climate, max_month_climate);
   var cmi = monthly_era5.map(cmi_era5.calc_CMI_ERA5);
 
   // Drought/baseline
