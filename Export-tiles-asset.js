@@ -49,17 +49,10 @@ Alec L. Robitaille
 
 // Load modules
 var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
 var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // Set variables
-var ante_list = vars.ante_list;
-var min_year =  vars.min_year;
-var max_year = vars.max_year;
-var min_mm_dd = vars.min_mm_dd;
-var max_mm_dd = vars.max_mm_dd;
-
 var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today + '/' + today + '_image_col';
 var scale = 30;
@@ -84,6 +77,7 @@ print(tile_id_list);
 
 // Map.addLayer(tiles)
 var sub_tile_id_list = tile_id_list.slice(0, 10);
+
 sub_tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
