@@ -45,8 +45,8 @@ exports.min_mm_dd = '06-01';
 exports.max_mm_dd = '09-30';
 exports.percentile_low = 15;
 exports.percentile_high = 85;
-exports.min_drought_nobs = 3;
-exports.min_baseline_nobs = 21;
+exports.min_drought_nobs = 1;
+exports.min_baseline_nobs = 1;
 
 
 
