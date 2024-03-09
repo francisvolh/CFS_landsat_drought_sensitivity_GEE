@@ -81,7 +81,7 @@ exports.monthly_daymet = monthly_daymet;
 var monthly_era5 = function(min_year, max_year, min_month, max_month) {
   var era5_monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY_AGGR");
 
-  era5_monthly
+  return era5_monthly
     .filter(ee.Filter.calendarRange(min_year, max_year, 'year'))
     .filter(ee.Filter.calendarRange(min_month, max_month, 'month'))
     .select(['temperature_2m_min', 'temperature_2m_max', 'total_precipitation_sum'],
