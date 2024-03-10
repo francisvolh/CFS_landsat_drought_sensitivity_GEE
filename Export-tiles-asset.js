@@ -53,7 +53,8 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // Set variables
-var today = new Date().toJSON().slice(0, 10);
+// var today = new Date().toJSON().slice(0, 10);
+var today = '2024-03-09';
 var asset_path = 'CFS/' + today + '/' + today + '_image_col';
 var scale = 30;
 
@@ -76,7 +77,7 @@ var tile_id_list = tiles.aggregate_array('id').distinct();
 print(tile_id_list);
 
 // Map.addLayer(tiles)
-var sub_tile_id_list = tile_id_list.slice(90, 100);
+var sub_tile_id_list = tile_id_list.slice(100, 110);
 
 sub_tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
