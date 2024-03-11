@@ -304,7 +304,7 @@ var imageSelect = ui.Select({
     {label: 'soil', value: soil.sampling_collection},
     {label: 'topo', value: topo.sampling_collection},
     {label: 'climate', value: climate.sampling_collection},
-    {label: 'land cover (2000)', value: lc_filter}
+    {label: 'land cover (' + lc_year + ')', value: lc_filter}
   ],
   placeholder: 'Select a list of covariates...',
   onChange: function(value) {
