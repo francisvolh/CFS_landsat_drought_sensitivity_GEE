@@ -78,7 +78,7 @@ print(tile_id_list);
 
 // Map.addLayer(tiles)
 var sub_tile_id_list = tile_id_list.slice(111, 119);
-Map.addLayer(sub_tile_id_list)
+
 sub_tile_id_list.evaluate(function(tile_ids) {
     tile_ids.forEach(function(tile_id) {
       var ft = tiles.filter(ee.Filter.eq('id', tile_id));
