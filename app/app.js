@@ -350,7 +350,7 @@ panel_right.add(imageSelect);
 panel_right.add(bandSelect);
 panel_right.add(ui.Label('Covariate descriptions', null, 'https://docs.google.com/spreadsheets/d/1kPFTotCdNekGtq771qFAhu1y-mLa4cBonkm99f6civA/edit#gid=1308651562'));
 panel_right_left_bottom.add(ui.Label('Drought sensitivity refugia'));
-panel_right_left_bottom.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'));
+panel_right_left_bottom.add(ui.Label('Diana Stralberg, Alec L. Robitaille, Zihaohan Sang, Guillermo Castilla, Jennifer Cartwright, Mike Michaelian, and Ted Hogg'));
 panel_right_left_bottom.add(ui.Label('Canadian Forest Service / Natural Resources Canada / Government of Canada'));
 Map_right.add(panel_right);
 Map_right.add(panel_right_bottom);
