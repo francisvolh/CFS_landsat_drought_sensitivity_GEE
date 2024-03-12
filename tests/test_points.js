@@ -28,7 +28,8 @@ points.export_points_asset(n_pts, ecoregions, region_name);
 
 
 // Test export_points_by_img_col_asset
-// Usage: export_points_by_img_col_asset(col, factor)
+// Usage: export_points_by_img_col_asset(col, factor, factor_char)
 var factor = 0.01;
+var factor_char = '0pt01';
 var col = ee.ImageCollection('users/robitalec/CFS/2023-02-21/2023-02-21_image_col');
 points.export_points_by_img_col_asset(col, factor);
