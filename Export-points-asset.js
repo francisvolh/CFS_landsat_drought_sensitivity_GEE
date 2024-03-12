@@ -12,5 +12,6 @@ var points = require('users/robitalec/CFS:modules/points.js');
 // Sample ---------------------------------------------------------------------
 var col_date = '2024-03-09';
 var factor = 0.01;
+var factor_char = '0pt01';
 var col = ee.ImageCollection('users/robitalec/CFS/' + col_date + '/' + col_date + '_image_col');
 points.export_points_by_img_col_asset(col, factor);
