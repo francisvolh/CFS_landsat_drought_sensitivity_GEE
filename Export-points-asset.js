@@ -18,4 +18,4 @@ var ecoregions = eco.non_arctic_ecoregions;
 
 var col = ee.ImageCollection('users/robitalec/CFS/' + col_date + '/' + col_date + '_image_col');
 
-points.export_points_by_tile_asset(ecoregion, factor, factor_char);
+points.export_points_by_tile_asset(ecoregions, factor, factor_char);
