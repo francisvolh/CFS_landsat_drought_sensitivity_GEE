@@ -34,7 +34,7 @@ exports.export_points_asset = export_points_asset;
 
 
 // Export points by tile as asset
-var export_points_by_tile_asset = function(ecoregions, factor, factor_char) {
+var export_points_by_tile_asset = function(ecoregions, n_pts, n_pts_char) {
   var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 
   var points = tiles.map(function(tile) {
