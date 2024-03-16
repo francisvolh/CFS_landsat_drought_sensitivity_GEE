@@ -34,7 +34,7 @@ exports.export_points_asset = export_points_asset;
 
 
 // Export points by tile as asset
-var export_points_by_tile_asset = function(ecoregions, factor) {
+var export_points_by_tile_asset = function(ecoregions, factor, factor_char) {
   var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 
   var points = tiles.map(function(tile) {
@@ -46,7 +46,8 @@ var export_points_by_tile_asset = function(ecoregions, factor) {
   }).flatten();
 
   var today = new Date().toJSON().slice(0, 10);
-  var filename = today + '_' + region_name + '_sampling_points_n' + n_pts;
+  var filename = today + '_sampling_points_tiles_' + factor_char;
+
   Export.table.toAsset(points, filename, 'CFS/' + filename);
 };
 exports.export_points_by_tile_asset = export_points_by_tile_asset;
