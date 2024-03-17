@@ -19,13 +19,10 @@ var drive_folder = 'Exports';
 var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 // Sensitivity 
-var sens = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
+var sens = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
 
 // Sample type
 var type = 'reduceRegions';
-
-// Asset
-var points = ee.FeatureCollection('users/robitalec/CFS/2023-10-06_sampling_points_tiles_0pt01');
 
 
 
