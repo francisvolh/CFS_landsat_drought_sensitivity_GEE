@@ -107,5 +107,26 @@ exports.climate_normals = climate_normals;
 
 
 
+var era5_land_climate_normals = function() {
+  // res: 11132
+  var era5_monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY_AGGR")
+    .filter(ee.Filter.date('1990-01-01','2020-12-31'))
+    .select([
+      'forecast_albedo', 
+      'surface_solar_radiation_downwards_sum',
+      'u_component_of_wind_10m',
+      'v_component_of_wind_10m',
+      'volumetric_soil_water_layer_1',
+      'runoff_sum'
+    ])
+  
+  era5_monthly = era5_monthly.mean()
+
+  return era5_monthly;
+};
+exports.era5_land_climate_normals = era5_land_climate_normals;
+
+
+// TODO: add era5 land to sampling collection
 var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI']);
 exports.sampling_collection = sampling_collection;
