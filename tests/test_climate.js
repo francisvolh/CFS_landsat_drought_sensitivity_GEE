@@ -62,7 +62,7 @@ Map.addLayer(climate_normals.select('Normal_1991_2020_TD_b1'), {min: -50, max: 5
 // Usage: era5_land_climate_normals();
 var era5_climate_normals = climate.era5_land_climate_normals();
 print('ERA5 Land climate normals', era5_climate_normals);
-Map.addLayer(era5_climate_normals.select('forescast_albedo'), {min: 0, max: 1}, 'normal: forecast albedo');
+Map.addLayer(era5_climate_normals.select('forecast_albedo'), {min: 0, max: 1}, 'normal: forecast albedo');
 
 
 
