@@ -18,4 +18,4 @@ var col = ee.ImageCollection('users/robitalec/CFS/' + col_date + '/' + col_date 
 var factor = 0.0001;
 var factor_char = '0pt01';
 
-points.export_points_by_img_col_asset(sens, factor, factor_char);
+points.export_points_by_img_col_asset(col, factor, factor_char);
