@@ -34,6 +34,7 @@ var factor_char = '0pt01';
 points.export_points_by_img_col_asset(sens, factor, factor_char);
 
 // Asset
+// TODO: Move this  export points asset
 // var points = ee.FeatureCollection('users/robitalec/CFS/2024-03-17_sampling_points_tiles_7e3per');
 var points_name = 'tiles_' + factor_char;
 
