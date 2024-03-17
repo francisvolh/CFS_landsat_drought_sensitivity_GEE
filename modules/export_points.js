@@ -47,7 +47,7 @@ var hydro_col = hydro.sampling_collection; // 30
 var veg_col = vegetation.sampling_collection; // 30
 var soil_col = soil.sampling_collection; // 250
 var topo_col = topo.sampling_collection; // 90
-var climate_col = climate.sampling_collection; // 1000
+var climate_col = climate.sampling_collection; // 1000, 11132
 
 var covariates = ee.Image([
   lc_mode,
