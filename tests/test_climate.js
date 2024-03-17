@@ -7,14 +7,20 @@ Alec L. Robitaille
 // Load modules
 var climate = require('users/robitalec/CFS:modules/climate.js');
 
+
+
 // Set variables
 var year_list = ee.List.sequence(2021, 2022);
 var week_list = ee.List.sequence(23, 25);
 var month_list = ee.List.sequence(6, 7);
 
+
+
 // Daymet
 var daymet = climate.daymet;
 var era5 = climate.era5;
+
+
 
 // Test daymet
 // Usage: get_daymet();
@@ -48,6 +54,13 @@ Map.addLayer(monthly_era5.select('prcp'), {min:0, max:500}, 'monthly_era5');
 var climate_normals = climate.climate_normals(['TD', 'MAT']);
 print('Climate normals', climate_normals);
 Map.addLayer(climate_normals.select('Normal_1991_2020_TD_b1'), {min: -50, max: 50}, 'climate_normals');
+
+// Test era5_land_climate_normals
+// Usage: era5_land_climate_normals();
+var era5_climate_normals = climate.era5_land_climate_normals();
+print('ERA5 Land climate normals', era5_climate_normals);
+Map.addLayer(era5_climate_normals)//.select('Normal_1991_2020_TD_b1'), {min: -50, max: 50}, 'climate_normals');
+
 
 
 
