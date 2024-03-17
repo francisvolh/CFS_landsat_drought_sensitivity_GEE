@@ -12,10 +12,10 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 // Sample ---------------------------------------------------------------------
 var col_date = '2024-03-09';
-var n_pts_char = '7e3per';
-var ecoregions = eco.non_arctic_ecoregions;
-
 var col = ee.ImageCollection('users/robitalec/CFS/' + col_date + '/' + col_date + '_image_col');
 
-var n_pts = 7e3 * col.size().getInfo();
-points.export_points_by_tile_asset(ecoregions, n_pts, n_pts_char);
+// Generate points
+var factor = 0.0001;
+var factor_char = '0pt01';
+
+points.export_points_by_img_col_asset(sens, factor, factor_char);
