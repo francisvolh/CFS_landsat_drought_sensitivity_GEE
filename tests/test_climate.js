@@ -10,9 +10,12 @@ var climate = require('users/robitalec/CFS:modules/climate.js');
 
 
 // Set variables
-var year_list = ee.List.sequence(2021, 2022);
-var week_list = ee.List.sequence(23, 25);
-var month_list = ee.List.sequence(6, 7);
+var min_year = 2021;
+var max_year = 2022;
+var min_mon = 6;
+var max_mon = 7;
+var year_list = ee.List.sequence(min_year, max_year);
+var month_list = ee.List.sequence(min_mon, max_mon);
 
 
 
@@ -41,8 +44,8 @@ print('Monthly daymet', monthly_daymet);
 Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500}, 'monthly_daymet');
 
 // Test monthly_era5
-// Usage: monthly_era5(year_list, month_list)
-var monthly_era5 = climate.monthly_era5(year_list, month_list);
+// Usage: monthly_era5(min_year, max_year, min_month, max_month)
+var monthly_era5 = climate.monthly_era5(min_year, max_year, min_mon, max_mon);
 print('Monthly era5', monthly_era5);
 Map.addLayer(monthly_era5.select('prcp'), {min:0, max:500}, 'monthly_era5');
 
