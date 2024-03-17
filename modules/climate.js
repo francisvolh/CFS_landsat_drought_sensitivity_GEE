@@ -128,5 +128,5 @@ exports.era5_land_climate_normals = era5_land_climate_normals;
 
 
 var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI'])
-  .addBands(era5_land_climate_normas);
+  .addBands(era5_land_climate_normals);
 exports.sampling_collection = sampling_collection;
