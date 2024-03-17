@@ -17,5 +17,6 @@ var ecoregions = eco.non_arctic_ecoregions;
 
 var col = ee.ImageCollection('users/robitalec/CFS/' + col_date + '/' + col_date + '_image_col');
 
-var n_pts = 7e3 * col.size();
+print(col.size());
+var n_pts = 7e3 * 137;
 points.export_points_by_tile_asset(ecoregions, n_pts, n_pts_char);
