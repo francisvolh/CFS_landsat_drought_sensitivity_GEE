@@ -29,8 +29,8 @@ print('Daymet (limit 5)', get_daymet.limit(5));
 
 // Test era5
 // Usage: get_era5();
-var get_era5 = climate.get_era5();
-print('ERA5 (limit 5)', get_era5.limit(5));
+var get_era5 = climate.get_era5_daily();
+print('ERA5 (limit 5)', get_era5_daily.limit(5));
 
 
 
