@@ -19,7 +19,7 @@ var drive_folder = 'Exports';
 var non_arctic_ecoregions = eco.non_arctic_ecoregions;
 
 // Sensitivity 
-var sens = ee.ImageCollection('users/robitalec/CFS/2023-09-26/2023-09-26_image_col');
+var sens = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
 
 // Sample type
 var type = 'reduceRegions';
@@ -31,10 +31,10 @@ var type = 'reduceRegions';
 var factor = 0.0001;
 var factor_char = '0pt01';
 
-// points.export_points_by_img_col_asset(sens, factor, factor_char);
+points.export_points_by_img_col_asset(sens, factor, factor_char);
 
 // Asset
-var points = ee.FeatureCollection('users/robitalec/CFS/2023-10-06_sampling_points_tiles_0pt01');
+var points = ee.FeatureCollection('users/robitalec/CFS/2024-03-17_sampling_points_tiles_7e3per');
 var points_name = 'tiles_' + factor_char;
 
 
