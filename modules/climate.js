@@ -118,15 +118,15 @@ var era5_land_climate_normals = function() {
       'v_component_of_wind_10m',
       'volumetric_soil_water_layer_1',
       'runoff_sum'
-    ])
+    ]);
   
-  era5_monthly = era5_monthly.mean()
+  era5_monthly = era5_monthly.mean();
 
   return era5_monthly;
 };
 exports.era5_land_climate_normals = era5_land_climate_normals;
 
 
-// TODO: add era5 land to sampling collection
-var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI']);
+var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI'])
+  .addBands(era5_land_climate_normas);
 exports.sampling_collection = sampling_collection;
