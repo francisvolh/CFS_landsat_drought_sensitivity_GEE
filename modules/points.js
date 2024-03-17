@@ -37,7 +37,8 @@ exports.export_points_asset = export_points_asset;
 var export_points_by_tile_asset = function(ecoregions, n_pts, n_pts_char) {
   var tiles = tiler.getTilesForGeometry(ecoregions.geometry(), 6.3);
 
-  var points = ee.FeatureCollection.randomPoints(tiles, n_pts);
+  var points = ee.FeatureCollection.randomPoints(tiles, n_pts)
+    .filterBounds(ecoregions);
 
   var today = new Date().toJSON().slice(0, 10);
   var filename = today + '_sampling_points_tiles_' + n_pts_char;
