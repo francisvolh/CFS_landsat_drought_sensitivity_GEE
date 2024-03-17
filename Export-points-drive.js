@@ -7,22 +7,19 @@ Alec L. Robitaille
 // Modules --------------------------------------------------------------------
 // Load modules
 var export_points = require('users/robitalec/CFS:modules/export_points.js');
-var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 var points = require('users/robitalec/CFS:modules/points.js');
 
 
 
 // Variables ------------------------------------------------------------------
+// Drive folder
 var drive_folder = 'Exports';
-
-// Load ecoregions
-var non_arctic_ecoregions = eco.non_arctic_ecoregions;
-
-// Sensitivity 
-var sens = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
 
 // Sample type
 var type = 'reduceRegions';
+
+// Asset
+var points = ee.FeatureCollection('users/robitalec/CFS/2024-03-17_sampling_points_tiles_0pt01');
 
 
 
