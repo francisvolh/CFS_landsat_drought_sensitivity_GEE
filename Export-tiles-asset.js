@@ -53,8 +53,7 @@ var eco = require('users/robitalec/CFS:modules/ecoregions.js');
 
 
 // Set variables
-// var today = new Date().toJSON().slice(0, 10);
-var today = '2024-03-09';
+var today = new Date().toJSON().slice(0, 10);
 var asset_path = 'CFS/' + today + '/' + today + '_image_col';
 var scale = 30;
 
