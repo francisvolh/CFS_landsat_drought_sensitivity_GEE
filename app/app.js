@@ -217,8 +217,8 @@ var select = ui.Select({
     Map.layers().reset();
     var sens_viz = col_mosaic.select(ante[key][0]).visualize({
       palette: p,
-      min: -0.2,
-      max: 0.2
+      min: -0.15,
+      max: 0.15
     });
     var blend_col_hillshade = blend.multiply(sens_viz, hillshade_viz);
     var col_map = ui.Map.Layer(blend_col_hillshade, null, key);
