@@ -16,7 +16,7 @@ var min_year =  vars.min_year;
 var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
-var output = 'absolute sensitivity';
+var output = 'normalized difference sensitivity';
 
 var scale = 1000;
 
@@ -26,6 +26,6 @@ var export_name = 'Abs_sens_p15_85_YT_to_MB';
 
 // Export image to drive
 export_img.export_img_drive_greenest(output, export_name, 'Exports', scale, region, min_year, max_year, min_mm_dd, max_mm_dd, ante_list);
-
+var export_img_drive_greenest = function(output, drive_name, drive_folder, scale, region) {
 
 Map.addLayer(region);
