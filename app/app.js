@@ -167,9 +167,8 @@ var dem = ee.Image("MERIT/DEM/v1_0_3");
 
 // Palettes
 var p = palettes.crameri.vik[10];
-var lc_p = palettes.crameri.bamako[25];
 var p_not_grey = palettes.crameri.imola[25];
-
+var viz_sens = variables.nd_viz;
 
 
 // Process
@@ -215,11 +214,7 @@ var select = ui.Select({
   items: Object.keys(ante),
   onChange: function(key) {
     Map.layers().reset();
-    var sens_viz = col_mosaic.select(ante[key][0]).visualize({
-      palette: p,
-      min: -0.15,
-      max: 0.15
-    });
+    var sens_viz = col_mosaic.select(ante[key][0]).visualize(viz_sens);
     var blend_col_hillshade = blend.multiply(sens_viz, hillshade_viz);
     var col_map = ui.Map.Layer(blend_col_hillshade, null, key);
     Map.add(col_map);
