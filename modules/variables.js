@@ -55,6 +55,7 @@ var p_diverging = palettes.crameri.vik[10];
 exports.cmi_viz = {min:-15, max:15, palette: p_diverging};
 exports.rel_viz = {min:-20, max:20, palette: p_diverging};
 exports.abs_viz = {min:-0.2, max:0.2, palette: p_diverging};
+exports.nd_viz = {min:-0.15, max:0.15, palette: p_diverging};
 
 
 
