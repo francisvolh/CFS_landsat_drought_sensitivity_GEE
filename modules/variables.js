@@ -14,67 +14,61 @@ var geometry =
           [-92.74201129447385, 71.53974669486493]]], null, false);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
-Variables
+Map tiles
 Alec L. Robitaille
-
-Geoboundaries
-Runfola D, Anderson A, Baier H, Crittenden M, Dowker E, Fuhrig S, et al. (2020)
-geoBoundaries: A global database of political administrative boundaries. PLoS ONE 15(4):
-e0231866. https://doi.org/10.1371/journal.pone.0231866
 
 */
 
+
 // Modules
-var palettes = require('users/gena/packages:palettes');
+var blend = require('users/jja/public:blend.js');
+var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var variables = require('users/robitalec/CFS:modules/variables.js');
 
 
 
-// Variables
-exports.index_list = ['NDVI'];
-exports.ante_list = ['3mo', '12mo', '3yr'];
-exports.min_year_landsat = 1985;
-exports.min_year_climate = 1980;
-exports.max_year = 2022;
-var min_month_climate = 1;
-exports.min_month_climate = min_month_climate;
-var max_month_climate = 12;
-exports.max_month_climate = max_month_climate;
-exports.months = ee.List.sequence(min_month_climate, max_month_climate);
-exports.weeks = ee.List.sequence(1, 52);
-exports.min_mm_dd = '06-01';
-exports.max_mm_dd = '09-30';
-exports.percentile_low = 15;
-exports.percentile_high = 85;
-exports.min_drought_nobs = 3;
-exports.min_baseline_nobs = 21;
+// Data
+var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
+var lc = land_cover.land_cover();
+var dem = ee.Image("MERIT/DEM/v1_0_3");
 
 
 
 // Palettes
-var p_diverging = palettes.crameri.vik[10];
-exports.cmi_viz = {min:-15, max:15, palette: p_diverging};
-exports.rel_viz = {min:-20, max:20, palette: p_diverging};
-exports.abs_viz = {min:-0.2, max:0.2, palette: p_diverging};
-exports.nd_viz = {min:-0.15, max:0.15, palette: p_diverging};
+var lc_p = variables.lc_p;
+var viz_sens = variables.nd_viz;
 
 
 
-// Geometries
-var bounds = ee.FeatureCollection('projects/earthengine-legacy/assets/projects/sat-io/open-datasets/geoboundaries/CGAZ_ADM1');
-var bounds_adm0 = ee.FeatureCollection('projects/earthengine-legacy/assets/projects/sat-io/open-datasets/geoboundaries/CGAZ_ADM0');
+// Options
+print('Band names', col.first().bandNames());
+col = col.select('ND_sens_NDVI_ante12mo_p15_p85');
 
 
-exports.canada = bounds_adm0.filter(ee.Filter.eq('shapeName', 'Canada'));
 
-exports.dawson = ee.Geometry.Polygon(
-	[[[-140.98169334224528, 64.89866428936777],
-	[-140.98169334224528, 63.10300863803273],
-	[-137.86706931880778, 63.10300863803273],
-	[-137.86706931880778, 64.89866428936777]]]);
+// Process
+var lc_filter = lc.filter(ee.Filter.eq('year', 2010));
+var hillshade = ee.Terrain.hillshade(dem);
+var col_mosaic = col.mosaic();
 
-exports.bc = bounds.filter(ee.Filter.eq('shapeName', 'British Columbia')).geometry();
-exports.yukon = bounds.filter(ee.Filter.eq('shapeName', 'Yukon'));
 
-var western_can_ls = ['Yukon', 'Northwest Territories', 'Nunavut',
-                      'British Columbia', 'Alberta', 'Manitoba', 'Saskatchewan'];
-exports.western_can = bounds.filter(ee.Filter.inList('shapeName', western_can_ls));
+
+// Visualize
+var col_viz = col_mosaic.visualize(viz_sens);
+
+var hillshade_viz = hillshade.visualize({
+    min:0,
+    max:250,
+    palette: ['#000000', '#ffffff'],
+    forceRgbOutput:true
+  });
+
+
+  
+// Map
+Map.addLayer(ee.Image.constant(1), {palette:'000', opacity:0.5}, 'constant');
+Map.addLayer(lc_filter, {palette:lc_p}, 'lc', false);
+Map.addLayer(col_mosaic, viz_sens, 'sensitivity', false);
+
+// Blend
+Map.addLayer(blend.multiply(col_viz, hillshade_viz), {min: 0.1, max: 0.75}, 'blend sensitivity and hillshade');
