@@ -17,7 +17,6 @@ var max_year = vars.max_year;
 var min_mm_dd = vars.min_mm_dd;
 var max_mm_dd = vars.max_mm_dd;
 var output = 'normalized difference sensitivity';
-
 var scale = 1000;
 
 
@@ -27,4 +26,5 @@ var export_name = 'ND_sens_p15_85';
 // Export image to drive
 export_img.export_img_drive_greenest(output, export_name, 'Exports', scale, region);
 
+// Map region
 Map.addLayer(region);
