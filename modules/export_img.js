@@ -78,23 +78,3 @@ var export_img_drive_from_asset = function(asset_folder, bounds, drive_folder, s
   });
 };
 exports.export_img_drive_from_asset = export_img_drive_from_asset;
-
-
-
-// Export hydro sampling collection
-var export_hydro_sampling_collection = function(region, region_name, scale) {
-  var col = hydro.sampling_collection();
-
-  var today = new Date().toJSON().slice(0, 10);
-
-  var asset_name = today + '_' + region_name + '_hydro_sampling_collection';
-  Export.image.toAsset({
-    image: col,
-    description: asset_name,
-    assetId: 'CFS/' + asset_name,
-    region: region,
-    scale: scale,
-    maxPixels: 2.5e8
-  });
-};
-exports.export_hydro_sampling_collection = export_hydro_sampling_collection;
