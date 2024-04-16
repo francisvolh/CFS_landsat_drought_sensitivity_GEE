@@ -33,8 +33,8 @@ var soil_percent = function() {
     .multiply(0.1)
     .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
             ['sand_0_5cm_percent', 'clay_0_5cm_percent', 'silt_0_5cm_percent'])
-    .round()
-    .toInt();
+    // .round()
+    // .toInt();
 };
 exports.soil_percent = soil_percent;
 
