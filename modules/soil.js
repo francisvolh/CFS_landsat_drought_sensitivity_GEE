@@ -26,9 +26,9 @@ https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 
 var conv_to_percent = function(img) {
   return img
-    .multiply(0.1)
-    .round()
-    .toInt();
+    // .multiply(0.1)
+    // .round()
+    // .toInt();
 };
 
 var clay_percent = function() {
