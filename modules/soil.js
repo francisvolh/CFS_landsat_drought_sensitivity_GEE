@@ -40,7 +40,7 @@ var clay_percent = function() {
 exports.clay_percent = clay_percent;
 
 var silt_percent = function() {
-	var silt = cee.Image("projects/soilgrids-isric/silt_mean")
+	var silt = ee.Image("projects/soilgrids-isric/silt_mean")
     .select(['silt_0-5cm_mean'], ['silt_0_5cm_percent']);
     
   return conv_to_percent(silt);
@@ -48,7 +48,7 @@ var silt_percent = function() {
 exports.silt_percent = silt_percent;
 
 var sand_percent = function() {
-	var sand = cee.Image("projects/soilgrids-isric/sand_mean")
+	var sand = ee.Image("projects/soilgrids-isric/sand_mean")
     .select(['sand_0-5cm_mean'], ['sand_0_5cm_percent']);
     
   return conv_to_percent(sand);
