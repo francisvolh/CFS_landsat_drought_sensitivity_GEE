@@ -32,7 +32,7 @@ var conv_to_percent = function(img) {
 };
 
 var clay_percent = function() {
-	var clay = cee.Image("projects/soilgrids-isric/clay_mean")
+	var clay = ee.Image("projects/soilgrids-isric/clay_mean")
     .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent']);
     
   return conv_to_percent(clay);
