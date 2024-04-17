@@ -24,10 +24,23 @@ https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 */
 
 
+var conv_to_percent = function(img) {
+  return img
+    .multiply(0.1)
+    .round()
+    .toInt();
+};
+
+var clay_percent = function() {
+	var clay = cee.Image("projects/soilgrids-isric/clay_mean")
+    .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent']);
+    
+  return conv_to_percent(clay);
+}
+
 var soil_percent = function() {
 	var silt = ee.Image("projects/soilgrids-isric/silt_mean");
 	var sand = ee.Image("projects/soilgrids-isric/sand_mean");
-	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
 
 	return ee.Image([silt, sand, clay])
     // .multiply(0.1)
