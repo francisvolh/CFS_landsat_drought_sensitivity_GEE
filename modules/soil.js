@@ -1,17 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.Geometry.Polygon(
-        [[[-145.3398890645667, 72.37962246081129],
-          [-145.3398890645667, 41.600341958739946],
-          [-50.76957656456671, 41.600341958739946],
-          [-50.76957656456671, 72.37962246081129]]], null, false);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Soil
 Alec L. Robitaille
@@ -38,37 +24,17 @@ https://samapriya.github.io/awesome-gee-community-datasets/projects/scs
 */
 
 
-var conv_to_percent = function(img) {
-  return img
-    // .multiply(0.1)
-    // .round()
-    // .toInt();
-};
+var soil_percent = function() {
+	var silt = ee.Image("projects/soilgrids-isric/silt_mean");
+	var sand = ee.Image("projects/soilgrids-isric/sand_mean");
+	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
 
-var clay_percent = function() {
-	var clay = ee.Image("projects/soilgrids-isric/clay_mean")
-    .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent'])
+	return ee.Image([silt, sand, clay])
+    .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
+            ['sand_0_5cm_percent', 'clay_0_5cm_percent', 'silt_0_5cm_percent'])
     .reproject(ee.Projection('EPSG:4326'));
-    
-  return conv_to_percent(clay);
 };
-exports.clay_percent = clay_percent;
-
-var silt_percent = function() {
-	var silt = ee.Image("projects/soilgrids-isric/silt_mean")
-    .select(['silt_0-5cm_mean'], ['silt_0_5cm_percent']);
-    
-  return conv_to_percent(silt);
-};
-exports.silt_percent = silt_percent;
-
-var sand_percent = function() {
-	var sand = ee.Image("projects/soilgrids-isric/sand_mean")
-    .select(['sand_0-5cm_mean'], ['sand_0_5cm_percent']);
-    
-  return conv_to_percent(sand);
-};
-exports.sand_percent = sand_percent;
+exports.soil_percent = soil_percent;
 
 
 
@@ -84,10 +50,9 @@ exports.soil_carbon = soil_carbon;
 
 
 
+
 var sampling_collection = ee.Image([
-  sand_percent(),
-  clay_percent(),
-  silt_percent(),
+  soil_percent(),
   soil_carbon()
 ]);
 exports.sampling_collection = sampling_collection;
