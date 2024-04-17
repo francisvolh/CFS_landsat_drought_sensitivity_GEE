@@ -36,20 +36,24 @@ var clay_percent = function() {
     .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent']);
     
   return conv_to_percent(clay);
-}
-
-var soil_percent = function() {
-	var silt = ee.Image("projects/soilgrids-isric/silt_mean");
-	var sand = ee.Image("projects/soilgrids-isric/sand_mean");
-
-	return ee.Image([silt, sand, clay])
-    // .multiply(0.1)
-    .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
-            ['sand_0_5cm_percent', 'clay_0_5cm_percent', 'silt_0_5cm_percent'])
-    // .round()
-    // .toInt();
 };
-exports.soil_percent = soil_percent;
+exports.clay_percent = clay_percent;
+
+var silt_percent = function() {
+	var silt = cee.Image("projects/soilgrids-isric/silt_mean")
+    .select(['silt_0-5cm_mean'], ['silt_0_5cm_percent']);
+    
+  return conv_to_percent(silt);
+};
+exports.silt_percent = silt_percent;
+
+var sand_percent = function() {
+	var sand = cee.Image("projects/soilgrids-isric/sand_mean")
+    .select(['sand_0-5cm_mean'], ['sand_0_5cm_percent']);
+    
+  return conv_to_percent(sand);
+};
+exports.sand_percent = sand_percent;
 
 
 
@@ -65,9 +69,10 @@ exports.soil_carbon = soil_carbon;
 
 
 
-
 var sampling_collection = ee.Image([
-  soil_percent(),
+  sand_percent(),
+  clay_percent(),
+  silt_percent(),
   soil_carbon()
 ]);
 exports.sampling_collection = sampling_collection;
