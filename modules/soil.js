@@ -48,7 +48,7 @@ var conv_to_percent = function(img) {
 var clay_percent = function() {
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean")
     .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent'])
-    .reproject(4326);
+    .reproject(ee.Project('EPSG:4326'));
     
   return conv_to_percent(clay);
 };
