@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-80.89945867346277, 60.019760642195614],
+          [-80.89945867346277, 43.61049031305448],
+          [-48.07231023596278, 43.61049031305448],
+          [-48.07231023596278, 60.019760642195614]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Export points drive
 Based on: tests/test_export_points.js
