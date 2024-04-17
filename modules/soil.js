@@ -30,7 +30,7 @@ var soil_percent = function() {
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean");
 
 	return ee.Image([silt, sand, clay])
-    .multiply(0.1)
+    // .multiply(0.1)
     .select(['sand_0-5cm_mean', 'clay_0-5cm_mean', 'silt_0-5cm_mean'],
             ['sand_0_5cm_percent', 'clay_0_5cm_percent', 'silt_0_5cm_percent'])
     // .round()
