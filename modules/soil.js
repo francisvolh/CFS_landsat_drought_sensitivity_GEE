@@ -1,3 +1,17 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[-145.3398890645667, 72.37962246081129],
+          [-145.3398890645667, 41.600341958739946],
+          [-50.76957656456671, 41.600341958739946],
+          [-50.76957656456671, 72.37962246081129]]], null, false);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*
 Soil
 Alec L. Robitaille
@@ -33,7 +47,8 @@ var conv_to_percent = function(img) {
 
 var clay_percent = function() {
 	var clay = ee.Image("projects/soilgrids-isric/clay_mean")
-    .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent']);
+    .select(['clay_0-5cm_mean'], ['clay_0_5cm_percent'])
+    .reproject(4326);
     
   return conv_to_percent(clay);
 };
