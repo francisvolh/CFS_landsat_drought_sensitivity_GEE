@@ -56,7 +56,8 @@ exports.forest_carbon = forest_carbon;
 // Forest age
 var forest_age = function() {
   var age = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_forest_age_2019")
-      .select(['b1'], ['CA_forest_age']);
+      .select(['b1'], ['CA_forest_age'])
+      .reproject(ee.Projection('EPSG:4326');
   return age;
 };
 exports.forest_age = forest_age;
