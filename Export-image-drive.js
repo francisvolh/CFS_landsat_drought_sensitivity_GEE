@@ -11,7 +11,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 // Set variables
 var region = vars.canada;
-var scale = 5e4;
+var scale = 1e4;
 var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
 
 
