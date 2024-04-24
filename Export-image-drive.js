@@ -11,15 +11,26 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 // Set variables
 var region = vars.canada;
-var output = 'normalized difference sensitivity';
-var scale = 1000;
+var scale = 5e4;
+var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
+
 
 
 // File name
-var export_name = 'ND_sens_p15_85';
+var export_name = '2024-03-09_ND_sens_coarse';
 
-// Export image to drive
-export_img.export_img_drive_from_asset(output, export_name, 'Exports', scale, region);
+
 
 // Map region
 Map.addLayer(region);
+
+
+
+// Export image to drive
+Export.image.toDrive({
+  image: col.mosaic(),
+  description: export_name,
+  folder: 'Exports',
+  scale: scale,
+  region: region
+});
