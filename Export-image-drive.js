@@ -10,7 +10,7 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Set variables
-var region = vars.yt_to_mb;
+var region = vars.canada;
 var output = 'normalized difference sensitivity';
 var scale = 1000;
 
@@ -19,7 +19,7 @@ var scale = 1000;
 var export_name = 'ND_sens_p15_85';
 
 // Export image to drive
-export_img.export_img_drive_greenest(output, export_name, 'Exports', scale, region);
+export_img.export_img_drive_from_asset(output, export_name, 'Exports', scale, region);
 
 // Map region
 Map.addLayer(region);
