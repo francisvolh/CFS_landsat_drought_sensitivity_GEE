@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var geometry = 
     /* color: #d63000 */
+    /* shown: false */
     /* displayProperties: [
       {
         "type": "rectangle"
@@ -45,10 +46,12 @@ Map.addLayer(region);
 
 
 // Export image to drive
-Export.image.toDrive({
-  image: col.mosaic(),
-  description: export_name,
-  folder: 'Exports',
-  scale: scale,
-  region: region
-});
+print(col.select('.*12mo.*'))
+print('test')
+// Export.image.toDrive({
+//   image: col.mosaic(),
+//   description: export_name,
+//   folder: 'Exports',
+//   scale: scale,
+//   region: region
+// });
