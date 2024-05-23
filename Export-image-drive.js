@@ -36,7 +36,9 @@ var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_co
 
 
 // File name
-var export_name = '2024-03-09_ND_sens_coarse';
+var export_name_3mo = '2024-03-09_ND_NDVI_3mo_coarse';
+var export_name_12mo = '2024-03-09_ND_NDVI_12mo_coarse';
+var export_name_3yr = '2024-03-09_ND_NDVI_3yr_coarse';
 
 
 
@@ -45,13 +47,27 @@ Map.addLayer(region);
 
 
 
-// Export image to drive
-print(col.select('.*12mo.*'))
-print('test')
-// Export.image.toDrive({
-//   image: col.mosaic(),
-//   description: export_name,
-//   folder: 'Exports',
-//   scale: scale,
-//   region: region
-// });
+// Export images to drive
+Export.image.toDrive({
+  image: col.select('.*3mo.*').mosaic(),
+  description: export_name_3mo,
+  folder: 'Exports',
+  scale: scale,
+  region: region
+});
+
+Export.image.toDrive({
+  image: col.select('.*12mo.*').mosaic(),
+  description: export_name_12mo,
+  folder: 'Exports',
+  scale: scale,
+  region: region
+});
+
+Export.image.toDrive({
+  image: col.select('.*3yr.*').mosaic(),
+  description: export_name_3yr,
+  folder: 'Exports',
+  scale: scale,
+  region: region
+});
