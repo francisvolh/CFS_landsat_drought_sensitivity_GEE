@@ -7,11 +7,11 @@ https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/
 */
 
 // Load modules
-var vars = require('users/francisv/CFS:modules/variables.js');
+var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Load NBAC fire polygons
-var NBAC_fires = ee.Image('users/francisv/NBAC_MRB_1972to2024_250m').rename('YEAR'); 
+var NBAC_fires = ee.FeatureCollection('users/robitalec/CFS/nbac_1986_to_2022_20230630');
 
 
 // Generate fire masks from NBAC - any fire in preceeding 5 years
