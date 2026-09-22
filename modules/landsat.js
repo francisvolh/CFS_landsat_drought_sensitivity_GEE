@@ -15,7 +15,7 @@ on Google Earth Engine. Remote Sensing. 10, 691.
 var ltgee = require('users/emaprlab/public:Modules/LandTrendr.js');
 
 // Load utils
-var utils = require('users/robitalec/CFS:modules/utils.js');
+var utils = require('users/francisv/CFS:modules/utils.js');
 
 
 // Set flags to mask
