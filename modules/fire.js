@@ -7,7 +7,7 @@ https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/
 */
 
 // Load modules
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 // Load NBAC fire polygons
