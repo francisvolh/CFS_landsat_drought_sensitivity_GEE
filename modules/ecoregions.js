@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 
-var ecoregions = ee.FeatureCollection('users/robitalec/CFS/Terrestrial_Ecoregions_Canada');
+var ecoregions = ee.FeatureCollection('projects/perfect-victor-232201/assets/Landsat_ms/ecozones');
 exports.ecoregions = ecoregions;
 
 
