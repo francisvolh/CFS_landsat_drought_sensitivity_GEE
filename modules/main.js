@@ -48,7 +48,7 @@ var main_greenest = function(output, region) {
   ante_means = ante_means.filter(ee.Filter.gte('year', min_year_landsat));
 var percentile_images = percentile.percentile(ante_means, percentile_list);
 var percentile_masks = percentile.percentile_masks(ante_means, percentile_images);
-  var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
+var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
   if (output == 'relative sensitivity') {
     var sens_rel = sensitivity.sensitivity_relative_cap(split_drought_wi, antecedent_list, index_list);
 
