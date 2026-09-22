@@ -55,29 +55,6 @@ var get_era5_daily = function() {
 exports.get_era5_daily = get_era5_daily;
 
 
-var daymet = ee.ImageCollection("NASA/ORNL/DAYMET_V4");
-exports.daymet = daymet;
-
-var get_daymet = function() {
-  daymet = daymet.filter(ee.Filter.calendarRange(vars.min_year_climate, vars.max_year, 'year'))
-                  .map(utils.set_date)
-                  .map(utils.set_week)
-                  .map(utils.set_year);
-
-  return daymet;
-};
-exports.get_daymet = get_daymet;
-
-
-
-var monthly_daymet = function(year_list, month_list) {
-  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
-
-	return utils.aggregate_month_year(daymet, year_list, month_list, reducer)
-							.select(['tmin_mean', 'tmax_mean', 'prcp_sum'], ['tmin', 'tmax', 'prcp']);
-};
-exports.monthly_daymet = monthly_daymet;
-
 
 var monthly_era5 = function(year_list, month_list) {
   var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
