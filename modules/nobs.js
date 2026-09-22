@@ -3,7 +3,7 @@ Number of observations
 Alec L. Robitaille
 */
 
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 var count_nobs = function(split_indices, sensitivity) {
