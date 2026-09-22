@@ -30,7 +30,6 @@ var percentile_masks = function(ante_images, percentile_images) {
         .rename('CMI_ante2lag_lte_p15'),
       ante_img.select('CMI_ante3lag_mean').lte(percentile_images.select('CMI_ante3lag_mean_p15'))
         .rename('CMI_ante3lag_lte_p15'),
-
       ante_img.select('CMI_ante3mo_mean').gt(percentile_images.select('CMI_ante3mo_mean_p15'))
         .and(ante_img.select('CMI_ante3mo_mean').lt(percentile_images.select('CMI_ante3mo_mean_p85')))
         .rename('CMI_ante3mo_wi_p15_p85'),
