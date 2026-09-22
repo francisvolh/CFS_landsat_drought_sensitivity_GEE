@@ -8,10 +8,10 @@ Alec L. Robitaille
 
 // Modules
 var anthro = require('users/robitalec/CFS:modules/anthro.js');
-var land_cover = require('users/francisv/landsat:modules/land_cover.js')
+var land_cover = require('users/francisv/CFS:modules/land_cover.js')
 // var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
 var agriculture = require('users/francisv/CFS:modules/agriculture.js');
-var fire = require('users/francisv/landsat:modules/fire.js');
+var fire = require('users/francisv/CFS:modules/fire.js');
 // var ca_forest_fire_mag = ee.Image("projects/sat-io/open-datasets/CA_FOREST/CA_Forest_Wildfire_dNBR_1985_2020");
 
 
