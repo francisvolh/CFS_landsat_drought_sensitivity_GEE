@@ -4,15 +4,15 @@ Alec L. Robitaille
 */
 
 // Modules
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var hydro = require('users/robitalec/CFS:modules/hydro.js');
-var eco = require('users/robitalec/CFS:modules/ecoregions.js');
-var vegetation = require('users/robitalec/CFS:modules/vegetation.js');
-var soil = require('users/robitalec/CFS:modules/soil.js');
-var topo = require('users/robitalec/CFS:modules/topo.js');
-var climate = require('users/robitalec/CFS:modules/climate.js');
-var utils = require('users/robitalec/CFS:modules/utils.js');
-var mask = require('users/robitalec/CFS:modules/mask.js');
+var land_cover = require('users/francisv/CFS:modules/land_cover.js');
+var hydro = require('users/francisv/CFS:modules/hydro.js');
+var eco = require('users/francisv/CFS:modules/ecoregions.js');
+var vegetation = require('users/francisv/CFS:modules/vegetation.js');
+var soil = require('users/francisv/CFS:modules/soil.js');
+var topo = require('users/francisv/CFS:modules/topo.js');
+var climate = require('users/francisv/CFS:modules/climate.js');
+var utils = require('users/francisv/CFS:modules/utils.js');
+var mask = require('users/francisv/CFS:modules/mask.js');
 
  
 
