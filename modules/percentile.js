@@ -48,7 +48,6 @@ var percentile_masks = function(ante_images, percentile_images) {
       ante_img.select('CMI_ante3lag_mean').gt(percentile_images.select('CMI_ante3lag_mean_p15'))
         .and(ante_img.select('CMI_ante3lag_mean').lt(percentile_images.select('CMI_ante3lag_mean_p85')))
         .rename('CMI_ante3lag_wi_p15_p85')
-
        ]).copyProperties(ante_img);
     return out;
 	});
