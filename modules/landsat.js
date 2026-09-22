@@ -43,7 +43,7 @@ var indices_greenest = function(min_year, max_year, min_mm_dd, max_mm_dd, region
                          .and(img.select('B3').neq(0))
                          .and(img.select('NDVI').lt(0.98)));
       }).qualityMosaic('NDVI')
-        .set('system:time_start', ee.Date.fromYMD(yr, 07, 15).millis());
+        .set('system:time_start', ee.Date.fromYMD(yr, 7, 15).millis());
 
   })).map(utils.set_year)
      .map(utils.add_year_band);
