@@ -58,22 +58,21 @@ exports.hermosilla_1984_2019 = hermosilla_1984_2019;
 
 
 
-// Add 2020-2022
-var lc_2019 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2019-01-01')).first());
-var lc_2020 = lc_2019
-  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
-  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis());
-var lc_2021 = lc_2019
-  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(2, 'year').millis())
-  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(2, 'year').millis());
-var lc_2022 = lc_2019
-  .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(3, 'year').millis())
-  .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(3, 'year').millis());
+// Add 2023-2024
+var lc_2022 = ee.Image(hermosilla_1984_2019.filter(ee.Filter.date('2022-01-01')).first());
+// var lc_2020 = lc_2022
+//   .set('system:time_start', ee.Date(lc_2019.get('system:time_start')).advance(1, 'year').millis())
+//   .set('system:time_end', ee.Date(lc_2019.get('system:time_end')).advance(1, 'year').millis());
+var lc_2023 = lc_2022
+  .set('system:time_start', ee.Date(lc_2022.get('system:time_start')).advance(1, 'year').millis())
+  .set('system:time_end', ee.Date(lc_2022.get('system:time_end')).advance(1, 'year').millis());
+var lc_2024 = lc_2022
+  .set('system:time_start', ee.Date(lc_2022.get('system:time_start')).advance(2, 'year').millis())
+  .set('system:time_end', ee.Date(lc_2022.get('system:time_end')).advance(2, 'year').millis());
 var hermosilla_1984_2019_extended = ee.ImageCollection(hermosilla_1984_2019
 	.toList(50)
-	.add(lc_2020)
-	.add(lc_2021)
-	.add(lc_2022)
+	.add(lc_2023)
+	.add(lc_2024)
 );
 exports.hermosilla_1984_2019_extended = hermosilla_1984_2019_extended;
 
