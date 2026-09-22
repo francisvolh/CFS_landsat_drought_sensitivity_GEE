@@ -15,7 +15,7 @@ https://www.mdpi.com/1999-4907/7/11/265/htm
 */
 
 // Modules
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var land_cover = require('users/francisv/CFS:modules/land_cover.js');
 
 
 
