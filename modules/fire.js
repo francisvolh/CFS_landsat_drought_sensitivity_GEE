@@ -11,7 +11,8 @@ var vars = require('users/robitalec/CFS:modules/variables.js');
 
 
 // Load NBAC fire polygons
-var NBAC_fires = ee.FeatureCollection('users/robitalec/CFS/nbac_1986_to_2022_20230630');
+// var NBAC_fires = ee.FeatureCollection('users/robitalec/CFS/nbac_1986_to_2022_20230630');
+var NBAC_fires = ee.FeatureCollection("projects/sat-io/open-datasets/CA_FOREST/NBAC/YEARLY/nbac_1986_20240530");
 
 
 // Generate fire masks from NBAC - any fire in preceeding 5 years
@@ -65,3 +66,5 @@ var prop_burned_buffer = function(focal_dist) {
     .rename('prop_burned_' + focal_dist + '_m');
 };
 exports.prop_burned_buffer = prop_burned_buffer;
+
+
