@@ -51,7 +51,6 @@ var percentile_masks = percentile.percentile_masks(ante_means, percentile_images
 var split_drought_wi = split.split_drought_wi(indices_col, percentile_masks, antecedent_list, index_list);
   if (output == 'relative sensitivity') {
     var sens_rel = sensitivity.sensitivity_relative_cap(split_drought_wi, antecedent_list, index_list);
-
     var counts_rel = nobs.count_nobs(split_drought_wi, sens_rel);
     return nobs.mask_nobs('Rel', counts_rel, antecedent_list, index_list);
   } else if (output == 'absolute sensitivity') {
