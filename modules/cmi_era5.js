@@ -95,7 +95,7 @@ var calc_CMI_band = function(img) {
     }).rename('CMI'));
 };
 
-// Calculate CMI from input Daymet image
+// Calculate CMI from input image
 var calc_CMI_ERA5 = function(img) {
 	img = calc_ETMAX_band(img);
 	img = calc_ETMIN_band(img);
