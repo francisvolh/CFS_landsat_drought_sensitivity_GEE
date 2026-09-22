@@ -4,16 +4,16 @@ Alec L. Robitaille
 */
 
 // Load modules
-var landsat = require('users/robitalec/CFS:modules/landsat.js');
-var mask = require('users/robitalec/CFS:modules/mask.js');
-var cmi_era5 = require('users/robitalec/CFS:modules/cmi_era5.js');
-var climate = require('users/robitalec/CFS:modules/climate.js');
-var percentile = require('users/robitalec/CFS:modules/percentile.js');
-var antecedent = require('users/robitalec/CFS:modules/antecedent.js');
-var split = require('users/robitalec/CFS:modules/split_drought.js');
-var sensitivity = require('users/robitalec/CFS:modules/sensitivity.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
-var nobs = require('users/robitalec/CFS:modules/nobs.js');
+var landsat = require('users/francisv/CFS:modules/landsat.js');
+var mask = require('users/francisv/CFS:modules/mask.js');
+var cmi_era5 = require('users/francisv/CFS:modules/cmi_era5.js');
+var climate = require('users/francisv/CFS:modules/climate.js');
+var percentile = require('users/francisv/CFS:modules/percentile.js');
+var antecedent = require('users/francisv/CFS:modules/antecedent.js');
+var split = require('users/francisv/CFS:modules/split_drought.js');
+var sensitivity = require('users/francisv/CFS:modules/sensitivity.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
+var nobs = require('users/francisv/CFS:modules/nobs.js');
 
 
 var main_greenest = function(output, region) {
