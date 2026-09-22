@@ -78,16 +78,12 @@ var monthly_daymet = function(year_list, month_list) {
 };
 exports.monthly_daymet = monthly_daymet;
 
-var monthly_era5 = function(min_year, max_year, min_month, max_month) {
-  var era5_monthly = ee.ImageCollection("ECMWF/ERA5_LAND/MONTHLY_AGGR");
 
-  return era5_monthly
-    .filter(ee.Filter.calendarRange(min_year, max_year, 'year'))
-    .filter(ee.Filter.calendarRange(min_month, max_month, 'month'))
-    .select(['temperature_2m_min', 'temperature_2m_max', 'total_precipitation_sum'],
-            ['tmin', 'tmax', 'prcp'])
-    .map(utils.set_year)
-    .map(utils.set_date);
+var monthly_era5 = function(year_list, month_list) {
+  var reducer = ee.Reducer.mean().combine(ee.Reducer.sum(), null, true);
+
+	return utils.aggregate_month_year(era5_daily, year_list, month_list, reducer)
+							.select(['temperature_2m_min_mean', 'temperature_2m_max_mean', 'total_precipitation_sum_sum'], ['tmin', 'tmax', 'prcp']);
 };
 exports.monthly_era5 = monthly_era5;
 
@@ -130,3 +126,4 @@ exports.era5_land_climate_normals = era5_land_climate_normals;
 var sampling_collection = climate_normals(['TD', 'MAT', 'MAP', 'MSP', 'CMI'])
   .addBands(era5_land_climate_normals());
 exports.sampling_collection = sampling_collection;
+
