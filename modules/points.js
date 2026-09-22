@@ -6,10 +6,10 @@ Alec L. Robitaille
 
 
 // Modules
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var stratified = require('users/robitalec/CFS:modules/stratified.js');
-var mask = require('users/robitalec/CFS:modules/mask.js');
-var utils = require('users/robitalec/CFS:modules/utils.js');
+var land_cover = require('users/francisv/CFS:modules/land_cover.js');
+var stratified = require('users/francisv/CFS:modules/stratified.js');
+var mask = require('users/francisv/CFS:modules/mask.js');
+var utils = require('users/francisv/CFS:modules/utils.js');
 var tiler = require('users/gena/packages:tiler');
 
 
