@@ -19,7 +19,7 @@ data products for forest monitoring. International Journal of Digital Earth
 */
 
 // Modules
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 
