@@ -48,8 +48,8 @@ Alec L. Robitaille
 */
 
 // Load modules
-var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var eco = require('users/robitalec/CFS:modules/ecoregions.js');
+var export_img = require('users/francisv/CFS:modules/export_img.js');
+var eco = require('users/francisv/CFS:modules/ecoregions.js');
 
 
 // Set variables
