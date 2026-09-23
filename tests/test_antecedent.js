@@ -19,7 +19,7 @@ var months = ee.List.sequence(1, 12);
 var monthly_era5 = climate.monthly_era5(years, months);
 
 // Calculate CMI
-var cmi_daymet = monthly_era5.map(cmi_era5.calc_CMI);
+var monthly_era5 = monthly_era5.map(cmi_era5.calc_CMI_ERA5);
 
 
 
