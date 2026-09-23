@@ -19,13 +19,13 @@ var months = ee.List.sequence(1, 12);
 var monthly_era5 = climate.monthly_era5(years, months);
 
 // Calculate CMI
-var monthly_era5 = monthly_era5.map(cmi_era5.calc_CMI_ERA5);
+var cmi_era5 = monthly_era5.map(cmi_era5.calc_CMI_ERA5);
 
 
 
 // Test antecedent_means
 // Usage: antecedent_mean(images, band, year_list)
-var ante_means = antecedent.antecedent_means(cmi_daymet, 'CMI', years);
+var ante_means = antecedent.antecedent_means(cmi_era5, 'CMI', years);
 print(ante_means);
 Map.addLayer(ante_means.select('CMI_ante3yr_mean'), vars.cmi_viz, 'CMI ante 3 year');
 Map.addLayer(ante_means.filter(ee.Filter.eq('year', 2015)).select('CMI_ante2lag_mean'), vars.cmi_viz, 'CMI ante 2 lag');
