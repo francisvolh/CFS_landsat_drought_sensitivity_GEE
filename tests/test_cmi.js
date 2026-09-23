@@ -5,14 +5,14 @@ Alec L. Robitaille
 
 
 // Load modules
-var cmi = require('users/robitalec/CFS:modules/cmi.js');
+var cmi = require('users/francisv/CFS:modules/cmi_era5.js');
 var palettes = require('users/gena/packages:palettes');
-var climate = require('users/robitalec/CFS:modules/climate.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var climate = require('users/francisv/CFS:modules/climate.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 // Load collection
-var daymet = climate.daymet
+var cmi_era5 = climate.monthly_cmi_era5
     .filterDate('2015-07-01', '2015-07-30')
     .mean();
 
@@ -20,6 +20,6 @@ var daymet = climate.daymet
 
 // Test calc_CMI
 // Usage: calc_CMI(img)
-var cmi_daymet = cmi.calc_CMI(daymet);
-print(cmi_daymet);
-Map.addLayer(cmi_daymet.select('CMI'), vars.cmi_viz);
+var cmi_era5 = cmi.calc_CMI_ERA5(cmi_era5);
+print(cmi_era5);
+Map.addLayer(cmi_era5.select('CMI'), vars.cmi_viz);
