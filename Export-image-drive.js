@@ -19,8 +19,8 @@ Alec L. Robitaille
 */
 
 // Load modules
-var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var export_img = require('users/francisv/CFS:modules/export_img.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 
@@ -31,7 +31,7 @@ var region = ee.Geometry.Polygon(
     [-49.672747022335656, 40.963680927935904],
     [-49.672747022335656, 73.72057482330297]]]);
 var scale = 1e4;
-var col = ee.ImageCollection('users/robitalec/CFS/2024-03-09/2024-03-09_image_col');
+var col = ee.ImageCollection('users/francis/CFS/2024-03-09/2024-03-09_image_col');
 
 
 
