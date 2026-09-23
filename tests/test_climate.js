@@ -21,7 +21,7 @@ var month_list = ee.List.sequence(min_mon, max_mon);
 
 // Daymet
 //var daymet = climate.daymet;
-var era5 = climate.era5;
+var era5 = climate.monthly_era5;
 
 
 
