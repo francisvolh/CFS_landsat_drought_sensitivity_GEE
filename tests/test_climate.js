@@ -34,7 +34,7 @@ print('ERA5 (limit 5)', get_era5.limit(5));
 
 // Test monthly_era5
 // Usage: monthly_era5(min_year, max_year, min_month, max_month)
-var monthly_era5 = climate.monthly_era5(min_year, max_year, min_mon, max_mon);
+var monthly_era5 = climate.monthly_era5(year_list, month_list);
 print('Monthly era5', monthly_era5);
 Map.addLayer(monthly_era5.select('prcp'), {min:0, max:500}, 'monthly_era5');
 
