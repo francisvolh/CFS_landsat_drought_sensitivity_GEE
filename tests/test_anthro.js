@@ -21,9 +21,9 @@ Alec L. Robitaille
 
 
 // Load modules
-var anthro = require('users/robitalec/CFS:modules/anthro.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
-var landsat = require('users/robitalec/CFS:modules/landsat.js');
+var anthro = require('users/francisv/CFS:modules/anthro.js');
+var land_cover = require('users/francisv/CFS:modules/land_cover.js');
+var landsat = require('users/francisv/CFS:modules/landsat.js');
 
 
 
