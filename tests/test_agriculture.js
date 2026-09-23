@@ -6,8 +6,8 @@ Alec L. Robitaille
 
 
 // Load modules
-var agriculture = require('users/robitalec/CFS:modules/agriculture.js');
-var land_cover = require('users/robitalec/CFS:modules/land_cover.js');
+var agriculture = require('users/francisv/CFS:modules/agriculture.js');
+var land_cover = require('users/francisv/CFS:modules/land_cover.js');
 
 
 
