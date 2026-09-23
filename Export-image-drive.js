@@ -36,7 +36,7 @@ var col = ee.ImageCollection('projects/perfect-victor-232201/assets/CFS/2026-09-
 
 
 // File name
-var export_name = '2024-03-09_ND_sens_coarse';
+var export_name = '2026-09-22_rel_sens_coarse';
 
 
 
