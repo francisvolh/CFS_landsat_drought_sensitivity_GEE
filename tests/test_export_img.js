@@ -6,15 +6,15 @@ Alec L. Robitaille
 
 
 // Load modules
-var export_img = require('users/robitalec/CFS:modules/export_img.js');
-var vars = require('users/robitalec/CFS:modules/variables.js');
+var export_img = require('users/francisv/CFS:modules/export_img.js');
+var vars = require('users/francisv/CFS:modules/variables.js');
 
 
 
 // Set variables
 var region = ee.Geometry.Polygon([[[-122.87, 55.86], [-122.87, 54.98], [-121.87, 54.98], [-121.87, 55.86]]]);
 var scale = 30;
-var asset_folder = 'users/robitalec/CFS';
+var asset_folder = 'users/francisv/CFS';
 var drive_folder = 'Test-export-img-drive-from-asset';
 
 var output = 'absolute sensitivity';
