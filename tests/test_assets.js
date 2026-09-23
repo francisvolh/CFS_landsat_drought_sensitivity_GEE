@@ -11,7 +11,7 @@ var assets = require('users/francisv/CFS:modules/assets.js');
 
 
 // Variables
-var dir = 'project/perfect-victor-232201/CFS/2026-09-22/2026-09-22_image_col';
+var dir = 'projects/perfect-victor-232201/assets/CFS/2026-09-22/2026-09-22_image_col';
 
 
 // Test list_assets_in_dir
