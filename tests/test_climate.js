@@ -32,13 +32,6 @@ var get_era5 = climate.get_era5_daily();
 print('ERA5 (limit 5)', get_era5.limit(5));
 
 
-
-// Test monthly_daymet
-// Usage: monthly_daymet(year_list, month_list)
-var monthly_daymet = climate.monthly_daymet(year_list, month_list);
-print('Monthly daymet', monthly_daymet);
-Map.addLayer(monthly_daymet.select('prcp'), {min:0, max:500}, 'monthly_daymet');
-
 // Test monthly_era5
 // Usage: monthly_era5(min_year, max_year, min_month, max_month)
 var monthly_era5 = climate.monthly_era5(min_year, max_year, min_mon, max_mon);
