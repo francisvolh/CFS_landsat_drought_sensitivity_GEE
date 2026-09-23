@@ -5,7 +5,7 @@ Alec L. Robitaille
 
 
 // Load modules
-var climate = require('users/robitalec/CFS:modules/climate.js');
+var climate = require('users/francisv/CFS:modules/climate.js');
 
 
 
@@ -20,15 +20,11 @@ var month_list = ee.List.sequence(min_mon, max_mon);
 
 
 // Daymet
-var daymet = climate.daymet;
+//var daymet = climate.daymet;
 var era5 = climate.era5;
 
 
 
-// Test daymet
-// Usage: get_daymet();
-var get_daymet = climate.get_daymet();
-print('Daymet (limit 5)', get_daymet.limit(5));
 
 // Test era5
 // Usage: get_era5();
