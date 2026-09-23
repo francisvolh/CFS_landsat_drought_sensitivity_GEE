@@ -4,7 +4,7 @@ Alec L. Robitaille
 */
 
 // Load modules
-var eco = require('users/robitalec/CFS:modules/ecoregions.js');
+var eco = require('users/francisv/CFS:modules/ecoregions.js');
 
 
 
